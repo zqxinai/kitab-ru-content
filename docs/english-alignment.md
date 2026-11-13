@@ -114,3 +114,13 @@ Tiga catatan `English translation: Legge 1861` di akhir transkripsi bab 1–3 di
 - Kesesuaian Hanzi sumber terhadap seluruh rentang pasal MATAKIN berkisar **96,70%–100%** setelah normalisasi sederhana. Perbedaan aksara, transmisi teks, dan atribusi sumber masih **harus diperiksa secara manual**.
 - Cakupan editor menjadi **854/965 draf Inggris (88,5%)**, tersisa **111**: Da Xue 53, Lun Yu 50, Mengzi 8. Tidak mengubah teks Indonesia, Hanzi, pinyin, status Final, maupun aset Android.
 - Pengujian regresi: `node --test tests/mengzi-coverage-batch-03.test.js`.
+
+## Batch kecil Mengzi 04 — 13 November 2026 (4 pasal)
+
+- Menambah **empat draf** Inggris yang dicocokkan pada keseluruhan Hanzi: `sishu.mengzi.09.05`, `11.03`, `12.01`, dan `12.13`. Tidak ada status Final yang diberikan.
+- Snapshot sumber: `sources/legge/mengzi-chinesenotes-4-passages-batch-04.json`, pada commit tetap `5d2e867ecfb33e16a6aed392c6b8b8cde3896030`. Pemeriksaan mencakup seluruh paragraf yang dipisahkan dalam edisi Inggris James Legge, termasuk baris Hanzi yang diawali tanda kutip.
+- Kesesuaian Hanzi lengkap berkisar **96,77–99,71%** menurut kesamaan edit karakter setelah penghilangan tanda baca (tanpa mengubah teks sumber). Perbedaan aksara dan kesetiaan terjemahan masih perlu pemeriksaan manual; karena itu tetap `draft`.
+- Ketersediaan Inggris editor kini **858/965 (88,9%)**, tersisa **107**: Da Xue 53, Lun Yu 50, Mengzi 4. Mengzi 256/260 tersedia sebagai draf.
+- Sisa Mengzi yang sengaja **belum dipaksakan**: `07.23` (忌 ↔ 患), `07.25` (variasi 哺 ↔ 餔), `08.17` (祥 ↔ 詳), `09.07` (rentang Hanzi sumber tidak lengkap). Perbedaan ini membutuhkan pemeriksaan filologis.
+- Naskah Indonesia, Hanzi, pinyin, registry Final dan paket offline Android tetap tidak berubah.
+- Tes: `node --test tests/mengzi-coverage-batch-04.test.js`.
