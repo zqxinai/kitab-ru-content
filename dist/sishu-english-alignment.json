@@ -5179,6 +5179,204 @@
       "source_url": "https://confuciuspedia.com/lib/the-doctrine-of-the-mean/amp/",
       "status": "draft",
       "review_note": "Matched normalized Hanzi with similarity 100.00%. Source text checked against source snapshot; needs comparison to original James Legge edition. 1 MATAKIN passage(s), 1 Legge source unit(s)."
+    },
+    {
+      "id": "legge-zhongyong-29-01",
+      "indonesian_passage_ids": [
+        "sishu.zhongyong.29.01",
+        "sishu.zhongyong.29.02",
+        "sishu.zhongyong.29.03",
+        "sishu.zhongyong.29.04",
+        "sishu.zhongyong.29.05"
+      ],
+      "english_segments": [
+        {
+          "legge_ref": "The Doctrine of the Mean, chapter 29, source unit 1",
+          "text": "He who attains to the sovereignty of the kingdom, having those three important things, shall be able to effect that there shall be few errors under his government. However excellent may have been the regulations of those of former times, they cannot be attested. Not being attested, they cannot command credence, and not being credited, the people would not follow them. However excellent might be the regulations made by one in an inferior situation, he is not in a position to be honored. Unhonored, he cannot command credence, and not being credited, the people would not follow his rules. Therefore the institutions of the Ruler are rooted in his own character and conduct, and sufficient attestation of them is given by the masses of the people. He examines them by comparison with those of the three kings, and finds them without mistake. He sets them up before Heaven and Earth, and finds nothing in them contrary to their mode of operation. He presents himself with them before spiritual beings, and no doubts about them arise. He is prepared to wait for the rise of a sage a hundred ages after, and has no misgivings. His presenting himself with his institutions before spiritual beings, without any doubts arising about them, shows that he knows Heaven. His being prepared, without any misgivings, to wait for the rise of a sage a hundred ages after, shows that he knows men. Such being the case, the movements of such a ruler, illustrating his institutions, constitute an example to the world for ages. His acts are for ages a law to the kingdom. His words are for ages a lesson to the kingdom. Those who are far from him look longingly for him; and those who are near him are never wearied with him."
+        }
+      ],
+      "hanzi_span": "王天下有三重焉，其寡過矣乎！上焉者雖善，無徵。無徵，不信。不信，民弗從。下焉者雖善，不尊。不尊，不信。不信，民弗從。故君子之道，本諸身，徵諸庶民。考諸三王而不繆，建諸天地而不悖。質諸鬼神而無疑，百世以俟聖人而不惑。質諸鬼神而無疑，知天也。百世以俟聖人而不惑，知人也。是故君子動而世為天下道，行而世為天下法，言而世為天下則。遠之，則有望；近之，則不厭。",
+      "source_hanzi_simplified": "王天下有三重（zhong）焉其寡过矣乎！上焉者，虽善无征，无征不信，不信民弗从；下焉者，虽善不尊，不尊不信，不信民弗从。故君子之道：本诸身，征诸庶民，考诸三王而不缪（miù），建诸天地而不悖（bèi），质诸鬼神而无疑，百世以俟圣人而不惑。质诸鬼神而无疑，知天也；百世以俟圣人而不惑，知人也。是故君子动而世为天下道，行而世为天下法，言而世为天下则。远之则有望，近之则不厌。",
+      "source_url": "https://confuciuspedia.com/lib/the-doctrine-of-the-mean/amp/",
+      "status": "draft",
+      "review_note": "Matched normalized Hanzi with similarity 100.00%. Source text checked against source snapshot; needs comparison to original James Legge edition. 5 MATAKIN passage(s), 1 Legge source unit(s)."
+    },
+    {
+      "id": "legge-zhongyong-29-02",
+      "indonesian_passage_ids": [
+        "sishu.zhongyong.29.06"
+      ],
+      "english_segments": [
+        {
+          "legge_ref": "The Doctrine of the Mean, chapter 29, source unit 2",
+          "text": "It is said in the Book of Poetry, “Not disliked there, not tired of here, from day to day and night tonight, will they perpetuate their praise.” Never has there been a ruler, who did not realize this description, that obtained an early renown throughout the kingdom."
+        }
+      ],
+      "hanzi_span": "詩曰：“在彼無惡，在此無射；庶幾夙夜，以永終譽。”君子未有不如此，而蚤有譽於天下者也。",
+      "source_hanzi_simplified": "《诗》曰：“在彼无恶，在此无射（yi）；庶几夙（su）夜，以永终誉。” 君子未有不如此，而蚤有誉于天下者也。",
+      "source_url": "https://confuciuspedia.com/lib/the-doctrine-of-the-mean/amp/",
+      "status": "draft",
+      "review_note": "Matched normalized Hanzi with similarity 100.00%. Source text checked against source snapshot; needs comparison to original James Legge edition. 1 MATAKIN passage(s), 1 Legge source unit(s)."
+    },
+    {
+      "id": "legge-zhongyong-30-01",
+      "indonesian_passage_ids": [
+        "sishu.zhongyong.30.01",
+        "sishu.zhongyong.30.02",
+        "sishu.zhongyong.30.03"
+      ],
+      "english_segments": [
+        {
+          "legge_ref": "The Doctrine of the Mean, chapter 30, source unit 1",
+          "text": "Zhong-ni handed down the doctrines of Yao and Shun, as if they had been his ancestors, and elegantly displayed the regulations of Wen and Wu taking them as his model. Above, he harmonized with the times of Heaven, and below, he was conformed to the water and land. He may be compared to Heaven and Earth in their supporting and containing, their overshadowing and curtaining, all things. He may be compared to the four seasons in their alternating progress, and to the sun and moon in their successive shining. All things are nourished together without their injuring one another. The courses of the seasons, and of the sun and moon, are pursued without any collision among them. The smaller energies are like river currents; the greater energies are seen in mighty transformations. It is this which makes heaven and earth so great."
+        }
+      ],
+      "hanzi_span": "仲尼祖述堯舜，憲章文武。上律天時，下襲水土。辟如天地之無不持載，無不覆幬。辟如四時之錯行，如日月之代明。萬物並育而不相害。道並行而不相悖。小德川流；大德敦化。此天地之所以為大也。",
+      "source_hanzi_simplified": "仲尼祖述尧、舜，宪章文、武，上律天时，下袭水土。辟如天地之无不持载，无不覆帱；辟如四时之错行，如日月之代明。万物并育而不相害，道并行而不相悖。小德川流，大德敦化。此天地之所以为大也。",
+      "source_url": "https://confuciuspedia.com/lib/the-doctrine-of-the-mean/amp/",
+      "status": "draft",
+      "review_note": "Matched normalized Hanzi with similarity 100.00%. Source text checked against source snapshot; needs comparison to original James Legge edition. 3 MATAKIN passage(s), 1 Legge source unit(s)."
+    },
+    {
+      "id": "legge-zhongyong-31-01",
+      "indonesian_passage_ids": [
+        "sishu.zhongyong.31.01",
+        "sishu.zhongyong.31.02",
+        "sishu.zhongyong.31.03",
+        "sishu.zhongyong.31.04"
+      ],
+      "english_segments": [
+        {
+          "legge_ref": "The Doctrine of the Mean, chapter 31, source unit 1",
+          "text": "It is only he, possessed of all sagely qualities that can exist under heaven, who shows himself quick in apprehension, clear in discernment, of far-reaching intelligence, and all-embracing knowledge, fitted to exercise rule; magnanimous, generous, benign, and mild, fitted to exercise forbearance; impulsive, energetic, firm, and enduring, fitted to maintain a firm hold; self-adjusted, grave, never swerving from the Mean, and correct, fitted to command reverence; accomplished, distinctive, concentrative, and searching, fitted to exercise discrimination. All-embracing is he and vast, deep and active as a fountain, sending forth in their due season his virtues. All-embracing and vast, he is like Heaven. Deep and active as a fountain, he is like the abyss. He is seen, and the people all reverence him; he speaks, and the people all believe him; he acts, and the people all are pleased with him. Therefore his fame overspreads the Middle Kingdom, and extends to all barbarous tribes. Wherever ships and carriages reach; wherever the strength of man penetrates; wherever the heavens overshadow and the earth sustains; wherever the sun and moon shine; wherever frosts and dews fall:-all who have blood and breath unfeignedly honor and love him. Hence it is said, “He is the equal of Heaven.”"
+        }
+      ],
+      "hanzi_span": "唯天下至聖，為能聰、明、睿知、足以有臨也；寬、裕、溫、柔、足以有容也；發、強、剛、毅、足以有執也；齊、莊、中、正、足以有敬也；文、理、密、察、足以有別也。溥博，淵泉，而時出之。溥博如天；淵泉如淵。見而民莫不敬；言而民莫不信；行而民莫不說。是以聲名洋溢乎中國，施及蠻貊。舟車所至，人力所通，天之所覆，地之所載，日月所照，霜露所隊：凡有血氣者莫不尊親。故曰，「配天」。",
+      "source_hanzi_simplified": "唯天下至圣，为能聪明睿知，足以有临也；宽裕温柔，足以有容也；发强刚毅，足以有执也；齐（zhāi）庄中正，足以有敬也；文理密察，足以有别也。溥（pǔ）博渊泉，而时出之。溥博如天，渊泉如渊。见而民莫不敬，言而民莫不信，行而民莫不说。是以声名洋溢乎中国，施及蛮貊（mò），舟车所至，人力所通，天之所覆，地之所载，日月所照，霜露所坠，凡有血气者，莫不尊亲，故曰配天。",
+      "source_url": "https://confuciuspedia.com/lib/the-doctrine-of-the-mean/amp/",
+      "status": "draft",
+      "review_note": "Matched normalized Hanzi with similarity 99.26%. Source text checked against source snapshot; needs comparison to original James Legge edition. 4 MATAKIN passage(s), 1 Legge source unit(s)."
+    },
+    {
+      "id": "legge-zhongyong-32-01",
+      "indonesian_passage_ids": [
+        "sishu.zhongyong.32.01",
+        "sishu.zhongyong.32.02",
+        "sishu.zhongyong.32.03"
+      ],
+      "english_segments": [
+        {
+          "legge_ref": "The Doctrine of the Mean, chapter 32, source unit 1",
+          "text": "It is only the individual possessed of the most entire sincerity that can exist under Heaven, who can adjust the great invariable relations of mankind, establish the great fundamental virtues of humanity, and know the transforming and nurturing operations of Heaven and Earth;-shall this individual have any being or anything beyond himself on which he depends? Call him man in his ideal, how earnest is he! Call him an abyss, how deep is he! Call him Heaven, how vast is he! Who can know him, but he who is indeed quick in apprehension, clear in discernment, of far-reaching intelligence, and all-embracing knowledge, possessing all Heavenly virtue?"
+        }
+      ],
+      "hanzi_span": "唯天下至誠，方能經綸天下之大經，立天下之大本，知天地之化育。夫焉有所倚？肫肫其仁！淵淵其淵！浩浩其天！苟不固聰明聖知，達天德者，其孰能知之？",
+      "source_hanzi_simplified": "唯天下至诚，为能经纶天下之大经，立天下之大本，知天地之化育。夫焉有所倚？肫（zhūn）肫其仁！渊渊其渊！浩浩其天！苟不固聪明圣知达天德者，其孰能知之？",
+      "source_url": "https://confuciuspedia.com/lib/the-doctrine-of-the-mean/amp/",
+      "status": "draft",
+      "review_note": "Matched normalized Hanzi with similarity 98.31%. Source text checked against source snapshot; needs comparison to original James Legge edition. 3 MATAKIN passage(s), 1 Legge source unit(s)."
+    },
+    {
+      "id": "legge-zhongyong-33-01",
+      "indonesian_passage_ids": [
+        "sishu.zhongyong.33.01"
+      ],
+      "english_segments": [
+        {
+          "legge_ref": "The Doctrine of the Mean, chapter 33, source unit 1",
+          "text": "It is said in the Book of Poetry, “Over her embroidered robe she puts a plain single garment,” intimating a dislike to the display of the elegance of the former. Just so, it is the way of the superior man to prefer the concealment of his virtue, while it daily becomes more illustrious, and it is the way of the mean man to seek notoriety, while he daily goes more and more to ruin. It is characteristic of the superior man, appearing insipid, yet never to produce satiety; while showing a simple negligence, yet to have his accomplishments recognized; while seemingly plain, yet to be discriminating. He knows how what is distant lies in what is near. He knows where the wind proceeds from. He knows how what is minute becomes manifested. Such a one, we may be sure, will enter into virtue."
+        }
+      ],
+      "hanzi_span": "詩曰：“衣錦尚絅”，惡其文之著也。故君子之道，暗然而日章；小人之道，的然而日亡。君子之道，淡而不厭、簡而文、溫而理。知遠之近，知風之自，知微之顯。可與入德矣。",
+      "source_hanzi_simplified": "《诗》曰：“衣锦尚絅（jiong）。” 恶其文之著也。故君子之道，暗然而日章；小人之道，的（di）然而日亡。君子之道，淡而不厌，简而文，温而理；知远之近，知风之自，知微之显，可与入德矣。",
+      "source_url": "https://confuciuspedia.com/lib/the-doctrine-of-the-mean/amp/",
+      "status": "draft",
+      "review_note": "Matched normalized Hanzi with similarity 100.00%. Source text checked against source snapshot; needs comparison to original James Legge edition. 1 MATAKIN passage(s), 1 Legge source unit(s)."
+    },
+    {
+      "id": "legge-zhongyong-33-02",
+      "indonesian_passage_ids": [
+        "sishu.zhongyong.33.02"
+      ],
+      "english_segments": [
+        {
+          "legge_ref": "The Doctrine of the Mean, chapter 33, source unit 2",
+          "text": "It is said in the Book of Poetry, “Although the fish sink and lie at the bottom, it is still quite clearly seen.” Therefore the superior man examines his heart, that there may be nothing wrong there, and that he may have no cause for dissatisfaction with himself. That wherein the superior man cannot be equaled is simply this,-his work which other men cannot see."
+        }
+      ],
+      "hanzi_span": "詩云：“潛雖伏矣，亦孔之昭。”故君子內省不疚，無惡於志。君子之所不可及者，其唯人之所不見乎。",
+      "source_hanzi_simplified": "《诗》云：“潜虽伏矣，亦孔之昭！” 故君子内省不疚，无恶于志。君子之所不可及者，其唯人之所不见乎?",
+      "source_url": "https://confuciuspedia.com/lib/the-doctrine-of-the-mean/amp/",
+      "status": "draft",
+      "review_note": "Matched normalized Hanzi with similarity 100.00%. Source text checked against source snapshot; needs comparison to original James Legge edition. 1 MATAKIN passage(s), 1 Legge source unit(s)."
+    },
+    {
+      "id": "legge-zhongyong-33-03",
+      "indonesian_passage_ids": [
+        "sishu.zhongyong.33.03"
+      ],
+      "english_segments": [
+        {
+          "legge_ref": "The Doctrine of the Mean, chapter 33, source unit 3",
+          "text": "It is said in the Book of Poetry, “Looked at in your apartment, be there free from shame as being exposed to the light of Heaven.” Therefore, the superior man, even when he is not moving, has a feeling of reverence, and while he speaks not, he has the feeling of truthfulness."
+        }
+      ],
+      "hanzi_span": "詩云：“相在爾室，尚不愧於屋漏。”故君子不動而敬，不言而信。",
+      "source_hanzi_simplified": "《诗》云：“相在尔室，尚不愧于屋漏。” 故君子不动而敬，不言而信。",
+      "source_url": "https://confuciuspedia.com/lib/the-doctrine-of-the-mean/amp/",
+      "status": "draft",
+      "review_note": "Matched normalized Hanzi with similarity 100.00%. Source text checked against source snapshot; needs comparison to original James Legge edition. 1 MATAKIN passage(s), 1 Legge source unit(s)."
+    },
+    {
+      "id": "legge-zhongyong-33-04",
+      "indonesian_passage_ids": [
+        "sishu.zhongyong.33.04"
+      ],
+      "english_segments": [
+        {
+          "legge_ref": "The Doctrine of the Mean, chapter 33, source unit 4",
+          "text": "It is said in the Book of Poetry, “In silence is the offering presented, and the spirit approached to; there is not the slightest contention.” Therefore the superior man does not use rewards, and the people are stimulated to virtue. He does not show anger, and the people are awed more than by hatchets and battle-axes."
+        }
+      ],
+      "hanzi_span": "詩曰：“奏假無言，時靡有爭。”是故君子不賞而民勸，不怒而民威於鈇鉞。",
+      "source_hanzi_simplified": "《诗》曰：“奏假无言，时靡（mi）有争。” 是故君子不赏而民劝，不怒而民威于鈇（fu）钺（yue）。",
+      "source_url": "https://confuciuspedia.com/lib/the-doctrine-of-the-mean/amp/",
+      "status": "draft",
+      "review_note": "Matched normalized Hanzi with similarity 100.00%. Source text checked against source snapshot; needs comparison to original James Legge edition. 1 MATAKIN passage(s), 1 Legge source unit(s)."
+    },
+    {
+      "id": "legge-zhongyong-33-05",
+      "indonesian_passage_ids": [
+        "sishu.zhongyong.33.05"
+      ],
+      "english_segments": [
+        {
+          "legge_ref": "The Doctrine of the Mean, chapter 33, source unit 5",
+          "text": "It is said in the Book of Poetry, “What needs no display is virtue. All the princes imitate it.” Therefore, the superior man being sincere and reverential, the whole world is conducted to a state of happy tranquility."
+        }
+      ],
+      "hanzi_span": "詩曰：“不顯惟德，百辟其刑之。”是故君子篤恭而天下平。",
+      "source_hanzi_simplified": "《诗》曰：“不显惟德！百辟其刑之。” 是故君子笃恭而天下平。",
+      "source_url": "https://confuciuspedia.com/lib/the-doctrine-of-the-mean/amp/",
+      "status": "draft",
+      "review_note": "Matched normalized Hanzi with similarity 100.00%. Source text checked against source snapshot; needs comparison to original James Legge edition. 1 MATAKIN passage(s), 1 Legge source unit(s)."
+    },
+    {
+      "id": "legge-zhongyong-33-06",
+      "indonesian_passage_ids": [
+        "sishu.zhongyong.33.06"
+      ],
+      "english_segments": [
+        {
+          "legge_ref": "The Doctrine of the Mean, chapter 33, source unit 6",
+          "text": "It is said in the Book of Poetry, “I regard with pleasure your brilliant virtue, making no great display of itself in sounds and appearances.” The Master said, “Among the appliances to transform the people, sound and appearances are but trivial influences. It is said in another ode, ‘His Virtue is light as a hair.’ Still, a hair will admit of comparison as to its size. ‘The doings of the supreme Heaven have neither sound nor smell. ‘That is perfect virtue.”"
+        }
+      ],
+      "hanzi_span": "詩云：“予懷明德，不大聲以色。”子曰：“聲色之於以化民，末也。”\n詩曰：“德輶如毛。”毛猶有倫。“上天之載，無聲無臭。”至矣。",
+      "source_hanzi_simplified": "《诗》云：“予怀明德，不大声以色。” 子曰：“声色之于以化民，末也。” 《诗》曰：“德輶（you）如毛。” 毛犹有伦。“上天之载，无声无臭（xiù）。” 至矣。",
+      "source_url": "https://confuciuspedia.com/lib/the-doctrine-of-the-mean/amp/",
+      "status": "draft",
+      "review_note": "Matched normalized Hanzi with similarity 100.00%. Source text checked against source snapshot; needs comparison to original James Legge edition. 1 MATAKIN passage(s), 1 Legge source unit(s)."
     }
   ]
 }
