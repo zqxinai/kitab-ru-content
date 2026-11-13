@@ -388,18 +388,30 @@
   $('searchInput').oninput=search;
   $('previousButton').onclick=()=>{const n=records.findIndex(r=>r.passage.id===passageId);if(n>0)select(records[n-1].passage.id)};
   $('nextButton').onclick=()=>{const n=records.findIndex(r=>r.passage.id===passageId);if(n>=0&&n<records.length-1)select(records[n+1].passage.id)};
+  function openEditorialIssue(title,body,feedbackId){
+    const fullUrl=REPO+'/issues/new?title='+encodeURIComponent(title)+'&body='+encodeURIComponent(body);
+    const fallbackBody='Buka issue ini untuk pemeriksaan editorial. Rincian lengkap ada pada teks yang disalin dari editor.';
+    const shortUrl=REPO+'/issues/new?title='+encodeURIComponent(title)+'&body='+encodeURIComponent(fallbackBody);
+    if(fullUrl.length>7500 && navigator.clipboard?.writeText)
+      navigator.clipboard.writeText(body).catch(()=>{});
+    window.open(fullUrl.length<=7500?fullUrl:shortUrl,'_blank','noopener,noreferrer');
+    $(feedbackId).textContent=fullUrl.length<=7500?
+      'Formulir GitHub disiapkan. Kirim issue untuk meminta pemeriksaan; status belum berubah.':
+      'Formulir GitHub disiapkan. Jika rincian berhasil disalin, tempelkan ke issue. Status belum berubah.';
+  }
   function requestEditorialStatus(requestedStatus){
     const r=record();if(!r)return;
-    if(changed(passageId)){
-      $('reviewHelp').textContent='Ada draf lokal yang belum diajukan. Ajukan koreksi dahulu sebelum meminta perubahan status.';
+    const scope=$('passageLanguage').value,status=statusFor(r);
+    if(requestedStatus==='final'&&status.localDraft){
+      $('reviewHelp').textContent='Ada draf lokal. Ajukan koreksi terlebih dahulu.';
+      return;
+    }
+    if(requestedStatus==='final'&&!languageAvailable(status,scope)){
+      $('reviewHelp').textContent='Terjemahan '+scopeName(scope)+' belum tersedia. Pilih bahasa yang tersedia atau lengkapi teks.';
       return;
     }
     const p=r.passage,review=reviewStatuses.get(p.id)||{};
     const english=englishTextFor(p.id).trim();
-    if(requestedStatus==='final'&&(!p.translation_indonesian?.trim()||!english)){
-      $('reviewHelp').textContent='Finalisasi dua bahasa memerlukan teks Indonesia dan Inggris. Lengkapi terjemahan lebih dulu.';
-      return;
-    }
     const title=(requestedStatus==='final'?'Konfirmasi final':'Perlu review')+
       ' '+book(r.chapter.book).name+' · '+r.chapter.title+' · Pasal '+p.number+' ['+p.id+']';
     const lines=[
@@ -408,43 +420,76 @@
       'Pasal: '+p.id,
       'Kitab: '+book(r.chapter.book).name,
       'Bab: '+r.chapter.title,
-      'Nomor pasal Indonesia: '+p.number,
-      'Tindakan diminta: '+(requestedStatus==='final'?'finalisasi kedua terjemahan':'kembalikan kedua terjemahan untuk review'),
+      'Tindakan: '+(requestedStatus==='final'?'Ajukan final':'Review ulang'),
+      'Bahasa: '+scopeName(scope),
       'Status terbit saat ini: Indonesia '+(review.indonesian||'review')+
         ', Inggris '+(review.english||'review'),
       'Versi naskah: '+(bundle.content_version||'draf'),
       '',
       '### Hanzi asli',
-      '',
-      r.hanzi,
-      '',
+      '',r.hanzi,'',
       '### Bahasa Indonesia (MATAKIN)',
+      '',p.translation_indonesian||'(tidak tersedia)','',
+      '### Bahasa Inggris (James Legge)',
+      '',english||'(tidak tersedia)','',
+      '### Checklist pemeriksa',
+      '- [ ] Hanzi sesuai dengan rentang pasal',
+      '- [ ] Terjemahan Indonesia sesuai edisi MATAKIN',
+      '- [ ] Terjemahan Inggris dan referensi edisi Legge cocok',
+      '- [ ] Batas pasal berbeda (jika ada) telah dipetakan',
       '',
-      p.translation_indonesian||'(tidak tersedia)',
-      '',
-      '### English (James Legge / alignment)',
-      '',
-      english||'(tidak tersedia)',
-      '',
-      '### Catatan pemeriksaan',
-      '',
-      'Periksa kecocokan Hanzi, cakupan kedua edisi, terjemahan, dan rujukan sebelum disahkan.',
-      'Setelah persetujuan, ubah dist/sishu-review-status.json di repository; pembuatan issue tidak mengubah status resmi.'
+      'Issue ini bukan keputusan final. Untuk mengesahkan, buat PR terpisah yang mengubah snapshot di dist/sishu-review-status.json untuk bahasa yang dipilih saja.'
     ];
-    const fullBody=lines.join('\n');
-    const url=REPO+'/issues/new?title='+encodeURIComponent(title)+
-      '&body='+encodeURIComponent(fullBody);
-    const shortUrl=REPO+'/issues/new?title='+encodeURIComponent(title)+
-      '&body='+encodeURIComponent('Permintaan '+requestedStatus+' untuk '+p.id+
-        '. Periksa Hanzi dan padanan Inggris lalu perbarui registry status dalam PR.');
-    if(url.length<=7500){
-      window.open(url,'_blank','noopener,noreferrer');
-      $('reviewHelp').textContent='Halaman pengajuan GitHub dibuka. Kirim issue agar pengelola dapat memeriksanya; status belum berubah.';
-    }else{
-      window.open(shortUrl,'_blank','noopener,noreferrer');
-      if(navigator.clipboard?.writeText)navigator.clipboard.writeText(fullBody).catch(()=>{});
-      $('reviewHelp').textContent='Halaman GitHub dibuka. Detail panjang dicoba disalin; tempel jika tersedia, lalu kirim. Status belum berubah.';
+    openEditorialIssue(title,lines.join('\n'),'reviewHelp');
+  }
+  function requestChapterStatus(requestedStatus){
+    const ch=selectedChapter();if(!ch)return;
+    const rows=chapterRecords(),scope=$('chapterLanguage').value;
+    const statuses=rows.map(statusFor);
+    if(requestedStatus==='final'){
+      const localDrafts=statuses.filter(s=>s.localDraft).length;
+      const missing=statuses.filter(s=>!languageAvailable(s,scope)).length;
+      if(localDrafts||missing){
+        $('chapterReviewHelp').textContent='Belum bisa mengajukan finalisasi: '+
+          missing+' pasal belum lengkap, '+localDrafts+' memiliki draf lokal.';
+        return;
+      }
+      if(statuses.every(s=>languageFinal(s,scope))){
+        $('chapterReviewHelp').textContent='Seluruh pasal pada bahasa ini sudah final.';
+        return;
+      }
     }
+    const title=(requestedStatus==='final'?'Finalisasi bab':'Review ulang bab')+
+      ' · '+book(ch.book).name+' · '+ch.title+' · '+scopeName(scope);
+    const checklist=rows.map((r,i)=>{
+      const st=statuses[i],p=r.passage;
+      const parts=['- [ ] '+p.id+' (Pasal '+p.number+')',
+        'ID: '+(st.idFinal?'final':'review'),'EN: '+(st.enFinal?'final':st.hasEn?'review':'kosong')];
+      return parts.join(' · ');
+    });
+    const lines=[
+      '## Pemeriksaan massal — '+book(ch.book).name+' / '+ch.title,
+      '',
+      'ID bab: '+ch.id,
+      'Bahasa yang diminta: '+scopeName(scope),
+      'Tindakan: '+(requestedStatus==='final'?'permohonan finalisasi':'permohonan review ulang'),
+      'Versi paket: '+(bundle.content_version||'draf'),
+      'Jumlah pasal: '+rows.length,
+      'Terjemahan Inggris belum tersedia: '+statuses.filter(s=>!s.hasEn).length,
+      '',
+      '### Daftar pemeriksaan per pasal',
+      '',
+      ...checklist,
+      '',
+      '### Aturan persetujuan',
+      '- [ ] Cocokkan Hanzi, pinyin, MATAKIN, sumber dan teks Legge per pasal.',
+      '- [ ] Periksa pasal yang dipisah atau digabung antara dua edisi.',
+      '- [ ] Pengelola menerbitkan snapshot teks/Hanzi lengkap, reviewed_by, reviewed_at dan source_issue untuk setiap pasal melalui PR.',
+      '- [ ] Hanya bahasa yang dipilih yang berubah. Jangan menyatakan Final otomatis hanya karena issue dibuat.',
+      '',
+      'Registry: dist/sishu-review-status.json'
+    ];
+    openEditorialIssue(title,lines.join('\n'),'chapterReviewHelp');
   }
   $('confirmFinalButton').onclick=()=>requestEditorialStatus('final');
   $('requestReviewButton').onclick=()=>requestEditorialStatus('review');
