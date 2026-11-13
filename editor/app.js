@@ -6,6 +6,7 @@
   const REPO='https://github.com/zqxinai/kitab-ru-content';
   const SOURCE='../dist/sishu-content.json';
   const ALIGNMENT_SOURCE='../dist/sishu-english-alignment.json';
+  const REVIEW_SOURCE='../dist/sishu-review-status.json';
   const KEY='kitab-ru-editorial-drafts-v1';
   const BOOKS={
     daxue:{name:'Da Xue',hanzi:'大學',sub:'Ajaran Besar'},
@@ -14,7 +15,7 @@
     mengzi:{name:'Mengzi',hanzi:'孟子',sub:'Mengzi'}
   };
   const book=id=>BOOKS[id]||{name:id,hanzi:'書',sub:'Kitab klasik'};
-  let bundle=null,chapters=[],records=[],byId=new Map(),englishAlignments=new Map();
+  let bundle=null,chapters=[],records=[],byId=new Map(),englishAlignments=new Map(),reviewStatuses=new Map();
   let bookId='',chapterId='',passageId='',editing=false,loadNumber=0;
   let drafts={};
   try{const parsed=JSON.parse(localStorage.getItem(KEY)||'{}');
@@ -82,6 +83,19 @@
           const entries=englishAlignments.get(id)||[];
           entries.push(entry);
           englishAlignments.set(id,entries);
+        }
+      }
+      let reviewData={entries:[]};
+      try {
+        const response=await fetch(REVIEW_SOURCE,{credentials:'omit',cache:'no-store'});
+        if(response.ok)reviewData=await response.json();
+      } catch (_) { /* An unavailable registry always means review required. */ }
+      if(reviewData.schema && reviewData.schema!=='kitab-ru.review-status.v1')
+        throw Error('Format status editorial tidak dikenali.');
+      reviewStatuses=new Map();
+      for(const entry of reviewData.entries||[]){
+        if(typeof entry.passage_id==='string'&&!reviewStatuses.has(entry.passage_id)){
+          reviewStatuses.set(entry.passage_id,entry);
         }
       }
       bundle=data;chapters=data.chapters.slice().sort((a,b)=>
@@ -169,7 +183,19 @@
     $('chapterTitle').textContent=ch.title;
     $('chapterSubtitle').textContent=info.name+' · '+info.hanzi;
     $('readingHeader').dataset.watermark=info.hanzi;
-    $('passageStatus').textContent=p.editorial_status==='approved'?'Telah diperiksa':'Perlu pemeriksaan';
+    const review=reviewStatuses.get(p.id)||{};
+    const idFinal=review.indonesian==='final';
+    const enFinal=review.english==='final'&&!!englishTextFor(p.id).trim();
+    const bothFinal=idFinal&&enFinal&&!changed(p.id);
+    $('passageStatus').textContent=bothFinal?'Final':(idFinal||enFinal?'Sebagian final':'Perlu review');
+    $('passageStatus').classList.toggle('final',bothFinal);
+    $('passageStatus').classList.toggle('partial',!bothFinal&&(idFinal||enFinal));
+    $('reviewDetail').textContent='Indonesia: '+(idFinal?'final':'perlu review')+
+      ' · Inggris: '+(enFinal?'final':'perlu review');
+    $('confirmFinalButton').disabled=bothFinal;
+    $('confirmFinalButton').title=bothFinal?'Kedua terjemahan sudah disahkan dalam repository.':'Ajukan konfirmasi final untuk kedua terjemahan';
+    $('reviewHelp').textContent=bothFinal?'Kedua terjemahan telah disahkan dan diterbitkan.':
+      'Status Final hanya berlaku setelah pengelola menyetujui dan menerbitkan perubahan di repository.';
     showHanzi(p.ruby_paragraphs);
     $('indonesianText').textContent=p.translation_indonesian||'Terjemahan belum tersedia.';
     const mappings=englishAlignments.get(p.id)||[];
@@ -303,6 +329,66 @@
   $('searchInput').oninput=search;
   $('previousButton').onclick=()=>{const n=records.findIndex(r=>r.passage.id===passageId);if(n>0)select(records[n-1].passage.id)};
   $('nextButton').onclick=()=>{const n=records.findIndex(r=>r.passage.id===passageId);if(n>=0&&n<records.length-1)select(records[n+1].passage.id)};
+  function requestEditorialStatus(requestedStatus){
+    const r=record();if(!r)return;
+    if(changed(passageId)){
+      $('reviewHelp').textContent='Ada draf lokal yang belum diajukan. Ajukan koreksi dahulu sebelum meminta perubahan status.';
+      return;
+    }
+    const p=r.passage,review=reviewStatuses.get(p.id)||{};
+    const english=englishTextFor(p.id).trim();
+    if(requestedStatus==='final'&&(!p.translation_indonesian?.trim()||!english)){
+      $('reviewHelp').textContent='Finalisasi dua bahasa memerlukan teks Indonesia dan Inggris. Lengkapi terjemahan lebih dulu.';
+      return;
+    }
+    const title=(requestedStatus==='final'?'Konfirmasi final':'Perlu review')+
+      ' '+book(r.chapter.book).name+' · '+r.chapter.title+' · Pasal '+p.number+' ['+p.id+']';
+    const lines=[
+      '## Pengajuan status editorial Kitab Ru',
+      '',
+      'Pasal: '+p.id,
+      'Kitab: '+book(r.chapter.book).name,
+      'Bab: '+r.chapter.title,
+      'Nomor pasal Indonesia: '+p.number,
+      'Tindakan diminta: '+(requestedStatus==='final'?'finalisasi kedua terjemahan':'kembalikan kedua terjemahan untuk review'),
+      'Status terbit saat ini: Indonesia '+(review.indonesian||'review')+
+        ', Inggris '+(review.english||'review'),
+      'Versi naskah: '+(bundle.content_version||'draf'),
+      '',
+      '### Hanzi asli',
+      '',
+      r.hanzi,
+      '',
+      '### Bahasa Indonesia (MATAKIN)',
+      '',
+      p.translation_indonesian||'(tidak tersedia)',
+      '',
+      '### English (James Legge / alignment)',
+      '',
+      english||'(tidak tersedia)',
+      '',
+      '### Catatan pemeriksaan',
+      '',
+      'Periksa kecocokan Hanzi, cakupan kedua edisi, terjemahan, dan rujukan sebelum disahkan.',
+      'Setelah persetujuan, ubah dist/sishu-review-status.json di repository; pembuatan issue tidak mengubah status resmi.'
+    ];
+    const fullBody=lines.join('\n');
+    const url=REPO+'/issues/new?title='+encodeURIComponent(title)+
+      '&body='+encodeURIComponent(fullBody);
+    const shortUrl=REPO+'/issues/new?title='+encodeURIComponent(title)+
+      '&body='+encodeURIComponent('Permintaan '+requestedStatus+' untuk '+p.id+
+        '. Periksa Hanzi dan padanan Inggris lalu perbarui registry status dalam PR.');
+    if(url.length<=7500){
+      window.open(url,'_blank','noopener,noreferrer');
+      $('reviewHelp').textContent='Halaman pengajuan GitHub dibuka. Kirim issue agar pengelola dapat memeriksanya; status belum berubah.';
+    }else{
+      window.open(shortUrl,'_blank','noopener,noreferrer');
+      if(navigator.clipboard?.writeText)navigator.clipboard.writeText(fullBody).catch(()=>{});
+      $('reviewHelp').textContent='Halaman GitHub dibuka. Detail panjang dicoba disalin; tempel jika tersedia, lalu kirim. Status belum berubah.';
+    }
+  }
+  $('confirmFinalButton').onclick=()=>requestEditorialStatus('final');
+  $('requestReviewButton').onclick=()=>requestEditorialStatus('review');
   $('editButton').onclick=beginEdit;$('resumeDraft').onclick=beginEdit;
   $('closeEdit').onclick=close;$('saveDraft').onclick=save;
   $('discardDraft').onclick=discard;$('submitProposal').onclick=submit;
