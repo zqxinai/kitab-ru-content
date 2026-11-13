@@ -55,7 +55,7 @@ Jumlah entri tambahan:
 | XV | 38 |
 | **Total** | **216** |
 
-Saat ini tersedia **602 dari 965 pasal** dalam tampilan editor: 246 teks Inggris dalam paket utama, 216 Lun Yu baru melalui peta padanan, 11 Da Xue, dan **seluruh 129 Zhong Yong**. Sebanyak **363 pasal** belum tersedia. Jumlah ini mencakup gabungan paket dasar dan overlay pemetaan; `dist/sishu-content.json` tetap memuat 246 terjemahan Inggris langsung, sedangkan `catalog.json` mencatat gabungannya. Jangan menganggap 602 sebagai jumlah pasal yang telah di-review final; registry pengesahan masih kosong.
+Setelah batch Zhong Yong tersedia **602 dari 965 pasal** dalam tampilan editor: 246 teks Inggris dalam paket utama, 216 Lun Yu baru melalui peta padanan, 11 Da Xue, dan **seluruh 129 Zhong Yong**. Sebanyak **363 pasal** belum tersedia. Jumlah ini mencakup gabungan paket dasar dan overlay pemetaan; `dist/sishu-content.json` tetap memuat 246 terjemahan Inggris langsung, sedangkan `catalog.json` mencatat gabungannya. Jangan menganggap 602 sebagai jumlah pasal yang telah di-review final; registry pengesahan masih kosong.
 
 Pemetaan dengan pasal pecah/gabung memerlukan pemeriksaan lanjutan yang mempertahankan referensi Legge dan MATAKIN masing-masing. Lihat `docs/editorial-finalization.md` untuk alur persetujuan.
 
@@ -88,3 +88,12 @@ Pemetaan dengan pasal pecah/gabung memerlukan pemeriksaan lanjutan yang memperta
 ### Koreksi metadata sumber Mengzi 1–3
 
 Tiga catatan `English translation: Legge 1861` di akhir transkripsi bab 1–3 dipisahkan dari teks ayat Inggris. Metadata atribusi tetap tercatat sebagai `source_footer_attribution` dalam snapshot masing-masing bab, bukan sebagai terjemahan yang dibaca. Jumlah dan ID pasal tidak berubah; seluruhnya tetap draf.
+
+## Batch Mengzi 3 — bab 4–12 (118 pasal)
+
+- Menambahkan **118 draf** Inggris yang dirangkai dari unit sumber James Legge berurutan, dengan pemeriksaan seluruh Hanzi minimal **95%** kesamaan karakter. Cakupan per bab: 4:13, 5:0, 6:8, 7:26, 8:31, 9:7, 10:2, 11:18, 12:13.
+- Snapshot sumber, rentang unit, SHA commit sumber, dan daftar alasan pasal yang belum dipetakan: `sources/legge/mengzi-chinesenotes-04-12.json`; commit sumber `5d2e867ecfb33e16a6aed392c6b8b8cde3896030` (*pinned*).
+- Penggabungan hanya dari unit sumber berurutan yang cocok dengan Hanzi pasal Indonesia; teks Inggris tidak dikarang ulang dan tidak mengganti Hanzi, pinyin, atau teks Indonesia.
+- **28 pasal Mengzi** masih belum tersedia. Seluruh bab 5 perlu pemetaan manual karena batas/urutan transkripsi sumber tidak cocok secara memadai. Bagian meragukan sengaja dikecualikan.
+- Total saat ini: **834/965** draf Inggris di editor: Da Xue 11, Lun Yu 462, Zhong Yong 129, Mengzi 232. **131 belum tersedia**: Da Xue 53, Lun Yu 50, Mengzi 28.
+- Semua `draft` / *needs review*. Tidak ada perubahan status Final. Regresi: `node --test tests/mengzi-coverage-04-12.test.js`.
