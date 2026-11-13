@@ -25,6 +25,18 @@ Contoh entri (gunakan teks **nyata** lengkap, bukan placeholder; format berikut 
 }
 ```
 
-Untuk pemeriksaan hanya pada satu bahasa, set bahasa lain `review`; editor menampilkan **Sebagian final**. Jangan menyatakan Inggris final hanya karena nomor pasal sama, dan jangan mencatat final jika belum ada terjemahan Inggris.
+Untuk pemeriksaan hanya pada satu bahasa, **pertahankan status bahasa lain sebagaimana adanya**; editor menampilkan **Sebagian final** bila baru satu bahasa yang disahkan. Jangan menyatakan Inggris final hanya karena nomor pasal sama, dan jangan mencatat final jika belum ada terjemahan Inggris.
 
 Daftar awal sengaja kosong: **tidak ada pasal yang disahkan otomatis**. Issue hanyalah permintaan, bukan bukti penerbitan. Karena editor publik adalah GitHub Pages statis, tidak ada penulisan langsung ke repository dari browser tanpa mekanisme otentikasi GitHub.
+
+## Pemeriksaan massal per bab
+
+Bagian **Status Bab** menampilkan jumlah final bahasa Indonesia dan Inggris secara terpisah, serta jumlah teks Inggris yang belum tersedia. Pemeriksa dapat memilih **Indonesia & Inggris**, **Indonesia saja**, atau **Inggris saja**, lalu mengajukan finalisasi atau review ulang seluruh bab dengan satu issue.
+
+- Pengajuan finalisasi dinonaktifkan jika ada draf lokal yang belum diajukan atau bahasa yang dipilih belum lengkap pada salah satu pasal.
+- Issue massal berisi daftar periksa seluruh ID pasal; pengelola tetap wajib mengecek setiap item. **Satu klik bukan persetujuan otomatis untuk seluruh bab.**
+- Status resmi menjadi final hanya setelah entri tiap pasal dikomit dan di-merge ke `dist/sishu-review-status.json`, beserta snapshot lengkap dan jejak pemeriksaan (`reviewed_by`, `reviewed_at`, `source_issue`).
+- Jika hanya satu bahasa disetujui, terjemahan lain tetap pada status sebelumnya.
+- Navigasi pasal menyediakan filter Semua, Perlu review, Sebagian final, dan Final kedua bahasa.
+
+Validasi otomatis: `node tools/audit_review_status.js` dan `node --test tests/editorial-review.test.js`. Workflow `.github/workflows/editorial-review.yml` memeriksa perubahan pada pull request sebelum digabungkan.
