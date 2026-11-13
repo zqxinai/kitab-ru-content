@@ -117,6 +117,7 @@
       for(const r of records)r.search+=' '+normalize(englishTextFor(r.passage.id));
       $('loadingView').hidden=true;$('errorView').hidden=true;$('readerView').hidden=false;
       $('searchInput').disabled=false;
+      $('passageFilter').disabled=false;
       $('connectionStatus').textContent='Naskah terbaru terbuka';
       $('connectionStatus').classList.remove('offline');
       $('chapterCount').textContent=String(chapters.length);
