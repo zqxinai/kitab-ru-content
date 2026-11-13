@@ -1,0 +1,183 @@
+{
+  "schema": "kitab-ru.english-alignment.v1",
+  "edition_id": "james-legge",
+  "source_policy": "Align by complete traditional Hanzi spans, not matching passage numbers",
+  "entries": [
+    {
+      "id": "legge-daxue-text-01",
+      "indonesian_passage_ids": [
+        "sishu.daxue.01.01"
+      ],
+      "english_segments": [
+        {
+          "legge_ref": "The Great Learning, Text of Confucius §1",
+          "text": "What the Great Learning teaches, is—to illustrate illustrious virtue; to renovate the people; and to rest in the highest excellence."
+        }
+      ],
+      "hanzi_span": "大學之道，在明明德，在親民，在止於至善。",
+      "source_url": "https://oll.libertyfund.org/title/2270",
+      "status": "draft",
+      "review_note": "Teks Inggris ditranskripsikan dari James Legge, The Great Learning (The Text of Confucius), dan Hanzi cocok pada tingkat pasal. Peninjauan editorial akhir belum disetujui."
+    },
+    {
+      "id": "legge-daxue-text-02",
+      "indonesian_passage_ids": [
+        "sishu.daxue.01.02"
+      ],
+      "english_segments": [
+        {
+          "legge_ref": "The Great Learning, Text of Confucius §2",
+          "text": "The point where to rest being known, the object of pursuit is then determined; and, that being determined, a calm unperturbedness may be attained. To that calmness there will succeed a tranquil repose. In that repose there may be careful deliberation, and that deliberation will be followed by the attainment of the desired end."
+        }
+      ],
+      "hanzi_span": "知止而後有定，定而後能靜，靜而後能安，安而後能慮，慮而後能得。",
+      "source_url": "https://oll.libertyfund.org/title/2270",
+      "status": "draft",
+      "review_note": "Teks Inggris ditranskripsikan dari James Legge, The Great Learning (The Text of Confucius), dan Hanzi cocok pada tingkat pasal. Peninjauan editorial akhir belum disetujui."
+    },
+    {
+      "id": "legge-daxue-text-03",
+      "indonesian_passage_ids": [
+        "sishu.daxue.01.03"
+      ],
+      "english_segments": [
+        {
+          "legge_ref": "The Great Learning, Text of Confucius §3",
+          "text": "Things have their root and their completion. Affairs have their end and their beginning. To know what is first and what is last will lead near to what is taught in the Great Learning."
+        }
+      ],
+      "hanzi_span": "物有本末，事有終始。知所先後，則近道矣。",
+      "source_url": "https://oll.libertyfund.org/title/2270",
+      "status": "draft",
+      "review_note": "Teks Inggris ditranskripsikan dari James Legge, The Great Learning (The Text of Confucius), dan Hanzi cocok pada tingkat pasal. Peninjauan editorial akhir belum disetujui."
+    },
+    {
+      "id": "legge-daxue-01-04",
+      "indonesian_passage_ids": [
+        "sishu.daxue.01.04"
+      ],
+      "english_segments": [
+        {
+          "legge_ref": "The Great Learning, Text of Confucius §4",
+          "text": "The ancients who wished to illustrate illustrious virtue throughout the empire, first ordered well their own States. Wishing to order well their States, they first regulated their families. Wishing to regulate their families, they first cultivated their persons. Wishing to cultivate their persons, they first rectified their hearts. Wishing to rectify their hearts, they first sought to be sincere in their thoughts. Wishing to be sincere in their thoughts, they first extended to the utmost their knowledge. Such extension of knowledge lay in the investigation of things."
+        }
+      ],
+      "hanzi_span": "古之欲明明德於天下者，先治其國；欲治其國者，先齊其家；欲齊其家者，先修其身；欲修其身者，先正其心；欲正其心者，先誠其意；欲誠其意者，先致其知。致知在格物。",
+      "source_url": "https://oll.libertyfund.org/title/2270",
+      "status": "draft",
+      "review_note": "Legge 1869, compared with MATAKIN Hanzi passage boundary; final editorial approval pending."
+    },
+    {
+      "id": "legge-daxue-01-05",
+      "indonesian_passage_ids": [
+        "sishu.daxue.01.05"
+      ],
+      "english_segments": [
+        {
+          "legge_ref": "The Great Learning, Text of Confucius §5",
+          "text": "Things being investigated, knowledge became complete. Their knowledge being complete, their thoughts were sincere. Their thoughts being sincere, their hearts were then rectified. Their hearts being rectified, their persons were cultivated. Their persons being cultivated, their families were regulated. Their families being regulated, their States were rightly governed. Their States being rightly governed, the whole empire was made tranquil and happy."
+        }
+      ],
+      "hanzi_span": "物格而後知至，知至而後意誠，意誠而後心正，心正而後身修，身修而後家齊，家齊而後國治，國治而後天下平。",
+      "source_url": "https://oll.libertyfund.org/title/2270",
+      "status": "draft",
+      "review_note": "Legge 1869, compared with MATAKIN Hanzi passage boundary; final editorial approval pending."
+    },
+    {
+      "id": "legge-daxue-01-06",
+      "indonesian_passage_ids": [
+        "sishu.daxue.01.06"
+      ],
+      "english_segments": [
+        {
+          "legge_ref": "The Great Learning, Text of Confucius §6",
+          "text": "From the emperor down to the mass of the people, all must consider the cultivation of the person the root of everything besides."
+        }
+      ],
+      "hanzi_span": "自天子以至於庶人，壹是皆以修身為本。",
+      "source_url": "https://oll.libertyfund.org/title/2270",
+      "status": "draft",
+      "review_note": "Legge 1869, compared with MATAKIN Hanzi passage boundary; final editorial approval pending."
+    },
+    {
+      "id": "legge-daxue-01-07",
+      "indonesian_passage_ids": [
+        "sishu.daxue.01.07"
+      ],
+      "english_segments": [
+        {
+          "legge_ref": "The Great Learning, Text of Confucius §7",
+          "text": "It cannot be, when the root is neglected, that what should spring from it will be well ordered. It never has been the case that what was of great importance has been slightly cared for, and, at the same time, that what was of slight importance has been greatly cared for."
+        }
+      ],
+      "hanzi_span": "其本亂而末治者，否矣。其所厚者薄，而其所薄者厚，未之有也。",
+      "source_url": "https://oll.libertyfund.org/title/2270",
+      "status": "draft",
+      "review_note": "Legge 1869, compared with MATAKIN Hanzi passage boundary; final editorial approval pending."
+    },
+    {
+      "id": "legge-daxue-02-01",
+      "indonesian_passage_ids": [
+        "sishu.daxue.02.01"
+      ],
+      "english_segments": [
+        {
+          "legge_ref": "The Great Learning, Commentary of Tsang, Chapter I §1",
+          "text": "In the Announcement to K‘ang it is said, “He was able to make his virtue illustrious.”"
+        }
+      ],
+      "hanzi_span": "《康誥》曰：“克明德。”",
+      "source_url": "https://oll.libertyfund.org/title/2270",
+      "status": "draft",
+      "review_note": "Legge 1869, compared with MATAKIN Hanzi passage boundary; final editorial approval pending."
+    },
+    {
+      "id": "legge-daxue-02-02",
+      "indonesian_passage_ids": [
+        "sishu.daxue.02.02"
+      ],
+      "english_segments": [
+        {
+          "legge_ref": "The Great Learning, Commentary of Tsang, Chapter I §2",
+          "text": "In the T‘ae Keă, it is said, “He contemplated and studied the illustrious decrees of Heaven.”"
+        }
+      ],
+      "hanzi_span": "《太甲》曰：“顧諟天之明命。”",
+      "source_url": "https://oll.libertyfund.org/title/2270",
+      "status": "draft",
+      "review_note": "Legge 1869, compared with MATAKIN Hanzi passage boundary; final editorial approval pending."
+    },
+    {
+      "id": "legge-daxue-02-03",
+      "indonesian_passage_ids": [
+        "sishu.daxue.02.03"
+      ],
+      "english_segments": [
+        {
+          "legge_ref": "The Great Learning, Commentary of Tsang, Chapter I §3",
+          "text": "In the Canon of the Emperor Yaou, it is said, “He was able to make illustrious his lofty virtue.”"
+        }
+      ],
+      "hanzi_span": "《帝典》曰：“克明峻德。”",
+      "source_url": "https://oll.libertyfund.org/title/2270",
+      "status": "draft",
+      "review_note": "Legge 1869, compared with MATAKIN Hanzi passage boundary; final editorial approval pending."
+    },
+    {
+      "id": "legge-daxue-02-04",
+      "indonesian_passage_ids": [
+        "sishu.daxue.02.04"
+      ],
+      "english_segments": [
+        {
+          "legge_ref": "The Great Learning, Commentary of Tsang, Chapter I §4",
+          "text": "These passages all show how those sovereigns made themselves illustrious."
+        }
+      ],
+      "hanzi_span": "皆自明也。",
+      "source_url": "https://oll.libertyfund.org/title/2270",
+      "status": "draft",
+      "review_note": "Legge 1869, compared with MATAKIN Hanzi passage boundary; final editorial approval pending."
+    }
+  ]
+}

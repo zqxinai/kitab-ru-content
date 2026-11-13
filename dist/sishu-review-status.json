@@ -1,0 +1,5 @@
+{
+  "schema": "kitab-ru.review-status.v1",
+  "description": "Only merged, approved repository changes can mark passages final. Missing entries mean review required.",
+  "entries": []
+}
