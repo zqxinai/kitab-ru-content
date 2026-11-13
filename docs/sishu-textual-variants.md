@@ -1,5 +1,8 @@
 # Audit konteks perbedaan naskah Si Shu — 13 November 2026
 
+> **Keputusan terbaru setelah foto MATAKIN 2012 diperiksa (14 November):** Zhong Yong Bab IX:2 mencetak tiga `與` dengan pinyin **yǔ**, bukan yú. Data aplikasi telah dikembalikan ke **yǔ** dan dua tanda tanya pertama dipulihkan sesuai cetakan. **yú** tetap dicatat sebagai bacaan klasik pada penjelasan Zhu Xi/Kamus MOE, tanpa menimpa bacaan MATAKIN. Uraian lama di bawah merupakan *sejarah audit*, bukan keputusan akhir. [Bukti foto dan koreksi](audits/zhongyong-ix-matakin-photo-2026-11-14.md).
+
+
 > **Audit Zhong Yong Bab IX (14 November 2026):** `sishu.zhongyong.10.01` dipertahankan tanpa koreksi karena `強/强` hanya perbedaan bentuk grafis dan WYG memang memuat `子路問强`. Pada `10.02`, tiga pinyin partikel `與` dikoreksi dari `yǔ` menjadi `yú` berdasarkan sumber leksikal MOE Taiwan dan komentar WYG `與平聲`, **bukan bukti foto pinyin MATAKIN 2012**; Hanzi serta terjemahan MATAKIN tidak diubah. [Laporan audit](audits/zhongyong-ix-pinyin-wyg-2026-11-14.md). Status Final tetap menunggu pemeriksaan cetakan.
 
 
