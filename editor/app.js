@@ -153,7 +153,7 @@
       },null,ch.passages?.length||0));
     }
     const ps=$('passageList');ps.replaceChildren();
-    const filter=$('passageFilter').value;
+    const filter=$('passageFilter').value||'all';
     let visible=0;
     for(const p of selectedChapter()?.passages||[]){
       const st=statusFor(byId.get(p.id));
@@ -202,7 +202,7 @@
     return scope==='id'?'Indonesia (MATAKIN)':scope==='en'?'Inggris (James Legge)':'Indonesia dan Inggris';
   }
   function updatePassageActions(){
-    const status=statusFor(record()),scope=$('passageLanguage').value;
+    const status=statusFor(record()),scope=$('passageLanguage').value||'both';
     $('confirmFinalButton').disabled=languageFinal(status,scope)||!languageAvailable(status,scope)||status.localDraft;
     $('confirmFinalButton').title=!languageAvailable(status,scope)?'Terjemahan yang dipilih belum lengkap':
       status.localDraft?'Ajukan koreksi draf dahulu':
@@ -223,7 +223,7 @@
     $('chapterIndonesianStatus').textContent='Indonesia final '+idFinal+'/'+n;
     $('chapterEnglishStatus').textContent='Inggris final '+enFinal+'/'+n;
     $('chapterEnglishMissing').textContent=enMissing+' terjemahan Inggris belum tersedia';
-    const scope=$('chapterLanguage').value;
+    const scope=$('chapterLanguage').value||'both';
     const missing=statuses.filter(s=>!languageAvailable(s,scope)).length;
     const allFinal=statuses.every(s=>languageFinal(s,scope));
     $('confirmChapterButton').disabled=n===0||missing>0||drafts>0||allFinal;
@@ -415,7 +415,7 @@
   }
   function requestEditorialStatus(requestedStatus){
     const r=record();if(!r)return;
-    const scope=$('passageLanguage').value,status=statusFor(r);
+    const scope=$('passageLanguage').value||'both',status=statusFor(r);
     if(requestedStatus==='final'&&status.localDraft){
       $('reviewHelp').textContent='Ada draf lokal. Ajukan koreksi terlebih dahulu.';
       return;
@@ -458,7 +458,7 @@
   }
   function requestChapterStatus(requestedStatus){
     const ch=selectedChapter();if(!ch)return;
-    const rows=chapterRecords(),scope=$('chapterLanguage').value;
+    const rows=chapterRecords(),scope=$('chapterLanguage').value||'both';
     const statuses=rows.map(statusFor);
     if(requestedStatus==='final'){
       const localDrafts=statuses.filter(s=>s.localDraft).length;
