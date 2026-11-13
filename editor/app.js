@@ -236,16 +236,20 @@
     const pf = preface();
     if (pf) {
       $('prefaceTitle').value = pf.title;
+      $('prefaceTitleEn').value = pf.title_english || '';
       $('prefaceId').value = pf.id;
       $('prefaceBody').value = pf.body_indonesian;
+      $('prefaceBodyEn').value = pf.body_english || '';
     }
     $('metaCollection').value = bundle.collection || '';
     $('metaVersion').value = bundle.content_version || '';
     $('metaReview').value = ['unverified-draft','under-review','approved'].includes(bundle.review_status)
       ? bundle.review_status : 'unverified-draft';
     $('chapterTitleInput').value = ch?.title || '';
+    $('chapterTitleEnInput').value = ch?.title_english || '';
     $('chapterIndexInput').value = ch?.index ?? '';
     $('chapterTitleInput').disabled = !ch;
+    $('chapterTitleEnInput').disabled = !ch;
     $('chapterIndexInput').disabled = !ch;
     $('deleteChapter').disabled = !ch;
   }
@@ -303,7 +307,10 @@
     $('previewCard').dataset.watermark=cat?.hanzi||'四書';
     $('previewBook').textContent=cat?.title||'KITAB RU';
     $('previewTitle').textContent=mode==='catalog' ? 'Katalog kitab' :
-      (chapter()?.title || 'Pilih pasal');
+      (editorTab==='preface' && preface() ?
+         (previewLang==='en' && preface().title_english ? preface().title_english : preface().title) :
+         (previewLang==='en' && chapter()?.title_english ? chapter().title_english :
+           (chapter()?.title || 'Pilih pasal')));
     $('previewId').classList.toggle('active',previewLang==='id');
     $('previewEn').classList.toggle('active',previewLang==='en');
     $('previewId').setAttribute('aria-pressed',String(previewLang==='id'));
@@ -329,9 +336,14 @@
       const translation=previewLang==='en'?ps.translation_english:ps.translation_indonesian;
       $('previewTranslation').textContent=translation|| (previewLang==='en'?
         'English translation is not yet available for this passage.' : 'Terjemahan belum diisi.');
-    }else{
+    } else {
       $('previewHanzi').textContent=cat?.hanzi||'學而時習之';
-      $('previewTranslation').textContent=mode==='catalog'?(cat?.description||'Coming soon'):'Pilih pasal untuk pratinjau.';
+      const pf=editorTab==='preface'?preface():null;
+      $('previewTranslation').textContent=mode==='catalog'
+        ? (previewLang==='en'?(cat?.description_en || 'Coming soon'):(cat?.description||'Segera hadir'))
+        : pf
+          ? (previewLang==='en'?(pf.body_english||'English front matter not yet available.'):(pf.body_indonesian||'Pengantar belum diisi.'))
+          : 'Pilih pasal untuk pratinjau.';
     }
   }
   function issues() {
@@ -434,9 +446,11 @@
     $('catalogItemHeading').textContent=item.title;
     $('catalogId').value=item.id;
     $('catalogTitle').value=item.title||'';
+    $('catalogTitleEn').value=item.title_en||'';
     $('catalogHanzi').value=item.hanzi||'';
     $('catalogStatus').value=item.status||'coming_soon';
     $('catalogDescription').value=item.description||'';
+    $('catalogDescriptionEn').value=item.description_en||'';
     $('catalogUrl').value=item.package_url||'';
     $('catalogHash').value=item.sha256||'';
   }
@@ -540,7 +554,7 @@
   $('addCatalogItem').onclick=()=>askEntry('Tambah katalog','ID pendek tanpa spasi, contoh xiaojing.','ID koleksi',(value)=>{
     const id=safeName(value).replace(/-/g,'');
     if(!id||catalog.collections.some(c=>c.id===id)){toast('ID sudah digunakan.');return;}
-    catalog.collections.push({id:id,title:value,hanzi:'',status:'coming_soon',description:'',package_url:'',sha256:'',languages:['zh-Hant','pinyin','id','en']});
+    catalog.collections.push({id:id,title:value,title_en:'',hanzi:'',status:'coming_soon',description:'',description_en:'',package_url:'',sha256:'',languages:['zh-Hant','pinyin','id','en']});
     activeCatalog=id;renderCatalogNavigation();renderPreview();runValidation();
   });
   function bindText(id,get,change){
@@ -553,15 +567,19 @@
     const ps=passage();if(!ps)return;ps.number=Number(e.target.value);refresh();
   };
   bindText('prefaceTitle',preface,(v)=>{preface().title=v;});
+  bindText('prefaceTitleEn',preface,(v)=>{if(v)preface().title_english=v;else delete preface().title_english;});
   bindText('prefaceBody',preface,(v)=>{preface().body_indonesian=v;});
+  bindText('prefaceBodyEn',preface,(v)=>{if(v)preface().body_english=v;else delete preface().body_english;});
   bindText('prefaceId',preface,(v)=>{preface().id=v;activePreface=v;});
   bindText('metaCollection',()=>bundle,(v)=>{bundle.collection=v;});
   bindText('metaVersion',()=>bundle,(v)=>{bundle.content_version=v;$('contentVersion').textContent=v;});
   $('metaReview').onchange=(e)=>{if(!bundle)return;bundle.review_status=e.target.value;runValidation();persistDirty();};
   bindText('chapterTitleInput',chapter,(v)=>{chapter().title=v;$('heroTitle').textContent=v;});
+  bindText('chapterTitleEnInput',chapter,(v)=>{if(v)chapter().title_english=v;else delete chapter().title_english;});
   $('chapterIndexInput').onchange=(e)=>{const ch=chapter();if(!ch)return;ch.index=Number(e.target.value);refresh();};
   const catChange={
-    catalogTitle:'title',catalogHanzi:'hanzi',catalogDescription:'description',
+    catalogTitle:'title',catalogTitleEn:'title_en',
+    catalogHanzi:'hanzi',catalogDescription:'description',catalogDescriptionEn:'description_en',
     catalogUrl:'package_url',catalogHash:'sha256'
   };
   for(const [id,key] of Object.entries(catChange)){
