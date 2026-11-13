@@ -53,6 +53,19 @@ Status: keputusan kerja bersumber, **belum disahkan Final**. Hanzi proyek berasa
 
 **Status implementasi:** dicatat sebagai keputusan editorial berdasarkan foto; sumber JSON, Ruby, dist, indeks/hash dan aplikasi belum diperbaiki melalui catatan ini. Persetujuan Final seluruh pasal tetap prosedur terpisah.
 
+### Da Xue Bab V:1 (ID proyek `sishu.daxue.06.01`) — foto MATAKIN 2012, 13 November 2026
+
+**Discrepancy #12 terkonfirmasi dari foto cetakan MATAKIN 2012** (nomor halaman cetak tidak terlihat pada foto). Pada bagian berjudul **BAB V. MENELITI HAKEKAT TIAP PERKARA**, foto menampilkan pengantar penafsir `蓋釋格物，致知之義，而今亡矣。間嘗竊取程子之意以補之曰：` di atas pelengkap yang diawali `所謂致知在格物者…`. Tradisi Zhu Xi (`四書章句集註·大學章句`) memuat pengantar editorial tersebut, sehingga pembaca harus dapat membedakan **bagian asli Da Xue**, **catatan Zhu Xi bahwa bagian penjelasan hilang**, dan **pelengkap yang disusun Zhu Xi dengan mengambil maksud Chengzi**. Terjemahan Indonesia MATAKIN di data proyek telah menjelaskan fungsi pelengkap itu, tetapi dalam `sishu/chapters/daxue/06.json` teks Hanzi pelengkap ditempatkan bersama `此謂知本，此謂知之至也。` tanpa metadata/pemisahan eksplisit status editorial pengantarnya.
+
+**Perbedaan literal yang juga terlihat pada foto**:
+- Ru Classics: `唯於理有未窮`; cetakan MATAKIN dan transkripsi Zhu Xi yang diperiksa: **`惟於理有未窮`**. Ini perbedaan aksara dekat maknanya.
+- Ru Classics: `故其知又不盡也`; cetakan MATAKIN dan Zhu Xi: **`故其知有不盡也`**. Ini perbedaan kata yang memerlukan ralat.
+- Gambar MATAKIN memperlihatkan simplified di dalam kurung; jangan memasukkannya sebagai duplikasi kata dalam naskah utama.
+
+**Keputusan editorial kerja:** pertahankan terjemahan Indonesia MATAKIN, prioritaskan `惟` dan `有` untuk tampilan Hanzi tradisional, dan beri pelengkap status **teks tambahan yang disusun Zhu Xi berdasarkan gagasan Chengzi**, bukan sabda Kongzi ataupun teks Da Xue yang dipastikan asli. Catat pengantar Zhu Xi sebagai metadata/anotasi beratribusi untuk Bab V, bukan menyalinnya sebagai kalimat kitab. Bab V MATAKIN = file internal `daxue/06.json` karena Bab Utama memiliki index 01. Jangan menandai Final otomatis. **Belum ada perubahan pada JSON teks utama, pinyin, dist/hash atau UI** dari audit ini.
+
+**Pembanding:** https://ctext.org/si-shu-zhang-ju-ji-zhu/da-xue-zhang-ju1 dan https://www.chineseclassic.com/content/41 .
+
 ### Mengzi 09.07 — cakupan yang perlu dipisah
 
 Pada `sishu/chapters/mengzi/09.json`, pasal 09.07 memuat ucapan Mengzi dan kutipan `伊訓曰`, tetapi mencampurkan komentar penafsir `林氏曰：“以堯舜之道要湯者...` serta `愚謂此語亦猶前章...`. Sumber awal JSON juga memuatnya; bukan kesalahan pengimporan GitHub. Edisi `四書章句集注` menegaskan kedua segmen merupakan komentar setelah teks utama. Draf Inggris Legge dari `mengzi009.txt` memuat dialog Mengzi beserta kutipan `伊訓` tanpa komentar tersebut.
