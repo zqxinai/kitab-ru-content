@@ -1,0 +1,26 @@
+name: Audit contextual pinyin
+on:
+  pull_request:
+    paths:
+      - 'sishu/chapters/**'
+      - 'tests/contextual-pinyin-stage2.test.js'
+      - '.github/workflows/content-audit.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'sishu/chapters/**'
+      - 'tests/contextual-pinyin-stage2.test.js'
+      - '.github/workflows/content-audit.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  contextual-pinyin:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify 965 passages and contextual readings
+        run: node --test tests/contextual-pinyin-stage2.test.js
