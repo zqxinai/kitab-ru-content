@@ -1,58 +1,47 @@
-# Kitab Ru — Content & Editor
+# Kitab Ru · Koleksi Naskah dan Ruang Editorial
 
-Repository distribusi konten untuk aplikasi **Kitab Ru**, terpisah dari source aplikasi [Ru-Classics](https://github.com/zqxinai/Ru-Classics).
+Repository ini menyimpan naskah kitab klasik Ru untuk aplikasi Kitab Ru, termasuk Si Shu, beserta ruang pemeriksaan terjemahannya.
 
-## Ruang penyuntingan
+## Buka Ruang Editorial
 
-**[Buka source Kitab Ru Editor](./editor/index.html)**
+**https://zqxinai.github.io/kitab-ru-content/editor/**
 
-Editor web statis tanpa server, dengan desain cyan pastel yang nyaman pada desktop dan mobile. Editor berjalan lokal di browser dan **tidak membutuhkan token GitHub**. Untuk menggunakan editor:
-1. Buka `editor/index.html` setelah mengunduh repository (atau aktifkan GitHub Pages dengan sumber branch `main`, folder `/(root)` dan buka halaman editor).
-2. Tekan **Impor JSON** untuk membuka paket naskah `ru-classics.content.v1` atau katalog `kitab-ru.catalog.v1`.
-3. Di mode Naskah, pilih kitab → bab → pasal. Edit **Hanzi tradisional, pinyin per aksara, terjemahan Indonesia, dan terjemahan Inggris (opsional)**. Kata pengantar dan judul bab diedit terpisah.
-4. Gunakan panel kanan untuk melihat pratinjau **ID / EN**, pemeriksaan struktur, dan jumlah kitab/bab/pasal.
-5. Tekan **Ekspor JSON**, simpan berkas, tinjau diff, dan unggah sebagai revisi melalui Pull Request atau GitHub Release. **Editor tidak pernah menerbitkan perubahan otomatis**.
+Editor dirancang untuk pemeriksa terjemahan, bukan pengelola berkas. Naskah dibuka **langsung dan otomatis dari koleksi GitHub**, tanpa perlu mengunduh atau memasukkan berkas.
 
-Jika berkas kosong dibuat sebagai kerangka, pemeriksaan struktur akan mengingatkan jumlah pasal Si Shu yang belum lengkap. Persyaratan impor Android Si Shu saat ini: 78 bab, 965 pasal, dua kata pengantar, dan `review_status: unverified-draft`.
+### Panduan untuk tim
 
-## Dukungan dua bahasa
+1. **Pilih kitab**: Da Xue, Zhong Yong, Lun Yu, atau Mengzi.
+2. **Pilih bab dan pasal**, atau cari Hanzi/kata Indonesia/Inggris.
+3. **Baca berdampingan**: Hanzi asli dengan pinyin, teks Indonesia, dan teks Inggris yang tersedia.
+4. Jika ada koreksi, tekan **Sunting terjemahan**. Ubah teks seperlunya, sertakan alasan serta rujukan.
+5. Tekan **Ajukan perbaikan**. Masuk dengan akun GitHub untuk mengirimkan usulan. Pengelola memeriksa dan menyetujui koreksi sebelum mengubah naskah resmi.
 
-```json
-{
-  "translation_indonesian": "Terjemahan Indonesia dari sumber yang telah diperiksa",
-  "translation_english": "An optional reviewed English translation"
-}
-```
+Draf disimpan di browser perangkat masing-masing dan tidak otomatis tersinkron antarperangkat. Riwayat pengajuan dapat diakses lewat **Riwayat usulan**. Tidak ada publikasi otomatis ketika seseorang mengajukan koreksi.
 
-`translation_english` **opsional**. Jangan mengarang terjemahan atau menyimpulkan versi Inggris telah tersedia hanya karena ada kolomnya. Naskah lama tanpa `translation_english` tetap kompatibel. Pilihan English pada Android hanya aktif jika ada konten Inggris; pasal yang belum diterjemahkan tetap menampilkan bahasa Indonesia.
+**Penting tentang akses:** GitHub Pages dan daftar usulan dalam repository ini terbuka untuk publik. Pengguna GitHub lainnya juga bisa mengajukan usulan. Hanya pengelola dengan izin penulisan repository yang bisa menerbitkan perubahan. Agar hanya anggota tim yang boleh mengakses formulir dan mengirim koreksi tanpa melalui GitHub, diperlukan login dan layanan perantara terlindungi (belum tersedia pada editor statis ini). Jangan memasukkan informasi pribadi atau rahasia dalam usulan publik.
 
-## Katalog
+### Pedoman pemeriksaan
 
-`catalog.json` mendaftarkan Si Shu dan calon koleksi lain (Yi Jing, Shu Jing, Shi Jing, Li Ji, Chun Qiu). Status `coming_soon`, `draft`, atau `available`. Status tersedia mensyaratkan URL paket HTTPS serta SHA-256.
+- Bandingkan Hanzi dan pinyin dengan terjemahan Indonesia MATAKIN serta terjemahan Inggris James Legge.
+- Cocokkan berdasarkan teks Hanzi, bukan nomor urut saja; pembagian pasal edisi sumber bisa berbeda.
+- Terjemahan Inggris yang muncul pada draf belum otomatis selesai diperiksa.
+- Istilah Tian tidak selalu diterjemahkan God oleh James Legge. Kata-kata Legge tidak diganti tanpa memberi label bahwa itu keputusan redaksional tersendiri.
+- Simpan rujukan dan alasan setiap perbaikan.
 
-**Catatan:** aplikasi Android V1 saat ini memiliki daftar kitab statis dan importer khusus Si Shu; sinkronisasi `catalog.json` multi-kitab secara dinamis adalah pengembangan berikutnya. Antarmuka editor belum menggantikan proses review dan penerbitan.
+## Koleksi sumber
 
-## Kebijakan editorial
+- [Naskah bacaan Si Shu](dist/sishu-content.json)
+- [Naskah per bab](sishu/chapters/)
+- [Catatan edisi dan sumber](sishu/manifest.json)
+- [Katalog kitab](catalog.json)
+- [Ketentuan hak cipta](COPYRIGHT.md)
 
-- Hanzi sumber, pinyin, terjemahan Indonesia, dan Inggris adalah lapisan berbeda.
-- ID dan urutan bab/pasal harus stabil agar bookmark serta catatan pembaca tidak hilang.
-- Pertahankan istilah Hokkian di dalam tanda kurung pada terjemahan Indonesia sesuai cetakan yang dijadikan sumber.
-- Pakai `editorial_status` dan log revisi; tanpa audit jangan menaikkan status verifikasi teks.
-- Distribusi terjemahan Si Shu dilakukan berdasarkan izin MATAKIN yang dikonfirmasi pemilik proyek; batas dan atribusi izin ditetapkan oleh dokumen perizinan. Hindari pemberian lisensi terbuka yang melebihi hak yang dimiliki.
+Pengajuan koreksi tidak secara otomatis mengubah naskah di atas. Pengelola harus menyetujui, memperbarui sumber, dan menerbitkan kembali versi yang sudah diperiksa.
 
-## Keterbatasan editor V1
+## Pemeriksaan sebelum penerbitan
 
-Penyuntingan adalah *local-first* dan tidak menyimpan perubahan otomatis di server. Perubahan bisa hilang jika browser ditutup sebelum ekspor (terdapat peringatan). Pengecekan struktur hanya mendeteksi masalah mekanis tertentu, **bukan** memastikan ketepatan makna, pinyin polifonik atau hak cipta teks. Tidak ada dukungan ekspor berkas sumber Markdown maupun penyuntingan bersamaan oleh beberapa pengguna.
+Website menjalankan pemeriksaan struktur naskah, navigasi, penyuntingan, draf, pencarian, dan pengajuan koreksi dengan pengujian otomatis dari folder editor/tests. Pengujian mekanis bukan pengganti pemeriksaan ketepatan terjemahan.
 
-## Status konten Si Shu — 13 November 2026
+## Hak cipta
 
-- [JSON lengkap Si Shu (78 bab, 965 pasal)](./dist/sishu-content.json) tersedia, checksum di [SHA-256](./dist/sishu-content.sha256).
-- Terjemahan Indonesia MATAKIN tetap sebagai sumber utama; belum diubah.
-- `translation_english` James Legge tersedia sebagai **draf pemetaan** untuk **246 pasal Lun Yu**. **719 pasal belum memiliki terjemahan Inggris**. Pasangan Hanzi/Legge membutuhkan audit editorial per pasal.
-- Sumber utama teks Inggris: [James Legge, *The Chinese Classics*, Volume I, Project Gutenberg #4094](https://www.gutenberg.org/ebooks/4094).
-- **Tiān = God** merupakan kebijakan istilah/penafsiran Kitab Ru; kutipan Inggris James Legge tetap mempertahankan kata *Heaven* atau *God* sebagaimana sumbernya, tanpa mengklaim Legge menerjemahkan semua 天 menjadi *God*.
-- Markdown terbaru tersedia di folder Obsidian Vault Google Drive **Si Shu — James Legge English — DRAF 2026-11-13**. Edisi v2 tidak ditimpa.
-
-### Publikasi editor web
-
-Editor statis berada di `editor/`. Pengujian otomatis berhasil. Untuk membuka di `https://zqxinai.github.io/kitab-ru-content/editor/`, pemilik repository perlu mengaktifkan **Settings → Pages → Build and deployment: GitHub Actions**. Integrasi GitHub App saat ini tidak mempunyai izin mengaktifkan Pages; upaya workflow enablement terhenti dengan `Resource not accessible by integration`. Setelah diaktifkan pemilik, jalankan ulang workflow `Publish Kitab Ru Editor (GitHub Pages)`.
+Terjemahan MATAKIN, catatan dan anotasi memiliki pemegang hak masing-masing. Repository publik tidak secara otomatis memberikan hak untuk menyebarluaskan ulang seluruh terjemahan dengan lisensi bebas.
