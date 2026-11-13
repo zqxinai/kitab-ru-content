@@ -4,12 +4,18 @@ on:
     paths:
       - 'sishu/chapters/**'
       - 'tests/contextual-pinyin-stage2.test.js'
+      - 'tests/contextual-pinyin-polyphones-batch2.test.js'
+      - 'tests/master-stage2-register.test.js'
+      - 'docs/audits/master-stage2-register-2026-11-14.json'
       - '.github/workflows/content-audit.yml'
   push:
     branches: [main]
     paths:
       - 'sishu/chapters/**'
       - 'tests/contextual-pinyin-stage2.test.js'
+      - 'tests/contextual-pinyin-polyphones-batch2.test.js'
+      - 'tests/master-stage2-register.test.js'
+      - 'docs/audits/master-stage2-register-2026-11-14.json'
       - '.github/workflows/content-audit.yml'
   workflow_dispatch:
 
@@ -23,4 +29,4 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Verify 965 passages and contextual readings
-        run: node --test tests/contextual-pinyin-stage2.test.js
+        run: node --test tests/contextual-pinyin-stage2.test.js tests/contextual-pinyin-polyphones-batch2.test.js tests/master-stage2-register.test.js
