@@ -84,3 +84,7 @@ Pemetaan dengan pasal pecah/gabung memerlukan pemeriksaan lanjutan yang memperta
 - **Status tetap draf dan perlu review**, belum pengesahan; perbandingan lengkap terhadap James Legge edisi primer belum dilaksanakan.
 - Cakupan kumulatif: **716 dari 965 pasal**, belum tersedia **249** (Da Xue 53, Lun Yu 50, Mengzi 146). Total pasal Mengzi yang memiliki Inggris kini 114 dari 260.
 - Pengujian tambahan: `node --test tests/mengzi-coverage-13-14.test.js`.
+
+### Koreksi metadata sumber Mengzi 1–3
+
+Tiga catatan `English translation: Legge 1861` di akhir transkripsi bab 1–3 dipisahkan dari teks ayat Inggris. Metadata atribusi tetap tercatat sebagai `source_footer_attribution` dalam snapshot masing-masing bab, bukan sebagai terjemahan yang dibaca. Jumlah dan ID pasal tidak berubah; seluruhnya tetap draf.
