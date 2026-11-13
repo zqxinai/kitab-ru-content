@@ -184,8 +184,16 @@
     $('chapterSubtitle').textContent=info.name+' · '+info.hanzi;
     $('readingHeader').dataset.watermark=info.hanzi;
     const review=reviewStatuses.get(p.id)||{};
-    const idFinal=review.indonesian==='final';
-    const enFinal=review.english==='final'&&!!englishTextFor(p.id).trim();
+    // Finality is anchored to the reviewed text snapshots, not just an old flag.
+    const idFinal=review.indonesian==='final' &&
+      typeof review.indonesian_text==='string' &&
+      review.indonesian_text===p.translation_indonesian &&
+      review.hanzi_span===r.hanzi;
+    const enFinal=review.english==='final' &&
+      typeof review.english_text==='string' &&
+      !!englishTextFor(p.id).trim() &&
+      review.english_text===englishTextFor(p.id) &&
+      review.hanzi_span===r.hanzi;
     const bothFinal=idFinal&&enFinal&&!changed(p.id);
     $('passageStatus').textContent=bothFinal?'Final':(idFinal||enFinal?'Sebagian final':'Perlu review');
     $('passageStatus').classList.toggle('final',bothFinal);
