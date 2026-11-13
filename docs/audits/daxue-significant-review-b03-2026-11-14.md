@@ -22,3 +22,7 @@ Pada bagian komentar untuk X:14 sumber WYG secara eksplisit menjelaskan `个古�
 - Terbuka untuk saksi MATAKIN: **III:4 (`04.04`), VI:2 (`07.02`), X:14 (`11.14`)**; IV:1 (`05.01`) tidak termasuk kasus ini, jangan tertukar dengan ID `04.01`.
 - Tidak ada perubahan Hanzi, pinyin, Indonesia MATAKIN, `dist`, atau status Final. Belum menjalankan test/CI pada batch dokumentasi.
 - Perbedaan nomor halaman cetak dan pagination aplikasi **bukan discrepancy**.
+
+## Pembaruan bukti foto 14 November 2026 (setelah laporan di atas)
+
+Foto asli MATAKIN 2012 halaman 9–10 dan 14 telah diperiksa langsung. **III:4 (`04.04`) dan VI:2 (`07.02`) kini tertutup** setelah koreksi terarah total enam token Hanzi, tanpa mengganti terjemahan Indonesia atau nomor ayat. **X:14 (`11.14`) tetap terbuka** untuk foto Hanzi lengkap; foto yang tersedia baru menunjukkan bagian Indonesia. Rincian bukti dan uji regresi: [audit foto](daxue-2012-photographed-glyphs-2026-11-14.md). Status historis pada bagian sebelumnya menggambarkan tahap sebelum foto tersedia.
