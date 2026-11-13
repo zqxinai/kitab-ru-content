@@ -12,7 +12,7 @@
   const defaultCatalog = {
     schema: 'kitab-ru.catalog.v1', catalog_version: '0.1.0',
     collections: [
-      {id:'sishu',title:'Si Shu · Kitab Yang Empat',hanzi:'四書',status:'draft',description:'Da Xue, Zhong Yong, Lun Yu, Mengzi. Terjemahan Indonesia tersedia; English optional.',package_url:'',sha256:'',languages:['zh-Hant','pinyin','id','en']},
+      {id:'sishu',title:'Si Shu · Kitab Yang Empat',hanzi:'四書',status:'draft',description:'Da Xue, Zhong Yong, Lun Yu, Mengzi. Terjemahan Indonesia tersedia; English optional.',package_url:'',sha256:'',languages:['zh-Hant','pinyin','id'],english_status:'planned'},
       {id:'yijing',title:'Yi Jing · Kitab Perubahan',hanzi:'易經',status:'coming_soon',description:'',package_url:'',sha256:'',languages:['zh-Hant','pinyin','id','en']},
       {id:'shujing',title:'Shu Jing · Kitab Dokumen',hanzi:'書經',status:'coming_soon',description:'',package_url:'',sha256:'',languages:['zh-Hant','pinyin','id','en']},
       {id:'shijing',title:'Shi Jing · Kitab Sanjak',hanzi:'詩經',status:'coming_soon',description:'',package_url:'',sha256:'',languages:['zh-Hant','pinyin','id','en']},
@@ -22,6 +22,7 @@
   };
   let bundle = null;
   let pristine = null;
+  let pristineSerialized = null;
   let catalog = clone(defaultCatalog);
   let catalogPristine = clone(defaultCatalog);
   let activeBook = null;
@@ -43,7 +44,7 @@
     toastTimeout = setTimeout(() => node.classList.remove('show'), 3400);
   }
   function persistDirty() {
-    const dirty = bundle && JSON.stringify(bundle) !== JSON.stringify(pristine);
+    const dirty = bundle && JSON.stringify(bundle) !== pristineSerialized;
     $('changeStatus').textContent = dirty ? '● Ada perubahan' : 'Tidak ada perubahan';
     $('footerState').textContent = !bundle ? 'Belum ada naskah aktif' :
       ((dirty ? 'Belum diekspor · ' : 'Disimpan dari impor · ') + String(bundle.content_version || 'tanpa versi'));
@@ -173,6 +174,7 @@
     bundle = payload;
     if (!bundle.front_matter) bundle.front_matter = [];
     pristine = clone(bundle);
+    pristineSerialized = JSON.stringify(bundle);
     activeBook = bundle.books[0] || null;
     activeChapter = chaptersForBook(activeBook)[0]?.id || null;
     activePassage = chapter()?.passages[0]?.id || null;
@@ -471,7 +473,7 @@
   $('importInput').onchange=async(event)=>{
     const file=event.target.files?.[0];if(!file)return;
     if(file.size>16*1024*1024){toast('Berkas lebih dari 16 MB.');event.target.value='';return;}
-    if(bundle&&JSON.stringify(bundle)!==JSON.stringify(pristine)&&
+    if(bundle&&JSON.stringify(bundle)!==pristineSerialized&&
        !confirm('Naskah saat ini belum diekspor. Impor baru akan menggantikannya. Lanjut?')){
       event.target.value='';return;
     }
@@ -490,7 +492,7 @@
     event.target.value='';
   };
   function newDocument(){
-    if(bundle&&JSON.stringify(bundle)!==JSON.stringify(pristine)&&
+    if(bundle&&JSON.stringify(bundle)!==pristineSerialized&&
        !confirm('Perubahan belum diekspor. Buat naskah baru?'))return;
     loadBundle({
       schema:'ru-classics.content.v1',collection:'sishu',content_version:'0.1.0-draft',
@@ -513,7 +515,8 @@
     const errors=issues();
     if(errors.length&&!confirm('Ada '+errors.length+' temuan validasi. Ekspor draf tetap dilakukan?'))return;
     downloadJson(bundle,'kitab-ru-'+safeName(bundle.collection)+'-'+safeName(bundle.content_version)+'.json');
-    pristine=clone(bundle);persistDirty();toast('JSON diunduh. Publikasi ke GitHub dilakukan terpisah.');
+    pristine=clone(bundle);pristineSerialized=JSON.stringify(bundle);
+    persistDirty();toast('JSON diunduh. Publikasi ke GitHub dilakukan terpisah.');
   };
   $('exportCatalog').onclick=()=>{
     const problems=issues();
@@ -625,7 +628,7 @@
     activePreface=null;refresh();toast('Perubahan dikembalikan.');
   };
   window.addEventListener('beforeunload',(e)=>{
-    if(bundle&&JSON.stringify(bundle)!==JSON.stringify(pristine)){
+    if(bundle&&JSON.stringify(bundle)!==pristineSerialized){
       e.preventDefault();e.returnValue='';
     }
   });
