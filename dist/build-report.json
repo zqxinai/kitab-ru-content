@@ -1,0 +1,11 @@
+{
+  "schema": "ru-classics.content.v1",
+  "content_version": "0.1.1-legge-partial-draft",
+  "review_status": "unverified-draft",
+  "chapters": 78,
+  "passages": 965,
+  "english_passages": 246,
+  "needs_english": 719,
+  "sha256": "1347a3d898a09831d83569c41d9d95e7855425e239b6adafff217dc05ad719b3",
+  "bytes": 4335725
+}
