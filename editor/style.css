@@ -133,3 +133,20 @@ button:focus-visible,input:focus-visible,textarea:focus-visible,a:focus-visible{
 .review-buttons .button:disabled{opacity:.55;cursor:not-allowed}
 .review-help{font-size:11px;line-height:1.65;color:#66818a;margin:12px 0 0}
 @media(max-width:760px){.review-buttons .button{flex:1}}
+
+
+/* Independent language review, plus chapter queue */
+.review-scope{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin:12px 0;color:#4a7179;font-size:12px}
+.review-scope select,.chapter-review-actions select{min-height:38px;max-width:100%;border-radius:10px;border:1px solid #c8dfe4;background:#fff;color:#285864;padding:8px 10px;font:inherit}
+.review-scope select:focus-visible,.chapter-review-actions select:focus-visible{outline:3px solid #56bfc8;outline-offset:2px}
+.chapter-review{border:1px solid #bedde1;border-radius:17px;background:#f5fbfc;padding:17px 19px;margin-bottom:17px}
+.chapter-review-title{display:flex;justify-content:space-between;align-items:center;gap:8px}
+.chapter-review-title h2{font:normal 21px/1.35 var(--serif);margin:0}
+.chapter-review-title .eyebrow{font-size:10px;margin:0 0 5px;color:#5c8f99}
+.chapter-review-total{border-radius:30px;background:#e1f3f5;font-size:11px;color:#387b85;padding:6px 9px;white-space:nowrap}
+.chapter-review-stats{display:flex;flex-wrap:wrap;gap:7px;margin:14px 0}
+.chapter-review-stats span{border:1px solid #d5e8ea;background:#fff;color:#517a82;border-radius:9px;padding:7px 9px;font-size:11px}
+.chapter-review-actions{display:flex;align-items:end;flex-wrap:wrap;gap:9px}
+.chapter-review-actions label{font-size:11px;color:#5c7f86;display:flex;flex-direction:column;gap:4px}
+.chapter-review-help{color:#66848b;font-size:11px;line-height:1.65;margin:12px 0 0}
+@media(max-width:760px){.chapter-review{padding:15px}.chapter-review-actions>.button{flex:1}.review-scope select{flex:1}}
