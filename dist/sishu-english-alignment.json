@@ -4445,6 +4445,257 @@
       "source_url": "https://confuciuspedia.com/lib/the-doctrine-of-the-mean/amp/",
       "status": "draft",
       "review_note": "Auto-alignment based on Hanzi similarity 100.0%; this source unit spans 1 MATAKIN passage(s). Requires editorial verification."
+    },
+    {
+      "id": "legge-zhongyong-08-01",
+      "indonesian_passage_ids": [
+        "sishu.zhongyong.08.01"
+      ],
+      "english_segments": [
+        {
+          "legge_ref": "The Doctrine of the Mean, chapter 8, source unit 1",
+          "text": "The Master said “This was the manner of Hui: he made choice of the Mean, and whenever he got hold of what was good, he clasped it firmly, as if wearing it on his breast, and did not lose it.”"
+        }
+      ],
+      "hanzi_span": "子曰：“回之為人也：擇乎中庸，得一善，則拳拳服膺，而弗失之矣。”",
+      "source_hanzi_simplified": "子曰：“回之为人也，择乎中庸，得一善，则拳拳服膺（yīng）而弗（fú）失之矣。”",
+      "source_url": "https://confuciuspedia.com/lib/the-doctrine-of-the-mean/amp/",
+      "status": "draft",
+      "review_note": "Matched normalized Hanzi with similarity 100.00%. Source text checked against source snapshot; needs comparison to original James Legge edition. 1 MATAKIN passage(s), 1 Legge source unit(s)."
+    },
+    {
+      "id": "legge-zhongyong-09-01",
+      "indonesian_passage_ids": [
+        "sishu.zhongyong.09.01"
+      ],
+      "english_segments": [
+        {
+          "legge_ref": "The Doctrine of the Mean, chapter 9, source unit 1",
+          "text": "The Master said, “The kingdom, its states, and its families, may be perfectly ruled; dignities and emoluments may be declined; naked weapons may be trampled under the feet; but the course of the Mean cannot be attained to.”"
+        }
+      ],
+      "hanzi_span": "子曰：“天下國家，可均也；爵祿，可辭也；白刃，可蹈也；中庸不可能也。”",
+      "source_hanzi_simplified": "子曰：“天下国家可均也，爵禄可辞也，白刃可蹈也，中庸不可能也。”",
+      "source_url": "https://confuciuspedia.com/lib/the-doctrine-of-the-mean/amp/",
+      "status": "draft",
+      "review_note": "Matched normalized Hanzi with similarity 100.00%. Source text checked against source snapshot; needs comparison to original James Legge edition. 1 MATAKIN passage(s), 1 Legge source unit(s)."
+    },
+    {
+      "id": "legge-zhongyong-10-01",
+      "indonesian_passage_ids": [
+        "sishu.zhongyong.10.01"
+      ],
+      "english_segments": [
+        {
+          "legge_ref": "The Doctrine of the Mean, chapter 10, source unit 1",
+          "text": "Zi-lu asked about energy."
+        }
+      ],
+      "hanzi_span": "子路問強。",
+      "source_hanzi_simplified": "子路问强。",
+      "source_url": "https://confuciuspedia.com/lib/the-doctrine-of-the-mean/amp/",
+      "status": "draft",
+      "review_note": "Matched normalized Hanzi with similarity 100.00%. Source text checked against source snapshot; needs comparison to original James Legge edition. 1 MATAKIN passage(s), 1 Legge source unit(s)."
+    },
+    {
+      "id": "legge-zhongyong-10-02",
+      "indonesian_passage_ids": [
+        "sishu.zhongyong.10.02",
+        "sishu.zhongyong.10.03",
+        "sishu.zhongyong.10.04",
+        "sishu.zhongyong.10.05"
+      ],
+      "english_segments": [
+        {
+          "legge_ref": "The Doctrine of the Mean, chapter 10, source unit 2",
+          "text": "The Master said, “Do you mean the energy of the South, the energy of the North, or the energy which you should cultivate yourself? To show forbearance and gentleness in teaching others; and not to revenge unreasonable conduct – this is the energy of southern regions, and the good man makes it his study. To lie under arms; and meet death without regret – this is the energy of northern regions, and the forceful make it their study. Therefore, the superior man cultivates a friendly harmony, without being weak. How firm is he in his energy! He stands erect in the middle, without inclining to either side. How firm is he in his energy! When good principles prevail in the government of his country, he does not change from what he was in retirement. How firm is he in his energy! When bad principles prevail in the country, he maintains his course to death without changing. How firm is he in his energy!”"
+        }
+      ],
+      "hanzi_span": "子曰：“南方之強與，北方之強與，抑而強與？寬柔以教，不報無道，南方之強也。君子居之。衽金革，死而不厭，北方之強也。而強者居之。故君子和而不流；強哉矯。中立而不倚；強哉矯。國有道，不變塞焉；強哉矯。國無道，至死不變；強哉矯。”",
+      "source_hanzi_simplified": "子曰：“南方之强与？北方之强与？抑而强与？宽柔以教，不报无道，南方之强也，君子居之。衽（rèn）金革，死而不厌，北方之强也，而强者居之。故君子和而不流，强哉矫！中立而不倚，强哉矫！国有道，不变塞焉，强哉矫！国无道，至死不变，强哉矫！”",
+      "source_url": "https://confuciuspedia.com/lib/the-doctrine-of-the-mean/amp/",
+      "status": "draft",
+      "review_note": "Matched normalized Hanzi with similarity 100.00%. Source text checked against source snapshot; needs comparison to original James Legge edition. 4 MATAKIN passage(s), 1 Legge source unit(s)."
+    },
+    {
+      "id": "legge-zhongyong-11-01",
+      "indonesian_passage_ids": [
+        "sishu.zhongyong.11.01",
+        "sishu.zhongyong.11.02",
+        "sishu.zhongyong.11.03"
+      ],
+      "english_segments": [
+        {
+          "legge_ref": "The Doctrine of the Mean, chapter 11, source unit 1",
+          "text": "The Master said, “To live in obscurity, and yet practice wonders, in order to be mentioned with honor in future ages:-this is what I do not do. The good man tries to proceed according to the right path, but when he has gone halfway, he abandons it:-I am not able so to stop. The superior man accords with the course of the Mean. Though he may be all unknown, unregarded by the world, he feels no regret. It is only the sage who is able for this."
+        }
+      ],
+      "hanzi_span": "子曰：“素隱行怪，後世有述焉：吾弗為之矣。君子遵道而行，半途而廢：吾弗能已矣。君子依乎中庸，遯世不見知，而不悔。唯聖者能之。”",
+      "source_hanzi_simplified": "子曰：“素隐行怪，后世有述焉，吾弗为之矣。君子遵道而行，半途而废，吾弗能已矣。君子依乎中庸，遁世不见知而不悔，唯圣者能之。”",
+      "source_url": "https://confuciuspedia.com/lib/the-doctrine-of-the-mean/amp/",
+      "status": "draft",
+      "review_note": "Matched normalized Hanzi with similarity 98.00%. Source text checked against source snapshot; needs comparison to original James Legge edition. 3 MATAKIN passage(s), 1 Legge source unit(s)."
+    },
+    {
+      "id": "legge-zhongyong-12-01",
+      "indonesian_passage_ids": [
+        "sishu.zhongyong.12.01"
+      ],
+      "english_segments": [
+        {
+          "legge_ref": "The Doctrine of the Mean, chapter 12, source unit 1",
+          "text": "The way which the superior man pursues, reaches wide and far, and yet is secret."
+        }
+      ],
+      "hanzi_span": "君子之道，費而隱。",
+      "source_hanzi_simplified": "君子之道费而隐。",
+      "source_url": "https://confuciuspedia.com/lib/the-doctrine-of-the-mean/amp/",
+      "status": "draft",
+      "review_note": "Matched normalized Hanzi with similarity 100.00%. Source text checked against source snapshot; needs comparison to original James Legge edition. 1 MATAKIN passage(s), 1 Legge source unit(s)."
+    },
+    {
+      "id": "legge-zhongyong-12-02-to-03",
+      "indonesian_passage_ids": [
+        "sishu.zhongyong.12.02"
+      ],
+      "english_segments": [
+        {
+          "legge_ref": "The Doctrine of the Mean, chapter 12, source unit 2",
+          "text": "Common men and women, however ignorant, may intermeddle with the knowledge of it; yet in its utmost reaches, there is that which even the sage does not know. Common men and women, however much below the ordinary standard of character, can carry it into practice; yet in its utmost reaches, there is that which even the sage is not able to carry into practice."
+        },
+        {
+          "legge_ref": "The Doctrine of the Mean, chapter 12, source unit 3",
+          "text": "Great as heaven and earth are, men still find some things in them with which to be dissatisfied. Thus it is that, were the superior man to speak of his way in all its greatness, nothing in the world would be found able to embrace it, and were he to speak of it in its minuteness, nothing in the world would be found able to split it."
+        }
+      ],
+      "hanzi_span": "夫婦之愚，可以與知焉，及其至也，雖聖人亦有所不知焉。夫婦之不肖，可以能行焉，及其至也，雖聖人亦有所不能焉。天地之大也，人猶有所憾。故君子語大，天下莫能載焉，語小，天下莫能破焉。",
+      "source_hanzi_simplified": "夫妇之愚，可以与知焉，及其至也，虽圣人亦有所不知焉。夫妇之不肖，可以能行焉，及其至也，虽圣人亦有所不能焉。天地之大也，人犹有所憾。故君子语大，天下莫能载焉；语小，天下莫能破焉。",
+      "source_url": "https://confuciuspedia.com/lib/the-doctrine-of-the-mean/amp/",
+      "status": "draft",
+      "review_note": "Matched normalized Hanzi with similarity 100.00%. Source text checked against source snapshot; needs comparison to original James Legge edition. 1 MATAKIN passage(s), 2 Legge source unit(s)."
+    },
+    {
+      "id": "legge-zhongyong-12-04",
+      "indonesian_passage_ids": [
+        "sishu.zhongyong.12.03"
+      ],
+      "english_segments": [
+        {
+          "legge_ref": "The Doctrine of the Mean, chapter 12, source unit 4",
+          "text": "It is said in the Book of Poetry, “The hawk flies up to heaven; the fishes leap in the deep.” This expresses how this way is seen above and below."
+        }
+      ],
+      "hanzi_span": "詩云：“鳶飛戾天；魚躍於淵。”言其上下察也。",
+      "source_hanzi_simplified": "《诗》云：“鸢（yuān）飞戾（lì）天，鱼跃于渊。” 言其上下察也。",
+      "source_url": "https://confuciuspedia.com/lib/the-doctrine-of-the-mean/amp/",
+      "status": "draft",
+      "review_note": "Matched normalized Hanzi with similarity 100.00%. Source text checked against source snapshot; needs comparison to original James Legge edition. 1 MATAKIN passage(s), 1 Legge source unit(s)."
+    },
+    {
+      "id": "legge-zhongyong-12-05",
+      "indonesian_passage_ids": [
+        "sishu.zhongyong.12.04"
+      ],
+      "english_segments": [
+        {
+          "legge_ref": "The Doctrine of the Mean, chapter 12, source unit 5",
+          "text": "The way of the superior man may be found, in its simple elements, in the intercourse of common men and women; but in its utmost reaches, it shines brightly through heaven and earth."
+        }
+      ],
+      "hanzi_span": "君子之道，造端乎夫婦；及其至也，察乎天地。",
+      "source_hanzi_simplified": "君子之道，造端乎夫妇，及其至也，察乎天地。",
+      "source_url": "https://confuciuspedia.com/lib/the-doctrine-of-the-mean/amp/",
+      "status": "draft",
+      "review_note": "Matched normalized Hanzi with similarity 100.00%. Source text checked against source snapshot; needs comparison to original James Legge edition. 1 MATAKIN passage(s), 1 Legge source unit(s)."
+    },
+    {
+      "id": "legge-zhongyong-13-01",
+      "indonesian_passage_ids": [
+        "sishu.zhongyong.13.01",
+        "sishu.zhongyong.13.02",
+        "sishu.zhongyong.13.03",
+        "sishu.zhongyong.13.04"
+      ],
+      "english_segments": [
+        {
+          "legge_ref": "The Doctrine of the Mean, chapter 13, source unit 1",
+          "text": "The Master said “The path is not far from man. When men try to pursue a course, which is far from the common indications of consciousness, this course cannot be considered The Path. In the Book of Poetry, it is said, ‘In hewing an ax handle, in hewing an ax handle, the pattern is not far off. We grasp one ax handle to hew the other; and yet, if we look askance from the one to the other, we may consider them as apart. Therefore, the superior man governs men, according to their nature, with what is proper to them, and as soon as they change what is wrong, he stops. When one cultivates to the utmost the principles of his nature, and exercises them on the principle of reciprocity, he is not far from the path. What you do not like when done to yourself, do not do to others. In the way of the superior man there are four things, to not one of which have I as yet attained.-To serve my father, as I would require my son to serve me: to this I have not attained; to serve my prince as I would require my minister to serve me: to this I have not attained; to serve my elder brother as I would require my younger brother to serve me: to this I have not attained; to set the example in behaving to a friend, as I would require him to behave to me: to this I have not attained. Earnest in practicing the ordinary virtues, and careful in speaking about them, if, in his practice, he has anything defective, the superior man dares not but exert himself; and if, in his words, he has any excess, he dares not allow himself such license. Thus his words have respect to his actions, and his actions have respect to his words; is it not just an entire sincerity which marks the superior man?"
+        }
+      ],
+      "hanzi_span": "子曰：“道不遠人。人之為道而遠人，不可以為道。詩云：‘伐柯伐柯，其則不遠。’執柯以伐柯，睨而視之。猶以為遠。故君子以人治人，改而止。忠恕違道不遠。施諸己而不願，亦勿施於人。君子之道四，丘未能一焉：所求乎子，以事父，未能也；所求乎臣，以事君，未能也；所求乎弟，以事兄，未能也；所求乎朋友，先施之，未能也。庸德之行，庸言之謹；有所不足，不敢不勉；有餘，不敢盡。言顧行，行顧言。君子胡不慥慥爾。”",
+      "source_hanzi_simplified": "子曰：“道不远人，人之为道而远人，不可以为道。《诗》云：‘伐柯伐柯，其则不远。’ 执柯以伐柯，睨（nì）而视之，犹以为远。故君子以人治人，改而止。忠恕违道不远，施诸己而不愿，亦勿施于人。君子之道四，丘未能一焉：所求乎子以事父，未能也；所求乎臣以事君，未能也；所求乎弟以事兄，未能也；所求乎朋友先施之，未能也。庸德之行，庸言之谨；有所不足，不敢不勉，有余不敢尽；言顾行，行顾言，君子胡不慥（zào）慥尔！”",
+      "source_url": "https://confuciuspedia.com/lib/the-doctrine-of-the-mean/amp/",
+      "status": "draft",
+      "review_note": "Matched normalized Hanzi with similarity 100.00%. Source text checked against source snapshot; needs comparison to original James Legge edition. 4 MATAKIN passage(s), 1 Legge source unit(s)."
+    },
+    {
+      "id": "legge-zhongyong-14-01",
+      "indonesian_passage_ids": [
+        "sishu.zhongyong.14.01"
+      ],
+      "english_segments": [
+        {
+          "legge_ref": "The Doctrine of the Mean, chapter 14, source unit 1",
+          "text": "The superior man does what is proper to the station in which he is; he does not desire to go beyond this."
+        }
+      ],
+      "hanzi_span": "君子素其位而行，不願乎其外。",
+      "source_hanzi_simplified": "君子素其位而行，不愿乎其外。",
+      "source_url": "https://confuciuspedia.com/lib/the-doctrine-of-the-mean/amp/",
+      "status": "draft",
+      "review_note": "Matched normalized Hanzi with similarity 100.00%. Source text checked against source snapshot; needs comparison to original James Legge edition. 1 MATAKIN passage(s), 1 Legge source unit(s)."
+    },
+    {
+      "id": "legge-zhongyong-14-02",
+      "indonesian_passage_ids": [
+        "sishu.zhongyong.14.02"
+      ],
+      "english_segments": [
+        {
+          "legge_ref": "The Doctrine of the Mean, chapter 14, source unit 2",
+          "text": "In a position of wealth and honor, he does what is proper to a position of wealth and honor. In a poor and low position, he does what is proper to a poor and low position. Situated among barbarous tribes, he does what is proper to a situation among barbarous tribes. In a position of sorrow and difficulty, he does what is proper to a position of sorrow and difficulty. The superior man can find himself in no situation in which he is not himself."
+        }
+      ],
+      "hanzi_span": "素富貴，行乎富貴；素貧賤，行乎貧賤；素夷狄，行乎夷狄；素患難，行乎患難。君子無入而不自得焉。",
+      "source_hanzi_simplified": "素富贵，行乎富贵；素贫贱，行乎贫贱；素夷（yí）狄，行乎夷狄；素患难，行乎患难。君子无入而不自得焉！",
+      "source_url": "https://confuciuspedia.com/lib/the-doctrine-of-the-mean/amp/",
+      "status": "draft",
+      "review_note": "Matched normalized Hanzi with similarity 100.00%. Source text checked against source snapshot; needs comparison to original James Legge edition. 1 MATAKIN passage(s), 1 Legge source unit(s)."
+    },
+    {
+      "id": "legge-zhongyong-14-03",
+      "indonesian_passage_ids": [
+        "sishu.zhongyong.14.03",
+        "sishu.zhongyong.14.04"
+      ],
+      "english_segments": [
+        {
+          "legge_ref": "The Doctrine of the Mean, chapter 14, source unit 3",
+          "text": "In a high situation, he does not treat with contempt his inferiors. In a low situation, he does not court the favor of his superiors. He rectifies himself, and seeks for nothing from others, so that he has no dissatisfactions. He does not murmur against Heaven, nor grumble against men. Thus it is that the superior man is quiet and calm, waiting for the appointments of Heaven, while the mean man walks in dangerous paths, looking for lucky occurrences."
+        }
+      ],
+      "hanzi_span": "在上位，不陵下；在下位，不援上；正己而不求於人則無怨。上不怨天，下不尤人。故君子居易以俟命，小人行險以徼幸。",
+      "source_hanzi_simplified": "在上位不陵下，在下位不援上；正己而不求于人则无怨；上不怨天，下不尤人。故君子居易以俟（si）命，小人行险以侥幸。",
+      "source_url": "https://confuciuspedia.com/lib/the-doctrine-of-the-mean/amp/",
+      "status": "draft",
+      "review_note": "Matched normalized Hanzi with similarity 97.78%. Source text checked against source snapshot; needs comparison to original James Legge edition. 2 MATAKIN passage(s), 1 Legge source unit(s)."
+    },
+    {
+      "id": "legge-zhongyong-14-04",
+      "indonesian_passage_ids": [
+        "sishu.zhongyong.14.05"
+      ],
+      "english_segments": [
+        {
+          "legge_ref": "The Doctrine of the Mean, chapter 14, source unit 4",
+          "text": "The Master said, “In archery we have something like the way of the superior man. When the archer misses the center of the target, he turns round and seeks for the cause of his failure in himself.”"
+        }
+      ],
+      "hanzi_span": "子曰：“射有似乎君子。失諸正鵠，反求諸其身。”",
+      "source_hanzi_simplified": "子曰：“射有似乎君子，失诸正鹄（gu），反求诸其身。”",
+      "source_url": "https://confuciuspedia.com/lib/the-doctrine-of-the-mean/amp/",
+      "status": "draft",
+      "review_note": "Matched normalized Hanzi with similarity 100.00%. Source text checked against source snapshot; needs comparison to original James Legge edition. 1 MATAKIN passage(s), 1 Legge source unit(s)."
     }
   ]
 }
