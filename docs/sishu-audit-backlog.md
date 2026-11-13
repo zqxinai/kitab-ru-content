@@ -18,6 +18,8 @@ Sumber [00 - INDEX AUDIT](https://drive.google.com/file/d/1ZkWMwg565eRKV_9zKqjXG
 
 **Da Xue Bab V:1 diselesaikan pada batch khusus (13 November 2026):** 2 aksara yang tercatat pada foto MATAKIN 2012 dikoreksi; pengantar dan pelengkap Zhu Xi sekarang beratribusi serta terpisah di editor. [Audit dan tes](audits/daxue-bab-v-matakin-2012-2026-11-13.md). Hanya buka ulang dengan bukti baru atau hasil tes gagal.
 
+**Zhong Yong Bab XXV:2 sudah dianalisis (13 November 2026):** Hanzi dan terjemahan MATAKIN dipertahankan; 2 pinyin 徵 dikoreksi dari zhǐ menjadi zhēng berdasarkan kamus MOE Taiwan (bukan klaim pinyin foto 2012). Tafsir Zhu Xi dicatat terpisah dari terjemahan utama dalam editor. [Audit dan sumber](audits/zhongyong-xxv-02-matakin-2012-2026-11-13.md). Jangan ulang tanpa bukti baru atau regresi gagal.
+
 ## Pencegahan looping
 
 Bekerja maksimal **10 pasal per batch**; setiap item memiliki ID stabil, hash/sumber, kasus, keputusan, alasan, status reviewer. Hanya buka ulang jika sumber atau versi naskah berubah. Jangan menerapkan ralat karakter pada Hanzi tanpa memperbarui anotasi Ruby, pinyin, paket distribusi dan hash katalog sekaligus. Jangan menandai bahasa Indonesia atau Inggris sebagai `Final` otomatis. Lihat [audit varian](sishu-textual-variants.md).

@@ -297,6 +297,23 @@
         }
       }
       root.append(p);
+      // Interpretation notes are distinct from the scripture and follow their quoted passage.
+      for(const note of (annotations||[]).filter(a=>a.kind==='interpretive_comparison'&&a.after_paragraph_index===i)){
+        const aside=document.createElement('aside');
+        aside.className='textual-editorial-note textual-comparison-note';
+        const heading=document.createElement('strong');
+        heading.textContent=note.title_indonesian||'Perbandingan tafsir (bukan teks utama)';
+        const description=document.createElement('p');
+        description.textContent=note.description_indonesian||'';
+        aside.append(heading,description);
+        if(note.hanzi){
+          const comparison=document.createElement('p');
+          comparison.className='textual-editorial-quotation';
+          comparison.textContent=note.hanzi;
+          aside.append(comparison);
+        }
+        root.append(aside);
+      }
     }
     if(!root.childNodes.length)root.textContent='Teks Hanzi belum tersedia.';
   }

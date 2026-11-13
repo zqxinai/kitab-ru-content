@@ -1,0 +1,48 @@
+'use strict';
+const test=require('node:test'),assert=require('node:assert/strict'),fs=require('node:fs');
+const read=p=>JSON.parse(fs.readFileSync(p,'utf8'));
+const source=read('sishu/chapters/zhongyong/26.json');
+const bundle=read('dist/sishu-content.json');
+const alignment=read('dist/sishu-english-alignment.json');
+const target=source.passages.find(p=>p.id==='sishu.zhongyong.26.02');
+const built=bundle.chapters.flatMap(c=>c.passages).find(p=>p.id===target.id);
+const span=p=>p.ruby_paragraphs.map(row=>row.map(t=>t.traditional||t.value||'').join('')).join('\n');
+const hash=s=>{let h=2166136261;for(let i=0;i<s.length;i++){h^=s.charCodeAt(i);h=Math.imul(h,16777619)>>>0;}return h.toString(16).padStart(8,'0')};
+test('Primary MATAKIN text and translation preserved while pinyin 徵 corrected contextually',()=>{
+ assert.equal(target.editorial_status,'unverified-draft');
+ assert.equal(hash(target.translation_indonesian),'21af333f');
+ assert.equal(hash(span(target)),'40ac01a8');
+ assert.equal(span(target),'不息則久，久則徵。\n徵則悠遠。悠遠，則博厚。博厚，則高明。');
+ const rubies=target.ruby_paragraphs.flat().filter(t=>t.type==='ruby'&&t.traditional==='徵');
+ assert.equal(rubies.length,2);
+ for(const ruby of rubies){assert.equal(ruby.pinyin,'zhēng');assert.equal(ruby.modern,'征');}
+ assert.deepEqual(target,built,'Build package must reflect correction and separate annotation');
+ assert.equal(bundle.chapters.length,78);
+ assert.equal(bundle.chapters.reduce((s,c)=>s+c.passages.length,0),965);
+ assert.equal(read('dist/sishu-review-status.json').entries.length,0);
+});
+test('Comparison note cites Zhu Xi without revising MATAKIN or Legge',()=>{
+ const annotations=target.editorial_annotations;
+ assert.equal(annotations.length,1);
+ const note=annotations[0];
+ assert.equal(note.kind,'interpretive_comparison');
+ assert.equal(note.after_paragraph_index,1);
+ assert.equal(note.anchor_hanzi,'久則徵');
+ assert.match(note.hanzi,/久，常於中也；徵，驗於外也。/);
+ assert.match(note.description_indonesian,/menghimpun banyak pengetahuan/);
+ assert.match(note.description_indonesian,/bukan koreksi atau pengganti/);
+ assert.equal(note.witness.witness_page,'KR1h0015_WYG_016-57b');
+ assert.equal(note.lexical_evidence.limit,'Cetakan pinyin MATAKIN 2012 belum diperiksa langsung untuk dua karakter ini.');
+ const entries=alignment.entries.filter(e=>e.indonesian_passage_ids.includes(target.id));
+ assert.equal(entries.length,1);assert.equal(entries[0].status,'draft');
+ assert.equal(entries[0].id,'legge-zhongyong-26-01');
+ assert.match(entries[0].english_segments[0].text,/Continuing long, it evidences itself/);
+ assert.equal(entries[0].hanzi_span.includes('久則徵'),true);
+});
+test('Editor supports notes outside scripture Ruby without changing source text',()=>{
+ const js=fs.readFileSync('editor/app.js','utf8');
+ assert.match(js,/a.kind==='interpretive_comparison'&&a.after_paragraph_index===i/);
+ assert.match(js,/textual-editorial-note textual-comparison-note/);
+ assert.match(js,/note.title_indonesian/);
+ assert.match(js,/note.description_indonesian/);
+});
