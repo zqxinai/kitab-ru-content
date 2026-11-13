@@ -10,15 +10,15 @@ const byId=new Map(package_.chapters.flatMap(c=>c.passages).map(p=>[p.id,p]));
 const hanzi=p=>p.ruby_paragraphs.map(row=>row.map(t=>t.type==='ruby'?(t.traditional||''):(t.value||'')).join('')).join('\n');
 const norm=s=>[...String(s).normalize('NFKC')].filter(c=>/[\u3400-\u9fff]/u.test(c)).join('');
 const numbers=[10,12,13,14,15,16,19,20,22,23];
-test('Ten unique English drafts in Lun Yu Book X increase editor coverage to 868/965',()=>{
+test('Ten unique English drafts in Lun Yu Book X retain a historical minimum of 868/965',()=>{
  const ids=snapshot.units.map(x=>x.indonesian_passage_id);
  assert.equal(ids.length,10);
  assert.deepEqual(ids,numbers.map(n=>'sishu.lunyu.10.'+String(n).padStart(2,'0')));
  assert.equal(new Set(ids).size,10);
- assert.equal(new Set(align.entries.flatMap(e=>e.indonesian_passage_ids)).size,622);
- assert.equal(catalog.english_editor_passages,868);
- assert.equal(catalog.english_editor_unmapped,97);
- assert.equal(catalog.english_editor_alignment_drafts,622);
+ assert.ok(new Set(align.entries.flatMap(e=>e.indonesian_passage_ids)).size>=622);
+ assert.ok(catalog.english_editor_passages>=868);
+ assert.ok(catalog.english_editor_unmapped<=97);
+ assert.ok(catalog.english_editor_alignment_drafts>=622);
  assert.equal(review.entries.length,0);
 });
 test('Full Hanzi range, exact Legge quotation, editorial source and mismatched edition numbering',()=>{

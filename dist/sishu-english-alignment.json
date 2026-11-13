@@ -9899,6 +9899,176 @@
       "source_url": "https://www.gutenberg.org/cache/epub/4094/pg4094-images.html",
       "status": "draft",
       "review_note": "Direct complete Hanzi match against Project Gutenberg #4094, Book X; MATAKIN 10:23 and Legge chapter sections differ. Editorial language review required before Final."
+    },
+    {
+      "id": "legge-lunyu-b06-07-09",
+      "indonesian_passage_ids": [
+        "sishu.lunyu.07.09"
+      ],
+      "english_segments": [
+        {
+          "legge_ref": "Confucian Analects, Book VII, CHAP. IX, §1",
+          "text": "When the Master was eating by the side of a mourner, he never ate to the full."
+        }
+      ],
+      "hanzi_span": "子食於有喪者之側，未嘗飽也。",
+      "source_hanzi_transcription": "子食於有喪者之側、未嘗飽也。",
+      "source_url": "https://www.gutenberg.org/cache/epub/4094/pg4094-images.html",
+      "status": "draft",
+      "review_note": "Source Chinese matched in full after punctuation normalization. Legge and MATAKIN numbering remain independent. Requires manual review before Final."
+    },
+    {
+      "id": "legge-lunyu-b06-07-10",
+      "indonesian_passage_ids": [
+        "sishu.lunyu.07.10"
+      ],
+      "english_segments": [
+        {
+          "legge_ref": "Confucian Analects, Book VII, CHAP. IX, §2",
+          "text": "He did not sing on the same day in which he had been weeping."
+        }
+      ],
+      "hanzi_span": "子於是日哭，則不歌。",
+      "source_hanzi_transcription": "子於是日哭、則不歌。",
+      "source_url": "https://www.gutenberg.org/cache/epub/4094/pg4094-images.html",
+      "status": "draft",
+      "review_note": "Source Chinese matched in full after punctuation normalization. Legge and MATAKIN numbering remain independent. Requires manual review before Final."
+    },
+    {
+      "id": "legge-lunyu-b06-07-18",
+      "indonesian_passage_ids": [
+        "sishu.lunyu.07.18"
+      ],
+      "english_segments": [
+        {
+          "legge_ref": "Confucian Analects, Book VII, CHAP. XVII",
+          "text": "The Master's frequent themes of discourse were-- the Odes, the History, and the maintenance of the Rules of Propriety. On all these he frequently discoursed."
+        }
+      ],
+      "hanzi_span": "子所雅言，《詩》、《書》、執禮，皆雅言也。",
+      "source_hanzi_transcription": "子所雅言、詩､書､執禮、皆雅言也。",
+      "source_url": "https://www.gutenberg.org/cache/epub/4094/pg4094-images.html",
+      "status": "draft",
+      "review_note": "Source Chinese matched in full after punctuation normalization. Legge and MATAKIN numbering remain independent. Requires manual review before Final."
+    },
+    {
+      "id": "legge-lunyu-b06-07-29",
+      "indonesian_passage_ids": [
+        "sishu.lunyu.07.29"
+      ],
+      "english_segments": [
+        {
+          "legge_ref": "Confucian Analects, Book VII, CHAP. XXVIII, §§1–2",
+          "text": "It was difficult to talk (profitably and reputably) with the people of Hu-hsiang, and a lad of that place having had an interview with the Master, the disciples doubted. The Master said, 'I admit people's approach to me without committing myself as to what they may do when they have retired. Why must one be so severe? If a man purify himself to wait upon me, I receive him so purified, without guaranteeing his past conduct.'"
+        }
+      ],
+      "hanzi_span": "互鄉難與言，童子見，門人惑。子曰：“與其進也，不與其退也，唯何甚？人潔己以進，與其潔也，不保其往也。”",
+      "source_hanzi_transcription": "互鄉難與言、童子見、門人惑。子曰、與其進也、不與其退也、唯何甚、人潔己以進、與其潔也、不保其往也。",
+      "source_url": "https://www.gutenberg.org/cache/epub/4094/pg4094-images.html",
+      "status": "draft",
+      "review_note": "Source Chinese matched in full after punctuation normalization. Legge and MATAKIN numbering remain independent. Requires manual review before Final."
+    },
+    {
+      "id": "legge-lunyu-b06-07-30",
+      "indonesian_passage_ids": [
+        "sishu.lunyu.07.30"
+      ],
+      "english_segments": [
+        {
+          "legge_ref": "Confucian Analects, Book VII, CHAP. XXIX",
+          "text": "The Master said, 'Is virtue a thing remote? I wish to be virtuous, and lo! virtue is at hand.'"
+        }
+      ],
+      "hanzi_span": "子曰：“仁遠乎哉？我欲仁，斯仁至矣。”",
+      "source_hanzi_transcription": "子曰、仁遠乎哉、我欲仁、斯仁至矣。",
+      "source_url": "https://www.gutenberg.org/cache/epub/4094/pg4094-images.html",
+      "status": "draft",
+      "review_note": "Source Chinese matched in full after punctuation normalization. Legge and MATAKIN numbering remain independent. Requires manual review before Final."
+    },
+    {
+      "id": "legge-lunyu-b06-10-09",
+      "indonesian_passage_ids": [
+        "sishu.lunyu.10.09"
+      ],
+      "english_segments": [
+        {
+          "legge_ref": "Confucian Analects, Book X, CHAP. VIII, §8",
+          "text": "When he had been assisting at the prince's sacrifice, he did not keep the flesh which he received overnight. The flesh of his family sacrifice he did not keep over three days. If kept over three days, people could not eat it."
+        }
+      ],
+      "hanzi_span": "祭於公，不宿肉。祭肉不出三日，出三日不食之矣。",
+      "source_hanzi_transcription": "祭於公、不宿肉。祭肉不出三日、出三日、不食之矣。",
+      "source_url": "https://www.gutenberg.org/cache/epub/4094/pg4094-images.html",
+      "status": "draft",
+      "review_note": "Source Chinese matched in full after punctuation normalization. Legge and MATAKIN numbering remain independent. Requires manual review before Final."
+    },
+    {
+      "id": "legge-lunyu-b06-10-11",
+      "indonesian_passage_ids": [
+        "sishu.lunyu.10.11"
+      ],
+      "english_segments": [
+        {
+          "legge_ref": "Confucian Analects, Book X, CHAP. VIII, §10",
+          "text": "Although his food might be coarse rice and vegetable soup, he would offer a little of it in sacrifice with a grave, respectful air."
+        }
+      ],
+      "hanzi_span": "雖疏食菜羹，瓜祭，必齊如也。",
+      "source_hanzi_transcription": "雖疏食菜羹、瓜祭、必齊如也。",
+      "source_url": "https://www.gutenberg.org/cache/epub/4094/pg4094-images.html",
+      "status": "draft",
+      "review_note": "Source Chinese matched in full after punctuation normalization. Legge and MATAKIN numbering remain independent. Requires manual review before Final."
+    },
+    {
+      "id": "legge-lunyu-b06-11-02",
+      "indonesian_passage_ids": [
+        "sishu.lunyu.11.02"
+      ],
+      "english_segments": [
+        {
+          "legge_ref": "Confucian Analects, Book XI, CHAP. II, §1",
+          "text": "The Master said, 'Of those who were with me in Ch'an and Ts'ai, there are none to be found to enter my door.'"
+        }
+      ],
+      "hanzi_span": "子曰：“從我於陳、蔡者，皆不及門也。”",
+      "source_hanzi_transcription": "子曰、從我於陳蔡者、皆不及門也。",
+      "source_url": "https://www.gutenberg.org/cache/epub/4094/pg4094-images.html",
+      "status": "draft",
+      "review_note": "Source Chinese matched in full after punctuation normalization. Legge and MATAKIN numbering remain independent. Requires manual review before Final."
+    },
+    {
+      "id": "legge-lunyu-b06-15-22",
+      "indonesian_passage_ids": [
+        "sishu.lunyu.15.22"
+      ],
+      "english_segments": [
+        {
+          "legge_ref": "Confucian Analects, Book XV, CHAP. XXI",
+          "text": "The Master said, 'The superior man is dignified, but does not wrangle. He is sociable, but not a partizan.'"
+        }
+      ],
+      "hanzi_span": "子曰：“君子矜而不爭，群而不黨。”",
+      "source_hanzi_transcription": "子曰、君子矜而不爭、群而不黨。",
+      "source_url": "https://www.gutenberg.org/cache/epub/4094/pg4094-images.html",
+      "status": "draft",
+      "review_note": "Source Chinese matched in full after punctuation normalization. Legge and MATAKIN numbering remain independent. Requires manual review before Final."
+    },
+    {
+      "id": "legge-lunyu-b06-15-37",
+      "indonesian_passage_ids": [
+        "sishu.lunyu.15.37"
+      ],
+      "english_segments": [
+        {
+          "legge_ref": "Confucian Analects, Book XV, CHAP. XXXVI",
+          "text": "The Master said, 'The superior man is correctly firm, and not firm merely.'"
+        }
+      ],
+      "hanzi_span": "子曰：“君子貞而不諒。”",
+      "source_hanzi_transcription": "子曰、君子貞、而不諒。",
+      "source_url": "https://www.gutenberg.org/cache/epub/4094/pg4094-images.html",
+      "status": "draft",
+      "review_note": "Source Chinese matched in full after punctuation normalization. Legge and MATAKIN numbering remain independent. Requires manual review before Final."
     }
   ]
 }

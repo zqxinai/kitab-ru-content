@@ -13,9 +13,9 @@ test('Batch 03 has ten drafts and finishes Mengzi Book 5 as draft',()=>{
  assert.equal(units.length,10);assert.equal(new Set(units.map(u=>u.indonesian_passage_id)).size,10);
  assert.deepEqual(snap.books.map(b=>[b.book_index,b.units.length]),[[4,1],[5,5],[6,2],[13,1],[14,1]]);
  assert.equal(mapped.length,10);assert.ok(mapped.every(e=>e.status==='draft'&&e.english_segments.length===1));
- assert.equal(new Set(alignment.entries.flatMap(e=>e.indonesian_passage_ids)).size,622);
- assert.equal(catalog.english_editor_passages,868);assert.equal(catalog.english_editor_unmapped,97);
- assert.equal(catalog.english_editor_alignment_drafts,622);
+ assert.ok(new Set(alignment.entries.flatMap(e=>e.indonesian_passage_ids)).size>=622);
+ assert.ok(catalog.english_editor_passages>=868);assert.ok(catalog.english_editor_unmapped<=97);
+ assert.ok(catalog.english_editor_alignment_drafts>=622);
  assert.equal(read('dist/sishu-review-status.json').entries.length,0);
 });
 test('Source snapshots retain complete Hanzi spans, pinned provenance and English verbatim',()=>{

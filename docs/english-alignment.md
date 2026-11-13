@@ -134,3 +134,13 @@ Tiga catatan `English translation: Legge 1861` di akhir transkripsi bab 1–3 di
 - Cakupan editor kini **868/965 (89,9%)**: Da Xue 11/64, Zhong Yong 129/129, Lun Yu 472/512, Mengzi 256/260. Sebanyak **97 belum tersedia**: Da Xue 53, Lun Yu 40, Mengzi 4.
 - Tidak mengubah teks Hanzi, pinyin, terjemahan Indonesia MATAKIN, registry `Final`, atau paket Android offline. `dist/sishu-content.json` masih mempunyai 246 Inggris yang tertanam; 622 tambahan tersedia melalui peta padanan editor.
 - Uji: `node --test tests/lunyu-batch-05.test.js`.
+
+
+## Batch kecil Lun Yu 06 — 13 November 2026 (10 pasal)
+
+- Draf baru: `07.09`, `07.10`, `07.18`, `07.29`, `07.30`, `10.09`, `10.11`, `11.02`, `15.22`, `15.37` pada kitab Lun Yu.
+- Teks Inggris James Legge berasal dari Project Gutenberg #4094; snapshot `sources/legge/lunyu-b06-gutenberg-4094.json` menyimpan petikan, rentang Hanzi dan nomor baris sumber.
+- Sepuluh bagian cocok 100% berdasarkan seluruh karakter Hanzi setelah mengabaikan tanda baca. Legge VII.IX §§1–2 dipadankan terpisah dengan MATAKIN 07.09–07.10; Legge VII.XXVIII–XXIX dengan MATAKIN 07.29–07.30; Legge X.VIII §§8,10 dengan MATAKIN 10.09 dan 10.11.
+- **Pengecualian yang dilaporkan, tidak diubah secara otomatis:** MATAKIN `09.26` memakai 帥 tetapi transkripsi Legge 師; `10.24` memakai 客 tetapi Legge 容; `11.03` memakai 季路 tetapi Legge 李路; `14.33` dimulai 曰 sementara Legge 子曰. Perbedaan ini memerlukan pemeriksaan edisi/cetak, dan mungkin berupa varian teks atau salah transkripsi.
+- Cakupan editor kini **878/965 draf Inggris**, **87 tersisa**: Da Xue 53, Lun Yu 30, Mengzi 4. Jumlah persetujuan Final tetap 0; terjemahan Indonesia/Hanzi/pinyin dan paket Android tidak diubah.
+- Pengujian regresi baru: `node --test tests/lunyu-batch-06.test.js`. Pengujian batch sebelumnya mempertahankan nilai batas minimal historis agar tambahan baru tidak memicu pengulangan perbaikan angka.

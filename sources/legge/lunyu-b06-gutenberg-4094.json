@@ -1,0 +1,133 @@
+{
+  "schema": "kitab-ru.legge-source.v1",
+  "title": "Lun Yu Batch 06 — ten source-matched MATAKIN passages",
+  "status": "draft-needs-review",
+  "source": "James Legge, The Chinese Classics Volume I: Confucian Analects (Chinese and English)",
+  "source_url": "https://www.gutenberg.org/cache/epub/4094/pg4094-images.html",
+  "source_ebook_id": 4094,
+  "source_last_updated": "2020-12-27",
+  "accessed_at": "2026-11-13",
+  "policy": "Match full Chinese character sequences; preserve independent MATAKIN and Legge numbers; defer discrepancies for review.",
+  "units": [
+    {
+      "indonesian_passage_id": "sishu.lunyu.07.09",
+      "legge_ref": "Confucian Analects, Book VII, CHAP. IX, §1",
+      "source_hanzi_transcription": "子食於有喪者之側、未嘗飽也。",
+      "hanzi_span": "子食於有喪者之側，未嘗飽也。",
+      "source_english": "When the Master was eating by the side of a mourner, he never ate to the full.",
+      "source_html_lines": [
+        1198,
+        1210
+      ],
+      "normalized_hanzi_match": 1
+    },
+    {
+      "indonesian_passage_id": "sishu.lunyu.07.10",
+      "legge_ref": "Confucian Analects, Book VII, CHAP. IX, §2",
+      "source_hanzi_transcription": "子於是日哭、則不歌。",
+      "hanzi_span": "子於是日哭，則不歌。",
+      "source_english": "He did not sing on the same day in which he had been weeping.",
+      "source_html_lines": [
+        1198,
+        1212
+      ],
+      "normalized_hanzi_match": 1
+    },
+    {
+      "indonesian_passage_id": "sishu.lunyu.07.18",
+      "legge_ref": "Confucian Analects, Book VII, CHAP. XVII",
+      "source_hanzi_transcription": "子所雅言、詩､書､執禮、皆雅言也。",
+      "hanzi_span": "子所雅言，《詩》、《書》、執禮，皆雅言也。",
+      "source_english": "The Master's frequent themes of discourse were-- the Odes, the History, and the maintenance of the Rules of Propriety. On all these he frequently discoursed.",
+      "source_html_lines": [
+        1257,
+        1267
+      ],
+      "normalized_hanzi_match": 1
+    },
+    {
+      "indonesian_passage_id": "sishu.lunyu.07.29",
+      "legge_ref": "Confucian Analects, Book VII, CHAP. XXVIII, §§1–2",
+      "source_hanzi_transcription": "互鄉難與言、童子見、門人惑。子曰、與其進也、不與其退也、唯何甚、人潔己以進、與其潔也、不保其往也。",
+      "hanzi_span": "互鄉難與言，童子見，門人惑。子曰：“與其進也，不與其退也，唯何甚？人潔己以進，與其潔也，不保其往也。”",
+      "source_english": "It was difficult to talk (profitably and reputably) with the people of Hu-hsiang, and a lad of that place having had an interview with the Master, the disciples doubted. The Master said, 'I admit people's approach to me without committing myself as to what they may do when they have retired. Why must one be so severe? If a man purify himself to wait upon me, I receive him so purified, without guaranteeing his past conduct.'",
+      "source_html_lines": [
+        1324,
+        1337
+      ],
+      "normalized_hanzi_match": 1
+    },
+    {
+      "indonesian_passage_id": "sishu.lunyu.07.30",
+      "legge_ref": "Confucian Analects, Book VII, CHAP. XXIX",
+      "source_hanzi_transcription": "子曰、仁遠乎哉、我欲仁、斯仁至矣。",
+      "hanzi_span": "子曰：“仁遠乎哉？我欲仁，斯仁至矣。”",
+      "source_english": "The Master said, 'Is virtue a thing remote? I wish to be virtuous, and lo! virtue is at hand.'",
+      "source_html_lines": [
+        1326,
+        1339
+      ],
+      "normalized_hanzi_match": 1
+    },
+    {
+      "indonesian_passage_id": "sishu.lunyu.10.09",
+      "legge_ref": "Confucian Analects, Book X, CHAP. VIII, §8",
+      "source_hanzi_transcription": "祭於公、不宿肉。祭肉不出三日、出三日、不食之矣。",
+      "hanzi_span": "祭於公，不宿肉。祭肉不出三日，出三日不食之矣。",
+      "source_english": "When he had been assisting at the prince's sacrifice, he did not keep the flesh which he received overnight. The flesh of his family sacrifice he did not keep over three days. If kept over three days, people could not eat it.",
+      "source_html_lines": [
+        1912,
+        1923
+      ],
+      "normalized_hanzi_match": 1
+    },
+    {
+      "indonesian_passage_id": "sishu.lunyu.10.11",
+      "legge_ref": "Confucian Analects, Book X, CHAP. VIII, §10",
+      "source_hanzi_transcription": "雖疏食菜羹、瓜祭、必齊如也。",
+      "hanzi_span": "雖疏食菜羹，瓜祭，必齊如也。",
+      "source_english": "Although his food might be coarse rice and vegetable soup, he would offer a little of it in sacrifice with a grave, respectful air.",
+      "source_html_lines": [
+        1914,
+        1928
+      ],
+      "normalized_hanzi_match": 1
+    },
+    {
+      "indonesian_passage_id": "sishu.lunyu.11.02",
+      "legge_ref": "Confucian Analects, Book XI, CHAP. II, §1",
+      "source_hanzi_transcription": "子曰、從我於陳蔡者、皆不及門也。",
+      "hanzi_span": "子曰：“從我於陳、蔡者，皆不及門也。”",
+      "source_english": "The Master said, 'Of those who were with me in Ch'an and Ts'ai, there are none to be found to enter my door.'",
+      "source_html_lines": [
+        2019,
+        2028
+      ],
+      "normalized_hanzi_match": 1
+    },
+    {
+      "indonesian_passage_id": "sishu.lunyu.15.22",
+      "legge_ref": "Confucian Analects, Book XV, CHAP. XXI",
+      "source_hanzi_transcription": "子曰、君子矜而不爭、群而不黨。",
+      "hanzi_span": "子曰：“君子矜而不爭，群而不黨。”",
+      "source_english": "The Master said, 'The superior man is dignified, but does not wrangle. He is sociable, but not a partizan.'",
+      "source_html_lines": [
+        3356,
+        3367
+      ],
+      "normalized_hanzi_match": 1
+    },
+    {
+      "indonesian_passage_id": "sishu.lunyu.15.37",
+      "legge_ref": "Confucian Analects, Book XV, CHAP. XXXVI",
+      "source_hanzi_transcription": "子曰、君子貞、而不諒。",
+      "hanzi_span": "子曰：“君子貞而不諒。”",
+      "source_english": "The Master said, 'The superior man is correctly firm, and not firm merely.'",
+      "source_html_lines": [
+        3457,
+        3464
+      ],
+      "normalized_hanzi_match": 1
+    }
+  ]
+}
