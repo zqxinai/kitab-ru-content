@@ -150,15 +150,26 @@
       },null,ch.passages?.length||0));
     }
     const ps=$('passageList');ps.replaceChildren();
+    const filter=$('passageFilter').value;
+    let visible=0;
     for(const p of selectedChapter()?.passages||[]){
-      const b=document.createElement('button');b.type='button';
       const st=statusFor(byId.get(p.id));
+      const kind=st.localDraft?'needs':st.bothFinal?'final':(st.idFinal||st.enFinal)?'partial':'needs';
+      if(filter!=='all'&&kind!==filter)continue;
+      visible++;
+      const b=document.createElement('button');b.type='button';
       b.className='passage-button'+(p.id===passageId?' active':'')+
         (st.localDraft?' draft':st.bothFinal?' final':(st.idFinal||st.enFinal)?' partial':'');
       b.textContent=String(p.number);
-      b.title='Pasal '+p.number+' · '+(st.bothFinal?'Final':(st.idFinal||st.enFinal?'Sebagian final':'Perlu review'));
+      b.title='Pasal '+p.number+' · '+(kind==='final'?'Final':kind==='partial'?'Sebagian final':'Perlu review');
       b.setAttribute('aria-current',String(p.id===passageId));
       b.onclick=()=>select(p.id);ps.append(b);
+    }
+    if(!visible){
+      const msg=document.createElement('p');
+      msg.className='sidebar-hint';
+      msg.textContent='Tidak ada pasal dengan status ini dalam bab terpilih.';
+      ps.append(msg);
     }
   }
   function statusFor(r){
@@ -493,6 +504,7 @@
   }
   $('confirmFinalButton').onclick=()=>requestEditorialStatus('final');
   $('requestReviewButton').onclick=()=>requestEditorialStatus('review');
+  $('passageFilter').onchange=navigation;
   $('passageLanguage').onchange=updatePassageActions;
   $('chapterLanguage').onchange=renderChapterReview;
   $('confirmChapterButton').onclick=()=>requestChapterStatus('final');
