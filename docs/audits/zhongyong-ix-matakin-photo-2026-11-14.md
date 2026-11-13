@@ -1,5 +1,8 @@
 # Bukti foto MATAKIN 2012 — Zhong Yong Bab IX:1–2 (14 November 2026)
 
+> **Keputusan pinyin terbaru (14 November 2026):** Audit fonetik kontekstual membedakan **bacaan cetak MATAKIN yǔ** dari **bacaan partikel tanya bahasa klasik yú**. Berdasarkan fungsi gramatikal `與` yang setara dengan `歟`, serta Kamus Kementerian Pendidikan Taiwan dan komentar Zhu Xi (`與平聲`), pinyin utama aplikasi kini **yú**. Bukti cetak **yǔ** tetap disimpan eksplisit dalam anotasi. Uraian pemilihan pinyin `yǔ` di bawah adalah catatan sejarah keputusan sementara, bukan status akhir; Hanzi dan terjemahan MATAKIN tetap tidak berubah. Lihat [kebijakan audit pinyin](ru-classics-pinyin-context-policy-2026-11-14.md).
+
+
 ## Saksi primer yang tersedia
 Foto buku cetak *Si Shu* MATAKIN edisi 2012 yang dikirim pengguna pada percakapan Ru Classics, halaman cetak **42**, menampilkan **BAB IX. Keperwiraan**, Hanzi/pinyin, serta terjemahan Indonesia. Foto diperiksa langsung pada batch ini, bukan disimpulkan dari nama file PDF 2011. Nomor halaman adalah lokasi bukti cetak, bukan nomor pasal untuk aplikasi.
 
