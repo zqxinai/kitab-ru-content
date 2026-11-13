@@ -20,6 +20,7 @@ class Element {
     this.style={};this.dataset={};this.attributes={};
     this.events={};
   }
+  get childNodes(){return this.children}
   append(...nodes){this.children.push(...nodes)}
   replaceChildren(...nodes){this.children=nodes}
   setAttribute(name,value){this.attributes[name]=value}
