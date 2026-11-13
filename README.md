@@ -43,3 +43,16 @@ Jika berkas kosong dibuat sebagai kerangka, pemeriksaan struktur akan mengingatk
 ## Keterbatasan editor V1
 
 Penyuntingan adalah *local-first* dan tidak menyimpan perubahan otomatis di server. Perubahan bisa hilang jika browser ditutup sebelum ekspor (terdapat peringatan). Pengecekan struktur hanya mendeteksi masalah mekanis tertentu, **bukan** memastikan ketepatan makna, pinyin polifonik atau hak cipta teks. Tidak ada dukungan ekspor berkas sumber Markdown maupun penyuntingan bersamaan oleh beberapa pengguna.
+
+## Status konten Si Shu — 13 November 2026
+
+- [JSON lengkap Si Shu (78 bab, 965 pasal)](./dist/sishu-content.json) tersedia, checksum di [SHA-256](./dist/sishu-content.sha256).
+- Terjemahan Indonesia MATAKIN tetap sebagai sumber utama; belum diubah.
+- `translation_english` James Legge tersedia sebagai **draf pemetaan** untuk **246 pasal Lun Yu**. **719 pasal belum memiliki terjemahan Inggris**. Pasangan Hanzi/Legge membutuhkan audit editorial per pasal.
+- Sumber utama teks Inggris: [James Legge, *The Chinese Classics*, Volume I, Project Gutenberg #4094](https://www.gutenberg.org/ebooks/4094).
+- **Tiān = God** merupakan kebijakan istilah/penafsiran Kitab Ru; kutipan Inggris James Legge tetap mempertahankan kata *Heaven* atau *God* sebagaimana sumbernya, tanpa mengklaim Legge menerjemahkan semua 天 menjadi *God*.
+- Markdown terbaru tersedia di folder Obsidian Vault Google Drive **Si Shu — James Legge English — DRAF 2026-11-13**. Edisi v2 tidak ditimpa.
+
+### Publikasi editor web
+
+Editor statis berada di `editor/`. Pengujian otomatis berhasil. Untuk membuka di `https://zqxinai.github.io/kitab-ru-content/editor/`, pemilik repository perlu mengaktifkan **Settings → Pages → Build and deployment: GitHub Actions**. Integrasi GitHub App saat ini tidak mempunyai izin mengaktifkan Pages; upaya workflow enablement terhenti dengan `Resource not accessible by integration`. Setelah diaktifkan pemilik, jalankan ulang workflow `Publish Kitab Ru Editor (GitHub Pages)`.
