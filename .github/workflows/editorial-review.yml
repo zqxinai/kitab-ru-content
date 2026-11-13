@@ -19,6 +19,7 @@ on:
       - 'tests/lunyu-batch-06.test.js'
       - 'tests/textual-variants-b07.test.js'
       - 'tests/zhu-xi-audit.test.js'
+      - 'tests/matakin-2012-chapters.test.js'
       - 'docs/audits/**'
       - 'tools/import_legge_zhongyong.js'
       - 'sources/legge/**'
@@ -44,6 +45,7 @@ on:
       - 'tests/lunyu-batch-06.test.js'
       - 'tests/textual-variants-b07.test.js'
       - 'tests/zhu-xi-audit.test.js'
+      - 'tests/matakin-2012-chapters.test.js'
       - 'docs/audits/**'
       - 'tools/import_legge_zhongyong.js'
       - 'sources/legge/**'
@@ -64,6 +66,10 @@ jobs:
         run: node tools/audit_review_status.js
       - name: Validate editor JavaScript syntax
         run: node --check editor/app.js
+      - name: Verify MATAKIN 2012 chapter mapping and editorial UI
+        run: |
+          node --test tests/matakin-2012-chapters.test.js
+          node editor/tests/smoke.mjs
       - name: Validate Legge importer JavaScript
         run: node --check tools/import_legge_zhongyong.js
       - name: Run editorial regression tests
