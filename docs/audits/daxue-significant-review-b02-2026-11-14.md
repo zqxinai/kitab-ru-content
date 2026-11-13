@@ -1,5 +1,8 @@
 # Audit Da Xue — enam kandidat signifikan lanjutan (14 November 2026)
 
+## Koreksi identitas nomor bab MATAKIN
+ID internal `sishu.daxue.04.04` mengacu pada **MATAKIN Bab III:4 — Puncak Kebaikan**, bukan Bab IV:4. File `sishu/chapters/daxue/04.json` menyatakan `source_file: 01 - Da Xue 大學/04 - Bab III - Puncak Kebaikan.md` dan `title: Bab III — Puncak Kebaikan`. Foto baru MATAKIN 2012 menunjukkan **BAB IV. PANGKAL DAN UJUNG** diawali pasal 1 (`子曰：聽訟...`); jangan menyamakan angka indeks file dengan nomor bab MATAKIN. Dengan demikian `sishu.daxue.07.02` ialah Bab VI:2, dan `sishu.daxue.11.04` ialah Bab X:4. Tidak ada perubahan isi teks kitab.
+
 ## Cakupan
 Pemeriksaan terhadap data pada `sishu/chapters/daxue/{04,06,07,11}.json` serta matriks lama `docs/audits/zhu-xi-wyg-965.json`. Saksi pembanding: Zhu Xi, 《四書章句集註》, 欽定四庫全書 WYG (`KR1h0015_000.txt`, commit sumber `84c6b2c5093c57ae5d41c60a73c02323d2420ef0`). Hasil ini **bukan verifikasi terhadap foto cetak MATAKIN 2012** untuk keenam pasal.
 
@@ -14,7 +17,7 @@ Pemeriksaan terhadap data pada `sishu/chapters/daxue/{04,06,07,11}.json` serta m
 
 ## Keputusan dan batasan
 - Tidak ada perubahan pada Hanzi, pinyin, terjemahan Indonesia, status `Final`, urutan pasal, maupun berkas `dist`.
-- `04.04` dan `07.02` tetap **terbuka** karena potensi pilihan aksara terkait kutipan/naskah, bukan hanya glyph; hasil pemeriksaan ini belum mengesahkannya sebagai benar atau salah.
+- `04.04` (MATAKIN III:4) dan `07.02` (MATAKIN VI:2) tetap **terbuka** karena potensi pilihan aksara terkait kutipan/naskah, bukan hanya glyph; hasil pemeriksaan ini belum mengesahkannya sebagai benar atau salah.
 - `06.01` tidak dibuka ulang: pemisahan teks utama dan komentar Zhu Xi sudah terdokumentasi pada data; verifikasi foto pernah dicatat dalam metadata, tetapi tidak dinyatakan diperiksa ulang pada batch ini.
 - Kelas `significant` di matriks adalah *prioritas penyaringan*, bukan kesalahan yang pasti.
 - Nomor halaman sumber digital atau cetakan bukan discrepancy identitas pasal aplikasi. MATAKIN tetap rujukan utama terjemahan Indonesia dan susunan bab/pasal.
