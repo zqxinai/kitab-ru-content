@@ -179,7 +179,7 @@
         (verified?' · Padanan terverifikasi':' · Padanan perlu verifikasi');
     }else{
       const source=String(p.translation_english_source||p.english_source||'');
-      const isLegge=/james\\s+legge|gutenberg\\.org\\/ebooks\\/4094/i.test(source);
+      const isLegge=source.toLowerCase().includes('james legge')||source.includes('gutenberg.org/ebooks/4094');
       $('englishSource').textContent=en?(isLegge?
         'James Legge · Padanan pasal belum diverifikasi':'Sumber terjemahan perlu diperiksa'):
         'Menunggu pencocokan sumber';
