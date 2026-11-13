@@ -33,6 +33,10 @@ Status: keputusan kerja bersumber, **belum disahkan Final**. Hanzi proyek berasa
 
 **Status implementasi:** temuan ini baru dicatat di audit. Perbaikan pada JSON sumber, Ruby/pinyin, `dist`, indeks/hash, dan pengujian regresi **belum diterapkan**, demikian pula belum ada pengesahan Final. Rujukan pekerjaan: [issue #13](https://github.com/zqxinai/kitab-ru-content/issues/13).
 
+### Lun Yu IV:19 — foto MATAKIN 2012 hlm. 138 (13 November 2026)
+
+**Discrepancy #9 terkonfirmasi dari foto:** MATAKIN 2012 mencetak `子曰：父母在，不遠(远)遊(游)，遊(游)必有方。` (karakter **遊** sebagai teks Hanzi tradisional utama, bentuk **游** dalam kurung). Teks utama Zhu Xi WYG menggunakan `遊` untuk kedua kemunculan, sedangkan `sishu.lunyu.04.19` dalam proyek menulis `游` dua kali. Pilihan **遊** selaras dengan cetakan MATAKIN dan Zhu Xi; konteks berarti bepergian/mengembara. Untuk tampilan tradisional lakukan `游` → `遊` sebanyak dua kali dan jangan ubah pinyin `yóu`; bentuk simplified `游` tetap disediakan. Ini **perbedaan bentuk/ortografi**, bukan perubahan teologis. Data sumber, Ruby, dist dan indeks/hash belum diperbarui; status Final pasal tetap memerlukan validasi tersendiri.
+
 ### Mengzi 09.07 — cakupan yang perlu dipisah
 
 Pada `sishu/chapters/mengzi/09.json`, pasal 09.07 memuat ucapan Mengzi dan kutipan `伊訓曰`, tetapi mencampurkan komentar penafsir `林氏曰：“以堯舜之道要湯者...` serta `愚謂此語亦猶前章...`. Sumber awal JSON juga memuatnya; bukan kesalahan pengimporan GitHub. Edisi `四書章句集注` menegaskan kedua segmen merupakan komentar setelah teks utama. Draf Inggris Legge dari `mengzi009.txt` memuat dialog Mengzi beserta kutipan `伊訓` tanpa komentar tersebut.
