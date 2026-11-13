@@ -1,5 +1,8 @@
 # Audit lanjutan Da Xue — tujuh kandidat signifikan (14 November 2026)
 
+## Nomor cetak MATAKIN versus ID internal
+ID `sishu.daxue.04.01` dan `04.02` adalah **MATAKIN Bab III:1–2 — Puncak Kebaikan**, bukan Bab IV:1–2. Indeks internal menghitung Bab Utama sebagai kelompok tersendiri. Semua ID pada tabel berikut adalah **ID internal**, bukan nomor bab cetak. Pembuktian pemetaan di metadata `sishu/chapters/daxue/04.json`, dan foto cetak menunjukkan Bab IV — Pangkal dan Ujung dimulai dengan `子曰：聽訟...`.
+
 ## Cakupan dan sumber
 Pemeriksaan read-only terhadap tujuh pasal `Da Xue` dalam `sishu/chapters/daxue/*.json` yang diberi `screen_class: significant` oleh matriks awal `zhu-xi-wyg-965.json`. Pembandingnya Zhu Xi, 《四書章句集註》, 欽定四庫全書 (WYG), snapshot Kanripo `84c6b2c5093c57ae5d41c60a73c02323d2420ef0`. Matriks merupakan snapshot pra-koreksi dan kelas `significant` bukan vonis kesalahan.
 
