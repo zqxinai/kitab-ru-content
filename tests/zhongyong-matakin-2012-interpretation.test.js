@@ -68,3 +68,15 @@ test('Photo 2012 p. 76 and p. 78: Zhong Yong XXIV:3 and XXV:4 retain meaningful 
  assert.equal(p25.editorial_status,'unverified-draft');
  assert.deepEqual(bundle.chapters.flatMap(c=>c.passages).find(p=>p.id===p25.id),p25);
 });
+
+test('MATAKIN 2012 p.47-48 Zhong Yong XII:3 prints 己 jǐ, not 已 yǐ',()=>{
+ const chapter=read('sishu/chapters/zhongyong/13.json');
+ const p=chapter.passages.find(p=>p.id==='sishu.zhongyong.13.03');
+ assert.ok(p,'Missing Zhong Yong XII:3');
+ assert.match(span(p),/忠恕違道不遠。施諸己而不願，亦勿施於人。/);
+ assert.doesNotMatch(span(p),/施諸已而不願/);
+ const tokens=p.ruby_paragraphs.flat().filter(t=>t.type==='ruby');
+ assert.equal(tokens.filter(t=>t.traditional==='己'&&t.pinyin==='jǐ').length,1);
+ assert.equal(p.editorial_status,'unverified-draft');
+ assert.deepEqual(bundle.chapters.flatMap(c=>c.passages).find(x=>x.id===p.id),p);
+});
