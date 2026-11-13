@@ -1,0 +1,133 @@
+{
+  "schema": "kitab-ru.legge-source.v1",
+  "title": "Lun Yu Book X ten split MATAKIN passages — James Legge English excerpt snapshot",
+  "status": "draft-needs-review",
+  "source": "James Legge, The Chinese Classics Volume I: Confucian Analects (Chinese and English)",
+  "source_url": "https://www.gutenberg.org/cache/epub/4094/pg4094-images.html",
+  "source_ebook_id": 4094,
+  "source_last_updated": "2020-12-27",
+  "accessed_at": "2026-11-13",
+  "policy": "Use explicit Book X chapter and section references rather than matching MATAKIN passage number to Legge chapter; preserve English sentences and full Hanzi transcription for audit. Some Legge sections split into separate MATAKIN passages.",
+  "units": [
+    {
+      "indonesian_passage_id": "sishu.lunyu.10.10",
+      "legge_ref": "Confucian Analects, Book X, CHAP. VIII, §9",
+      "source_hanzi_transcription": "食不語、寢不言。",
+      "hanzi_span": "食不語，寢不言。",
+      "source_english": "When eating, he did not converse. When in bed, he did not speak.",
+      "source_html_lines": [
+        1924,
+        1925
+      ],
+      "normalized_hanzi_match": 1
+    },
+    {
+      "indonesian_passage_id": "sishu.lunyu.10.12",
+      "legge_ref": "Confucian Analects, Book X, CHAP. IX",
+      "source_hanzi_transcription": "席不正不坐。",
+      "hanzi_span": "席不正，不坐。",
+      "source_english": "If his mat was not straight, he did not sit on it.",
+      "source_html_lines": [
+        1929,
+        1929
+      ],
+      "normalized_hanzi_match": 1
+    },
+    {
+      "indonesian_passage_id": "sishu.lunyu.10.13",
+      "legge_ref": "Confucian Analects, Book X, CHAP. X, §1",
+      "source_hanzi_transcription": "鄉人飲酒、杖者出、斯出矣。",
+      "hanzi_span": "鄉人飲酒，杖者出，斯出矣。",
+      "source_english": "When the villagers were drinking together, on those who carried staffs going out, he went out immediately after.",
+      "source_html_lines": [
+        1930,
+        1932
+      ],
+      "normalized_hanzi_match": 1
+    },
+    {
+      "indonesian_passage_id": "sishu.lunyu.10.14",
+      "legge_ref": "Confucian Analects, Book X, CHAP. X, §2",
+      "source_hanzi_transcription": "鄉人儺、朝服而立於阼階。",
+      "hanzi_span": "鄉人儺，朝服而立於阼階。",
+      "source_english": "When the villagers were going through their ceremonies to drive away pestilential influences, he put on his court robes and stood on the eastern steps.",
+      "source_html_lines": [
+        1933,
+        1935
+      ],
+      "normalized_hanzi_match": 1
+    },
+    {
+      "indonesian_passage_id": "sishu.lunyu.10.15",
+      "legge_ref": "Confucian Analects, Book X, CHAP. XI, §1",
+      "source_hanzi_transcription": "問人於他邦、再拜而送之。",
+      "hanzi_span": "問人於他邦，再拜而送之。",
+      "source_english": "When he was sending complimentary inquiries to any one in another State, he bowed twice as he escorted the messenger away.",
+      "source_html_lines": [
+        1942,
+        1944
+      ],
+      "normalized_hanzi_match": 1
+    },
+    {
+      "indonesian_passage_id": "sishu.lunyu.10.16",
+      "legge_ref": "Confucian Analects, Book X, CHAP. XI, §2",
+      "source_hanzi_transcription": "康子饋藥、拜而受之、曰、丘未達、不敢嘗。",
+      "hanzi_span": "康子饋藥，拜而受之。曰：“丘未達，不敢嘗。”",
+      "source_english": "Chi K'ang having sent him a present of physic, he bowed and received it, saying, 'I do not know it. I dare not taste it.'",
+      "source_html_lines": [
+        1945,
+        1947
+      ],
+      "normalized_hanzi_match": 1
+    },
+    {
+      "indonesian_passage_id": "sishu.lunyu.10.19",
+      "legge_ref": "Confucian Analects, Book X, CHAP. XIII, §3",
+      "source_hanzi_transcription": "疾、君視之、東首、加朝服拖紳。",
+      "hanzi_span": "疾，君視之，東首，加朝服，拖紳。",
+      "source_english": "When he was ill and the prince came to visit him, he had his head to the east, made his court robes be spread over him, and drew his girdle across them.",
+      "source_html_lines": [
+        1968,
+        1970
+      ],
+      "normalized_hanzi_match": 1
+    },
+    {
+      "indonesian_passage_id": "sishu.lunyu.10.20",
+      "legge_ref": "Confucian Analects, Book X, CHAP. XIII, §4",
+      "source_hanzi_transcription": "君命召、不俟駕行矣。",
+      "hanzi_span": "君命召，不俟駕行矣。",
+      "source_english": "When the prince's order called him, without waiting for his carriage to be yoked, he went at once.",
+      "source_html_lines": [
+        1971,
+        1972
+      ],
+      "normalized_hanzi_match": 1
+    },
+    {
+      "indonesian_passage_id": "sishu.lunyu.10.22",
+      "legge_ref": "Confucian Analects, Book X, CHAP. XV, §1",
+      "source_hanzi_transcription": "朋友死、無所歸、曰、於我殯。",
+      "hanzi_span": "朋友死，無所歸，曰：“於我殯。”",
+      "source_english": "When any of his friends died, if he had no relations who could be depended on for the necessary offices, he would say, 'I will bury him.'",
+      "source_html_lines": [
+        1975,
+        1977
+      ],
+      "normalized_hanzi_match": 1
+    },
+    {
+      "indonesian_passage_id": "sishu.lunyu.10.23",
+      "legge_ref": "Confucian Analects, Book X, CHAP. XV, §§2–3",
+      "source_hanzi_transcription": "朋友之饋、雖車馬、非祭肉不拜。",
+      "hanzi_span": "朋友之饋，雖車馬，非祭肉，不拜。",
+      "source_english": "When a friend sent him a present, though it might be a carriage and horses, he did not bow. The only present for which he bowed was that of the flesh of sacrifice.",
+      "source_html_lines": [
+        1978,
+        1981
+      ],
+      "normalized_hanzi_match": 1
+    }
+  ]
+}
