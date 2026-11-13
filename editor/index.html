@@ -129,6 +129,11 @@
                   <label class="field"><span>Status pemeriksaan</span><select id="metaReview"><option value="unverified-draft">unverified-draft</option><option value="under-review">under-review</option><option value="approved">approved</option></select></label>
                   <label class="field"><span>Format JSON</span><input id="metaSchema" spellcheck="false" readonly value="ru-classics.content.v1"></label>
                 </div>
+                <div class="field-grid">
+                  <label class="field"><span>Judul bab terpilih</span><input id="chapterTitleInput" type="text" placeholder="Pilih bab untuk mengedit judul"></label>
+                  <label class="field"><span>Urutan bab</span><input id="chapterIndexInput" type="number" min="1" step="1"></label>
+                </div>
+                <div class="danger-zone"><button id="deleteChapter" type="button" class="button danger-outline">Hapus bab terpilih</button><span>Menghapus seluruh pasal dalam bab. Perlu konfirmasi.</span></div>
                 <p class="supporting">Status “approved” hanya boleh dipakai sesudah pemeriksaan editorial. Importer Android Si Shu saat ini hanya menerima berkas lengkap dengan status “unverified-draft”.</p>
               </div>
             </section>
