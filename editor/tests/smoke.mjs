@@ -28,7 +28,7 @@ class Element {
   scrollIntoView(){}
   focus(){}
   click(){this.onclick?.()}
-  input(){this.events.input?.()}
+  input(){this.events.input?.();this.oninput?.()}
 }
 const ids=[...html.matchAll(/\bid="([^"]+)"/g)].map(x=>x[1]);
 const elements=Object.fromEntries(ids.map(id=>[id,new Element()]));
