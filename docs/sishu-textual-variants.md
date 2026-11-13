@@ -37,6 +37,16 @@ Status: keputusan kerja bersumber, **belum disahkan Final**. Hanzi proyek berasa
 
 **Discrepancy #9 terkonfirmasi dari foto:** MATAKIN 2012 mencetak `子曰：父母在，不遠(远)遊(游)，遊(游)必有方。` (karakter **遊** sebagai teks Hanzi tradisional utama, bentuk **游** dalam kurung). Teks utama Zhu Xi WYG menggunakan `遊` untuk kedua kemunculan, sedangkan `sishu.lunyu.04.19` dalam proyek menulis `游` dua kali. Pilihan **遊** selaras dengan cetakan MATAKIN dan Zhu Xi; konteks berarti bepergian/mengembara. Untuk tampilan tradisional lakukan `游` → `遊` sebanyak dua kali dan jangan ubah pinyin `yóu`; bentuk simplified `游` tetap disediakan. Ini **perbedaan bentuk/ortografi**, bukan perubahan teologis. Data sumber, Ruby, dist dan indeks/hash belum diperbarui; status Final pasal tetap memerlukan validasi tersendiri.
 
+### Lun Yu XIV:39 — foto MATAKIN 2012 hlm. 305–306, telaah 己/已 (13 November 2026)
+
+**Discrepancy #10, data cetak terkonfirmasi:** pada hlm. 306 cetakan MATAKIN menulis `莫己知也，斯己而已矣`, dengan pinyin `mò jǐ zhī` dan `sī jǐ ér yǐ yǐ`. Data Ru Classics `sishu.lunyu.14.39` juga menulis **己** pada dua posisi itu. Hasil penyaringan WYG sebelumnya memberi `莫已知也斯已而已矣`, sehingga ini adalah perbedaan transkripsi/penyuntingan yang tidak boleh langsung dianggap ralat wajib.
+
+**Komentar Zhu Xi (beberapa transkripsi digital seperti CText):** `莫己之己，音紀，餘音以`, yakni 己 pada `莫己` dibaca *jǐ*, sementara huruf berikutnya yang relevan dibaca *yǐ*. Ini memberi dasar penafsiran `斯已` = *berhenti*, sesuai terjemahan MATAKIN “mengapakah tidak dihentikan saja?”. **Tradisi komentar lebih tua** (misalnya `論語集解`) membaca `斯己` terkait *diri sendiri*/*tetap berpegang pada diri sendiri*; terdapat perdebatan nyata (bukan otomatis salah ketik). Kajian Fan Haidong, `《論語》故訓考辨二則`, 香港大學中文學院《中國語言文學研究集刊》2(2), Desember 2025, hlm. 81 dst., secara khusus membahas perbedaan ini.
+
+**Keputusan konservatif:** pertahankan teks Hanzi **己** dua kali pada Ru Classics sesuai cetakan MATAKIN, simpan sebagai varian edisi dan buat catatan filologis; **jangan mengganti seluruh 己 menjadi 已**. Pinyin kedua 己 dalam cetakan berlabel *jǐ*, sedangkan pembacaan Zhu Xi mengarah *yǐ*: tandai sebagai perbedaan bacaan (bukan otomatis “Final” pada pinyin). Terjemahan Indonesia MATAKIN tidak diubah. Tidak ada perubahan JSON sumber, Ruby, dist atau hash dari keputusan ini.
+
+**Referensi:** https://ctext.org/si-shu-zhang-ju-ji-zhu/xian-wen-di-shi-si ; https://ehipassa.org/classics/lun/14/ ; https://web.chinese.hku.hk/upload/page/43/self/jclls-v2-n2-202512180951.pdf .
+
 ### Mengzi 09.07 — cakupan yang perlu dipisah
 
 Pada `sishu/chapters/mengzi/09.json`, pasal 09.07 memuat ucapan Mengzi dan kutipan `伊訓曰`, tetapi mencampurkan komentar penafsir `林氏曰：“以堯舜之道要湯者...` serta `愚謂此語亦猶前章...`. Sumber awal JSON juga memuatnya; bukan kesalahan pengimporan GitHub. Edisi `四書章句集注` menegaskan kedua segmen merupakan komentar setelah teks utama. Draf Inggris Legge dari `mengzi009.txt` memuat dialog Mengzi beserta kutipan `伊訓` tanpa komentar tersebut.
