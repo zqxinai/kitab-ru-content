@@ -1,0 +1,6 @@
+{
+  "schema": "kitab-ru.english-alignment.v1",
+  "edition_id": "james-legge",
+  "source_policy": "Align by complete traditional Hanzi spans, not matching passage numbers",
+  "entries": []
+}
