@@ -1,0 +1,43 @@
+'use strict';
+const test=require('node:test'),assert=require('node:assert/strict'),fs=require('node:fs');
+const read=p=>JSON.parse(fs.readFileSync(p,'utf8'));
+const passage=read('sishu/chapters/lunyu/14.json').passages.find(x=>x.id==='sishu.lunyu.14.39');
+const bundle=read('dist/sishu-content.json'),built=bundle.chapters.flatMap(ch=>ch.passages).find(x=>x.id===passage.id);
+const alignment=read('dist/sishu-english-alignment.json');
+const hanzi=p=>p.ruby_paragraphs.map(row=>row.map(t=>t.traditional||t.value||'').join('')).join('\n');
+const fnv=s=>{let h=2166136261;for(let i=0;i<s.length;i++){h^=s.charCodeAt(i);h=Math.imul(h,16777619)>>>0}return h.toString(16).padStart(8,'0')};
+test('MATAKIN 2012 Lun Yu XIV:39 reading is unchanged, including 2 ji-pinyin glyphs',()=>{
+ assert.equal(passage.editorial_status,'unverified-draft');
+ assert.equal(fnv(hanzi(passage)),'ad46b558');
+ assert.equal(fnv(passage.translation_indonesian),'c453e9c9');
+ assert.equal(fnv(JSON.stringify(passage.ruby_paragraphs)),'dee4b18f');
+ assert.match(hanzi(passage),/莫己知也，斯己而已矣/);
+ const words=passage.ruby_paragraphs.flat().filter(t=>t.type==='ruby'&&t.traditional==='己');
+ assert.equal(words.length,2);assert.ok(words.every(x=>x.pinyin==='jǐ'));
+ assert.deepEqual(passage,built,'Dist scripture has stale variant annotation');
+ assert.equal(bundle.chapters.length,78);
+ assert.equal(bundle.chapters.reduce((x,ch)=>x+ch.passages.length,0),965);
+ assert.equal(read('dist/sishu-review-status.json').entries.length,0);
+});
+test('WYG textual variant is attributed, distinguished from the original, and not Final',()=>{
+ const a=passage.editorial_annotations;assert.equal(a.length,1);
+ const n=a[0];
+ assert.equal(n.kind,'interpretive_comparison');assert.equal(n.after_paragraph_index,0);
+ assert.equal(n.anchor_hanzi,'莫己知也，斯己而已矣');
+ assert.equal(n.reading_variants.matakin_2012.hanzi,'莫己知也，斯己而已矣');
+ assert.equal(n.reading_variants.zhu_xi_wyg.hanzi,'莫已知也，斯已而已矣');
+ assert.equal(n.source_witness.witness_page,'KR1h0015_WYG_006-38a');
+ assert.equal(n.source_witness.witness_file,'KR1h0015_006.txt');
+ assert.equal(n.source_witness.source_commit,'84c6b2c5093c57ae5d41c60a73c02323d2420ef0');
+ assert.match(n.description_indonesian,/perbedaan teks dan cara membaca/);
+ assert.match(n.uncertainty,/foto asli 2012/);
+});
+test('Legge English remains verbatim; edition disparity is documented in review note',()=>{
+ const matches=alignment.entries.filter(e=>e.indonesian_passage_ids.includes(passage.id));
+ assert.equal(matches.length,1);
+ const e=matches[0];assert.equal(e.id,'legge-lunyu-14-42');
+ assert.equal(e.status,'draft');assert.equal(e.hanzi_span,hanzi(passage));
+ assert.equal(fnv(e.english_segments[0].text),'d940ea49');
+ assert.match(e.review_note,/bukan bukti padanan aksara literal/);
+ assert.match(e.review_note,/hlm. 306/);
+});

@@ -22,6 +22,8 @@ Sumber [00 - INDEX AUDIT](https://drive.google.com/file/d/1ZkWMwg565eRKV_9zKqjXG
 
 **Da Xue Bab Utama:1 — varian `親民/新民` dicatat (13 November 2026):** `親民` dan terjemahan Indonesia MATAKIN dipertahankan. Usulan Chengzi `新民` dalam komentar Zhu Xi dan pilihan Inggris Legge ditampilkan sebagai perbandingan tanpa dianggap padanan literal. [Audit khusus](audits/daxue-qinmin-xinmin-2026-11-13.md). **Foto teks Hanzi MATAKIN 2012 pada ayat ini masih perlu diverifikasi apabila tersedia**; tidak boleh dicatat sebagai koreksi edisi 2012 yang telah dibuktikan.
 
+**Audit tiga pasal tanpa koreksi (13 November 2026):** `mengzi.08.17` tetap 不祥 (tidak membawa berkah), `lunyu.09.26` tetap 帥 (panglima), `lunyu.11.03` tetap 季路 (nama murid); ketiganya cocok dengan perbandingan WYG dan Indonesia MATAKIN yang ada. Belum ada bukti foto 2012 yang mengharuskan ralat tiga bacaan tersebut. **Lun Yu XIV:39** juga kini memuat catatan perbedaan 己/已 berdasarkan rekaman foto cetakan hlm. 305–306 dengan Zhu Xi WYG sebagai pembanding sekunder. [Audit](audits/lunyu-14-39-jiyi-matakin-2012-2026-11-13.md). Jangan membuka ulang empat pasal tanpa bukti baru atau regresi gagal.
+
 ## Pencegahan looping
 
 Bekerja maksimal **10 pasal per batch**; setiap item memiliki ID stabil, hash/sumber, kasus, keputusan, alasan, status reviewer. Hanya buka ulang jika sumber atau versi naskah berubah. Jangan menerapkan ralat karakter pada Hanzi tanpa memperbarui anotasi Ruby, pinyin, paket distribusi dan hash katalog sekaligus. Jangan menandai bahasa Indonesia atau Inggris sebagai `Final` otomatis. Lihat [audit varian](sishu-textual-variants.md).

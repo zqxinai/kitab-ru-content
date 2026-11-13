@@ -51,6 +51,8 @@ Status: keputusan kerja bersumber, **belum disahkan Final**. Hanzi proyek berasa
 
 ### Lun Yu XIV:39 — foto MATAKIN 2012 hlm. 305–306, telaah 己/已 (13 November 2026)
 
+**Implementasi 13 November 2026:** teks MATAKIN `莫己知也，斯己而已矣` tetap dipertahankan. Perbedaan aksara dan pinyin di Zhu Xi WYG sekarang mempunyai anotasi beratribusi di editor dan penjelasan tambahan pada draf alignment Legge; teks asli, Indonesia, Inggris, dan status Final tidak berubah. [Laporan khusus](audits/lunyu-14-39-jiyi-matakin-2012-2026-11-13.md).
+
 **Discrepancy #10, data cetak terkonfirmasi:** pada hlm. 306 cetakan MATAKIN menulis `莫己知也，斯己而已矣`, dengan pinyin `mò jǐ zhī` dan `sī jǐ ér yǐ yǐ`. Data Ru Classics `sishu.lunyu.14.39` juga menulis **己** pada dua posisi itu. Hasil penyaringan WYG sebelumnya memberi `莫已知也斯已而已矣`, sehingga ini adalah perbedaan transkripsi/penyuntingan yang tidak boleh langsung dianggap ralat wajib.
 
 **Komentar Zhu Xi (beberapa transkripsi digital seperti CText):** `莫己之己，音紀，餘音以`, yakni 己 pada `莫己` dibaca *jǐ*, sementara huruf berikutnya yang relevan dibaca *yǐ*. Ini memberi dasar penafsiran `斯已` = *berhenti*, sesuai terjemahan MATAKIN “mengapakah tidak dihentikan saja?”. **Tradisi komentar lebih tua** (misalnya `論語集解`) membaca `斯己` terkait *diri sendiri*/*tetap berpegang pada diri sendiri*; terdapat perdebatan nyata (bukan otomatis salah ketik). Kajian Fan Haidong, `《論語》故訓考辨二則`, 香港大學中文學院《中國語言文學研究集刊》2(2), Desember 2025, hlm. 81 dst., secara khusus membahas perbedaan ini.

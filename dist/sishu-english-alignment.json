@@ -3500,7 +3500,7 @@
       "source_url": "https://www.gutenberg.org/ebooks/3330",
       "chinese_source_url": "https://www.gutenberg.org/ebooks/4094",
       "status": "draft",
-      "review_note": "Dicocokkan dengan awal Hanzi pada edisi bilingual Legge (#4094) dan bab Inggris edisi Legge (#3330). Status masih draf hingga pemeriksaan keseluruhan pasal.",
+      "review_note": "Dicocokkan dengan awal Hanzi pada edisi bilingual Legge (#4094) dan bab Inggris edisi Legge (#3330). Status masih draf hingga pemeriksaan keseluruhan pasal.\nCATATAN VARIAN EDISI (13 November 2026): Foto MATAKIN 2012 hlm. 306 yang telah didokumentasikan menulis 莫己知也，斯己而已矣 (dua 己 dipinyin jǐ). Saksi Zhu Xi WYG KR1h0015_006.txt, WYG_006-38a menulis 莫已知也，斯已而已矣 dan berkomentar 莫已之已音紀餘音以. Legge menggunakan 'give over his wish for public employment', dekat dengan penafsiran berhenti; ini perbandingan makna, bukan bukti padanan aksara literal. Hanzi dan Indonesia MATAKIN tetap; perlu review sebelum Final.",
       "match_method": "hanzi-prefix-12-strict-and-next-boundary",
       "match_confidence": 1
     },
