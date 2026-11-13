@@ -76,6 +76,29 @@
           </div>
 
           <div class="reading-inner">
+            <section class="chapter-review" aria-labelledby="chapterReviewHeading">
+              <div class="chapter-review-title">
+                <div><p class="eyebrow">PEMERIKSAAN MASSAL</p><h2 id="chapterReviewHeading">Status Bab</h2></div>
+                <span class="chapter-review-total" id="chapterReviewTotal">— pasal</span>
+              </div>
+              <div class="chapter-review-stats" aria-live="polite">
+                <span id="chapterIndonesianStatus">Indonesia final 0/0</span>
+                <span id="chapterEnglishStatus">Inggris final 0/0</span>
+                <span id="chapterEnglishMissing">0 terjemahan Inggris belum tersedia</span>
+              </div>
+              <div class="chapter-review-actions">
+                <label for="chapterLanguage">Periksa bahasa
+                  <select id="chapterLanguage">
+                    <option value="both">Indonesia & Inggris</option>
+                    <option value="id">Indonesia saja</option>
+                    <option value="en">Inggris saja</option>
+                  </select>
+                </label>
+                <button type="button" id="confirmChapterButton" class="button ghost">Ajukan finalisasi satu bab</button>
+                <button type="button" id="reviewChapterButton" class="button bare">Ajukan review ulang bab</button>
+              </div>
+              <p class="chapter-review-help" id="chapterReviewHelp" role="status">Pengajuan massal tidak menetapkan status final otomatis; pemeriksa wajib mengesahkan tiap pasal.</p>
+            </section>
             <article class="source-card">
               <div class="section-label"><span>TEKS ASLI</span><span>Hanzi tradisional · Pinyin</span></div>
               <div id="hanziText" class="hanzi-text" lang="zh-Hant"></div>
@@ -91,6 +114,13 @@
             <div id="draftNotice" class="draft-notice" hidden><span>● Ada koreksi yang belum diajukan untuk pasal ini.</span><button id="resumeDraft" type="button" class="text-link">Lanjutkan penyuntingan</button></div>
             <section class="review-controls" aria-label="Status editorial">
               <div class="review-heading"><strong>Validasi terjemahan</strong><span id="reviewDetail">Indonesia: perlu review · Inggris: perlu review</span></div>
+              <label class="review-scope" for="passageLanguage">Terjemahan yang diperiksa
+                <select id="passageLanguage">
+                  <option value="both">Indonesia dan Inggris</option>
+                  <option value="id">Indonesia (MATAKIN) saja</option>
+                  <option value="en">Inggris (James Legge) saja</option>
+                </select>
+              </label>
               <div class="review-buttons">
                 <button type="button" id="confirmFinalButton" class="button primary">✓ Konfirmasi final</button>
                 <button type="button" id="requestReviewButton" class="button ghost">Tandai perlu review</button>
