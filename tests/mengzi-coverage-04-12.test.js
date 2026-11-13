@@ -26,9 +26,10 @@ test('exact source snapshots and target Hanzi, pinned original provenance, never
    const target=ch.passages.find(p=>p.id===unit.indonesian_passage_id);
    const alignment=mapped.find(e=>e.indonesian_passage_ids[0]===unit.indonesian_passage_id);
    assert.ok(target&&alignment,unit.indonesian_passage_id);
-   const semanticYunFixes=new Set(['sishu.mengzi.04.02','sishu.mengzi.06.05','sishu.mengzi.07.02','sishu.mengzi.07.09']);
-   const expectedHanzi=semanticYunFixes.has(unit.indonesian_passage_id)?unit.hanzi_span.replace('雲','云'):unit.hanzi_span;
-   if(semanticYunFixes.has(unit.indonesian_passage_id))assert.equal((unit.hanzi_span.match(/雲/g)||[]).length,1,'Historical source still archived');
+   const historicalYunFixCount=new Map([['sishu.mengzi.04.02',1],['sishu.mengzi.06.05',1],['sishu.mengzi.07.02',1],['sishu.mengzi.07.09',1],['sishu.mengzi.10.03',3]]);
+   const count=historicalYunFixCount.get(unit.indonesian_passage_id)||0;
+   if(count)assert.equal((unit.hanzi_span.match(/雲/g)||[]).length,count,'Historical source still archived');
+   const expectedHanzi=count?unit.hanzi_span.replace(/雲/g,'云'):unit.hanzi_span;
    assert.equal(expectedHanzi,hanzi(target));
    assert.equal(alignment.hanzi_span,expectedHanzi);
    assert.equal(alignment.source_hanzi_transcription,unit.source_chinese);

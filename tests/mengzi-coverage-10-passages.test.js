@@ -38,8 +38,12 @@ test('Exact English source snapshots and Hanzi match, with stable provenance',()
    const passage=byId.get(unit.indonesian_passage_id);
    const entry=mapped.find(e=>e.indonesian_passage_ids[0]===unit.indonesian_passage_id);
    assert.ok(passage&&entry,unit.indonesian_passage_id);
+   const historicalYunFixCount=new Map([['sishu.mengzi.08.24',1],['sishu.mengzi.10.07',2]]);
+   const count=historicalYunFixCount.get(unit.indonesian_passage_id)||0;
+   if(count)assert.equal((unit.hanzi_span.match(/雲/g)||[]).length,count,'Original snapshot stays intact');
+   const expectedHanzi=count?unit.hanzi_span.replace(/雲/g,'云'):unit.hanzi_span;
    assert.equal(entry.hanzi_span,hanzi(passage));
-   assert.equal(entry.hanzi_span,unit.hanzi_span);
+   assert.equal(entry.hanzi_span,expectedHanzi);
    assert.equal(entry.source_hanzi_transcription,unit.source_chinese);
    assert.equal(entry.english_segments[0].text,unit.source_english);
    assert.equal(entry.source_url,book.source_url);
