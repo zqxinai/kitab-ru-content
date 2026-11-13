@@ -76,3 +76,11 @@ Pemetaan dengan pasal pecah/gabung memerlukan pemeriksaan lanjutan yang memperta
 - Kecocokan awal 20 Hanzi minimal 90% setelah normalisasi konservatif; rasio panjang Hanzi minimal 83%. **Belum** membuktikan kesesuaian setiap kata/ayat, sehingga semuanya `draft`.
 - Katalog sekarang **634/965 draf Inggris**, **331 belum tersedia** (semuanya Mengzi bab selanjutnya). Tidak ada pengesahan final otomatis.
 - Pengujian: `node --test tests/mengzi-coverage.test.js` beserta audit editorial sebelumnya.
+
+## Batch Mengzi 2 — bab 13–14 (82 pasal)
+
+- 82 pasal mendapat draf Inggris Legge: 45 pada bab 13 dan 37 pada bab 14. Dua pasal terakhir masing-masing bab **ditahan** karena transkripsi sumber menyisipkan materi/metadata yang tidak cocok dengan rentang Hanzi MATAKIN (rasio di bawah 95%).
+- Source snapshot dengan SHA blob dan transkripsi Hanzi/Inggris: `sources/legge/mengzi-chinesenotes-13-14.json`. Pemetaan hanya dibuat bila batas pasal teridentifikasi unik, urut, rasio panjang Hanzi >=95%, dan terjemahan tidak kosong.
+- **Status tetap draf dan perlu review**, belum pengesahan; perbandingan lengkap terhadap James Legge edisi primer belum dilaksanakan.
+- Cakupan kumulatif: **716 dari 965 pasal**, belum tersedia **249** (Da Xue 53, Lun Yu 50, Mengzi 146). Total pasal Mengzi yang memiliki Inggris kini 114 dari 260.
+- Pengujian tambahan: `node --test tests/mengzi-coverage-13-14.test.js`.
