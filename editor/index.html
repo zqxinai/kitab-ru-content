@@ -41,7 +41,16 @@
             <div class="nav-label">PILIH BAB</div>
             <div id="chapterList" class="entry-list" aria-label="Bab"></div>
             <div class="nav-label">PILIH PASAL</div>
+            <label class="sidebar-filter" for="passageFilter">Tampilkan
+              <select id="passageFilter">
+                <option value="all">Semua pasal</option>
+                <option value="needs">Perlu review</option>
+                <option value="partial">Sebagian final</option>
+                <option value="final">Final kedua bahasa</option>
+              </select>
+            </label>
             <div id="passageList" class="passage-list" aria-label="Pasal"></div>
+            <p class="passage-legend">● Final &nbsp; ◐ Sebagian final &nbsp; ○ Perlu review</p>
           </section>
           <section id="searchResults" hidden>
             <div class="nav-label">HASIL PENCARIAN <span id="searchCount"></span></div>
