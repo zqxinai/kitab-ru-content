@@ -15,6 +15,12 @@ Status: keputusan kerja bersumber, **belum disahkan Final**. Hanzi proyek berasa
 | `sishu.lunyu.11.03` | 季路 / 李路 | **Pertahankan 季路**, nama murid Kongzi; Legge Inggris menulis “Chi Lu”. |
 | `sishu.lunyu.14.33` (MATAKIN 2012 **Jilid XIV:33**, hlm. **302**) | **Proyek: 曰：驥不稱其力，稱其德也 / MATAKIN cetak: 子曰：驥不稱其力，稱其德也 / Zhu Xi WYG: 子曰：驥不稱其力，稱其德也** | **TERKONFIRMASI DARI FOTO MATAKIN 2012**: karakter 子 tercetak di awal pasal, sesuai “Nabi bersabda”. Tambahkan `子` dan anotasi pinyin `zǐ` di awal `sishu/chapters/lunyu/14.json`, lalu bangun ulang dist/hash; **belum diterapkan pada isi aplikasi** dan status Final tetap menunggu validasi build/reviewer. Bentuk simplified yang ditampilkan buku dalam tanda kurung bukan redaksi berbeda. |
 
+### Lun Yu XVII:11 — konfirmasi foto MATAKIN 2012 hlm. 350 (13 November 2026)
+
+**Teramati langsung dari foto:** cetakan MATAKIN menampilkan pasangan aksara tradisional dengan simplified dalam tanda kurung, termasuk `禮(礼) 雲(云) 禮(礼) 雲(云)` dan kemunculan `雲(云)` lain pada pasal yang sama (total enam). `Ru Classics` saat ini memakai `雲` pada keenam posisi; teks utama Zhu Xi WYG memakai `云`. Terjemahan MATAKIN menggunakan makna **berkata/menyebut**.
+
+**Keputusan editorial sementara:** `云` bukan sekadar versi simplified `雲`; `云` juga karakter klasik mandiri dengan makna *berkata*, sedangkan `雲` lazim bermakna *awan*. Foto membuktikan ejaan cetak MATAKIN, **bukan** membuktikan varian teologis atau bahwa edisi klasik MATAKIN berbeda dari Zhu Xi. Dugaan konversi aksara mekanis pada cetakan adalah hipotesis, bukan fakta terkonfirmasi. Catat sebagai ketidakselarasan grafis antara cetakan MATAKIN dan teks klasik Zhu Xi; **jangan mengganti Hanzi di aplikasi otomatis** sebelum ada kebijakan editorial yang memisahkan transkripsi verbatim MATAKIN 2012 dari teks klasik yang dinormalisasi. Pinyin pelafalan tetap `yún` pada kasus ini; masalahnya karakter, bukan nada. Status **perlu review**, bukan Final.
+
 ### Mengzi 09.07 — cakupan yang perlu dipisah
 
 Pada `sishu/chapters/mengzi/09.json`, pasal 09.07 memuat ucapan Mengzi dan kutipan `伊訓曰`, tetapi mencampurkan komentar penafsir `林氏曰：“以堯舜之道要湯者...` serta `愚謂此語亦猶前章...`. Sumber awal JSON juga memuatnya; bukan kesalahan pengimporan GitHub. Edisi `四書章句集注` menegaskan kedua segmen merupakan komentar setelah teks utama. Draf Inggris Legge dari `mengzi009.txt` memuat dialog Mengzi beserta kutipan `伊訓` tanpa komentar tersebut.
