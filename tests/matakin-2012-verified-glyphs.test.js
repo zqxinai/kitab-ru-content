@@ -121,3 +121,33 @@ test('Untouched Mengzi VII:24, romanization boundaries, and Final registry',()=>
  assert.equal(dist.chapters.length,78);
  assert.equal(byId.size,965);
 });
+
+/* Primary photographed witness: Si Shu MATAKIN cetakan 2012, pp. 9–10, 14.
+   Printed Da Xue III:4 = data 04.04; printed Da Xue VI:2 = data 07.02.
+   Crucially 喧 (赫兮喧兮) and 諠 (終不可諠兮) are distinct glyphs in the book. */
+test('Da Xue 2012 photographed III:4 and VI:2 retain mixed glyphs, translations, and build',()=>{
+ const cases=[
+  {id:'sishu.daxue.04.04',path:'sishu/chapters/daxue/04.json',hash:'97efc54f',
+   expected:[['喧','xuān',2],['諠','xuān',2],['僴','xiàn',2]],
+   excerpts:['赫兮喧兮','終不可諠兮','瑟兮僴兮']},
+  {id:'sishu.daxue.07.02',path:'sishu/chapters/daxue/07.json',hash:'a21836db',
+   expected:[['閒','xián',1],['揜','yǎn',1],['己','jǐ',1]],
+   excluded:['閑','掩'],excerpts:['小人閒居為不善','揜其不善','人之視己']}
+ ];
+ const dist=read('dist/sishu-content.json');
+ const byId=new Map(dist.chapters.flatMap(c=>c.passages.map(p=>[p.id,p])));
+ for(const c of cases){
+  const p=read(c.path).passages.find(p=>p.id===c.id);
+  assert.ok(p,c.id);
+  assert.equal(p.editorial_status,'unverified-draft');
+  assert.equal(fnv(p.translation_indonesian),c.hash);
+  assert.deepEqual(p,byId.get(c.id),'Distribution not synchronized: '+c.id);
+  const hanzi=script(p);
+  for(const piece of c.excerpts)assert.ok(hanzi.includes(piece),piece);
+  for(const glyph of c.excluded||[])assert.ok(!hanzi.includes(glyph),'Old glyph: '+glyph);
+  for(const [glyph,pinyin,count] of c.expected)assert.equal(
+   p.ruby_paragraphs.flat().filter(t=>t.type==='ruby'&&t.traditional===glyph&&t.pinyin===pinyin).length,
+   count,c.id+' '+glyph);
+ }
+ assert.equal(read('dist/sishu-review-status.json').entries.length,0);
+});
