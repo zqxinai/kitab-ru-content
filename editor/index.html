@@ -1,0 +1,189 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <meta name="theme-color" content="#dcf5f6">
+  <title>Kitab Ru Editor — Ru Classics</title>
+  <meta name="description" content="Editor lokal naskah klasik Ru: kitab, bab, pasal, Hanzi, pinyin, terjemahan, dan validasi paket JSON.">
+  <link rel="stylesheet" href="./style.css">
+  <script defer src="./app.js"></script>
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <div class="brand">
+        <span class="brand-seal" aria-hidden="true">儒</span>
+        <span class="brand-copy"><strong>KITAB RU <span class="brand-editor">/ EDITOR</span></strong><small>Ruang penyuntingan naskah klasik</small></span>
+      </div>
+      <div class="top-actions">
+        <span class="local-badge"><span class="online-dot" aria-hidden="true"></span> Lokal · Tidak otomatis terbit</span>
+        <label class="button subtle file-button" for="importInput"><span aria-hidden="true">↥</span> Impor JSON</label>
+        <input id="importInput" class="visually-hidden" type="file" accept=".json,application/json">
+        <button id="newDocument" class="button subtle" type="button">+ Dokumen</button>
+        <button id="exportButton" class="button primary" type="button" disabled>↓ Ekspor JSON</button>
+      </div>
+    </header>
+
+    <div class="layout">
+      <aside class="navigation" aria-label="Navigasi naskah">
+        <div class="nav-top">
+          <p class="eyebrow">PERPUSTAKAAN</p>
+          <div class="section-heading"><h2>Koleksi</h2><span class="watermark-mini" aria-hidden="true">書</span></div>
+          <div class="mode-switch" role="group" aria-label="Mode penyuntingan">
+            <button id="modeContent" type="button" class="mode active" aria-pressed="true">Naskah</button>
+            <button id="modeCatalog" type="button" class="mode" aria-pressed="false">Katalog</button>
+          </div>
+        </div>
+        <section id="contentNavigation" class="nav-scroll">
+          <div class="nav-section-label">KITAB <button id="addBook" type="button" class="icon-action" title="Tambah kitab" disabled>+</button></div>
+          <div id="bookList" class="list-stack"><p class="empty-small">Impor JSON atau buat dokumen baru untuk memulai.</p></div>
+          <div class="nav-section-label">BAB <button id="addChapter" type="button" class="icon-action" title="Tambah bab" disabled>+</button></div>
+          <div id="chapterList" class="list-stack"></div>
+          <div class="nav-section-label">PASAL <button id="addPassage" type="button" class="icon-action" title="Tambah pasal" disabled>+</button></div>
+          <div id="passageList" class="passage-list"></div>
+          <div class="nav-section-label">PENGANTAR <button id="addPreface" type="button" class="icon-action" title="Tambah pengantar" disabled>+</button></div>
+          <div id="prefaceList" class="list-stack"></div>
+        </section>
+        <section id="catalogNavigation" class="nav-scroll" hidden>
+          <div class="nav-section-label">DAFTAR KOLEKSI <button id="addCatalogItem" type="button" class="icon-action" title="Tambah entri katalog">+</button></div>
+          <div id="catalogList" class="list-stack"></div>
+        </section>
+        <div class="nav-bottom">
+          <div class="small-icon">◎</div>
+          <span>Perubahan hanya tersimpan di memori browser sampai diekspor. Tidak ada token atau akun GitHub yang diminta.</span>
+        </div>
+      </aside>
+
+      <main class="workspace" id="workspace">
+        <div id="emptyView" class="empty-view">
+          <span class="empty-calligraphy" aria-hidden="true">典</span>
+          <div class="empty-inner">
+            <span class="eyebrow">PENERBITAN DIGITAL · KITAB RU</span>
+            <h1>Setiap aksara memiliki tempatnya.</h1>
+            <p>Sunting Hanzi, pinyin, terjemahan Indonesia, serta susunan kitab dengan ruang kerja yang tenang dan terstruktur.</p>
+            <div class="empty-actions">
+              <label for="importInput" class="button primary">Impor naskah JSON</label>
+              <button id="emptyNew" type="button" class="button subtle">Buat kerangka baru</button>
+            </div>
+          </div>
+        </div>
+
+        <div id="contentWorkspace" hidden>
+          <div class="workspace-hero" id="contentHero" data-watermark="四書">
+            <div><p class="eyebrow">PENYUNTING NASKAH</p><h1 id="heroTitle">Pilih pasal</h1><p id="heroSubtitle" class="hero-subtitle">Pilih kitab dan bab dari panel sebelah kiri.</p></div>
+            <div class="hero-pills"><span id="contentVersion" class="pill">Draf</span><span id="changeStatus" class="pill neutral">Tidak ada perubahan</span></div>
+          </div>
+          <div class="workspace-inner">
+            <div class="toolbar">
+              <div class="tabbar" role="tablist" aria-label="Jenis konten">
+                <button id="tabPassage" class="tab active" type="button" role="tab" aria-selected="true">Ayat / Pasal</button>
+                <button id="tabPreface" class="tab" type="button" role="tab" aria-selected="false">Pengantar</button>
+                <button id="tabMetadata" class="tab" type="button" role="tab" aria-selected="false">Metadata</button>
+              </div>
+              <button id="restoreSelection" class="button text-button" type="button" disabled>↶ Pulihkan entri</button>
+            </div>
+
+            <section id="passageEditor" class="editor-section" aria-label="Editor pasal">
+              <div id="noPassage" class="notice">Pilih sebuah pasal dari daftar sebelah kiri, atau tambahkan pasal baru.</div>
+              <div id="passageForm" hidden>
+                <div class="field-grid">
+                  <label class="field"><span>Nomor pasal</span><input id="passageNumber" type="number" min="1" step="1"></label>
+                  <label class="field"><span>ID stabil · Referensi silang</span><input id="passageId" type="text" spellcheck="false"></label>
+                </div>
+                <div class="card editor-card">
+                  <div class="card-title-row"><div><p class="eyebrow">TEKS SUMBER</p><h3>Hanzi dan anotasi pinyin</h3></div><button id="addParagraph" type="button" class="button subtle small">+ Paragraf</button></div>
+                  <p class="supporting">Setiap aksara Hanzi memiliki satu pinyin. Tanda baca dan spasi ditulis sebagai token teks; jangan menyisipkan HTML.</p>
+                  <div id="tokenParagraphs"></div>
+                </div>
+                <div class="card editor-card">
+                  <div class="card-title-row"><div><p class="eyebrow">TERJEMAHAN</p><h3>Bahasa Indonesia</h3></div><span class="small-mark">Sumber terpisah dari penjelasan</span></div>
+                  <label class="field full"><span>Teks terjemahan pasal</span><textarea id="translationInput" rows="8" placeholder="Tulis atau koreksi terjemahan Indonesia sesuai sumber dan aturan editorial."></textarea></label>
+                  <p class="supporting">Istilah Hokkian dapat dipertahankan dalam tanda kurung sesuai kebijakan editorial; pinyin berada pada lapisan tersendiri.</p>
+                </div>
+                <div class="danger-zone"><button id="deletePassage" type="button" class="button danger-outline">Hapus pasal</button><span>Perubahan struktur dapat mengubah jumlah pasal dan perlu ditinjau kembali.</span></div>
+              </div>
+            </section>
+
+            <section id="prefaceEditor" class="editor-section" hidden>
+              <div id="noPreface" class="notice">Pilih kata pengantar, atau tambahkan pengantar pada kitab yang aktif.</div>
+              <div id="prefaceForm" hidden>
+                <div class="field-grid">
+                  <label class="field"><span>Judul pengantar</span><input id="prefaceTitle" type="text"></label>
+                  <label class="field"><span>ID stabil</span><input id="prefaceId" type="text" spellcheck="false"></label>
+                </div>
+                <div class="card editor-card"><label class="field full"><span>Isi pengantar (bukan ayat)</span><textarea id="prefaceBody" rows="16"></textarea></label></div>
+                <div class="danger-zone"><button id="deletePreface" type="button" class="button danger-outline">Hapus pengantar</button></div>
+              </div>
+            </section>
+
+            <section id="metadataEditor" class="editor-section" hidden>
+              <div class="card editor-card">
+                <div class="card-title-row"><div><p class="eyebrow">IDENTITAS PAKET</p><h3>Metadata naskah</h3></div></div>
+                <div class="field-grid">
+                  <label class="field"><span>Koleksi / collection</span><input id="metaCollection" spellcheck="false" type="text"></label>
+                  <label class="field"><span>Versi konten</span><input id="metaVersion" spellcheck="false" type="text"></label>
+                  <label class="field"><span>Status pemeriksaan</span><select id="metaReview"><option value="unverified-draft">unverified-draft</option><option value="under-review">under-review</option><option value="approved">approved</option></select></label>
+                  <label class="field"><span>Format JSON</span><input id="metaSchema" spellcheck="false" readonly value="ru-classics.content.v1"></label>
+                </div>
+                <p class="supporting">Status “approved” hanya boleh dipakai sesudah pemeriksaan editorial. Importer Android Si Shu saat ini hanya menerima berkas lengkap dengan status “unverified-draft”.</p>
+              </div>
+            </section>
+          </div>
+        </div>
+
+        <div id="catalogWorkspace" hidden>
+          <div class="workspace-hero" data-watermark="群經">
+            <div><p class="eyebrow">KATALOG PUSTAKA</p><h1>Kelola koleksi</h1><p class="hero-subtitle">Si Shu dan kitab lain dapat muncul sebagai draf, tersedia, atau segera hadir.</p></div>
+            <div class="hero-pills"><span id="catalogCount" class="pill neutral">0 koleksi</span></div>
+          </div>
+          <div class="workspace-inner">
+            <div class="card editor-card">
+              <div class="card-title-row"><div><p class="eyebrow">STATUS KOLEKSI</p><h3 id="catalogItemHeading">Pilih koleksi</h3></div><button type="button" id="exportCatalog" class="button subtle small">↓ Ekspor katalog</button></div>
+              <div id="noCatalogItem" class="notice">Pilih koleksi dari panel sebelah kiri.</div>
+              <div id="catalogItemForm" hidden>
+                <div class="field-grid">
+                  <label class="field"><span>ID koleksi (stabil)</span><input id="catalogId" type="text" readonly spellcheck="false"></label>
+                  <label class="field"><span>Hanzi</span><input id="catalogHanzi" type="text"></label>
+                  <label class="field"><span>Nama koleksi</span><input id="catalogTitle" type="text"></label>
+                  <label class="field"><span>Status</span><select id="catalogStatus"><option value="coming_soon">Coming soon</option><option value="draft">Draf</option><option value="available">Tersedia</option></select></label>
+                  <label class="field full"><span>Deskripsi</span><textarea id="catalogDescription" rows="3"></textarea></label>
+                  <label class="field full"><span>URL paket JSON (opsional; HTTPS)</span><input id="catalogUrl" type="url" spellcheck="false" placeholder="https://github.com/.../releases/download/.../content.json"></label>
+                  <label class="field full"><span>SHA-256 paket (opsional)</span><input id="catalogHash" type="text" spellcheck="false" placeholder="64 karakter heksadesimal"></label>
+                </div>
+                <p class="supporting">Status “Tersedia” memerlukan URL paket HTTPS dan checksum. Katalog ini belum otomatis memperbarui aplikasi Android V1.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+
+      <aside class="inspector" aria-label="Pratinjau dan pemeriksaan">
+        <div class="inspector-header"><span class="eyebrow">PRATINJAU · QA</span><span class="inspector-light" aria-hidden="true"></span></div>
+        <section class="preview-card" id="previewCard" data-watermark="四書">
+          <p id="previewBook" class="eyebrow">HALAMAN BACA</p>
+          <h2 id="previewTitle">Kitab Ru</h2>
+          <div id="previewHanzi" class="preview-hanzi">學而時習之</div>
+          <div class="preview-divider"></div>
+          <p class="eyebrow">TERJEMAHAN INDONESIA</p>
+          <p id="previewTranslation" class="preview-translation">Pratinjau naskah muncul setelah Anda memilih sebuah pasal.</p>
+        </section>
+        <section class="qa-panel">
+          <div class="qa-header"><h3>Pemeriksaan naskah</h3><span id="qaBadge" class="qa-counter">—</span></div>
+          <div id="qaSummary" class="qa-summary">Pilih atau impor dokumen untuk memulai validasi.</div>
+          <ul id="qaList" class="qa-list"></ul>
+        </section>
+        <section class="stat-panel" id="statsPanel">
+          <h3>Ringkasan paket</h3>
+          <div class="stat-grid"><div><strong id="statBooks">0</strong><span>kitab</span></div><div><strong id="statChapters">0</strong><span>bab</span></div><div><strong id="statPassages">0</strong><span>pasal</span></div></div>
+        </section>
+      </aside>
+    </div>
+
+    <footer class="footer"><span>Kitab Ru Editor · V1 · Editor lokal, bukan portal penerbitan publik</span><span id="footerState">Belum ada dokumen aktif</span></footer>
+  </div>
+  <dialog id="entryDialog" class="entry-dialog"><form method="dialog" id="entryForm"><h2 id="dialogHeading">Tambah entri</h2><p id="dialogHint"></p><label class="field"><span id="dialogLabel">Nama</span><input id="dialogInput" maxlength="120" required autocomplete="off"></label><div class="dialog-actions"><button class="button subtle" type="button" id="dialogCancel">Batal</button><button class="button primary" type="submit" id="dialogConfirm">Tambahkan</button></div></form></dialog>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+</body>
+</html>
