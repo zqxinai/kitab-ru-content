@@ -46,3 +46,24 @@ test('Editor supports notes outside scripture Ruby without changing source text'
  assert.match(js,/note.title_indonesian/);
  assert.match(js,/note.description_indonesian/);
 });
+
+test('Photo 2012 p. 76 and p. 78: Zhong Yong XXIV:3 and XXV:4 retain meaningful glyphs',()=>{
+ const ch24=read('sishu/chapters/zhongyong/25.json');
+ const p24=ch24.passages.find(p=>p.id==='sishu.zhongyong.25.03');
+ assert.ok(p24);
+ assert.match(span(p24),/非自成己而已也/);
+ assert.match(span(p24),/成己仁也/);
+ const r24=p24.ruby_paragraphs.flat().filter(t=>t.type==='ruby');
+ assert.equal(r24.filter(t=>t.traditional==='己'&&t.pinyin==='jǐ').length,2);
+ assert.equal(r24.filter(t=>t.traditional==='已'&&t.pinyin==='yǐ').length,1);
+ const ch25=read('sishu/chapters/zhongyong/26.json');
+ const p25=ch25.passages.find(p=>p.id==='sishu.zhongyong.26.04');
+ assert.ok(p25);
+ assert.equal(span(p25),'博厚配地，高明配天，悠久無疆。');
+ const r25=p25.ruby_paragraphs.flat().filter(t=>t.type==='ruby');
+ assert.ok(r25.some(t=>t.traditional==='博'&&t.pinyin==='bó'));
+ assert.ok(r25.some(t=>t.traditional==='久'&&t.pinyin==='jiǔ'));
+ assert.equal(p24.editorial_status,'unverified-draft');
+ assert.equal(p25.editorial_status,'unverified-draft');
+ assert.deepEqual(bundle.chapters.flatMap(c=>c.passages).find(p=>p.id===p25.id),p25);
+});
