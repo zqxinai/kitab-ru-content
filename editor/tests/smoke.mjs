@@ -58,7 +58,7 @@ await new Promise(resolve=>setImmediate(resolve));
 
 assert.equal(fetchCalls,1);
 assert.equal(elements.loadingView.hidden,true);
-assert.equal(elements.readerView.hidden,false);
+assert.equal(elements.readerView.hidden,false,'Reader failed to open: '+elements.errorMessage.textContent);
 assert.equal(elements.indonesianText.textContent,selected.translation_indonesian);
 assert.equal(elements.bookList.children.length,4);
 assert.equal(elements.chapterList.children.length,1);
