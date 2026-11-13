@@ -153,8 +153,9 @@
     $('englishText').textContent=en||'Terjemahan Inggris belum tersedia atau belum disetujui untuk pasal ini.';
     $('englishText').classList.toggle('unavailable',!en);
     const source=String(p.translation_english_source||p.english_source||'');
-    $('englishSource').textContent=en?(source.toLowerCase().includes('legge')?
-      'James Legge · Periksa kecocokan ayat':'Sumber terjemahan perlu diperiksa'):'Menunggu pencocokan sumber';
+    const isLegge=/james\s+legge|gutenberg\.org\/ebooks\/4094/i.test(source);
+    $('englishSource').textContent=en?(isLegge?
+      'James Legge · Belum selesai diperiksa':'Sumber terjemahan perlu diperiksa'):'Menunggu pencocokan sumber';
     const index=records.findIndex(item=>item.passage.id===passageId);
     $('passagePosition').textContent='Pasal '+p.number+' · '+(index+1)+' dari '+records.length;
     $('previousButton').disabled=index<=0;$('nextButton').disabled=index>=records.length-1;
@@ -196,7 +197,9 @@
   function close(){if(editing)save();editing=false;$('editPanel').hidden=true;$('readActions').hidden=false}
   function discard(){
     if(draft(passageId)&&!confirm('Buang perubahan untuk pasal ini?'))return;
-    delete drafts[passageId];persist();close();reader();navigation();draftCount();
+    delete drafts[passageId];persist();
+    editing=false;$('editPanel').hidden=true;$('readActions').hidden=false;
+    reader();navigation();draftCount();
   }
   function proposalBody(r,d){
     const p=r.passage;let body='## Usulan perbaikan terjemahan Kitab Ru\n\n';
