@@ -4,8 +4,8 @@ const read=p=>JSON.parse(fs.readFileSync(p,'utf8'));
 const snap=read('sources/legge/mengzi-chinesenotes-01-03.json');
 const alignment=read('dist/sishu-english-alignment.json');
 const entries=alignment.entries.filter(e=>e.id.startsWith('legge-mengzi-'));
-const hanzi=p=>p.ruby_paragraphs.map(row=>row.map(t=>t.type==='ruby'?(t.traditional||''):(t.value||'')).join('')).join('\\n');
-const trim=s=>String(s).replace(/\\s+/g,' ').trim();
+const hanzi=p=>p.ruby_paragraphs.map(row=>row.map(t=>t.type==='ruby'?(t.traditional||''):(t.value||'')).join('')).join('\n');
+const trim=s=>String(s).replace(/\s+/g,' ').trim();
 test('Mengzi batch contains 3 books, 32 distinct target IDs and no final',()=>{
  assert.equal(snap.books.length,3);assert.equal(entries.length,32);
  const ids=entries.flatMap(e=>e.indonesian_passage_ids);assert.equal(new Set(ids).size,32);
