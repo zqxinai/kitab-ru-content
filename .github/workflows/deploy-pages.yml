@@ -32,6 +32,8 @@ jobs:
         run: node editor/tests/validate.mjs
       - name: Configure Pages
         uses: actions/configure-pages@v5
+        with:
+          enablement: true
       - name: Upload website
         uses: actions/upload-pages-artifact@v3
         with:
