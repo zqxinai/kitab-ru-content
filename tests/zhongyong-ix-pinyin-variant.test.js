@@ -13,12 +13,12 @@ test('Zhong Yong IX:1 preserves MATAKIN original despite mechanical WYG false po
  const x=alignment.entries.find(e=>e.id==='legge-zhongyong-10-01');
  assert.equal(x.hanzi_span,text(first));assert.equal(x.status,'draft');
 });
-test('Zhong Yong IX:2 preserves Chinese and Indonesian, changes exactly three yú pronunciations',()=>{
- assert.equal(text(second),'子曰：“南方之強與，北方之強與，抑而強與？');
- assert.equal(hash(text(second)),'28ae75b5');assert.equal(hash(second.translation_indonesian),'c6328bf9');
+test('Zhong Yong IX:2 matches photographed MATAKIN 2012 while retaining classical alternative',()=>{
+ assert.equal(text(second),'子曰：“南方之強與？北方之強與？抑而強與？');
+ assert.equal(hash(text(second)),'99b39481');assert.equal(hash(second.translation_indonesian),'c6328bf9');
  const r=second.ruby_paragraphs.flat().filter(t=>t.type==='ruby');
- assert.equal(r.filter(t=>t.traditional==='與'&&t.pinyin==='yú'&&t.modern==='与').length,3);
- assert.equal(r.filter(t=>t.traditional==='與'&&t.pinyin==='yǔ').length,0);
+ assert.equal(r.filter(t=>t.traditional==='與'&&t.pinyin==='yǔ'&&t.modern==='与').length,3);
+ assert.equal(r.filter(t=>t.traditional==='與'&&t.pinyin==='yú').length,0);
  assert.equal(r.filter(t=>t.traditional==='強'&&t.pinyin==='qiáng').length,3);
  assert.equal(second.editorial_status,'unverified-draft');
  assert.deepEqual(map.get(second.id),second);
@@ -29,10 +29,12 @@ test('Zhong Yong IX:2 preserves Chinese and Indonesian, changes exactly three y�
 test('Pinyin source and its limitation are explicit; original Legge alignment not changed',()=>{
  const n=second.editorial_annotations[0];
  assert.equal(n.kind,'interpretive_comparison');assert.equal(n.after_paragraph_index,0);
- assert.match(n.description_indonesian,/belum diperiksa langsung/);
+ assert.match(n.description_indonesian,/Foto langsung Si Shu MATAKIN 2012/);
  assert.equal(n.source_basis.witness_page,'KR1h0015_WYG_016-42a');
  assert.match(n.source_basis.lexicon_url,/dict.revised.moe.edu.tw/);
- assert.equal(n.review_status,'awaiting-direct-2012-pinyin-photo');
+ assert.equal(n.review_status,'photo-verified-matakin-2012-reading-not-final');
+ assert.equal(n.source_basis.printed_page,42);
+ assert.match(n.title_indonesian,/MATAKIN yǔ/);
  const a=alignment.entries.find(e=>e.id==='legge-zhongyong-10-02');
  assert.deepEqual(a.indonesian_passage_ids,['sishu.zhongyong.10.02','sishu.zhongyong.10.03','sishu.zhongyong.10.04','sishu.zhongyong.10.05']);
  assert.equal(a.status,'draft');assert.match(a.english_segments[0].text,/energy of the South/);
