@@ -26,4 +26,6 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Validate syntax, references and catalog
-        run: node editor/tests/validate.mjs
+        run: |
+          node editor/tests/validate.mjs
+          node editor/tests/smoke.mjs
