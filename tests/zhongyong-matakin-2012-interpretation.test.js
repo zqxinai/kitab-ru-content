@@ -63,6 +63,7 @@ test('Photo 2012 p. 76 and p. 78: Zhong Yong XXIV:3 and XXV:4 retain meaningful 
  const r25=p25.ruby_paragraphs.flat().filter(t=>t.type==='ruby');
  assert.ok(r25.some(t=>t.traditional==='博'&&t.pinyin==='bó'));
  assert.ok(r25.some(t=>t.traditional==='久'&&t.pinyin==='jiǔ'));
+ assert.equal(r25.filter(t=>t.traditional==='地'&&t.pinyin==='dì').length,1);
  assert.equal(p24.editorial_status,'unverified-draft');
  assert.equal(p25.editorial_status,'unverified-draft');
  assert.deepEqual(bundle.chapters.flatMap(c=>c.passages).find(p=>p.id===p25.id),p25);
