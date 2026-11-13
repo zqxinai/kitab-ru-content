@@ -5,6 +5,7 @@
   const $ = id => document.getElementById(id);
   const REPO='https://github.com/zqxinai/kitab-ru-content';
   const SOURCE='../dist/sishu-content.json';
+  const ALIGNMENT_SOURCE='../dist/sishu-english-alignment.json';
   const KEY='kitab-ru-editorial-drafts-v1';
   const BOOKS={
     daxue:{name:'Da Xue',hanzi:'大學',sub:'Ajaran Besar'},
@@ -13,7 +14,7 @@
     mengzi:{name:'Mengzi',hanzi:'孟子',sub:'Mengzi'}
   };
   const book=id=>BOOKS[id]||{name:id,hanzi:'書',sub:'Kitab klasik'};
-  let bundle=null,chapters=[],records=[],byId=new Map();
+  let bundle=null,chapters=[],records=[],byId=new Map(),englishAlignments=new Map();
   let bookId='',chapterId='',passageId='',editing=false,loadNumber=0;
   let drafts={};
   try{const parsed=JSON.parse(localStorage.getItem(KEY)||'{}');
@@ -61,6 +62,22 @@
       if(request!==loadNumber)return;
       if(data?.schema!=='ru-classics.content.v1'||data.collection!=='sishu'||
         !Array.isArray(data.books)||!Array.isArray(data.chapters))throw Error('Susunan naskah belum dikenali.');
+      let alignmentData={entries:[]};
+      try {
+        const response=await fetch(ALIGNMENT_SOURCE,{credentials:'omit',cache:'no-store'});
+        if(response.ok)alignmentData=await response.json();
+      } catch (_) { /* Missing alignment must not block the scripture reader. */ }
+      if(alignmentData.schema && alignmentData.schema!=='kitab-ru.english-alignment.v1')
+        throw Error('Format padanan Inggris tidak dikenali.');
+      englishAlignments=new Map();
+      for(const entry of alignmentData.entries||[]){
+        if(!Array.isArray(entry.indonesian_passage_ids)||!Array.isArray(entry.english_segments))continue;
+        for(const id of entry.indonesian_passage_ids){
+          const entries=englishAlignments.get(id)||[];
+          entries.push(entry);
+          englishAlignments.set(id,entries);
+        }
+      }
       bundle=data;chapters=data.chapters.slice().sort((a,b)=>
         data.books.indexOf(a.book)-data.books.indexOf(b.book)||a.index-b.index);
       records=[];byId=new Map();
@@ -149,13 +166,24 @@
     $('passageStatus').textContent=p.editorial_status==='approved'?'Telah diperiksa':'Perlu pemeriksaan';
     showHanzi(p.ruby_paragraphs);
     $('indonesianText').textContent=p.translation_indonesian||'Terjemahan belum tersedia.';
-    const en=String(p.translation_english||'').trim();
+    const mappings=englishAlignments.get(p.id)||[];
+    const segments=mappings.flatMap(entry=>entry.english_segments||[]);
+    const mappedEnglish=segments.map(segment=>String(segment.text||'').trim()).filter(Boolean).join('\n\n');
+    const en=mappedEnglish||String(p.translation_english||'').trim();
     $('englishText').textContent=en||'Terjemahan Inggris belum tersedia atau belum disetujui untuk pasal ini.';
     $('englishText').classList.toggle('unavailable',!en);
-    const source=String(p.translation_english_source||p.english_source||'');
-    const isLegge=/james\s+legge|gutenberg\.org\/ebooks\/4094/i.test(source);
-    $('englishSource').textContent=en?(isLegge?
-      'James Legge · Belum selesai diperiksa':'Sumber terjemahan perlu diperiksa'):'Menunggu pencocokan sumber';
+    if(mappings.length){
+      const refs=[...new Set(segments.map(segment=>segment.legge_ref).filter(Boolean))];
+      const verified=mappings.every(entry=>entry.status==='verified');
+      $('englishSource').textContent='James Legge · '+(refs.join(', ')||'Rujukan belum tersedia')+
+        (verified?' · Padanan terverifikasi':' · Padanan perlu verifikasi');
+    }else{
+      const source=String(p.translation_english_source||p.english_source||'');
+      const isLegge=/james\\s+legge|gutenberg\\.org\\/ebooks\\/4094/i.test(source);
+      $('englishSource').textContent=en?(isLegge?
+        'James Legge · Padanan pasal belum diverifikasi':'Sumber terjemahan perlu diperiksa'):
+        'Menunggu pencocokan sumber';
+    }
     const index=records.findIndex(item=>item.passage.id===passageId);
     $('passagePosition').textContent='Pasal '+p.number+' · '+(index+1)+' dari '+records.length;
     $('previousButton').disabled=index<=0;$('nextButton').disabled=index>=records.length-1;
