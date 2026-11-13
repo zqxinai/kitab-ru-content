@@ -6,7 +6,7 @@ Status: keputusan kerja bersumber, **belum disahkan Final**. Hanzi proyek berasa
 
 | ID | Hanzi proyek / pembanding | Keputusan dan alasannya |
 | --- | --- | --- |
-| `sishu.mengzi.07.23` | 忌 / 患 | **Usul ralat ke 患**: artinya kekurangan/cacat seseorang; sesuai Indonesia “Cacatnya orang”, Legge “evil of men” dan sumber Mengzi klasik. |
+| `sishu.mengzi.07.23` (MATAKIN 2012 **IV A:23.1**, hlm. **655**) | **Proyek: 忌 / MATAKIN cetak: 患 / Zhu Xi WYG: 患** | **TERKONFIRMASI DARI FOTO CETAKAN MATAKIN 2012**: teks `孟子曰：人之患，在好為人師。` tercetak di atas terjemahan “Cacatnya orang itu ialah hanya ingin menggurui orang.” Pilihan 患 sesuai aksara cetak, konteks, dan terjemahan. Perbaikan `忌` → `患` di `sishu/chapters/mengzi/07.json` serta pinyin jì → huàn, dist dan hash **belum diterapkan**; status Final masih menunggu validasi build dan reviewer. |
 | `sishu.mengzi.07.25` | 哺啜 / 餔啜 | **Usul edisi 餔啜** (dua kemunculan); bermakna makan/minum, didukung teks `孟子註疏`. |
 | `sishu.mengzi.08.17` | 不祥 / 不詳 | **Pertahankan 不祥** karena berarti “tidak membawa berkah”, sesuai Indonesia dan Legge Inggris “inauspicious”; `孟子註疏` juga memakai 祥. |
 | `sishu.mengzi.09.07` | 林氏曰 dan 愚謂 menyatu di Hanzi | **Masalah batas teks-komentar, bukan varian aksara**: kedua frasa merupakan komentar Zhu Xi yang tersisip dalam teks utama. **Jangan tandai Inggris lengkap** sebelum komentar dipisahkan dan Ruby/pinyin serta paket dibangun ulang. |
