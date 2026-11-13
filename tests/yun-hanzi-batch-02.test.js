@@ -131,3 +131,17 @@ test('No regression to previous batch or Mengzi IX:7',()=>{
  assert.doesNotMatch(hanzi(z),/林氏曰|愚謂/);
  assert.equal(z.commentary_annotations.length,2);
 });
+
+const alignment=read('dist/sishu-english-alignment.json');
+const normalized=s=>(String(s||'').match(/\p{Script=Han}/gu)||[]).join('');
+test('The nine Legge Hanzi spans stay aligned after 云 corrections',()=>{
+ const ids=[["legge-lunyu-07-18","sishu.lunyu.07.19"],["legge-lunyu-07-33","sishu.lunyu.07.34"],["legge-lunyu-14-43","sishu.lunyu.14.40"],["legge-zhongyong-26-07","sishu.zhongyong.26.09"],["legge-mengzi-04-02","sishu.mengzi.04.02"],["legge-mengzi-06-05","sishu.mengzi.06.05"],["legge-mengzi-07-02","sishu.mengzi.07.02"],["legge-mengzi-07-09","sishu.mengzi.07.09"],["legge-mengzi-b03-05-03","sishu.mengzi.05.03"]];
+ for(const [alignmentId,passageId] of ids){
+  const entry=alignment.entries.find(e=>e.id===alignmentId);
+  const c=cases.find(x=>x.id===passageId);
+  assert.ok(entry&&c,alignmentId);
+  assert.deepEqual(entry.indonesian_passage_ids,[passageId]);
+  assert.equal(normalized(entry.hanzi_span),normalized(hanzi(chapter(c.path).passages.find(x=>x.id===passageId))),alignmentId+' Hanzi mismatch');
+  assert.ok(entry.english_segments?.length>0);
+ }
+});
