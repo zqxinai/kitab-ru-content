@@ -99,7 +99,9 @@
                 </div>
                 <div class="card editor-card">
                   <div class="card-title-row"><div><p class="eyebrow">TERJEMAHAN</p><h3>Bahasa Indonesia</h3></div><span class="small-mark">Sumber terpisah dari penjelasan</span></div>
-                  <label class="field full"><span>Teks terjemahan pasal</span><textarea id="translationInput" rows="8" placeholder="Tulis atau koreksi terjemahan Indonesia sesuai sumber dan aturan editorial."></textarea></label>
+                  <div class="translation-tabs" role="group" aria-label="Bahasa pratinjau"><button id="translationTabId" type="button" class="active" aria-pressed="true">Indonesia</button><button id="translationTabEn" type="button" aria-pressed="false">English</button></div>
+                  <label class="field full"><span>Terjemahan Indonesia · wajib</span><textarea id="translationInput" rows="8" placeholder="Tulis atau koreksi terjemahan Indonesia sesuai sumber dan aturan editorial."></textarea></label>
+                  <label class="field full"><span>English translation · optional</span><textarea id="englishInput" rows="7" lang="en" placeholder="Add an English translation. Leave empty if a vetted translation is not yet available."></textarea></label>
                   <p class="supporting">Istilah Hokkian dapat dipertahankan dalam tanda kurung sesuai kebijakan editorial; pinyin berada pada lapisan tersendiri.</p>
                 </div>
                 <div class="danger-zone"><button id="deletePassage" type="button" class="button danger-outline">Hapus pasal</button><span>Perubahan struktur dapat mengubah jumlah pasal dan perlu ditinjau kembali.</span></div>
@@ -166,7 +168,7 @@
           <h2 id="previewTitle">Kitab Ru</h2>
           <div id="previewHanzi" class="preview-hanzi">學而時習之</div>
           <div class="preview-divider"></div>
-          <p class="eyebrow">TERJEMAHAN INDONESIA</p>
+          <div class="preview-language"><p id="previewLangLabel" class="eyebrow">TERJEMAHAN INDONESIA</p><div class="preview-toggle"><button type="button" id="previewId" class="active" aria-pressed="true">ID</button><button type="button" id="previewEn" aria-pressed="false">EN</button></div></div>
           <p id="previewTranslation" class="preview-translation">Pratinjau naskah muncul setelah Anda memilih sebuah pasal.</p>
         </section>
         <section class="qa-panel">
