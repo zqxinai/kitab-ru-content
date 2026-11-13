@@ -47,6 +47,12 @@ Status: keputusan kerja bersumber, **belum disahkan Final**. Hanzi proyek berasa
 
 **Referensi:** https://ctext.org/si-shu-zhang-ju-ji-zhu/xian-wen-di-shi-si ; https://ehipassa.org/classics/lun/14/ ; https://web.chinese.hku.hk/upload/page/43/self/jclls-v2-n2-202512180951.pdf .
 
+### Lun Yu XIV:1 — foto MATAKIN 2012 hlm. 285 (13 November 2026)
+
+**Discrepancy #11 terkonfirmasi dari foto cetak.** MATAKIN 2012 mencetak `邦有道，穀(谷)；邦無道，穀(谷)，恥也。` (pinyin `gǔ`), dengan **穀** sebagai Hanzi utama/tradisional dan **谷** sebagai simplified dalam tanda kurung. Zhu Xi WYG juga menggunakan **穀** pada kedua posisi. Proyek `sishu.lunyu.14.01` saat audit menggunakan **谷** dua kali dalam `ruby_paragraphs`. Makna ayat adalah gaji/tunjangan pejabat, sesuai terjemahan Indonesia MATAKIN yang mempertahankan kata “gaji”. **Keputusan:** normalisasi tampilan tradisional ke 穀 (2 kemunculan); bentuk simplified 谷 tetap tersedia, pinyin `gǔ` tidak berubah. Perbedaan grafis, bukan perbedaan teologi.
+
+**Status implementasi:** dicatat sebagai keputusan editorial berdasarkan foto; sumber JSON, Ruby, dist, indeks/hash dan aplikasi belum diperbaiki melalui catatan ini. Persetujuan Final seluruh pasal tetap prosedur terpisah.
+
 ### Mengzi 09.07 — cakupan yang perlu dipisah
 
 Pada `sishu/chapters/mengzi/09.json`, pasal 09.07 memuat ucapan Mengzi dan kutipan `伊訓曰`, tetapi mencampurkan komentar penafsir `林氏曰：“以堯舜之道要湯者...` serta `愚謂此語亦猶前章...`. Sumber awal JSON juga memuatnya; bukan kesalahan pengimporan GitHub. Edisi `四書章句集注` menegaskan kedua segmen merupakan komentar setelah teks utama. Draf Inggris Legge dari `mengzi009.txt` memuat dialog Mengzi beserta kutipan `伊訓` tanpa komentar tersebut.
