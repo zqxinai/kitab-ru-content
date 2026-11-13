@@ -22,3 +22,7 @@ Pada bagian komentar untuk X:14 sumber WYG secara eksplisit menjelaskan `个古�
 - Terbuka untuk saksi MATAKIN: **III:4 (`04.04`), VI:2 (`07.02`), X:14 (`11.14`)**; IV:1 (`05.01`) tidak termasuk kasus ini, jangan tertukar dengan ID `04.01`.
 - Tidak ada perubahan Hanzi, pinyin, Indonesia MATAKIN, `dist`, atau status Final. Belum menjalankan test/CI pada batch dokumentasi.
 - Perbedaan nomor halaman cetak dan pagination aplikasi **bukan discrepancy**.
+
+## Pembaruan setelah pemeriksaan foto MATAKIN 2012 (14 November)
+
+Foto langsung halaman 9–10 dan 14 kini menutup **III:4 (`04.04`)** serta **VI:2 (`07.02`)**. Cetakan **membedakan 喧** pada `赫兮喧兮` dan **諠** pada `終不可諠兮`, bukan memakai 諠 pada keempat kemunculan. Selain itu VI:2 berbunyi `閒居`, `揜其不善`, serta `視己`. Perincian dan tes di [laporan bukti foto](daxue-2012-photo-confirmed-2026-11-14.md). **X:14 (`11.14`) masih terbuka** sampai foto Hanzi-nya tersedia; daftar terbuka sebelumnya merupakan status historis sebelum foto diperiksa.
