@@ -121,3 +121,38 @@ test('Untouched Mengzi VII:24, romanization boundaries, and Final registry',()=>
  assert.equal(dist.chapters.length,78);
  assert.equal(byId.size,965);
 });
+
+/* Photographed Da Xue III:4 (printed pages 9–10) and VI:2 (printed page 14),
+   MATAKIN 2012, supplied directly by the book owner on 14 November 2026.
+   Internal chapter indices 04 and 07 must not be mistaken for printed IV and VII. */
+test('Photographed Da Xue III:4 and VI:2: Hanzi matches 2012, draft bundle synchronized',()=>{
+ const cases=[
+  {id:'sishu.daxue.04.04',path:'sishu/chapters/daxue/04.json',hash:'97efc54f',
+   counts:[['諠','xuān',4],['僴','xiàn',2]],forbidden:['喧'],
+   excerpts:['瑟兮僴兮','赫兮諠兮','終不可諠兮']},
+  {id:'sishu.daxue.07.02',path:'sishu/chapters/daxue/07.json',hash:'a21836db',
+   counts:[['閒','xián',1],['揜','yǎn',1],['己','jǐ',1]],forbidden:['閑','掩'],
+   excerpts:['小人閒居為不善','揜其不善','人之視己']}
+ ];
+ const dist=read('dist/sishu-content.json');
+ const passageMap=new Map(dist.chapters.flatMap(ch=>ch.passages.map(p=>[p.id,p])));
+ const alignment=read('dist/sishu-english-alignment.json');
+ for(const c of cases){
+  const source=read(c.path).passages.find(p=>p.id===c.id);
+  assert.ok(source,'Missing source '+c.id);
+  assert.equal(source.editorial_status,'unverified-draft');
+  assert.equal(fnv(source.translation_indonesian),c.hash,'MATAKIN translation changed');
+  assert.deepEqual(passageMap.get(c.id),source,'Distribution stale '+c.id);
+  const hanzi=script(source),ruby=source.ruby_paragraphs.flat().filter(t=>t.type==='ruby');
+  for(const excerpt of c.excerpts)assert.ok(hanzi.includes(excerpt),'Missing photographed excerpt '+excerpt);
+  for(const glyph of c.forbidden)assert.ok(!hanzi.includes(glyph),'Uncorrected glyph '+glyph);
+  for(const [glyph,pinyin,count] of c.counts)
+   assert.equal(ruby.filter(t=>t.traditional===glyph&&t.pinyin===pinyin).length,count,glyph);
+  for(const entry of alignment.entries.filter(e=>(e.indonesian_passage_ids||[]).includes(c.id))){
+   const sourceHanzi=(entry.indonesian_passage_ids||[]).map(id=>script(passageMap.get(id))).join('');
+   assert.equal((entry.hanzi_span.match(/\\p{Script=Han}/gu)||[]).join(''),
+    (sourceHanzi.match(/\\p{Script=Han}/gu)||[]).join(''),'English alignment stale '+entry.id);
+  }
+ }
+ assert.equal(read('dist/sishu-review-status.json').entries.length,0);
+});
