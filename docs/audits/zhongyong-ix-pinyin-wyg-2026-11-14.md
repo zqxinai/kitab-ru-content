@@ -1,5 +1,8 @@
 # Audit Zhong Yong Bab IX (Keperwiraan), MATAKIN dan Zhu Xi
 
+> **Keputusan terbaru (14 November):** Pada bab IX:2, tiga `與` berfungsi sebagai partikel tanya, bacaan gramatikal **yú** menurut kamus MOE Taiwan serta catatan Zhu Xi `與平聲`. MATAKIN 2012 mencetak **yǔ**; dicatat secara eksplisit sebagai bacaan cetak. Aplikasi menggunakan **yú** untuk pinyin utama. Riwayat perubahan di bawah tidak boleh dipakai sebagai kebijakan terbaru. [Prinsip audit pinyin](ru-classics-pinyin-context-policy-2026-11-14.md).
+
+
 > **PEMBARUAN setelah verifikasi foto MATAKIN 2012:** Catatan di bawah merupakan snapshot sebelum foto diperiksa dan tidak lagi menjadi keputusan utama. Foto halaman cetak 42 membuktikan tiga pinyin **yǔ** dan tiga tanda tanya. Ketiga Ruby telah dikembalikan ke **yǔ**, dua koma dipulihkan menjadi tanda tanya, sementara **yú** dipertahankan sebagai bacaan klasik pembanding dalam anotasi. Lihat [audit foto terbaru](zhongyong-ix-matakin-photo-2026-11-14.md). Jangan ulang koreksi lama tanpa bukti baru.
 
 Tanggal: 14 November 2026 WIB. ID internal `sishu.zhongyong.10.01` dan `sishu.zhongyong.10.02`.
