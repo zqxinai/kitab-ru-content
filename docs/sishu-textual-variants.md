@@ -1,5 +1,8 @@
 # Audit konteks perbedaan naskah Si Shu — 13 November 2026
 
+> **Pembaruan 13 November 2026 — batch empat pasal berdasarkan bukti foto MATAKIN 2012:** `sishu.mengzi.07.23` (患, hlm. 655), `sishu.mengzi.07.25` (餔 dua kali, hlm. 656), `sishu.lunyu.10.24` (尸 dan 容, hlm. 226), dan `sishu.lunyu.14.33` (子曰, hlm. 302) telah diterapkan di JSON sumber dan pemetaan editor melalui commit batch ini. **Pinyin 餔啜 bū chuò berasal dari verifikasi leksikal terpisah** (Kementerian Pendidikan Taiwan), bukan klaim pemeriksaan pinyin cetak MATAKIN. Snapshot `sources/legge/` tetap dipertahankan, bahasa Indonesia MATAKIN dan Inggris Legge tidak diubah, status tetap draft. `sishu.mengzi.07.24` tidak diedit tanpa bukti 2012 tambahan. Catatan temuan di tabel di bawah adalah rekaman status *sebelum* batch ini; jangan membacanya sebagai backlog terkini.
+
+
 > **Pembaruan implementasi Mengzi 09.07:** dua komentar telah dipisahkan ke metadata beratribusi dan koreksi `末` → `未` ditambahkan dalam cabang review; penjelasan historis di bawah adalah keadaan **sebelum** patch. Lihat [catatan perbaikan](audits/mengzi-09-07-commentary.md). Terjemahan MATAKIN dan status Final tidak diubah.
 
 

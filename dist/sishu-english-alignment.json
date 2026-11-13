@@ -10081,11 +10081,11 @@
           "text": "Mencius said, 'The evil of men is that they like to be teachers of others.'"
         }
       ],
-      "hanzi_span": "孟子曰：“人之忌，在好為人師。”",
+      "hanzi_span": "孟子曰：“人之患，在好為人師。”",
       "source_hanzi_transcription": "孟子曰：「人之患，在好為人師。」",
       "source_url": "https://github.com/alexamies/chinesenotes.com/blob/5d2e867ecfb33e16a6aed392c6b8b8cde3896030/corpus/mengzi/mengzi007.txt",
       "status": "draft",
-      "review_note": "Text variant, 忌 versus 患; classical meaning 'cacat' supports 患. Full Chinese source differs in 1 characters; semantic alignment reviewed but no Final approval."
+      "review_note": "MATAKIN 2012, IV A:23.1, halaman 655: foto cetak memuat 患; Zhu Xi WYG cocok. Aplikasi sebelumnya memakai 忌; kini Hanzi/pinyin diselaraskan. Inggris Legge tetap draft, bukan Final."
     },
     {
       "id": "legge-mengzi-b05-07-25",
@@ -10098,11 +10098,11 @@
           "text": "Mencius, addressing the disciple Yue Zheng, said to him, 'Your coming here in the train of Zi Ao was only because of the food and the drink. I could not have thought that you, having learned the doctrine of the ancients, would have acted with a view to eating and drinking.'"
         }
       ],
-      "hanzi_span": "孟子謂樂正子曰：“子之從於子敖來，徒哺啜也。我不意子學古之道，而以哺啜也。”",
+      "hanzi_span": "孟子謂樂正子曰：“子之從於子敖來，徒餔啜也。我不意子學古之道，而以餔啜也。”",
       "source_hanzi_transcription": "孟子謂樂正子曰：「子之從於子敖來，徒餔啜也。我不意子學古之道而以餔啜也。」",
       "source_url": "https://github.com/alexamies/chinesenotes.com/blob/5d2e867ecfb33e16a6aed392c6b8b8cde3896030/corpus/mengzi/mengzi007.txt",
       "status": "draft",
-      "review_note": "Text variant, 哺 versus 餔 twice; 餔啜 is attested in classical commentary. Full Chinese source differs in 2 characters; semantic alignment reviewed but no Final approval."
+      "review_note": "MATAKIN 2012, IV A:25.1, halaman 656: foto cetak memuat 餔啜 dua kali; Zhu Xi WYG cocok. Pinyin bū chuò diperiksa secara terpisah pada kamus Kementerian Pendidikan Taiwan (dict.revised.moe.edu.tw/dictView.jsp?ID=19902&la=1); pinyin cetakan MATAKIN belum diverifikasi per aksara. Inggris Legge tetap draft, bukan Final."
     },
     {
       "id": "legge-mengzi-b05-08-17",
@@ -10149,11 +10149,11 @@
           "text": "In bed, he did not lie like a corpse. At home, he did not put on any formal deportment."
         }
       ],
-      "hanzi_span": "寢不屍，居不客。",
+      "hanzi_span": "寢不尸，居不容。",
       "source_hanzi_transcription": "寢不尸、居不容。",
       "source_url": "https://www.gutenberg.org/cache/epub/4094/pg4094-images.html",
       "status": "draft",
-      "review_note": "Text variant, 客 versus 容: documented textual variants; review before finalization. Full Chinese source differs in 1 characters; semantic alignment reviewed but no Final approval."
+      "review_note": "MATAKIN 2012, Jilid X:24, halaman 226: foto cetak memuat 寢不尸，居不容; Zhu Xi WYG cocok. Aplikasi diselaraskan untuk bacaan cetak 尸 dan 容. Inggris Legge tetap draft, bukan Final."
     },
     {
       "id": "legge-lunyu-b07-11-03",
@@ -10183,11 +10183,11 @@
           "text": "The Master said, 'A horse is called a ch'i, not because of its strength, but because of its other good qualities.'"
         }
       ],
-      "hanzi_span": "曰：“驥不稱其力，稱其德也。”",
+      "hanzi_span": "子曰：“驥不稱其力，稱其德也。”",
       "source_hanzi_transcription": "子曰、驥、不稱其力、稱其德也。",
       "source_url": "https://www.gutenberg.org/cache/epub/4094/pg4094-images.html",
       "status": "draft",
-      "review_note": "Text variant, 曰 versus 子曰: missing 子 in project; candidate separate Ruby repair. Full Chinese source differs in 1 characters; semantic alignment reviewed but no Final approval."
+      "review_note": "MATAKIN 2012, Jilid XIV:33, halaman 302: foto cetak memuat 子曰 sebagai pembuka dan terjemahan berbunyi 'Nabi bersabda'; Zhu Xi WYG cocok. Token 子 / zǐ ditambahkan. Inggris Legge tetap draft, bukan Final."
     }
   ]
 }

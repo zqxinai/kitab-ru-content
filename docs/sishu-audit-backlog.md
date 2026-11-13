@@ -12,6 +12,8 @@ Sumber [00 - INDEX AUDIT](https://drive.google.com/file/d/1ZkWMwg565eRKV_9zKqjXG
 | P2 | **Batas pasal antar-edisi**: Da Xue IV/V, Zhong Yong XXV/XXXII, Lun Yu X:25–27, Mengzi IA:7 | Many-to-many alignment, nomor Indonesia tetap, tidak menggandakan terjemahan |
 | P3 | **Perbedaan tafsir**: Da Xue 親民 / 新民 | Varian sumber ditampilkan terpisah dari terjemahan, pengesahan manual |
 
+**Status terbaru (13 November 2026):** empat pasal yang sudah memiliki catatan foto MATAKIN 2012 (`mengzi.07.23`, `mengzi.07.25`, `lunyu.10.24`, `lunyu.14.33`) sudah masuk batch koreksi tersendiri; jangan dibuka ulang kecuali bukti cetakan baru muncul atau pengujian gagal. `mengzi.07.24` dipertahankan; pasal lain dalam prioritas P1 tetap dinilai satu per satu. Seluruh persetujuan terjemahan Final tetap manual.
+
 ## Pencegahan looping
 
 Bekerja maksimal **10 pasal per batch**; setiap item memiliki ID stabil, hash/sumber, kasus, keputusan, alasan, status reviewer. Hanya buka ulang jika sumber atau versi naskah berubah. Jangan menerapkan ralat karakter pada Hanzi tanpa memperbarui anotasi Ruby, pinyin, paket distribusi dan hash katalog sekaligus. Jangan menandai bahasa Indonesia atau Inggris sebagai `Final` otomatis. Lihat [audit varian](sishu-textual-variants.md).

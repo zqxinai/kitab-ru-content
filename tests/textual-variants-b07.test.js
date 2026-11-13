@@ -26,15 +26,24 @@ test('seven variant-aware English drafts, no passage finalized',()=>{
   const e=align.entries.find(a=>a.id==='legge-'+(u.indonesian_passage_id.includes('.mengzi.')?'mengzi-b05-':'lunyu-b07-')+u.indonesian_passage_id.split('.').slice(-2).join('-'));
   assert.ok(e,u.indonesian_passage_id);
   assert.deepEqual(e.indonesian_passage_ids,[u.indonesian_passage_id]);
+  const correctedIds=new Set(['sishu.mengzi.07.23','sishu.mengzi.07.25','sishu.lunyu.10.24','sishu.lunyu.14.33']);
+  const expectedHanzi={
+   'sishu.mengzi.07.23':s=>s.replace('忌','患'),
+   'sishu.mengzi.07.25':s=>s.replace(/哺/g,'餔'),
+   'sishu.lunyu.10.24':s=>s.replace('屍','尸').replace('客','容'),
+   'sishu.lunyu.14.33':s=>'子'+s,
+  }[u.indonesian_passage_id]?.(u.hanzi_span)||u.hanzi_span;
   assert.equal(e.hanzi_span,hanzi(p));
-  assert.equal(e.hanzi_span,u.hanzi_span);
+  assert.equal(e.hanzi_span,expectedHanzi);
+  if(correctedIds.has(u.indonesian_passage_id))assert.notEqual(e.hanzi_span,u.hanzi_span,'Historical Legge snapshot stays unmodified');
   assert.equal(e.english_segments[0].text,u.source_english);
   assert.equal(e.english_segments[0].legge_ref,u.legge_ref);
   assert.equal(e.source_hanzi_transcription,u.source_chinese||u.source_hanzi_transcription);
   assert.equal(e.source_url,u.source_url);
   assert.equal(e.status,'draft');
   assert.ok(e.review_note.length>50);
-  assert.equal(levenshtein(norm(e.hanzi_span),norm(e.source_hanzi_transcription)),u.normalized_character_edit_distance);
+  // The recorded alignment-distance describes the immutable historical source snapshot, not our corrected 2012 MATAKIN text.
+  assert.equal(levenshtein(norm(u.hanzi_span),norm(e.source_hanzi_transcription)),u.normalized_character_edit_distance);
   assert.ok(u.normalized_character_edit_distance>=1&&u.normalized_character_edit_distance<=2);
  }
 });
@@ -51,8 +60,8 @@ test('explicit provenance and no silent Hanzi substitution',()=>{
  assert.match(m.source_commit_sha,/^[0-9a-f]{40}$/);
  assert.equal(l.source_ebook_id,4094);
  assert.ok(l.units.every(u=>u.source_html_lines[0]>0));
- assert.match(hanzi(byId.get('sishu.mengzi.07.23')),/人之忌/);
- assert.match(hanzi(byId.get('sishu.mengzi.07.25')),/哺啜/);
+ assert.match(hanzi(byId.get('sishu.mengzi.07.23')),/人之患/);
+ assert.match(hanzi(byId.get('sishu.mengzi.07.25')),/餔啜/);
  assert.match(hanzi(byId.get('sishu.mengzi.08.17')),/不祥/);
  assert.match(hanzi(byId.get('sishu.lunyu.11.03')),/季路/);
 });
