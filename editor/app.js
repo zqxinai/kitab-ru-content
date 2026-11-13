@@ -140,6 +140,26 @@
     }
     renderEditor();
   }
+  function loadCatalog(payload) {
+    if (!payload || payload.schema !== 'kitab-ru.catalog.v1' ||
+        !Array.isArray(payload.collections)) {
+      throw new Error('JSON bukan katalog Kitab Ru yang didukung.');
+    }
+    for (const item of payload.collections) {
+      if (!item || typeof item.id !== 'string' ||
+          typeof item.title !== 'string' || typeof item.status !== 'string') {
+        throw new Error('Struktur daftar koleksi tidak lengkap.');
+      }
+    }
+    catalog = payload;
+    catalogPristine = clone(payload);
+    activeCatalog = catalog.collections[0]?.id || null;
+    setMode('catalog');
+    renderCatalogNavigation();
+    renderPreview();
+    runValidation();
+    toast('Katalog berhasil dimuat. Sunting lalu ekspor jika diperlukan.');
+  }
   function loadBundle(payload) {
     if (!payload || typeof payload !== 'object' || Array.isArray(payload) ||
         payload.schema !== 'ru-classics.content.v1' ||
@@ -441,8 +461,18 @@
        !confirm('Naskah saat ini belum diekspor. Impor baru akan menggantikannya. Lanjut?')){
       event.target.value='';return;
     }
-    try {loadBundle(JSON.parse(await file.text()));}
-    catch(e){toast('Gagal mengimpor: '+e.message);}
+    try {
+      const parsed = JSON.parse(await file.text());
+      if (parsed.schema === 'kitab-ru.catalog.v1') {
+        if(JSON.stringify(catalog)!==JSON.stringify(catalogPristine) &&
+          !confirm('Katalog saat ini belum diekspor. Timpa dengan impor baru?')){
+            event.target.value='';return;
+          }
+        loadCatalog(parsed);
+      } else {
+        loadBundle(parsed);
+      }
+    } catch(e) { toast('Gagal mengimpor: '+e.message); }
     event.target.value='';
   };
   function newDocument(){
@@ -582,4 +612,23 @@
     }
   });
   setMode('content');renderNavigation();renderCatalogNavigation();runValidation();persistDirty();
+  // Serve the repository catalog when hosted on GitHub Pages; file:// works offline.
+  if (location.protocol === 'https:' || location.protocol === 'http:') {
+    fetch('../catalog.json', {credentials:'omit',cache:'no-store'})
+      .then((response) => {
+        if (!response.ok) throw new Error('Catalog is not available');
+        return response.json();
+      }).then((remote) => {
+        if (remote.schema === 'kitab-ru.catalog.v1' &&
+            Array.isArray(remote.collections) &&
+            JSON.stringify(catalog) === JSON.stringify(catalogPristine)) {
+          catalog=remote;
+          catalogPristine=clone(remote);
+          renderCatalogNavigation();
+          renderNavigation();
+          renderPreview();
+          runValidation();
+        }
+      }).catch(() => {});
+  }
 })();
