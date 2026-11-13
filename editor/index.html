@@ -66,7 +66,7 @@
             <div class="breadcrumb" id="breadcrumb">Si Shu</div>
             <div class="reading-title-row">
               <div><h1 id="chapterTitle">Kitab Ru</h1><p id="chapterSubtitle" class="subtitle"></p></div>
-              <span id="passageStatus" class="status-chip">Belum diperiksa</span>
+              <span id="passageStatus" class="status-chip" role="status">Perlu review</span>
             </div>
             <div class="reading-nav">
               <button id="previousButton" type="button" class="button bare" disabled>‹ Pasal sebelumnya</button>
@@ -89,6 +89,14 @@
               <div id="englishText" class="translation-text" lang="en"></div>
             </article>
             <div id="draftNotice" class="draft-notice" hidden><span>● Ada koreksi yang belum diajukan untuk pasal ini.</span><button id="resumeDraft" type="button" class="text-link">Lanjutkan penyuntingan</button></div>
+            <section class="review-controls" aria-label="Status editorial">
+              <div class="review-heading"><strong>Validasi terjemahan</strong><span id="reviewDetail">Indonesia: perlu review · Inggris: perlu review</span></div>
+              <div class="review-buttons">
+                <button type="button" id="confirmFinalButton" class="button primary">✓ Konfirmasi final</button>
+                <button type="button" id="requestReviewButton" class="button ghost">Tandai perlu review</button>
+              </div>
+              <p class="review-help" id="reviewHelp" role="status">Konfirmasi membuka usulan di GitHub. Status Final berlaku setelah pengelola menyetujui dan menerbitkan perubahan.</p>
+            </section>
             <div id="readActions" class="read-actions">
               <button type="button" id="editButton" class="button primary">✎ Sunting terjemahan</button>
               <a id="passageHistory" class="text-link" href="https://github.com/zqxinai/kitab-ru-content/issues" rel="noopener noreferrer" target="_blank">Lihat usulan untuk pasal ini ↗</a>
