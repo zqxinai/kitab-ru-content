@@ -79,6 +79,7 @@
     const list = $('bookList');
     list.replaceChildren();
     $('addBook').disabled = !bundle;
+    $('deleteBook').disabled = !bundle || !activeBook;
     $('addChapter').disabled = !bundle || !activeBook;
     $('addPassage').disabled = !bundle || !activeChapter;
     $('addPreface').disabled = !bundle || !activeBook;
@@ -494,12 +495,17 @@
   function newDocument(){
     if(bundle&&JSON.stringify(bundle)!==pristineSerialized&&
        !confirm('Perubahan belum diekspor. Buat naskah baru?'))return;
-    loadBundle({
-      schema:'ru-classics.content.v1',collection:'sishu',content_version:'0.1.0-draft',
-      review_status:'unverified-draft',books:['daxue','zhongyong','lunyu','mengzi'],
-      front_matter:[],chapters:[]
+    askEntry('Buat naskah kitab','Masukkan ID koleksi: sishu, yijing, liji, shujing, atau lainnya.','ID koleksi',(value)=>{
+      const collection=safeName(value).replace(/-/g,'');
+      if(!collection){toast('ID koleksi tidak valid.');return;}
+      const books=collection==='sishu'?['daxue','zhongyong','lunyu','mengzi']:[collection];
+      loadBundle({
+        schema:'ru-classics.content.v1',collection:collection,content_version:'0.1.0-draft',
+        review_status:'unverified-draft',books:books,
+        front_matter:[],chapters:[]
+      });
+      toast('Kerangka '+collection+' dibuat. Tambahkan bab dan pasal.');
     });
-    toast('Kerangka baru dibuat. Tambahkan bab dan pasal.');
   }
   $('newDocument').onclick=newDocument;$('emptyNew').onclick=newDocument;
   $('modeContent').onclick=()=>setMode('content');
@@ -523,6 +529,21 @@
     if(problems.length&&!confirm('Katalog memiliki '+problems.length+' temuan. Ekspor draf?'))return;
     downloadJson(catalog,'catalog.json');catalogPristine=clone(catalog);toast('catalog.json berhasil diekspor.');
   };
+  $('deleteBook').onclick=()=>{
+    if(!bundle||!activeBook)return;
+    const book=activeBook;
+    const count=bundle.chapters.filter(ch=>ch.book===book)
+      .reduce((sum,ch)=>sum+ch.passages.length,0);
+    if(!confirm('Hapus kitab '+book+' dan seluruh '+count+' pasalnya?'))return;
+    bundle.books=bundle.books.filter(id=>id!==book);
+    bundle.chapters=bundle.chapters.filter(ch=>ch.book!==book);
+    bundle.front_matter=bundle.front_matter.filter(p=>p.book!==book);
+    activeBook=bundle.books[0]||null;
+    activeChapter=chaptersForBook(activeBook)[0]?.id||null;
+    activePassage=chapter()?.passages[0]?.id||null;
+    activePreface=null;refresh();
+    toast('Kitab dihapus dari draf lokal.');
+  };
   $('addBook').onclick=()=>askEntry('Tambah kitab','Gunakan ID latin stabil tanpa spasi, misalnya xiaojing.','ID kitab',(value)=>{
     const id=safeName(value).replace(/-/g,'');
     if(!id||bundle.books.includes(id)){toast('ID kitab tidak valid atau sudah dipakai.');return;}
@@ -531,7 +552,7 @@
   $('addChapter').onclick=()=>askEntry('Tambah bab','Masukkan judul bab baru. Nomor dan ID bab dibuat otomatis.','Judul bab',(title)=>{
     const indices=chaptersForBook(activeBook).map(c=>c.index);
     const idx=Math.max(0,...indices)+1;
-    const id='sishu.'+activeBook+'.'+String(idx).padStart(2,'0');
+    const id=bundle.collection+'.'+activeBook+'.'+String(idx).padStart(2,'0');
     if(bundle.chapters.some(c=>c.id===id)){toast('ID bab sudah ada.');return;}
     bundle.chapters.push({id:id,book:activeBook,index:idx,title:title,passages:[]});
     selectChapter(id);setTab('metadata');toast('Bab baru dibuat.');
@@ -550,7 +571,7 @@
   });
   $('addPreface').onclick=()=>askEntry('Tambah pengantar','Pengantar disimpan terpisah dari pasal.','Judul pengantar',(title)=>{
     if(!activeBook)return;
-    const id='sishu.'+activeBook+'.preface.'+(bundle.front_matter.filter(p=>p.book===activeBook).length+1);
+    const id=bundle.collection+'.'+activeBook+'.preface.'+(bundle.front_matter.filter(p=>p.book===activeBook).length+1);
     bundle.front_matter.push({id:id,book:activeBook,title:title,body_indonesian:''});
     selectPreface(id);toast('Pengantar baru ditambahkan.');
   });
