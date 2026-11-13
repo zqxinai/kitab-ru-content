@@ -1,0 +1,109 @@
+{
+  "schema": "kitab-ru.catalog.v1",
+  "catalog_version": "0.1.0",
+  "updated_at": "2026-11-13",
+  "collections": [
+    {
+      "id": "sishu",
+      "title": "Si Shu — Kitab Yang Empat",
+      "title_en": "Four Books",
+      "hanzi": "四書",
+      "status": "draft",
+      "description": "Da Xue, Zhong Yong, Lun Yu, Mengzi. 965 pasal; audit isi masih berlangsung.",
+      "description_en": "The Four Books, comprising 965 passages. Editorial review remains in progress.",
+      "package_url": "",
+      "sha256": "",
+      "languages": [
+        "zh-Hant",
+        "pinyin",
+        "id"
+      ],
+      "english_status": "planned"
+    },
+    {
+      "id": "yijing",
+      "title": "Yi Jing — Kitab Perubahan",
+      "title_en": "Book of Changes",
+      "hanzi": "易經",
+      "status": "coming_soon",
+      "description": "Klasik perubahan dan enam puluh empat heksagram.",
+      "description_en": "Classic of Change and its sixty-four hexagrams.",
+      "package_url": "",
+      "sha256": "",
+      "languages": [
+        "zh-Hant",
+        "pinyin",
+        "id",
+        "en"
+      ]
+    },
+    {
+      "id": "shujing",
+      "title": "Shu Jing — Kitab Dokumen",
+      "title_en": "Book of Documents",
+      "hanzi": "書經",
+      "status": "coming_soon",
+      "description": "Kumpulan dokumen sejarah klasik.",
+      "description_en": "Collection of classical historical documents.",
+      "package_url": "",
+      "sha256": "",
+      "languages": [
+        "zh-Hant",
+        "pinyin",
+        "id",
+        "en"
+      ]
+    },
+    {
+      "id": "shijing",
+      "title": "Shi Jing — Kitab Sanjak",
+      "title_en": "Book of Odes",
+      "hanzi": "詩經",
+      "status": "coming_soon",
+      "description": "Kumpulan puisi dan sanjak klasik.",
+      "description_en": "The classic anthology of poetry.",
+      "package_url": "",
+      "sha256": "",
+      "languages": [
+        "zh-Hant",
+        "pinyin",
+        "id",
+        "en"
+      ]
+    },
+    {
+      "id": "liji",
+      "title": "Li Ji — Kitab Kesusilaan",
+      "title_en": "Book of Rites",
+      "hanzi": "禮記",
+      "status": "coming_soon",
+      "description": "Tata susila, ritus, dan etika.",
+      "description_en": "Rites, ritual, and ethics.",
+      "package_url": "",
+      "sha256": "",
+      "languages": [
+        "zh-Hant",
+        "pinyin",
+        "id",
+        "en"
+      ]
+    },
+    {
+      "id": "chunqiu",
+      "title": "Chun Qiu — Kronik Musim Semi dan Gugur",
+      "title_en": "Spring and Autumn Annals",
+      "hanzi": "春秋",
+      "status": "coming_soon",
+      "description": "Kronik sejarah klasik.",
+      "description_en": "Classical historical chronicle.",
+      "package_url": "",
+      "sha256": "",
+      "languages": [
+        "zh-Hant",
+        "pinyin",
+        "id",
+        "en"
+      ]
+    }
+  ]
+}
