@@ -7,14 +7,15 @@ Saksi primer adalah **tiga foto halaman buku Si Shu MATAKIN edisi 2012** yang di
 | --- | --- | --- | --- |
 | **XII:3** — Jalan Suci itu Satya dan Tepasarira | `sishu.zhongyong.13.03` | Halaman **48** (header `BAB XII: 3–4`) | Foto hanya memperlihatkan **ujung Hanzi pasal sebelumnya** (`願，亦勿施於人。`), lalu terjemahan Indonesia pasal 3. **`施諸己` tidak tampak** sehingga pilihan `己/已` **belum terverifikasi foto**. Memerlukan **halaman 47** yang memuat awal Hanzi ayat. |
 | **XXIV:3** — Iman dan Jalan Suci | `sishu.zhongyong.25.03` | Halaman **76** | Cetakan tampak memuat `自成己` dan `成己，仁也`, ber-pinyin **jǐ**; aplikasi sudah memakai `己` pada dua bagian ini. Pada `而…也` pinyin cetak **yǐ**; grafem mirip `己/已` pada foto, tetapi bentuk `已` di aplikasi didukung fungsi `而已` (*hanya*) dan dibedakan dari `己` (*diri*). **Tidak dilakukan perubahan Hanzi**. |
-| **XXV:4** — Keabadian | `sishu.zhongyong.26.04` | Halaman **78** | Foto memuat `博厚配地，高明配天，悠久無疆。` (博 dan 久 jelas). **Seluruh aksara sudah sesuai**, tetapi tanda baca JSON sumber sebelumnya berbeda. **Tanda baca dikoreksi** agar mengikuti cetakan. |
+| **XXV:4** — Keabadian | `sishu.zhongyong.26.04` | Halaman **78** | Foto memuat `博厚配地，高明配天，悠久無疆。` (博 dan 久 jelas). **Seluruh aksara sudah sesuai**, tetapi tanda baca JSON berbeda dan Ruby `地` keliru ber-pinyin `de`. **Tanda baca serta pinyin `de → dì` dikoreksi** sesuai foto cetakan. |
 
 ## Koreksi tepat
 Pasal `sishu.zhongyong.26.04`:
 - **Sebelum:** `博厚，配地。高明，配天。悠久，無疆。`
 - **Sesudah:** `博厚配地，高明配天，悠久無疆。`
-- Komit perubahan: `fac47d3041a3b6562c208d6958ed0b0d4f4513f4`.
-- Yang berubah **hanya tanda baca**; Hanzi, pinyin, Indonesia MATAKIN, status `unverified-draft`, ID, dan urutan pasal tidak diubah.
+- Komit perubahan tanda baca: `fac47d3041a3b6562c208d6958ed0b0d4f4513f4`.
+- Komit koreksi pinyin `地` pada `配地`: `de → dì`, `0ebac7f2c5de83a4810fddd9f20af33b44c8e544`.
+- Yang berubah **tanda baca dan satu token pinyin (`地`)**; aksara Hanzi, Indonesia MATAKIN, status `unverified-draft`, ID, dan urutan pasal tidak diubah.
 - Penjagaan regresi ditambahkan ke `tests/zhongyong-matakin-2012-interpretation.test.js`.
 
 ## Perbandingan klasik
@@ -22,6 +23,6 @@ Zhu Xi 《四書章句集註》 WYG, sumber Kanripo `KR1h0015_016.txt` pada comm
 
 ## Status
 - **XXIV:3:** pemakaian `己` untuk diri sendiri dan pinyin foto dikonfirmasi, pertahankan data.
-- **XXV:4:** Hanzi sudah sesuai; tanda baca telah dikoreksi.
+- **XXV:4:** Hanzi sudah sesuai; tanda baca dan pinyin `地` telah dikoreksi.
 - **XII:3:** **terbuka**, membutuhkan halaman 47. Foto halaman 48 saja tidak cukup menyimpulkan `施諸己/已`.
 - Verifikasi pasal spesifik ini **bukan** pengesahan seluruh 129 pasal Zhong Yong/965 pasal Si Shu. Status editorial Final tetap harus melalui review resmi; status CI harus dicek tersendiri, tidak diasumsikan lulus.
