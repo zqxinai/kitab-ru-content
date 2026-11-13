@@ -1,0 +1,36 @@
+name: Audit editorial status and Legge alignment
+on:
+  pull_request:
+    paths:
+      - 'editor/**'
+      - 'dist/sishu-english-alignment.json'
+      - 'dist/sishu-review-status.json'
+      - 'sishu/**'
+      - 'tools/audit_review_status.js'
+      - 'tests/editorial-review.test.js'
+      - '.github/workflows/editorial-review.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'editor/**'
+      - 'dist/sishu-english-alignment.json'
+      - 'dist/sishu-review-status.json'
+      - 'sishu/**'
+      - 'tools/audit_review_status.js'
+      - 'tests/editorial-review.test.js'
+      - '.github/workflows/editorial-review.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - name: Rebuild current scripture package
+        run: python3 tools/build_sishu.py
+      - name: Check text mapping and final status against current scripture
+        run: node tools/audit_review_status.js
+      - name: Run editorial regression tests
+        run: node --test tests/editorial-review.test.js
