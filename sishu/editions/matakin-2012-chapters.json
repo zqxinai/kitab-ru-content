@@ -1,0 +1,488 @@
+{
+  "schema": "ru-classics.edition-chapters.v1",
+  "edition": "Si Shu MATAKIN cetakan 2012",
+  "toc_source": "Daftar isi cetakan 2012, halaman romawi v–vii (foto dari pemilik buku, 13 November 2026)",
+  "content_scope": "metadata bab, judul, nomor cetak, halaman mulai; tidak mensertifikasi kesamaan teks ayat",
+  "front_matter": [
+    {
+      "book": "daxue",
+      "label": "Kata Pengantar Zhu Xi",
+      "page": 2
+    },
+    {
+      "book": "zhongyong",
+      "label": "Kata Pengantar Zhu Xi",
+      "page": 34
+    }
+  ],
+  "chapters": [
+    {
+      "id": "sishu.daxue.01",
+      "label": "Bab Utama",
+      "name": "Bab Utama",
+      "page": 3
+    },
+    {
+      "id": "sishu.daxue.02",
+      "label": "Bab I",
+      "name": "Kebajikan Yang Bercahaya",
+      "page": 6
+    },
+    {
+      "id": "sishu.daxue.03",
+      "label": "Bab II",
+      "name": "Menjadi Rakyat Baru",
+      "page": 7
+    },
+    {
+      "id": "sishu.daxue.04",
+      "label": "Bab III",
+      "name": "Puncak Kebaikan",
+      "page": 8
+    },
+    {
+      "id": "sishu.daxue.05",
+      "label": "Bab IV",
+      "name": "Pangkal dan Ujung",
+      "page": 11
+    },
+    {
+      "id": "sishu.daxue.06",
+      "label": "Bab V",
+      "name": "Meneliti Hakekat Tiap Perkara",
+      "page": 12
+    },
+    {
+      "id": "sishu.daxue.07",
+      "label": "Bab VI",
+      "name": "Mengimankan Tekad",
+      "page": 14
+    },
+    {
+      "id": "sishu.daxue.08",
+      "label": "Bab VII",
+      "name": "Meluruskan Hati Membina Diri",
+      "page": 16
+    },
+    {
+      "id": "sishu.daxue.09",
+      "label": "Bab VIII",
+      "name": "Membina Diri Membereskan Rumah Tangga",
+      "page": 17
+    },
+    {
+      "id": "sishu.daxue.10",
+      "label": "Bab IX",
+      "name": "Membereskan Rumah Tangga Mengatur Negara",
+      "page": 18
+    },
+    {
+      "id": "sishu.daxue.11",
+      "label": "Bab X",
+      "name": "Teratur Negara Damai Dunia",
+      "page": 22
+    },
+    {
+      "id": "sishu.zhongyong.01",
+      "label": "Bab Utama",
+      "name": "Bab Utama",
+      "page": 36
+    },
+    {
+      "id": "sishu.zhongyong.02",
+      "label": "Bab I",
+      "name": "Susilawan/Junzi",
+      "page": 38
+    },
+    {
+      "id": "sishu.zhongyong.03",
+      "label": "Bab II",
+      "name": "Jarang Yang Tengah Sempurna",
+      "page": 38
+    },
+    {
+      "id": "sishu.zhongyong.04",
+      "label": "Bab III",
+      "name": "Yang Kurang dan Yang Melampaui",
+      "page": 39
+    },
+    {
+      "id": "sishu.zhongyong.05",
+      "label": "Bab IV",
+      "name": "Keprihatinan Nabi",
+      "page": 39
+    },
+    {
+      "id": "sishu.zhongyong.06",
+      "label": "Bab V",
+      "name": "Suka Bertanya dan Meneliti",
+      "page": 40
+    },
+    {
+      "id": "sishu.zhongyong.07",
+      "label": "Bab VI",
+      "name": "Jangan Berbangga Pandai",
+      "page": 40
+    },
+    {
+      "id": "sishu.zhongyong.08",
+      "label": "Bab VII",
+      "name": "Mendekap Tengah Sempurna",
+      "page": 41
+    },
+    {
+      "id": "sishu.zhongyong.09",
+      "label": "Bab VIII",
+      "name": "Sulitnya Tengah Sempurna",
+      "page": 41
+    },
+    {
+      "id": "sishu.zhongyong.10",
+      "label": "Bab IX",
+      "name": "Keperwiraan",
+      "page": 42
+    },
+    {
+      "id": "sishu.zhongyong.11",
+      "label": "Bab X",
+      "name": "Yang Wajar dan Tekun",
+      "page": 44
+    },
+    {
+      "id": "sishu.zhongyong.12",
+      "label": "Bab XI",
+      "name": "Luasnya Jalan Suci",
+      "page": 45
+    },
+    {
+      "id": "sishu.zhongyong.13",
+      "label": "Bab XII",
+      "name": "Jalan Suci itu Satya dan Tepasarira",
+      "page": 47
+    },
+    {
+      "id": "sishu.zhongyong.14",
+      "label": "Bab XIII",
+      "name": "Berperilaku Tepat",
+      "page": 49
+    },
+    {
+      "id": "sishu.zhongyong.15",
+      "label": "Bab XIV",
+      "name": "Setapak demi Setapak",
+      "page": 51
+    },
+    {
+      "id": "sishu.zhongyong.16",
+      "label": "Bab XV",
+      "name": "Tian Yang Maha Rokh",
+      "page": 52
+    },
+    {
+      "id": "sishu.zhongyong.17",
+      "label": "Bab XVI",
+      "name": "Laku Bakti Yang Besar",
+      "page": 54
+    },
+    {
+      "id": "sishu.zhongyong.18",
+      "label": "Bab XVII",
+      "name": "Yang Berpenerus",
+      "page": 56
+    },
+    {
+      "id": "sishu.zhongyong.19",
+      "label": "Bab XVIII",
+      "name": "Sempurnanya Bakti",
+      "page": 58
+    },
+    {
+      "id": "sishu.zhongyong.20",
+      "label": "Bab XIX",
+      "name": "Jalan Suci dan Pemerintahan",
+      "page": 61
+    },
+    {
+      "id": "sishu.zhongyong.21",
+      "label": "Bab XX",
+      "name": "Iman dan Sadar",
+      "page": 73
+    },
+    {
+      "id": "sishu.zhongyong.22",
+      "label": "Bab XXI",
+      "name": "Yang Mencapai Puncak Iman",
+      "page": 73
+    },
+    {
+      "id": "sishu.zhongyong.23",
+      "label": "Bab XXII",
+      "name": "Yang Tingkat ke Dua",
+      "page": 74
+    },
+    {
+      "id": "sishu.zhongyong.24",
+      "label": "Bab XXIII",
+      "name": "Tanda-tanda Ajaib",
+      "page": 75
+    },
+    {
+      "id": "sishu.zhongyong.25",
+      "label": "Bab XXIV",
+      "name": "Iman dan Jalan Suci",
+      "page": 76
+    },
+    {
+      "id": "sishu.zhongyong.26",
+      "label": "Bab XXV",
+      "name": "Keabadian",
+      "page": 77
+    },
+    {
+      "id": "sishu.zhongyong.27",
+      "label": "Bab XXVI",
+      "name": "Jalan Suci Nabi",
+      "page": 81
+    },
+    {
+      "id": "sishu.zhongyong.28",
+      "label": "Bab XXVII",
+      "name": "Menetapi Kedudukan",
+      "page": 83
+    },
+    {
+      "id": "sishu.zhongyong.29",
+      "label": "Bab XXVIII",
+      "name": "Hukum Yang di Dalam Jalan Suci",
+      "page": 85
+    },
+    {
+      "id": "sishu.zhongyong.30",
+      "label": "Bab XXIX",
+      "name": "Nabi Penerus dan Penyempurna",
+      "page": 88
+    },
+    {
+      "id": "sishu.zhongyong.31",
+      "label": "Bab XXX",
+      "name": "Nabi Bagi Semua",
+      "page": 89
+    },
+    {
+      "id": "sishu.zhongyong.32",
+      "label": "Bab XXXI",
+      "name": "Sandaran Yang Teguh",
+      "page": 91
+    },
+    {
+      "id": "sishu.zhongyong.33",
+      "label": "Bab XXXII",
+      "name": "Maha Sempurna Tian",
+      "page": 92
+    },
+    {
+      "id": "sishu.lunyu.01",
+      "label": "Jilid I",
+      "name": "Xue Er (Belajar)",
+      "page": 98
+    },
+    {
+      "id": "sishu.lunyu.02",
+      "label": "Jilid II",
+      "name": "Wei Zheng (Pemerintahan)",
+      "page": 107
+    },
+    {
+      "id": "sishu.lunyu.03",
+      "label": "Jilid III",
+      "name": "Ba Yi (Tarian)",
+      "page": 118
+    },
+    {
+      "id": "sishu.lunyu.04",
+      "label": "Jilid IV",
+      "name": "Li Ren (Cinta Kasih)",
+      "page": 131
+    },
+    {
+      "id": "sishu.lunyu.05",
+      "label": "Jilid V",
+      "name": "Gong Ye Chang (nama)",
+      "page": 141
+    },
+    {
+      "id": "sishu.lunyu.06",
+      "label": "Jilid VI",
+      "name": "Yong Ye (nama)",
+      "page": 156
+    },
+    {
+      "id": "sishu.lunyu.07",
+      "label": "Jilid VII",
+      "name": "Shu Er (Penerus)",
+      "page": 171
+    },
+    {
+      "id": "sishu.lunyu.08",
+      "label": "Jilid VIII",
+      "name": "Tai Bo (nama)",
+      "page": 187
+    },
+    {
+      "id": "sishu.lunyu.09",
+      "label": "Jilid IX",
+      "name": "Zi Han (Jarang)",
+      "page": 199
+    },
+    {
+      "id": "sishu.lunyu.10",
+      "label": "Jilid X",
+      "name": "Xiang Dang (Kampung)",
+      "page": 214
+    },
+    {
+      "id": "sishu.lunyu.11",
+      "label": "Jilid XI",
+      "name": "Xian Jin (Yang Maju)",
+      "page": 229
+    },
+    {
+      "id": "sishu.lunyu.12",
+      "label": "Jilid XII",
+      "name": "Yan Yuan (nama)",
+      "page": 249
+    },
+    {
+      "id": "sishu.lunyu.13",
+      "label": "Jilid XIII",
+      "name": "Zi Lu (nama)",
+      "page": 267
+    },
+    {
+      "id": "sishu.lunyu.14",
+      "label": "Jilid XIV",
+      "name": "Xian Wen (Bertanya)",
+      "page": 285
+    },
+    {
+      "id": "sishu.lunyu.15",
+      "label": "Jilid XV",
+      "name": "Wei Ling Gong (nama)",
+      "page": 310
+    },
+    {
+      "id": "sishu.lunyu.16",
+      "label": "Jilid XVI",
+      "name": "Ji Shi (nama)",
+      "page": 327
+    },
+    {
+      "id": "sishu.lunyu.17",
+      "label": "Jilid XVII",
+      "name": "Yang Huo (nama)",
+      "page": 342
+    },
+    {
+      "id": "sishu.lunyu.18",
+      "label": "Jilid XVIII",
+      "name": "Wei Zi (nama)",
+      "page": 360
+    },
+    {
+      "id": "sishu.lunyu.19",
+      "label": "Jilid XIX",
+      "name": "Zi Zhang (nama)",
+      "page": 371
+    },
+    {
+      "id": "sishu.lunyu.20",
+      "label": "Jilid XX",
+      "name": "Yao Yue (Berkata)",
+      "page": 386
+    },
+    {
+      "id": "sishu.mengzi.01",
+      "label": "Jilid I A",
+      "name": "Liang Hui Wang (nama)",
+      "page": 394
+    },
+    {
+      "id": "sishu.mengzi.02",
+      "label": "Jilid I B",
+      "name": "Liang Hui Wang (nama)",
+      "page": 428
+    },
+    {
+      "id": "sishu.mengzi.03",
+      "label": "Jilid II A",
+      "name": "Gong Sun Chou (nama)",
+      "page": 472
+    },
+    {
+      "id": "sishu.mengzi.04",
+      "label": "Jilid II B",
+      "name": "Gong Sun Chou (nama)",
+      "page": 511
+    },
+    {
+      "id": "sishu.mengzi.05",
+      "label": "Jilid III A",
+      "name": "Teng Wen Gong (nama)",
+      "page": 548
+    },
+    {
+      "id": "sishu.mengzi.06",
+      "label": "Jilid III B",
+      "name": "Teng Wen Gong (nama)",
+      "page": 583
+    },
+    {
+      "id": "sishu.mengzi.07",
+      "label": "Jilid IV A",
+      "name": "Li Lou (nama)",
+      "page": 622
+    },
+    {
+      "id": "sishu.mengzi.08",
+      "label": "Jilid IV B",
+      "name": "Li Lou (nama)",
+      "page": 661
+    },
+    {
+      "id": "sishu.mengzi.09",
+      "label": "Jilid V A",
+      "name": "Wan Zhang (nama)",
+      "page": 700
+    },
+    {
+      "id": "sishu.mengzi.10",
+      "label": "Jilid V B",
+      "name": "Wan Zhang (nama)",
+      "page": 737
+    },
+    {
+      "id": "sishu.mengzi.11",
+      "label": "Jilid VI A",
+      "name": "Gao Zi (nama)",
+      "page": 772
+    },
+    {
+      "id": "sishu.mengzi.12",
+      "label": "Jilid VI B",
+      "name": "Gao Zi (nama)",
+      "page": 808
+    },
+    {
+      "id": "sishu.mengzi.13",
+      "label": "Jilid VII A",
+      "name": "Jin Xin (Menyelami Hati)",
+      "page": 848
+    },
+    {
+      "id": "sishu.mengzi.14",
+      "label": "Jilid VII B",
+      "name": "Jin Xin",
+      "page": 889
+    }
+  ]
+}
