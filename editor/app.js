@@ -257,10 +257,35 @@
       allFinal?'Semua pasal pada cakupan ini sudah final berdasarkan status repository.':
       'Pengajuan massal mencakup '+n+' pasal. Pengelola tetap memeriksa tiap pasal sebelum menerbitkan status Final.';
   }
-  function showHanzi(paragraphs){
+  function showHanzi(paragraphs,sections=[],annotations=[]){
     const root=$('hanziText');root.replaceChildren();
-    for(const tokens of paragraphs||[]){
+    const sectionByIndex=new Map((sections||[]).filter(s=>Number.isInteger(s.paragraph_index)).map(s=>[s.paragraph_index,s]));
+    for(let i=0;i<(paragraphs||[]).length;i++){
+      const tokens=paragraphs[i];
       if(!Array.isArray(tokens))continue;
+      const section=sectionByIndex.get(i);
+      if(section){
+        const label=document.createElement('div');
+        label.className='textual-section-label';
+        label.textContent=section.label||'Bagian naskah';
+        root.append(label);
+      }
+      for(const note of (annotations||[]).filter(a=>a.before_paragraph_index===i&&a.kind==='editorial_introduction')){
+        const aside=document.createElement('aside');
+        aside.className='textual-editorial-note';
+        const heading=document.createElement('strong');
+        heading.textContent='Catatan penyunting, bukan teks utama · '+(note.attribution||'');
+        const description=document.createElement('p');
+        description.textContent=note.description_indonesian||'';
+        aside.append(heading,description);
+        if(note.hanzi){
+          const citation=document.createElement('p');
+          citation.className='textual-editorial-quotation';
+          citation.textContent=note.hanzi;
+          aside.append(citation);
+        }
+        root.append(aside);
+      }
       const p=document.createElement('p');
       for(const t of tokens){
         if(t.type==='text'){p.append(document.createTextNode(t.value||''))}
@@ -290,7 +315,7 @@
       ' · Inggris: '+(enFinal?'final':'perlu review');
     updatePassageActions();
     renderChapterReview();
-    showHanzi(p.ruby_paragraphs);
+    showHanzi(p.ruby_paragraphs,p.textual_sections,p.editorial_annotations);
     $('indonesianText').textContent=p.translation_indonesian||'Terjemahan belum tersedia.';
     const mappings=englishAlignments.get(p.id)||[];
     const segments=mappings.flatMap(entry=>entry.english_segments||[]);

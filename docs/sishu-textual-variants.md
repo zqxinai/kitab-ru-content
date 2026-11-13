@@ -1,5 +1,8 @@
 # Audit konteks perbedaan naskah Si Shu — 13 November 2026
 
+> **Status pelaksanaan 13 November 2026:** Da Xue Bab V:1 (`sishu.daxue.06.01`) telah diperbaiki untuk 惟 dan 有 dan memperoleh metadata serta pemisahan visual pengantar/pelengkap Zhu Xi di editor. [Audit batch](audits/daxue-bab-v-matakin-2012-2026-11-13.md). Kalimat historis pada bagian lama yang berbunyi 'belum diterapkan' menjelaskan keadaan sebelum patch, bukan status terbaru. MATAKIN 2012 tetap acuan utama, tanpa mengubah teks Indonesia atau mengesahkan Final.
+
+
 > **Update implementasi 13 November 2026:** Lun Yu IV:19 (遊 ×2, hlm. 138), XVII:13 (原 / yuán; tanpa nomor halaman foto yang terlihat), dan XIV:1 (穀 ×2, hlm. 285) kini sudah dikoreksi sesuai rekaman bukti cetakan MATAKIN 2012. [Laporan batch](audits/matakin-2012-lunyu-glyphs-batch-02-2026-11-13.md). Bagian historis di bawah yang bertuliskan 'belum diperbarui' adalah keadaan sebelum patch. Zhu Xi WYG tetap pembanding, status Final tidak berubah.
 
 

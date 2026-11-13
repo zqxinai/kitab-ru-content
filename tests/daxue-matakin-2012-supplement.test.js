@@ -1,0 +1,41 @@
+'use strict';
+const test=require('node:test'),assert=require('node:assert/strict'),fs=require('node:fs');
+const read=p=>JSON.parse(fs.readFileSync(p,'utf8'));
+const p=read('sishu/chapters/daxue/06.json').passages.find(p=>p.id==='sishu.daxue.06.01');
+const bundle=read('dist/sishu-content.json'),built=bundle.chapters.flatMap(x=>x.passages).find(x=>x.id===p.id);
+const hash=s=>{let h=2166136261;for(let i=0;i<s.length;i++){h^=s.charCodeAt(i);h=Math.imul(h,16777619)>>>0}return h.toString(16).padStart(8,'0')};
+const txt=rows=>rows.map(row=>row.map(t=>t.traditional||t.value||'').join('')).join('\n');
+test('MATAKIN text unchanged, two Hanzi readings corrected, and bundle synchronized',()=>{
+ assert.equal(p.editorial_status,'unverified-draft');
+ assert.equal(hash(p.translation_indonesian),'a2e010d0');
+ assert.equal(hash(txt(p.ruby_paragraphs)),'e1349b62');
+ assert.deepEqual(built,p);
+ assert.equal(p.ruby_paragraphs.length,2);
+ assert.equal(txt([p.ruby_paragraphs[0]]),'此謂知本，此謂知之至也。');
+ assert.match(txt([p.ruby_paragraphs[1]]),/惟於理有未窮，故其知有不盡也/);
+ const ruby=p.ruby_paragraphs[1].filter(t=>t.type==='ruby');
+ assert.equal(ruby.filter(t=>t.traditional==='惟'&&t.pinyin==='wéi').length,1);
+ assert.equal(ruby.filter(t=>t.traditional==='有'&&t.pinyin==='yǒu').length,4);
+});
+test('Zhu Xi introduction and supplement explicit, not mixed with primary text',()=>{
+ assert.deepEqual(p.textual_sections.map(s=>s.paragraph_index),[0,1]);
+ assert.deepEqual(p.textual_sections.map(s=>s.kind),['matakin_2012_received_text','zhu_xi_supplement']);
+ assert.match(p.textual_sections[1].attribution,/朱熹/);
+ assert.equal(p.editorial_annotations.length,1);
+ const n=p.editorial_annotations[0];
+ assert.equal(n.before_paragraph_index,1);assert.equal(n.kind,'editorial_introduction');
+ assert.match(n.hanzi,/間嘗竊取程子之意/);
+ assert.ok(n.description_indonesian.includes('bukan ayat pokok'));
+ assert.deepEqual(n.comparative_witness.pages,['KR1h0015_WYG_000-11b','KR1h0015_WYG_000-12a']);
+ assert.equal(n.comparative_witness.file,'KR1h0015_000.txt');
+ assert.equal(read('dist/sishu-review-status.json').entries.length,0);
+ assert.equal(bundle.chapters.length,78);
+ assert.equal(bundle.chapters.reduce((n,ch)=>n+ch.passages.length,0),965);
+});
+test('Editor renders separate section labels and note',()=>{
+ const js=fs.readFileSync('editor/app.js','utf8'),css=fs.readFileSync('editor/style.css','utf8');
+ assert.match(js,/function showHanzi\(paragraphs,sections=\[\],annotations=\[\]\)/);
+ assert.match(js,/showHanzi\(p\.ruby_paragraphs,p\.textual_sections,p\.editorial_annotations\)/);
+ assert.match(js,/Catatan penyunting, bukan teks utama/);
+ assert.match(css,/\.textual-editorial-note/);
+});

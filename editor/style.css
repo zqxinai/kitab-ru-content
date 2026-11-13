@@ -80,6 +80,12 @@ button:focus-visible,input:focus-visible,textarea:focus-visible,a:focus-visible{
 .hanzi-text p{margin:3px 0 14px}
 .hanzi-text ruby{ruby-position:over;white-space:nowrap}
 .hanzi-text rt{font:10px/1.3 system-ui,sans-serif;color:#6d9199}
+.textual-section-label{font:700 11px/1.5 Inter,"Segoe UI",system-ui,sans-serif;letter-spacing:.04em;color:#226e79;background:#e8f6f7;border-left:3px solid #6bb5bd;padding:8px 11px;border-radius:5px;margin:13px 0 9px}
+.textual-editorial-note{font:12px/1.75 Inter,"Segoe UI",system-ui,sans-serif;color:#526d73;background:#f8faf9;border:1px solid #dbe8e5;border-radius:11px;padding:12px 14px;margin:8px 0 16px}
+.textual-editorial-note strong{display:block;font-weight:750;color:#536f71;margin-bottom:6px}
+.textual-editorial-note p{font:12px/1.75 Inter,"Segoe UI",system-ui,sans-serif;margin:4px 0 0}
+.textual-editorial-note .textual-editorial-quotation{font:16px/1.7 var(--serif);color:#667e82}
+
 .translation-text{font:16px/1.9 "Noto Serif",Georgia,serif;color:#3b5660;white-space:pre-wrap;overflow-wrap:anywhere}
 .translation-card.english{background:linear-gradient(140deg,#fff,#fafdff)}
 .translation-text.unavailable{font-family:system-ui,sans-serif;font-size:13px;font-style:italic;color:#91a3a7}
