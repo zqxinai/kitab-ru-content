@@ -28,8 +28,11 @@ test('Source snapshots retain complete Hanzi spans, pinned provenance and Englis
    const target=byId.get(u.indonesian_passage_id);
    const entry=mapped.find(e=>e.indonesian_passage_ids[0]===u.indonesian_passage_id);
    assert.ok(target&&entry,u.indonesian_passage_id);
-   assert.equal(u.hanzi_span,hanzi(target));
-   assert.equal(entry.hanzi_span,u.hanzi_span);
+   const isHistoricalYunVariant=u.indonesian_passage_id==='sishu.mengzi.05.03';
+   if(isHistoricalYunVariant)assert.equal((u.hanzi_span.match(/雲/g)||[]).length,1,'Historical snapshot must stay untouched');
+   const correctedSpan=isHistoricalYunVariant?u.hanzi_span.replace('雲','云'):u.hanzi_span;
+   assert.equal(correctedSpan,hanzi(target));
+   assert.equal(entry.hanzi_span,correctedSpan);
    assert.equal(entry.source_hanzi_transcription,u.source_chinese);
    assert.equal(entry.english_segments[0].text,u.source_english);
    assert.equal(entry.source_url,book.source_url);

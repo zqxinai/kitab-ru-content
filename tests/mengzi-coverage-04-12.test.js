@@ -26,8 +26,11 @@ test('exact source snapshots and target Hanzi, pinned original provenance, never
    const target=ch.passages.find(p=>p.id===unit.indonesian_passage_id);
    const alignment=mapped.find(e=>e.indonesian_passage_ids[0]===unit.indonesian_passage_id);
    assert.ok(target&&alignment,unit.indonesian_passage_id);
-   assert.equal(unit.hanzi_span,hanzi(target));
-   assert.equal(alignment.hanzi_span,unit.hanzi_span);
+   const semanticYunFixes=new Set(['sishu.mengzi.04.02','sishu.mengzi.06.05','sishu.mengzi.07.02','sishu.mengzi.07.09']);
+   const expectedHanzi=semanticYunFixes.has(unit.indonesian_passage_id)?unit.hanzi_span.replace('雲','云'):unit.hanzi_span;
+   if(semanticYunFixes.has(unit.indonesian_passage_id))assert.equal((unit.hanzi_span.match(/雲/g)||[]).length,1,'Historical source still archived');
+   assert.equal(expectedHanzi,hanzi(target));
+   assert.equal(alignment.hanzi_span,expectedHanzi);
    assert.equal(alignment.source_hanzi_transcription,unit.source_chinese);
    assert.equal(alignment.english_segments[0].text,unit.source_english);
    assert.equal(alignment.source_url,book.source_url);

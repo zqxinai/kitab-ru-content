@@ -32,3 +32,7 @@ Menurut audit awal 24 karakter, sesudah batch 01 (7) dan batch 02 (10) tersisa *
 Pemeriksaan CI pertama setelah perbaikan menemukan sembilan entri `dist/sishu-english-alignment.json` dengan `hanzi_span` yang masih berisi bentuk lama `雲`. Seluruh sembilan rentang kini mengikuti teks pasal `云`, tanpa mengubah `english_segments`, kutipan James Legge, `source_hanzi_transcription` (bukti transkripsi asal), `status`, atau `source_url`. Pasal `sishu.lunyu.19.23` tidak memiliki mismatch alignment tersebut. Pengujian regresi menegaskan sembilan span sesuai data bab pada tingkat aksara Hanzi.
 
 Entri yang disinkronkan: `legge-lunyu-07-18`, `legge-lunyu-07-33`, `legge-lunyu-14-43`, `legge-zhongyong-26-07`, `legge-mengzi-04-02`, `legge-mengzi-06-05`, `legge-mengzi-07-02`, `legge-mengzi-07-09`, `legge-mengzi-b03-05-03`.
+
+## Uji snapshot historis (regresi)
+
+Dua tes cakupan Mengzi sebelumnya membandingkan snapshot Hanzi dari sumber Legge secara byte-identik terhadap teks pembaca. Setelah koreksi ilmiah, keduanya dibenahi dengan daftar pengecualian eksplisit untuk **lima** pasal Mengzi yang terdampak: `04.02`, `05.03`, `06.05`, `07.02`, `07.09`. Snapshot sumber **tidak diubah**; tes tetap memastikan bentuk terdokumentasi awal `雲` hanya satu per pasal, sedangkan teks pembaca dan alignment memakai `云`. Seluruh verifikasi terjemahan Inggris, provenance dan status draft tetap berlaku.
