@@ -5,6 +5,7 @@
   const $ = id => document.getElementById(id);
   const REPO='https://github.com/zqxinai/kitab-ru-content';
   const SOURCE='../dist/sishu-content.json';
+  const EDITION_SOURCE='../sishu/editions/matakin-2012-chapters.json';
   const ALIGNMENT_SOURCE='../dist/sishu-english-alignment.json';
   const REVIEW_SOURCE='../dist/sishu-review-status.json';
   const KEY='kitab-ru-editorial-drafts-v1';
@@ -98,8 +99,25 @@
           reviewStatuses.set(entry.passage_id,entry);
         }
       }
+      // Edition 2012 labels are presentation metadata. Preserve stable source chapter IDs.
+      // If the independent metadata cannot load, the original scripture remains readable.
+      let edition={chapters:[]};
+      try{
+        const resp=await fetch(EDITION_SOURCE,{credentials:'omit',cache:'no-store'});
+        if(resp.ok){
+          const received=await resp.json();
+          if(received?.schema==='ru-classics.edition-chapters.v1'&&Array.isArray(received.chapters))edition=received;
+        }
+      }catch(_){ /* Fallback to the source chapter title without changing verse IDs. */ }
+      const editionById=new Map(edition.chapters.map(e=>[e.id,e]));
       bundle=data;chapters=data.chapters.slice().sort((a,b)=>
-        data.books.indexOf(a.book)-data.books.indexOf(b.book)||a.index-b.index);
+        data.books.indexOf(a.book)-data.books.indexOf(b.book)||a.index-b.index).map(ch=>{
+        const ed=editionById.get(ch.id);
+        if(!ed)return ch;
+        const sourceSuffix=ch.title.includes(' · ')?ch.title.slice(ch.title.indexOf(' · ')):'';
+        return {...ch,title:ed.label+(ed.label==='Bab Utama'?'':' — '+ed.name)+sourceSuffix,
+          edition_label:ed.label,edition_page:ed.page};
+      });
       records=[];byId=new Map();
       for(const ch of chapters){
         if(!Array.isArray(ch.passages))continue;
@@ -148,7 +166,10 @@
     }
     const cs=$('chapterList');cs.replaceChildren();
     for(const ch of chapters.filter(c=>c.book===bookId)){
-      cs.append(navEntry(ch.title,'Bab '+ch.index,ch.id===chapterId,()=>{
+      const originalLabel=ch.title.match(/^(Bab Utama|Bab [IVXLCDM]+|Jilid [IVXLCDM]+\s*[AB]?)/)?.[0];
+      const editionLabel=ch.edition_label||originalLabel||('Bagian '+ch.index);
+      const detail=ch.edition_page?editionLabel+' · hlm. '+ch.edition_page:editionLabel;
+      cs.append(navEntry(ch.title,detail,ch.id===chapterId,()=>{
         if(ch.passages?.length)select(ch.passages[0].id);
       },null,ch.passages?.length||0));
     }
