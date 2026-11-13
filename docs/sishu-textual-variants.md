@@ -66,6 +66,14 @@ Status: keputusan kerja bersumber, **belum disahkan Final**. Hanzi proyek berasa
 
 **Pembanding:** https://ctext.org/si-shu-zhang-ju-ji-zhu/da-xue-zhang-ju1 dan https://www.chineseclassic.com/content/41 .
 
+### Zhong Yong Bab XXV:2 (internal `sishu.zhongyong.26.02`) — foto MATAKIN 2012, 13 November 2026
+
+**Discrepancy #13, tekstual/grafis selesai:** foto MATAKIN 2012 berjudul `BAB XXV. Keabadian` memuat `不息則久，久則徵，徵則悠遠，悠遠則博厚，博厚則高明`. Huruf **久** dan **遠** pada cetakan sama seperti Ru Classics, sedangkan sumber Zhu Xi WYG yang diaudit menulis bentuk grafis **乆** dan **逺**; tidak terdapat perbedaan leksikal atau teologis **akibat perbedaan grafem tersebut**. Cetakan juga menampilkan `遠(远)` untuk tradisional/simplified. **Keputusan:** pertahankan `久` dan `遠` pada tampilan Hanzi tradisional, `远` pada simplified, tanpa mengubah pinyin. Nomor tampil pembaca adalah Bab XXV Pasal 2, bukan index internal ke-26.
+
+**Discrepancy interpretatif terpisah (#13a, terbuka untuk catatan teologis):** pada **久則徵**, MATAKIN menerjemahkan “karena berlangsung lama Dia menghimpun banyak pengetahuan”, sedangkan Zhu Xi menjelaskan `久，常於中也；徵，驗於外也`: **徵** adalah bukti/hasil yang tampak secara eksternal setelah berlangsung lama; lihat `朱子語類/064` bagian 第二十六章 dan `中庸纂疏` 四庫全書本卷三. Jadi **teks Hanzi cocok tetapi terjemahan/penafsiran MATAKIN tidak sepenuhnya sama dengan gloss Zhu Xi**. **Keputusan editorial:** bahasa Indonesia MATAKIN tetap utuh; sajikan penafsiran Zhu Xi sebagai catatan pembanding yang tidak menggantikan bahasa teologis MATAKIN. Jangan menafsirkan perbedaan ini sebagai kesalahan tradisional/simplified, dan jangan tandai dua bahasa Final otomatis.
+
+**Sumber:** foto MATAKIN 2012 yang diberikan pengguna (nomor halaman cetak tidak tampak pada foto); https://zh.wikisource.org/zh-hant/朱子語類/064 ; https://zh.wikisource.org/zh-hant/中庸纂疏_(四庫全書本)/卷三 ; `docs/audits/zhu-xi-wyg-965.json`. **Status implementasi:** catatan audit saja; sumber JSON, anotasi Ruby, dist dan hash belum diubah.
+
 ### Mengzi 09.07 — cakupan yang perlu dipisah
 
 Pada `sishu/chapters/mengzi/09.json`, pasal 09.07 memuat ucapan Mengzi dan kutipan `伊訓曰`, tetapi mencampurkan komentar penafsir `林氏曰：“以堯舜之道要湯者...` serta `愚謂此語亦猶前章...`. Sumber awal JSON juga memuatnya; bukan kesalahan pengimporan GitHub. Edisi `四書章句集注` menegaskan kedua segmen merupakan komentar setelah teks utama. Draf Inggris Legge dari `mengzi009.txt` memuat dialog Mengzi beserta kutipan `伊訓` tanpa komentar tersebut.
