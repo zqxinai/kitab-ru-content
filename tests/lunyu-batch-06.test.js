@@ -13,10 +13,10 @@ const expected=['07.09','07.10','07.18','07.29','07.30','10.09','10.11','11.02',
 test('Batch 06 adds ten safe English drafts, zero final approvals',()=>{
  assert.deepEqual(snap.units.map(x=>x.indonesian_passage_id),expected);
  assert.equal(new Set(snap.units.map(x=>x.indonesian_passage_id)).size,10);
- assert.equal(new Set(align.entries.flatMap(x=>x.indonesian_passage_ids)).size,632);
- assert.equal(cat.english_editor_alignment_drafts,632);
- assert.equal(cat.english_editor_passages,878);
- assert.equal(cat.english_editor_unmapped,87);
+ assert.ok(new Set(align.entries.flatMap(x=>x.indonesian_passage_ids)).size>=632);
+ assert.ok(cat.english_editor_alignment_drafts>=632);
+ assert.ok(cat.english_editor_passages>=878);
+ assert.ok(cat.english_editor_unmapped<=87);
  assert.equal(review.entries.length,0);
 });
 test('Exact English snippets and full Hanzi character spans are preserved',()=>{

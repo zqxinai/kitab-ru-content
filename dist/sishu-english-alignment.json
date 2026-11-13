@@ -10069,6 +10069,125 @@
       "source_url": "https://www.gutenberg.org/cache/epub/4094/pg4094-images.html",
       "status": "draft",
       "review_note": "Source Chinese matched in full after punctuation normalization. Legge and MATAKIN numbering remain independent. Requires manual review before Final."
+    },
+    {
+      "id": "legge-mengzi-b05-07-23",
+      "indonesian_passage_ids": [
+        "sishu.mengzi.07.23"
+      ],
+      "english_segments": [
+        {
+          "legge_ref": "Mencius, Book IV, Part I, CHAP. 23",
+          "text": "Mencius said, 'The evil of men is that they like to be teachers of others.'"
+        }
+      ],
+      "hanzi_span": "孟子曰：“人之忌，在好為人師。”",
+      "source_hanzi_transcription": "孟子曰：「人之患，在好為人師。」",
+      "source_url": "https://github.com/alexamies/chinesenotes.com/blob/5d2e867ecfb33e16a6aed392c6b8b8cde3896030/corpus/mengzi/mengzi007.txt",
+      "status": "draft",
+      "review_note": "Text variant, 忌 versus 患; classical meaning 'cacat' supports 患. Full Chinese source differs in 1 characters; semantic alignment reviewed but no Final approval."
+    },
+    {
+      "id": "legge-mengzi-b05-07-25",
+      "indonesian_passage_ids": [
+        "sishu.mengzi.07.25"
+      ],
+      "english_segments": [
+        {
+          "legge_ref": "Mencius, Book IV, Part I, CHAP. 25",
+          "text": "Mencius, addressing the disciple Yue Zheng, said to him, 'Your coming here in the train of Zi Ao was only because of the food and the drink. I could not have thought that you, having learned the doctrine of the ancients, would have acted with a view to eating and drinking.'"
+        }
+      ],
+      "hanzi_span": "孟子謂樂正子曰：“子之從於子敖來，徒哺啜也。我不意子學古之道，而以哺啜也。”",
+      "source_hanzi_transcription": "孟子謂樂正子曰：「子之從於子敖來，徒餔啜也。我不意子學古之道而以餔啜也。」",
+      "source_url": "https://github.com/alexamies/chinesenotes.com/blob/5d2e867ecfb33e16a6aed392c6b8b8cde3896030/corpus/mengzi/mengzi007.txt",
+      "status": "draft",
+      "review_note": "Text variant, 哺 versus 餔 twice; 餔啜 is attested in classical commentary. Full Chinese source differs in 2 characters; semantic alignment reviewed but no Final approval."
+    },
+    {
+      "id": "legge-mengzi-b05-08-17",
+      "indonesian_passage_ids": [
+        "sishu.mengzi.08.17"
+      ],
+      "english_segments": [
+        {
+          "legge_ref": "Mencius, Book IV, Part II, CHAP. 17",
+          "text": "Mencius said, 'Words which are not true are inauspicious, and the words which are most truly obnoxious to the name of inauspicious, are those which throw into the shade men of talents and virtue.'"
+        }
+      ],
+      "hanzi_span": "孟子曰：“言無實，不祥。不祥之實，蔽賢者當之。”",
+      "source_hanzi_transcription": "孟子曰：「言無實，不詳。不詳之實，蔽賢者當之。」",
+      "source_url": "https://github.com/alexamies/chinesenotes.com/blob/5d2e867ecfb33e16a6aed392c6b8b8cde3896030/corpus/mengzi/mengzi008.txt",
+      "status": "draft",
+      "review_note": "Text variant, 祥 versus 詳 twice; 'inauspicious' in English and Indonesian favors 祥. Full Chinese source differs in 2 characters; semantic alignment reviewed but no Final approval."
+    },
+    {
+      "id": "legge-lunyu-b07-09-26",
+      "indonesian_passage_ids": [
+        "sishu.lunyu.09.26"
+      ],
+      "english_segments": [
+        {
+          "legge_ref": "Confucian Analects, Book IX, CHAP. XXV",
+          "text": "The Master said, 'The commander of the forces of a large state may be carried off, but the will of even a common man cannot be taken from him.'"
+        }
+      ],
+      "hanzi_span": "子曰：“三軍可奪帥也，匹夫不可奪志也。”",
+      "source_hanzi_transcription": "子曰、三軍可奪師也、匹夫不可奪志也。",
+      "source_url": "https://www.gutenberg.org/cache/epub/4094/pg4094-images.html",
+      "status": "draft",
+      "review_note": "Text variant, 帥 versus 師: source project from 帅; English says commander. Full Chinese source differs in 1 characters; semantic alignment reviewed but no Final approval."
+    },
+    {
+      "id": "legge-lunyu-b07-10-24",
+      "indonesian_passage_ids": [
+        "sishu.lunyu.10.24"
+      ],
+      "english_segments": [
+        {
+          "legge_ref": "Confucian Analects, Book X, CHAP. XVI, §1",
+          "text": "In bed, he did not lie like a corpse. At home, he did not put on any formal deportment."
+        }
+      ],
+      "hanzi_span": "寢不屍，居不客。",
+      "source_hanzi_transcription": "寢不尸、居不容。",
+      "source_url": "https://www.gutenberg.org/cache/epub/4094/pg4094-images.html",
+      "status": "draft",
+      "review_note": "Text variant, 客 versus 容: documented textual variants; review before finalization. Full Chinese source differs in 1 characters; semantic alignment reviewed but no Final approval."
+    },
+    {
+      "id": "legge-lunyu-b07-11-03",
+      "indonesian_passage_ids": [
+        "sishu.lunyu.11.03"
+      ],
+      "english_segments": [
+        {
+          "legge_ref": "Confucian Analects, Book XI, CHAP. II, §2",
+          "text": "Distinguished for their virtuous principles and practice, there were Yen Yuan, Min Tsze-ch'ien, Zan Po-niu, and Chung-kung; for their ability in speech, Tsai Wo and Tsze-kung; for their administrative talents, Zan Yu and Chi Lu; for their literary acquirements, Tsze-yu and Tsze-hsia."
+        }
+      ],
+      "hanzi_span": "德行：顏淵，閔子騫，冉伯牛，仲弓。言語：宰我，子貢。政事：冉有，季路。文學：子游，子夏。",
+      "source_hanzi_transcription": "德行、顏淵、閔子騫、冉伯牛、仲弓。言語、宰我、子貢。政事、冉有、李路。文學、子游、子夏。",
+      "source_url": "https://www.gutenberg.org/cache/epub/4094/pg4094-images.html",
+      "status": "draft",
+      "review_note": "Text variant, 季路 versus 李路: name of Confucius disciple supports 季路. Full Chinese source differs in 1 characters; semantic alignment reviewed but no Final approval."
+    },
+    {
+      "id": "legge-lunyu-b07-14-33",
+      "indonesian_passage_ids": [
+        "sishu.lunyu.14.33"
+      ],
+      "english_segments": [
+        {
+          "legge_ref": "Confucian Analects, Book XIV, CHAP. XXXV",
+          "text": "The Master said, 'A horse is called a ch'i, not because of its strength, but because of its other good qualities.'"
+        }
+      ],
+      "hanzi_span": "曰：“驥不稱其力，稱其德也。”",
+      "source_hanzi_transcription": "子曰、驥、不稱其力、稱其德也。",
+      "source_url": "https://www.gutenberg.org/cache/epub/4094/pg4094-images.html",
+      "status": "draft",
+      "review_note": "Text variant, 曰 versus 子曰: missing 子 in project; candidate separate Ruby repair. Full Chinese source differs in 1 characters; semantic alignment reviewed but no Final approval."
     }
   ]
 }

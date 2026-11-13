@@ -1,0 +1,66 @@
+{
+  "schema": "kitab-ru.legge-source.v1",
+  "title": "Lun Yu variant collation, English drafts batch 07",
+  "status": "draft-needs-review",
+  "source_url": "https://www.gutenberg.org/cache/epub/4094/pg4094-images.html",
+  "source_ebook_id": 4094,
+  "accessed_at": "2026-11-13",
+  "units": [
+    {
+      "indonesian_passage_id": "sishu.lunyu.09.26",
+      "hanzi_span": "子曰：“三軍可奪帥也，匹夫不可奪志也。”",
+      "source_hanzi_transcription": "子曰、三軍可奪師也、匹夫不可奪志也。",
+      "source_english": "The Master said, 'The commander of the forces of a large state may be carried off, but the will of even a common man cannot be taken from him.'",
+      "legge_ref": "Confucian Analects, Book IX, CHAP. XXV",
+      "source_html_lines": [
+        1734,
+        1747
+      ],
+      "source_url": "https://www.gutenberg.org/cache/epub/4094/pg4094-images.html",
+      "normalized_character_edit_distance": 1,
+      "variant_note": "帥 versus 師: source project from 帅; English says commander."
+    },
+    {
+      "indonesian_passage_id": "sishu.lunyu.10.24",
+      "hanzi_span": "寢不屍，居不客。",
+      "source_hanzi_transcription": "寢不尸、居不容。",
+      "source_english": "In bed, he did not lie like a corpse. At home, he did not put on any formal deportment.",
+      "legge_ref": "Confucian Analects, Book X, CHAP. XVI, §1",
+      "source_html_lines": [
+        1966,
+        1983
+      ],
+      "source_url": "https://www.gutenberg.org/cache/epub/4094/pg4094-images.html",
+      "normalized_character_edit_distance": 1,
+      "variant_note": "客 versus 容: documented textual variants; review before finalization."
+    },
+    {
+      "indonesian_passage_id": "sishu.lunyu.11.03",
+      "hanzi_span": "德行：顏淵，閔子騫，冉伯牛，仲弓。言語：宰我，子貢。政事：冉有，季路。文學：子游，子夏。",
+      "source_hanzi_transcription": "德行、顏淵、閔子騫、冉伯牛、仲弓。言語、宰我、子貢。政事、冉有、李路。文學、子游、子夏。",
+      "source_english": "Distinguished for their virtuous principles and practice, there were Yen Yuan, Min Tsze-ch'ien, Zan Po-niu, and Chung-kung; for their ability in speech, Tsai Wo and Tsze-kung; for their administrative talents, Zan Yu and Chi Lu; for their literary acquirements, Tsze-yu and Tsze-hsia.",
+      "legge_ref": "Confucian Analects, Book XI, CHAP. II, §2",
+      "source_html_lines": [
+        2019,
+        2039
+      ],
+      "source_url": "https://www.gutenberg.org/cache/epub/4094/pg4094-images.html",
+      "normalized_character_edit_distance": 1,
+      "variant_note": "季路 versus 李路: name of Confucius disciple supports 季路."
+    },
+    {
+      "indonesian_passage_id": "sishu.lunyu.14.33",
+      "hanzi_span": "曰：“驥不稱其力，稱其德也。”",
+      "source_hanzi_transcription": "子曰、驥、不稱其力、稱其德也。",
+      "source_english": "The Master said, 'A horse is called a ch'i, not because of its strength, but because of its other good qualities.'",
+      "legge_ref": "Confucian Analects, Book XIV, CHAP. XXXV",
+      "source_html_lines": [
+        3108,
+        3114
+      ],
+      "source_url": "https://www.gutenberg.org/cache/epub/4094/pg4094-images.html",
+      "normalized_character_edit_distance": 1,
+      "variant_note": "曰 versus 子曰: missing 子 in project; candidate separate Ruby repair."
+    }
+  ]
+}

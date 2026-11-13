@@ -144,3 +144,13 @@ Tiga catatan `English translation: Legge 1861` di akhir transkripsi bab 1–3 di
 - **Koreksi atribusi sumber (13 Nov 2026):** Empat karakter di `09.26`, `10.24`, `11.03`, `14.33` merupakan Hanzi dari korpus **hanzhaodeng/chinese-ancient-text**, bukan Hanzi yang dicetak MATAKIN. Korpus sumber masing-masing memuat 帅 (→ 帥), 客, 季路, dan 曰; Legge memiliki 師, 容, 李路, dan 子曰. Semua perbedaan dicatat sebagai **perbedaan korpus sumber**, bukan kesalahan MATAKIN. Lihat [audit asal Hanzi](hanzi-provenance.md).
 - Cakupan editor kini **878/965 draf Inggris**, **87 tersisa**: Da Xue 53, Lun Yu 30, Mengzi 4. Jumlah persetujuan Final tetap 0; terjemahan Indonesia/Hanzi/pinyin dan paket Android tidak diubah.
 - Pengujian regresi baru: `node --test tests/lunyu-batch-06.test.js`. Pengujian batch sebelumnya mempertahankan nilai batas minimal historis agar tambahan baru tidak memicu pengulangan perbaikan angka.
+
+## Batch editorial varian 07 — 13 November 2026
+
+- **Tujuh draf Inggris baru:** Mengzi `07.23`, `07.25`, `08.17`; Lun Yu `09.26`, `10.24`, `11.03`, `14.33`.
+- Pencocokan teks dilakukan pada **seluruh pasal**, memeriksa sumber Legge Inggris dan konteks Indonesia. Perbedaan 1–2 karakter Hanzi dicatat per pasal dalam `review_note`, bukan diabaikan demi angka kecocokan 100%.
+- Sumber terarsip: `sources/legge/mengzi-variants-b05-chinesenotes.json` (teks dwibahasa dari commit sumber `5d2e867ecf...`) dan `sources/legge/lunyu-b07-gutenberg-4094.json` (Legge Project Gutenberg #4094 dengan nomor baris).
+- **Mengzi 09.07 belum ditandai lengkap** karena Hanzi proyek menyisipkan komentar Zhu Xi `林氏曰` dan `愚謂` ke tubuh pasal. Pemisahan teks dan regenerasi Ruby/pinyin/paket sumber diperlukan sebelum pemetaan Inggris dapat disahkan.
+- Catatan perbedaan, rekomendasi Da Xue `親民/新民` dan backlog pinyin/nama: [audit perbedaan](sishu-textual-variants.md) dan [backlog](sishu-audit-backlog.md).
+- Cakupan terkini **885/965 draf Inggris**, tersisa **80** (Da Xue 53, Lun Yu 26, Mengzi 1). Semuanya **Perlu Review**; jumlah Final tetap 0. Teks Indonesia, Hanzi, pinyin dan aset Android **tidak berubah**.
+- Tes regresi: `node --test tests/textual-variants-b07.test.js`; semua versi batch sebelumnya tetap diperiksa sebagai batas minimum historis.

@@ -28,10 +28,6 @@ Draf disimpan di browser perangkat masing-masing dan tidak otomatis tersinkron a
 - Istilah Tian tidak selalu diterjemahkan God oleh James Legge. Kata-kata Legge tidak diganti tanpa memberi label bahwa itu keputusan redaksional tersendiri.
 - Simpan rujukan dan alasan setiap perbaikan.
 
-## Asal Hanzi dan batas audit
-
-**Hanzi dalam proyek tidak berasal dari PDF MATAKIN.** Terjemahan Indonesia dan penomoran merujuk PDF MATAKIN, sedangkan berkas Markdown yang menjadi dasar paket JSON sebelumnya mengambil Hanzi dari JSON publik `hanzhaodeng/chinese-ancient-text`, dengan konversi ICU Hans-Hant dan pinyin ICU Han-Latin. Hal ini didokumentasikan di [Catatan asal Hanzi](docs/hanzi-provenance.md). Berkas sumber asal belum diaudit filologis per karakter. Jangan menyebutnya “Hanzi MATAKIN” atau memperlakukan perbedaan korpus dengan Legge otomatis sebagai kesalahan MATAKIN.
-
 ## Koleksi sumber
 
 - [Naskah bacaan Si Shu](dist/sishu-content.json)
