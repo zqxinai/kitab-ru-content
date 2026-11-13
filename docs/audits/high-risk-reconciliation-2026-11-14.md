@@ -1,5 +1,8 @@
 # Rekonsiliasi delapan kandidat high-risk awal — 14 November 2026
 
+> **Pembaruan berdasarkan foto cetak MATAKIN 2012 (14 November):** Bukti [tiga foto Zhong Yong](zhongyong-photos-xii-xxiv-xxv-2026-11-14.md) menegaskan bentuk `己` untuk diri sendiri pada XXIV:3 dan Hanzi XXV:4; tanda baca XXV:4 telah disesuaikan. **XII:3 masih terbuka** karena foto halaman 48 tidak memperlihatkan awal Hanzi `施諸己/已`; perlu halaman 47. Catatan kandidat di bawah adalah status sebelum pembaruan ini dan tidak boleh ditafsirkan sebagai permintaan foto berulang untuk XXIV:3/XXV:4.
+
+
 ## Metode
 Matriks `docs/audits/zhu-xi-wyg-965.json` memuat delapan kasus `high_risk` dari **penyaringan otomatis awal** sebelum koreksi. Kategori itu berarti kandidat harus diperiksa manual, bukan kesalahan pasti. Teks kini dicek di `sishu/chapters/**/*.json`, dengan saksi Zhu Xi WYG Kanseki `84c6b2c5093c57ae5d41c60a73c02323d2420ef0` dan bukti foto MATAKIN 2012 bila tersedia. Nomor bab ditulis menurut **MATAKIN**, ID internal dicantumkan terpisah.
 
