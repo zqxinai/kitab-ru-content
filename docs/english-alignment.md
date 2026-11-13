@@ -33,4 +33,28 @@ Status `draft` berarti belum diverifikasi; hanya `verified` setelah pemeriksa me
 4. Masukkan entri pemetaan satu per satu atau dalam batch teruji; audit missing/duplicate/out-of-order.
 5. Setelah seluruh 965 pasal diperiksa, baru naikkan status kelengkapan katalog dan paket.
 
-Status saat ini: 11 pasal Da Xue sudah memiliki draf padanan Inggris eksplisit dalam `dist/sishu-english-alignment.json` dan 246 draf Inggris Lun Yu tetap berada pada paket utama. Ada 708 pasal yang masih belum memiliki terjemahan Inggris. Seluruh pemetaan tetap memerlukan verifikasi editorial. Lihat `docs/editorial-finalization.md` untuk alur penyetujuannya.
+## Impor Lun Yu batch 1 — 13 November 2026
+
+Teks Inggris diambil dari edisi James Legge melalui Project Gutenberg:
+
+- [The Analects of Confucius, terjemahan Inggris saja (#3330)](https://www.gutenberg.org/ebooks/3330).
+- [The Chinese Classics: Confucian Analects, Hanzi dan Inggris (#4094)](https://www.gutenberg.org/ebooks/4094).
+
+Impor ini **tidak** sekadar menyamakan nomor pasal. Awal Hanzi dalam edisi dwibahasa Legge dipasangkan dengan seluruh ID pasal di bab MATAKIN menggunakan kemiripan karakter pertama (hingga 12 karakter), margin terhadap kandidat kedua, keunikan bab sumber Inggris, serta pengecekan batas pasal selanjutnya. Entitas yang melibatkan penggabungan atau pemisahan bab, bab ganda, urutan tak jelas, atau kutipan hilang **tidak dipaksakan** dan ditandai belum tersedia. Semua hasil baru berstatus `draft`.
+
+Jumlah entri tambahan:
+| Bab Lun Yu | Pasal Inggris draf baru |
+| --- | ---: |
+| V | 22 |
+| VI | 26 |
+| VII | 33 |
+| IX | 27 |
+| X | 11 |
+| XI | 22 |
+| XIV | 37 |
+| XV | 38 |
+| **Total** | **216** |
+
+Saat ini tersedia 246 draf Lun Yu lama dalam paket, ditambah 216 pasal Lun Yu hasil pemetaan eksplisit baru dan 11 pasal Da Xue = **473 dari 965 pasal** di tampilan editor. Sebanyak 492 belum tersedia. **Angka ini untuk editor yang menggabungkan paket dasar dengan peta Inggris; berkas `dist/sishu-content.json` dan `catalog.json` pada tahap ini masih menghitung 246 entri yang berada langsung di dalam paket**. Jangan menganggap 473 sebagai jumlah pasal yang telah di-review final; registry pengesahan masih kosong.
+
+Pemetaan dengan pasal pecah/gabung memerlukan pemeriksaan lanjutan yang mempertahankan referensi Legge dan MATAKIN masing-masing. Lihat `docs/editorial-finalization.md` untuk alur persetujuan.

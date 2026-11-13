@@ -9,8 +9,8 @@
       "title_en": "Four Books",
       "hanzi": "四書",
       "status": "draft",
-      "description": "Da Xue, Zhong Yong, Lun Yu, Mengzi: 965 pasal, di antaranya 246 dengan terjemahan Inggris Legge berstatus draf penyelarasan.",
-      "description_en": "Four Books, 965 passages. Partial Legge English draft aligned for 246 Lun Yu passages; not yet editorially approved.",
+      "description": "Si Shu memuat 965 pasal; editor menyediakan 473 draf Inggris (246 langsung di paket, 227 melalui peta padanan) dan 492 belum diisi. Belum ada yang disahkan final.",
+      "description_en": "965 Four Books passages; editor displays 473 English drafts (246 bundled, 227 explicit alignments), with 492 remaining. Editorial approval remains pending.",
       "package_url": "https://raw.githubusercontent.com/zqxinai/kitab-ru-content/main/dist/sishu-content.json",
       "sha256": "1347a3d898a09831d83569c41d9d95e7855425e239b6adafff217dc05ad719b3",
       "languages": [
@@ -21,7 +21,10 @@
       ],
       "english_status": "partial-draft",
       "english_passages": 246,
-      "total_passages": 965
+      "total_passages": 965,
+      "english_editor_passages": 473,
+      "english_editor_unmapped": 492,
+      "english_editor_alignment_drafts": 227
     },
     {
       "id": "yijing",
