@@ -1,5 +1,8 @@
 # Zhong Yong — rekonsiliasi 28 kandidat `significant` (14 November 2026)
 
+> **Pembaruan berdasarkan foto cetak MATAKIN 2012 (14 November):** Bukti [tiga foto Zhong Yong](zhongyong-photos-xii-xxiv-xxv-2026-11-14.md) menegaskan bentuk `己` untuk diri sendiri pada XXIV:3 dan Hanzi XXV:4; tanda baca XXV:4 telah disesuaikan. **XII:3 masih terbuka** karena foto halaman 48 tidak memperlihatkan awal Hanzi `施諸己/已`; perlu halaman 47. Catatan kandidat di bawah adalah status sebelum pembaruan ini dan tidak boleh ditafsirkan sebagai permintaan foto berulang untuk XXIV:3/XXV:4.
+
+
 ## Metode dan batas bukti
 Daftar diambil dari matriks penyaringan awal `docs/audits/zhu-xi-wyg-965.json`, **28 kandidat dengan kelas `significant`** pada 129 pasal Zhong Yong. Seluruh 28 ID dicocokkan lagi secara mekanis antara Ruby tradisional di `sishu/chapters/zhongyong/*.json` dan `witness_excerpt` WYG (sumber: Zhu Xi 《四書章句集註》, 欽定四庫全書, Kanripo commit `84c6b2c5093c57ae5d41c60a73c02323d2420ef0`). Untuk potongan WYG yang tidak lengkap, file WYG penuh `KR1h0015_016.txt` turut diperiksa. **Penyaringan ulang bukan pengesahan cetakan MATAKIN 2012 setiap pasal.**
 
