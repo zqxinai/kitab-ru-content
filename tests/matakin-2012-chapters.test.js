@@ -37,11 +37,11 @@ test('Printed MATAKIN 2012 titles agree with source chapter metadata; no renumbe
     const current=read(entry.path);
     const printed=edition.chapters.find(c=>c.id===entry.id);
     assert(printed,entry.id);
-    const raw=current.title.split(' · ')[0]
-      .replace(/^Jilid ([IVXLCDM]+)([AB])\b/,'Jilid $1 $2')
-      .toLocaleLowerCase('id-ID');
-    const expected=(printed.label==='Bab Utama'?'Bab Utama':printed.label+' — '+printed.name)
-      .toLocaleLowerCase('id-ID');
+    // Edition 2012 prints “Didalam” where the source metadata modernizes “di Dalam”.
+    const canon=s=>s.toLocaleLowerCase('id-ID').replace(/didalam/g,'di dalam');
+    const raw=canon(current.title.split(' · ')[0]
+      .replace(/^Jilid ([IVXLCDM]+)([AB])\b/,'Jilid $1 $2'));
+    const expected=canon(printed.label==='Bab Utama'?'Bab Utama':printed.label+' — '+printed.name);
     assert.equal(raw,expected,entry.id);
     assert.equal(current.id,entry.id);
     assert.equal(current.passages.length,entry.passages);
