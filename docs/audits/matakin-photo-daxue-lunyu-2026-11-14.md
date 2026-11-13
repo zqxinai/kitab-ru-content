@@ -8,7 +8,7 @@ Foto buku cetak Si Shu MATAKIN 2012 yang disampaikan pengguna dalam percakapan. 
 | Identitas MATAKIN | ID internal | Saksi cetak | Hasil |
 | --- | --- | --- | --- |
 | Da Xue III:4 — Puncak Kebaikan | `sishu.daxue.04.04` | `瑟兮僴兮`, `赫兮喧兮`, `終不可諠兮` | Koreksi tepat dua token `喧→諠` pada `終不可諠兮` (kutipan dan penjelasan); **jangan** ubah `赫兮喧兮` |
-| Da Xue VI:2 — Mengimankan Tekad | `sishu.daxue.07.02` | `小人閒居為不善`, `掩其不善`, `人之視己` | Koreksi satu token `閑→閒`; `掩` dan `己` tetap |
+| Da Xue VI:2 — Mengimankan Tekad | `sishu.daxue.07.02` | `小人閒居為不善`, `揜其不善`, `人之視己` | Koreksi satu token `閑→閒`; `揜` (telah dikoreksi dalam commit kolasi sebelumnya) dan `己` dipertahankan |
 | Lun Yu XIX:23 | `sishu.lunyu.19.23` | Cetakan memuat `夫子之雲(云)`, dibaca `yún` dan berarti *berkata* | Data aplikasi `夫子之云` sudah sesuai keputusan editorial Zhu Xi pada batch 02; simpan bentuk cetak `雲(云)` sebagai varian, **tidak** mengganti kembali ke `雲` |
 
 ## Komit perubahan
