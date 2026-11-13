@@ -21,6 +21,10 @@ Status: keputusan kerja bersumber, **belum disahkan Final**. Hanzi proyek berasa
 
 **Keputusan editorial disetujui pengguna (13 November 2026, setelah pembahasan foto):** gunakan `云` pada **keenam kemunculan** Lun Yu XVII:11 untuk tampilan teks klasik Ru Classics, dengan ejaan cetak MATAKIN 2012 `雲(云)` dicatat sebagai varian transkripsi; jangan diam-diam mengubah arsip verbatim foto/cetakan. `云` merupakan karakter klasik mandiri untuk *berkata/menyebut*, sedangkan `雲` bermakna *awan*; kedua bentuk menjadi `云` dalam simplified. Pinyin tetap `yún`. Bukti cetak tidak membuktikan penyebab ejaan tersebut (kemungkinan konversi adalah hipotesis). **Perubahan isi sumber, Ruby, dist/hash belum dilakukan; status Final terjemahan tetap perlu verifikasi tersendiri.**
 
+### Lun Yu XVII:13 — foto MATAKIN 2012 (13 November 2026)
+
+**Discrepancy #6 telah dikonfirmasi dari foto cetakan MATAKIN 2012:** teks utama berbunyi `子曰：鄉(乡)原，德之賊(贼)也！`, dengan pinyin `yuán` di atas `原`. Dalam Ru Classics (`sishu.lunyu.17.13`) tercantum `子曰：鄉愿，德之賊也。`; pada Zhu Xi WYG tercantum `鄉原`. Kedua bacaan `原/愿` dikenal sebagai varian tekstual; jangan disalahartikan sebagai perbedaan tafsir teologis. **Keputusan:** untuk teks Hanzi utama proyek selaraskan `愿` → `原` dan pinyin `yuàn` → `yuán`, sedangkan transkripsi cetak MATAKIN 2012 dan jejak sumber tetap dijaga. Koreksi data sumber/Ruby/dist belum dilakukan; status Final tidak berubah. Nomor halaman foto tidak terlihat dan tidak diisi berdasarkan perkiraan.
+
 ### Mengzi 09.07 — cakupan yang perlu dipisah
 
 Pada `sishu/chapters/mengzi/09.json`, pasal 09.07 memuat ucapan Mengzi dan kutipan `伊訓曰`, tetapi mencampurkan komentar penafsir `林氏曰：“以堯舜之道要湯者...` serta `愚謂此語亦猶前章...`. Sumber awal JSON juga memuatnya; bukan kesalahan pengimporan GitHub. Edisi `四書章句集注` menegaskan kedua segmen merupakan komentar setelah teks utama. Draf Inggris Legge dari `mengzi009.txt` memuat dialog Mengzi beserta kutipan `伊訓` tanpa komentar tersebut.
