@@ -9729,6 +9729,176 @@
       "source_url": "https://github.com/alexamies/chinesenotes.com/blob/5d2e867ecfb33e16a6aed392c6b8b8cde3896030/corpus/mengzi/mengzi012.txt",
       "status": "draft",
       "review_note": "98.04% whole-Hanzi match; draft only. Validate source variants, English transcription and passage boundaries before Final."
+    },
+    {
+      "id": "legge-lunyu-b05-10-10",
+      "indonesian_passage_ids": [
+        "sishu.lunyu.10.10"
+      ],
+      "english_segments": [
+        {
+          "legge_ref": "Confucian Analects, Book X, CHAP. VIII, §9",
+          "text": "When eating, he did not converse. When in bed, he did not speak."
+        }
+      ],
+      "hanzi_span": "食不語，寢不言。",
+      "source_hanzi_transcription": "食不語、寢不言。",
+      "source_url": "https://www.gutenberg.org/cache/epub/4094/pg4094-images.html",
+      "status": "draft",
+      "review_note": "Direct complete Hanzi match against Project Gutenberg #4094, Book X; MATAKIN 10:10 and Legge chapter sections differ. Editorial language review required before Final."
+    },
+    {
+      "id": "legge-lunyu-b05-10-12",
+      "indonesian_passage_ids": [
+        "sishu.lunyu.10.12"
+      ],
+      "english_segments": [
+        {
+          "legge_ref": "Confucian Analects, Book X, CHAP. IX",
+          "text": "If his mat was not straight, he did not sit on it."
+        }
+      ],
+      "hanzi_span": "席不正，不坐。",
+      "source_hanzi_transcription": "席不正不坐。",
+      "source_url": "https://www.gutenberg.org/cache/epub/4094/pg4094-images.html",
+      "status": "draft",
+      "review_note": "Direct complete Hanzi match against Project Gutenberg #4094, Book X; MATAKIN 10:12 and Legge chapter sections differ. Editorial language review required before Final."
+    },
+    {
+      "id": "legge-lunyu-b05-10-13",
+      "indonesian_passage_ids": [
+        "sishu.lunyu.10.13"
+      ],
+      "english_segments": [
+        {
+          "legge_ref": "Confucian Analects, Book X, CHAP. X, §1",
+          "text": "When the villagers were drinking together, on those who carried staffs going out, he went out immediately after."
+        }
+      ],
+      "hanzi_span": "鄉人飲酒，杖者出，斯出矣。",
+      "source_hanzi_transcription": "鄉人飲酒、杖者出、斯出矣。",
+      "source_url": "https://www.gutenberg.org/cache/epub/4094/pg4094-images.html",
+      "status": "draft",
+      "review_note": "Direct complete Hanzi match against Project Gutenberg #4094, Book X; MATAKIN 10:13 and Legge chapter sections differ. Editorial language review required before Final."
+    },
+    {
+      "id": "legge-lunyu-b05-10-14",
+      "indonesian_passage_ids": [
+        "sishu.lunyu.10.14"
+      ],
+      "english_segments": [
+        {
+          "legge_ref": "Confucian Analects, Book X, CHAP. X, §2",
+          "text": "When the villagers were going through their ceremonies to drive away pestilential influences, he put on his court robes and stood on the eastern steps."
+        }
+      ],
+      "hanzi_span": "鄉人儺，朝服而立於阼階。",
+      "source_hanzi_transcription": "鄉人儺、朝服而立於阼階。",
+      "source_url": "https://www.gutenberg.org/cache/epub/4094/pg4094-images.html",
+      "status": "draft",
+      "review_note": "Direct complete Hanzi match against Project Gutenberg #4094, Book X; MATAKIN 10:14 and Legge chapter sections differ. Editorial language review required before Final."
+    },
+    {
+      "id": "legge-lunyu-b05-10-15",
+      "indonesian_passage_ids": [
+        "sishu.lunyu.10.15"
+      ],
+      "english_segments": [
+        {
+          "legge_ref": "Confucian Analects, Book X, CHAP. XI, §1",
+          "text": "When he was sending complimentary inquiries to any one in another State, he bowed twice as he escorted the messenger away."
+        }
+      ],
+      "hanzi_span": "問人於他邦，再拜而送之。",
+      "source_hanzi_transcription": "問人於他邦、再拜而送之。",
+      "source_url": "https://www.gutenberg.org/cache/epub/4094/pg4094-images.html",
+      "status": "draft",
+      "review_note": "Direct complete Hanzi match against Project Gutenberg #4094, Book X; MATAKIN 10:15 and Legge chapter sections differ. Editorial language review required before Final."
+    },
+    {
+      "id": "legge-lunyu-b05-10-16",
+      "indonesian_passage_ids": [
+        "sishu.lunyu.10.16"
+      ],
+      "english_segments": [
+        {
+          "legge_ref": "Confucian Analects, Book X, CHAP. XI, §2",
+          "text": "Chi K'ang having sent him a present of physic, he bowed and received it, saying, 'I do not know it. I dare not taste it.'"
+        }
+      ],
+      "hanzi_span": "康子饋藥，拜而受之。曰：“丘未達，不敢嘗。”",
+      "source_hanzi_transcription": "康子饋藥、拜而受之、曰、丘未達、不敢嘗。",
+      "source_url": "https://www.gutenberg.org/cache/epub/4094/pg4094-images.html",
+      "status": "draft",
+      "review_note": "Direct complete Hanzi match against Project Gutenberg #4094, Book X; MATAKIN 10:16 and Legge chapter sections differ. Editorial language review required before Final."
+    },
+    {
+      "id": "legge-lunyu-b05-10-19",
+      "indonesian_passage_ids": [
+        "sishu.lunyu.10.19"
+      ],
+      "english_segments": [
+        {
+          "legge_ref": "Confucian Analects, Book X, CHAP. XIII, §3",
+          "text": "When he was ill and the prince came to visit him, he had his head to the east, made his court robes be spread over him, and drew his girdle across them."
+        }
+      ],
+      "hanzi_span": "疾，君視之，東首，加朝服，拖紳。",
+      "source_hanzi_transcription": "疾、君視之、東首、加朝服拖紳。",
+      "source_url": "https://www.gutenberg.org/cache/epub/4094/pg4094-images.html",
+      "status": "draft",
+      "review_note": "Direct complete Hanzi match against Project Gutenberg #4094, Book X; MATAKIN 10:19 and Legge chapter sections differ. Editorial language review required before Final."
+    },
+    {
+      "id": "legge-lunyu-b05-10-20",
+      "indonesian_passage_ids": [
+        "sishu.lunyu.10.20"
+      ],
+      "english_segments": [
+        {
+          "legge_ref": "Confucian Analects, Book X, CHAP. XIII, §4",
+          "text": "When the prince's order called him, without waiting for his carriage to be yoked, he went at once."
+        }
+      ],
+      "hanzi_span": "君命召，不俟駕行矣。",
+      "source_hanzi_transcription": "君命召、不俟駕行矣。",
+      "source_url": "https://www.gutenberg.org/cache/epub/4094/pg4094-images.html",
+      "status": "draft",
+      "review_note": "Direct complete Hanzi match against Project Gutenberg #4094, Book X; MATAKIN 10:20 and Legge chapter sections differ. Editorial language review required before Final."
+    },
+    {
+      "id": "legge-lunyu-b05-10-22",
+      "indonesian_passage_ids": [
+        "sishu.lunyu.10.22"
+      ],
+      "english_segments": [
+        {
+          "legge_ref": "Confucian Analects, Book X, CHAP. XV, §1",
+          "text": "When any of his friends died, if he had no relations who could be depended on for the necessary offices, he would say, 'I will bury him.'"
+        }
+      ],
+      "hanzi_span": "朋友死，無所歸，曰：“於我殯。”",
+      "source_hanzi_transcription": "朋友死、無所歸、曰、於我殯。",
+      "source_url": "https://www.gutenberg.org/cache/epub/4094/pg4094-images.html",
+      "status": "draft",
+      "review_note": "Direct complete Hanzi match against Project Gutenberg #4094, Book X; MATAKIN 10:22 and Legge chapter sections differ. Editorial language review required before Final."
+    },
+    {
+      "id": "legge-lunyu-b05-10-23",
+      "indonesian_passage_ids": [
+        "sishu.lunyu.10.23"
+      ],
+      "english_segments": [
+        {
+          "legge_ref": "Confucian Analects, Book X, CHAP. XV, §§2–3",
+          "text": "When a friend sent him a present, though it might be a carriage and horses, he did not bow. The only present for which he bowed was that of the flesh of sacrifice."
+        }
+      ],
+      "hanzi_span": "朋友之饋，雖車馬，非祭肉，不拜。",
+      "source_hanzi_transcription": "朋友之饋、雖車馬、非祭肉不拜。",
+      "source_url": "https://www.gutenberg.org/cache/epub/4094/pg4094-images.html",
+      "status": "draft",
+      "review_note": "Direct complete Hanzi match against Project Gutenberg #4094, Book X; MATAKIN 10:23 and Legge chapter sections differ. Editorial language review required before Final."
     }
   ]
 }
