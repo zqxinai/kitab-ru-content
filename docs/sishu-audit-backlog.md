@@ -20,6 +20,8 @@ Sumber [00 - INDEX AUDIT](https://drive.google.com/file/d/1ZkWMwg565eRKV_9zKqjXG
 
 **Zhong Yong Bab XXV:2 sudah dianalisis (13 November 2026):** Hanzi dan terjemahan MATAKIN dipertahankan; 2 pinyin 徵 dikoreksi dari zhǐ menjadi zhēng berdasarkan kamus MOE Taiwan (bukan klaim pinyin foto 2012). Tafsir Zhu Xi dicatat terpisah dari terjemahan utama dalam editor. [Audit dan sumber](audits/zhongyong-xxv-02-matakin-2012-2026-11-13.md). Jangan ulang tanpa bukti baru atau regresi gagal.
 
+**Da Xue Bab Utama:1 — varian `親民/新民` dicatat (13 November 2026):** `親民` dan terjemahan Indonesia MATAKIN dipertahankan. Usulan Chengzi `新民` dalam komentar Zhu Xi dan pilihan Inggris Legge ditampilkan sebagai perbandingan tanpa dianggap padanan literal. [Audit khusus](audits/daxue-qinmin-xinmin-2026-11-13.md). **Foto teks Hanzi MATAKIN 2012 pada ayat ini masih perlu diverifikasi apabila tersedia**; tidak boleh dicatat sebagai koreksi edisi 2012 yang telah dibuktikan.
+
 ## Pencegahan looping
 
 Bekerja maksimal **10 pasal per batch**; setiap item memiliki ID stabil, hash/sumber, kasus, keputusan, alasan, status reviewer. Hanya buka ulang jika sumber atau versi naskah berubah. Jangan menerapkan ralat karakter pada Hanzi tanpa memperbarui anotasi Ruby, pinyin, paket distribusi dan hash katalog sekaligus. Jangan menandai bahasa Indonesia atau Inggris sebagai `Final` otomatis. Lihat [audit varian](sishu-textual-variants.md).

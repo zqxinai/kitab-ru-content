@@ -96,6 +96,8 @@ Pada `sishu/chapters/mengzi/09.json`, pasal 09.07 memuat ucapan Mengzi dan kutip
 
 ### Da Xue 01.01 — 親民 / 新民
 
+**Pembaruan implementasi (13 November 2026):** `親民` tetap menjadi bacaan utama Ru Classics dan terjemahan MATAKIN “mengasihi rakyat” tidak diubah. Usulan Chengzi `新民` dalam komentar Zhu Xi serta Inggris Legge “to renovate the people” kini dijelaskan melalui catatan editorial di editor dan `review_note` alignment, **tanpa mengganti bahasa utama dan tanpa mengesahkan Final**. [Audit dan keterbatasan bukti](audits/daxue-qinmin-xinmin-2026-11-13.md). **Bukti foto cetakan MATAKIN 2012 untuk pasal ini belum diperiksa langsung**, sehingga status verifikasi cetaknya masih terbuka.
+
 **Pertahankan 親民** sebagai Hanzi dasar proyek: cocok dengan terjemahan MATAKIN “mengasihi rakyat”. **新民** adalah bacaan/penafsiran yang dikemukakan dalam tradisi Zhu Xi dengan makna “memperbarui rakyat”; tampilkan sebagai catatan varian. Inggris Legge di proyek berbunyi “to renovate the people”, sehingga sekalipun cocok nomor pasalnya, makna Inggris mengikuti bacaan 新民. Ini harus diperjelas dalam review sebelum Final, tanpa merekayasa teks Legge.
 
 ### Sumber pemeriksaan
