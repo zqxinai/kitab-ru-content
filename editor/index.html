@@ -113,9 +113,10 @@
               <div id="prefaceForm" hidden>
                 <div class="field-grid">
                   <label class="field"><span>Judul pengantar</span><input id="prefaceTitle" type="text"></label>
+                  <label class="field"><span>English preface title · optional</span><input id="prefaceTitleEn" type="text" lang="en"></label>
                   <label class="field"><span>ID stabil</span><input id="prefaceId" type="text" spellcheck="false"></label>
                 </div>
-                <div class="card editor-card"><label class="field full"><span>Isi pengantar (bukan ayat)</span><textarea id="prefaceBody" rows="16"></textarea></label></div>
+                <div class="card editor-card"><label class="field full"><span>Isi pengantar (bukan ayat)</span><textarea id="prefaceBody" rows="13"></textarea></label><div class="spaced"></div><label class="field full"><span>English preface · optional</span><textarea id="prefaceBodyEn" rows="9" lang="en" placeholder="Optional reviewed English front matter."></textarea></label></div>
                 <div class="danger-zone"><button id="deletePreface" type="button" class="button danger-outline">Hapus pengantar</button></div>
               </div>
             </section>
@@ -131,6 +132,7 @@
                 </div>
                 <div class="field-grid">
                   <label class="field"><span>Judul bab terpilih</span><input id="chapterTitleInput" type="text" placeholder="Pilih bab untuk mengedit judul"></label>
+                  <label class="field"><span>English chapter title · optional</span><input id="chapterTitleEnInput" type="text" lang="en"></label>
                   <label class="field"><span>Urutan bab</span><input id="chapterIndexInput" type="number" min="1" step="1"></label>
                 </div>
                 <div class="danger-zone"><button id="deleteChapter" type="button" class="button danger-outline">Hapus bab terpilih</button><span>Menghapus seluruh pasal dalam bab. Perlu konfirmasi.</span></div>
@@ -154,8 +156,10 @@
                   <label class="field"><span>ID koleksi (stabil)</span><input id="catalogId" type="text" readonly spellcheck="false"></label>
                   <label class="field"><span>Hanzi</span><input id="catalogHanzi" type="text"></label>
                   <label class="field"><span>Nama koleksi</span><input id="catalogTitle" type="text"></label>
+                  <label class="field"><span>English collection name</span><input id="catalogTitleEn" type="text" lang="en"></label>
                   <label class="field"><span>Status</span><select id="catalogStatus"><option value="coming_soon">Coming soon</option><option value="draft">Draf</option><option value="available">Tersedia</option></select></label>
                   <label class="field full"><span>Deskripsi</span><textarea id="catalogDescription" rows="3"></textarea></label>
+                  <label class="field full"><span>English description</span><textarea id="catalogDescriptionEn" rows="3" lang="en"></textarea></label>
                   <label class="field full"><span>URL paket JSON (opsional; HTTPS)</span><input id="catalogUrl" type="url" spellcheck="false" placeholder="https://github.com/.../releases/download/.../content.json"></label>
                   <label class="field full"><span>SHA-256 paket (opsional)</span><input id="catalogHash" type="text" spellcheck="false" placeholder="64 karakter heksadesimal"></label>
                 </div>
