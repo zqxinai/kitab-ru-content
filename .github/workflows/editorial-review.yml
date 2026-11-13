@@ -9,6 +9,7 @@ on:
       - 'tools/audit_review_status.js'
       - 'tests/editorial-review.test.js'
       - 'tests/zhongyong-coverage.test.js'
+      - 'tests/mengzi-coverage.test.js'
       - 'tools/import_legge_zhongyong.js'
       - 'sources/legge/**'
       - 'tools/dictionaries/**'
@@ -23,6 +24,7 @@ on:
       - 'tools/audit_review_status.js'
       - 'tests/editorial-review.test.js'
       - 'tests/zhongyong-coverage.test.js'
+      - 'tests/mengzi-coverage.test.js'
       - 'tools/import_legge_zhongyong.js'
       - 'sources/legge/**'
       - 'tools/dictionaries/**'
@@ -45,4 +47,4 @@ jobs:
       - name: Validate Legge importer JavaScript
         run: node --check tools/import_legge_zhongyong.js
       - name: Run editorial regression tests
-        run: node --test tests/editorial-review.test.js tests/zhongyong-coverage.test.js
+        run: node --test tests/editorial-review.test.js tests/zhongyong-coverage.test.js tests/mengzi-coverage.test.js
