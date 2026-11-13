@@ -10,6 +10,7 @@ test('Mengzi batch contains 3 books, 32 distinct target IDs and no final',()=>{
  assert.equal(snap.books.length,3);assert.equal(entries.length,32);
  const ids=entries.flatMap(e=>e.indonesian_passage_ids);assert.equal(new Set(ids).size,32);
  assert.ok(entries.every(e=>e.status==='draft' && e.english_segments.length===1 && e.source_url));
+ assert.ok(entries.every(e=>e.english_segments.every(s=>!s.text.includes('English translation: Legge 1861'))));
 });
 test('each English translation exactly matches its cited source snapshot, with complete Hanzi span',()=>{
  for(const book of snap.books){
