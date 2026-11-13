@@ -29,7 +29,9 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
       - name: Validate editor
-        run: node editor/tests/validate.mjs
+        run: |
+          node editor/tests/validate.mjs
+          node editor/tests/smoke.mjs
       - name: Configure Pages
         uses: actions/configure-pages@v5
         with:
