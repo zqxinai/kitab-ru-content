@@ -21,6 +21,13 @@ Bacaan `配地` **dì** pada Zhong Yong XXV:4 sudah dikoreksi sebelum audit ini 
 
 Sebanyak **108** `與` berkode **yǔ** awalnya ditemukan tepat sebelum tanda tanya/seru; **104** diubah sesuai fungsi, dan **empat** dikecualikan. Tiga `與` lain sudah benar **yú** dari audit IX:2 sebelumnya.
 
+## Perbaikan keterkaitan data Legge (tanpa mengganti teks terjemahan)
+Tes editorial menunjukkan dua `hanzi_span` dalam `dist/sishu-english-alignment.json` tertinggal setelah audit foto MATAKIN 2012, meskipun teks sumber bab sudah benar:
+- `legge-zhongyong-10-02`: sesuaikan dua tanda baca `， → ？` pada `南方之強與` dan `北方之強與` sesuai Zhong Yong IX:2.
+- `legge-zhongyong-26-01`: samakan penempatan tanda baca `博厚配地，高明配天，悠久無疆。` dengan Zhong Yong XXV:4.
+
+Perubahan hanya pada metadata `hanzi_span` pencocokan Indonesia–Inggris, **bukan** `english_segments[].text` (teks Inggris James Legge), `source_hanzi_simplified`, Hanzi sumber, atau terjemahan MATAKIN.
+
 ## Pelaksanaan & pengaman
 - Perubahan hanya pada properti `pinyin` dalam `sishu/chapters/{zhongyong,lunyu,mengzi}/*.json`.
 - Tidak mengubah karakter Hanzi, terjemahan Indonesia MATAKIN, terjemahan James Legge, identitas bab/pasal, sumber anotasi, atau `editorial_status`.
