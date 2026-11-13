@@ -1,0 +1,595 @@
+{
+  "schema": "ru-classics.content.v1",
+  "collection": "sishu",
+  "content_version": "0.1.1-legge-partial-draft",
+  "review_status": "unverified-draft",
+  "books": [
+    "daxue",
+    "zhongyong",
+    "lunyu",
+    "mengzi"
+  ],
+  "front_matter": [
+    {
+      "body_indonesian": "Guruku Chengzi - Thiacu berkata, \"Da Xue - Thai Hak ini adalah Kitab Warisan Mulia kaum Kong - Khong yang merupakan Ajaran Permulaan untuk masuk Pintu Gerbang Kebajikan. Dengan ini akan dapat diketahui urutan cara belajar orang-orang jaman dahulu. Hanya oleh terpeliharanya Kitab ini, selanjutnya dapat dipelajari baik-baik Kitab Lun Yu - Lun Gi dan Kitab Mengzi - Bingcu. Maka yang bermaksud belajar hendaklah mulai dengan bagian ini. Dengan demikian tidak akan keliru.\"",
+      "book": "daxue",
+      "editorial_status": "unverified-draft",
+      "id": "sishu.daxue.preface",
+      "source_file": "01 - Da Xue 大學/00 - Kata Pengantar Zhu Xi.md",
+      "title": "Kata Pengantar Zhu Xi - Cu Hi"
+    },
+    {
+      "body_indonesian": "Guruku Chengzi - Thiacu berkata, \"Yang tidak menyeleweng dinamai Tengah, yang tidak berubah dinamai Sempurna. Tengah itulah Jalan Lurus dunia dan Sempurna itulah Hukum Tetap bagi dunia. Kitab ini berisi ajaran rohani pemeluk Agama Khonghucu. Zisi - Cusu (Kong Ji - Khong Khiep, cucu Nabi Kongzi - Khongcu) khawatir lama kelamaan akan berkurang isinya, maka dibukukan untuk diserahkan kepada Mengzi - Bingcu. Kitab ini mula-mula membicarakan tentang Satu Hukum, lalu dibentangkan sampai meliputi berlaksa perkara dan akhirnya dikembalikan menjadi Satu Hukum. Ajaran ini bila diuraikan akan meliputi enam penjuru, bila diringkas akan balik tersembunyi ke alam gaib. Sari ajarannya tidak pernah habis dan semuanya berisi ajaran nyata. Yang dapat baik-baik membacanya, sehingga memperoleh sarinya, akan dapat memakainya sepanjang hidup dan tidak dapat menghabiskannya.",
+      "book": "zhongyong",
+      "editorial_status": "unverified-draft",
+      "id": "sishu.zhongyong.preface",
+      "source_file": "02 - Zhong Yong 中庸/00 - Kata Pengantar Zhu Xi.md",
+      "title": "Kata Pengantar Zhu Xi - Cu Hi"
+    }
+  ],
+  "chapters": [
+    {
+      "id": "sishu.daxue.01",
+      "book": "daxue",
+      "index": 1,
+      "path": "sishu/chapters/daxue/01.json",
+      "passages": 7
+    },
+    {
+      "id": "sishu.daxue.02",
+      "book": "daxue",
+      "index": 2,
+      "path": "sishu/chapters/daxue/02.json",
+      "passages": 4
+    },
+    {
+      "id": "sishu.daxue.03",
+      "book": "daxue",
+      "index": 3,
+      "path": "sishu/chapters/daxue/03.json",
+      "passages": 4
+    },
+    {
+      "id": "sishu.daxue.04",
+      "book": "daxue",
+      "index": 4,
+      "path": "sishu/chapters/daxue/04.json",
+      "passages": 5
+    },
+    {
+      "id": "sishu.daxue.05",
+      "book": "daxue",
+      "index": 5,
+      "path": "sishu/chapters/daxue/05.json",
+      "passages": 1
+    },
+    {
+      "id": "sishu.daxue.06",
+      "book": "daxue",
+      "index": 6,
+      "path": "sishu/chapters/daxue/06.json",
+      "passages": 1
+    },
+    {
+      "id": "sishu.daxue.07",
+      "book": "daxue",
+      "index": 7,
+      "path": "sishu/chapters/daxue/07.json",
+      "passages": 4
+    },
+    {
+      "id": "sishu.daxue.08",
+      "book": "daxue",
+      "index": 8,
+      "path": "sishu/chapters/daxue/08.json",
+      "passages": 3
+    },
+    {
+      "id": "sishu.daxue.09",
+      "book": "daxue",
+      "index": 9,
+      "path": "sishu/chapters/daxue/09.json",
+      "passages": 3
+    },
+    {
+      "id": "sishu.daxue.10",
+      "book": "daxue",
+      "index": 10,
+      "path": "sishu/chapters/daxue/10.json",
+      "passages": 9
+    },
+    {
+      "id": "sishu.daxue.11",
+      "book": "daxue",
+      "index": 11,
+      "path": "sishu/chapters/daxue/11.json",
+      "passages": 23
+    },
+    {
+      "id": "sishu.zhongyong.01",
+      "book": "zhongyong",
+      "index": 1,
+      "path": "sishu/chapters/zhongyong/01.json",
+      "passages": 5
+    },
+    {
+      "id": "sishu.zhongyong.02",
+      "book": "zhongyong",
+      "index": 2,
+      "path": "sishu/chapters/zhongyong/02.json",
+      "passages": 2
+    },
+    {
+      "id": "sishu.zhongyong.03",
+      "book": "zhongyong",
+      "index": 3,
+      "path": "sishu/chapters/zhongyong/03.json",
+      "passages": 1
+    },
+    {
+      "id": "sishu.zhongyong.04",
+      "book": "zhongyong",
+      "index": 4,
+      "path": "sishu/chapters/zhongyong/04.json",
+      "passages": 2
+    },
+    {
+      "id": "sishu.zhongyong.05",
+      "book": "zhongyong",
+      "index": 5,
+      "path": "sishu/chapters/zhongyong/05.json",
+      "passages": 1
+    },
+    {
+      "id": "sishu.zhongyong.06",
+      "book": "zhongyong",
+      "index": 6,
+      "path": "sishu/chapters/zhongyong/06.json",
+      "passages": 1
+    },
+    {
+      "id": "sishu.zhongyong.07",
+      "book": "zhongyong",
+      "index": 7,
+      "path": "sishu/chapters/zhongyong/07.json",
+      "passages": 1
+    },
+    {
+      "id": "sishu.zhongyong.08",
+      "book": "zhongyong",
+      "index": 8,
+      "path": "sishu/chapters/zhongyong/08.json",
+      "passages": 1
+    },
+    {
+      "id": "sishu.zhongyong.09",
+      "book": "zhongyong",
+      "index": 9,
+      "path": "sishu/chapters/zhongyong/09.json",
+      "passages": 1
+    },
+    {
+      "id": "sishu.zhongyong.10",
+      "book": "zhongyong",
+      "index": 10,
+      "path": "sishu/chapters/zhongyong/10.json",
+      "passages": 5
+    },
+    {
+      "id": "sishu.zhongyong.11",
+      "book": "zhongyong",
+      "index": 11,
+      "path": "sishu/chapters/zhongyong/11.json",
+      "passages": 3
+    },
+    {
+      "id": "sishu.zhongyong.12",
+      "book": "zhongyong",
+      "index": 12,
+      "path": "sishu/chapters/zhongyong/12.json",
+      "passages": 4
+    },
+    {
+      "id": "sishu.zhongyong.13",
+      "book": "zhongyong",
+      "index": 13,
+      "path": "sishu/chapters/zhongyong/13.json",
+      "passages": 4
+    },
+    {
+      "id": "sishu.zhongyong.14",
+      "book": "zhongyong",
+      "index": 14,
+      "path": "sishu/chapters/zhongyong/14.json",
+      "passages": 5
+    },
+    {
+      "id": "sishu.zhongyong.15",
+      "book": "zhongyong",
+      "index": 15,
+      "path": "sishu/chapters/zhongyong/15.json",
+      "passages": 3
+    },
+    {
+      "id": "sishu.zhongyong.16",
+      "book": "zhongyong",
+      "index": 16,
+      "path": "sishu/chapters/zhongyong/16.json",
+      "passages": 5
+    },
+    {
+      "id": "sishu.zhongyong.17",
+      "book": "zhongyong",
+      "index": 17,
+      "path": "sishu/chapters/zhongyong/17.json",
+      "passages": 5
+    },
+    {
+      "id": "sishu.zhongyong.18",
+      "book": "zhongyong",
+      "index": 18,
+      "path": "sishu/chapters/zhongyong/18.json",
+      "passages": 3
+    },
+    {
+      "id": "sishu.zhongyong.19",
+      "book": "zhongyong",
+      "index": 19,
+      "path": "sishu/chapters/zhongyong/19.json",
+      "passages": 6
+    },
+    {
+      "id": "sishu.zhongyong.20",
+      "book": "zhongyong",
+      "index": 20,
+      "path": "sishu/chapters/zhongyong/20.json",
+      "passages": 21
+    },
+    {
+      "id": "sishu.zhongyong.21",
+      "book": "zhongyong",
+      "index": 21,
+      "path": "sishu/chapters/zhongyong/21.json",
+      "passages": 1
+    },
+    {
+      "id": "sishu.zhongyong.22",
+      "book": "zhongyong",
+      "index": 22,
+      "path": "sishu/chapters/zhongyong/22.json",
+      "passages": 1
+    },
+    {
+      "id": "sishu.zhongyong.23",
+      "book": "zhongyong",
+      "index": 23,
+      "path": "sishu/chapters/zhongyong/23.json",
+      "passages": 1
+    },
+    {
+      "id": "sishu.zhongyong.24",
+      "book": "zhongyong",
+      "index": 24,
+      "path": "sishu/chapters/zhongyong/24.json",
+      "passages": 1
+    },
+    {
+      "id": "sishu.zhongyong.25",
+      "book": "zhongyong",
+      "index": 25,
+      "path": "sishu/chapters/zhongyong/25.json",
+      "passages": 3
+    },
+    {
+      "id": "sishu.zhongyong.26",
+      "book": "zhongyong",
+      "index": 26,
+      "path": "sishu/chapters/zhongyong/26.json",
+      "passages": 9
+    },
+    {
+      "id": "sishu.zhongyong.27",
+      "book": "zhongyong",
+      "index": 27,
+      "path": "sishu/chapters/zhongyong/27.json",
+      "passages": 7
+    },
+    {
+      "id": "sishu.zhongyong.28",
+      "book": "zhongyong",
+      "index": 28,
+      "path": "sishu/chapters/zhongyong/28.json",
+      "passages": 5
+    },
+    {
+      "id": "sishu.zhongyong.29",
+      "book": "zhongyong",
+      "index": 29,
+      "path": "sishu/chapters/zhongyong/29.json",
+      "passages": 6
+    },
+    {
+      "id": "sishu.zhongyong.30",
+      "book": "zhongyong",
+      "index": 30,
+      "path": "sishu/chapters/zhongyong/30.json",
+      "passages": 3
+    },
+    {
+      "id": "sishu.zhongyong.31",
+      "book": "zhongyong",
+      "index": 31,
+      "path": "sishu/chapters/zhongyong/31.json",
+      "passages": 4
+    },
+    {
+      "id": "sishu.zhongyong.32",
+      "book": "zhongyong",
+      "index": 32,
+      "path": "sishu/chapters/zhongyong/32.json",
+      "passages": 3
+    },
+    {
+      "id": "sishu.zhongyong.33",
+      "book": "zhongyong",
+      "index": 33,
+      "path": "sishu/chapters/zhongyong/33.json",
+      "passages": 6
+    },
+    {
+      "id": "sishu.lunyu.01",
+      "book": "lunyu",
+      "index": 1,
+      "path": "sishu/chapters/lunyu/01.json",
+      "passages": 16
+    },
+    {
+      "id": "sishu.lunyu.02",
+      "book": "lunyu",
+      "index": 2,
+      "path": "sishu/chapters/lunyu/02.json",
+      "passages": 24
+    },
+    {
+      "id": "sishu.lunyu.03",
+      "book": "lunyu",
+      "index": 3,
+      "path": "sishu/chapters/lunyu/03.json",
+      "passages": 26
+    },
+    {
+      "id": "sishu.lunyu.04",
+      "book": "lunyu",
+      "index": 4,
+      "path": "sishu/chapters/lunyu/04.json",
+      "passages": 26
+    },
+    {
+      "id": "sishu.lunyu.05",
+      "book": "lunyu",
+      "index": 5,
+      "path": "sishu/chapters/lunyu/05.json",
+      "passages": 28
+    },
+    {
+      "id": "sishu.lunyu.06",
+      "book": "lunyu",
+      "index": 6,
+      "path": "sishu/chapters/lunyu/06.json",
+      "passages": 30
+    },
+    {
+      "id": "sishu.lunyu.07",
+      "book": "lunyu",
+      "index": 7,
+      "path": "sishu/chapters/lunyu/07.json",
+      "passages": 38
+    },
+    {
+      "id": "sishu.lunyu.08",
+      "book": "lunyu",
+      "index": 8,
+      "path": "sishu/chapters/lunyu/08.json",
+      "passages": 21
+    },
+    {
+      "id": "sishu.lunyu.09",
+      "book": "lunyu",
+      "index": 9,
+      "path": "sishu/chapters/lunyu/09.json",
+      "passages": 31
+    },
+    {
+      "id": "sishu.lunyu.10",
+      "book": "lunyu",
+      "index": 10,
+      "path": "sishu/chapters/lunyu/10.json",
+      "passages": 27
+    },
+    {
+      "id": "sishu.lunyu.11",
+      "book": "lunyu",
+      "index": 11,
+      "path": "sishu/chapters/lunyu/11.json",
+      "passages": 26
+    },
+    {
+      "id": "sishu.lunyu.12",
+      "book": "lunyu",
+      "index": 12,
+      "path": "sishu/chapters/lunyu/12.json",
+      "passages": 24
+    },
+    {
+      "id": "sishu.lunyu.13",
+      "book": "lunyu",
+      "index": 13,
+      "path": "sishu/chapters/lunyu/13.json",
+      "passages": 30
+    },
+    {
+      "id": "sishu.lunyu.14",
+      "book": "lunyu",
+      "index": 14,
+      "path": "sishu/chapters/lunyu/14.json",
+      "passages": 44
+    },
+    {
+      "id": "sishu.lunyu.15",
+      "book": "lunyu",
+      "index": 15,
+      "path": "sishu/chapters/lunyu/15.json",
+      "passages": 42
+    },
+    {
+      "id": "sishu.lunyu.16",
+      "book": "lunyu",
+      "index": 16,
+      "path": "sishu/chapters/lunyu/16.json",
+      "passages": 14
+    },
+    {
+      "id": "sishu.lunyu.17",
+      "book": "lunyu",
+      "index": 17,
+      "path": "sishu/chapters/lunyu/17.json",
+      "passages": 26
+    },
+    {
+      "id": "sishu.lunyu.18",
+      "book": "lunyu",
+      "index": 18,
+      "path": "sishu/chapters/lunyu/18.json",
+      "passages": 11
+    },
+    {
+      "id": "sishu.lunyu.19",
+      "book": "lunyu",
+      "index": 19,
+      "path": "sishu/chapters/lunyu/19.json",
+      "passages": 25
+    },
+    {
+      "id": "sishu.lunyu.20",
+      "book": "lunyu",
+      "index": 20,
+      "path": "sishu/chapters/lunyu/20.json",
+      "passages": 3
+    },
+    {
+      "id": "sishu.mengzi.01",
+      "book": "mengzi",
+      "index": 1,
+      "path": "sishu/chapters/mengzi/01.json",
+      "passages": 7
+    },
+    {
+      "id": "sishu.mengzi.02",
+      "book": "mengzi",
+      "index": 2,
+      "path": "sishu/chapters/mengzi/02.json",
+      "passages": 16
+    },
+    {
+      "id": "sishu.mengzi.03",
+      "book": "mengzi",
+      "index": 3,
+      "path": "sishu/chapters/mengzi/03.json",
+      "passages": 9
+    },
+    {
+      "id": "sishu.mengzi.04",
+      "book": "mengzi",
+      "index": 4,
+      "path": "sishu/chapters/mengzi/04.json",
+      "passages": 14
+    },
+    {
+      "id": "sishu.mengzi.05",
+      "book": "mengzi",
+      "index": 5,
+      "path": "sishu/chapters/mengzi/05.json",
+      "passages": 5
+    },
+    {
+      "id": "sishu.mengzi.06",
+      "book": "mengzi",
+      "index": 6,
+      "path": "sishu/chapters/mengzi/06.json",
+      "passages": 10
+    },
+    {
+      "id": "sishu.mengzi.07",
+      "book": "mengzi",
+      "index": 7,
+      "path": "sishu/chapters/mengzi/07.json",
+      "passages": 28
+    },
+    {
+      "id": "sishu.mengzi.08",
+      "book": "mengzi",
+      "index": 8,
+      "path": "sishu/chapters/mengzi/08.json",
+      "passages": 33
+    },
+    {
+      "id": "sishu.mengzi.09",
+      "book": "mengzi",
+      "index": 9,
+      "path": "sishu/chapters/mengzi/09.json",
+      "passages": 9
+    },
+    {
+      "id": "sishu.mengzi.10",
+      "book": "mengzi",
+      "index": 10,
+      "path": "sishu/chapters/mengzi/10.json",
+      "passages": 9
+    },
+    {
+      "id": "sishu.mengzi.11",
+      "book": "mengzi",
+      "index": 11,
+      "path": "sishu/chapters/mengzi/11.json",
+      "passages": 20
+    },
+    {
+      "id": "sishu.mengzi.12",
+      "book": "mengzi",
+      "index": 12,
+      "path": "sishu/chapters/mengzi/12.json",
+      "passages": 16
+    },
+    {
+      "id": "sishu.mengzi.13",
+      "book": "mengzi",
+      "index": 13,
+      "path": "sishu/chapters/mengzi/13.json",
+      "passages": 46
+    },
+    {
+      "id": "sishu.mengzi.14",
+      "book": "mengzi",
+      "index": 14,
+      "path": "sishu/chapters/mengzi/14.json",
+      "passages": 38
+    }
+  ],
+  "languages": {
+    "traditional_chinese": true,
+    "pinyin": true,
+    "indonesian": true,
+    "english": {
+      "source": "James Legge, The Chinese Classics, Vol I, 1893",
+      "status": "partial-editorial-draft",
+      "aligned_passages": 246,
+      "target_passages": 965,
+      "provenance": "https://www.gutenberg.org/ebooks/4094",
+      "note": "English text is verbatim Legge with line-wrap normalization, not globally changed to God. Only count-matched Lun Yu chapters included, with manual collation still needed."
+    }
+  },
+  "tian_translation_policy": {
+    "source_fidelity": "James Legge original Heaven/God spelling preserved",
+    "editorial_preference": "When religiously appropriate, Tian may be discussed as God as an independent Kitab Ru editorial choice. Do not attribute replacement to Legge."
+  }
+}
