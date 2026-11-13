@@ -1,5 +1,8 @@
 # Audit konteks perbedaan naskah Si Shu — 13 November 2026
 
+> **Pembaruan audit pinyin (14 November):** **Pinyin dievaluasi independen dari cetakan MATAKIN** menurut fungsi aksara, sumber klasik, dan kamus Mandarin. Untuk Zhong Yong Bab IX:2, cetakan MATAKIN menunjukkan tiga `yǔ` tetapi konteks partikel tanya `與` menghendaki **yú**; aplikasi menggunakan `yú` dan menyimpan `yǔ` sebagai bacaan sumber. Uraian lama di bawah adalah riwayat audit. [Kebijakan pemeriksaan pinyin](audits/ru-classics-pinyin-context-policy-2026-11-14.md).
+
+
 > **Keputusan terbaru setelah foto MATAKIN 2012 diperiksa (14 November):** Zhong Yong Bab IX:2 mencetak tiga `與` dengan pinyin **yǔ**, bukan yú. Data aplikasi telah dikembalikan ke **yǔ** dan dua tanda tanya pertama dipulihkan sesuai cetakan. **yú** tetap dicatat sebagai bacaan klasik pada penjelasan Zhu Xi/Kamus MOE, tanpa menimpa bacaan MATAKIN. Uraian lama di bawah merupakan *sejarah audit*, bukan keputusan akhir. [Bukti foto dan koreksi](audits/zhongyong-ix-matakin-photo-2026-11-14.md).
 
 
