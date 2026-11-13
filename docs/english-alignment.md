@@ -97,3 +97,12 @@ Tiga catatan `English translation: Legge 1861` di akhir transkripsi bab 1–3 di
 - **28 pasal Mengzi** masih belum tersedia. Seluruh bab 5 perlu pemetaan manual karena batas/urutan transkripsi sumber tidak cocok secara memadai. Bagian meragukan sengaja dikecualikan.
 - Total saat ini: **834/965** draf Inggris di editor: Da Xue 11, Lun Yu 462, Zhong Yong 129, Mengzi 232. **131 belum tersedia**: Da Xue 53, Lun Yu 50, Mengzi 28.
 - Semua `draft` / *needs review*. Tidak ada perubahan status Final. Regresi: `node --test tests/mengzi-coverage-04-12.test.js`.
+
+## Batch kecil 10 pasal Mengzi — 13 November 2026
+
+- Menambahkan tepat **10 pasal Inggris** draf: `sishu.mengzi.08.24`; `sishu.mengzi.10.02`, `10.04`–`10.09`; `sishu.mengzi.11.05`; dan `sishu.mengzi.12.02`.
+- Pembaca sumber kini mengenali baris Hanzi yang dimulai tanda kutip Tionghoa. Tanpa pembenahan ini, banyak kalimat Hanzinya sebelumnya salah masuk bagian Inggris sehingga perbandingan gagal. Tidak ada rekonstruksi teks Inggris dari AI.
+- Memakai source commit immutable `5d2e867ecfb33e16a6aed392c6b8b8cde3896030` dan snapshot audit `sources/legge/mengzi-chinesenotes-10-passages-batch-02.json` dengan rentang unit sumber, Hanzi pembanding, teks Inggris asli, dan persentase kecocokan.
+- Kesesuaian Hanzi lengkap **99,17–100%** setelah normalisasi aksara; pembaca tetap harus meninjau perbedaan karakter/edisi, terutama nama dan variasi transkripsi. Bab 10 Mengzi kini lengkap sebagai draf Inggris (9/9 pasal).
+- Total editor **844/965** berisi draf Inggris: Da Xue 11, Lun Yu 462, Zhong Yong 129, Mengzi 242. **121 masih kosong**: Da Xue 53, Lun Yu 50, Mengzi 18.
+- Kesepuluh teks masih `draft` / `needs_review`. **Tidak ada status Final otomatis**; Indonesia, Hanzi, pinyin, dan registry pengesahan tidak diubah. Android offline akan disinkronkan sebagai pekerjaan terpisah setelah batch konten.
