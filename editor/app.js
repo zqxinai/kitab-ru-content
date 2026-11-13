@@ -113,6 +113,8 @@
         }
       }
       if(!records.length)throw Error('Belum ada pasal dalam koleksi.');
+      // Search the edition-aligned English text as well as the bundled language data.
+      for(const r of records)r.search+=' '+normalize(englishTextFor(r.passage.id));
       $('loadingView').hidden=true;$('errorView').hidden=true;$('readerView').hidden=false;
       $('searchInput').disabled=false;
       $('connectionStatus').textContent='Naskah terbaru terbuka';
@@ -321,7 +323,7 @@
       delete drafts[passageId];
     else drafts[passageId]=d;
     if(persist())feedback('Draf tersimpan di browser ini. Belum diajukan kepada pemeriksa.');
-    draftCount();navigation();
+    draftCount();navigation();reader();
   }
   function close(){if(editing)save();editing=false;$('editPanel').hidden=true;$('readActions').hidden=false}
   function discard(){
