@@ -15,7 +15,7 @@ test('Batch 02 adds exactly ten unique draft English passages, no Final',()=>{
  assert.deepEqual(source.books.map(b=>[b.book_index,b.units.length]),[[8,1],[10,7],[11,1],[12,1]]);
  assert.equal(mapped.length,10);
  assert.equal(new Set(mapped.map(e=>e.id)).size,10);
- assert.equal(new Set(alignment.entries.flatMap(e=>e.indonesian_passage_ids)).size,608);
+ assert.equal(new Set(alignment.entries.flatMap(e=>e.indonesian_passage_ids)).size,612);
  assert.ok(mapped.every(e=>e.status==='draft'&&e.english_segments.length===1));
  assert.deepEqual([...selected].sort(),[
   'sishu.mengzi.08.24','sishu.mengzi.10.02','sishu.mengzi.10.04',
@@ -47,11 +47,11 @@ test('Exact English source snapshots and Hanzi match, with stable provenance',()
  }
 });
 
-test('Coverage updates to 854, without finalizing any translation',()=>{
+test('Coverage updates to 858, without finalizing any translation',()=>{
  const catalog=read('catalog.json').collections.find(x=>x.id==='sishu');
- assert.equal(catalog.english_editor_passages,854);
- assert.equal(catalog.english_editor_unmapped,111);
- assert.equal(catalog.english_editor_alignment_drafts,608);
+ assert.equal(catalog.english_editor_passages,858);
+ assert.equal(catalog.english_editor_unmapped,107);
+ assert.equal(catalog.english_editor_alignment_drafts,612);
  const approved=read('dist/sishu-review-status.json');
  assert.equal(approved.entries.length,0);
 });
