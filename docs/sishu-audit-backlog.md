@@ -14,6 +14,8 @@ Sumber [00 - INDEX AUDIT](https://drive.google.com/file/d/1ZkWMwg565eRKV_9zKqjXG
 
 **Status terbaru (13 November 2026):** empat pasal yang sudah memiliki catatan foto MATAKIN 2012 (`mengzi.07.23`, `mengzi.07.25`, `lunyu.10.24`, `lunyu.14.33`) sudah masuk batch koreksi tersendiri; jangan dibuka ulang kecuali bukti cetakan baru muncul atau pengujian gagal. `mengzi.07.24` dipertahankan; pasal lain dalam prioritas P1 tetap dinilai satu per satu. Seluruh persetujuan terjemahan Final tetap manual.
 
+**Batch pembuktian cetakan MATAKIN 2012 (13 November 2026):** Lun Yu IV:19, XVII:13, dan XIV:1 sudah dibetulkan berdasarkan rekaman bukti foto dan dibandingkan dengan Zhu Xi WYG. [Audit lanjutan](audits/matakin-2012-lunyu-glyphs-batch-02-2026-11-13.md). Pasal ini tidak dibuka ulang tanpa bukti baru atau gagal tes; nomor halaman XVII:13 tidak diketahui.
+
 ## Pencegahan looping
 
 Bekerja maksimal **10 pasal per batch**; setiap item memiliki ID stabil, hash/sumber, kasus, keputusan, alasan, status reviewer. Hanya buka ulang jika sumber atau versi naskah berubah. Jangan menerapkan ralat karakter pada Hanzi tanpa memperbarui anotasi Ruby, pinyin, paket distribusi dan hash katalog sekaligus. Jangan menandai bahasa Indonesia atau Inggris sebagai `Final` otomatis. Lihat [audit varian](sishu-textual-variants.md).

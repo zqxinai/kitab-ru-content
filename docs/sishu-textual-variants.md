@@ -1,5 +1,8 @@
 # Audit konteks perbedaan naskah Si Shu — 13 November 2026
 
+> **Update implementasi 13 November 2026:** Lun Yu IV:19 (遊 ×2, hlm. 138), XVII:13 (原 / yuán; tanpa nomor halaman foto yang terlihat), dan XIV:1 (穀 ×2, hlm. 285) kini sudah dikoreksi sesuai rekaman bukti cetakan MATAKIN 2012. [Laporan batch](audits/matakin-2012-lunyu-glyphs-batch-02-2026-11-13.md). Bagian historis di bawah yang bertuliskan 'belum diperbarui' adalah keadaan sebelum patch. Zhu Xi WYG tetap pembanding, status Final tidak berubah.
+
+
 > **Pembaruan 13 November 2026 — batch empat pasal berdasarkan bukti foto MATAKIN 2012:** `sishu.mengzi.07.23` (患, hlm. 655), `sishu.mengzi.07.25` (餔 dua kali, hlm. 656), `sishu.lunyu.10.24` (尸 dan 容, hlm. 226), dan `sishu.lunyu.14.33` (子曰, hlm. 302) telah diterapkan di JSON sumber dan pemetaan editor melalui commit batch ini. **Pinyin 餔啜 bū chuò berasal dari verifikasi leksikal terpisah** (Kementerian Pendidikan Taiwan), bukan klaim pemeriksaan pinyin cetak MATAKIN. Snapshot `sources/legge/` tetap dipertahankan, bahasa Indonesia MATAKIN dan Inggris Legge tidak diubah, status tetap draft. `sishu.mengzi.07.24` tidak diedit tanpa bukti 2012 tambahan. Catatan temuan di tabel di bawah adalah rekaman status *sebelum* batch ini; jangan membacanya sebagai backlog terkini.
 
 
