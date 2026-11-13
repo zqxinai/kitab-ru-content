@@ -1,6 +1,6 @@
 {
   "schema": "kitab-ru.catalog.v1",
-  "catalog_version": "0.1.0",
+  "catalog_version": "0.1.1",
   "updated_at": "2026-11-13",
   "collections": [
     {
@@ -9,8 +9,8 @@
       "title_en": "Four Books",
       "hanzi": "四書",
       "status": "draft",
-      "description": "Si Shu memuat 965 pasal; editor menyediakan 473 draf Inggris (246 langsung di paket, 227 melalui peta padanan) dan 492 belum diisi. Belum ada yang disahkan final.",
-      "description_en": "965 Four Books passages; editor displays 473 English drafts (246 bundled, 227 explicit alignments), with 492 remaining. Editorial approval remains pending.",
+      "description": "Si Shu memuat 965 pasal; editor menyediakan 602 draf Inggris (246 langsung di paket, 356 melalui peta padanan), sedangkan 363 belum tersedia. Zhong Yong lengkap sebagai draf; belum ada yang disahkan final.",
+      "description_en": "965 Four Books passages. Editor displays 602 English drafts (246 bundled, 356 from explicit alignments), with 363 remaining. Zhong Yong is draft-complete; editorial approval pending.",
       "package_url": "https://raw.githubusercontent.com/zqxinai/kitab-ru-content/main/dist/sishu-content.json",
       "sha256": "1347a3d898a09831d83569c41d9d95e7855425e239b6adafff217dc05ad719b3",
       "languages": [
@@ -22,9 +22,9 @@
       "english_status": "partial-draft",
       "english_passages": 246,
       "total_passages": 965,
-      "english_editor_passages": 473,
-      "english_editor_unmapped": 492,
-      "english_editor_alignment_drafts": 227
+      "english_editor_passages": 602,
+      "english_editor_unmapped": 363,
+      "english_editor_alignment_drafts": 356
     },
     {
       "id": "yijing",
