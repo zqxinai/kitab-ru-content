@@ -24,3 +24,24 @@ test('known editorial caveats survive automated report',()=>{
  assert.match(map.get('sishu.lunyu.14.33').wyg,/子曰/);
  assert.match(map.get('sishu.daxue.01.01').wyg,/親民/);
 });
+
+const fs=require('node:fs');
+const read=p=>JSON.parse(fs.readFileSync(p,'utf8'));
+const hanzi=p=>p.ruby_paragraphs.map(row=>row.map(t=>t.traditional||t.value||'').join('')).join('\n');
+test('photo-verified Da Xue III:4 preserves 喧 and corrects 諠 twice',()=>{
+ const p=read('sishu/chapters/daxue/04.json').passages.find(x=>x.id==='sishu.daxue.04.04');
+ const h=hanzi(p);
+ assert.equal((h.match(/赫兮喧兮/g)||[]).length,2);
+ assert.equal((h.match(/終不可諠兮/g)||[]).length,2);
+ assert.equal((h.match(/終不可喧兮/g)||[]).length,0);
+ assert.equal(p.editorial_status,'unverified-draft');
+});
+test('photo-verified Da Xue VI:2 preserves proper 閒, 掩, 己',()=>{
+ const p=read('sishu/chapters/daxue/07.json').passages.find(x=>x.id==='sishu.daxue.07.02');
+ const h=hanzi(p);
+ assert.match(h,/小人閒居為不善/);
+ assert.match(h,/掩其不善/);
+ assert.match(h,/人之視己/);
+ assert.doesNotMatch(h,/小人閑居為不善/);
+ assert.equal(p.editorial_status,'unverified-draft');
+});
