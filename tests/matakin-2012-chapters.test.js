@@ -37,8 +37,8 @@ test('Printed MATAKIN 2012 titles agree with source chapter metadata; no renumbe
     const current=read(entry.path);
     const printed=edition.chapters.find(c=>c.id===entry.id);
     assert(printed,entry.id);
-    // Edition 2012 prints “Didalam” where the source metadata modernizes “di Dalam”.
-    const canon=s=>s.toLocaleLowerCase('id-ID').replace(/didalam/g,'di dalam');
+    // Preserve printed word spacing; capitalization is not an editorial discrepancy.
+    const canon=s=>s.toLocaleLowerCase('id-ID');
     const raw=canon(current.title.split(' · ')[0]
       .replace(/^Jilid ([IVXLCDM]+)([AB])\b/,'Jilid $1 $2'));
     const expected=canon(printed.label==='Bab Utama'?'Bab Utama':printed.label+' — '+printed.name);
@@ -55,6 +55,7 @@ test('MATAKIN page references and book structure are explicit',()=>{
   assert.equal(find('sishu.daxue.01').page,3);
   assert.equal(find('sishu.daxue.06').label,'Bab V');
   assert.equal(find('sishu.zhongyong.26').label,'Bab XXV');
+  assert.equal(find('sishu.zhongyong.29').name,'Hukum Yang Di dalam Jalan Suci');
   assert.equal(find('sishu.lunyu.14').page,285);
   assert.equal(find('sishu.mengzi.09').label,'Jilid V A');
   assert.equal(find('sishu.mengzi.14').label,'Jilid VII B');
