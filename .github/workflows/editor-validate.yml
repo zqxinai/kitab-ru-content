@@ -1,0 +1,29 @@
+name: Validate Kitab Ru Editor
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'editor/**'
+      - 'catalog.json'
+      - 'index.html'
+      - '.github/workflows/editor-validate.yml'
+  pull_request:
+    paths:
+      - 'editor/**'
+      - 'catalog.json'
+      - 'index.html'
+      - '.github/workflows/editor-validate.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  editor-check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate syntax, references and catalog
+        run: node editor/tests/validate.mjs
