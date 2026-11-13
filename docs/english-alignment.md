@@ -106,3 +106,11 @@ Tiga catatan `English translation: Legge 1861` di akhir transkripsi bab 1–3 di
 - Kesesuaian Hanzi lengkap **99,17–100%** setelah normalisasi aksara; pembaca tetap harus meninjau perbedaan karakter/edisi, terutama nama dan variasi transkripsi. Bab 10 Mengzi kini lengkap sebagai draf Inggris (9/9 pasal).
 - Total editor **844/965** berisi draf Inggris: Da Xue 11, Lun Yu 462, Zhong Yong 129, Mengzi 242. **121 masih kosong**: Da Xue 53, Lun Yu 50, Mengzi 18.
 - Kesepuluh teks masih `draft` / `needs_review`. **Tidak ada status Final otomatis**; Indonesia, Hanzi, pinyin, dan registry pengesahan tidak diubah. Android offline akan disinkronkan sebagai pekerjaan terpisah setelah batch konten.
+
+## Batch kecil Mengzi 03 — 13 November 2026 (10 pasal)
+
+- Draf baru: `sishu.mengzi.04.04`, `05.01–05.05`, `06.03`, `06.09`, `13.46`, `14.38`. Kelima pasal Bab 5 sekarang tersedia sebagai **draf**, bukan Final.
+- Teks Inggris James Legge dikutip dari `alexamies/chinesenotes.com` pada commit sumber tetap `5d2e867ecfb33e16a6aed392c6b8b8cde3896030`; snapshot sumber `sources/legge/mengzi-chinesenotes-10-passages-batch-03.json` menyimpan rentang unit, Hanzi rujukan, teks Inggris, dan catatan variasi.
+- Kesesuaian Hanzi sumber terhadap seluruh rentang pasal MATAKIN berkisar **96,70%–100%** setelah normalisasi sederhana. Perbedaan aksara, transmisi teks, dan atribusi sumber masih **harus diperiksa secara manual**.
+- Cakupan editor menjadi **854/965 draf Inggris (88,5%)**, tersisa **111**: Da Xue 53, Lun Yu 50, Mengzi 8. Tidak mengubah teks Indonesia, Hanzi, pinyin, status Final, maupun aset Android.
+- Pengujian regresi: `node --test tests/mengzi-coverage-batch-03.test.js`.
