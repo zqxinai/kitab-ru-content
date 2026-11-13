@@ -12,6 +12,7 @@ on:
       - 'tests/mengzi-coverage.test.js'
       - 'tests/mengzi-coverage-13-14.test.js'
       - 'tests/mengzi-coverage-04-12.test.js'
+      - 'tests/mengzi-coverage-10-passages.test.js'
       - 'tools/import_legge_zhongyong.js'
       - 'sources/legge/**'
       - 'tools/dictionaries/**'
@@ -29,6 +30,7 @@ on:
       - 'tests/mengzi-coverage.test.js'
       - 'tests/mengzi-coverage-13-14.test.js'
       - 'tests/mengzi-coverage-04-12.test.js'
+      - 'tests/mengzi-coverage-10-passages.test.js'
       - 'tools/import_legge_zhongyong.js'
       - 'sources/legge/**'
       - 'tools/dictionaries/**'
@@ -51,4 +53,4 @@ jobs:
       - name: Validate Legge importer JavaScript
         run: node --check tools/import_legge_zhongyong.js
       - name: Run editorial regression tests
-        run: node --test tests/editorial-review.test.js tests/zhongyong-coverage.test.js tests/mengzi-coverage.test.js tests/mengzi-coverage-13-14.test.js tests/mengzi-coverage-04-12.test.js
+        run: node --test tests/editorial-review.test.js tests/zhongyong-coverage.test.js tests/mengzi-coverage.test.js tests/mengzi-coverage-13-14.test.js tests/mengzi-coverage-04-12.test.js tests/mengzi-coverage-10-passages.test.js

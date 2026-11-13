@@ -2,7 +2,8 @@
 const test=require('node:test'),assert=require('node:assert/strict'),fs=require('node:fs');
 const read=p=>JSON.parse(fs.readFileSync(p,'utf8'));
 const source=read('sources/legge/mengzi-chinesenotes-04-12.json');
-const mapped=read('dist/sishu-english-alignment.json').entries.filter(e=>/^legge-mengzi-(0[4-9]|1[0-2])-/.test(e.id));
+const originalIds=new Set(source.books.flatMap(book=>book.units.map(unit=>unit.indonesian_passage_id)));
+const mapped=read('dist/sishu-english-alignment.json').entries.filter(e=>e.indonesian_passage_ids.some(id=>originalIds.has(id)));
 const hanzi=p=>(p.ruby_paragraphs||[]).map(row=>row.map(t=>t.type==='ruby'?(t.traditional||''):(t.value||'')).join('')).join('\n');
 test('118 conservative drafts with explicit exclusions and nonoverlapping source ranges',()=>{
  assert.equal(source.books.length,9);
