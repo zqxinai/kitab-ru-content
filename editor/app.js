@@ -152,11 +152,75 @@
     const ps=$('passageList');ps.replaceChildren();
     for(const p of selectedChapter()?.passages||[]){
       const b=document.createElement('button');b.type='button';
-      b.className='passage-button'+(p.id===passageId?' active':'')+(changed(p.id)?' draft':'');
-      b.textContent=String(p.number);b.title='Buka pasal '+p.number;
+      const st=statusFor(byId.get(p.id));
+      b.className='passage-button'+(p.id===passageId?' active':'')+
+        (st.localDraft?' draft':st.bothFinal?' final':(st.idFinal||st.enFinal)?' partial':'');
+      b.textContent=String(p.number);
+      b.title='Pasal '+p.number+' · '+(st.bothFinal?'Final':(st.idFinal||st.enFinal?'Sebagian final':'Perlu review'));
       b.setAttribute('aria-current',String(p.id===passageId));
       b.onclick=()=>select(p.id);ps.append(b);
     }
+  }
+  function statusFor(r){
+    const p=r.passage,review=reviewStatuses.get(p.id)||{};
+    const trace=typeof review.reviewed_by==='string'&&!!review.reviewed_by.trim()&&
+      typeof review.reviewed_at==='string'&&!!review.reviewed_at.trim()&&
+      Number.isInteger(review.source_issue)&&review.source_issue>0;
+    const hanziMatch=review.hanzi_span===r.hanzi;
+    const idFinal=trace&&hanziMatch&&review.indonesian==='final'&&
+      typeof review.indonesian_text==='string'&&
+      review.indonesian_text===p.translation_indonesian;
+    const english=englishTextFor(p.id).trim();
+    const enFinal=trace&&hanziMatch&&review.english==='final'&&!!english&&
+      typeof review.english_text==='string'&&review.english_text===englishTextFor(p.id);
+    const localDraft=changed(p.id);
+    return {idFinal,enFinal,bothFinal:idFinal&&enFinal&&!localDraft,
+      hasId:!!String(p.translation_indonesian||'').trim(),
+      hasEn:!!english,localDraft};
+  }
+  function languageAvailable(status,scope){
+    return scope==='id'?status.hasId:scope==='en'?status.hasEn:(status.hasId&&status.hasEn);
+  }
+  function languageFinal(status,scope){
+    return scope==='id'?status.idFinal:scope==='en'?status.enFinal:status.bothFinal;
+  }
+  function scopeName(scope){
+    return scope==='id'?'Indonesia (MATAKIN)':scope==='en'?'Inggris (James Legge)':'Indonesia dan Inggris';
+  }
+  function updatePassageActions(){
+    const status=statusFor(record()),scope=$('passageLanguage').value;
+    $('confirmFinalButton').disabled=languageFinal(status,scope)||!languageAvailable(status,scope)||status.localDraft;
+    $('confirmFinalButton').title=!languageAvailable(status,scope)?'Terjemahan yang dipilih belum lengkap':
+      status.localDraft?'Ajukan koreksi draf dahulu':
+      languageFinal(status,scope)?'Status yang dipilih sudah final':'Ajukan status final untuk diperiksa';
+  }
+  function chapterRecords(){
+    return (selectedChapter()?.passages||[]).map(p=>byId.get(p.id)).filter(Boolean);
+  }
+  function renderChapterReview(){
+    const chapter=selectedChapter();if(!chapter)return;
+    const rows=chapterRecords(),statuses=rows.map(statusFor),n=rows.length;
+    const idFinal=statuses.filter(s=>s.idFinal).length;
+    const enFinal=statuses.filter(s=>s.enFinal).length;
+    const enMissing=statuses.filter(s=>!s.hasEn).length;
+    const drafts=statuses.filter(s=>s.localDraft).length;
+    $('chapterReviewHeading').textContent='Status Bab · '+chapter.title;
+    $('chapterReviewTotal').textContent=n+' pasal';
+    $('chapterIndonesianStatus').textContent='Indonesia final '+idFinal+'/'+n;
+    $('chapterEnglishStatus').textContent='Inggris final '+enFinal+'/'+n;
+    $('chapterEnglishMissing').textContent=enMissing+' terjemahan Inggris belum tersedia';
+    const scope=$('chapterLanguage').value;
+    const missing=statuses.filter(s=>!languageAvailable(s,scope)).length;
+    const allFinal=statuses.every(s=>languageFinal(s,scope));
+    $('confirmChapterButton').disabled=n===0||missing>0||drafts>0||allFinal;
+    $('confirmChapterButton').title=missing?'Ada '+missing+' pasal tanpa teks '+scopeName(scope):
+      drafts?'Ada '+drafts+' draf lokal yang belum diajukan':
+      allFinal?'Seluruh pasal dalam bahasa yang dipilih sudah final':'Buat satu pengajuan untuk semua pasal bab ini';
+    $('chapterReviewHelp').textContent=missing?
+      missing+' pasal belum memiliki terjemahan '+scopeName(scope)+'. Pilih bahasa lain atau lengkapi teks terlebih dahulu.':
+      drafts?drafts+' pasal memiliki draf lokal. Ajukan perubahan dahulu sebelum meminta finalisasi bab.':
+      allFinal?'Semua pasal pada cakupan ini sudah final berdasarkan status repository.':
+      'Pengajuan massal mencakup '+n+' pasal. Pengelola tetap memeriksa tiap pasal sebelum menerbitkan status Final.';
   }
   function showHanzi(paragraphs){
     const root=$('hanziText');root.replaceChildren();
@@ -183,27 +247,14 @@
     $('chapterTitle').textContent=ch.title;
     $('chapterSubtitle').textContent=info.name+' · '+info.hanzi;
     $('readingHeader').dataset.watermark=info.hanzi;
-    const review=reviewStatuses.get(p.id)||{};
-    // Finality is anchored to the reviewed text snapshots, not just an old flag.
-    const idFinal=review.indonesian==='final' &&
-      typeof review.indonesian_text==='string' &&
-      review.indonesian_text===p.translation_indonesian &&
-      review.hanzi_span===r.hanzi;
-    const enFinal=review.english==='final' &&
-      typeof review.english_text==='string' &&
-      !!englishTextFor(p.id).trim() &&
-      review.english_text===englishTextFor(p.id) &&
-      review.hanzi_span===r.hanzi;
-    const bothFinal=idFinal&&enFinal&&!changed(p.id);
+    const status=statusFor(r), {idFinal,enFinal,bothFinal}=status;
     $('passageStatus').textContent=bothFinal?'Final':(idFinal||enFinal?'Sebagian final':'Perlu review');
     $('passageStatus').classList.toggle('final',bothFinal);
     $('passageStatus').classList.toggle('partial',!bothFinal&&(idFinal||enFinal));
     $('reviewDetail').textContent='Indonesia: '+(idFinal?'final':'perlu review')+
       ' · Inggris: '+(enFinal?'final':'perlu review');
-    $('confirmFinalButton').disabled=bothFinal;
-    $('confirmFinalButton').title=bothFinal?'Kedua terjemahan sudah disahkan dalam repository.':'Ajukan konfirmasi final untuk kedua terjemahan';
-    $('reviewHelp').textContent=bothFinal?'Kedua terjemahan telah disahkan dan diterbitkan.':
-      'Status Final hanya berlaku setelah pengelola menyetujui dan menerbitkan perubahan di repository.';
+    updatePassageActions();
+    renderChapterReview();
     showHanzi(p.ruby_paragraphs);
     $('indonesianText').textContent=p.translation_indonesian||'Terjemahan belum tersedia.';
     const mappings=englishAlignments.get(p.id)||[];
@@ -397,6 +448,10 @@
   }
   $('confirmFinalButton').onclick=()=>requestEditorialStatus('final');
   $('requestReviewButton').onclick=()=>requestEditorialStatus('review');
+  $('passageLanguage').onchange=updatePassageActions;
+  $('chapterLanguage').onchange=renderChapterReview;
+  $('confirmChapterButton').onclick=()=>requestChapterStatus('final');
+  $('reviewChapterButton').onclick=()=>requestChapterStatus('review');
   $('editButton').onclick=beginEdit;$('resumeDraft').onclick=beginEdit;
   $('closeEdit').onclick=close;$('saveDraft').onclick=save;
   $('discardDraft').onclick=discard;$('submitProposal').onclick=submit;
