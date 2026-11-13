@@ -1,5 +1,8 @@
 # Zhong Yong — rekonsiliasi 28 kandidat `significant` (14 November 2026)
 
+> **Verifikasi penutup 14 November 2026:** Foto tambahan halaman **47** memperlihatkan Zhong Yong **XII:3** memakai `施諸己` dengan pinyin **jǐ**, sama dengan Ru Classics. Foto halaman 76 mengonfirmasi pemakaian `己` pada **XXIV:3**. **Kedua kandidat `己/已` di bagian C sudah memiliki bukti cetak dan ditutup tanpa perubahan isi**; catatan status terbuka di bawah adalah histori sebelum foto diterima. Foto XXV:4 juga sudah ditangani sebagaimana laporan tersendiri. [Rekonsiliasi bukti foto](zhongyong-photos-xii-xxiv-xxv-2026-11-14.md).
+
+
 > **Pembaruan berdasarkan foto cetak MATAKIN 2012 (14 November):** Bukti [tiga foto Zhong Yong](zhongyong-photos-xii-xxiv-xxv-2026-11-14.md) menegaskan bentuk `己` untuk diri sendiri pada XXIV:3 dan Hanzi XXV:4; tanda baca XXV:4 telah disesuaikan. **XII:3 masih terbuka** karena foto halaman 48 tidak memperlihatkan awal Hanzi `施諸己/已`; perlu halaman 47. Catatan kandidat di bawah adalah status sebelum pembaruan ini dan tidak boleh ditafsirkan sebagai permintaan foto berulang untuk XXIV:3/XXV:4.
 
 
