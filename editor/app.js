@@ -24,13 +24,19 @@
   const hanziOf=paras=>(paras||[]).map(tokens=>
     Array.isArray(tokens)?tokens.map(t=>t.type==='ruby'?(t.traditional||''):(t.value||'')).join(''):''
   ).join('\n');
+  // The editorial source of truth is the alignment map when a mapped translation exists.
+  const englishTextFor=id=>{
+    const mapped=(englishAlignments.get(id)||[]).flatMap(e=>e.english_segments||[])
+      .map(s=>String(s.text||'').trim()).filter(Boolean).join('\n\n');
+    return mapped||String(byId.get(id)?.passage.translation_english||'');
+  };
   const record=id=>byId.get(id||passageId);
   const selectedChapter=()=>chapters.find(c=>c.id===chapterId);
   const draft=id=>drafts[id]&&typeof drafts[id]==='object'?drafts[id]:null;
   const changed=id=>{
     const d=draft(id),r=record(id);if(!d||!r)return false;
     return d.idText!==r.passage.translation_indonesian||
-      d.enText!==(r.passage.translation_english||'')||!!String(d.reason||'').trim();
+      d.enText!==englishTextFor(id)||!!String(d.reason||'').trim();
   };
   function feedback(message,error=false){
     $('draftFeedback').textContent=message;
@@ -168,8 +174,7 @@
     $('indonesianText').textContent=p.translation_indonesian||'Terjemahan belum tersedia.';
     const mappings=englishAlignments.get(p.id)||[];
     const segments=mappings.flatMap(entry=>entry.english_segments||[]);
-    const mappedEnglish=segments.map(segment=>String(segment.text||'').trim()).filter(Boolean).join('\n\n');
-    const en=mappedEnglish||String(p.translation_english||'').trim();
+    const en=englishTextFor(p.id).trim();
     $('englishText').textContent=en||'Terjemahan Inggris belum tersedia atau belum disetujui untuk pasal ini.';
     $('englishText').classList.toggle('unavailable',!en);
     if(mappings.length){
@@ -201,7 +206,7 @@
     const r=record();if(!r)return;
     editing=true;const d=draft(passageId);
     $('editIndonesian').value=d?.idText??r.passage.translation_indonesian??'';
-    $('editEnglish').value=d?.enText??r.passage.translation_english??'';
+    $('editEnglish').value=d?.enText??englishTextFor(passageId);
     $('editReason').value=d?.reason??'';
     $('editPanel').hidden=false;$('readActions').hidden=true;
     feedback(d?.version&&d.version!==bundle.content_version?
@@ -216,7 +221,7 @@
   function save(){
     if(!editing||!passageId)return;
     const d=draftFromInput(),p=record().passage;
-    if(d.idText===p.translation_indonesian&&d.enText===(p.translation_english||'')&&!d.reason.trim())
+    if(d.idText===p.translation_indonesian&&d.enText===englishTextFor(passageId)&&!d.reason.trim())
       delete drafts[passageId];
     else drafts[passageId]=d;
     if(persist())feedback('Draf tersimpan di browser ini. Belum diajukan kepada pemeriksa.');
@@ -239,8 +244,8 @@
       body+='### Terjemahan Indonesia sebelumnya\n\n'+p.translation_indonesian+'\n\n';
       body+='### Terjemahan Indonesia yang diusulkan\n\n'+d.idText+'\n\n';
     }
-    if(d.enText!==(p.translation_english||'')){
-      body+='### Terjemahan Inggris sebelumnya\n\n'+(p.translation_english||'(Belum tersedia)')+'\n\n';
+    if(d.enText!==englishTextFor(p.id)){
+      body+='### Terjemahan Inggris sebelumnya\n\n'+(englishTextFor(p.id)||'(Belum tersedia)')+'\n\n';
       body+='### Terjemahan Inggris yang diusulkan\n\n'+(d.enText||'(Dihapus)')+'\n\n';
     }
     body+='### Alasan dan rujukan\n\n'+d.reason.trim()+'\n\n';
@@ -252,7 +257,7 @@
     save();const r=record(),d=draft(passageId);
     if(!r||!d){feedback('Belum ada perubahan untuk diajukan.',true);return}
     if(!d.reason?.trim()){feedback('Tuliskan alasan dan rujukan agar pemeriksa dapat menilai usulan.',true);$('editReason').focus();return}
-    if(d.idText===r.passage.translation_indonesian&&d.enText===(r.passage.translation_english||'')){
+    if(d.idText===r.passage.translation_indonesian&&d.enText===englishTextFor(passageId)){
       feedback('Ubah terjemahan Indonesia atau Inggris terlebih dahulu.',true);return;
     }
     if(!d.idText.trim()){feedback('Terjemahan Indonesia tidak boleh dikosongkan.',true);return}
