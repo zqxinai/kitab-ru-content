@@ -1,5 +1,8 @@
 # Audit konteks perbedaan naskah Si Shu — 13 November 2026
 
+> **Pembaruan implementasi Mengzi 09.07:** dua komentar telah dipisahkan ke metadata beratribusi dan koreksi `末` → `未` ditambahkan dalam cabang review; penjelasan historis di bawah adalah keadaan **sebelum** patch. Lihat [catatan perbaikan](audits/mengzi-09-07-commentary.md). Terjemahan MATAKIN dan status Final tidak diubah.
+
+
 Status: keputusan kerja bersumber, **belum disahkan Final**. Hanzi proyek berasal dari `hanzhaodeng/chinese-ancient-text` dengan konversi ICU Hans-Hant, bukan dari PDF terjemahan MATAKIN; lihat [provenance](hanzi-provenance.md).
 
 ## Hasil per pasal

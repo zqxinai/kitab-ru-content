@@ -38,11 +38,12 @@ test('seven variant-aware English drafts, no passage finalized',()=>{
   assert.ok(u.normalized_character_edit_distance>=1&&u.normalized_character_edit_distance<=2);
  }
 });
-test('Mencius 09.07 is withheld while Zhu Xi commentary is embedded in scripture',()=>{
+test('Mencius 09.07 remains unmapped while Zhu Xi commentary is safely separated',()=>{
  const id='sishu.mengzi.09.07',p=byId.get(id);
  assert.ok(p);
- assert.match(hanzi(p),/林氏曰/);
- assert.match(hanzi(p),/愚謂/);
+ assert.doesNotMatch(hanzi(p),/林氏曰|愚謂/);
+ assert.equal(p.commentary_annotations.length,2);
+ assert.match(hanzi(p),/未聞以割烹也。伊訓曰/);
  assert.deepEqual(m.excluded.map(x=>x.id),[id]);
  assert.ok(!align.entries.some(e=>e.indonesian_passage_ids.includes(id)));
 });
