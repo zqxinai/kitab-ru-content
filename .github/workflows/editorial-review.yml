@@ -32,5 +32,7 @@ jobs:
         run: python3 tools/build_sishu.py
       - name: Check text mapping and final status against current scripture
         run: node tools/audit_review_status.js
+      - name: Validate editor JavaScript syntax
+        run: node --check editor/app.js
       - name: Run editorial regression tests
         run: node --test tests/editorial-review.test.js
