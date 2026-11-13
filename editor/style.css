@@ -121,3 +121,15 @@ button:focus-visible,input:focus-visible,textarea:focus-visible,a:focus-visible{
 @media(max-width:1230px){.layout{grid-template-columns:240px minmax(0,1fr)}.guide{grid-column:2;border-left:0;border-top:1px solid var(--line);display:grid;grid-template-columns:1.4fr 1fr;gap:0 15px}.guide-header{grid-column:1/-1}.guide-note{grid-column:1/-1}}
 @media(max-width:760px){.layout{display:flex;flex-direction:column}.topbar{padding:12px}.top-actions{width:100%}.connection{flex:1}.sidebar{border-right:0;border-bottom:1px solid var(--line)}.sidebar-head{padding:15px 16px}.sidebar-head h2{margin-bottom:11px}.sidebar-scroll{max-height:240px;min-height:80px}.sidebar-foot{display:none}.reading-header{padding:22px 16px 0}.reading-inner{padding:15px 13px 35px}.source-card,.translation-card,.edit-panel{padding:18px 15px}.hanzi-text{font-size:23px}.guide{display:block;padding:14px}.reading-nav{gap:0}.reading-nav .button{padding:9px 4px}.read-actions{align-items:flex-start}.footer{padding:11px}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{transition:none!important}}
+
+
+/* Editorial confirmation controls: status is authoritative only when published. */
+.status-chip.final{color:#23694e;border-color:#9bd3b6;background:#ecf9ef;font-weight:750}
+.status-chip.partial{color:#8a651d;border-color:#e9d095;background:#fffae9;font-weight:700}
+.review-controls{border:1px solid #cde2e5;border-radius:16px;background:#f8fdfd;padding:16px 18px;margin:22px 0 15px}
+.review-heading{display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;font-size:13px;color:#365c64}
+.review-heading span{font-size:11px;color:#63828a}
+.review-buttons{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
+.review-buttons .button:disabled{opacity:.55;cursor:not-allowed}
+.review-help{font-size:11px;line-height:1.65;color:#66818a;margin:12px 0 0}
+@media(max-width:760px){.review-buttons .button{flex:1}}
