@@ -124,3 +124,13 @@ Tiga catatan `English translation: Legge 1861` di akhir transkripsi bab 1–3 di
 - Sisa Mengzi yang sengaja **belum dipaksakan**: `07.23` (忌 ↔ 患), `07.25` (variasi 哺 ↔ 餔), `08.17` (祥 ↔ 詳), `09.07` (rentang Hanzi sumber tidak lengkap). Perbedaan ini membutuhkan pemeriksaan filologis.
 - Naskah Indonesia, Hanzi, pinyin, registry Final dan paket offline Android tetap tidak berubah.
 - Tes: `node --test tests/mengzi-coverage-batch-04.test.js`.
+
+## Batch kecil Lun Yu 05 — 13 November 2026 (10 pasal)
+
+- Draf Inggris James Legge ditambahkan pada **10 pasal Lun Yu Bab X**: 10:10, 10:12–16, 10:19–20, serta 10:22–23. Kesepuluhnya `draft` dan membutuhkan pemeriksaan editorial sebelum `final`.
+- Sumber independen: James Legge, `The Chinese Classics, Vol. I: Confucian Analects` (edisi dwibahasa), Project Gutenberg eBook **#4094**, https://www.gutenberg.org/cache/epub/4094/pg4094-images.html . Snapshot teks dan rentang baris: `sources/legge/lunyu-b05-gutenberg-4094.json`.
+- Nomor **pasal Indonesia MATAKIN tidak disamakan** dengan nomor Chapter/Section edisi Legge. Contoh: pasal Indonesia 10:10 = Book X, Chapter VIII, section 9 pada Legge; pasal 10:23 = Book X, Chapter XV, sections 2–3 (teks Inggris digabung tepat mengikuti edisi).
+- Seluruh Hanzi sumber per pasal cocok pada rentang lengkap setelah hanya menghapus tanda baca; bahasa Inggris disalin sebagai draf tanpa membuat versi AI baru. Variasi pemenggalan dan redaksi tetap perlu peninjauan manusia.
+- Cakupan editor kini **868/965 (89,9%)**: Da Xue 11/64, Zhong Yong 129/129, Lun Yu 472/512, Mengzi 256/260. Sebanyak **97 belum tersedia**: Da Xue 53, Lun Yu 40, Mengzi 4.
+- Tidak mengubah teks Hanzi, pinyin, terjemahan Indonesia MATAKIN, registry `Final`, atau paket Android offline. `dist/sishu-content.json` masih mempunyai 246 Inggris yang tertanam; 622 tambahan tersedia melalui peta padanan editor.
+- Uji: `node --test tests/lunyu-batch-05.test.js`.
