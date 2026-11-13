@@ -24,6 +24,8 @@ Sumber [00 - INDEX AUDIT](https://drive.google.com/file/d/1ZkWMwg565eRKV_9zKqjXG
 
 **Audit tiga pasal tanpa koreksi (13 November 2026):** `mengzi.08.17` tetap 不祥 (tidak membawa berkah), `lunyu.09.26` tetap 帥 (panglima), `lunyu.11.03` tetap 季路 (nama murid); ketiganya cocok dengan perbandingan WYG dan Indonesia MATAKIN yang ada. Belum ada bukti foto 2012 yang mengharuskan ralat tiga bacaan tersebut. **Lun Yu XIV:39** juga kini memuat catatan perbedaan 己/已 berdasarkan rekaman foto cetakan hlm. 305–306 dengan Zhu Xi WYG sebagai pembanding sekunder. [Audit](audits/lunyu-14-39-jiyi-matakin-2012-2026-11-13.md). Jangan membuka ulang empat pasal tanpa bukti baru atau regresi gagal.
 
+**Zhong Yong Bab IX selesai tahap audit kandidat high risk (14 November 2026):** 10.01 adalah false positive akibat `強/强` dan substring WYG terpotong; tidak ada ralat. 10.02 mempertahankan Hanzi dan Indonesia, tetapi tiga pinyin partikel tanya `與` menjadi `yú` sesuai MOE Taiwan dan komentar WYG. Foto cetakan MATAKIN 2012 belum dibandingkan langsung; Final tetap pending. [Rincian](audits/zhongyong-ix-pinyin-wyg-2026-11-14.md).
+
 ## Pencegahan looping
 
 Bekerja maksimal **10 pasal per batch**; setiap item memiliki ID stabil, hash/sumber, kasus, keputusan, alasan, status reviewer. Hanya buka ulang jika sumber atau versi naskah berubah. Jangan menerapkan ralat karakter pada Hanzi tanpa memperbarui anotasi Ruby, pinyin, paket distribusi dan hash katalog sekaligus. Jangan menandai bahasa Indonesia atau Inggris sebagai `Final` otomatis. Lihat [audit varian](sishu-textual-variants.md).

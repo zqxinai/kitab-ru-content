@@ -1,5 +1,8 @@
 # Audit konteks perbedaan naskah Si Shu — 13 November 2026
 
+> **Audit Zhong Yong Bab IX (14 November 2026):** `sishu.zhongyong.10.01` dipertahankan tanpa koreksi karena `強/强` hanya perbedaan bentuk grafis dan WYG memang memuat `子路問强`. Pada `10.02`, tiga pinyin partikel `與` dikoreksi dari `yǔ` menjadi `yú` berdasarkan sumber leksikal MOE Taiwan dan komentar WYG `與平聲`, **bukan bukti foto pinyin MATAKIN 2012**; Hanzi serta terjemahan MATAKIN tidak diubah. [Laporan audit](audits/zhongyong-ix-pinyin-wyg-2026-11-14.md). Status Final tetap menunggu pemeriksaan cetakan.
+
+
 > **Status pelaksanaan 13 November 2026:** Da Xue Bab V:1 (`sishu.daxue.06.01`) telah diperbaiki untuk 惟 dan 有 dan memperoleh metadata serta pemisahan visual pengantar/pelengkap Zhu Xi di editor. [Audit batch](audits/daxue-bab-v-matakin-2012-2026-11-13.md). Kalimat historis pada bagian lama yang berbunyi 'belum diterapkan' menjelaskan keadaan sebelum patch, bukan status terbaru. MATAKIN 2012 tetap acuan utama, tanpa mengubah teks Indonesia atau mengesahkan Final.
 
 

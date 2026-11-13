@@ -1,0 +1,39 @@
+'use strict';
+const test=require('node:test'),assert=require('node:assert/strict'),fs=require('node:fs');
+const read=p=>JSON.parse(fs.readFileSync(p,'utf8'));
+const ch=read('sishu/chapters/zhongyong/10.json'),content=read('dist/sishu-content.json'),alignment=read('dist/sishu-english-alignment.json');
+const first=ch.passages.find(p=>p.id==='sishu.zhongyong.10.01'),second=ch.passages.find(p=>p.id==='sishu.zhongyong.10.02');
+const map=new Map(content.chapters.flatMap(c=>c.passages).map(p=>[p.id,p]));
+const text=p=>p.ruby_paragraphs.map(row=>row.map(t=>t.traditional||t.value||'').join('')).join('\n');
+const hash=s=>{let h=2166136261;for(let i=0;i<s.length;i++){h^=s.charCodeAt(i);h=Math.imul(h,16777619)>>>0;}return h.toString(16).padStart(8,'0')};
+test('Zhong Yong IX:1 preserves MATAKIN original despite mechanical WYG false positive',()=>{
+ assert.equal(text(first),'子路問強。');assert.equal(hash(text(first)),'94cc5d74');
+ assert.equal(hash(first.translation_indonesian),'334154be');assert.equal(first.editorial_status,'unverified-draft');
+ assert.deepEqual(map.get(first.id),first);
+ const x=alignment.entries.find(e=>e.id==='legge-zhongyong-10-01');
+ assert.equal(x.hanzi_span,text(first));assert.equal(x.status,'draft');
+});
+test('Zhong Yong IX:2 preserves Chinese and Indonesian, changes exactly three yú pronunciations',()=>{
+ assert.equal(text(second),'子曰：“南方之強與，北方之強與，抑而強與？');
+ assert.equal(hash(text(second)),'28ae75b5');assert.equal(hash(second.translation_indonesian),'c6328bf9');
+ const r=second.ruby_paragraphs.flat().filter(t=>t.type==='ruby');
+ assert.equal(r.filter(t=>t.traditional==='與'&&t.pinyin==='yú'&&t.modern==='与').length,3);
+ assert.equal(r.filter(t=>t.traditional==='與'&&t.pinyin==='yǔ').length,0);
+ assert.equal(r.filter(t=>t.traditional==='強'&&t.pinyin==='qiáng').length,3);
+ assert.equal(second.editorial_status,'unverified-draft');
+ assert.deepEqual(map.get(second.id),second);
+ assert.equal(content.chapters.length,78);
+ assert.equal(content.chapters.reduce((sum,c)=>sum+c.passages.length,0),965);
+ assert.equal(read('dist/sishu-review-status.json').entries.length,0);
+});
+test('Pinyin source and its limitation are explicit; original Legge alignment not changed',()=>{
+ const n=second.editorial_annotations[0];
+ assert.equal(n.kind,'interpretive_comparison');assert.equal(n.after_paragraph_index,0);
+ assert.match(n.description_indonesian,/belum diperiksa langsung/);
+ assert.equal(n.source_basis.witness_page,'KR1h0015_WYG_016-42a');
+ assert.match(n.source_basis.lexicon_url,/dict.revised.moe.edu.tw/);
+ assert.equal(n.review_status,'awaiting-direct-2012-pinyin-photo');
+ const a=alignment.entries.find(e=>e.id==='legge-zhongyong-10-02');
+ assert.deepEqual(a.indonesian_passage_ids,['sishu.zhongyong.10.02','sishu.zhongyong.10.03','sishu.zhongyong.10.04','sishu.zhongyong.10.05']);
+ assert.equal(a.status,'draft');assert.match(a.english_segments[0].text,/energy of the South/);
+});
