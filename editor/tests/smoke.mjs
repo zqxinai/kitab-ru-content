@@ -69,7 +69,9 @@ assert.equal(elements.chapterList.children.length,1);
 assert.equal(elements.chapterList.children[0].children[0].textContent,'Bab Utama');
 assert.equal(elements.chapterList.children[0].children[0].children[0].textContent,'Bab Utama · hlm. 3');
 assert.equal(elements.passageList.children.length,first.passages.length);
-assert.equal(elements.hanziText.children.length,selected.ruby_paragraphs.length);
+// Editorial annotations are sibling asides and must not count as scripture paragraphs.
+assert.equal(elements.hanziText.children.filter(node=>node.tag==='p').length,
+  selected.ruby_paragraphs.length);
 const initialEnglish=selected.translation_english?.trim();
 assert.equal(elements.englishText.textContent,
   initialEnglish||'Terjemahan Inggris belum tersedia atau belum disetujui untuk pasal ini.');
