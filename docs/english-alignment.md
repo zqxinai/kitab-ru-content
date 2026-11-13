@@ -33,4 +33,4 @@ Status `draft` berarti belum diverifikasi; hanya `verified` setelah pemeriksa me
 4. Masukkan entri pemetaan satu per satu atau dalam batch teruji; audit missing/duplicate/out-of-order.
 5. Setelah seluruh 965 pasal diperiksa, baru naikkan status kelengkapan katalog dan paket.
 
-Catatan: pada saat berkas ini dibuat, `entries` masih kosong; fitur pembaca siap menggunakan peta saat data diverifikasi. Berkas ini **bukan klaim** bahwa 719 terjemahan Inggris yang belum tersedia telah diimpor.
+Status saat ini: 11 pasal Da Xue sudah memiliki draf padanan Inggris eksplisit dalam `dist/sishu-english-alignment.json` dan 246 draf Inggris Lun Yu tetap berada pada paket utama. Ada 708 pasal yang masih belum memiliki terjemahan Inggris. Seluruh pemetaan tetap memerlukan verifikasi editorial. Lihat `docs/editorial-finalization.md` untuk alur penyetujuannya.
