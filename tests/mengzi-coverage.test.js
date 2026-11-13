@@ -3,7 +3,7 @@ const test=require('node:test'),assert=require('node:assert/strict'),fs=require(
 const read=p=>JSON.parse(fs.readFileSync(p,'utf8'));
 const snap=read('sources/legge/mengzi-chinesenotes-01-03.json');
 const alignment=read('dist/sishu-english-alignment.json');
-const entries=alignment.entries.filter(e=>e.id.startsWith('legge-mengzi-'));
+const entries=alignment.entries.filter(e=>/^legge-mengzi-(01|02|03)-/.test(e.id));
 const hanzi=p=>p.ruby_paragraphs.map(row=>row.map(t=>t.type==='ruby'?(t.traditional||''):(t.value||'')).join('')).join('\n');
 const trim=s=>String(s).replace(/\s+/g,' ').trim();
 test('Mengzi batch contains 3 books, 32 distinct target IDs and no final',()=>{
