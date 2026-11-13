@@ -25,6 +25,14 @@ Status: keputusan kerja bersumber, **belum disahkan Final**. Hanzi proyek berasa
 
 **Discrepancy #6 telah dikonfirmasi dari foto cetakan MATAKIN 2012:** teks utama berbunyi `子曰：鄉(乡)原，德之賊(贼)也！`, dengan pinyin `yuán` di atas `原`. Dalam Ru Classics (`sishu.lunyu.17.13`) tercantum `子曰：鄉愿，德之賊也。`; pada Zhu Xi WYG tercantum `鄉原`. Kedua bacaan `原/愿` dikenal sebagai varian tekstual; jangan disalahartikan sebagai perbedaan tafsir teologis. **Keputusan:** untuk teks Hanzi utama proyek selaraskan `愿` → `原` dan pinyin `yuàn` → `yuán`, sedangkan transkripsi cetak MATAKIN 2012 dan jejak sumber tetap dijaga. Koreksi data sumber/Ruby/dist belum dilakukan; status Final tidak berubah. Nomor halaman foto tidak terlihat dan tidak diisi berdasarkan perkiraan.
 
+### Mengzi V A:7.8–7.9 — foto MATAKIN 2012 hlm. 730 (13 November 2026)
+
+**Discrepancy #7 terkonfirmasi dari foto cetak.** MATAKIN 2012 menampilkan ayat **7.8** (`吾聞其以堯舜之道要湯，未聞以割烹也。`) kemudian langsung **7.9** (`《伊訓》曰：天誅造攻自牧宮，朕載自亳。`) tanpa `林氏曰` maupun `愚謂` di antaranya. Dalam `sishu/chapters/mengzi/09.json`, dua komentar penafsir tersebut tercampur di `ruby_paragraphs` sebelum kutipan `伊訓曰`. Teks klasik Mengzi dan komentar Zhu Xi harus disimpan dalam lapisan berbeda; pindahkan kedua komentar ke anotasi beratribusi, **jangan hapus riwayat sumber**. Pertahankan terjemahan Indonesia MATAKIN apa adanya.
+
+**Discrepancy karakter tambahan ditemukan pada foto yang sama:** teks Ru Classics pada **V A:7.8** menulis `末聞以割烹也` (末, mò), sementara MATAKIN 2012 dan naskah Mengzi klasik menulis `未聞以割烹也` (未, wèi). Maknanya “belum pernah mendengar”; usulan koreksi `末` → `未` dengan pinyin yang konsisten. Sebagian transkripsi daring lain memang memakai `末`, sehingga perbedaan literal sumber tetap dicatat; di tampilan berbasis MATAKIN, utamakan `未`.
+
+**Status implementasi:** temuan ini baru dicatat di audit. Perbaikan pada JSON sumber, Ruby/pinyin, `dist`, indeks/hash, dan pengujian regresi **belum diterapkan**, demikian pula belum ada pengesahan Final. Rujukan pekerjaan: [issue #13](https://github.com/zqxinai/kitab-ru-content/issues/13).
+
 ### Mengzi 09.07 — cakupan yang perlu dipisah
 
 Pada `sishu/chapters/mengzi/09.json`, pasal 09.07 memuat ucapan Mengzi dan kutipan `伊訓曰`, tetapi mencampurkan komentar penafsir `林氏曰：“以堯舜之道要湯者...` serta `愚謂此語亦猶前章...`. Sumber awal JSON juga memuatnya; bukan kesalahan pengimporan GitHub. Edisi `四書章句集注` menegaskan kedua segmen merupakan komentar setelah teks utama. Draf Inggris Legge dari `mengzi009.txt` memuat dialog Mengzi beserta kutipan `伊訓` tanpa komentar tersebut.
