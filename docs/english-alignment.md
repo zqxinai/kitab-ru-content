@@ -1,6 +1,6 @@
-# Pemetaan Pasal MATAKIN ↔ James Legge
+# Pemetaan Pasal Indonesia MATAKIN ↔ James Legge
 
-Editor membaca `dist/sishu-english-alignment.json` untuk padanan eksplisit berdasarkan rentang Hanzi. Berkas ini tidak mengganti penomoran MATAKIN ataupun James Legge.
+Editor membaca `dist/sishu-english-alignment.json` untuk padanan eksplisit berdasarkan rentang Hanzi proyek, yang **bukan** bagian dari PDF MATAKIN. Asal Hanzi ada di [`docs/hanzi-provenance.md`](hanzi-provenance.md). Berkas ini tidak mengganti penomoran MATAKIN ataupun James Legge.
 
 Satu entri dapat menghubungkan banyak `indonesian_passage_ids` dengan banyak `english_segments`, dan satu pasal Indonesia dapat muncul di lebih dari satu entri untuk pemetaan parsial. Gunakan ID passage stabil yang sudah ada di `dist/sishu-content.json`.
 
@@ -79,7 +79,7 @@ Pemetaan dengan pasal pecah/gabung memerlukan pemeriksaan lanjutan yang memperta
 
 ## Batch Mengzi 2 — bab 13–14 (82 pasal)
 
-- 82 pasal mendapat draf Inggris Legge: 45 pada bab 13 dan 37 pada bab 14. Dua pasal terakhir masing-masing bab **ditahan** karena transkripsi sumber menyisipkan materi/metadata yang tidak cocok dengan rentang Hanzi MATAKIN (rasio di bawah 95%).
+- 82 pasal mendapat draf Inggris Legge: 45 pada bab 13 dan 37 pada bab 14. Dua pasal terakhir masing-masing bab **ditahan** karena transkripsi sumber menyisipkan materi/metadata yang tidak cocok dengan rentang Hanzi yang digunakan proyek (rasio di bawah 95%).
 - Source snapshot dengan SHA blob dan transkripsi Hanzi/Inggris: `sources/legge/mengzi-chinesenotes-13-14.json`. Pemetaan hanya dibuat bila batas pasal teridentifikasi unik, urut, rasio panjang Hanzi >=95%, dan terjemahan tidak kosong.
 - **Status tetap draf dan perlu review**, belum pengesahan; perbandingan lengkap terhadap James Legge edisi primer belum dilaksanakan.
 - Cakupan kumulatif: **716 dari 965 pasal**, belum tersedia **249** (Da Xue 53, Lun Yu 50, Mengzi 146). Total pasal Mengzi yang memiliki Inggris kini 114 dari 260.
@@ -141,6 +141,6 @@ Tiga catatan `English translation: Legge 1861` di akhir transkripsi bab 1–3 di
 - Draf baru: `07.09`, `07.10`, `07.18`, `07.29`, `07.30`, `10.09`, `10.11`, `11.02`, `15.22`, `15.37` pada kitab Lun Yu.
 - Teks Inggris James Legge berasal dari Project Gutenberg #4094; snapshot `sources/legge/lunyu-b06-gutenberg-4094.json` menyimpan petikan, rentang Hanzi dan nomor baris sumber.
 - Sepuluh bagian cocok 100% berdasarkan seluruh karakter Hanzi setelah mengabaikan tanda baca. Legge VII.IX §§1–2 dipadankan terpisah dengan MATAKIN 07.09–07.10; Legge VII.XXVIII–XXIX dengan MATAKIN 07.29–07.30; Legge X.VIII §§8,10 dengan MATAKIN 10.09 dan 10.11.
-- **Pengecualian yang dilaporkan, tidak diubah secara otomatis:** MATAKIN `09.26` memakai 帥 tetapi transkripsi Legge 師; `10.24` memakai 客 tetapi Legge 容; `11.03` memakai 季路 tetapi Legge 李路; `14.33` dimulai 曰 sementara Legge 子曰. Perbedaan ini memerlukan pemeriksaan edisi/cetak, dan mungkin berupa varian teks atau salah transkripsi.
+- **Koreksi atribusi sumber (13 Nov 2026):** Empat karakter di `09.26`, `10.24`, `11.03`, `14.33` merupakan Hanzi dari korpus **hanzhaodeng/chinese-ancient-text**, bukan Hanzi yang dicetak MATAKIN. Korpus sumber masing-masing memuat 帅 (→ 帥), 客, 季路, dan 曰; Legge memiliki 師, 容, 李路, dan 子曰. Semua perbedaan dicatat sebagai **perbedaan korpus sumber**, bukan kesalahan MATAKIN. Lihat [audit asal Hanzi](hanzi-provenance.md).
 - Cakupan editor kini **878/965 draf Inggris**, **87 tersisa**: Da Xue 53, Lun Yu 30, Mengzi 4. Jumlah persetujuan Final tetap 0; terjemahan Indonesia/Hanzi/pinyin dan paket Android tidak diubah.
 - Pengujian regresi baru: `node --test tests/lunyu-batch-06.test.js`. Pengujian batch sebelumnya mempertahankan nilai batas minimal historis agar tambahan baru tidak memicu pengulangan perbaikan angka.
