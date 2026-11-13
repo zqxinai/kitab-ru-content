@@ -2,5 +2,54 @@
   "schema": "kitab-ru.english-alignment.v1",
   "edition_id": "james-legge",
   "source_policy": "Align by complete traditional Hanzi spans, not matching passage numbers",
-  "entries": []
+  "entries": [
+    {
+      "id": "legge-daxue-text-01",
+      "indonesian_passage_ids": [
+        "sishu.daxue.01.01"
+      ],
+      "english_segments": [
+        {
+          "legge_ref": "The Great Learning, Text of Confucius §1",
+          "text": "What the Great Learning teaches, is—to illustrate illustrious virtue; to renovate the people; and to rest in the highest excellence."
+        }
+      ],
+      "hanzi_span": "大學之道，在明明德，在親民，在止於至善。",
+      "source_url": "https://oll.libertyfund.org/title/2270",
+      "status": "draft",
+      "review_note": "Teks Inggris ditranskripsikan dari James Legge, The Great Learning (The Text of Confucius), dan Hanzi cocok pada tingkat pasal. Peninjauan editorial akhir belum disetujui."
+    },
+    {
+      "id": "legge-daxue-text-02",
+      "indonesian_passage_ids": [
+        "sishu.daxue.01.02"
+      ],
+      "english_segments": [
+        {
+          "legge_ref": "The Great Learning, Text of Confucius §2",
+          "text": "The point where to rest being known, the object of pursuit is then determined; and, that being determined, a calm unperturbedness may be attained. To that calmness there will succeed a tranquil repose. In that repose there may be careful deliberation, and that deliberation will be followed by the attainment of the desired end."
+        }
+      ],
+      "hanzi_span": "知止而後有定，定而後能靜，靜而後能安，安而後能慮，慮而後能得。",
+      "source_url": "https://oll.libertyfund.org/title/2270",
+      "status": "draft",
+      "review_note": "Teks Inggris ditranskripsikan dari James Legge, The Great Learning (The Text of Confucius), dan Hanzi cocok pada tingkat pasal. Peninjauan editorial akhir belum disetujui."
+    },
+    {
+      "id": "legge-daxue-text-03",
+      "indonesian_passage_ids": [
+        "sishu.daxue.01.03"
+      ],
+      "english_segments": [
+        {
+          "legge_ref": "The Great Learning, Text of Confucius §3",
+          "text": "Things have their root and their completion. Affairs have their end and their beginning. To know what is first and what is last will lead near to what is taught in the Great Learning."
+        }
+      ],
+      "hanzi_span": "物有本末，事有終始。知所先後，則近道矣。",
+      "source_url": "https://oll.libertyfund.org/title/2270",
+      "status": "draft",
+      "review_note": "Teks Inggris ditranskripsikan dari James Legge, The Great Learning (The Text of Confucius), dan Hanzi cocok pada tingkat pasal. Peninjauan editorial akhir belum disetujui."
+    }
+  ]
 }
