@@ -150,8 +150,8 @@ test('Photographed Da Xue III:4 and VI:2: Hanzi matches 2012, draft bundle synch
    assert.equal(ruby.filter(t=>t.traditional===glyph&&t.pinyin===pinyin).length,count,glyph);
   for(const entry of alignment.entries.filter(e=>(e.indonesian_passage_ids||[]).includes(c.id))){
    const sourceHanzi=(entry.indonesian_passage_ids||[]).map(id=>script(passageMap.get(id))).join('');
-   assert.equal((entry.hanzi_span.match(/\\p{Script=Han}/gu)||[]).join(''),
-    (sourceHanzi.match(/\\p{Script=Han}/gu)||[]).join(''),'English alignment stale '+entry.id);
+   assert.equal([...entry.hanzi_span].filter(c=>c>='㐀'&&c<='鿿').join(''),
+    [...sourceHanzi].filter(c=>c>='㐀'&&c<='鿿').join(''),'English alignment stale '+entry.id);
   }
  }
  assert.equal(read('dist/sishu-review-status.json').entries.length,0);
