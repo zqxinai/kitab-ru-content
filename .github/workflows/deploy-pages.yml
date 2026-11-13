@@ -9,6 +9,8 @@ on:
       - 'editor/**'
       - 'index.html'
       - 'catalog.json'
+      - 'dist/sishu-english-alignment.json'
+      - 'dist/sishu-review-status.json'
       - '.github/workflows/deploy-pages.yml'
   workflow_dispatch:
 
