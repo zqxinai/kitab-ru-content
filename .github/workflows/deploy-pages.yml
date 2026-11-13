@@ -17,6 +17,7 @@ on:
 permissions:
   contents: read
   pages: write
+  actions: read
   id-token: write
 
 concurrency:
@@ -46,6 +47,30 @@ jobs:
         uses: actions/upload-pages-artifact@v3
         with:
           path: .
+      # GitHub sometimes exposes the uploaded Pages artifact a few seconds after upload.
+      # Poll the actual run's artifact index to avoid "No artifacts named github-pages" errors.
+      - name: Confirm Pages artifact is indexed
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+          GH_RUN_ID: ${{ github.run_id }}
+        run: |
+          for attempt in $(seq 1 15); do
+            count=$(gh api "/repos/$GH_REPO/actions/runs/$GH_RUN_ID/artifacts?per_page=100" \
+              --jq '[.artifacts[] | select(.name == "github-pages" and .expired == false)] | length') || count=0
+            if [ "$count" -eq 1 ]; then
+              echo "Exactly one Pages artifact indexed for run $GH_RUN_ID."
+              exit 0
+            fi
+            if [ "$count" -gt 1 ]; then
+              echo "::error::Multiple Pages artifacts indexed in the same run; refusing ambiguous deployment."
+              exit 1
+            fi
+            echo "Pages artifact not indexed yet (attempt $attempt/15)."
+            sleep 3
+          done
+          echo "::error::Pages artifact not indexed after bounded retries."
+          exit 1
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
