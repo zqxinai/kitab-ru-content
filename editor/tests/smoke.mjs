@@ -5,6 +5,7 @@ import vm from 'node:vm';
 const html=readFileSync('editor/index.html','utf8');
 const code=readFileSync('editor/app.js','utf8');
 const complete=JSON.parse(readFileSync('dist/sishu-content.json','utf8'));
+const edition=JSON.parse(readFileSync('sishu/editions/matakin-2012-chapters.json','utf8'));
 const first=complete.chapters[0];
 const selected=first.passages[0];
 const fixture={
@@ -41,6 +42,8 @@ let opened='',fetchCalls=0;const saved=new Map();
 const context={
   document,
   fetch:async url=>{
+    if(url==='../sishu/editions/matakin-2012-chapters.json')
+      return {ok:true,json:async()=>edition};
     assert.equal(url,'../dist/sishu-content.json');
     fetchCalls++;
     return {ok:true,json:async()=>fixture};
@@ -63,6 +66,8 @@ assert.equal(elements.readerView.hidden,false,'Reader failed to open: '+elements
 assert.equal(elements.indonesianText.textContent,selected.translation_indonesian);
 assert.equal(elements.bookList.children.length,4);
 assert.equal(elements.chapterList.children.length,1);
+assert.equal(elements.chapterList.children[0].children[0].textContent,'Bab Utama');
+assert.equal(elements.chapterList.children[0].children[0].children[0].textContent,'Bab Utama · hlm. 3');
 assert.equal(elements.passageList.children.length,first.passages.length);
 assert.equal(elements.hanziText.children.length,selected.ruby_paragraphs.length);
 const initialEnglish=selected.translation_english?.trim();
