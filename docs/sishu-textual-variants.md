@@ -11,7 +11,7 @@ Status: keputusan kerja bersumber, **belum disahkan Final**. Hanzi proyek berasa
 | `sishu.mengzi.08.17` | 不祥 / 不詳 | **Pertahankan 不祥** karena berarti “tidak membawa berkah”, sesuai Indonesia dan Legge Inggris “inauspicious”; `孟子註疏` juga memakai 祥. |
 | `sishu.mengzi.09.07` | 林氏曰 dan 愚謂 menyatu di Hanzi | **Masalah batas teks-komentar, bukan varian aksara**: kedua frasa merupakan komentar Zhu Xi yang tersisip dalam teks utama. **Jangan tandai Inggris lengkap** sebelum komentar dipisahkan dan Ruby/pinyin serta paket dibangun ulang. |
 | `sishu.lunyu.09.26` | 帥 / 師 | **Pertahankan 帥** dari sumber awal 帅; konteks “panglima” dan Legge Inggris “commander” mendukungnya. |
-| `sishu.lunyu.10.24` | 客 / 容 | **Catat sebagai varian**; jangan ganti diam-diam. Kedua bacaan memiliki dasar tekstual, makna tata krama formal masih sesuai. |
+| `sishu.lunyu.10.24` (MATAKIN 2012 **Jilid X:24**, hlm. **226**) | **Proyek: 寢不屍，居不客 / MATAKIN cetak: 寢不尸，居不容 / Zhu Xi WYG: 寢不尸，居不容** | **TERKONFIRMASI DARI FOTO MATAKIN 2012**: teks `寢不尸，居不容。` dan terjemahan “Pada waktu tidur tidak terlentang seperti mayat. Pada waktu di rumah tidak bersikap dinas.” Karakter `屍` → `尸`, `客` → `容` dan pinyin terkait perlu disinkronkan ke sumber, dist/hash; koreksi naskah aplikasi **belum diterapkan**, status Final masih menunggu persetujuan. |
 | `sishu.lunyu.11.03` | 季路 / 李路 | **Pertahankan 季路**, nama murid Kongzi; Legge Inggris menulis “Chi Lu”. |
 | `sishu.lunyu.14.33` | 曰 / 子曰 | **Usulkan penambahan 子 dalam patch sumber terpisah**, karena Legge dan terjemahan Indonesia “Nabi bersabda” mendukung 子曰. |
 
