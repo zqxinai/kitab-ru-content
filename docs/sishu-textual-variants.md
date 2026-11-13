@@ -13,7 +13,7 @@ Status: keputusan kerja bersumber, **belum disahkan Final**. Hanzi proyek berasa
 | `sishu.lunyu.09.26` | 帥 / 師 | **Pertahankan 帥** dari sumber awal 帅; konteks “panglima” dan Legge Inggris “commander” mendukungnya. |
 | `sishu.lunyu.10.24` (MATAKIN 2012 **Jilid X:24**, hlm. **226**) | **Proyek: 寢不屍，居不客 / MATAKIN cetak: 寢不尸，居不容 / Zhu Xi WYG: 寢不尸，居不容** | **TERKONFIRMASI DARI FOTO MATAKIN 2012**: teks `寢不尸，居不容。` dan terjemahan “Pada waktu tidur tidak terlentang seperti mayat. Pada waktu di rumah tidak bersikap dinas.” Karakter `屍` → `尸`, `客` → `容` dan pinyin terkait perlu disinkronkan ke sumber, dist/hash; koreksi naskah aplikasi **belum diterapkan**, status Final masih menunggu persetujuan. |
 | `sishu.lunyu.11.03` | 季路 / 李路 | **Pertahankan 季路**, nama murid Kongzi; Legge Inggris menulis “Chi Lu”. |
-| `sishu.lunyu.14.33` | 曰 / 子曰 | **Usulkan penambahan 子 dalam patch sumber terpisah**, karena Legge dan terjemahan Indonesia “Nabi bersabda” mendukung 子曰. |
+| `sishu.lunyu.14.33` (MATAKIN 2012 **Jilid XIV:33**, hlm. **302**) | **Proyek: 曰：驥不稱其力，稱其德也 / MATAKIN cetak: 子曰：驥不稱其力，稱其德也 / Zhu Xi WYG: 子曰：驥不稱其力，稱其德也** | **TERKONFIRMASI DARI FOTO MATAKIN 2012**: karakter 子 tercetak di awal pasal, sesuai “Nabi bersabda”. Tambahkan `子` dan anotasi pinyin `zǐ` di awal `sishu/chapters/lunyu/14.json`, lalu bangun ulang dist/hash; **belum diterapkan pada isi aplikasi** dan status Final tetap menunggu validasi build/reviewer. Bentuk simplified yang ditampilkan buku dalam tanda kurung bukan redaksi berbeda. |
 
 ### Mengzi 09.07 — cakupan yang perlu dipisah
 
