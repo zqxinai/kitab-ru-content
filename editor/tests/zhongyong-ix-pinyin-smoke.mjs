@@ -2,6 +2,7 @@ import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';import vm from 'node:vm';
 const html=readFileSync('editor/index.html','utf8'),app=readFileSync('editor/app.js','utf8');
 const book=JSON.parse(readFileSync('dist/sishu-content.json','utf8')),english=JSON.parse(readFileSync('dist/sishu-english-alignment.json','utf8'));
+const splits=JSON.parse(readFileSync('dist/sishu-english-passage-splits.json','utf8'));
 const ch=book.chapters.find(x=>x.id==='sishu.zhongyong.10');
 const fixture={schema:'ru-classics.content.v1',collection:'sishu',content_version:book.content_version,books:book.books,chapters:[ch]};
 class Element{
@@ -18,7 +19,7 @@ class Element{
 const ids=[...html.matchAll(/\bid="([^"]+)"/g)].map(x=>x[1]);
 const el=Object.fromEntries(ids.map(id=>[id,new Element()]));
 const doc={getElementById:id=>el[id],createElement:tag=>new Element(tag),createTextNode:text=>({textContent:text})};
-const fetch=async url=>url==='../dist/sishu-content.json'?{ok:true,json:async()=>fixture}:url==='../dist/sishu-english-alignment.json'?{ok:true,json:async()=>english}:{ok:false};
+const fetch=async url=>url==='../dist/sishu-content.json'?{ok:true,json:async()=>fixture}:url==='../dist/sishu-english-alignment.json'?{ok:true,json:async()=>english}:url==='../dist/sishu-english-passage-splits.json'?{ok:true,json:async()=>splits}:{ok:false};
 vm.runInNewContext(app,{document:doc,fetch,localStorage:{getItem:()=>null,setItem(){}},window:{open:()=>({})},navigator:{clipboard:{writeText:async()=>{}}},confirm:()=>true,console,URL,encodeURIComponent},{timeout:5000,filename:'editor/app.js'});
 await new Promise(resolve=>setImmediate(resolve));
 assert.equal(el.readerView.hidden,false);
