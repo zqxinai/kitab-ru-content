@@ -93,6 +93,8 @@ test('Jin 晉 and Qin 秦, classical title ranks, and personal names retain thei
   const zin=read('sishu.mengzi.04.02');
   assert.match(zin.hanzi,/晉楚之富/);
   assert.match(zin.display,/Kekayaan Negeri Jin - Cien dan Chu - Cho/);
+  assert.match(zin.display,/Gongsun Chou - Kong-sun Thio/);
+  assert.doesNotMatch(zin.display,/Kong- Shun|Kong- sun Thio/);
   const title=read('sishu.mengzi.10.02');
   assert.match(title.hanzi,/天子一位，公一位，侯一位，伯一位，子、男/);
   assert.match(title.display,/Tianzi - Thian-cu/);
