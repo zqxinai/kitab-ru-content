@@ -56,6 +56,17 @@ setTimeout(()=>{
   click({passage:'sishu.lunyu.18.06'});
   assert.match(nodes.main.innerHTML,/Sabda Suci — Lun Yu XIV:39/,'Full 2012-style book name should display');
   assert.doesNotMatch(nodes.main.innerHTML,/\\(S\\.S\\. XIV: 39\\)/,'Old abbreviated citation should not display');
+  click({book:'lunyu'});
+  click({chapter:'sishu.lunyu.05'});
+  click({passage:'sishu.lunyu.05.08'});
+  assert.match(nodes.main.innerHTML,/Tengah Sempurna — Zhong Yong VIII/,
+    'Owner-confirmed TS is displayed as book name without inventing a verse');
+  assert.match(nodes.main.innerHTML,/Sabda Suci — Lun Yu II:6/,
+    'Batch 02 SS normalized while TS remains separate');
+  assert.match(nodes.main.innerHTML,/Sabda Suci — Lun Yu VI:4/,
+    'Second reference in one passage remains independently normalized');
+  assert.doesNotMatch(nodes.main.innerHTML,/\\(T\\.S\\. VIII\\)/,
+    'Legacy T.S. VIII should not display to reader');
   console.log('Ru Classics smoke test passed: Paper, 4 books, chapter, reader, Ruby, Indonesian, English');
  }catch(e){console.error(e);process.exitCode=1;}
 },0);
