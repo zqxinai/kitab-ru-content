@@ -10435,6 +10435,166 @@
       ],
       "status": "draft",
       "review_note": "Draf Legge: Chapter/section ditentukan dari seluruh rentang Hanzi (bukan nomor MATAKIN). Teks Inggris disalin dari transkripsi Tianmu dan dibandingkan dengan edisi dwibahasa; Hanzi sumber lintas-cek Confuciuspedia. Kecocokan Hanzi dinormalisasi hanya untuk bentuk Hans/Hant dan tanpa tanda baca: 100.00%. Tidak ada pengubahan naskah utama; verifikasi manual terhadap cetakan James Legge dan cetakan MATAKIN 2012 tetap diperlukan sebelum Final. Snapshot: sources/legge/daxue-b08-10-passages.json."
+    },
+    {
+      "id": "legge-daxue-b09-07-01",
+      "indonesian_passage_ids": [
+        "sishu.daxue.07.01"
+      ],
+      "english_segments": [
+        {
+          "legge_ref": "The Great Learning, Commentary of Tsang, Chapter VI §1",
+          "text": "What is meant by \"making the thoughts sincere\" is the allowing no self-deception, as when we hate a bad smell, and as when we love what is beautiful. This is called self-enjoyment. Therefore, the superior man must be watchful over himself when he is alone."
+        }
+      ],
+      "hanzi_span": "所謂誠其意者，毋自欺也。如惡惡臭，如好好色，此之謂自謙。故君子必慎其獨也。",
+      "source_url": "https://tianmu.org/good-work-library/confucian/general-texts/the-great-learning-james-legge",
+      "status": "draft",
+      "review_note": "Draf padanan Inggris berdasar urutan dan cakupan Hanzi; tinjau cetakan asli sebelum Final. Snapshot: sources/legge/daxue-b09-10-passages.json."
+    },
+    {
+      "id": "legge-daxue-b09-07-02",
+      "indonesian_passage_ids": [
+        "sishu.daxue.07.02"
+      ],
+      "english_segments": [
+        {
+          "legge_ref": "The Great Learning, Commentary of Tsang, Chapter VI §2",
+          "text": "There is no evil to which the mean man, dwelling retired, will not proceed, but when he sees a superior man, he instantly tries to disguise himself, concealing his evil, and displaying what is good. The other beholds him, as if he saw his heart and reins — of what use is his disguise? This is an instance of the saying — \"What truly is within will be manifested without.\" Therefore, the superior man must be watchful over himself when he is alone."
+        }
+      ],
+      "hanzi_span": "小人閒居為不善，無所不至，見君子而後厭然，揜其不善，而著其善。人之視己，如見其肺肝然，則何益矣。此謂誠於中，形於外，故君子必慎其獨也。",
+      "source_url": "https://tianmu.org/good-work-library/confucian/general-texts/the-great-learning-james-legge",
+      "status": "draft",
+      "review_note": "Pembedaan grafem MATAKIN 2012 untuk 閒、揜、己 sudah diaudit terpisah; tidak diubah pada batch Inggris ini. Snapshot: sources/legge/daxue-b09-10-passages.json."
+    },
+    {
+      "id": "legge-daxue-b09-07-03",
+      "indonesian_passage_ids": [
+        "sishu.daxue.07.03"
+      ],
+      "english_segments": [
+        {
+          "legge_ref": "The Great Learning, Commentary of Tsang, Chapter VI §3",
+          "text": "The disciple Tsang said, \"What ten eyes behold, what ten hands point to, is to be regarded with reverence!\""
+        }
+      ],
+      "hanzi_span": "曾子曰：“十目所視，十手所指，其嚴乎！”",
+      "source_url": "https://tianmu.org/good-work-library/confucian/general-texts/the-great-learning-james-legge",
+      "status": "draft",
+      "review_note": "Draf padanan Inggris berdasar urutan dan cakupan Hanzi; tinjau cetakan asli sebelum Final. Snapshot: sources/legge/daxue-b09-10-passages.json."
+    },
+    {
+      "id": "legge-daxue-b09-07-04",
+      "indonesian_passage_ids": [
+        "sishu.daxue.07.04"
+      ],
+      "english_segments": [
+        {
+          "legge_ref": "The Great Learning, Commentary of Tsang, Chapter VI §4",
+          "text": "Riches adorn a house, and virtue adorns the person. The mind is expanded, and the body is at ease. Therefore, the superior man must make his thoughts sincere."
+        }
+      ],
+      "hanzi_span": "富潤屋，德潤身，心廣體胖，故君子必誠其意。",
+      "source_url": "https://tianmu.org/good-work-library/confucian/general-texts/the-great-learning-james-legge",
+      "status": "draft",
+      "review_note": "Draf padanan Inggris berdasar urutan dan cakupan Hanzi; tinjau cetakan asli sebelum Final. Snapshot: sources/legge/daxue-b09-10-passages.json."
+    },
+    {
+      "id": "legge-daxue-b09-08-01",
+      "indonesian_passage_ids": [
+        "sishu.daxue.08.01"
+      ],
+      "english_segments": [
+        {
+          "legge_ref": "The Great Learning, Commentary of Tsang, Chapter VII §1",
+          "text": "What is meant by \"The cultivation of the person depends on rectifying the mind\" may be thus illustrated: if a man be under the influence of passion he will be incorrect in his conduct. He will be the same, if he is under the influence of terror, or under the influence of fond regard, or under that of sorrow and distress."
+        }
+      ],
+      "hanzi_span": "所謂修身在正其心者，心有所忿懥，則不得其正，有所恐懼，則不得其正，有所好樂，則不得其正，有所憂患，則不得其正。",
+      "source_url": "https://tianmu.org/good-work-library/confucian/general-texts/the-great-learning-james-legge",
+      "status": "draft",
+      "review_note": "Draf padanan Inggris berdasar urutan dan cakupan Hanzi; tinjau cetakan asli sebelum Final. Snapshot: sources/legge/daxue-b09-10-passages.json."
+    },
+    {
+      "id": "legge-daxue-b09-08-02",
+      "indonesian_passage_ids": [
+        "sishu.daxue.08.02"
+      ],
+      "english_segments": [
+        {
+          "legge_ref": "The Great Learning, Commentary of Tsang, Chapter VII §2",
+          "text": "When the mind is not present, we look and do not see; we hear and do not understand; we eat and do not know the taste of what we eat."
+        }
+      ],
+      "hanzi_span": "心不在焉，視而不見，聽而不聞，食而不知其味。",
+      "source_url": "https://tianmu.org/good-work-library/confucian/general-texts/the-great-learning-james-legge",
+      "status": "draft",
+      "review_note": "Draf padanan Inggris berdasar urutan dan cakupan Hanzi; tinjau cetakan asli sebelum Final. Snapshot: sources/legge/daxue-b09-10-passages.json."
+    },
+    {
+      "id": "legge-daxue-b09-08-03",
+      "indonesian_passage_ids": [
+        "sishu.daxue.08.03"
+      ],
+      "english_segments": [
+        {
+          "legge_ref": "The Great Learning, Commentary of Tsang, Chapter VII §3",
+          "text": "This is what is meant by saying that the cultivation of the person depends on the rectifying of the mind."
+        }
+      ],
+      "hanzi_span": "此謂修身在正其心。",
+      "source_url": "https://tianmu.org/good-work-library/confucian/general-texts/the-great-learning-james-legge",
+      "status": "draft",
+      "review_note": "Draf padanan Inggris berdasar urutan dan cakupan Hanzi; tinjau cetakan asli sebelum Final. Snapshot: sources/legge/daxue-b09-10-passages.json."
+    },
+    {
+      "id": "legge-daxue-b09-09-01",
+      "indonesian_passage_ids": [
+        "sishu.daxue.09.01"
+      ],
+      "english_segments": [
+        {
+          "legge_ref": "The Great Learning, Commentary of Tsang, Chapter VIII §1",
+          "text": "What is meant by \"The regulation of one's family depends on the cultivation of his person\" is this — men are partial where they feel affection and love; partial where they despise and dislike; partial where they stand in awe and reverence; partial where they feel sorrow and compassion; partial where they are arrogant and rude.\n\nThus it is that there are few men in the world who love and at the same time know the bad qualities of the object of their love, or who hate and yet know the excellences of the object of their hatred."
+        }
+      ],
+      "hanzi_span": "所謂齊其家在修其身者，人之其所親愛而辟焉，之其所賤惡而辟焉，之其所畏敬而辟焉，之其所哀矜而辟焉，之其所敖惰而辟焉。故好而知其惡，惡而知其美者，天下鮮矣。",
+      "source_url": "https://tianmu.org/good-work-library/confucian/general-texts/the-great-learning-james-legge",
+      "status": "draft",
+      "review_note": "James Legge memecah satu pasal MATAKIN menjadi dua paragraf Inggris; keduanya tetap berada pada satu ID pasal. Snapshot: sources/legge/daxue-b09-10-passages.json."
+    },
+    {
+      "id": "legge-daxue-b09-09-02",
+      "indonesian_passage_ids": [
+        "sishu.daxue.09.02"
+      ],
+      "english_segments": [
+        {
+          "legge_ref": "The Great Learning, Commentary of Tsang, Chapter VIII §2",
+          "text": "Hence it is said, in the common adage, \"A man does not know the wickedness of his son; he does not know the richness of his growing corn.\""
+        }
+      ],
+      "hanzi_span": "故諺有之曰：“人莫知其子之惡，莫知其苗之碩。”",
+      "source_url": "https://tianmu.org/good-work-library/confucian/general-texts/the-great-learning-james-legge",
+      "status": "draft",
+      "review_note": "Draf padanan Inggris berdasar urutan dan cakupan Hanzi; tinjau cetakan asli sebelum Final. Snapshot: sources/legge/daxue-b09-10-passages.json."
+    },
+    {
+      "id": "legge-daxue-b09-09-03",
+      "indonesian_passage_ids": [
+        "sishu.daxue.09.03"
+      ],
+      "english_segments": [
+        {
+          "legge_ref": "The Great Learning, Commentary of Tsang, Chapter VIII §3",
+          "text": "This is what is meant by saying that if the person be not cultivated, a man cannot regulate his family."
+        }
+      ],
+      "hanzi_span": "此謂身不修不可以齊其家。",
+      "source_url": "https://tianmu.org/good-work-library/confucian/general-texts/the-great-learning-james-legge",
+      "status": "draft",
+      "review_note": "Draf padanan Inggris berdasar urutan dan cakupan Hanzi; tinjau cetakan asli sebelum Final. Snapshot: sources/legge/daxue-b09-10-passages.json."
     }
   ]
 }

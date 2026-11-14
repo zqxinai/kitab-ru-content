@@ -173,3 +173,12 @@ Tiga catatan `English translation: Legge 1861` di akhir transkripsi bab 1–3 di
 - Kasus `04.01`: sumber dwibahasa memakai `惟` sedangkan Hanzi proyek `維`. Kasus `04.04`: perbedaan `喧/諠` dan `恂慄/恂栗` terdokumentasi; jangan ganti aksara yang telah diaudit dari foto MATAKIN 2012. `03.01` hanya berbeda tanda buku `《盤銘》` vs `盤銘`.
 - Cakupan editor naik menjadi **896/965 (92,85%)**: Da Xue 21/64, Zhong Yong 129/129, Lun Yu 486/512, Mengzi 260/260. **69 belum tersedia**: Da Xue 43, Lun Yu 26. Final editorial **0**; semua 10 tetap `draft` dan memerlukan verifikasi terhadap cetakan Legge primer sebelum disetujui.
 - Regresi tambahan: `node --test tests/daxue-batch-08.test.js`, terintegrasi ke `editorial-review.yml`, memeriksa angka cakupan, ID unik, kesamaan snapshot Inggris, status Draft, posisi sumber, dan varian Hanzi yang tidak diubah.
+
+## Da Xue batch 09 — 10 draf Inggris tambahan (14 November 2026)
+
+Dari 21 menjadi **31/64** pasal Da Xue yang tersedia dalam editor. Pasal yang ditambahkan berstatus **Draft**: **VII:1–4 (4 pasal), VIII:1–3 (3 pasal), IX:1–3 (3 pasal)**. Sumber James Legge adalah [Tianmu, The Great Learning](https://tianmu.org/good-work-library/confucian/general-texts/the-great-learning-james-legge), dengan referensi paragraf yang tercatat di `sources/legge/daxue-b09-10-passages.json`. Validasi yang dapat diulang berada dalam `tests/daxue-batch-09.test.js`.
+
+- **Da Xue IX:1** mencakup dua paragraf dalam transkripsi Legge; keduanya ditautkan ke satu ID MATAKIN tanpa menggandakan pasal.
+- **Da Xue VI:1** sengaja tetap belum dipetakan karena teks pasal proyek mencakup penjelasan Zhu Xi tambahan yang melampaui satu unit Legge; perlu pemisahan sumber versus anotasi sebelum diterjemahkan.
+- Teks Indonesia MATAKIN, Hanzi, pinyin, dan registry status Final **tidak diubah**. Pencocokan belum berarti persetujuan editorial.
+- Progres terkini: **906/965 draf Inggris** (246 tertanam, 660 via alignment), **59 belum tersedia**; Da Xue 31/64, Lun Yu 486/512, Zhong Yong 129/129, Mengzi 260/260. Status Final: 0.
