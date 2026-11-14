@@ -12,7 +12,7 @@
       "description": "Seluruh 965 pasal Si Shu memiliki draf Inggris: 246 tertanam dan 719 melalui pemetaan James Legge. Da Xue 64/64, Zhong Yong 129/129, Lun Yu 512/512, Mengzi 260/260. Kontaminasi pengantar Zhong Yong pada Da Xue XI:23 sudah diperbaiki dan diarsipkan (PR #31); verifikasi sumber serta persetujuan Final masih diperlukan (0 Final).",
       "description_en": "All 965 Four Books passages have English drafts: 246 bundled and 719 Legge-mapped. Great Learning 64/64, Doctrine of the Mean 129/129, Analects 512/512, Mencius 260/260. Da Xue XI:23 preface contamination was corrected and archived in PR #31. Source verification and editorial Final approval remain outstanding (0 Final).",
       "package_url": "https://raw.githubusercontent.com/zqxinai/kitab-ru-content/main/dist/sishu-content.json",
-      "sha256": "0c0fd70b2c27f6e1257668c853cd8b55d34af5ef913ec5b75c96ed36cf02518a",
+      "sha256": "7dddd5ca9a20491a7f5b289fa2380c3960df696b926da71653af730d84069f12",
       "languages": [
         "zh-Hant",
         "pinyin",
