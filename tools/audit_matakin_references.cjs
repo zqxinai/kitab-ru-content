@@ -15,7 +15,7 @@ function classify(reference,book){
  const hasNumeric=probableRef.test(s);
  const ss=/\bS\s*\.\s*S\s*\.?\s*(?=[IVXLCDM]|\d)/i.test(s)||
    /(?:^|[;,.\s])SS\s+[IVXLCDM]+/i.test(s);
- const ab=/\bA\s*\.\s*B\s*\.\s*(?=[IVXLCDM]|\d)/i.test(s);
+ const ab=/\bA\s*\.?\s*B\s*\.\s*(?=[IVXLCDM]|\d)/i.test(s);
  const bc=/\bB\s*\.\s*C\s*\.\s*(?=[IVXLCDM]|\d)/i.test(s);
  if(!hasNumeric&&!ss&&!ab&&!bc)return null;
  if(explicitBook.test(s)){
