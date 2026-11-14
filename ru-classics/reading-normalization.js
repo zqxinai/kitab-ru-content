@@ -55,6 +55,18 @@
   // Kolasi khusus berdasarkan Hanzi. Satu ejaan Hokkian bisa mewakili
   // aksara berbeda: Chien => 晉 (Jin) atau 秦 (Qin); Swan => 僎 atau 宣.
   const CONTEXTUAL = Object.freeze({
+    'sishu.lunyu.08.18': [
+      ['Raja Shun - Sun dan I.', 'Raja Shun - Sun dan Yu - I.'] // 舜禹
+    ],
+    'sishu.mengzi.05.04': [
+      ['I disuruh mengatur', 'Yu - I disuruh mengatur'], // 禹
+      ['I selama 8 tahun', 'Yu - I selama 8 tahun'] // 禹
+    ],
+    'sishu.mengzi.06.09': [
+      ['I disuruhnya mengatasi', 'Yu - I disuruhnya mengatasi'], // 禹
+      ['I lalu menggali', 'Yu - I lalu menggali'], // 禹
+      ['I setelah mengatasi', 'Yu - I setelah mengatasi'] // 禹; 夷 remains "I"
+    ],
     'sishu.mengzi.01.05': [
       ['Dahulu, Negeri Cien', 'Dahulu, Negeri Jin - Cien'], // 晉國
       ['di barat dikalahkan oleh Negeri Jin - Chien', 'di barat dikalahkan oleh Negeri Qin - Chien'], // 西喪地於秦
@@ -94,6 +106,16 @@
     ]
   });
 
+  // Hanya pasal tanpa penggunaan 夷 sebagai "I". Identitasnya dicocokkan
+  // dengan token Hanzi 禹 dan semua kemunculan I di pasal bersangkutan.
+  const YU_ONLY_PASSAGES = new Set([
+    'sishu.lunyu.20.01',
+    'sishu.mengzi.08.26',
+    'sishu.mengzi.08.29',
+    'sishu.mengzi.09.06',
+    'sishu.mengzi.12.11'
+  ]);
+
   function escaped(value) {
     return value.replace(/[\^$.*+?()[\]{}|\\]/g, '\\$&');
   }
@@ -124,6 +146,14 @@
         joined += (prefix && joined.endsWith(prefix) ? source : replacement) + chunk;
       }
       result = joined;
+    }
+
+    if (YU_ONLY_PASSAGES.has(passageId)) {
+      result = result.replace(/(^|[^\\p{L}\\d.-])I(?=$|[^\\p{L}\\d.-])/gu,
+        (token, prefix, offset, source) => {
+          const before = source.slice(0, offset + prefix.length);
+          return /Yu\\s*-\\s*$/.test(before) ? token : prefix + 'Yu - I';
+        });
     }
 
     // Pulihkan spasi pecah-barisan PDF pada nama Hokkian yang sama.
