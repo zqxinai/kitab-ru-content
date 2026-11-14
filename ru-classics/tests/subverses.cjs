@@ -49,3 +49,17 @@ test('an unexpected Hanzi revision fails closed rather than silently misaligning
   p.translation_indonesian='Only one verse';
   assert.equal(api.align(p),null);
 });
+
+test('public reader loads alignment module and actually renders numbered ruby and Indonesian ayat',()=>{
+  const html=fs.readFileSync(path.join(root,'ru-classics/index.html'),'utf8');
+  const app=fs.readFileSync(path.join(root,'ru-classics/app.js'),'utf8');
+  assert.match(html,/<script src="\.\/subverses\.js" defer><\/script>/);
+  assert.ok(html.indexOf('src="./subverses.js"')<html.indexOf('src="./app.js"'),'Load module before reader');
+  assert.match(app,/const aligned=globalThis\.RuSubverses\?\.align\(p\)\|\|null/);
+  assert.match(app,/\+hanziWithSubverses\(p,aligned\)\+'<\/div>'/);
+  assert.match(app,/\+indonesiaWithSubverses\(p,aligned\)\+'<\/section>'/);
+  assert.match(app,/if\(!aligned\)return ruby\(p\.ruby_paragraphs\)/);
+  assert.match(app,/if\(!verses\)return '<p>'\+H\(p\.translation_indonesian/);
+  assert.doesNotMatch(app,/if\(!aligned\)return hanziWithSubverses/);
+  assert.doesNotMatch(app,/if\(!verses\)return indonesiaWithSubverses/);
+});
