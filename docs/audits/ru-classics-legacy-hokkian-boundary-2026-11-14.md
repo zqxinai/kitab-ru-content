@@ -66,3 +66,26 @@ Repositori Flutter Android yang terpisah adalah zqxinai/Ru-Classics. Rancangan p
 - Naskah JSON saat ini menuliskan **伯適** dengan ruby **shì**; ejaan Hokkian MATAKIN **Pik-kwat** turut menyarankan bunyi klasik kuò. Kandidat display: **Bo Kuo - Pik-kwat**, dan kandidat ruby **伯 bó、適 kuò** untuk konteks khusus ini.
 - **Keputusan editorial sementara: perlu Review** sebelum penggantian ruby sumber, karena varian grafem 适/適 dan pinyin yang benar-benar dicetak dalam edisi MATAKIN 2012 belum dikolasi dengan foto. Tidak mengganti istilah tersebut secara global ataupun menyatakan semua 適 dibaca kuò.
 - Catat dua data ketika foto tersedia: `printed_pinyin` dari MATAKIN dan `contextual_pinyin` berdasar komentar leksikal klasik; apabila berbeda, berikan alasan yang terlacak.
+
+## Sesi 3: audit nama yang berdampak pada makna negara/tokoh (13 November UTC–14 November WIB)
+
+Audit berikut menggunakan **Hanzi per pasal sebagai pemeriksa padanan**, sedangkan bahasa Indonesia MATAKIN disimpan utuh di arsip. GitHub Actions [reading audit #43598446506](https://github.com/zqxinai/kitab-ru-content/actions/runs/43598446506) lulus **6 tes / 0 gagal**; pemindaian 78 bab/965 pasal mendeteksi **184 pasal** yang berbeda hanya pada lapisan tampilan.
+
+### Koreksi baru terverifikasi
+- **Mengzi V B:9**, `sishu.mengzi.09.09`: dalam Hanzi `百里奚…秦穆公…晉人…虞…虢`, sehingga `Negeri Jin - Chien` yang merujuk Qin pada beberapa kalimat harus ditampilkan **Qin - Chien**. Sebaliknya `utusan Negeri Cien` yang merujuk 晉 ditampilkan **Jin - Cien**. `Pik-li Hee` = **Baili Xi**, `Kiong Ciki` = **Gong Zhiqi**, `Bok` pada `秦穆公` = **Mu**. Ini kasus nyata *satu ejaan lama tidak boleh otomatis dipasangkan ke satu nama modern di seluruh pasal*. Ejaan asli tetap tersedia dalam `translation_indonesian`.
+- **Mengzi II A:2**, `sishu.mengzi.04.02`: `晉楚之富` = **Jin/Chu**, dan `公孫醜` = **Gongsun Chou**. Sumber lama `Kong- sun Thio` mengandung pecahan OCR yang harus dipulihkan menjadi **Kong-sun Thio**, agar suku `sun` tidak keliru dikira `舜 Shun`.
+- **Mengzi III B:3**, `sishu.mengzi.06.03`: `周霄` = **Zhou Xiao - Ciu Siau**.
+- **Mengzi III B:6**, `sishu.mengzi.06.06`: `戴不勝` = **Dai Busheng - Tai Put-sing** dan `薛居州` = **Xue Juzhou - Siat Ki-ciu**. Kesepadanan lain dipilih hanya di konteks Hanzi 齊/楚/莊岳 yang bersangkutan.
+- **Mengzi V B:2**, `sishu.mengzi.10.02`: daftar gelar `天子、公、侯、伯、子、男` = **Tianzi, Gong, Hou, Bo, Zi, Nan**; ejaan Hokkian dan padanan gelar Inggris sumber tetap dipertahankan di tampilan.
+- **Mengzi VI A:8**, `sishu.mengzi.11.08`: `良心` = **Liangxin - Liang Siem** dalam keterangan hati nurani.
+- **Lun Yu II:9**, `sishu.lunyu.02.09`: `回` = **Hui - Hwee**; sebutan sumber `Gan Yan` dibiarkan di dalam tanda kurung, bukan diam-diam disamakan dengan kata yang tidak tercantum pada ayat.
+
+### Interpretasi inventaris yang tepat
+Pemindaian menemukan beberapa kelompok kata yang tampak belum berpasangan, tetapi jumlah kelompok tersebut **bukan jumlah kesalahan yang terbukti**. Misalnya `Thong` adalah komponen nama **Sing Thong**, `Hwi` ada dalam **Liuhe Hwi**, `Cee` juga menjadi bagian **Siok-cee**, dan `Sun` bisa menjadi bagian nama **Sun-i Khun** atau nama keluarga lain, bukan 舜. `Siancai!` di tengah dialog tetap sah. Inventaris dipakai sebagai **antrian bukti**, bukan sebagai dasar penggantian global.
+
+### Kasus untuk keputusan editor berikutnya
+1. **Da Xue XI:14**: judul Hanzi adalah `《秦誓》` (Qin Shi), sedangkan kalimat MATAKIN mengawali kutipannya dengan "maklumat Pangeran Chien". Ini merupakan kemungkinan perbedaan interpretasi sumber/terjemahan, **bukan sekadar pasangan pinyin**. Butuh kolasi edisi cetak MATAKIN 2012 sebelum mengganti tampilan atau memberi catatan koreksi.
+2. **Lun Yu XVIII:11**, `伯適/伯适`: indikasi bacaan nama klasik `Bo Kuo - Pik-kwat` kuat dari Kangxi, tetapi ruby dataset `shì` dan foto cetak MATAKIN 2012 masih perlu ditetapkan sebagai dua lapisan bukti. Tetap Review.
+3. **Mengzi**, nama `Bun`, `Ciu`, `Chien`, `Cho` yang berdiri sendiri memerlukan pemastian kalimat/Hanzi terkait; tidak boleh semua diproses secara global.
+
+Catatan versi APK: [PR Android #7](https://github.com/zqxinai/Ru-Classics/pull/7) sekarang menyiapkan **Alpha 0.2.5** dengan normalizer di-pin ke commit `ece3240e07991f45ee5bb43bde055da95c534887`, yang menjalani pengujian di atas. Proses build APK dan uji fisik **terpisah** dari audit filologis; keberhasilan build tidak mengubah status editorial menjadi Final.
