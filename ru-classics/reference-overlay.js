@@ -25,7 +25,8 @@
     Object.freeze({"passage_id":"sishu.lunyu.06.30","source":"(S.S. XIV: 42)","display":"(Sabda Suci — Lun Yu XIV:42)","target_id":"sishu.lunyu.14.42","decision":"presentation-only / printed 2012 phrasing not attested"}),
     Object.freeze({"passage_id":"sishu.lunyu.10.01","source":"(S.S. III: 15)","display":"(Sabda Suci — Lun Yu III:15)","target_id":"sishu.lunyu.03.15","decision":"presentation-only / printed 2012 phrasing not attested"}),
     Object.freeze({"passage_id":"sishu.lunyu.10.07","source":"(S.S. VII: 13)","display":"(Sabda Suci — Lun Yu VII:13)","target_id":"sishu.lunyu.07.13","decision":"presentation-only / printed 2012 phrasing not attested"}),
-    Object.freeze({"passage_id":"sishu.lunyu.10.08","source":"(S.S. IX: 16)","display":"(Sabda Suci — Lun Yu IX:16)","target_id":"sishu.lunyu.09.16","decision":"presentation-only / printed 2012 phrasing not attested"})
+    Object.freeze({"passage_id":"sishu.lunyu.10.08","source":"(S.S. IX: 16)","display":"(Sabda Suci — Lun Yu IX:16)","target_id":"sishu.lunyu.09.16","decision":"presentation-only / printed 2012 phrasing not attested"}),
+    Object.freeze({"passage_id":"sishu.lunyu.05.08","source":"(T.S. VIII)","display":"(Tengah Sempurna — Zhong Yong VIII)","target_id":null,"decision":"presentation-only / chapter-level reference; no passage link; printed 2012 phrasing not attested"})
   ]);
   const byId=new Map();
   for(const r of records){
