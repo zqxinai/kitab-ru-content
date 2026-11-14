@@ -580,12 +580,12 @@
     "pinyin": true,
     "indonesian": true,
     "english": {
-      "source": "James Legge, The Chinese Classics, Vol I, 1893",
+      "source": "James Legge, The Chinese Classics, Vol. I (2nd revised, Oxford 1893) for Da Xue, Zhong Yong and Lun Yu; Vol. II (2nd revised, Oxford 1895) for Mengzi",
       "status": "complete-draft-unreviewed",
       "aligned_passages": 246,
       "target_passages": 965,
-      "provenance": "https://www.gutenberg.org/ebooks/4094",
-      "note": "Coverage comprises 246 English translations embedded in source chapter JSON and 719 additional MATAKIN passage IDs mapped via 650 entries in dist/sishu-english-alignment.json. The legacy 'aligned_passages' field counts embedded English passages only, as required by tools/build_sishu.py; it is not total editorial coverage. All 965 are Draft and require passage-by-passage source collation and human Final approval. Legge text is preserved without silently changing Heaven/God to match editorial theology.",
+      "provenance": "sources/source-registry.json (fixed bibliographic editions; digital witnesses listed separately, not fully collated)",
+      "note": "Coverage comprises 246 English translations embedded in source chapter JSON and 719 additional MATAKIN passage IDs mapped via 650 entries in dist/sishu-english-alignment.json. The legacy 'aligned_passages' field counts embedded English passages only, as required by tools/build_sishu.py; it is not total editorial coverage. All 965 are Draft and require passage-by-passage source collation and human Final approval. Legge text is preserved without silently changing Heaven/God to match editorial theology. Canonical bibliographic editions are Vol. I (1893) for the first three books and Vol. II (1895) for Mengzi; do not conflate the digital transcript URL with the edition identity.",
       "alignment_mapped_passages": 719,
       "alignment_records": 650,
       "total_draft_coverage": 965
