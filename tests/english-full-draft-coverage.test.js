@@ -6,6 +6,7 @@ const read=p=>JSON.parse(fs.readFileSync(p,'utf8'));
 const bundle=read('dist/sishu-content.json');
 const alignment=read('dist/sishu-english-alignment.json');
 const catalog=read('catalog.json').collections.find(c=>c.id==='sishu');
+const manifest=read('sishu/manifest.json');
 const registry=read('dist/sishu-review-status.json');
 const chapters=bundle.chapters;
 const passages=chapters.flatMap(c=>c.passages);
@@ -31,6 +32,13 @@ test('965 passages have unique IDs and complete, source-attributed English draft
  assert.equal(catalog.english_editor_alignment_drafts,mapped.length);
  assert.equal(catalog.english_passages,bundled.length);
  assert.equal(catalog.total_passages,965);
+ const en=manifest.languages.english;
+ assert.equal(en.aligned_passages,bundled.length,'Manifest embedded count must not be confused with total drafts');
+ assert.equal(en.alignment_mapped_passages,mapped.length,'Manifest alignment count disagrees with live alignment');
+ assert.equal(en.alignment_records,alignment.entries.length,'Manifest alignment record count disagrees with live data');
+ assert.equal(en.total_draft_coverage,available.size,'Manifest total draft coverage stale');
+ assert.equal(en.status,'complete-draft-unreviewed','Draft coverage is not human approval');
+ assert.equal(catalog.english_status,en.status,'Catalog/manifest English status differs');
 });
 test('Every mapped English draft retains full Hanzi spans, source and distinct draft status',()=>{
  const refs=new Set();
