@@ -3,6 +3,7 @@ on:
   pull_request:
     paths:
       - 'sishu/chapters/**'
+      - 'tests/chapter-heading-boundary.test.js'
       - 'tests/contextual-pinyin-stage2.test.js'
       - 'tests/contextual-pinyin-polyphones-batch2.test.js'
       - 'tests/master-stage2-register.test.js'
@@ -28,5 +29,7 @@ jobs:
     timeout-minutes: 10
     steps:
       - uses: actions/checkout@v4
+      - name: Regenerate current package before source/distribution regression
+        run: python3 tools/build_sishu.py
       - name: Verify 965 passages and contextual readings
-        run: node --test tests/contextual-pinyin-stage2.test.js tests/contextual-pinyin-polyphones-batch2.test.js tests/master-stage2-register.test.js
+        run: node --test tests/chapter-heading-boundary.test.js tests/contextual-pinyin-stage2.test.js tests/contextual-pinyin-polyphones-batch2.test.js tests/master-stage2-register.test.js
