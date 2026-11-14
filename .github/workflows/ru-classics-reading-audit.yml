@@ -1,0 +1,21 @@
+name: Ru Classics reading audit
+
+on:
+  pull_request:
+    paths:
+      - "ru-classics/**"
+      - "sishu/chapters/**"
+      - "tests/ru-classics-reading-normalization.test.js"
+      - ".github/workflows/ru-classics-reading-audit.yml"
+  workflow_dispatch:
+
+jobs:
+  reading-audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Audit all 965 verses and rendering rules
+        run: node --test tests/ru-classics-reading-normalization.test.js
