@@ -44,6 +44,10 @@ setTimeout(()=>{
   assert.match(nodes.main.innerHTML,/Bahasa Indonesia/);
   assert.match(nodes.main.innerHTML,/James Legge/);
   assert.match(nodes.main.innerHTML,/<ruby>/);
+  assert.match(nodes.main.innerHTML,/<ruby>學<rt>xué<\/rt><\/ruby><span class="modern"[^>]*>（学）<\/span>/,
+    '2012 script convention must keep simplified glyph after ruby');
+  assert.doesNotMatch(nodes.main.innerHTML,/<ruby>學<span class="modern">/,
+    'Pinyin must align with traditional Hanzi, not traditional plus simplified');
   assert.match(nodes.main.innerHTML,/Catatan pribadi/);
   assert.match(nodes.main.innerHTML,/Pasal berikutnya/);
   console.log('Ru Classics smoke test passed: Paper, 4 books, chapter, reader, Ruby, Indonesian, English');
