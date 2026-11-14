@@ -10,6 +10,10 @@
     ['Thai-kong Bong', 'Taigong Wang'],
     ['San Gi-sing', 'San Yisheng'],
     ['Khiem Tiang', 'Qin Zhang'],
+    ['Sun-i Khun', 'Chunyu Kun'], // 淳於髡, Mengzi IV A:17
+    ['Kong-sun Thio', 'Gongsun Chou'], // 公孫醜, Mengzi II A:1
+    ['Cing See', 'Zeng Xi'], // 曾西; distinct Hanzi from 曾皙 (Cing Sik)
+    ['Yancu', 'Yanzi'], // 晏子
     ['Cing Sik', 'Zeng Xi'],
     ['Bok Phi', 'Mu Pi'],
     ['Pik-tat', 'Bo Da'],
@@ -45,7 +49,7 @@
     return value.replace(/[\^$.*+?()[\]{}|\\]/g, '\\$&');
   }
   function pair(text, legacy, modern) {
-    const pattern = new RegExp('(^|[^\\p{L}])(' + escaped(legacy) + ')(?=$|[^\\p{L}])', 'giu');
+    const pattern = new RegExp('(^|[^\\p{L}-])(' + escaped(legacy) + ')(?=$|[^\\p{L}-])', 'giu');
     const previous = new RegExp(escaped(modern) + '\\s*-\\s*$', 'iu');
     return text.replace(pattern, (match, prefix, token, start, source) => {
       const preceding = source.slice(0, start + prefix.length);
@@ -62,9 +66,13 @@
       : text;
     // Pulihkan spasi pecah-barisan PDF pada nama Hokkian yang sama.
     result = result.replace(/\bI-\s+ien\b/g, 'I-ien');
+    result = result.replace(/\bTiong-\s+hut\b/g, 'Tiong-hut');
     result = result.replace(/\bYao\s*\(\s*Giau\s*\)/g, 'Yao - Giau');
+    result = result.replace(/\bGuan Zhong\s*\(\s*Kwan Tiong\s*\)/g, 'Guan Zhong - Kwan Tiong');
+    result = result.replace(/\bZi Lu\s*-\s*Zi Lu\s*-\s*Cu Lo\b/g, 'Zi Lu - Cu Lo');
+    result = result.replace(/\bRaja Wu\s*-\s*Bu-ting\b/g, 'Raja Wu Ding - Bu-ting');
     // 禹 (Yu) has the one-letter legacy name 'I': replace only verified name contexts.
-    result = result.replace(/\bRaja I(?=$|[^\p{L}])/gu, 'Raja Yu - I');
+    result = result.replace(/\bRaja I(?=$|[^\p{L}-])/gu, 'Raja Yu - I');
     // Nama diri dan istilah dengan Hanzi yang telah dikolasi dalam pasal terkait.
     result = result.replace(/\bNegeri Tien\b/g, 'Negeri Chen - Tien'); // 陳
     result = result.replace(/\bDinasti Ien\b/g, 'Dinasti Yin - Ien'); // 殷
