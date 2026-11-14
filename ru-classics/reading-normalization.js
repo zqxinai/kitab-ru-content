@@ -149,10 +149,10 @@
     }
 
     if (YU_ONLY_PASSAGES.has(passageId)) {
-      result = result.replace(/(^|[^\\p{L}\\d.-])I(?=$|[^\\p{L}\\d.-])/gu,
+      result = result.replace(/(^|[^\p{L}\d.-])I(?=$|[^\p{L}\d.-])/gu,
         (token, prefix, offset, source) => {
           const before = source.slice(0, offset + prefix.length);
-          return /Yu\\s*-\\s*$/.test(before) ? token : prefix + 'Yu - I';
+          return /Yu\s*-\s*$/.test(before) ? token : prefix + 'Yu - I';
         });
     }
 
