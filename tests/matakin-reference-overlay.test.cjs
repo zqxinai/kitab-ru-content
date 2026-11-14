@@ -17,11 +17,29 @@ const expectedTargets={
  'sishu.daxue.11.23':'sishu.mengzi.01.01',
  'sishu.mengzi.01.01':'sishu.daxue.11.23'
 };
-test('Ten independently identified reference links have existing target passages',()=>{
+test('Twenty independently identified references have existing source and target passages',()=>{
  assert.equal(chapters.length,78);
  assert.equal(byId.size,965);
- assert.equal(overlay.records.length,10);
- assert.deepEqual(Object.fromEntries(overlay.records.map(r=>[r.passage_id,r.target_id])),expectedTargets);
+ assert.equal(overlay.records.length,20);
+ // Historical batch 01 is immutable; batch 02 allows multiple references in one passage.
+ for(const [sourceId,targetId] of Object.entries(expectedTargets))
+  assert.ok(overlay.records.some(r=>r.passage_id===sourceId&&r.target_id===targetId),'legacy mapping changed: '+sourceId);
+ const batch2=[
+  ['sishu.lunyu.05.07','sishu.lunyu.09.14'],
+  ['sishu.lunyu.05.08','sishu.lunyu.02.06'],
+  ['sishu.lunyu.05.08','sishu.lunyu.06.04'],
+  ['sishu.lunyu.05.10','sishu.lunyu.03.21'],
+  ['sishu.lunyu.06.04','sishu.lunyu.05.08'],
+  ['sishu.lunyu.06.22','sishu.lunyu.02.05'],
+  ['sishu.lunyu.06.30','sishu.lunyu.14.42'],
+  ['sishu.lunyu.10.01','sishu.lunyu.03.15'],
+  ['sishu.lunyu.10.07','sishu.lunyu.07.13'],
+  ['sishu.lunyu.10.08','sishu.lunyu.09.16']
+ ];
+ for(const [sourceId,targetId] of batch2)
+  assert.ok(overlay.records.some(r=>r.passage_id===sourceId&&r.target_id===targetId),'batch 02 reference absent: '+sourceId+' → '+targetId);
+ assert.equal(new Set(overlay.records.map(r=>r.passage_id+'::'+r.source)).size,overlay.records.length,
+   'no duplicate exact-match patterns within one passage');
  for(const r of overlay.records){
   assert.ok(byId.has(r.passage_id),'source missing: '+r.passage_id);
   assert.ok(byId.has(r.target_id),'target missing: '+r.target_id);
@@ -42,6 +60,18 @@ test('The exact legacy references remain intact in every source and the overlay 
   assert.equal(overlay.present('another.passage.id',source),source,'do not expand references in other passages');
   assert.equal(overlay.present(r.passage_id,'No exact-match reference'), 'No exact-match reference');
  }
+});
+test('Multiple citations in one passage expand independently without changing subayat markers',()=>{
+ const p=byId.get('sishu.lunyu.05.08');
+ const before=p.translation_indonesian;
+ const shown=overlay.present(p.id,before);
+ assert.ok(shown.includes('(Sabda Suci — Lun Yu II:6)'));
+ assert.ok(shown.includes('(Sabda Suci — Lun Yu VI:4)'));
+ assert.ok(!shown.includes('(S.S. II: 6)'));
+ assert.ok(!shown.includes('(S.S. VI: 4)'));
+ assert.equal(p.translation_indonesian,before);
+ assert.match(shown,/\\(2\\)/);
+ assert.equal(overlay.present(p.id,shown),shown);
 });
 test('Verse numbers, unrelated scripture references and original Hanzi are unaffected',()=>{
  const m=byId.get('sishu.mengzi.01.01');
