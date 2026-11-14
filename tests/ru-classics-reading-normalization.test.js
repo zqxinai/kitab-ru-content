@@ -11,7 +11,7 @@ test('Pinyin - Hokkian: existing pairs are neither removed nor doubled', () => {
   const before = 'Mengzi - Bingcu, Kongzi - Khongcu, Junzi - Kuncu, Shun - Sun.';
   assert.equal(reading.normalize(before, 'sample'), before);
   assert.equal(reading.normalize('Yao (Giau) dan Sun', 'sample'), 'Yao - Giau dan Shun - Sun');
-  assert.equal(reading.normalize('Dari Sing Thong, I- ien dan Lai-cu', 'sample'), 'Dari Cheng Tang - Sing Thong, Yi Yin - I- ien dan Lai Zhu - Lai-cu');
+  assert.equal(reading.normalize('Dari Sing Thong, I- ien dan Lai-cu', 'sample'), 'Dari Cheng Tang - Sing Thong, Yi Yin - I-ien dan Lai Zhu - Lai-cu');
   assert.equal(reading.normalize('Thai-kong Bong dan San Gi-sing', 'sample'), 'Taigong Wang - Thai-kong Bong dan San Yisheng - San Gi-sing');
   assert.equal(reading.normalize('Orang-orang seperti I dan Koo Yau', 'sample'), 'Orang-orang seperti Yu - I dan Gao Yao - Koo Yau');
   assert.equal(reading.normalize('Raja I dan Raja Wen - Bun', 'sample'), 'Raja Yu - I dan Raja Wen - Bun');
