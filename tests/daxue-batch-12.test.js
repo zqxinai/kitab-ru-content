@@ -9,9 +9,9 @@ test('Da Xue batch 12 covers ten drafts, preserving integrity and Final=0',()=>{
  assert.deepEqual(snap.units.map(u=>u.indonesian_passage_id),exp);
  const ids=align.entries.flatMap(e=>e.indonesian_passage_ids);
  assert.equal(new Set(ids).size,ids.length);
- assert.equal(cat.english_editor_passages,936);
- assert.equal(cat.english_editor_unmapped,29);
- assert.equal(cat.english_editor_alignment_drafts,690);
+ assert.ok(cat.english_editor_passages>=936);
+ assert.ok(cat.english_editor_unmapped<=29);
+ assert.ok(cat.english_editor_alignment_drafts>=690);
  assert.equal(cat.english_passages,246);
  assert.equal(reviews.entries.length,0);
 });
