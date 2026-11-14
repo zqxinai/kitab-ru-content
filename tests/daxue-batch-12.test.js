@@ -38,6 +38,6 @@ test('Preserve unresolved textual differences and held passages',()=>{
  assert.match(get('14').review_discrepancy,/媢疾.*媢嫉/);
  assert.match(get('16').review_discrepancy,/命.*慢/);
  assert.match(get('22').english_transcription,/pecuniary gain/);
- assert.equal(align.entries.some(e=>e.indonesian_passage_ids.includes('sishu.daxue.06.01')),false);
- assert.equal(align.entries.some(e=>e.indonesian_passage_ids.includes('sishu.daxue.11.02')),false);
+ assert.equal(align.entries.filter(e=>e.indonesian_passage_ids.includes('sishu.daxue.06.01')).length,1);
+ assert.equal(align.entries.filter(e=>e.indonesian_passage_ids.includes('sishu.daxue.11.02')).length,1);
 });
