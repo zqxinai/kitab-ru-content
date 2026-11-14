@@ -132,6 +132,19 @@
     result = result.replace(/\bYao\s*\(\s*Giau\s*\)/g, 'Yao - Giau');
     result = result.replace(/\bGuan Zhong\s*\(\s*Kwan Tiong\s*\)/g, 'Guan Zhong - Kwan Tiong');
     result = result.replace(/\bZisi\s*\(\s*Cusu\s*\)/g, 'Zisi - Cusu');
+    // Varian ejaan Hokkian dari saksi MATAKIN; tetap disandingkan, bukan dibuang.
+    result = result.replace(/\bZisi\s*\(\s*Cu-su\s*\)/gi, 'Zisi - Cu-su'); // 子思
+    result = result.replace(/\bWan Zhang\s*\(\s*Ban[ -]ciang\s*\)/gi, (_, ...args) => {
+      const original = args[0].match(/Ban[ -]ciang/i)[0];
+      return 'Wan Zhang - ' + original;
+    }); // 萬章
+    result = result.replace(/\bAgama Kebajikan\s*\(\s*TIK KAU\s*\)/g, 'Agama Kebajikan (De Jiao - TIK KAU)'); // 德教
+    // Analekta V:8: 求 / 赤 adalah nama panggilan Ran Qiu / Gongxi Chi.
+    if (passageId === 'sishu.lunyu.05.08') {
+      result = result.replace(/\bKiu\s*\(\s*Jiamkiu\s*\)/g, 'Qiu - Kiu (Ran Qiu - Jiamkiu)');
+      result = result.replace(/\bChik\s*\(\s*Kong-see Chik\s*\)/g, 'Chi - Chik (Gongxi Chi - Kong-see Chik)');
+    }
+
     result = result.replace(/\bMingde\s*\(\s*Bing Tik\s*\)/g, 'Mingde - Bing Tik'); // 明德
     result = result.replace(/\bKanggao\s*\(\s*Khong-koo\s*\)/g, 'Kanggao - Khong-koo'); // 康誥
     result = result.replace(/\bTaijia\s*\(\s*Thai Kak\s*\)/g, 'Taijia - Thai Kak'); // 太甲
