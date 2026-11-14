@@ -52,6 +52,48 @@
     ['Lun Gi', 'Lun Yu'],
     ['Su King', 'Shu Jing']
   ]);
+  // Kolasi khusus berdasarkan Hanzi. Satu ejaan Hokkian bisa mewakili
+  // aksara berbeda: Chien => 晉 (Jin) atau 秦 (Qin); Swan => 僎 atau 宣.
+  const CONTEXTUAL = Object.freeze({
+    'sishu.mengzi.01.05': [
+      ['Dahulu, Negeri Cien', 'Dahulu, Negeri Jin - Cien'], // 晉國
+      ['di barat dikalahkan oleh Negeri Jin - Chien', 'di barat dikalahkan oleh Negeri Qin - Chien'], // 西喪地於秦
+      ['serangan Negeri Jin - Chien dan Cho', 'serangan Negeri Qin - Chien dan Chu - Cho'] // 秦楚
+    ],
+    'sishu.mengzi.01.07': [
+      ['Pangeran Hwan', 'Pangeran Huan - Hwan'], // 齊桓
+      ['Pangeran Bun dari Negeri Cien', 'Pangeran Wen - Bun dari Negeri Jin - Cien'], // 晉文
+      ['seperti Chien dan Cho', 'seperti Qin - Chien dan Chu - Cho'], // 秦楚
+      ['Negeri Coo', 'Negeri Zou - Coo'] // 鄒
+    ],
+    'sishu.mengzi.06.05': [
+      ['Pangeran Kat', 'Pangeran Ge - Kat'], // 葛伯
+      ['dan Cho menyerbunya', 'dan Chu - Cho menyerbunya'] // 齊楚
+    ],
+    'sishu.lunyu.17.05': [
+      ['Kong-son Hut-jiau', 'Gongshan Furao - Kong-son Hut-jiau'], // 公山弗擾
+      ['Negara Ciu Timur', 'Negara Zhou Timur - Ciu Timur'] // 東周
+    ],
+    'sishu.lunyu.17.10': [
+      ['Ciulam', 'Zhou Nan - Ciulam'],
+      ['Ciu-lam', 'Zhou Nan - Ciu-lam'], // 周南
+      ['Tiau-lam', 'Shao Nan - Tiau-lam'],
+      ['Tiaulam', 'Shao Nan - Tiaulam'] // 召南
+    ],
+    'sishu.lunyu.14.18': [
+      ['Pembesar Swan', 'Pembesar Zhuan - Swan'] // 僎, MOE Taiwan zhuàn
+    ],
+    'sishu.mengzi.10.09': [
+      ['Rajamuda Swan', 'Rajamuda Xuan - Swan'] // 齊宣王
+    ],
+    'sishu.lunyu.13.07': [
+      ['dan Wee seperti', 'dan Wei - Wee seperti'] // 魯衛
+    ],
+    'sishu.mengzi.09.08': [
+      ['Negeri Lu - Lo dan Wee', 'Negeri Lu - Lo dan Wei - Wee'] // 魯衛
+    ]
+  });
+
   function escaped(value) {
     return value.replace(/[\^$.*+?()[\]{}|\\]/g, '\\$&');
   }
@@ -71,6 +113,11 @@
     let result = passageId === 'sishu.mengzi.14.38'
       ? text.replace(/\s+SIANCAI\s*$/, '')
       : text;
+    // Perubahan spesifik pasal selalu dikerjakan sebelum alias umum.
+    for (const [source, replacement] of CONTEXTUAL[passageId] || []) {
+      if (result.includes(source)) result = result.split(source).join(replacement);
+    }
+
     // Pulihkan spasi pecah-barisan PDF pada nama Hokkian yang sama.
     result = result.replace(/\bI-\s+ien\b/g, 'I-ien');
     result = result.replace(/\bTiong-\s+hut\b/g, 'Tiong-hut');
@@ -102,6 +149,6 @@
     for (const [legacy, modern] of PAIRS) result = pair(result, legacy, modern);
     return result;
   }
-  root.RuReading = Object.freeze({ normalize, pairs: PAIRS });
+  root.RuReading = Object.freeze({ normalize, pairs: PAIRS, contextual: CONTEXTUAL });
   if (typeof module !== 'undefined' && module.exports) module.exports = root.RuReading;
 })(typeof window !== 'undefined' ? window : globalThis);
