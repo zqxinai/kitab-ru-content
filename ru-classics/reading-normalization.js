@@ -69,6 +69,7 @@
     result = result.replace(/\bTiong-\s+hut\b/g, 'Tiong-hut');
     result = result.replace(/\bYao\s*\(\s*Giau\s*\)/g, 'Yao - Giau');
     result = result.replace(/\bGuan Zhong\s*\(\s*Kwan Tiong\s*\)/g, 'Guan Zhong - Kwan Tiong');
+    result = result.replace(/\bZisi\s*\(\s*Cusu\s*\)/g, 'Zisi - Cusu');
     result = result.replace(/\bZi Lu\s*-\s*Zi Lu\s*-\s*Cu Lo\b/g, 'Zi Lu - Cu Lo');
     result = result.replace(/\bRaja Wu\s*-\s*Bu-ting\b/g, 'Raja Wu Ding - Bu-ting');
     // 禹 (Yu) has the one-letter legacy name 'I': replace only verified name contexts.
