@@ -41,7 +41,22 @@ jobs:
           git add dist/sishu-content.json dist/sishu-content.sha256 dist/build-report.json catalog.json
           if git diff --cached --quiet; then
             echo "No change to dist."
+            exit 0
+          fi
+          git commit -m "build(sishu): regenerate complete JSON package [skip ci]"
+          if git push origin HEAD:main; then
+            exit 0
+          fi
+          # GitHub writes can race the build. Never force-push or publish stale dist:
+          # rebuild from the newest main, then retry once.
+          echo "::warning::main advanced during build, rebase by rebuilding from latest source"
+          git fetch origin main
+          git reset --hard origin/main
+          python3 tools/build_sishu.py
+          git add dist/sishu-content.json dist/sishu-content.sha256 dist/build-report.json catalog.json
+          if git diff --cached --quiet; then
+            echo "Latest main already has identical bundle."
           else
-            git commit -m "build(sishu): regenerate complete JSON package [skip ci]"
+            git commit -m "build(sishu): regenerate latest JSON package [skip ci]"
             git push origin HEAD:main
           fi
