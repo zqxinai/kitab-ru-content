@@ -4,10 +4,12 @@ const {classify,scan}=require('../tools/audit_matakin_references.cjs');
 test('References with explicit book names are not auto-rewritten',()=>{
  assert.equal(classify('Shi Jing - Si King IV.1.6','daxue').kind,'explicit-book');
  assert.equal(classify('Shu Jing - Su King V.9.4','daxue').kind,'explicit-book');
+ assert.equal(classify('Si-kingIII.1.1.1','daxue').kind,'explicit-book');
 });
 test('Legacy S.S. and AB abbreviation identify books but remain for human 2012 comparison',()=>{
  assert.deepEqual(classify('S.S. XIV: 39','lunyu'),{kind:'abbreviated-book',confidence:'high',target_book:'lunyu'});
  assert.deepEqual(classify('AB. X:23','mengzi'),{kind:'abbreviated-book',confidence:'high',target_book:'daxue'});
+ assert.deepEqual(classify('Bc. VIIA: 21.4','daxue'),{kind:'abbreviated-book',confidence:'high',target_book:'mengzi'});
 });
 test('Mengzi-specific volume letter reference is only a candidate',()=>{
  assert.equal(classify('III. A.3.10','mengzi').kind,'possible-same-book');
