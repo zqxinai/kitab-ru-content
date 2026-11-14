@@ -351,11 +351,12 @@
     }
     if(!root.childNodes.length)root.textContent='Teks Hanzi belum tersedia.';
   }
-  function showIndonesianText(text){
+  function showIndonesianText(text,passageId){
     const root=$('indonesianText');
+    const display=part=>globalThis.Matakin2012References?.present(passageId,part)??part;
     const verses=globalThis.MatakinVerses?.splitIndonesia(text);
     root.replaceChildren();
-    if(!verses){root.textContent=text;return}
+    if(!verses){root.textContent=display(text);return}
     for(const verse of verses){
       const block=document.createElement('p');
       block.className='verse-block';
@@ -363,7 +364,7 @@
       label.className='verse-number';
       label.textContent='Ayat '+verse.number;
       const body=document.createElement('span');
-      body.textContent=verse.text;
+      body.textContent=display(verse.text);
       block.append(label,body);
       root.append(block);
     }
@@ -384,7 +385,7 @@
     updatePassageActions();
     renderChapterReview();
     showHanzi(p.ruby_paragraphs,p.textual_sections,p.editorial_annotations);
-    showIndonesianText(p.translation_indonesian||'Terjemahan belum tersedia.');
+    showIndonesianText(p.translation_indonesian||'Terjemahan belum tersedia.',p.id);
     const mappings=englishAlignments.get(p.id)||[];
     const segments=mappings.flatMap(entry=>entry.english_segments||[]);
     const en=englishTextFor(p.id).trim();
