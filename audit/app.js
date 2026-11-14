@@ -13,7 +13,7 @@ const CHECKS=[
 ['editor','Regression check navigasi, filter, pencarian, dan editor web lulus'],
 ['offline','Regression check data dan paket offline Android lulus']
 ];
-const S={bundle:null,records:[],byId:new Map(),align:new Map(),reviews:new Map(),edition:new Map(),book:'daxue',batch:0,selected:null,query:'',enFilter:'all',zhFilter:'all',local:{schema:'ru-classics.audit-proposals.v1',entries:{}}};
+const S={bundle:null,records:[],byId:new Map(),align:new Map(),splits:new Map(),reviews:new Map(),edition:new Map(),book:'daxue',batch:0,selected:null,query:'',enFilter:'all',zhFilter:'all',local:{schema:'ru-classics.audit-proposals.v1',entries:{}}};
 const node=(tag,cl='',txt)=>{let e=document.createElement(tag);if(cl)e.className=cl;if(txt!==undefined)e.textContent=String(txt);return e};
 const norm=s=>String(s??'').normalize('NFKC').toLowerCase();
 const hanzi=p=>(p.ruby_paragraphs||[]).map(q=>q.map(t=>t.type==='ruby'?t.traditional||'':t.value||'').join('')).join('\n');
@@ -38,15 +38,25 @@ function status(r){
  return {enFinal,idFinal,zhFinal,pending,mismatch,en:r.english?enFinal?'Final':r.warning?'Perlu Review':'Draft':'Perlu Review',zh:zhFinal?'Terverifikasi':'Belum terverifikasi'};
 }
 function textline(target,key,value){const p=node('p');p.append(node('strong','',key+': '),document.createTextNode(String(value??'—')));target.append(p)}
-function mappingEnglish(id,p){let v=(S.align.get(id)||[]).flatMap(a=>a.english_segments||[]).map(x=>String(x.text||'').trim()).filter(Boolean).join('\n\n');return v||String(p.translation_english||'')}
+function mappingEnglish(id,p){let a=S.align.get(id)||[];let v=a.map(e=>e.indonesian_passage_ids.length>1?String(S.splits.get(id)||'').trim():(e.english_segments||[]).map(x=>String(x.text||'').trim()).filter(Boolean).join('\n\n')).filter(Boolean).join('\n\n');return v||(a.length?'':String(p.translation_english||''))}
 async function load(){
  $('syncBadge').textContent='Memuat sumber…';$('loadError').hidden=true;
  try{
- const [b,aligned,review,ed]=await Promise.all([fetchJson('dist/sishu-content.json'),fetchJson('dist/sishu-english-alignment.json',true),fetchJson('dist/sishu-review-status.json',true),fetchJson('sishu/editions/matakin-2012-chapters.json',true)]);
+ const [b,aligned,splits,review,ed]=await Promise.all([fetchJson('dist/sishu-content.json'),fetchJson('dist/sishu-english-alignment.json',true),fetchJson('dist/sishu-english-passage-splits.json',true),fetchJson('dist/sishu-review-status.json',true),fetchJson('sishu/editions/matakin-2012-chapters.json',true)]);
  if(b?.schema!=='ru-classics.content.v1'||b.collection!=='sishu'||!Array.isArray(b.chapters))throw Error('Schema sumber tidak dikenali.');
  if(aligned?.schema&&aligned.schema!=='kitab-ru.english-alignment.v1')throw Error('Schema alignment tidak dikenali.');
  if(review?.schema&&review.schema!=='kitab-ru.review-status.v1')throw Error('Schema persetujuan tidak dikenali.');
- S.bundle=b;S.align.clear();S.reviews.clear();S.edition.clear();S.byId.clear();S.records=[];
+ if(splits?.schema&&splits.schema!=='kitab-ru.english-passage-splits.v1')throw Error('Schema pemisahan Inggris tidak dikenali.');
+ S.bundle=b;S.align.clear();S.splits.clear();S.reviews.clear();S.edition.clear();S.byId.clear();S.records=[];
+ const splitByEntry=new Map((splits?.entries||[]).map(x=>[x.alignment_id,x]));
+ for(const a of aligned?.entries||[])if(a.indonesian_passage_ids?.length>1){
+  const parts=splitByEntry.get(a.id)?.passage_texts;
+  if(!parts||a.english_segments?.length!==1||
+      Object.keys(parts).length!==a.indonesian_passage_ids.length||
+      a.indonesian_passage_ids.some(id=>!String(parts[id]||'').trim())||
+      a.indonesian_passage_ids.map(id=>parts[id]).join('')!==a.english_segments[0].text)continue;
+  for(const id of a.indonesian_passage_ids)S.splits.set(id,parts[id]);
+ }
  for(const a of aligned?.entries||[])if(Array.isArray(a.indonesian_passage_ids)&&Array.isArray(a.english_segments))for(const id of a.indonesian_passage_ids){let v=S.align.get(id)||[];v.push(a);S.align.set(id,v)}
  for(const r of review?.entries||[])if(typeof r.passage_id==='string'&&!S.reviews.has(r.passage_id))S.reviews.set(r.passage_id,r);
  if(ed?.schema==='ru-classics.edition-chapters.v1')for(const ch of ed.chapters||[])S.edition.set(ch.id,ch);
