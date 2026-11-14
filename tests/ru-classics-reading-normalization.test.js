@@ -27,6 +27,17 @@ test('Pinyin - Hokkian: existing pairs are neither removed nor doubled', () => {
   assert.equal(reading.normalize('Raja Wu - Bu-ting', 'sishu.mengzi.03.01'), 'Raja Wu Ding - Bu-ting');
   assert.equal(reading.normalize('Guan Zhong (Kwan Tiong)', 'sishu.mengzi.03.01'), 'Guan Zhong - Kwan Tiong');
   assert.equal(reading.normalize('Zisi (Cusu)', 'sishu.mengzi.12.06'), 'Zisi - Cusu');
+
+  assert.equal(reading.normalize('Mingde (Bing Tik)', 'sishu.daxue.01.01'), 'Mingde - Bing Tik');
+  assert.equal(reading.normalize('Kanggao (Khong-koo), Taijia (Thai Kak)', 'sample'), 'Kanggao - Khong-koo, Taijia - Thai Kak');
+  assert.equal(reading.normalize('Shangdi (SIANG TEE)', 'sishu.zhongyong.19.06'), 'Shangdi - Siang Tee');
+  assert.equal(reading.normalize('Youzi (Yucu)', 'sishu.lunyu.01.02'), 'Youzi - Yucu');
+  assert.equal(reading.normalize('Negeri Ciu dan Kitab Kerajaan Cho', 'sample'), 'Negeri Zhou - Ciu dan Kitab Kerajaan Chu - Cho');
+  assert.equal(reading.normalize('Pangeran Wee', 'sishu.lunyu.13.03'), 'Pangeran Wei - Wee');
+  assert.equal(reading.normalize('dari Bu-ting', 'sishu.mengzi.03.01'), 'dari Wu Ding - Bu-ting');
+  assert.equal(reading.normalize('Hwan-thi, Cu-he, Liuhe Hwi, Siok-cee, Cong Bun-tiong dan Ciu Jiem', 'sample'),
+    'Fan Chi - Hwan-thi, Zixia - Cu-he, Liu Xiahui - Liuhe Hwi, Shu Qi - Siok-cee, Zang Wenzhong - Cong Bun-tiong dan Zhou Ren - Ciu Jiem');
+
   assert.equal(reading.normalize('Tiong- hut', 'sishu.lunyu.18.11'), 'Zhong Hu - Tiong-hut');
   assert.equal(reading.normalize('Cing See dan Cing Sik', 'sample'), 'Zeng Xi - Cing See dan Zeng Xi - Cing Sik');
 
