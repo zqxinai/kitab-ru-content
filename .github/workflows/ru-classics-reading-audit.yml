@@ -6,6 +6,7 @@ on:
       - "ru-classics/**"
       - "sishu/chapters/**"
       - "tests/ru-classics-reading-normalization.test.js"
+      - "tools/audit_legacy_romanization.cjs"
       - ".github/workflows/ru-classics-reading-audit.yml"
   workflow_dispatch:
 
@@ -25,3 +26,11 @@ jobs:
           node --check ru-classics/app.js
           python tools/build_ru_classics_web.py --source dist/sishu-content.json --alignment dist/sishu-english-alignment.json --splits dist/sishu-english-passage-splits.json --output ru-classics/data/sishu.json
           node ru-classics/tests/smoke.cjs
+      - name: Inventory unresolved legacy names
+        run: node tools/audit_legacy_romanization.cjs
+      - name: Upload triage report
+        uses: actions/upload-artifact@v4
+        with:
+          name: ru-classics-legacy-romanization-inventory
+          path: audit/reports/legacy-romanization-inventory.json
+          retention-days: 30
