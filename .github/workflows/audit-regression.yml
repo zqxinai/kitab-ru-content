@@ -1,0 +1,23 @@
+name: Ru Classics audit regression
+on:
+  pull_request:
+    paths:
+      - "audit/**"
+      - ".github/workflows/audit-regression.yml"
+  push:
+    branches:
+      - main
+    paths:
+      - "audit/**"
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Check 965 passages, 78 chapters and approval wiring
+        run: node audit/tests/regression.mjs

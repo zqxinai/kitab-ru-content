@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#dcf5f6">
+<meta name="description" content="Dashboard audit Ru Classics untuk memeriksa dan mengajukan persetujuan Si Shu berdasarkan bukti, tanpa mengubah naskah asli.">
+<title>Dashboard Audit & Persetujuan · Ru Classics</title>
+<link rel="stylesheet" href="./style.css">
+<script defer src="./app.js"></script>
+</head>
+<body>
+<header class="top"><div class="topin">
+  <a class="brand" href="../editor/"><span class="seal" aria-hidden="true">儒</span><span><strong>RU CLASSICS · AUDIT STUDIO</strong><small>Ruang pemeriksaan & persetujuan Si Shu</small></span></a>
+  <div class="topnav"><span id="syncBadge" class="pill">Memuat sumber…</span><a href="../editor/">Buka editor</a><a href="https://github.com/zqxinai/kitab-ru-content" target="_blank" rel="noopener">Repositori</a><button id="reloadBtn" class="btn ghost" type="button">↻ Muat ulang</button></div>
+</div></header>
+<div class="shell">
+<aside class="side"><div class="eyebrow">PERPUSTAKAAN</div><h2>Si Shu <small>四書</small></h2><div id="books" class="books" aria-label="Pilih kitab"></div><p class="sidehint">Pilih kitab untuk memeriksa daftar pasal. Kelompok maksimal 10 pasal memakai ID tetap agar pasal valid tidak diulang.</p><div class="sidefoot">Teks sumber, terjemahan MATAKIN, dan anotasi asli bersifat baca-saja. Audit lokal tidak mengubah publikasi resmi.</div></aside>
+<main>
+<section class="hero"><div class="eyebrow">KENDALI MUTU NASKAH</div><h1>Audit dan persetujuan Ru Classics</h1><p>Seluruh proses review berbasis bukti, dengan perbedaan pembacaan, penerjemahan, dan komentar klasik dipisahkan dari teks utama. Status Final resmi hanya mengikuti registry repositori yang sudah disetujui.</p><div class="statusline"><span class="pill" id="editionInfo">Edisi MATAKIN: metadata terpisah</span><span class="pill warn">Perubahan naskah terkunci</span><span class="pill" id="versionInfo">Versi —</span></div></section>
+<div id="loadError" class="notice" hidden></div>
+<section class="metricgrid" aria-label="Ringkasan progres">
+  <div class="metric"><small>Pasal dalam koleksi</small><strong id="mTotal">—</strong><span>Target 965 pasal</span></div>
+  <div class="metric"><small>Inggris tersedia</small><strong id="mEnglish">—</strong><span id="mEnglishCaption">Draf, bukan otomatis Final</span></div>
+  <div class="metric"><small>Persetujuan Inggris resmi</small><strong id="mFinal">—</strong><div class="progress"><i id="finalBar" style="width:0%"></i></div><span id="mFinalPct">0% dari 965 pasal</span></div>
+  <div class="metric"><small>Audit Hanzi terkonfirmasi</small><strong id="mHanzi">—</strong><div class="progress"><i id="hanziBar" style="width:0%"></i></div><span>Hanya berdasarkan bukti terverifikasi</span></div>
+</section>
+<section class="panel">
+<div class="panel-head"><div><h2>Daftar audit pasal</h2><small>Daftar dimuat dari naskah resmi, bukan data contoh</small></div><span id="resultCount" class="pill">— pasal</span></div>
+<div class="filters"><input id="search" type="search" placeholder="Cari ID, bab, Hanzi, pinyin, Indonesia, Inggris…" aria-label="Cari pasal"><select id="englishFilter" aria-label="Status Inggris"><option value="all">Semua status Inggris</option><option value="draft">Draft</option><option value="review">Perlu Review</option><option value="final">Final</option></select><select id="hanziFilter" aria-label="Status audit Hanzi"><option value="all">Semua audit Hanzi</option><option value="verified">Terverifikasi</option><option value="review">Belum terverifikasi</option><option value="discrepancy">Ada discrepancy</option></select><button type="button" id="resetFilter" class="btn ghost small">Reset</button></div>
+<div class="batchbar"><div><strong id="batchLabel">Kelompok 1</strong><br><span id="batchSub">Maksimal 10 pasal / kelompok</span></div><div class="tabrow"><button type="button" id="prevBatch" class="btn small">‹ Sebelumnya</button><select id="batchJump" aria-label="Pilih kelompok"></select><button type="button" id="nextBatch" class="btn small">Berikutnya ›</button></div></div>
+<div id="rows" class="items"><div class="loading">Memuat koleksi…</div></div>
+</section>
+<section class="panel" id="detailPanel" hidden>
+<div class="panel-head"><div><h2 id="detailLabel">Pemeriksaan pasal</h2><small id="detailChapter">—</small></div><div class="tabrow"><span id="englishStatus" class="pill warn">Perlu Review</span><span id="hanziStatus" class="pill warn">Hanzi belum terverifikasi</span><span id="localStatus" class="pill" hidden></span></div></div>
+<div class="detail">
+<div class="detailtitle"><div><h2 id="detailTitle">Pasal</h2><p id="detailId">—</p></div><a id="editorLink" class="btn small" href="../editor/">Lihat pada editor</a></div>
+<div class="reading">
+<section class="source"><h3>01 / Teks sumber · Hanzi dan pinyin</h3><div id="sourceText"></div><p class="muted">Token Hanzi dan pinyin dipertahankan dari repositori; tidak direkonstruksi otomatis.</p></section>
+<section><h3>02 / Terjemahan Indonesia · MATAKIN</h3><p id="indonesianText"></p><p class="muted">Teks MATAKIN baca-saja. Perubahan hanya boleh melalui alur koreksi terpisah.</p></section>
+<section><h3>03 / Terjemahan Inggris · James Legge / sumber tertaut</h3><p id="englishText"></p><p class="muted" id="englishCaveat">Alignment berbeda pembagian pasal perlu diperiksa secara manual.</p></section>
+</div>
+<div class="notegrid">
+<section class="notebox"><h3>Komentar Zhu Xi & anotasi (bukan teks kitab)</h3><div id="annotationList"></div></section>
+<section class="notebox"><h3>Sumber & provenance</h3><div id="sourceList"></div></section>
+<section class="notebox"><h3>Discrepancy & keputusan audit</h3><div id="discrepancyList"></div><div class="fields"><label class="full">Tambahkan catatan audit (lokal, tidak mengubah kitab)<textarea id="auditNote" placeholder="Uraikan ketidaksesuaian nyata, nomor, dan bukti sumber…"></textarea></label><label class="full">Referensi atau URL sumber<input id="auditSource" placeholder="Edisi, halaman, tautan otoritatif…"></label></div><button id="saveNote" class="btn small" type="button">Simpan catatan</button></section>
+<section class="notebox"><h3>Riwayat perubahan & pengesahan</h3><div id="officialHistory"></div><ul id="localHistory" class="history"></ul></section>
+</div>
+</div>
+</section>
+<section class="panel" id="approvalPanel" hidden>
+<div class="panel-head"><div><h2>Persetujuan final & regression gate</h2><small>Persetujuan dapat diusulkan, tetapi tidak pernah memublikasikan sendiri</small></div><span id="gateStatus" class="pill warn">Belum lulus</span></div>
+<div class="detail">
+<p class="authnotice">Tombol persetujuan membuat <b>usulan Final lokal</b> dengan jejak audit dan dapat dikirim melalui GitHub Issue. Final resmi baru berlaku setelah persetujuan pengelola digabung ke <code>dist/sishu-review-status.json</code>, cocok dengan teks dan Hanzi, serta lulus pemeriksaan rilis. Jangan menganggap penyimpanan browser sebagai penerbitan.</p>
+<div class="fields"><label>Nama reviewer<input id="reviewer" placeholder="Nama pemeriksa"></label><label>Bukti pemeriksaan terhadap edisi sumber<input id="approvalEvidence" placeholder="Edisi / halaman / URL"></label></div>
+<div id="regressionChecklist" class="checklist" aria-label="Checklist regression check"></div>
+<div class="actionrow"><button type="button" id="approveBtn" class="btn primary" disabled>Setujui & ajukan Final</button><button type="button" id="issueBtn" class="btn" disabled>Buat usulan GitHub</button><button type="button" id="exportBtn" class="btn">Ekspor audit JSON</button><label class="btn" style="cursor:pointer" for="importFile">Impor audit JSON<input id="importFile" type="file" accept=".json,application/json" class="sr"></label></div>
+<p class="muted">Checklist berlaku per pasal dan berdasar fingerprint naskah. Jika teks berubah setelah diperiksa, konfirmasi lama dibatalkan. Data audit pada browser ini tidak otomatis tersinkron.</p>
+</div>
+</section>
+<section class="panel"><div class="panel-head"><div><h2>Pekerjaan tersisa</h2><small>Dihitung ulang dari data yang berhasil dimuat</small></div><a href="https://github.com/zqxinai/kitab-ru-content/issues" target="_blank" rel="noopener" class="btn small">Lihat issue</a></div><div id="todo" class="todo"></div></section>
+<div class="footer">Ru Classics · Audit Studio. Naskah MATAKIN dan anotasi tetap milik pemegang hak masing-masing. Metadata halaman edisi 2012 tidak sama dengan verifikasi isi setiap pasal. Semua penerbitan harus melalui review GitHub dan pengujian editor/paket offline Android.</div>
+</main></div>
+<div class="toast" id="toast" role="status" hidden></div>
+</body></html>
