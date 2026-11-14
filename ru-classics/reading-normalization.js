@@ -134,10 +134,7 @@
     result = result.replace(/\bZisi\s*\(\s*Cusu\s*\)/g, 'Zisi - Cusu');
     // Varian ejaan Hokkian dari saksi MATAKIN; tetap disandingkan, bukan dibuang.
     result = result.replace(/\bZisi\s*\(\s*Cu-su\s*\)/gi, 'Zisi - Cu-su'); // 子思
-    result = result.replace(/\bWan Zhang\s*\(\s*Ban[ -]ciang\s*\)/gi, (_, ...args) => {
-      const original = args[0].match(/Ban[ -]ciang/i)[0];
-      return 'Wan Zhang - ' + original;
-    }); // 萬章
+    result = result.replace(/\bWan Zhang\s*\(\s*Ban[ -]ciang\s*\)/gi, match => 'Wan Zhang - ' + match.match(/Ban[ -]ciang/i)[0]); // 萬章
     result = result.replace(/\bAgama Kebajikan\s*\(\s*TIK KAU\s*\)/g, 'Agama Kebajikan (De Jiao - TIK KAU)'); // 德教
     // Analekta V:8: 求 / 赤 adalah nama panggilan Ran Qiu / Gongxi Chi.
     if (passageId === 'sishu.lunyu.05.08') {
