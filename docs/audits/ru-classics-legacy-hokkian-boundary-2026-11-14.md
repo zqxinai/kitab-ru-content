@@ -58,3 +58,11 @@ Pemeriksaan otomatis ulang pada 965 pasal menemukan 65 istilah kandidat yang per
 
 ### Kaitan dengan APK Android
 Repositori Flutter Android yang terpisah adalah zqxinai/Ru-Classics. Rancangan penerapan overlay ke paket Android tanpa menimpa sumber MATAKIN disiapkan di https://github.com/zqxinai/Ru-Classics/pull/7. Sumber overlay dipatok ke commit spesifik PR #38 untuk uji CI dan belum menjadi persetujuan/publikasi.
+
+## Penelitian lanjut nama 伯適 / 伯适 (Lun Yu XVIII:11)
+- Sumber klasik Zhu Xi dalam *Si Shu Zhang Ju Ji Zhu* memakai grafem **伯适** pada daftar delapan orang bijak: https://zh.wikisource.org/wiki/%E5%9B%9B%E6%9B%B8%E7%AB%A0%E5%8F%A5%E9%9B%86%E8%A8%BB/%E8%AB%96%E8%AA%9E%E9%9B%86%E6%B3%A8%E5%8D%B7%E4%B9%9D.
+- *Kangxi Zidian* pada 适 mengutip **古活切，音括**, serta menyebut **周八士伯适** secara eksplisit. Ini bukti kuat bahwa bacaan nama klasik adalah **kuò**, bukan sekadar pembacaan umum **shì** dari 適. Lihat: https://ctext.org/dictionary.pl?char=%E9%80%82&if=gb&remap=gb.
+- Situs romanisasi modern juga menuliskan 伯适 (音 kuò). Ini bukan bukti primer, melainkan konfirmasi tambahan: https://www.sohu.com/a/669407957_121124743.
+- Naskah JSON saat ini menuliskan **伯適** dengan ruby **shì**; ejaan Hokkian MATAKIN **Pik-kwat** turut menyarankan bunyi klasik kuò. Kandidat display: **Bo Kuo - Pik-kwat**, dan kandidat ruby **伯 bó、適 kuò** untuk konteks khusus ini.
+- **Keputusan editorial sementara: perlu Review** sebelum penggantian ruby sumber, karena varian grafem 适/適 dan pinyin yang benar-benar dicetak dalam edisi MATAKIN 2012 belum dikolasi dengan foto. Tidak mengganti istilah tersebut secara global ataupun menyatakan semua 適 dibaca kuò.
+- Catat dua data ketika foto tersedia: `printed_pinyin` dari MATAKIN dan `contextual_pinyin` berdasar komentar leksikal klasik; apabila berbeda, berikan alasan yang terlacak.
