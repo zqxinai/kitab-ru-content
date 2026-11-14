@@ -16,6 +16,10 @@ Konfirmasi pemilik cetakan MATAKIN:
 
 Parser di [`tools/audit_matakin_references.cjs`](../../tools/audit_matakin_references.cjs) memakai identitas keempat kitab, **tanpa menebak** target untuk rujukan campuran (`S.S. ...; BC ...`) ataupun nomor tanpa penanda. Normalisasi hanya dilakukan berdasarkan **ID pasal + kutipan sumber persis**, untuk menghindari salah ubah isi yang mirip.
 
+## Inventaris otomatis setelah empat singkatan terkunci
+
+Run [GitHub Actions #43629679032](https://github.com/zqxinai/kitab-ru-content/actions/runs/43629679032) lulus dan memindai 965 pasal kembali. Algoritme baru menemukan **497 pola rujukan** (sebelumnya 489, tetapi angkanya tidak dapat dibandingkan sebagai perubahan isi karena metode klasifikasi telah diperluas): **251** singkatan kitab tunggal, **108** rujukan tanpa nama yang ambigu, **25** gabungan beberapa singkatan kitab, **55** rujukan kitab eksplisit, **3** campuran nama eksplisit dan singkatan, serta **55** kandidat rujukan sesama kitab. Ini adalah inventaris heuristik, **bukan** jumlah kesalahan cetakan.
+
 ## Batch baru: 10 rujukan pada pasal Lun Yu
 
 | Sumber ID | Kutipan MATAKIN 2011 | Tampilan nama lengkap | Target passage ID (eksis) |
