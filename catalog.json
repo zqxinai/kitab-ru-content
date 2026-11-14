@@ -1,6 +1,6 @@
 {
   "schema": "kitab-ru.catalog.v1",
-  "catalog_version": "0.1.16",
+  "catalog_version": "0.1.17",
   "updated_at": "2026-11-14",
   "collections": [
     {
@@ -9,8 +9,8 @@
       "title_en": "Four Books",
       "hanzi": "四書",
       "status": "draft",
-      "description": "Si Shu memuat 965 pasal; editor menyediakan 926 draf Inggris (246 tertanam dan 680 lewat peta), sedangkan 39 belum tersedia. Da Xue 51/64, Lun Yu 486/512, Zhong Yong 129/129, Mengzi 260/260; Final editorial 0.",
-      "description_en": "965 Four Books passages. Editor displays 926 English drafts (246 bundled and 680 mapped), with 39 remaining. Da Xue 51/64, Lun Yu 486/512, Zhong Yong 129/129, Mengzi 260/260; zero Final approvals.",
+      "description": "Si Shu memuat 965 pasal; editor menyediakan 936 draf Inggris (246 tertanam dan 690 lewat peta), sedangkan 29 belum tersedia. Da Xue 61/64, Lun Yu 486/512, Zhong Yong 129/129, Mengzi 260/260; belum ada Final editorial.",
+      "description_en": "965 Four Books passages. Editor displays 936 English Drafts (246 bundled and 690 mapped), 29 still missing. Da Xue 61/64; Lun Yu 486/512; Zhong Yong 129/129; Mengzi 260/260; no editorial Final.",
       "package_url": "https://raw.githubusercontent.com/zqxinai/kitab-ru-content/main/dist/sishu-content.json",
       "sha256": "83f11911b340c5347fd8f23a8504bab1cdb5fe31285c8efa858cb4b93ad91e50",
       "languages": [
@@ -22,9 +22,9 @@
       "english_status": "partial-draft",
       "english_passages": 246,
       "total_passages": 965,
-      "english_editor_passages": 926,
-      "english_editor_unmapped": 39,
-      "english_editor_alignment_drafts": 680
+      "english_editor_passages": 936,
+      "english_editor_unmapped": 29,
+      "english_editor_alignment_drafts": 690
     },
     {
       "id": "yijing",
