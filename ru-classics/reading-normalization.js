@@ -44,6 +44,9 @@
       ? text.replace(/\s+SIANCAI\s*$/, '')
       : text;
     result = result.replace(/\bYao\s*\(\s*Giau\s*\)/g, 'Yao - Giau');
+    // 禹 (Yu) has the one-letter legacy name 'I': replace only verified name contexts.
+    result = result.replace(/\bRaja I(?=$|[^\p{L}])/gu, 'Raja Yu - I');
+    result = result.replace(/(\bseperti )I(?=\s+dan\s+(?:Koo Yau|Gao Yao))/gu, '$1Yu - I');
     result = pair(result, 'Giau', 'Yao');
     for (const [legacy, modern] of PAIRS) result = pair(result, legacy, modern);
     return result;
