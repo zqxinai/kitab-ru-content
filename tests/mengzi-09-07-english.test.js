@@ -9,11 +9,11 @@ const book = read('sishu/chapters/mengzi/09.json');
 const catalog = read('catalog.json').collections.find(x=>x.id==='sishu');
 const review = read('dist/sishu-review-status.json');
 const passage = book.passages.find(x=>x.id==='sishu.mengzi.09.07');
-const hanzi = passage.ruby_paragraphs.map(row=>row.map(t=>t.type==='ruby'?t.traditional:(t.value||'')).join('')).join('\\n');
-const normalized = text=>(String(text).match(/\\p{Script=Han}/gu)||[]);
+const hanzi = passage.ruby_paragraphs.map(row=>row.map(t=>t.type==='ruby'?t.traditional:(t.value||'')).join('')).join('\n');
+const normalized = text=>(String(text).match(/\p{Script=Han}/gu)||[]);
 test('Mengzi IX:7 complete digital source is mapped once as Draft, never auto-Final',()=>{
   assert.equal(snapshot.source_commit_sha.length,40);
-  assert.match(snapshot.source_url,/\\/blob\\/[0-9a-f]{40}\\//);
+  assert.match(snapshot.source_url,/\/blob\/[0-9a-f]{40}\//);
   assert.deepEqual(snapshot.source_unit_indices,[32,33]);
   assert.deepEqual(snapshot.source_line_numbers,[103,104,106,107]);
   const matches = map.entries.filter(e=>e.indonesian_passage_ids?.includes(passage.id));
@@ -22,11 +22,11 @@ test('Mengzi IX:7 complete digital source is mapped once as Draft, never auto-Fi
   assert.equal(entry.id,'legge-mengzi-09-07');
   assert.equal(entry.status,'draft');
   assert.equal(entry.hanzi_span,hanzi);
-  assert.equal(entry.source_hanzi_transcription,snapshot.source_chinese_lines.join('\\n'));
+  assert.equal(entry.source_hanzi_transcription,snapshot.source_chinese_lines.join('\n'));
   assert.equal(entry.english_segments.length,1);
-  assert.equal(entry.english_segments[0].text,snapshot.source_english_lines.join('\\n\\n'));
+  assert.equal(entry.english_segments[0].text,snapshot.source_english_lines.join('\n\n'));
   assert.equal(entry.source_url,snapshot.source_url);
-  assert.doesNotMatch(entry.english_segments[0].text,/English translation:\\s*Legge|[\\u3400-\\u9fff]/);
+  assert.doesNotMatch(entry.english_segments[0].text,/English translation:\s*Legge|[\u3400-\u9fff]/);
   assert.equal(review.entries.length,0);
   assert.equal(passage.editorial_status,'unverified-draft');
   assert.equal(catalog.english_editor_passages,886);
@@ -34,7 +34,7 @@ test('Mengzi IX:7 complete digital source is mapped once as Draft, never auto-Fi
   assert.equal(catalog.english_editor_alignment_drafts,640);
 });
 test('All 340 Hanzi characters match except one documented 繫/系 variant',()=>{
-  const a=normalized(snapshot.source_chinese_lines.join('\\n')),b=normalized(hanzi);
+  const a=normalized(snapshot.source_chinese_lines.join('\n')),b=normalized(hanzi);
   assert.equal(a.length,340);
   assert.equal(b.length,340);
   const differs=a.flatMap((value,i)=>value===b[i]?[]:[{index:i,source:value,project:b[i]}]);
