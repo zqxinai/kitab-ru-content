@@ -43,6 +43,8 @@
     let result = passageId === 'sishu.mengzi.14.38'
       ? text.replace(/\s+SIANCAI\s*$/, '')
       : text;
+    // Pulihkan spasi pecah-barisan PDF pada nama Hokkian yang sama.
+    result = result.replace(/\bI-\s+ien\b/g, 'I-ien');
     result = result.replace(/\bYao\s*\(\s*Giau\s*\)/g, 'Yao - Giau');
     // 禹 (Yu) has the one-letter legacy name 'I': replace only verified name contexts.
     result = result.replace(/\bRaja I(?=$|[^\p{L}])/gu, 'Raja Yu - I');
