@@ -10595,6 +10595,166 @@
       "source_url": "https://tianmu.org/good-work-library/confucian/general-texts/the-great-learning-james-legge",
       "status": "draft",
       "review_note": "Draf padanan Inggris berdasar urutan dan cakupan Hanzi; tinjau cetakan asli sebelum Final. Snapshot: sources/legge/daxue-b09-10-passages.json."
+    },
+    {
+      "id": "legge-daxue-b10-10-01",
+      "indonesian_passage_ids": [
+        "sishu.daxue.10.01"
+      ],
+      "english_segments": [
+        {
+          "legge_ref": "The Great Learning, Commentary of Tsang, Chapter IX §1",
+          "text": "What is meant by \"In order rightly to govern the state, it is necessary first to regulate the family\" is this — it is not possible for one to teach others, while he cannot teach his own family. Therefore, the ruler, without going beyond his family, completes the lessons for the state. There is filial piety — therewith the sovereign should be served. There is fraternal submission — therewith elders and superiors should be served. There is kindness — therewith the multitude should be treated."
+        }
+      ],
+      "hanzi_span": "所謂治國必先齊其家者，其家不可教而能教人者，無之。故君子不出家而成教於國。孝者，所以事君也；悌者，所以事長也；慈者，所以使眾也。",
+      "source_url": "https://tianmu.org/good-work-library/confucian/general-texts/the-great-learning-james-legge",
+      "status": "draft",
+      "review_note": "Catat varian Hanzi: proyek 悌者, sumber pembanding Confuciuspedia 弟者. Teks MATAKIN tidak diubah. Snapshot: sources/legge/daxue-b10-10-passages.json."
+    },
+    {
+      "id": "legge-daxue-b10-10-02",
+      "indonesian_passage_ids": [
+        "sishu.daxue.10.02"
+      ],
+      "english_segments": [
+        {
+          "legge_ref": "The Great Learning, Commentary of Tsang, Chapter IX §2",
+          "text": "In the Announcement to K'ang, it is said, \"Act as if you were watching over an infant.\" If a mother is really anxious about it, though she may not hit exactly the wants of her infant, she will not be far from doing so. There never has been a girl who learned to bring up a child, that she might afterwards marry."
+        }
+      ],
+      "hanzi_span": "《康誥》曰：“如保赤子。”心誠求之，雖不中不遠矣。未有學養子而後嫁者也。",
+      "source_url": "https://tianmu.org/good-work-library/confucian/general-texts/the-great-learning-james-legge",
+      "status": "draft",
+      "review_note": "Legge menguraikan kiasan rawat bayi secara lebih panjang; pertahankan cakupan satu pasal MATAKIN. Snapshot: sources/legge/daxue-b10-10-passages.json."
+    },
+    {
+      "id": "legge-daxue-b10-10-03",
+      "indonesian_passage_ids": [
+        "sishu.daxue.10.03"
+      ],
+      "english_segments": [
+        {
+          "legge_ref": "The Great Learning, Commentary of Tsang, Chapter IX §3",
+          "text": "From the loving example of one family a whole state becomes loving, and from its courtesies the whole state becomes courteous; while, from the ambition and perverseness of one man, the whole state may be led to rebellious disorder — such is the nature of the influence. This verifies the saying, \"Affairs may be ruined by a single sentence; a kingdom may be settled by its one man.\""
+        }
+      ],
+      "hanzi_span": "一家仁，一國興仁；一家讓，一國興讓；一人貪戾，一國作亂，其機如此。此謂一言僨事，一人定國。",
+      "source_url": "https://tianmu.org/good-work-library/confucian/general-texts/the-great-learning-james-legge",
+      "status": "draft",
+      "review_note": "Urutan tiga akibat keteladanan dan peribahasa akhir masih berada dalam satu pasal X:3. Snapshot: sources/legge/daxue-b10-10-passages.json."
+    },
+    {
+      "id": "legge-daxue-b10-10-04",
+      "indonesian_passage_ids": [
+        "sishu.daxue.10.04"
+      ],
+      "english_segments": [
+        {
+          "legge_ref": "The Great Learning, Commentary of Tsang, Chapter IX §4",
+          "text": "Yao and Shun led on the kingdom with benevolence and the people followed them. Chieh and Chau led on the kingdom with violence, and the people followed them. The orders which these issued were contrary to the practices which they loved, and so the people did not follow them. On this account, the ruler must himself be possessed of the good qualities, and then he may require them in the people. He must not have the bad qualities in himself, and then he may require that they shall not be in the people.\n\nNever has there been a man, who, not having reference to his own character and wishes in dealing with others, was able effectually to instruct them."
+        }
+      ],
+      "hanzi_span": "堯、舜帥天下以仁，而民從之。桀、紂帥天下以暴，而民從之。其所令反其所好，而民不從。是故君子有諸己而後求諸人，無諸己而後非諸人。所藏乎身不恕，而能喻諸人者，未之有也。",
+      "source_url": "https://tianmu.org/good-work-library/confucian/general-texts/the-great-learning-james-legge",
+      "status": "draft",
+      "review_note": "Dua paragraf Legge (baris 80–81) menyatu dalam satu pasal X:4; bukan dua pasal. Snapshot: sources/legge/daxue-b10-10-passages.json."
+    },
+    {
+      "id": "legge-daxue-b10-10-05",
+      "indonesian_passage_ids": [
+        "sishu.daxue.10.05"
+      ],
+      "english_segments": [
+        {
+          "legge_ref": "The Great Learning, Commentary of Tsang, Chapter IX §5",
+          "text": "Thus we see how the government of the state depends on the regulation of the family."
+        }
+      ],
+      "hanzi_span": "故治國在齊其家。",
+      "source_url": "https://tianmu.org/good-work-library/confucian/general-texts/the-great-learning-james-legge",
+      "status": "draft",
+      "review_note": "Ungkapan 故治國在齊其家 berdiri sendiri; jangan tertukar dengan pasal X:9 (此謂...). Snapshot: sources/legge/daxue-b10-10-passages.json."
+    },
+    {
+      "id": "legge-daxue-b10-10-06",
+      "indonesian_passage_ids": [
+        "sishu.daxue.10.06"
+      ],
+      "english_segments": [
+        {
+          "legge_ref": "The Great Learning, Commentary of Tsang, Chapter IX §6",
+          "text": "In the Book of Poetry, it is said, \"That peach tree, so delicate and elegant! How luxuriant is its foliage! This girl is going to her husband's house. She will rightly order her household.\" Let the household be rightly ordered, and then the people of the state may be taught."
+        }
+      ],
+      "hanzi_span": "《詩》云：“桃之夭夭，其葉蓁蓁。之子于歸，宜其家人。”宜其家人，而後可以教國人。",
+      "source_url": "https://tianmu.org/good-work-library/confucian/general-texts/the-great-learning-james-legge",
+      "status": "draft",
+      "review_note": "Segmen Inggris mencakup kutipan Sanjak dan penjelasan, sesuai satu pasal X:6. Snapshot: sources/legge/daxue-b10-10-passages.json."
+    },
+    {
+      "id": "legge-daxue-b10-10-07",
+      "indonesian_passage_ids": [
+        "sishu.daxue.10.07"
+      ],
+      "english_segments": [
+        {
+          "legge_ref": "The Great Learning, Commentary of Tsang, Chapter IX §7",
+          "text": "In the Book of Poetry, it is said, \"They can discharge their duties to their elder brothers. They can discharge their duties to their younger brothers.\" Let the ruler discharge his duties to his elder and younger brothers, and then he may teach the people of the state."
+        }
+      ],
+      "hanzi_span": "《詩》云：“宜兄宜弟。”宜兄宜弟，而後可以教國人。",
+      "source_url": "https://tianmu.org/good-work-library/confucian/general-texts/the-great-learning-james-legge",
+      "status": "draft",
+      "review_note": "Satu kutipan Sanjak tentang kakak/adik bersama penerapannya; tetap satu pasal. Snapshot: sources/legge/daxue-b10-10-passages.json."
+    },
+    {
+      "id": "legge-daxue-b10-10-08",
+      "indonesian_passage_ids": [
+        "sishu.daxue.10.08"
+      ],
+      "english_segments": [
+        {
+          "legge_ref": "The Great Learning, Commentary of Tsang, Chapter IX §8",
+          "text": "In the Book of Poetry, it is said, \"In his deportment there is nothing wrong; he rectifies all the people of the state.\" Yes; when the ruler, as a father, a son, and a brother, is a model, then the people imitate him."
+        }
+      ],
+      "hanzi_span": "《詩》云：“其儀不忒，正是四國。”其為父子兄弟足法，而後民法之也。",
+      "source_url": "https://tianmu.org/good-work-library/confucian/general-texts/the-great-learning-james-legge",
+      "status": "draft",
+      "review_note": "Kutipan Sanjak dan komentarnya merupakan satu rentang Hanzi X:8. Snapshot: sources/legge/daxue-b10-10-passages.json."
+    },
+    {
+      "id": "legge-daxue-b10-10-09",
+      "indonesian_passage_ids": [
+        "sishu.daxue.10.09"
+      ],
+      "english_segments": [
+        {
+          "legge_ref": "The Great Learning, Commentary of Tsang, Chapter IX §9",
+          "text": "This is what is meant by saying, \"The government of his kingdom depends on his regulation of the family.\""
+        }
+      ],
+      "hanzi_span": "此謂治國在齊其家。",
+      "source_url": "https://tianmu.org/good-work-library/confucian/general-texts/the-great-learning-james-legge",
+      "status": "draft",
+      "review_note": "Pengulangan tema X:5 memiliki pembukaan Hanzi yang berbeda (此謂...); jangan gunakan ulang segmen Inggris X:5. Snapshot: sources/legge/daxue-b10-10-passages.json."
+    },
+    {
+      "id": "legge-daxue-b10-11-01",
+      "indonesian_passage_ids": [
+        "sishu.daxue.11.01"
+      ],
+      "english_segments": [
+        {
+          "legge_ref": "The Great Learning, Commentary of Tsang, Chapter X §1",
+          "text": "What is meant by \"The making the whole kingdom peaceful and happy depends on the government of his state\" is this — when the sovereign behaves to his aged, as the aged should be behaved to, the people become filial; when the sovereign behaves to his elders, as the elders should be behaved to, the people learn brotherly submission; when the sovereign treats compassionately the young and helpless, the people do the same.\n\nThus the ruler has a principle with which, as with a measuring square, he may regulate his conduct."
+        }
+      ],
+      "hanzi_span": "所謂平天下在治其國者，上老老而民興孝，上長長而民興悌，上恤孤而民不倍，是以君子有絜矩之道也。",
+      "source_url": "https://tianmu.org/good-work-library/confucian/general-texts/the-great-learning-james-legge",
+      "status": "draft",
+      "review_note": "Dua paragraf Legge (baris 89–90), termasuk kalimat mengenai 絜矩之道, termasuk satu pasal XI:1. Snapshot: sources/legge/daxue-b10-10-passages.json."
     }
   ]
 }

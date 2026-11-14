@@ -182,3 +182,16 @@ Dari 21 menjadi **31/64** pasal Da Xue yang tersedia dalam editor. Pasal yang di
 - **Da Xue VI:1** sengaja tetap belum dipetakan karena teks pasal proyek mencakup penjelasan Zhu Xi tambahan yang melampaui satu unit Legge; perlu pemisahan sumber versus anotasi sebelum diterjemahkan.
 - Teks Indonesia MATAKIN, Hanzi, pinyin, dan registry status Final **tidak diubah**. Pencocokan belum berarti persetujuan editorial.
 - Progres terkini: **906/965 draf Inggris** (246 tertanam, 660 via alignment), **59 belum tersedia**; Da Xue 31/64, Lun Yu 486/512, Zhong Yong 129/129, Mengzi 260/260. Status Final: 0.
+
+## Da Xue batch 10 — 10 draf Inggris tambahan (14 November 2026)
+
+Batch baru menambahkan sepuluh pasal **Da Xue X:1–9 dan XI:1**, seluruhnya berstatus **Draft**. Sumber Inggris: [The Great Learning — James Legge (Tianmu)](https://tianmu.org/good-work-library/confucian/general-texts/the-great-learning-james-legge), baris 77–90, yang dicatat per-unit dalam `sources/legge/daxue-b10-10-passages.json`. Pembanding Hanzi: [Confuciuspedia](https://confuciuspedia.com/lib/the-great-learning/); perbedaan sumber tidak dijadikan alasan mengubah teks MATAKIN.
+
+- Da Xue X:4 memakai dua paragraf Inggris Legge, tetapi **satu** ID pasal MATAKIN.
+- Da Xue XI:1 juga memakai dua paragraf Legge, termasuk uraian mengenai **絜矩之道**, dalam satu ID MATAKIN.
+- Da Xue X:1 mencatat perbedaan grafem **悌 / 弟** dari transkripsi pembanding. Naskah proyek tetap **悌**.
+- Da Xue X:5 dan X:9 yang sama-sama membahas keterkaitan negara dan keluarga tetap memiliki dua padanan Inggris berbeda sesuai kalimat Hanzi masing-masing.
+- Da Xue VI:1 tetap **belum dipetakan** karena teks pasal memuat penjelasan Zhu Xi tambahan; pemisahan naskah dan anotasi harus dikaji sebelum dipublikasikan.
+- Pengujian `tests/daxue-batch-10.test.js` mengunci ID, teks Hanzi persis, sumber Inggris, status Draft, dan batas pasal dua paragraf. Teks Hanzi, pinyin, Indonesia MATAKIN, dan registry Final tidak disentuh.
+
+**Ketersediaan Inggris editor kini 916/965** (246 tertanam + 670 dari alignment), **49 belum tersedia**. Per kitab: Da Xue 41/64; Lun Yu 486/512; Zhong Yong 129/129; Mengzi 260/260. Seluruhnya masih Draft; Final editorial 0.

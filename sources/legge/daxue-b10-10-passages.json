@@ -1,0 +1,129 @@
+{
+  "schema": "ru-classics.legge-source-snapshot.v1",
+  "batch": "daxue-b10-10-passages",
+  "captured_on": "2026-11-14",
+  "source_english": {
+    "url": "https://tianmu.org/good-work-library/confucian/general-texts/the-great-learning-james-legge",
+    "description": "James Legge 1893, Tianmu transcription of the public-domain translation; line references reflect this web edition, not certified printed page numbers."
+  },
+  "source_chinese": {
+    "url": "https://confuciuspedia.com/lib/the-great-learning/",
+    "description": "Chinese-English comparison transcription; primary project Hanzi are retained, not replaced. See 悌 / 弟 in X:1."
+  },
+  "cross_reference": {
+    "url": "https://oll.libertyfund.org/title/2270",
+    "note": "Original printed Legge verification outstanding; all units remain Draft."
+  },
+  "units": [
+    {
+      "indonesian_passage_id": "sishu.daxue.10.01",
+      "legge_ref": "The Great Learning, Commentary of Tsang, Chapter IX §1",
+      "hanzi_span": "所謂治國必先齊其家者，其家不可教而能教人者，無之。故君子不出家而成教於國。孝者，所以事君也；悌者，所以事長也；慈者，所以使眾也。",
+      "english_transcription": "What is meant by \"In order rightly to govern the state, it is necessary first to regulate the family\" is this — it is not possible for one to teach others, while he cannot teach his own family. Therefore, the ruler, without going beyond his family, completes the lessons for the state. There is filial piety — therewith the sovereign should be served. There is fraternal submission — therewith elders and superiors should be served. There is kindness — therewith the multitude should be treated.",
+      "english_source_lines": [
+        77,
+        77
+      ],
+      "review_discrepancy": "Catat varian Hanzi: proyek 悌者, sumber pembanding Confuciuspedia 弟者. Teks MATAKIN tidak diubah."
+    },
+    {
+      "indonesian_passage_id": "sishu.daxue.10.02",
+      "legge_ref": "The Great Learning, Commentary of Tsang, Chapter IX §2",
+      "hanzi_span": "《康誥》曰：“如保赤子。”心誠求之，雖不中不遠矣。未有學養子而後嫁者也。",
+      "english_transcription": "In the Announcement to K'ang, it is said, \"Act as if you were watching over an infant.\" If a mother is really anxious about it, though she may not hit exactly the wants of her infant, she will not be far from doing so. There never has been a girl who learned to bring up a child, that she might afterwards marry.",
+      "english_source_lines": [
+        78,
+        78
+      ],
+      "review_discrepancy": "Legge menguraikan kiasan rawat bayi secara lebih panjang; pertahankan cakupan satu pasal MATAKIN."
+    },
+    {
+      "indonesian_passage_id": "sishu.daxue.10.03",
+      "legge_ref": "The Great Learning, Commentary of Tsang, Chapter IX §3",
+      "hanzi_span": "一家仁，一國興仁；一家讓，一國興讓；一人貪戾，一國作亂，其機如此。此謂一言僨事，一人定國。",
+      "english_transcription": "From the loving example of one family a whole state becomes loving, and from its courtesies the whole state becomes courteous; while, from the ambition and perverseness of one man, the whole state may be led to rebellious disorder — such is the nature of the influence. This verifies the saying, \"Affairs may be ruined by a single sentence; a kingdom may be settled by its one man.\"",
+      "english_source_lines": [
+        79,
+        79
+      ],
+      "review_discrepancy": "Urutan tiga akibat keteladanan dan peribahasa akhir masih berada dalam satu pasal X:3."
+    },
+    {
+      "indonesian_passage_id": "sishu.daxue.10.04",
+      "legge_ref": "The Great Learning, Commentary of Tsang, Chapter IX §4",
+      "hanzi_span": "堯、舜帥天下以仁，而民從之。桀、紂帥天下以暴，而民從之。其所令反其所好，而民不從。是故君子有諸己而後求諸人，無諸己而後非諸人。所藏乎身不恕，而能喻諸人者，未之有也。",
+      "english_transcription": "Yao and Shun led on the kingdom with benevolence and the people followed them. Chieh and Chau led on the kingdom with violence, and the people followed them. The orders which these issued were contrary to the practices which they loved, and so the people did not follow them. On this account, the ruler must himself be possessed of the good qualities, and then he may require them in the people. He must not have the bad qualities in himself, and then he may require that they shall not be in the people.\n\nNever has there been a man, who, not having reference to his own character and wishes in dealing with others, was able effectually to instruct them.",
+      "english_source_lines": [
+        80,
+        81
+      ],
+      "review_discrepancy": "Dua paragraf Legge (baris 80–81) menyatu dalam satu pasal X:4; bukan dua pasal."
+    },
+    {
+      "indonesian_passage_id": "sishu.daxue.10.05",
+      "legge_ref": "The Great Learning, Commentary of Tsang, Chapter IX §5",
+      "hanzi_span": "故治國在齊其家。",
+      "english_transcription": "Thus we see how the government of the state depends on the regulation of the family.",
+      "english_source_lines": [
+        82,
+        82
+      ],
+      "review_discrepancy": "Ungkapan 故治國在齊其家 berdiri sendiri; jangan tertukar dengan pasal X:9 (此謂...)."
+    },
+    {
+      "indonesian_passage_id": "sishu.daxue.10.06",
+      "legge_ref": "The Great Learning, Commentary of Tsang, Chapter IX §6",
+      "hanzi_span": "《詩》云：“桃之夭夭，其葉蓁蓁。之子于歸，宜其家人。”宜其家人，而後可以教國人。",
+      "english_transcription": "In the Book of Poetry, it is said, \"That peach tree, so delicate and elegant! How luxuriant is its foliage! This girl is going to her husband's house. She will rightly order her household.\" Let the household be rightly ordered, and then the people of the state may be taught.",
+      "english_source_lines": [
+        84,
+        84
+      ],
+      "review_discrepancy": "Segmen Inggris mencakup kutipan Sanjak dan penjelasan, sesuai satu pasal X:6."
+    },
+    {
+      "indonesian_passage_id": "sishu.daxue.10.07",
+      "legge_ref": "The Great Learning, Commentary of Tsang, Chapter IX §7",
+      "hanzi_span": "《詩》云：“宜兄宜弟。”宜兄宜弟，而後可以教國人。",
+      "english_transcription": "In the Book of Poetry, it is said, \"They can discharge their duties to their elder brothers. They can discharge their duties to their younger brothers.\" Let the ruler discharge his duties to his elder and younger brothers, and then he may teach the people of the state.",
+      "english_source_lines": [
+        85,
+        85
+      ],
+      "review_discrepancy": "Satu kutipan Sanjak tentang kakak/adik bersama penerapannya; tetap satu pasal."
+    },
+    {
+      "indonesian_passage_id": "sishu.daxue.10.08",
+      "legge_ref": "The Great Learning, Commentary of Tsang, Chapter IX §8",
+      "hanzi_span": "《詩》云：“其儀不忒，正是四國。”其為父子兄弟足法，而後民法之也。",
+      "english_transcription": "In the Book of Poetry, it is said, \"In his deportment there is nothing wrong; he rectifies all the people of the state.\" Yes; when the ruler, as a father, a son, and a brother, is a model, then the people imitate him.",
+      "english_source_lines": [
+        87,
+        87
+      ],
+      "review_discrepancy": "Kutipan Sanjak dan komentarnya merupakan satu rentang Hanzi X:8."
+    },
+    {
+      "indonesian_passage_id": "sishu.daxue.10.09",
+      "legge_ref": "The Great Learning, Commentary of Tsang, Chapter IX §9",
+      "hanzi_span": "此謂治國在齊其家。",
+      "english_transcription": "This is what is meant by saying, \"The government of his kingdom depends on his regulation of the family.\"",
+      "english_source_lines": [
+        88,
+        88
+      ],
+      "review_discrepancy": "Pengulangan tema X:5 memiliki pembukaan Hanzi yang berbeda (此謂...); jangan gunakan ulang segmen Inggris X:5."
+    },
+    {
+      "indonesian_passage_id": "sishu.daxue.11.01",
+      "legge_ref": "The Great Learning, Commentary of Tsang, Chapter X §1",
+      "hanzi_span": "所謂平天下在治其國者，上老老而民興孝，上長長而民興悌，上恤孤而民不倍，是以君子有絜矩之道也。",
+      "english_transcription": "What is meant by \"The making the whole kingdom peaceful and happy depends on the government of his state\" is this — when the sovereign behaves to his aged, as the aged should be behaved to, the people become filial; when the sovereign behaves to his elders, as the elders should be behaved to, the people learn brotherly submission; when the sovereign treats compassionately the young and helpless, the people do the same.\n\nThus the ruler has a principle with which, as with a measuring square, he may regulate his conduct.",
+      "english_source_lines": [
+        89,
+        90
+      ],
+      "review_discrepancy": "Dua paragraf Legge (baris 89–90), termasuk kalimat mengenai 絜矩之道, termasuk satu pasal XI:1."
+    }
+  ]
+}
