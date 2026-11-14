@@ -89,7 +89,8 @@
       ['Pik-li Hee', 'Baili Xi - Pik-li Hee'], // 百里奚
       ['Kiong Ciki', 'Gong Zhiqi - Kiong Ciki'], // 宮之奇
       ['Rajamuda Bok dari Negeri Jin - Chien', 'Rajamuda Mu - Bok dari Negeri Qin - Chien'], // 秦穆公
-      ['Rajamuda Bok dari Chien', 'Rajamuda Mu - Bok dari Qin - Chien'], // 秦穆公
+      ['rajamuda Bok dari Chien', 'rajamuda Mu - Bok dari Qin - Chien'], // 秦穆公
+      ['Raja muda Bok', 'Raja muda Mu - Bok'], // 秦穆公
       ['Negeri Jin - Chien', 'Negeri Qin - Chien'], // 秦
       ['utusan Negeri Cien', 'utusan Negeri Jin - Cien'], // 晉人
       ['Negeri Gi', 'Negeri Yu - Gi'], // 虞
