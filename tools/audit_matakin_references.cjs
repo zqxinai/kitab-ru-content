@@ -10,20 +10,29 @@ const read=p=>JSON.parse(fs.readFileSync(path.join(root,p),'utf8'));
 const roman='[IVXLCDM]{1,10}';
 const probableRef=new RegExp('(?:'+roman+'[.\\s]*[AB]\\s*[.:]\\s*\\d{1,3})|(?:'+roman+'\\s*[.:]\\s*\\d{1,3})|(?:\\d{1,3}\\s*[.:]\\s*\\d{1,3})','i');
 const explicitBook=/Mengzi|Meng Zi|Bingcu|Bing Cu|Sabda Suci|Lun Yu|Ajaran Besar|Da Xue|Tengah Sempurna|Zhong Yong|Shi Jing|Shijing|Si[ -]*King|Shu Jing|Shujing|Su[ -]*King|Li Ji|Liji|Yi Jing|Yijing|Zhou Yi|Zhouyi|Kitab Sanjak|Kitab Hikayat/i;
+const ABBREVIATED_BOOKS=Object.freeze({
+ ss:'lunyu',ab:'daxue',bc:'mengzi',ts:'zhongyong'
+});
+const abbreviationMatcher=/\b(S\s*\.?\s*S|A\s*\.?\s*B|B\s*\.?\s*C|T\s*\.?\s*S)\s*\.?\s*(?=[IVXLCDM]|\d)/gi;
+function canonicalAbbreviation(value){
+ return value.replace(/[^a-z]/gi,'').toLowerCase();
+}
 function classify(reference,book){
  const s=String(reference||'').trim();
  const hasNumeric=probableRef.test(s);
- const ss=/\bS\s*\.\s*S\s*\.?\s*(?=[IVXLCDM]|\d)/i.test(s)||
-   /(?:^|[;,.\s])SS\s+[IVXLCDM]+/i.test(s);
- const ab=/\bA\s*\.?\s*B\s*\.\s*(?=[IVXLCDM]|\d)/i.test(s);
- const bc=/\bB\s*\.?\s*C\s*\.\s*(?=[IVXLCDM]|\d)/i.test(s);
- if(!hasNumeric&&!ss&&!ab&&!bc)return null;
+ const abbreviations=Array.from(s.matchAll(abbreviationMatcher),x=>canonicalAbbreviation(x[1]))
+   .filter(x=>Object.hasOwn(ABBREVIATED_BOOKS,x));
+ if(!hasNumeric&&!abbreviations.length)return null;
  if(explicitBook.test(s)){
-   return {kind:(ss||ab||bc)?'explicit-plus-abbreviation':'explicit-book',confidence:'observed',target_book:null};
+   return {kind:abbreviations.length?'explicit-plus-abbreviation':'explicit-book',confidence:'observed',target_book:null};
  }
- if(ss)return {kind:'abbreviated-book',confidence:'high',target_book:'lunyu'};
- if(ab)return {kind:'abbreviated-book',confidence:'high',target_book:'daxue'};
- if(bc)return {kind:'abbreviated-book',confidence:'high',target_book:'mengzi'};
+ // A parenthetical may contain multiple source books; don't guess one target.
+ if(abbreviations.length>1){
+   return {kind:'compound-abbreviations',confidence:'review-required',target_book:null};
+ }
+ if(abbreviations.length===1){
+   return {kind:'abbreviated-book',confidence:'high',target_book:ABBREVIATED_BOOKS[abbreviations[0]]};
+ }
  if(book==='mengzi'&&new RegExp('^'+roman+'\\s*\\.?\\s*[AB]\\s*[.:]\\s*\\d{1,3}(?:\\s*[.:]\\s*\\d{1,3})?\\s*$','i').test(s))
    return {kind:'possible-same-book',confidence:'medium',target_book:'mengzi'};
  return {kind:'ambiguous-unlabeled',confidence:'unknown',target_book:null};
@@ -68,4 +77,4 @@ if(require.main===module){
   samples:result.review_required.slice(0,15).map(x=>({id:x.passage_id,ref:x.original_reference,kind:x.kind,target:x.target_book}))
  },null,2));
 }
-module.exports={classify,scan};
+module.exports={classify,scan,ABBREVIATED_BOOKS};
