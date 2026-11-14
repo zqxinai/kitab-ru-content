@@ -67,6 +67,49 @@
       ['I lalu menggali', 'Yu - I lalu menggali'], // 禹
       ['I setelah mengatasi', 'Yu - I setelah mengatasi'] // 禹; 夷 remains "I"
     ],
+    'sishu.mengzi.01.02': [
+      ['Kitab Thong Si', 'Kitab Tang Shi - Thong Si'] // 湯誓
+    ],
+    'sishu.mengzi.04.02': [
+      ['Kekayaan Negeri Cien dan Cho', 'Kekayaan Negeri Jin - Cien dan Chu - Cho'], // 晉楚
+      ['Kong- sun Thio', 'Gongsun Chou - Kong- sun Thio'], // 公孫醜
+      ['Bing Tiongcu', 'Meng Zhongzi - Bing Tiongcu'] // 孟仲子
+    ],
+    'sishu.mengzi.06.03': [
+      ['Ciu Siau bertanya', 'Zhou Xiao - Ciu Siau bertanya'] // 周霄
+    ],
+    'sishu.mengzi.06.06': [
+      ['Tai Put-sing', 'Dai Busheng - Tai Put-sing'], // 戴不勝
+      ['Siat Ki-ciu', 'Xue Juzhou - Siat Ki-ciu'], // 薛居州
+      ['jalan Cong Gak', 'jalan Zhuang Yue - Cong Gak'], // 莊岳
+      ['bahasa Cho', 'bahasa Chu - Cho'], // 楚
+      ['bahasa Cee', 'bahasa Qi - Cee'], // 齊
+      ['orang Cee', 'orang Qi - Cee'] // 齊
+    ],
+    'sishu.mengzi.09.09': [
+      ['Pik-li Hee', 'Baili Xi - Pik-li Hee'], // 百里奚
+      ['Kiong Ciki', 'Gong Zhiqi - Kiong Ciki'], // 宮之奇
+      ['Rajamuda Bok dari Negeri Jin - Chien', 'Rajamuda Mu - Bok dari Negeri Qin - Chien'], // 秦穆公
+      ['Rajamuda Bok dari Chien', 'Rajamuda Mu - Bok dari Qin - Chien'], // 秦穆公
+      ['Negeri Jin - Chien', 'Negeri Qin - Chien'], // 秦
+      ['utusan Negeri Cien', 'utusan Negeri Jin - Cien'], // 晉人
+      ['Negeri Gi', 'Negeri Yu - Gi'], // 虞
+      ['Negeri Khik', 'Negeri Guo - Khik'] // 虢
+    ],
+    'sishu.mengzi.10.02': [
+      ['Tian (Tian - Thian)-cu', 'Tianzi - Thian-cu'], // 天子
+      ['Kong (Duke)', 'Gong - Kong (Duke)'], // 公
+      ['Ho (Marquis)', 'Hou - Ho (Marquis)'], // 侯
+      ['Pik (Earl)', 'Bo - Pik (Earl)'], // 伯
+      ['Cu (Count)', 'Zi - Cu (Count)'], // 子
+      ['Lam (Baron)', 'Nan - Lam (Baron)'] // 男
+    ],
+    'sishu.mengzi.11.08': [
+      ['Hati Nuraninya (Liang Siem)', 'Hati Nuraninya (Liangxin - Liang Siem)'] // 良心
+    ],
+    'sishu.lunyu.02.09': [
+      ['Hwee (Gan Yan)', 'Hui - Hwee (Gan Yan)'] // 回 (Yán Huí: 顏回)
+    ],
     'sishu.mengzi.01.05': [
       ['Dahulu, Negeri Cien', 'Dahulu, Negeri Jin - Cien'], // 晉國
       ['di barat dikalahkan oleh Negeri Jin - Chien', 'di barat dikalahkan oleh Negeri Qin - Chien'], // 西喪地於秦
