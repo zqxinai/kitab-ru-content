@@ -27,6 +27,14 @@ test('Pinyin - Hokkian: existing pairs are neither removed nor doubled', () => {
   assert.equal(reading.normalize('Raja Wu - Bu-ting', 'sishu.mengzi.03.01'), 'Raja Wu Ding - Bu-ting');
   assert.equal(reading.normalize('Guan Zhong (Kwan Tiong)', 'sishu.mengzi.03.01'), 'Guan Zhong - Kwan Tiong');
   assert.equal(reading.normalize('Zisi (Cusu)', 'sishu.mengzi.12.06'), 'Zisi - Cusu');
+  assert.equal(reading.normalize('Zisi (Cu-su)', 'sishu.mengzi.04.11'), 'Zisi - Cu-su');
+  assert.equal(reading.normalize('Wan Zhang (Ban-ciang)', 'sishu.mengzi.09.01'), 'Wan Zhang - Ban-ciang');
+  assert.equal(reading.normalize('Wan Zhang (Ban Ciang)', 'sishu.mengzi.06.05'), 'Wan Zhang - Ban Ciang');
+  assert.equal(reading.normalize('Agama Kebajikan (TIK KAU)', 'sishu.mengzi.07.06'), 'Agama Kebajikan (De Jiao - TIK KAU)');
+  assert.equal(reading.normalize('Kiu (Jiamkiu), Chik (Kong-see Chik)', 'sishu.lunyu.05.08'),
+    'Qiu - Kiu (Ran Qiu - Jiamkiu), Chi - Chik (Gongxi Chi - Kong-see Chik)');
+  assert.equal(reading.normalize('Kiu (Jiamkiu)', 'sishu.lunyu.05.07'), 'Kiu (Jiamkiu)');
+
 
   assert.equal(reading.normalize('Mingde (Bing Tik)', 'sishu.daxue.01.01'), 'Mingde - Bing Tik');
   assert.equal(reading.normalize('Kanggao (Khong-koo), Taijia (Thai Kak)', 'sample'), 'Kanggao - Khong-koo, Taijia - Thai Kak');
