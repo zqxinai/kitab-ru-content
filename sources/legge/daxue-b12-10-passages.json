@@ -1,0 +1,129 @@
+{
+  "schema": "ru-classics.legge-source-snapshot.v1",
+  "batch": "daxue-b12-10-passages",
+  "captured_on": "2026-11-14",
+  "source_english": {
+    "url": "https://tianmu.org/good-work-library/confucian/general-texts/the-great-learning-james-legge",
+    "description": "James Legge public-domain translation via Tianmu transcription. Line coordinates are web text lines, not printed page references."
+  },
+  "source_chinese": {
+    "url": "https://confuciuspedia.com/lib/the-great-learning/",
+    "description": "Independent comparative text for checking segmentation; project Hanzi is the immutable source span saved for each unit; known variants documented."
+  },
+  "cross_reference": {
+    "url": "https://oll.libertyfund.org/title/2270",
+    "note": "English transcript and glyph differences require printed edition review before Final."
+  },
+  "units": [
+    {
+      "indonesian_passage_id": "sishu.daxue.11.13",
+      "legge_ref": "The Great Learning, Commentary of Tsang, Chapter X §13",
+      "hanzi_span": "舅犯曰：“亡人無以為寶，仁親以為寶。”",
+      "english_transcription": "Duke Wan's uncle, Fan, said, \"Our fugitive does not account that to be precious. What he considers precious is the affection due to his parent.\"",
+      "english_source_lines": [
+        107,
+        107
+      ],
+      "review_discrepancy": "Legge memiliki bentuk nama Duke Wan/Fan; Hanzi proyek 舅犯. Verifikasi nama/edisi primer sebelum Final."
+    },
+    {
+      "indonesian_passage_id": "sishu.daxue.11.14",
+      "legge_ref": "The Great Learning, Commentary of Tsang, Chapter X §14",
+      "hanzi_span": "《秦誓》曰：“若有一介臣，斷斷兮無他技，其心休休焉，其如有容焉。人之有技，若己有之；人之彥聖，其心好之，不啻若自其口出。實能容之，以能保我子孫黎民，尚亦有利哉！人之有技，媢嫉以惡之；人之彥聖，而違之，俾不通：實不能容，以不能保我子孫黎民，亦曰殆哉！”",
+      "english_transcription": "In the Declaration of the Duke of Ch'in, it is said, \"Let me have but one minister, plain and sincere, not pretending to other abilities, but with a simple, upright mind; and possessed of generosity, regarding the talents of others as though he himself possessed them, and, where he finds accomplished and perspicacious men, loving them in his heart more than his mouth expresses, and really showing himself able to bear them and employ them — such a minister will be able to preserve my sons and grandsons and black-haired people, and benefits likewise to the kingdom may well be looked for from him.\n\nBut if it be his character, when he finds men of ability, to be jealous and hate them; and, when he finds accomplished and perspicacious men, to oppose them and not allow their advancement, showing himself really not able to bear them: such a minister will not be able to protect my sons and grandsons and people; and may he not also be pronounced dangerous to the state?\"",
+      "english_source_lines": [
+        108,
+        109
+      ],
+      "review_discrepancy": "Dua paragraf Inggris Legge satu pasal MATAKIN XI:14. Varian Hanzi pembanding 媢疾 / proyek 媢嫉 tidak disamakan secara diam-diam."
+    },
+    {
+      "indonesian_passage_id": "sishu.daxue.11.15",
+      "legge_ref": "The Great Learning, Commentary of Tsang, Chapter X §15",
+      "hanzi_span": "唯仁人放流之，迸諸四夷，不與同中國。此謂唯仁人為能愛人，能惡人。",
+      "english_transcription": "It is only the truly virtuous man who can send away such a man and banish him, driving him out among the barbarous tribes around, determined not to dwell along with him in the Middle Kingdom. This is in accordance with the saying, \"It is only the truly virtuous man who can love or who can hate others.\"",
+      "english_source_lines": [
+        110,
+        110
+      ],
+      "review_discrepancy": "Legge memisahkan dari paragraf sebelah; seluruh dua klausa 唯仁人...此謂... termasuk XI:15."
+    },
+    {
+      "indonesian_passage_id": "sishu.daxue.11.16",
+      "legge_ref": "The Great Learning, Commentary of Tsang, Chapter X §16",
+      "hanzi_span": "見賢而不能舉，舉而不能先，命也；見不善而不能退，退而不能遠，過也。",
+      "english_transcription": "To see men of worth and not be able to raise them to office; to raise them to office, but not to do so quickly — this is disrespectful. To see bad men and not be able to remove them; to remove them, but not to do so to a distance — this is weakness.",
+      "english_source_lines": [
+        111,
+        111
+      ],
+      "review_discrepancy": "Hanzi proyek 命也, Legge memakai 'disrespectful'; perbedaan makna perlu audit varian 慢/命 terhadap saksi primer, bukan ganti Hanzi otomatis."
+    },
+    {
+      "indonesian_passage_id": "sishu.daxue.11.17",
+      "legge_ref": "The Great Learning, Commentary of Tsang, Chapter X §17",
+      "hanzi_span": "好人之所惡，惡人之所好，是謂拂人之性，災必逮夫身。",
+      "english_transcription": "To love those whom men hate, and to hate those whom men love — this is to outrage the natural feeling of men. Calamities cannot fail to come down on him who does so.",
+      "english_source_lines": [
+        113,
+        113
+      ],
+      "review_discrepancy": "Bagian kedua masih XI:17, tidak menjadi XI:18."
+    },
+    {
+      "indonesian_passage_id": "sishu.daxue.11.18",
+      "legge_ref": "The Great Learning, Commentary of Tsang, Chapter X §18",
+      "hanzi_span": "是故君子有大道，必忠信以得之，驕泰以失之。",
+      "english_transcription": "Thus we see that the sovereign has a great course to pursue. He must show entire self-devotion and sincerity to attain it, and by pride and extravagance he will fail of it.",
+      "english_source_lines": [
+        114,
+        114
+      ],
+      "review_discrepancy": "Kata Legge self-devotion/sincerity terkait 忠信, bukan substitusi terjemahan Indonesia."
+    },
+    {
+      "indonesian_passage_id": "sishu.daxue.11.19",
+      "legge_ref": "The Great Learning, Commentary of Tsang, Chapter X §19",
+      "hanzi_span": "生財有大道，生之者眾，食之者寡，為之者疾，用之者舒，則財恆足矣。",
+      "english_transcription": "There is a great course also for the production of wealth. Let the producers be many and the consumers few. Let there be activity in the production, and economy in the expenditure. Then the wealth will always be sufficient.",
+      "english_source_lines": [
+        116,
+        116
+      ],
+      "review_discrepancy": "Klausa produksi dan penggunaan 財 satu kesatuan."
+    },
+    {
+      "indonesian_passage_id": "sishu.daxue.11.20",
+      "legge_ref": "The Great Learning, Commentary of Tsang, Chapter X §20",
+      "hanzi_span": "仁者以財發身，不仁者以身發財。",
+      "english_transcription": "The virtuous ruler, by means of his wealth, makes himself more distinguished. The vicious ruler accumulates wealth, at the expense of his life.",
+      "english_source_lines": [
+        117,
+        117
+      ],
+      "review_discrepancy": "Legge memiliki rendering interpretatif 發身/發財; tidak mengganti MATAKIN."
+    },
+    {
+      "indonesian_passage_id": "sishu.daxue.11.21",
+      "legge_ref": "The Great Learning, Commentary of Tsang, Chapter X §21",
+      "hanzi_span": "未有上好仁而下不好義者也，未有好義其事不終者也，未有府庫財非其財者也。",
+      "english_transcription": "Never has there been a case of the sovereign loving benevolence, and the people not loving righteousness. Never has there been a case where the people have loved righteousness, and the affairs of the sovereign have not been carried to completion. And never has there been a case where the wealth in such a state, collected in the treasuries and arsenals, did not continue in the sovereign's possession.",
+      "english_source_lines": [
+        118,
+        118
+      ],
+      "review_discrepancy": "Tiga penyangkalan 未有 dipertahankan sebagai satu pasal."
+    },
+    {
+      "indonesian_passage_id": "sishu.daxue.11.22",
+      "legge_ref": "The Great Learning, Commentary of Tsang, Chapter X §22",
+      "hanzi_span": "孟獻子曰：“畜馬乘不察於雞豚，伐冰之家不畜牛羊，百乘之家不畜聚斂之臣。與其有聚斂之臣，寧有盜臣。”此謂國不以利為利，以義為利也。",
+      "english_transcription": "The officer Mang Hsien said, \"He who keeps horses and a carriage does not look after fowls and pigs. The family which keeps its stores of ice does not rear cattle or sheep. So, the house which possesses a hundred chariots should not keep a minister to look out for imposts that he may lay them on the people.\n\nThan to have such a minister, it were better for that house to have one who should rob it of its revenues.\" This is in accordance with the saying — \"In a state, pecuniary gain is not to be considered to be prosperity, but its prosperity will be found in righteousness.\"",
+      "english_source_lines": [
+        119,
+        120
+      ],
+      "review_discrepancy": "Dua paragraf Inggris untuk XI:22; 'Than to' adalah pilihan/salinan sumber, bukan karangan ulang. Perbandingan nama 孟獻子 terhadap Mang Hsien masih Draft."
+    }
+  ]
+}
