@@ -64,12 +64,27 @@ test('104 question-particle 與 readings are yú; four nonparticle/ambiguous use
   assert.equal(retained, 4);
 });
 
-test('Source Hanzi and translations match the distributable bundle while PR pinyin awaits rebuild', () => {
+test('Source and distribution match except audited pinyin or preserved Da Xue XI:23 boundary', () => {
   const bundle = read('dist/sishu-content.json');
   assert.equal(bundle.chapters.length, 78);
   assert.equal(bundle.chapters.reduce((n, c) => n + c.passages.length, 0), 965);
   function normalize(chapter) {
     const copy = JSON.parse(JSON.stringify(chapter));
+    // A source-boundary fix may precede the main-branch distributable build.
+    // Normalize only the single auditable MATAKIN OCR overflow, and retain the
+    // exact original text for comparison with the old dist. The dedicated
+    // boundary regression verifies the trimmed, byte-identical source.
+    if (copy.id === 'sishu.daxue.11') {
+      const correction = read('sources/matakin/daxue-11-23-preface-overflow-20261114.json');
+      const affected = copy.passages.find(p => p.id === correction.passage_id);
+      assert.ok(affected, correction.passage_id);
+      assert.ok(
+        affected.translation_indonesian === correction.retained_translation_indonesian ||
+        affected.translation_indonesian === correction.original_translation_indonesian,
+        'Unapproved Indonesian translation change in Da Xue XI:23'
+      );
+      affected.translation_indonesian = correction.original_translation_indonesian;
+    }
     // The PR may update source pinyin before the main-branch build workflow regenerates dist.
     // Every token pinyin is covered by separate contextual tests. Compare all other fields.
     for (const p of copy.passages) for (const row of p.ruby_paragraphs)
