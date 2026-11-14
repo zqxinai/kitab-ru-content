@@ -10,6 +10,19 @@
 4. **James Legge**: identitas edisi Inggris yang dipakai sebagai acuan editorial ialah ***The Chinese Classics***, **Vol. I, edisi kedua revisi 1893** untuk Lun Yu, Da Xue, Zhong Yong; serta **Vol. II, edisi kedua revisi 1895** untuk Mengzi. Situs seperti Gutenberg, Tianmu, Confuciuspedia, ChineseNotes bukan penerjemah baru, tetapi **saksi transkripsi digital**. Kesetiaan masing-masing salinan terhadap volume cetak tersebut **masih perlu dikolasi** dan tidak boleh diasumsikan.
 5. **Status setiap pasal/ayat** tetap Draft/Perlu Review sampai pemeriksa menyetujui, terlepas dari angka 965/965 draf Inggris.
 
+## Singkatan kitab yang sudah dikonfirmasi pemilik MATAKIN 2012
+
+| Singkatan | Nama kitab (penulisan lengkap) | Hanzi dan pinyin | ID internal |
+| --- | --- | --- | --- |
+| `SS`, `S.S.` | Sabda Suci / Lun Yu | 論語 — Lún Yǔ | `lunyu` |
+| `AB`, `A.B.` | Ajaran Besar / Da Xue | 大學 — Dà Xué | `daxue` |
+| `BC`, `B.C.`, `Bc.` | Bingcu / Mengzi | 孟子 — Mèng Zǐ | `mengzi` |
+| `TS`, `T.S.` | Tengah Sempurna / Zhong Yong | 中庸 — Zhōng Yōng | `zhongyong` |
+
+Kapitalisasi dan tanda titik adalah varian ejaan singkatan. Identitas **kitab** sudah dipastikan, tetapi nomor bab/pasal/ayat, batas rujukan campuran, dan tulisan persis pada foto 2012 tetap harus diverifikasi terpisah. Rujukan tingkat bab (misalnya `(T.S. VIII)`) **tidak boleh** memperoleh tautan pasal rekaan. `II.5.4.4` yang tanpa nama kitab tidak otomatis menunjuk kitab sumber.
+
+Normalisasi nama lengkap untuk pembaca/editor berasal dari [overlay rujukan ber-ID](../ru-classics/reference-overlay.js); `translation_indonesian` berbasis PDF 2011 tetap identik. Kebijakan ini hanya menyatakan format penyajian sesuai 2012, bukan menyatakan setiap nama/penulisan hasil overlay sudah ditranskripsi kata per kata dari foto cetakan.
+
 ## Pemeriksaan sebelum menyatakan sebuah karakter salah
 
 - Bandingkan frase lengkap, fungsi tata bahasa klasik, konteks terjemahan Indonesia, dan identitas tokoh/nama diri.
