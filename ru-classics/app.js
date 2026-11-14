@@ -58,12 +58,15 @@
     ).join('');
   }
   function indonesiaWithSubverses(p,aligned){
+    // Display-layer normalization: underlying MATAKIN translation stays intact.
+    // Each exact reference is scoped to a verified passage ID.
+    const display=text=>globalThis.Matakin2012References?.present(p.id,text)??text;
     const verses=aligned||globalThis.RuSubverses?.splitIndonesia(p.translation_indonesian||'');
-    if(!verses)return '<p>'+H(p.translation_indonesian||'Belum tersedia')+'</p>';
+    if(!verses)return '<p>'+H(display(p.translation_indonesian||'Belum tersedia'))+'</p>';
     return verses.map(verse=>
       '<p class="translation-verse" data-ayat="'+verse.number+'">'+
       '<span class="ayat-label">Ayat '+verse.number+'</span>'+
-      H(verse.indonesian||verse.text)+'</p>'
+      H(display(verse.indonesian||verse.text))+'</p>'
     ).join('');
   }
   function reader(){const p=byId(state.id);if(!p){navigate('books');return;}state.last=p.id;save();const c=state.chapters.find(c=>c.id===p._chapter);const b=book(p._book);const pos=state.passages.findIndex(x=>x.id===p.id);const prev=state.passages[pos-1],next=state.passages[pos+1];const s=state.settings;const aligned=globalThis.RuSubverses?.align(p)||null;
