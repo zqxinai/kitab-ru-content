@@ -72,6 +72,15 @@ assert.equal(elements.passageList.children.length,first.passages.length);
 // Editorial annotations are sibling asides and must not count as scripture paragraphs.
 assert.equal(elements.hanziText.children.filter(node=>node.tag==='p').length,
   selected.ruby_paragraphs.length);
+// The 2012 presentation adds simplified glyphs as information, not as a
+// second ruby base or a mutation of the traditional source string.
+const hanziFirstParagraph=elements.hanziText.children.find(node=>node.tag==='p');
+const variants=hanziFirstParagraph.children.filter(node=>node.tag==='span'&&node.className==='simplified-variant');
+assert(variants.some(node=>node.textContent==='（学）'),'Da Xue 學 must show its available simplified metadata');
+const rubyForXue=hanziFirstParagraph.children.find(node=>node.tag==='ruby'&&node.children[0]?.textContent==='學');
+assert.equal(rubyForXue?.children[1]?.textContent,'xué','Pinyin remains over traditional glyph only');
+assert(!rubyForXue.children.some(node=>node.textContent==='（学）'),'Simplified glyph must not be inside the ruby');
+
 const initialEnglish=selected.translation_english?.trim();
 assert.equal(elements.englishText.textContent,
   initialEnglish||'Terjemahan Inggris belum tersedia atau belum disetujui untuk pasal ini.');
