@@ -37,7 +37,7 @@ test('Da Xue batch 10 maps exact Hanzi spans without modifying MATAKIN or Final 
   assert.equal(p.editorial_status,'unverified-draft');
   assert.equal(p.translation_english,undefined);
   assert.ok(u.english_source_lines[0]>0&&u.english_source_lines[1]>=u.english_source_lines[0]);
-  assert.ok(!/\\p{Script=Han}/u.test(u.english_transcription));
+  assert.ok(!/\p{Script=Han}/u.test(u.english_transcription));
  }
 });
 
