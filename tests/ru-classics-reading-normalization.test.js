@@ -70,6 +70,27 @@ test('contextual aliases are grounded in their exact source verse', () => {
   assert.equal(reading.normalize('Rajamuda Swan', 'sishu.lunyu.14.18'), 'Rajamuda Swan');
 });
 
+test('Yu (禹) is not confused with Yi (夷), Yi Yin (伊尹), or book-number notation', () => {
+  const verse = id => {
+    const [,book,chapter] = id.split('.');
+    const data = JSON.parse(fs.readFileSync(path.join(BASE,book,chapter+'.json'),'utf8'));
+    return data.passages.find(p=>p.id===id);
+  };
+  const source = verse('sishu.mengzi.09.06').translation_indonesian;
+  const normalized = reading.normalize(source,'sishu.mengzi.09.06');
+  assert.match(normalized,/Sun mengusulkan Yu - I kepada Tuhan YME/);
+  assert.match(normalized,/Yu - I mengusulkan Ik kepada Tuhan YME/);
+  assert.match(normalized,/Yi Yin - I-ien/);
+  assert.match(normalized,/Shu Jing - Su King I\.I\.4/);
+  assert.equal(reading.normalize(normalized,'sishu.mengzi.09.06'),normalized);
+  const floods = reading.normalize(verse('sishu.mengzi.06.09').translation_indonesian,'sishu.mengzi.06.09');
+  assert.match(floods,/Yu - I disuruhnya mengatasi/);
+  assert.match(floods,/orang-orang I dan Tik/,'I (夷) must not be treated as Yu (禹)');
+  const ponds = reading.normalize(verse('sishu.mengzi.05.04').translation_indonesian,'sishu.mengzi.05.04');
+  assert.match(ponds,/Yu - I selama 8 tahun/);
+  assert.match(ponds,/kebudayaan I'/,'cultural Yi (夷) must remain distinct');
+});
+
 test('only Mengzi VII B:38 drops extraneous terminal colophon; legitimate Siancai stays', () => {
   const tail = 'Mengapa tiada yang meneruskan ajaran Nya?" ( IIB:13 ). SIANCAI';
   assert.equal(reading.normalize(tail, 'sishu.mengzi.14.38'), 'Mengapa tiada yang meneruskan ajaran Nya?" ( IIB:13 ).');
