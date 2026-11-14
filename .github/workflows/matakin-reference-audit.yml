@@ -1,0 +1,38 @@
+name: Audit MATAKIN cross-references
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'tools/audit_matakin_references.cjs'
+      - 'tests/matakin-reference-audit.test.cjs'
+      - '.github/workflows/matakin-reference-audit.yml'
+  pull_request:
+    paths:
+      - 'sishu/chapters/**'
+      - 'tools/audit_matakin_references.cjs'
+      - 'tests/matakin-reference-audit.test.cjs'
+      - '.github/workflows/matakin-reference-audit.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  reference-review:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Audit source reference markers without rewriting Indonesia
+        run: |
+          node --test tests/matakin-reference-audit.test.cjs
+          node tools/audit_matakin_references.cjs --out matakin-reference-review.json
+          node -e "const r=require('./matakin-reference-review.json'); require('node:fs').appendFileSync(process.env.GITHUB_STEP_SUMMARY,'## Rujukan MATAKIN 2011 → 2012\n\nPasal: '+r.passage_count+'; rujukan terdeteksi: '+r.reviewed_references+'.\n\n'+Object.entries(r.counts).map(([k,v])=>'- '+k+': '+v).join('\n')+'\n\nBelum ada perubahan teks Indonesia; klasifikasi masih perlu review cetakan 2012.\n')"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: matakin-2012-reference-inventory
+          path: matakin-reference-review.json
+          retention-days: 30
