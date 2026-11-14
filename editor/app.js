@@ -374,7 +374,7 @@
     updatePassageActions();
     renderChapterReview();
     showHanzi(p.ruby_paragraphs,p.textual_sections,p.editorial_annotations);
-    $('indonesianText').textContent=p.translation_indonesian||'Terjemahan belum tersedia.';
+    showIndonesianText(p.translation_indonesian||'Terjemahan belum tersedia.');
     const mappings=englishAlignments.get(p.id)||[];
     const segments=mappings.flatMap(entry=>entry.english_segments||[]);
     const en=englishTextFor(p.id).trim();
