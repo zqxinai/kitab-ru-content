@@ -70,7 +70,7 @@ test('Multiple citations in one passage expand independently without changing su
  assert.ok(!shown.includes('(S.S. II: 6)'));
  assert.ok(!shown.includes('(S.S. VI: 4)'));
  assert.equal(p.translation_indonesian,before);
- assert.match(shown,/\\(2\\)/);
+ assert.ok(shown.includes('(2)'), 'subayat marker (2) disappeared');
  assert.equal(overlay.present(p.id,shown),shown);
 });
 test('Verse numbers, unrelated scripture references and original Hanzi are unaffected',()=>{
