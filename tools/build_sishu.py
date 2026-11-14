@@ -92,6 +92,11 @@ def main():
     (DIST / "sishu-content.sha256").write_text(
         digest + "  sishu-content.json\n", encoding="utf-8"
     )
+    english_metadata = manifest["languages"]["english"]
+    mapped_drafts = english_metadata.get("alignment_mapped_passages", 0)
+    effective_drafts = english_metadata.get("total_draft_coverage", english_count)
+    if english_count + mapped_drafts != effective_drafts or effective_drafts > source_count:
+        raise ValueError("English coverage totals differ from manifest metadata")
     summary = {
         "schema": bundle["schema"],
         "content_version": bundle["content_version"],
@@ -100,6 +105,11 @@ def main():
         "passages": source_count,
         "english_passages": english_count,
         "needs_english": source_count - english_count,
+        "needs_english_definition": "not embedded in chapter JSON; may be covered by editor alignment",
+        "english_editor_alignment_drafts": mapped_drafts,
+        "english_editor_passages": effective_drafts,
+        "english_editor_unmapped": source_count - effective_drafts,
+        "english_editor_status": english_metadata.get("status"),
         "sha256": digest,
         "bytes": len(encoded),
     }

@@ -8,6 +8,7 @@ const alignment=read('dist/sishu-english-alignment.json');
 const catalog=read('catalog.json').collections.find(c=>c.id==='sishu');
 const manifest=read('sishu/manifest.json');
 const registry=read('dist/sishu-review-status.json');
+const buildReport=read('dist/build-report.json');
 const chapters=bundle.chapters;
 const passages=chapters.flatMap(c=>c.passages);
 const byId=new Map(passages.map(p=>[p.id,p]));
@@ -39,6 +40,13 @@ test('965 passages have unique IDs and complete, source-attributed English draft
  assert.equal(en.total_draft_coverage,available.size,'Manifest total draft coverage stale');
  assert.equal(en.status,'complete-draft-unreviewed','Draft coverage is not human approval');
  assert.equal(catalog.english_status,en.status,'Catalog/manifest English status differs');
+ assert.equal(buildReport.english_passages,bundled.length);
+ assert.equal(buildReport.needs_english,965-bundled.length,'Legacy needs_english is the number not embedded, not a count of missing English drafts');
+ assert.equal(buildReport.english_editor_alignment_drafts,mapped.length);
+ assert.equal(buildReport.english_editor_passages,available.size);
+ assert.equal(buildReport.english_editor_unmapped,0);
+ assert.equal(buildReport.english_editor_status,en.status);
+ assert.match(buildReport.needs_english_definition,/not embedded/);
 });
 test('Every mapped English draft retains full Hanzi spans, source and distinct draft status',()=>{
  const refs=new Set();
