@@ -6,6 +6,11 @@
   "passages": 965,
   "english_passages": 246,
   "needs_english": 719,
+  "needs_english_definition": "not embedded in chapter JSON; may be covered by editor alignment",
+  "english_editor_alignment_drafts": 719,
+  "english_editor_passages": 965,
+  "english_editor_unmapped": 0,
+  "english_editor_status": "complete-draft-unreviewed",
   "sha256": "0c0fd70b2c27f6e1257668c853cd8b55d34af5ef913ec5b75c96ed36cf02518a",
   "bytes": 4339187
 }
