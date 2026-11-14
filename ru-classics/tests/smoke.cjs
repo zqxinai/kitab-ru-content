@@ -28,6 +28,7 @@ const page={addEventListener(){},dispatchEvent(){},scrollTo(){}};
 const localStorage={getItem(){return null;},setItem(){}};
 const context={document:doc,window:page,location,localStorage,console,Event,clearTimeout,setTimeout,
  fetch:async()=>({ok:true,json:async()=>bundle})};
+vm.runInNewContext(fs.readFileSync(path.join(__dirname,'../reference-overlay.js'),'utf8'),context,{filename:'reference-overlay.js'});
 vm.runInNewContext(fs.readFileSync(path.join(__dirname,'../app.js'),'utf8'),context,{filename:'app.js'});
 function click(dataset){handlers.click[0]({target:{closest(){return {dataset};}}});}
 setTimeout(()=>{
@@ -50,6 +51,11 @@ setTimeout(()=>{
     'Pinyin must align with traditional Hanzi, not traditional plus simplified');
   assert.match(nodes.main.innerHTML,/Catatan pribadi/);
   assert.match(nodes.main.innerHTML,/Pasal berikutnya/);
+  click({book:'lunyu'});
+  click({chapter:'sishu.lunyu.18'});
+  click({passage:'sishu.lunyu.18.06'});
+  assert.match(nodes.main.innerHTML,/Sabda Suci — Lun Yu XIV:39/,'Full 2012-style book name should display');
+  assert.doesNotMatch(nodes.main.innerHTML,/\\(S\\.S\\. XIV: 39\\)/,'Old abbreviated citation should not display');
   console.log('Ru Classics smoke test passed: Paper, 4 books, chapter, reader, Ruby, Indonesian, English');
  }catch(e){console.error(e);process.exitCode=1;}
 },0);
