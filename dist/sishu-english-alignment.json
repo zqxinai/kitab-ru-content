@@ -11195,6 +11195,196 @@
       ],
       "status": "draft",
       "review_note": "Draf Inggris James Legge, transkripsi Tianmu baris 119–120; sumber Hanzi utama adalah bacaan proyek. Dua paragraf Inggris untuk XI:22; 'Than to' adalah pilihan/salinan sumber, bukan karangan ulang. Perbandingan nama 孟獻子 terhadap Mang Hsien masih Draft. Pemeriksaan ke cetakan Legge dan MATAKIN 2012 belum mengesahkan Final."
+    },
+    {
+      "id": "legge-lunyu-b13-05-01",
+      "indonesian_passage_ids": [
+        "sishu.lunyu.05.01"
+      ],
+      "english_segments": [
+        {
+          "legge_ref": "The Chinese Classics: Confucian Analects, Book V, CHAP. I §§1",
+          "text": "1. The Master said of Kung-ye Ch'ang that he might be wived; although he was put in bonds, he had not been guilty of any crime. Accordingly, he gave him his own daughter to wife."
+        }
+      ],
+      "hanzi_span": "子謂公冶長：“可妻也，雖在縲紲之中，非其罪也！”以其子妻之。",
+      "source_url": "https://www.gutenberg.org/ebooks/3330",
+      "source_hanzi_transcription": "子謂公冶長可妻也雖在縲絏之中非其罪也以其子妻之",
+      "source_hanzi_url": "https://www.gutenberg.org/ebooks/4094",
+      "source_snapshot": "sources/legge/lunyu-b13-gutenberg-3330-4094.json",
+      "status": "draft",
+      "review_note": "Teks sumber Inggris eBook Gutenberg #3330, Hanzi pembanding dari edisi dwibahasa #4094. Kesesuaian Hanzi 95.65% setelah hanya menghapus tanda baca dan marker bagian. Sumber Legge V.I §1 (MATAKIN V:1); varian 縲絏 sumber / 縲紲 proyek, tanpa ubah Hanzi. Semua tetap Draft; verifikasi cetakan Legge dan MATAKIN 2012 sebelum Final."
+    },
+    {
+      "id": "legge-lunyu-b13-05-02",
+      "indonesian_passage_ids": [
+        "sishu.lunyu.05.02"
+      ],
+      "english_segments": [
+        {
+          "legge_ref": "The Chinese Classics: Confucian Analects, Book V, CHAP. I §§2",
+          "text": "2. Of Nan Yung he said that if the country were well governed he would not be out of office, and if it were ill-governed, he would escape punishment and disgrace. He gave him the daughter of his own elder brother to wife."
+        }
+      ],
+      "hanzi_span": "子謂南容：“邦有道不廢；邦無道免於刑戮。”以其兄之子妻之。",
+      "source_url": "https://www.gutenberg.org/ebooks/3330",
+      "source_hanzi_transcription": "子謂南容邦有道不廢邦無道免於刑戮以其兄之子妻之",
+      "source_hanzi_url": "https://www.gutenberg.org/ebooks/4094",
+      "source_snapshot": "sources/legge/lunyu-b13-gutenberg-3330-4094.json",
+      "status": "draft",
+      "review_note": "Teks sumber Inggris eBook Gutenberg #3330, Hanzi pembanding dari edisi dwibahasa #4094. Kesesuaian Hanzi 100.00% setelah hanya menghapus tanda baca dan marker bagian. Sumber Legge V.I §2 (MATAKIN V:2), tidak mencampur §1. Semua tetap Draft; verifikasi cetakan Legge dan MATAKIN 2012 sebelum Final."
+    },
+    {
+      "id": "legge-lunyu-b13-05-08",
+      "indonesian_passage_ids": [
+        "sishu.lunyu.05.08"
+      ],
+      "english_segments": [
+        {
+          "legge_ref": "The Chinese Classics: Confucian Analects, Book V, CHAP. VII §§1,2,3,4",
+          "text": "1. Mang Wu asked about Tsze-lu, whether he was perfectly virtuous. The Master said, 'I do not know.' 2. He asked again, when the Master replied, 'In a kingdom of a thousand chariots, Yu might be employed to manage the military levies, but I do not know whether he be perfectly virtuous.' 3. 'And what do you say of Ch'iu?' The Master replied, 'In a city of a thousand families, or a clan of a hundred chariots, Ch'iu might be employed as governor, but I do not know whether he is perfectly virtuous.' 4. 'What do you say of Ch'ih?' The Master replied, 'With his sash girt and standing in a court, Ch'ih might be employed to converse with the visitors and guests, but I do not know whether he is perfectly virtuous.'"
+        }
+      ],
+      "hanzi_span": "孟武伯問：“子路仁乎？”子曰：“不知也。”又問，子曰：“由也，千乘之國，可使治其賦也，不知其仁也。”“求也何如？”子曰：“求也，千室之邑、百乘之家，可使為之宰也，不知其仁也。”“赤也何如？”子曰：“赤也，束帶立於朝，可使與賓客言也，不知其仁也。”",
+      "source_url": "https://www.gutenberg.org/ebooks/3330",
+      "source_hanzi_transcription": "孟武伯問子路仁乎子曰不知也又問子曰由也千乘之國可使治其賦也不知其仁也求也何如子曰求也千室之邑百乘之家可使為之宰也不知其仁也赤也何如子曰赤也束帶立於朝可使與賓客言也不知其仁也",
+      "source_hanzi_url": "https://www.gutenberg.org/ebooks/4094",
+      "source_snapshot": "sources/legge/lunyu-b13-gutenberg-3330-4094.json",
+      "status": "draft",
+      "review_note": "Teks sumber Inggris eBook Gutenberg #3330, Hanzi pembanding dari edisi dwibahasa #4094. Kesesuaian Hanzi 100.00% setelah hanya menghapus tanda baca dan marker bagian. Seluruh empat bagian soal 孟武伯 dan jawaban Nabi dicatat satu pasal MATAKIN. Semua tetap Draft; verifikasi cetakan Legge dan MATAKIN 2012 sebelum Final."
+    },
+    {
+      "id": "legge-lunyu-b13-05-09",
+      "indonesian_passage_ids": [
+        "sishu.lunyu.05.09"
+      ],
+      "english_segments": [
+        {
+          "legge_ref": "The Chinese Classics: Confucian Analects, Book V, CHAP. VIII §§1,2,3",
+          "text": "1. The Master said to Tsze-kung, 'Which do you consider superior, yourself or Hui?' 2. Tsze-kung replied, 'How dare I compare myself with Hui? Hui hears one point and knows all about a subject; I hear one point, and know a second.' 3. The Master said, 'You are not equal to him. I grant you, you are not equal to him.'"
+        }
+      ],
+      "hanzi_span": "子謂子貢曰：“女與回也孰愈？”對曰：“賜也何敢望回？回也聞一以知十，賜也聞一以知二。”子曰：“弗如也，吾與女弗如也！”",
+      "source_url": "https://www.gutenberg.org/ebooks/3330",
+      "source_hanzi_transcription": "子謂子貢曰女與回也孰愈對曰賜也何敢望回回也聞一以知十賜也聞一以知二子曰弗如也吾與女弗如也",
+      "source_hanzi_url": "https://www.gutenberg.org/ebooks/4094",
+      "source_snapshot": "sources/legge/lunyu-b13-gutenberg-3330-4094.json",
+      "status": "draft",
+      "review_note": "Teks sumber Inggris eBook Gutenberg #3330, Hanzi pembanding dari edisi dwibahasa #4094. Kesesuaian Hanzi 100.00% setelah hanya menghapus tanda baca dan marker bagian. Edisi dwibahasa Gutenberg #4094 mencetak CHAP VIII, tetapi eBook Inggris #3330 salah melabelinya CHAP VII; urutan teks dan Hanzi cocok. Semua tetap Draft; verifikasi cetakan Legge dan MATAKIN 2012 sebelum Final."
+    },
+    {
+      "id": "legge-lunyu-b13-05-25",
+      "indonesian_passage_ids": [
+        "sishu.lunyu.05.25"
+      ],
+      "english_segments": [
+        {
+          "legge_ref": "The Chinese Classics: Confucian Analects, Book V, CHAP. XXIV",
+          "text": "The Master said, 'Fine words, an insinuating appearance, and excessive respect;— Tso Ch'iu-ming was ashamed of them. I also am ashamed of them. To conceal resentment against a person, and appear friendly with him;— Tso Ch'iu-ming was ashamed of such conduct. I also am ashamed of it.'"
+        }
+      ],
+      "hanzi_span": "子曰：“巧言、令色、足恭，左丘明恥之，丘亦恥之。匿怨而友其人，左丘明恥之，丘亦恥之。”",
+      "source_url": "https://www.gutenberg.org/ebooks/3330",
+      "source_hanzi_transcription": "子曰巧言令色足恭左丘明恥之丘亦恥之匿怨而友其人左丘明恥之丘亦恥之",
+      "source_hanzi_url": "https://www.gutenberg.org/ebooks/4094",
+      "source_snapshot": "sources/legge/lunyu-b13-gutenberg-3330-4094.json",
+      "status": "draft",
+      "review_note": "Teks sumber Inggris eBook Gutenberg #3330, Hanzi pembanding dari edisi dwibahasa #4094. Kesesuaian Hanzi 100.00% setelah hanya menghapus tanda baca dan marker bagian. Legge V.XXIV sesuai MATAKIN V:25; pergeseran penomoran karena pasal pemisahan sebelumnya. Semua tetap Draft; verifikasi cetakan Legge dan MATAKIN 2012 sebelum Final."
+    },
+    {
+      "id": "legge-lunyu-b13-05-26",
+      "indonesian_passage_ids": [
+        "sishu.lunyu.05.26"
+      ],
+      "english_segments": [
+        {
+          "legge_ref": "The Chinese Classics: Confucian Analects, Book V, CHAP. XXV §§1,2,3,4",
+          "text": "1. Yen Yuan and Chi Lu being by his side, the Master said to them, 'Come, let each of you tell his wishes.' 2. Tsze-lu said, 'I should like, having chariots and horses, and light fur dresses, to share them with my friends, and though they should spoil them, I would not be displeased.' 3. Yen Yuan said, 'I should like not to boast of my excellence, nor to make a display of my meritorious deeds.' 4. Tsze-lu then said, 'I should like, sir, to hear your wishes.' The Master said, 'They are, in regard to the aged, to give them rest; in regard to friends, to show them sincerity; in regard to the young, to treat them tenderly.'"
+        }
+      ],
+      "hanzi_span": "顏淵、季路侍，子曰：“盍各言爾志？”子路曰：“願車馬、衣輕裘與朋友共，敝之而無憾。”顏淵曰：“願無伐善，無施勞。”子路曰：“願聞子之志。”子曰：“老者安之，朋友信之，少者懷之。”",
+      "source_url": "https://www.gutenberg.org/ebooks/3330",
+      "source_hanzi_transcription": "顏淵季路侍子曰盍各言爾志子路曰願車馬衣輕裘與朋友共蔽之而無憾顏淵曰願無伐善無施勞子路曰願聞子之志子曰老者安之朋友信之少者懷之",
+      "source_hanzi_url": "https://www.gutenberg.org/ebooks/4094",
+      "source_snapshot": "sources/legge/lunyu-b13-gutenberg-3330-4094.json",
+      "status": "draft",
+      "review_note": "Teks sumber Inggris eBook Gutenberg #3330, Hanzi pembanding dari edisi dwibahasa #4094. Kesesuaian Hanzi 98.39% setelah hanya menghapus tanda baca dan marker bagian. Legge V.XXV §§1–4 sesuai MATAKIN V:26. Varian sumber 蔽 / proyek 敝 dicatat, tidak menimpa MATAKIN. Semua tetap Draft; verifikasi cetakan Legge dan MATAKIN 2012 sebelum Final."
+    },
+    {
+      "id": "legge-lunyu-b13-06-01",
+      "indonesian_passage_ids": [
+        "sishu.lunyu.06.01"
+      ],
+      "english_segments": [
+        {
+          "legge_ref": "The Chinese Classics: Confucian Analects, Book VI, CHAP. I §§1",
+          "text": "1. The Master said, 'There is Yung!— He might occupy the place of a prince.'"
+        }
+      ],
+      "hanzi_span": "子曰：“雍也可使南面。”",
+      "source_url": "https://www.gutenberg.org/ebooks/3330",
+      "source_hanzi_transcription": "子曰雍也可使南面",
+      "source_hanzi_url": "https://www.gutenberg.org/ebooks/4094",
+      "source_snapshot": "sources/legge/lunyu-b13-gutenberg-3330-4094.json",
+      "status": "draft",
+      "review_note": "Teks sumber Inggris eBook Gutenberg #3330, Hanzi pembanding dari edisi dwibahasa #4094. Kesesuaian Hanzi 100.00% setelah hanya menghapus tanda baca dan marker bagian. Legge VI.I §1; bagian sesudahnya dipakai hanya untuk MATAKIN VI:2. Semua tetap Draft; verifikasi cetakan Legge dan MATAKIN 2012 sebelum Final."
+    },
+    {
+      "id": "legge-lunyu-b13-06-02",
+      "indonesian_passage_ids": [
+        "sishu.lunyu.06.02"
+      ],
+      "english_segments": [
+        {
+          "legge_ref": "The Chinese Classics: Confucian Analects, Book VI, CHAP. I §§2,3,4",
+          "text": "2. Chung-kung asked about Tsze-sang Po-tsze. The Master said, 'He may pass. He does not mind small matters.' 3. Chung-kung said, 'If a man cherish in himself a reverential feeling of the necessity of attention to business, though he may be easy in small matters in his government of the people, that may be allowed. But if he cherish in himself that easy feeling, and also carry it out in his practice, is not such an easy mode of procedure excessive?' 4. The Master said, 'Yung's words are right.'"
+        }
+      ],
+      "hanzi_span": "仲弓問子桑伯子，子曰：“可也，簡。”仲弓曰：“居敬而行簡，以臨其民，不亦可乎？居簡而行簡，無乃大簡乎？”子曰：“雍之言然。”",
+      "source_url": "https://www.gutenberg.org/ebooks/3330",
+      "source_hanzi_transcription": "仲弓問子桑伯子子曰可也簡仲弓曰居敬而行簡以臨其民不亦可乎居簡而行簡無乃大簡乎子曰雍之言然",
+      "source_hanzi_url": "https://www.gutenberg.org/ebooks/4094",
+      "source_snapshot": "sources/legge/lunyu-b13-gutenberg-3330-4094.json",
+      "status": "draft",
+      "review_note": "Teks sumber Inggris eBook Gutenberg #3330, Hanzi pembanding dari edisi dwibahasa #4094. Kesesuaian Hanzi 100.00% setelah hanya menghapus tanda baca dan marker bagian. Legge VI.I §§2–4 adalah satu pasal MATAKIN VI:2. Semua tetap Draft; verifikasi cetakan Legge dan MATAKIN 2012 sebelum Final."
+    },
+    {
+      "id": "legge-lunyu-b13-06-04",
+      "indonesian_passage_ids": [
+        "sishu.lunyu.06.04"
+      ],
+      "english_segments": [
+        {
+          "legge_ref": "The Chinese Classics: Confucian Analects, Book VI, CHAP. III §§1,2",
+          "text": "1. Tsze-hwa being employed on a mission to Ch'i, the disciple Zan requested grain for his mother. The Master said, 'Give her a fu.' Yen requested more. 'Give her an yu,' said the Master. Yen gave her five ping. 2. The Master said, 'When Ch'ih was proceeding to Ch'i, he had fat horses to his carriage, and wore light furs. I have heard that a superior man helps the distressed, but does not add to the wealth of the rich.'"
+        }
+      ],
+      "hanzi_span": "子華使於齊，冉子為其母請粟，子曰：“與之釜。”請益，曰：“與之庾。”冉子與之粟五秉。子曰：“赤之適齊也，乘肥馬，衣輕裘。吾聞之也，君子周急不繼富。”",
+      "source_url": "https://www.gutenberg.org/ebooks/3330",
+      "source_hanzi_transcription": "子華使於齊冉子為其母請粟子曰與之釜請益曰與之庾冉子與之粟五秉子曰赤之適齊也乘肥馬衣輕裘吾聞之也君子周急不繼富",
+      "source_hanzi_url": "https://www.gutenberg.org/ebooks/4094",
+      "source_snapshot": "sources/legge/lunyu-b13-gutenberg-3330-4094.json",
+      "status": "draft",
+      "review_note": "Teks sumber Inggris eBook Gutenberg #3330, Hanzi pembanding dari edisi dwibahasa #4094. Kesesuaian Hanzi 100.00% setelah hanya menghapus tanda baca dan marker bagian. Legge VI.III §§1–2; permintaan beras dan teguran tentang kekayaan termasuk VI:4. Semua tetap Draft; verifikasi cetakan Legge dan MATAKIN 2012 sebelum Final."
+    },
+    {
+      "id": "legge-lunyu-b13-06-05",
+      "indonesian_passage_ids": [
+        "sishu.lunyu.06.05"
+      ],
+      "english_segments": [
+        {
+          "legge_ref": "The Chinese Classics: Confucian Analects, Book VI, CHAP. III §§3,4",
+          "text": "3. Yuan Sze being made governor of his town by the Master, he gave him nine hundred measures of grain, but Sze declined them. 4. The Master said, 'Do not decline them. May you not give them away in the neighborhoods, hamlets, towns, and villages?'"
+        }
+      ],
+      "hanzi_span": "原思為之宰，與之粟九百，辭。子曰：“毋，以與爾鄰里鄉黨乎！”",
+      "source_url": "https://www.gutenberg.org/ebooks/3330",
+      "source_hanzi_transcription": "原思為之宰與之粟九百辭子曰毋以與爾鄰里鄉黨乎",
+      "source_hanzi_url": "https://www.gutenberg.org/ebooks/4094",
+      "source_snapshot": "sources/legge/lunyu-b13-gutenberg-3330-4094.json",
+      "status": "draft",
+      "review_note": "Teks sumber Inggris eBook Gutenberg #3330, Hanzi pembanding dari edisi dwibahasa #4094. Kesesuaian Hanzi 100.00% setelah hanya menghapus tanda baca dan marker bagian. Legge VI.III §§3–4 dipetakan hanya ke MATAKIN VI:5, tidak menduplikasi VI:4. Semua tetap Draft; verifikasi cetakan Legge dan MATAKIN 2012 sebelum Final."
     }
   ]
 }
