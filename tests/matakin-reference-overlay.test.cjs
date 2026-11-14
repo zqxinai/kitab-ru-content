@@ -17,10 +17,10 @@ const expectedTargets={
  'sishu.daxue.11.23':'sishu.mengzi.01.01',
  'sishu.mengzi.01.01':'sishu.daxue.11.23'
 };
-test('Twenty independently identified references have existing source and target passages',()=>{
+test('Thirty-four exact references preserve original sources and resolve only evidenced targets',()=>{
  assert.equal(chapters.length,78);
  assert.equal(byId.size,965);
- assert.equal(overlay.records.length,21);
+ assert.equal(overlay.records.length,34);
  // Historical batch 01 is immutable; batch 02 allows multiple references in one passage.
  for(const [sourceId,targetId] of Object.entries(expectedTargets))
   assert.ok(overlay.records.some(r=>r.passage_id===sourceId&&r.target_id===targetId),'legacy mapping changed: '+sourceId);
@@ -38,6 +38,26 @@ test('Twenty independently identified references have existing source and target
  ];
  for(const [sourceId,targetId] of batch2)
   assert.ok(overlay.records.some(r=>r.passage_id===sourceId&&r.target_id===targetId),'batch 02 reference absent: '+sourceId+' → '+targetId);
+ const batch3=[
+  ['sishu.lunyu.05.12','(A.B. IX: 4)','sishu.daxue.10.04'],
+  ['sishu.lunyu.05.25','(S.S. I: 3)','sishu.lunyu.01.03'],
+  ['sishu.lunyu.10.21','(S.S. III: 15)','sishu.lunyu.03.15'],
+  ['sishu.lunyu.10.25','(S.S. IX: 10)','sishu.lunyu.09.10'],
+  ['sishu.lunyu.16.09','(T.S. XIX: 9)','sishu.zhongyong.20.09'],
+  ['sishu.lunyu.16.12','(S.S. XII: 10)','sishu.lunyu.12.10'],
+  ['sishu.lunyu.12.10','(S.S. XVI: 12)','sishu.lunyu.16.12'],
+  ['sishu.lunyu.12.14','(S.S. XIII: 3)','sishu.lunyu.13.03'],
+  ['sishu.lunyu.12.16','(T.S. IX: 3)','sishu.zhongyong.10.03'],
+  ['sishu.zhongyong.10.03','(S.S. XII:16)','sishu.lunyu.12.16'],
+  ['sishu.lunyu.12.22','(Bc. VIIA: 46)','sishu.mengzi.13.46'],
+  ['sishu.lunyu.12.13','(A.B. IV )',null],
+  ['sishu.lunyu.12.20','(T.S. VIII)',null]
+ ];
+ for(const [source,ref,target] of batch3){
+  const found=overlay.records.find(r=>r.passage_id===source&&r.source===ref);
+  assert.ok(found,'missing batch 03: '+source+' '+ref);
+  assert.equal(found.target_id,target,source+' '+ref);
+ }
  assert.equal(new Set(overlay.records.map(r=>r.passage_id+'::'+r.source)).size,overlay.records.length,
    'no duplicate exact-match patterns within one passage');
  for(const r of overlay.records){
@@ -77,6 +97,18 @@ test('Multiple citations in one passage expand independently without changing su
  assert.ok(!shown.includes('(T.S. VIII)'),'unexpanded TS remains');
  const chapterOnly=overlay.records.find(r=>r.passage_id===p.id&&r.source==='(T.S. VIII)');
  assert.equal(chapterOnly?.target_id,null,'chapter-only reference must not assert a passage target');
+});
+test('Batch 03 preserves cross-references without fabricating chapter-only passage links',()=>{
+ const quote=byId.get('sishu.lunyu.12.16');
+ const shown=overlay.present(quote.id,quote.translation_indonesian);
+ assert.ok(shown.includes('(Tengah Sempurna — Zhong Yong IX:3)'));
+ const cross=byId.get('sishu.zhongyong.10.03');
+ assert.ok(overlay.present(cross.id,cross.translation_indonesian).includes('(Sabda Suci — Lun Yu XII:16)'));
+ const chapterOnly=byId.get('sishu.lunyu.12.13');
+ assert.ok(overlay.present(chapterOnly.id,chapterOnly.translation_indonesian).includes('(Ajaran Besar — Da Xue IV)'));
+ const tsChapter=byId.get('sishu.lunyu.12.20');
+ assert.ok(overlay.present(tsChapter.id,tsChapter.translation_indonesian).includes('(Tengah Sempurna — Zhong Yong VIII)'));
+ assert.ok(overlay.records.filter(r=>r.source==='(A.B. IV )'||r.source==='(T.S. VIII)').every(r=>r.target_id===null));
 });
 test('Verse numbers, unrelated scripture references and original Hanzi are unaffected',()=>{
  const m=byId.get('sishu.mengzi.01.01');
