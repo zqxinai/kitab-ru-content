@@ -35,7 +35,7 @@ test('Legge bilingual print has exact attributed segments and untouched canonica
   assert.equal(p.editorial_status,'unverified-draft');
   assert.equal(p.translation_english,undefined);
   assert.equal(e.source_url,snap.source_english.url);
- });
+ }
 });
 test('Zhu Xi supplement is separate; six directional clauses restored',()=>{
  const get=code=>map.entries.find(e=>e.id==='legge-daxue-b16-'+code);
