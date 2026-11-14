@@ -9,14 +9,14 @@ const root=path.resolve(__dirname,'..');
 const read=p=>JSON.parse(fs.readFileSync(path.join(root,p),'utf8'));
 const roman='[IVXLCDM]{1,10}';
 const probableRef=new RegExp('(?:'+roman+'[.\\s]*[AB]\\s*[.:]\\s*\\d{1,3})|(?:'+roman+'\\s*[.:]\\s*\\d{1,3})|(?:\\d{1,3}\\s*[.:]\\s*\\d{1,3})','i');
-const explicitBook=/Mengzi|Meng Zi|Bingcu|Bing Cu|Sabda Suci|Lun Yu|Ajaran Besar|Da Xue|Tengah Sempurna|Zhong Yong|Shi Jing|Shijing|Si King|Shu Jing|Shujing|Su King|Li Ji|Liji|Yi Jing|Yijing|Zhou Yi|Zhouyi|Kitab Sanjak|Kitab Hikayat/i;
+const explicitBook=/Mengzi|Meng Zi|Bingcu|Bing Cu|Sabda Suci|Lun Yu|Ajaran Besar|Da Xue|Tengah Sempurna|Zhong Yong|Shi Jing|Shijing|Si[ -]*King|Shu Jing|Shujing|Su[ -]*King|Li Ji|Liji|Yi Jing|Yijing|Zhou Yi|Zhouyi|Kitab Sanjak|Kitab Hikayat/i;
 function classify(reference,book){
  const s=String(reference||'').trim();
  const hasNumeric=probableRef.test(s);
  const ss=/\bS\s*\.\s*S\s*\.?\s*(?=[IVXLCDM]|\d)/i.test(s)||
    /(?:^|[;,.\s])SS\s+[IVXLCDM]+/i.test(s);
  const ab=/\bA\s*\.?\s*B\s*\.\s*(?=[IVXLCDM]|\d)/i.test(s);
- const bc=/\bB\s*\.\s*C\s*\.\s*(?=[IVXLCDM]|\d)/i.test(s);
+ const bc=/\bB\s*\.?\s*C\s*\.\s*(?=[IVXLCDM]|\d)/i.test(s);
  if(!hasNumeric&&!ss&&!ab&&!bc)return null;
  if(explicitBook.test(s)){
    return {kind:(ss||ab||bc)?'explicit-plus-abbreviation':'explicit-book',confidence:'observed',target_book:null};
