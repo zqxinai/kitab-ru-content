@@ -7,6 +7,7 @@
   const SOURCE='../dist/sishu-content.json';
   const EDITION_SOURCE='../sishu/editions/matakin-2012-chapters.json';
   const ALIGNMENT_SOURCE='../dist/sishu-english-alignment.json';
+  const SPLIT_SOURCE='../dist/sishu-english-passage-splits.json';
   const REVIEW_SOURCE='../dist/sishu-review-status.json';
   const KEY='kitab-ru-editorial-drafts-v1';
   const BOOKS={
@@ -16,7 +17,7 @@
     mengzi:{name:'Mengzi',hanzi:'孟子',sub:'Mengzi'}
   };
   const book=id=>BOOKS[id]||{name:id,hanzi:'書',sub:'Kitab klasik'};
-  let bundle=null,chapters=[],records=[],byId=new Map(),englishAlignments=new Map(),reviewStatuses=new Map();
+  let bundle=null,chapters=[],records=[],byId=new Map(),englishAlignments=new Map(),englishSplits=new Map(),reviewStatuses=new Map();
   let bookId='',chapterId='',passageId='',editing=false,loadNumber=0;
   let drafts={};
   try{const parsed=JSON.parse(localStorage.getItem(KEY)||'{}');
@@ -28,9 +29,13 @@
   ).join('\n');
   // The editorial source of truth is the alignment map when a mapped translation exists.
   const englishTextFor=id=>{
-    const mapped=(englishAlignments.get(id)||[]).flatMap(e=>e.english_segments||[])
-      .map(s=>String(s.text||'').trim()).filter(Boolean).join('\n\n');
-    return mapped||String(byId.get(id)?.passage.translation_english||'');
+    const aligned=englishAlignments.get(id)||[];
+    const mapped=aligned.map(entry=>{
+      if(entry.indonesian_passage_ids.length>1)
+        return String(englishSplits.get(id)||'').trim(); // Never repeat a shared Legge source unit.
+      return (entry.english_segments||[]).map(s=>String(s.text||'').trim()).filter(Boolean).join('\n\n');
+    }).filter(Boolean).join('\n\n');
+    return mapped||(aligned.length?'':String(byId.get(id)?.passage.translation_english||''));
   };
   const record=id=>byId.get(id||passageId);
   const selectedChapter=()=>chapters.find(c=>c.id===chapterId);
@@ -77,7 +82,26 @@
       } catch (_) { /* Missing alignment must not block the scripture reader. */ }
       if(alignmentData.schema && alignmentData.schema!=='kitab-ru.english-alignment.v1')
         throw Error('Format padanan Inggris tidak dikenali.');
-      englishAlignments=new Map();
+      englishAlignments=new Map();englishSplits=new Map();
+      let splitData={entries:[]};
+      try{
+        const response=await fetch(SPLIT_SOURCE,{credentials:'omit',cache:'no-store'});
+        if(response.ok)splitData=await response.json();
+      }catch(_){ /* Missing split data means withhold shared units rather than duplicating them. */ }
+      if(splitData.schema&&splitData.schema!=='kitab-ru.english-passage-splits.v1')
+        throw Error('Format pemisahan Inggris tidak dikenali.');
+      const splitByEntry=new Map((splitData.entries||[]).map(item=>[item.alignment_id,item]));
+      for(const entry of alignmentData.entries||[]){
+        if((entry.indonesian_passage_ids||[]).length<=1)continue;
+        const item=splitByEntry.get(entry.id),texts=item?.passage_texts;
+        const originals=entry.english_segments||[];
+        if(!texts||originals.length!==1||
+            Object.keys(texts).length!==entry.indonesian_passage_ids.length||
+            entry.indonesian_passage_ids.some(id=>!String(texts[id]||'').trim())||
+            entry.indonesian_passage_ids.map(id=>texts[id]).join('')!==originals[0].text)
+          continue; // Unresolved shared units must never be repeated on every verse.
+        for(const id of entry.indonesian_passage_ids)englishSplits.set(id,texts[id]);
+      }
       for(const entry of alignmentData.entries||[]){
         if(!Array.isArray(entry.indonesian_passage_ids)||!Array.isArray(entry.english_segments))continue;
         for(const id of entry.indonesian_passage_ids){
