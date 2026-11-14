@@ -28,6 +28,12 @@ Draf disimpan di browser perangkat masing-masing dan tidak otomatis tersinkron a
 - Istilah Tian tidak selalu diterjemahkan God oleh James Legge. Kata-kata Legge tidak diganti tanpa memberi label bahwa itu keputusan redaksional tersendiri.
 - Simpan rujukan dan alasan setiap perbaikan.
 
+## Standar sumber dan audit
+
+**Acuan baku:** [Kolasi MATAKIN 2011/2012 dan penetapan edisi Zhu Xi–Legge](docs/source-policy.md). [Registri sumber dan identitas edisi](sources/source-registry.json) menentukan peran masing-masing dokumen. [Asal teks Hanzi](docs/hanzi-provenance.md) menjelaskan mengapa varian dan kegagalan konversi Hanzi tidak boleh otomatis dinyatakan sebagai kesalahan MATAKIN.
+
+Terjemahan Indonesia tetap bersumber pada PDF MATAKIN 2011 ketika foto 2012 belum ada. Foto MATAKIN 2012 adalah bukti primer terbatas untuk penulisan yang benar-benar tercetak. Referensi Legge baku: Vol. I (1893) untuk Da Xue/Zhong Yong/Lun Yu dan Vol. II (1895) untuk Mengzi; semua salinan digital lain adalah saksi kerja. Semua 965 terjemahan Inggris masih **draf**, bukan hasil verifikasi kata demi kata.
+
 ## Koleksi sumber
 
 - [Naskah bacaan Si Shu](dist/sishu-content.json)
