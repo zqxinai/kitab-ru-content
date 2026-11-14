@@ -10,6 +10,7 @@ const json=path=>JSON.parse(text(path));
 const bundle=json('dist/sishu-content.json');
 const registry=json('dist/sishu-review-status.json');
 const alignment=json('dist/sishu-english-alignment.json');
+const splits=json('dist/sishu-english-passage-splits.json');
 const edition=json('sishu/editions/matakin-2012-chapters.json');
 const catalog=json('catalog.json');
 const html=text('audit/index.html');
@@ -17,6 +18,7 @@ const script=text('audit/app.js');
 assert.equal(bundle.schema,'ru-classics.content.v1');
 assert.equal(bundle.collection,'sishu');
 assert.equal(alignment.schema,'kitab-ru.english-alignment.v1');
+assert.equal(splits.schema,'kitab-ru.english-passage-splits.v1');
 assert.equal(registry.schema,'kitab-ru.review-status.v1');
 assert.equal(edition.schema,'ru-classics.edition-chapters.v1');
 assert.equal(catalog.schema,'kitab-ru.catalog.v1');
@@ -42,6 +44,11 @@ for(const entry of registry.entries||[]){
 }
 for(const e of edition.chapters||[])assert(chapters.some(c=>c.id===e.id),'metadata edisi mengacu ke bab yang dikenal');
 for(const e of alignment.entries||[])for(const id of e.indonesian_passage_ids||[])assert(ids.has(id),'alignment mengacu ke ID pasal yang ada');
+const merged=alignment.entries.filter(e=>e.indonesian_passage_ids.length>1);
+const index=new Map(splits.entries.map(e=>[e.alignment_id,e]));
+assert.equal(index.size,merged.length);
+for(const e of merged){const p=index.get(e.id)?.passage_texts;assert(p,e.id+' missing split');assert.equal(Object.keys(p).length,e.indonesian_passage_ids.length);assert.equal(e.indonesian_passage_ids.map(id=>p[id]).join(''),e.english_segments[0].text)}
+assert(script.includes('S.splits.get(id)'), 'Audit must render distinct English passage slices');
 new vm.Script(script,{filename:'audit/app.js'});
 const htmlIds=new Set([...html.matchAll(/\bid="([^"]+)"/g)].map(x=>x[1]));
 const usedIds=[...script.matchAll(/\$\('([a-zA-Z0-9]+)'\)/g)].map(x=>x[1]);
