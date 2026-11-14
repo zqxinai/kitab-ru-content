@@ -3,6 +3,13 @@
   'use strict';
   const PAIRS = Object.freeze([
     ['Sing Thong', 'Cheng Tang'],
+    ['Sing-thong', 'Cheng Tang'], // 湯, Lun Yu XII:22
+    ['Liuhe Hwi', 'Liu Xiahui'], // 柳下惠
+    ['Siok-cee', 'Shu Qi'], // 叔齊
+    ['Hwan-thi', 'Fan Chi'], // 樊遲
+    ['Cu-he', 'Zixia'], // 子夏
+    ['Cong Bun-tiong', 'Zang Wenzhong'], // 臧文仲
+    ['Ciu Jiem', 'Zhou Ren'], // 周任
     ['Koo Yau', 'Gao Yao'],
     ['I- ien', 'Yi Yin'],
     ['I-ien', 'Yi Yin'],
@@ -70,6 +77,16 @@
     result = result.replace(/\bYao\s*\(\s*Giau\s*\)/g, 'Yao - Giau');
     result = result.replace(/\bGuan Zhong\s*\(\s*Kwan Tiong\s*\)/g, 'Guan Zhong - Kwan Tiong');
     result = result.replace(/\bZisi\s*\(\s*Cusu\s*\)/g, 'Zisi - Cusu');
+    result = result.replace(/\bMingde\s*\(\s*Bing Tik\s*\)/g, 'Mingde - Bing Tik'); // 明德
+    result = result.replace(/\bKanggao\s*\(\s*Khong-koo\s*\)/g, 'Kanggao - Khong-koo'); // 康誥
+    result = result.replace(/\bTaijia\s*\(\s*Thai Kak\s*\)/g, 'Taijia - Thai Kak'); // 太甲
+    result = result.replace(/\bShangdi\s*\(\s*Siang Tee\s*\)/gi, 'Shangdi - Siang Tee'); // 上帝
+    result = result.replace(/\bYouzi\s*\(\s*Yucu\s*\)/g, 'Youzi - Yucu'); // 有子
+    result = result.replace(/\bNegeri Ciu\b/g, 'Negeri Zhou - Ciu'); // 周
+    result = result.replace(/\bKitab Kerajaan Cho\b/g, 'Kitab Kerajaan Chu - Cho'); // 楚書
+    result = result.replace(/\bPangeran Wee\b/g, 'Pangeran Wei - Wee'); // 衛君
+    result = result.replace(/\bdari Bu-ting\b/g, 'dari Wu Ding - Bu-ting'); // 武丁
+
     result = result.replace(/\bZi Lu\s*-\s*Zi Lu\s*-\s*Cu Lo\b/g, 'Zi Lu - Cu Lo');
     result = result.replace(/\bRaja Wu\s*-\s*Bu-ting\b/g, 'Raja Wu Ding - Bu-ting');
     // 禹 (Yu) has the one-letter legacy name 'I': replace only verified name contexts.
