@@ -1,6 +1,6 @@
 # Audit enam foto Si Shu MATAKIN cetakan 2012 — 14 November 2026
 
-Status: **pemeriksaan foto terhadap source JSON selesai untuk bagian yang terlihat; perbaikan sumber belum diterapkan di audit ini**. Setiap perbedaan perlu diuji dan paket `dist` serta indeks Legge disinkronkan sebelum diterbitkan. Semua status tetap Draft/Perlu Review, bukan Final.
+Status: **pemeriksaan selesai untuk bagian foto yang terlihat dan koreksi sumber terdokumentasi telah diterapkan**. Setiap perbedaan perlu diuji dan paket `dist` serta indeks Legge disinkronkan sebelum diterbitkan. Semua status tetap Draft/Perlu Review, bukan Final.
 
 ## Prinsip
 - Sumber primer yang diperiksa: enam foto cetakan MATAKIN 2012 dari pemilik buku, urut sesuai pesan 14 November 2026. Jangan memperkirakan bagian yang terpotong.
@@ -48,3 +48,12 @@ Status: **pemeriksaan foto terhadap source JSON selesai untuk bagian yang terlih
 5. Audit subayat keseluruhan secara terpisah. Penanda dalam `translation_indonesian` belum menjamin alignment Hanzi/Inggris per ayat.
 
 Audit ini tidak memutihkan perbedaan pada bagian yang terpotong dan tidak mengulang perkara lama yang sudah cocok.
+
+## Implementasi hasil audit (batch langsung sesudah verifikasi)
+
+- Perbaikan Hanzi/ruby: Lun Yu XVIII:11 `伯适 guā`; Da Xue X:5 `儀監 jiàn`; Da Xue X:14 `壹個 yī gè`; Zhong Yong XIII:4 `俟 sì`.
+- Pasangan pinyin–Hokkian dilengkapi hanya pada ayat yang ditampilkan foto: Lun Yu XVIII:11, Da Xue X:5–6 dan X:12–13, Zhong Yong XIII:3–4, serta Mengzi VB:9.1. Redaksi 2012 yang dipakai berbeda dari beberapa redaksi Indonesia berbasis PDF 2011; versi lama tetap dapat ditelusuri melalui riwayat Git dan dokumen audit ini.
+- Metadata `親民` di Bab Utama:1 diperbarui: foto 2012 tersedia dan mendukung bacaan proyek, tidak mengubah komentar Chengzi maupun status Draft.
+- Penyelarasan `dist/sishu-english-alignment.json` pada Da Xue X:5/X:14 mengikuti Hanzi proyek terbaru; transkrip/snapshot sumber Legge tidak diubah. Pengujian historis memastikan bentuk lama tetap dicatat sebagai saksi berbeda.
+- `tests/matakin-2012-six-photos.test.js` menegakkan pembacaan, romanisasi, batas bukti foto, ketakterubahan ID/struktur 78 bab dan 965 pasal, serta status belum Final.
+- Pemberlakuan pada website/APK memerlukan build, CI, dan verifikasi deploy terpisah. Jangan klaim sukses dari commit sumber saja.

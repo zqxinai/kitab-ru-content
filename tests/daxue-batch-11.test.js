@@ -22,7 +22,8 @@ test('Exact Hanzi and English snapshot, provenance and status are stable',()=>{
   assert.ok(p&&e,u.indonesian_passage_id);
   assert.deepEqual(e.indonesian_passage_ids,[p.id]);
   assert.equal(e.hanzi_span,chinese(p));
-  assert.equal(u.hanzi_span,chinese(p));
+  if(p.id==='sishu.daxue.11.05') { assert.match(u.hanzi_span,/儀鑒於殷/); assert.match(chinese(p),/儀監於殷/); }
+  else assert.equal(u.hanzi_span,chinese(p));
   assert.equal(e.english_segments[0].text,u.english_transcription);
   assert.equal(e.english_segments[0].legge_ref,u.legge_ref);
   assert.equal(e.source_hanzi_transcription,u.source_hanzi_transcription);
@@ -42,7 +43,7 @@ test('Leave XI:2 and VI:1 pending; report glyph/interpretation discrepancies',()
  assert.equal(align.entries.filter(e=>e.indonesian_passage_ids.includes('sishu.daxue.06.01')).length,1);
  assert.match(get('05').review_discrepancy,/鑒.*監/);
  assert.match(get('05').english_transcription,/God/);
- assert.match(chinese(byId.get('sishu.daxue.11.05')),/儀鑒於殷/);
+ assert.match(chinese(byId.get('sishu.daxue.11.05')),/儀監於殷/);
  assert.match(get('12').review_discrepancy,/good men/);
  assert.notEqual(get('07').english_transcription,get('08').english_transcription);
 });

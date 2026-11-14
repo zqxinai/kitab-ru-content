@@ -32,7 +32,7 @@ test('Chengzi variant is in an attributed separate note with explicit edition ca
  assert.equal(n.source_witness.witness_file,'KR1h0015_000.txt');
  assert.equal(n.source_witness.witness_page,'KR1h0015_WYG_000-7a');
  assert.equal(n.source_witness.source_commit,'84c6b2c5093c57ae5d41c60a73c02323d2420ef0');
- assert.match(n.edition_caveat,/belum dikonfirmasi ulang/);
+ assert.match(n.edition_caveat,/telah diperiksa.*mengonfirmasi 親民/);
  assert.match(n.description_indonesian,/Legge/);
 });
 test('Legge translation remains verbatim and is marked as interpretively different',()=>{

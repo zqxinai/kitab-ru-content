@@ -17,7 +17,7 @@
       "hanzi_span": "大學之道，在明明德，在親民，在止於至善。",
       "source_url": "https://oll.libertyfund.org/title/2270",
       "status": "draft",
-      "review_note": "Teks Inggris ditranskripsikan dari James Legge, The Great Learning (The Text of Confucius), dan Hanzi cocok pada tingkat pasal. Peninjauan editorial akhir belum disetujui.\nCATATAN VARIAN EDITORIAL (13 November 2026): Hanzi utama 親民 dan terjemahan Indonesia MATAKIN 'mengasihi rakyat' tetap dipertahankan. Legge 'to renovate the people' mengikuti bacaan interpretatif 新民 yang Chengzi anjurkan dalam komentar pada Zhu Xi WYG (KR1h0015_WYG_000-7a); teks utama WYG sendiri tetap memakai 親民. Kedua pilihan tidak boleh disebut sepadan secara harfiah. Perlu review manual sebelum Final; bukti foto Hanzi cetakan MATAKIN 2012 untuk pasal spesifik ini belum diverifikasi langsung."
+      "review_note": "Teks Inggris ditranskripsikan dari James Legge, The Great Learning (The Text of Confucius), dan Hanzi cocok pada tingkat pasal. Peninjauan editorial akhir belum disetujui.\nCATATAN VARIAN EDITORIAL (13 November 2026): Hanzi utama 親民 dan terjemahan Indonesia MATAKIN 'mengasihi rakyat' tetap dipertahankan. Legge 'to renovate the people' mengikuti bacaan interpretatif 新民 yang Chengzi anjurkan dalam komentar pada Zhu Xi WYG (KR1h0015_WYG_000-7a); teks utama WYG sendiri tetap memakai 親民. Kedua pilihan tidak boleh disebut sepadan secara harfiah. Perlu review manual sebelum Final; foto MATAKIN 2012 Bab Utama:1 sudah diperiksa dan mengonfirmasi 親民 (qīn mín); persetujuan Final tetap diperlukan."
     },
     {
       "id": "legge-daxue-text-02",
@@ -10813,7 +10813,7 @@
           "text": "In the Book of Poetry, it is said, \"Before the sovereigns of the Yin dynasty had lost the hearts of the people, they could appear before God. Take warning from the house of Yin. The great decree is not easily preserved.\" This shows that, by gaining the people, the kingdom is gained, and, by losing the people, the kingdom is lost."
         }
       ],
-      "hanzi_span": "《詩》云：“殷之未喪師，克配上帝。儀鑒於殷，峻命不易。”道得眾則得國，失眾則失國。",
+      "hanzi_span": "《詩》云：“殷之未喪師，克配上帝。儀監於殷，峻命不易。”道得眾則得國，失眾則失國。",
       "source_url": "https://tianmu.org/good-work-library/confucian/general-texts/the-great-learning-james-legge",
       "source_hanzi_transcription": "《诗》云：“殷之未丧师，克配上帝。仪监于殷，峻命不易。”道得众则得国，失众则失国。",
       "source_hanzi_url": "https://confuciuspedia.com/lib/the-great-learning/",
@@ -10823,7 +10823,7 @@
         94
       ],
       "status": "draft",
-      "review_note": "Draf James Legge dipadankan menurut Hanzi lengkap; kemiripan setelah hanya normalisasi aksara Hans/Hant 96.67%. Hanzi proyek 儀鑒 vs sumber 仪监, varian 鑒/監. Legge memakai 'God' untuk 上帝; bukan ralat MATAKIN. Teks MATAKIN tidak diubah; verifikasi cetakan Legge masih diperlukan sebelum Final."
+      "review_note": "Draf James Legge dipadankan menurut Hanzi lengkap; kemiripan setelah hanya normalisasi aksara Hans/Hant 96.67%. Foto MATAKIN 2012 Bab X:5 mencetak 儀監於殷 dengan pinyin jiàn; varian 鑒 tetap tercatat pada snapshot lama. Legge memakai 'God' untuk 上帝, sebagai pilihan terjemahan Inggris. Persetujuan Final masih diperlukan.\nKOLASI MATAKIN 2012 (foto pemilik, 14 November 2026): Hanzi utama dikoreksi hanya pada pasal ini berdasarkan cetakan; snapshot sumber Legge/Zhu Xi dan terjemahan Inggris tetap utuh. Status masih Draft."
     },
     {
       "id": "legge-daxue-b11-11-06",
@@ -11018,7 +11018,7 @@
           "text": "In the Declaration of the Duke of Ch'in, it is said, \"Let me have but one minister, plain and sincere, not pretending to other abilities, but with a simple, upright mind; and possessed of generosity, regarding the talents of others as though he himself possessed them, and, where he finds accomplished and perspicacious men, loving them in his heart more than his mouth expresses, and really showing himself able to bear them and employ them — such a minister will be able to preserve my sons and grandsons and black-haired people, and benefits likewise to the kingdom may well be looked for from him.\n\nBut if it be his character, when he finds men of ability, to be jealous and hate them; and, when he finds accomplished and perspicacious men, to oppose them and not allow their advancement, showing himself really not able to bear them: such a minister will not be able to protect my sons and grandsons and people; and may he not also be pronounced dangerous to the state?\""
         }
       ],
-      "hanzi_span": "《秦誓》曰：“若有一介臣，斷斷兮無他技，其心休休焉，其如有容焉。人之有技，若己有之；人之彥聖，其心好之，不啻若自其口出。實能容之，以能保我子孫黎民，尚亦有利哉！人之有技，媢嫉以惡之；人之彥聖，而違之，俾不通：實不能容，以不能保我子孫黎民，亦曰殆哉！”",
+      "hanzi_span": "《秦誓》曰：“若有壹個臣，斷斷兮無他技，其心休休焉，其如有容焉。人之有技，若己有之；人之彥聖，其心好之，不啻若自其口出。實能容之，以能保我子孫黎民，尚亦有利哉！人之有技，媢嫉以惡之；人之彥聖，而違之，俾不通：實不能容，以不能保我子孫黎民，亦曰殆哉！”",
       "source_url": "https://tianmu.org/good-work-library/confucian/general-texts/the-great-learning-james-legge",
       "source_snapshot": "sources/legge/daxue-b12-10-passages.json",
       "source_line_range": [
@@ -11026,7 +11026,7 @@
         109
       ],
       "status": "draft",
-      "review_note": "Draf Inggris James Legge, transkripsi Tianmu baris 108–109; sumber Hanzi utama adalah bacaan proyek. Dua paragraf Inggris Legge satu pasal MATAKIN XI:14. Varian Hanzi pembanding 媢疾 / proyek 媢嫉 tidak disamakan secara diam-diam. Pemeriksaan ke cetakan Legge dan MATAKIN 2012 belum mengesahkan Final."
+      "review_note": "Draf Inggris James Legge, transkripsi Tianmu baris 108–109; sumber Hanzi utama adalah bacaan proyek. Dua paragraf Inggris Legge satu pasal MATAKIN XI:14. Varian Hanzi pembanding 媢疾 / proyek 媢嫉 tidak disamakan secara diam-diam. Foto MATAKIN 2012 halaman 27 menegaskan 若有壹個臣 (yī gè chén), berbeda dengan snapshot lama 一介臣. Terjemahan Inggris Legge tidak diubah. Persetujuan Final belum dilakukan.\nKOLASI MATAKIN 2012 (foto pemilik, 14 November 2026): Hanzi utama dikoreksi hanya pada pasal ini berdasarkan cetakan; snapshot sumber Legge/Zhu Xi dan terjemahan Inggris tetap utuh. Status masih Draft."
     },
     {
       "id": "legge-daxue-b12-11-15",
