@@ -7,6 +7,8 @@ on:
       - 'editor/**'
       - 'sources/source-registry.json'
       - 'tests/source-provenance.test.js'
+      - 'tests/matakin-reference-overlay.test.cjs'
+      - 'ru-classics/reference-overlay.js'
       - 'sishu/manifest.json'
       - 'catalog.json'
       - 'index.html'
@@ -16,6 +18,8 @@ on:
       - 'editor/**'
       - 'sources/source-registry.json'
       - 'tests/source-provenance.test.js'
+      - 'tests/matakin-reference-overlay.test.cjs'
+      - 'ru-classics/reference-overlay.js'
       - 'sishu/manifest.json'
       - 'catalog.json'
       - 'index.html'
@@ -37,3 +41,4 @@ jobs:
           node editor/tests/smoke.mjs
           node --test editor/tests/verse-markers.test.mjs
           node --test tests/source-provenance.test.js
+          node --test tests/matakin-reference-overlay.test.cjs
