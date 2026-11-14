@@ -115,7 +115,15 @@
       : text;
     // Perubahan spesifik pasal selalu dikerjakan sebelum alias umum.
     for (const [source, replacement] of CONTEXTUAL[passageId] || []) {
-      if (result.includes(source)) result = result.split(source).join(replacement);
+      const chunks = result.split(source);
+      if (chunks.length === 1) continue;
+      // Do not prepend Pinyin twice to the Hokkian suffix already in a pair.
+      const prefix = replacement.endsWith(source) ? replacement.slice(0, -source.length) : '';
+      let joined = chunks[0];
+      for (const chunk of chunks.slice(1)) {
+        joined += (prefix && joined.endsWith(prefix) ? source : replacement) + chunk;
+      }
+      result = joined;
     }
 
     // Pulihkan spasi pecah-barisan PDF pada nama Hokkian yang sama.
