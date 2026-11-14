@@ -67,6 +67,19 @@ setTimeout(()=>{
     'Second reference in one passage remains independently normalized');
   assert.doesNotMatch(nodes.main.innerHTML,/\\(T\\.S\\. VIII\\)/,
     'Legacy T.S. VIII should not display to reader');
+  click({book:'lunyu'});
+  click({chapter:'sishu.lunyu.16'});
+  click({passage:'sishu.lunyu.16.09'});
+  assert.match(nodes.main.innerHTML,/Tengah Sempurna — Zhong Yong XIX:9/,
+    '2012-style TS reference should be rendered in Lun Yu XVI:9');
+  click({book:'lunyu'});
+  click({chapter:'sishu.lunyu.12'});
+  click({passage:'sishu.lunyu.12.13'});
+  assert.match(nodes.main.innerHTML,/Ajaran Besar — Da Xue IV/,
+    'Chapter-only A.B. IV should not invent a verse');
+  click({passage:'sishu.lunyu.12.22'});
+  assert.match(nodes.main.innerHTML,/Mengzi — Bing Cu VII A:46/,
+    'BC should resolve to Mengzi while preserving chapter/verse numbers');
   console.log('Ru Classics smoke test passed: Paper, 4 books, chapter, reader, Ruby, Indonesian, English');
  }catch(e){console.error(e);process.exitCode=1;}
 },0);
