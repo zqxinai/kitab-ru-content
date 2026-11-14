@@ -50,7 +50,7 @@
   // Other passages display numbered Indonesian ayat without pretending
   // that Hanzi or James Legge have been aligned automatically.
   function hanziWithSubverses(p,aligned){
-    if(!aligned)return hanziWithSubverses(p,aligned);
+    if(!aligned)return ruby(p.ruby_paragraphs);
     return aligned.map(verse=>
       '<div class="hanzi-verse" data-ayat="'+verse.number+'">'+
       '<span class="ayat-label">Ayat '+verse.number+'</span>'+
@@ -59,7 +59,7 @@
   }
   function indonesiaWithSubverses(p,aligned){
     const verses=aligned||globalThis.RuSubverses?.splitIndonesia(p.translation_indonesian||'');
-    if(!verses)return indonesiaWithSubverses(p,aligned);
+    if(!verses)return '<p>'+H(p.translation_indonesian||'Belum tersedia')+'</p>';
     return verses.map(verse=>
       '<p class="translation-verse" data-ayat="'+verse.number+'">'+
       '<span class="ayat-label">Ayat '+verse.number+'</span>'+
@@ -70,8 +70,8 @@
     main.innerHTML='<div class="breadcrumb"><button data-action="all">Kitab</button> › <button data-book="'+b.id+'">'+b.name+'</button> › <button data-chapter="'+H(c.id)+'">'+H(c.title)+'</button></div>'
     +'<div class="reader-heading"><div><span class="eyebrow">Si Shu · '+b.hanzi+'</span><h1>'+H(c.title)+'</h1><p>Pasal '+p.number+'</p></div><div class="chips">'+[['hanzi','Hanzi'],['pinyin','Pinyin'],['indo','Indonesia'],['english','English']].map(([key,text])=>'<button class="chip '+(s[key]?'on':'')+'" data-toggle="'+key+'" aria-pressed="'+s[key]+'">'+text+'</button>').join('')+'</div></div>'
     +'<div class="reader-grid"><article class="paper-page"><div class="passage-top"><span>PASAL '+p.number+'</span><button class="save-btn" data-action="bookmark" aria-pressed="'+state.saved.includes(p.id)+'">'+(state.saved.includes(p.id)?'♥ Tersimpan':'♡ Simpan')+'</button></div>'
-    +(s.hanzi?'<div class="hanzi-text '+(s.pinyin?'':'no-pinyin')+'" style="--hanzi-size:'+s.font+'px" lang="zh-Hant">'+ruby(p.ruby_paragraphs)+'</div>':'')
-    +(s.indo?'<section class="translation"><h3>Bahasa Indonesia · MATAKIN</h3><p>'+H(p.translation_indonesian||'Belum tersedia')+'</p></section>':'')
+    +(s.hanzi?'<div class="hanzi-text '+(s.pinyin?'':'no-pinyin')+'" style="--hanzi-size:'+s.font+'px" lang="zh-Hant">'+hanziWithSubverses(p,aligned)+'</div>':'')
+    +(s.indo?'<section class="translation"><h3>Bahasa Indonesia · MATAKIN</h3>'+indonesiaWithSubverses(p,aligned)+'</section>':'')
     +(s.english&&p.translation_english?'<section class="translation english"><h3>English · James Legge'+(aligned?' · tingkat pasal':'')+'</h3><p lang="en">'+H(p.translation_english)+'</p></section>':'')
     +'</article><aside class="reader-aside"><h3>Catatan pribadi</h3><p>Catatan ini disimpan hanya di browser perangkat Anda.</p><textarea id="personal-note" aria-label="Catatan pribadi" placeholder="Tuliskan pemikiran Anda…">'+H(state.notes[p.id]||'')+'</textarea><button class="primary" data-action="save-note">Simpan catatan</button>'
     +annotation(p)+(window.RuEditorial?.canEdit?.()?'<div class="rule"></div><button class="secondary" data-action="propose" style="width:100%">Usulkan revisi teks</button>':'')
