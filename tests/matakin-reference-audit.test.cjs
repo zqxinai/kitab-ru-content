@@ -11,6 +11,27 @@ test('Legacy S.S. and AB abbreviation identify books but remain for human 2012 c
  assert.deepEqual(classify('AB. X:23','mengzi'),{kind:'abbreviated-book',confidence:'high',target_book:'daxue'});
  assert.deepEqual(classify('Bc. VIIA: 21.4','daxue'),{kind:'abbreviated-book',confidence:'high',target_book:'mengzi'});
 });
+test('SS / AB / BC / TS acronyms are fixed to confirmed book identities',()=>{
+ const {ABBREVIATED_BOOKS}=require('../tools/audit_matakin_references.cjs');
+ assert.deepEqual(ABBREVIATED_BOOKS,{ss:'lunyu',ab:'daxue',bc:'mengzi',ts:'zhongyong'});
+ for(const [ref,expected] of [
+  ['SS XIV:39','lunyu'],['S.S. XIV:39','lunyu'],['ss xiv:39','lunyu'],
+  ['AB X:23','daxue'],['A.B. X:23','daxue'],['ab. X:23','daxue'],
+  ['BC IA:1','mengzi'],['B.C. IA:1','mengzi'],['Bc. IA:1','mengzi'],
+  ['TS XIII:3','zhongyong'],['T.S. XIII:3','zhongyong'],['ts xiii:3','zhongyong']
+ ]){
+  const r=classify(ref,'lunyu');
+  assert.equal(r.kind,'abbreviated-book',ref);
+  assert.equal(r.target_book,expected,ref);
+ }
+});
+test('Mixed citations preserve ambiguity rather than assigning the first book',()=>{
+ assert.deepEqual(classify('S.S. XIV:39; BC IA:1','lunyu'),
+  {kind:'compound-abbreviations',confidence:'review-required',target_book:null});
+ assert.equal(classify('Shi Jing - Si King I.15.1.8.;SS XI:17','daxue').kind,'explicit-plus-abbreviation');
+ assert.equal(classify('T.S. XIII:3','lunyu').target_book,'zhongyong');
+ assert.equal(classify('II.5.4.4','lunyu').kind,'ambiguous-unlabeled');
+});
 test('Mengzi-specific volume letter reference is only a candidate',()=>{
  assert.equal(classify('III. A.3.10','mengzi').kind,'possible-same-book');
  assert.equal(classify('II.5.4.4','mengzi').kind,'ambiguous-unlabeled');
