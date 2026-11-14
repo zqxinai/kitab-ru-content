@@ -4,6 +4,7 @@ import vm from 'node:vm';
 const html=readFileSync('editor/index.html','utf8'),app=readFileSync('editor/app.js','utf8');
 const book=JSON.parse(readFileSync('dist/sishu-content.json','utf8'));
 const alignment=JSON.parse(readFileSync('dist/sishu-english-alignment.json','utf8'));
+const splits=JSON.parse(readFileSync('dist/sishu-english-passage-splits.json','utf8'));
 const chapter=book.chapters.find(ch=>ch.id==='sishu.zhongyong.26');
 const fixture={schema:'ru-classics.content.v1',collection:'sishu',content_version:book.content_version,books:book.books,chapters:[chapter]};
 class Element{
@@ -23,6 +24,7 @@ const document={getElementById:id=>el[id],createElement:tag=>new Element(tag),cr
 const fetch=async url=>{
  if(url==='../dist/sishu-content.json')return {ok:true,json:async()=>fixture};
  if(url==='../dist/sishu-english-alignment.json')return {ok:true,json:async()=>alignment};
+ if(url==='../dist/sishu-english-passage-splits.json')return {ok:true,json:async()=>splits};
  return {ok:false};
 };
 vm.runInNewContext(app,{document,fetch,localStorage:{getItem:()=>null,setItem(){}},window:{open:()=>({})},navigator:{clipboard:{writeText:async()=>{}}},confirm:()=>true,console,URL,encodeURIComponent},{timeout:5000,filename:'editor/app.js'});
