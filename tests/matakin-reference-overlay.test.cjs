@@ -20,7 +20,7 @@ const expectedTargets={
 test('Twenty independently identified references have existing source and target passages',()=>{
  assert.equal(chapters.length,78);
  assert.equal(byId.size,965);
- assert.equal(overlay.records.length,20);
+ assert.equal(overlay.records.length,21);
  // Historical batch 01 is immutable; batch 02 allows multiple references in one passage.
  for(const [sourceId,targetId] of Object.entries(expectedTargets))
   assert.ok(overlay.records.some(r=>r.passage_id===sourceId&&r.target_id===targetId),'legacy mapping changed: '+sourceId);
@@ -42,7 +42,8 @@ test('Twenty independently identified references have existing source and target
    'no duplicate exact-match patterns within one passage');
  for(const r of overlay.records){
   assert.ok(byId.has(r.passage_id),'source missing: '+r.passage_id);
-  assert.ok(byId.has(r.target_id),'target missing: '+r.target_id);
+  if(r.target_id===null)assert.match(r.decision,/no passage link/);
+  else assert.ok(byId.has(r.target_id),'target missing: '+r.target_id);
   assert.match(r.decision,/not attested/);
  }
 });
@@ -72,6 +73,10 @@ test('Multiple citations in one passage expand independently without changing su
  assert.equal(p.translation_indonesian,before);
  assert.ok(shown.includes('(2)'), 'subayat marker (2) disappeared');
  assert.equal(overlay.present(p.id,shown),shown);
+ assert.ok(shown.includes('(Tengah Sempurna — Zhong Yong VIII)'),'TS book name missing');
+ assert.ok(!shown.includes('(T.S. VIII)'),'unexpanded TS remains');
+ const chapterOnly=overlay.records.find(r=>r.passage_id===p.id&&r.source==='(T.S. VIII)');
+ assert.equal(chapterOnly?.target_id,null,'chapter-only reference must not assert a passage target');
 });
 test('Verse numbers, unrelated scripture references and original Hanzi are unaffected',()=>{
  const m=byId.get('sishu.mengzi.01.01');
