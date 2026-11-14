@@ -14,6 +14,7 @@
     ['Bok Phi', 'Mu Pi'],
     ['Siau-tong', 'Xiaotong'],
     ['Kwa Siau-kun', 'Gua Xiaojun'],
+    ['Kun Hu-jien', 'Jun Furen'],
     ['Hu-jien', 'Furen'],
     ['Sun', 'Shun'],
     ['Banciang', 'Wan Zhang'],
@@ -61,7 +62,6 @@
     result = result.replace(/\bDinasti Ien\b/g, 'Dinasti Yin - Ien'); // 殷
     result = result.replace(/\bsuku bangsa Tik\b/g, 'suku bangsa Di - Tik'); // 狄
     result = result.replace(/\bsuku bangsa I\b/g, 'suku bangsa Yi - I'); // 夷
-    result = result.replace(/\bKun Hu-jien\b/g, 'Jun Furen - Kun Hu-jien'); // 君夫人
     result = result.replace(/\bPangeran Ciu\b/g, 'Pangeran Zhou - Ciu'); // 周公
     result = result.replace(/(\bseperti )I(?=\s+dan\s+(?:Koo Yau|Gao Yao))/gu, '$1Yu - I');
     result = pair(result, 'Giau', 'Yao');
