@@ -168,3 +168,8 @@ button:focus-visible,input:focus-visible,textarea:focus-visible,a:focus-visible{
 .sidebar-filter select:focus-visible{outline:3px solid #56bfc8;outline-offset:2px}
 .passage-legend{font-size:10px;color:#6a878d;line-height:1.5;padding:1px 7px 9px}
 .passage-list .sidebar-hint{grid-column:1/-1}
+
+/* Source-numbered MATAKIN ayat; keep the edition's text unchanged. */
+.translation-text .verse-block{margin:0 0 1.05rem}
+.translation-text .verse-block:last-child{margin-bottom:0}
+.translation-text .verse-number{display:block;margin-bottom:.15rem;color:#64838a;font:600 12px/1.5 system-ui,sans-serif;letter-spacing:.025em}
