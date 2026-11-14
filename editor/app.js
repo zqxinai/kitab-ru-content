@@ -341,6 +341,23 @@
     }
     if(!root.childNodes.length)root.textContent='Teks Hanzi belum tersedia.';
   }
+  function showIndonesianText(text){
+    const root=$('indonesianText');
+    const verses=globalThis.MatakinVerses?.splitIndonesia(text);
+    root.replaceChildren();
+    if(!verses){root.textContent=text;return}
+    for(const verse of verses){
+      const block=document.createElement('p');
+      block.className='verse-block';
+      const label=document.createElement('span');
+      label.className='verse-number';
+      label.textContent='Ayat '+verse.number;
+      const body=document.createElement('span');
+      body.textContent=verse.text;
+      block.append(label,body);
+      root.append(block);
+    }
+  }
   function reader(){
     const r=record();if(!r)return;
     const ch=r.chapter,p=r.passage,info=book(ch.book);
