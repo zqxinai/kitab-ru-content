@@ -10985,6 +10985,216 @@
       ],
       "status": "draft",
       "review_note": "Draf James Legge dipadankan menurut Hanzi lengkap; kemiripan setelah hanya normalisasi aksara Hans/Hant 100.00%. Legge memilih 'good men' untuk 善, berbeda dari keterangan MATAKIN Kebaikan, perlu review. Teks MATAKIN tidak diubah; verifikasi cetakan Legge masih diperlukan sebelum Final."
+    },
+    {
+      "id": "legge-daxue-b12-11-13",
+      "indonesian_passage_ids": [
+        "sishu.daxue.11.13"
+      ],
+      "english_segments": [
+        {
+          "legge_ref": "The Great Learning, Commentary of Tsang, Chapter X §13",
+          "text": "Duke Wan's uncle, Fan, said, \"Our fugitive does not account that to be precious. What he considers precious is the affection due to his parent.\""
+        }
+      ],
+      "hanzi_span": "舅犯曰：“亡人無以為寶，仁親以為寶。”",
+      "source_url": "https://tianmu.org/good-work-library/confucian/general-texts/the-great-learning-james-legge",
+      "source_snapshot": "sources/legge/daxue-b12-10-passages.json",
+      "source_line_range": [
+        107,
+        107
+      ],
+      "status": "draft",
+      "review_note": "Draf Inggris James Legge, transkripsi Tianmu baris 107–107; sumber Hanzi utama adalah bacaan proyek. Legge memiliki bentuk nama Duke Wan/Fan; Hanzi proyek 舅犯. Verifikasi nama/edisi primer sebelum Final. Pemeriksaan ke cetakan Legge dan MATAKIN 2012 belum mengesahkan Final."
+    },
+    {
+      "id": "legge-daxue-b12-11-14",
+      "indonesian_passage_ids": [
+        "sishu.daxue.11.14"
+      ],
+      "english_segments": [
+        {
+          "legge_ref": "The Great Learning, Commentary of Tsang, Chapter X §14",
+          "text": "In the Declaration of the Duke of Ch'in, it is said, \"Let me have but one minister, plain and sincere, not pretending to other abilities, but with a simple, upright mind; and possessed of generosity, regarding the talents of others as though he himself possessed them, and, where he finds accomplished and perspicacious men, loving them in his heart more than his mouth expresses, and really showing himself able to bear them and employ them — such a minister will be able to preserve my sons and grandsons and black-haired people, and benefits likewise to the kingdom may well be looked for from him.\n\nBut if it be his character, when he finds men of ability, to be jealous and hate them; and, when he finds accomplished and perspicacious men, to oppose them and not allow their advancement, showing himself really not able to bear them: such a minister will not be able to protect my sons and grandsons and people; and may he not also be pronounced dangerous to the state?\""
+        }
+      ],
+      "hanzi_span": "《秦誓》曰：“若有一介臣，斷斷兮無他技，其心休休焉，其如有容焉。人之有技，若己有之；人之彥聖，其心好之，不啻若自其口出。實能容之，以能保我子孫黎民，尚亦有利哉！人之有技，媢嫉以惡之；人之彥聖，而違之，俾不通：實不能容，以不能保我子孫黎民，亦曰殆哉！”",
+      "source_url": "https://tianmu.org/good-work-library/confucian/general-texts/the-great-learning-james-legge",
+      "source_snapshot": "sources/legge/daxue-b12-10-passages.json",
+      "source_line_range": [
+        108,
+        109
+      ],
+      "status": "draft",
+      "review_note": "Draf Inggris James Legge, transkripsi Tianmu baris 108–109; sumber Hanzi utama adalah bacaan proyek. Dua paragraf Inggris Legge satu pasal MATAKIN XI:14. Varian Hanzi pembanding 媢疾 / proyek 媢嫉 tidak disamakan secara diam-diam. Pemeriksaan ke cetakan Legge dan MATAKIN 2012 belum mengesahkan Final."
+    },
+    {
+      "id": "legge-daxue-b12-11-15",
+      "indonesian_passage_ids": [
+        "sishu.daxue.11.15"
+      ],
+      "english_segments": [
+        {
+          "legge_ref": "The Great Learning, Commentary of Tsang, Chapter X §15",
+          "text": "It is only the truly virtuous man who can send away such a man and banish him, driving him out among the barbarous tribes around, determined not to dwell along with him in the Middle Kingdom. This is in accordance with the saying, \"It is only the truly virtuous man who can love or who can hate others.\""
+        }
+      ],
+      "hanzi_span": "唯仁人放流之，迸諸四夷，不與同中國。此謂唯仁人為能愛人，能惡人。",
+      "source_url": "https://tianmu.org/good-work-library/confucian/general-texts/the-great-learning-james-legge",
+      "source_snapshot": "sources/legge/daxue-b12-10-passages.json",
+      "source_line_range": [
+        110,
+        110
+      ],
+      "status": "draft",
+      "review_note": "Draf Inggris James Legge, transkripsi Tianmu baris 110–110; sumber Hanzi utama adalah bacaan proyek. Legge memisahkan dari paragraf sebelah; seluruh dua klausa 唯仁人...此謂... termasuk XI:15. Pemeriksaan ke cetakan Legge dan MATAKIN 2012 belum mengesahkan Final."
+    },
+    {
+      "id": "legge-daxue-b12-11-16",
+      "indonesian_passage_ids": [
+        "sishu.daxue.11.16"
+      ],
+      "english_segments": [
+        {
+          "legge_ref": "The Great Learning, Commentary of Tsang, Chapter X §16",
+          "text": "To see men of worth and not be able to raise them to office; to raise them to office, but not to do so quickly — this is disrespectful. To see bad men and not be able to remove them; to remove them, but not to do so to a distance — this is weakness."
+        }
+      ],
+      "hanzi_span": "見賢而不能舉，舉而不能先，命也；見不善而不能退，退而不能遠，過也。",
+      "source_url": "https://tianmu.org/good-work-library/confucian/general-texts/the-great-learning-james-legge",
+      "source_snapshot": "sources/legge/daxue-b12-10-passages.json",
+      "source_line_range": [
+        111,
+        111
+      ],
+      "status": "draft",
+      "review_note": "Draf Inggris James Legge, transkripsi Tianmu baris 111–111; sumber Hanzi utama adalah bacaan proyek. Hanzi proyek 命也, Legge memakai 'disrespectful'; perbedaan makna perlu audit varian 慢/命 terhadap saksi primer, bukan ganti Hanzi otomatis. Pemeriksaan ke cetakan Legge dan MATAKIN 2012 belum mengesahkan Final."
+    },
+    {
+      "id": "legge-daxue-b12-11-17",
+      "indonesian_passage_ids": [
+        "sishu.daxue.11.17"
+      ],
+      "english_segments": [
+        {
+          "legge_ref": "The Great Learning, Commentary of Tsang, Chapter X §17",
+          "text": "To love those whom men hate, and to hate those whom men love — this is to outrage the natural feeling of men. Calamities cannot fail to come down on him who does so."
+        }
+      ],
+      "hanzi_span": "好人之所惡，惡人之所好，是謂拂人之性，災必逮夫身。",
+      "source_url": "https://tianmu.org/good-work-library/confucian/general-texts/the-great-learning-james-legge",
+      "source_snapshot": "sources/legge/daxue-b12-10-passages.json",
+      "source_line_range": [
+        113,
+        113
+      ],
+      "status": "draft",
+      "review_note": "Draf Inggris James Legge, transkripsi Tianmu baris 113–113; sumber Hanzi utama adalah bacaan proyek. Bagian kedua masih XI:17, tidak menjadi XI:18. Pemeriksaan ke cetakan Legge dan MATAKIN 2012 belum mengesahkan Final."
+    },
+    {
+      "id": "legge-daxue-b12-11-18",
+      "indonesian_passage_ids": [
+        "sishu.daxue.11.18"
+      ],
+      "english_segments": [
+        {
+          "legge_ref": "The Great Learning, Commentary of Tsang, Chapter X §18",
+          "text": "Thus we see that the sovereign has a great course to pursue. He must show entire self-devotion and sincerity to attain it, and by pride and extravagance he will fail of it."
+        }
+      ],
+      "hanzi_span": "是故君子有大道，必忠信以得之，驕泰以失之。",
+      "source_url": "https://tianmu.org/good-work-library/confucian/general-texts/the-great-learning-james-legge",
+      "source_snapshot": "sources/legge/daxue-b12-10-passages.json",
+      "source_line_range": [
+        114,
+        114
+      ],
+      "status": "draft",
+      "review_note": "Draf Inggris James Legge, transkripsi Tianmu baris 114–114; sumber Hanzi utama adalah bacaan proyek. Kata Legge self-devotion/sincerity terkait 忠信, bukan substitusi terjemahan Indonesia. Pemeriksaan ke cetakan Legge dan MATAKIN 2012 belum mengesahkan Final."
+    },
+    {
+      "id": "legge-daxue-b12-11-19",
+      "indonesian_passage_ids": [
+        "sishu.daxue.11.19"
+      ],
+      "english_segments": [
+        {
+          "legge_ref": "The Great Learning, Commentary of Tsang, Chapter X §19",
+          "text": "There is a great course also for the production of wealth. Let the producers be many and the consumers few. Let there be activity in the production, and economy in the expenditure. Then the wealth will always be sufficient."
+        }
+      ],
+      "hanzi_span": "生財有大道，生之者眾，食之者寡，為之者疾，用之者舒，則財恆足矣。",
+      "source_url": "https://tianmu.org/good-work-library/confucian/general-texts/the-great-learning-james-legge",
+      "source_snapshot": "sources/legge/daxue-b12-10-passages.json",
+      "source_line_range": [
+        116,
+        116
+      ],
+      "status": "draft",
+      "review_note": "Draf Inggris James Legge, transkripsi Tianmu baris 116–116; sumber Hanzi utama adalah bacaan proyek. Klausa produksi dan penggunaan 財 satu kesatuan. Pemeriksaan ke cetakan Legge dan MATAKIN 2012 belum mengesahkan Final."
+    },
+    {
+      "id": "legge-daxue-b12-11-20",
+      "indonesian_passage_ids": [
+        "sishu.daxue.11.20"
+      ],
+      "english_segments": [
+        {
+          "legge_ref": "The Great Learning, Commentary of Tsang, Chapter X §20",
+          "text": "The virtuous ruler, by means of his wealth, makes himself more distinguished. The vicious ruler accumulates wealth, at the expense of his life."
+        }
+      ],
+      "hanzi_span": "仁者以財發身，不仁者以身發財。",
+      "source_url": "https://tianmu.org/good-work-library/confucian/general-texts/the-great-learning-james-legge",
+      "source_snapshot": "sources/legge/daxue-b12-10-passages.json",
+      "source_line_range": [
+        117,
+        117
+      ],
+      "status": "draft",
+      "review_note": "Draf Inggris James Legge, transkripsi Tianmu baris 117–117; sumber Hanzi utama adalah bacaan proyek. Legge memiliki rendering interpretatif 發身/發財; tidak mengganti MATAKIN. Pemeriksaan ke cetakan Legge dan MATAKIN 2012 belum mengesahkan Final."
+    },
+    {
+      "id": "legge-daxue-b12-11-21",
+      "indonesian_passage_ids": [
+        "sishu.daxue.11.21"
+      ],
+      "english_segments": [
+        {
+          "legge_ref": "The Great Learning, Commentary of Tsang, Chapter X §21",
+          "text": "Never has there been a case of the sovereign loving benevolence, and the people not loving righteousness. Never has there been a case where the people have loved righteousness, and the affairs of the sovereign have not been carried to completion. And never has there been a case where the wealth in such a state, collected in the treasuries and arsenals, did not continue in the sovereign's possession."
+        }
+      ],
+      "hanzi_span": "未有上好仁而下不好義者也，未有好義其事不終者也，未有府庫財非其財者也。",
+      "source_url": "https://tianmu.org/good-work-library/confucian/general-texts/the-great-learning-james-legge",
+      "source_snapshot": "sources/legge/daxue-b12-10-passages.json",
+      "source_line_range": [
+        118,
+        118
+      ],
+      "status": "draft",
+      "review_note": "Draf Inggris James Legge, transkripsi Tianmu baris 118–118; sumber Hanzi utama adalah bacaan proyek. Tiga penyangkalan 未有 dipertahankan sebagai satu pasal. Pemeriksaan ke cetakan Legge dan MATAKIN 2012 belum mengesahkan Final."
+    },
+    {
+      "id": "legge-daxue-b12-11-22",
+      "indonesian_passage_ids": [
+        "sishu.daxue.11.22"
+      ],
+      "english_segments": [
+        {
+          "legge_ref": "The Great Learning, Commentary of Tsang, Chapter X §22",
+          "text": "The officer Mang Hsien said, \"He who keeps horses and a carriage does not look after fowls and pigs. The family which keeps its stores of ice does not rear cattle or sheep. So, the house which possesses a hundred chariots should not keep a minister to look out for imposts that he may lay them on the people.\n\nThan to have such a minister, it were better for that house to have one who should rob it of its revenues.\" This is in accordance with the saying — \"In a state, pecuniary gain is not to be considered to be prosperity, but its prosperity will be found in righteousness.\""
+        }
+      ],
+      "hanzi_span": "孟獻子曰：“畜馬乘不察於雞豚，伐冰之家不畜牛羊，百乘之家不畜聚斂之臣。與其有聚斂之臣，寧有盜臣。”此謂國不以利為利，以義為利也。",
+      "source_url": "https://tianmu.org/good-work-library/confucian/general-texts/the-great-learning-james-legge",
+      "source_snapshot": "sources/legge/daxue-b12-10-passages.json",
+      "source_line_range": [
+        119,
+        120
+      ],
+      "status": "draft",
+      "review_note": "Draf Inggris James Legge, transkripsi Tianmu baris 119–120; sumber Hanzi utama adalah bacaan proyek. Dua paragraf Inggris untuk XI:22; 'Than to' adalah pilihan/salinan sumber, bukan karangan ulang. Perbandingan nama 孟獻子 terhadap Mang Hsien masih Draft. Pemeriksaan ke cetakan Legge dan MATAKIN 2012 belum mengesahkan Final."
     }
   ]
 }

@@ -205,3 +205,11 @@ Batch baru menambahkan sepuluh pasal **Da Xue X:1–9 dan XI:1**, seluruhnya ber
 - **XI:2 ditahan** karena teks Legge digital tentang arah kanan/kiri perlu diteliti lagi. **VI:1 ditahan** karena teks dan komentar Zhu Xi belum dipisah dengan benar.
 - `tests/daxue-batch-11.test.js` melindungi kesetiaan sumber, ID, status draf, provenance, dan kasus sengaja ditahan; angka tes batch 10 menjadi batas minimum historis.
 - **Ketersediaan draf Inggris: 926/965** (246 tertanam, 680 lewat overlay), **39 belum tersedia** (Da Xue 13, Lun Yu 26); **Final editorial 0**. Hanzi, pinyin, Indonesia MATAKIN dan paket Android offline tidak diubah.
+
+
+## Da Xue batch 12 — 10 draf Inggris tambahan (14 November 2026)
+
+- Tambahkan **Da Xue XI:13–22** memakai terjemahan public-domain James Legge melalui [Tianmu](https://tianmu.org/good-work-library/confucian/general-texts/the-great-learning-james-legge), referensi baris 107–120. Snapshot per pasal `sources/legge/daxue-b12-10-passages.json` menjaga isi Inggris, Hanzi proyek utuh, batas paragraf dan perbedaan edisi.
+- XI:14 memakai dua paragraf Legge sebagai **satu** pasal, dengan catatan `媢疾` dalam transkripsi banding vs `媢嫉` pada naskah proyek. XI:16 mencatat `命` proyek yang berkaitan dengan perbedaan bacaan `慢` pada tafsir 'disrespectful'; jangan memperbaiki sebelum foto MATAKIN/saksi asal diverifikasi.
+- XI:22 juga mempertahankan dua paragraf Legge pada satu pasal, termasuk kesimpulan `國不以利為利，以義為利`; tidak membuat versi Inggris sendiri.
+- **936/965 draf Inggris**, tersisa **29** (Da Xue 3 dan Lun Yu 26). **Final 0**. Hanzi, pinyin, Indonesia MATAKIN dan aset offline tidak diubah. Tes `node --test tests/daxue-batch-12.test.js` terhubung ke CI.
