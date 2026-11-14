@@ -57,6 +57,7 @@ const context={
   confirm:()=>true,console,
   URL,encodeURIComponent
 };
+vm.runInNewContext(readFileSync('ru-classics/reference-overlay.js','utf8'),context,{timeout:5000,filename:'ru-classics/reference-overlay.js'});
 vm.runInNewContext(code,context,{timeout:5000,filename:'editor/app.js'});
 await new Promise(resolve=>setImmediate(resolve));
 
