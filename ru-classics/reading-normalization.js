@@ -72,7 +72,6 @@
     ],
     'sishu.mengzi.04.02': [
       ['Kekayaan Negeri Cien dan Cho', 'Kekayaan Negeri Jin - Cien dan Chu - Cho'], // 晉楚
-      ['Kong- sun Thio', 'Gongsun Chou - Kong- sun Thio'], // 公孫醜
       ['Bing Tiongcu', 'Meng Zhongzi - Bing Tiongcu'] // 孟仲子
     ],
     'sishu.mengzi.06.03': [
@@ -200,6 +199,7 @@
     }
 
     // Pulihkan spasi pecah-barisan PDF pada nama Hokkian yang sama.
+    result = result.replace(/\bKong-\s+sun Thio\b/gi, 'Kong-sun Thio'); // 公孫醜: repair split, not Shun
     result = result.replace(/\bI-\s+ien\b/g, 'I-ien');
     result = result.replace(/\bTiong-\s+hut\b/g, 'Tiong-hut');
     result = result.replace(/\bYao\s*\(\s*Giau\s*\)/g, 'Yao - Giau');
