@@ -29,3 +29,32 @@ Nama atau ritual lain yang belum termuat sebagai pasangan terverifikasi tetap da
 
 ## Regresi dan publikasi
 Pengujian seluruh pasal memeriksa jumlah 78/965, identitas unik, normalisasi yang idempoten, pelestarian sumber MATAKIN, dan penutup yang salah tempat. Pengujian antarmuka membangun data pembaca dan memverifikasi pasangan dalam Mengzi serta seruan Siancai dalam Lun Yu. Status: usulan dalam pull request, belum Final atau diterbitkan.
+
+## Lanjutan kolasi lintas-kitab — sesi kedua
+Pemeriksaan otomatis ulang pada 965 pasal menemukan 65 istilah kandidat yang perlu ditelusuri. Banyak kemunculan adalah komponen **pasangan yang sudah benar** (mis. Thong di Sing Thong, Hwi di Liuhe Hwi), sehingga angka kandidat tidak boleh dianggap sebagai jumlah kesalahan. Setelah aturan tampilan tambahan, lebih dari 160 pasal mendapat perbaikan format; jumlah tepat mengikuti log CI setiap commit.
+
+### Pembuktian identitas berlainan — tidak boleh replace global
+1. Mengzi 梁惠王上 §5 / ID sishu.mengzi.01.05:
+   - 晉國 = Jin; MATAKIN menuliskan "Negeri Cien" (tetap tersimpan).
+   - 西喪地於秦七百里 = kalah di barat dari **Qin**, tetapi sumber Indonesia menggunakan "Negeri Jin - Chien". **Display** mengganti hanya kemunculan Qin di pasal tersebut.
+   - 秦楚 = Qin dan Chu, termasuk rujukan tentara. Nama Chien/Cho harus diputuskan berdasarkan Hanzi.
+   - Paralel sumber primer: https://ctext.org/mengzi/liang-hui-wang-i.
+2. Mengzi 梁惠王上 §7 / ID sishu.mengzi.01.07: 晉文 = Duke Wen dari Jin (Cien); 秦楚 pada bagian lain adalah Qin/Chu; 鄒 = Zou (Coo). Tidak menerapkan satu Pinyin ke semua "Cien" atau "Chien".
+3. Lun Yu XIV:18 / ID sishu.lunyu.14.18: 僎 = **Zhuan - Swan**; kamus MOE Taiwan: https://dict.revised.moe.edu.tw/dictView.jsp?ID=8121&la=0&powerMode=0.
+4. Mengzi X:9 / ID sishu.mengzi.10.09: 宣 dari 齊宣王 = **Xuan - Swan**. Jadi Swan tidak boleh dinormalisasi ke satu nama untuk semua pasal.
+5. Mengzi IV A:17 / ID sishu.mengzi.07.17: 淳於髡 = Chunyu Kun - Sun-i Khun. Mendeteksi "Sun" di dalam nama majemuk sebagai "Shun" adalah kesalahan: batas nama majemuk sekarang dilindungi.
+6. Lun Yu XI:13 / ID sishu.lunyu.11.13: "Zi Lu - Zi Lu - Cu Lo" adalah pasangan ganda; dipadatkan menjadi "Zi Lu - Cu Lo" pada display.
+
+### Istilah lain yang sudah memiliki padanan Hanzi jelas
+- Da Xue: 明德 Mingde - Bing Tik; 康誥 Kanggao - Khong-koo; 太甲 Taijia - Thai Kak; 上帝 Shangdi - Siang Tee.
+- Lun Yu: 有子 Youzi - Yucu; 柳下惠 Liu Xiahui - Liuhe Hwi; 叔齊 Shu Qi - Siok-cee; 樊遲 Fan Chi - Hwan-thi; 子夏 Zixia - Cu-he; 臧文仲 Zang Wenzhong - Cong Bun-tiong; 周任 Zhou Ren - Ciu Jiem.
+- Penamaan tokoh/negara/kumpulan sajak yang memiliki romanisasi beragam telah dibuat **pasage-scoped** di tabel CONTEXTUAL, dan setiap entri diuji terhadap kalimat yang benar-benar ada pada sumber.
+
+### Status yang sengaja tetap Review
+- Da Xue XI:14: "Pangeran Chien" terkait kutipan **秦誓 (Qin Shi)**. Penamaan orang versus judul kitab merupakan masalah sumber/terjemahan, bukan alias bunyi biasa. Jangan mengubah klaim MATAKIN tanpa foto/saksi 2012.
+- Lun Yu XVIII:11: 伯適/伯适 "Pik-kwat" menunggu keputusan bacaan konteks.
+- Istilah ritual dan tokoh yang belum memiliki kesepadanan Hanzi yang jelas tetap tidak diganti global.
+- Deteksi kalimat penutup (bukan hanya pola kapital) memerlukan kolasi editorial; uji otomatis tidak dapat menyimpulkan seluruh 965 pasal telah bebas sisipan.
+
+### Kaitan dengan APK Android
+Repositori Flutter Android yang terpisah adalah zqxinai/Ru-Classics. Rancangan penerapan overlay ke paket Android tanpa menimpa sumber MATAKIN disiapkan di https://github.com/zqxinai/Ru-Classics/pull/7. Sumber overlay dipatok ke commit spesifik PR #38 untuk uji CI dan belum menjadi persetujuan/publikasi.
