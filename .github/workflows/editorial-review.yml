@@ -25,6 +25,7 @@ on:
       - 'tests/lunyu-batch-14.test.js'
       - 'tests/lunyu-batch-15.test.js'
       - 'tests/daxue-complete-batch-16.test.js'
+      - 'tests/daxue-11-23-preface-boundary.test.js'
       - 'tests/lunyu-batch-05.test.js'
       - 'tests/lunyu-batch-06.test.js'
       - 'tests/textual-variants-b07.test.js'
@@ -77,6 +78,7 @@ on:
       - 'tests/lunyu-batch-14.test.js'
       - 'tests/lunyu-batch-15.test.js'
       - 'tests/daxue-complete-batch-16.test.js'
+      - 'tests/daxue-11-23-preface-boundary.test.js'
       - 'tests/lunyu-batch-05.test.js'
       - 'tests/lunyu-batch-06.test.js'
       - 'tests/textual-variants-b07.test.js'
@@ -130,4 +132,4 @@ jobs:
       - name: Validate Legge importer JavaScript
         run: node --check tools/import_legge_zhongyong.js
       - name: Run editorial regression tests
-        run: node --test tests/editorial-review.test.js tests/zhongyong-coverage.test.js tests/mengzi-coverage.test.js tests/mengzi-coverage-13-14.test.js tests/mengzi-coverage-04-12.test.js tests/mengzi-coverage-10-passages.test.js tests/mengzi-coverage-batch-03.test.js tests/mengzi-coverage-batch-04.test.js tests/mengzi-09-07-english.test.js tests/daxue-batch-08.test.js tests/daxue-batch-09.test.js tests/daxue-batch-10.test.js tests/daxue-batch-11.test.js tests/daxue-batch-12.test.js tests/lunyu-batch-13.test.js tests/lunyu-batch-14.test.js tests/lunyu-batch-15.test.js tests/daxue-complete-batch-16.test.js tests/lunyu-batch-05.test.js tests/lunyu-batch-06.test.js tests/textual-variants-b07.test.js tests/matakin-2012-verified-glyphs.test.js tests/matakin-2012-lunyu-glyphs-batch-02.test.js tests/daxue-matakin-2012-supplement.test.js tests/zhongyong-matakin-2012-interpretation.test.js tests/daxue-qinmin-xinmin-variant.test.js tests/lunyu-14-39-matakin-variant.test.js tests/zhongyong-ix-pinyin-variant.test.js tests/mengzi-commentary-09-07.test.js tests/yun-hanzi-batch-01.test.js tests/yun-hanzi-batch-02.test.js tests/yun-hanzi-batch-03.test.js tests/zhu-xi-audit.test.js
+        run: node --test tests/editorial-review.test.js tests/zhongyong-coverage.test.js tests/mengzi-coverage.test.js tests/mengzi-coverage-13-14.test.js tests/mengzi-coverage-04-12.test.js tests/mengzi-coverage-10-passages.test.js tests/mengzi-coverage-batch-03.test.js tests/mengzi-coverage-batch-04.test.js tests/mengzi-09-07-english.test.js tests/daxue-batch-08.test.js tests/daxue-batch-09.test.js tests/daxue-batch-10.test.js tests/daxue-batch-11.test.js tests/daxue-batch-12.test.js tests/lunyu-batch-13.test.js tests/lunyu-batch-14.test.js tests/lunyu-batch-15.test.js tests/daxue-complete-batch-16.test.js tests/daxue-11-23-preface-boundary.test.js tests/lunyu-batch-05.test.js tests/lunyu-batch-06.test.js tests/textual-variants-b07.test.js tests/matakin-2012-verified-glyphs.test.js tests/matakin-2012-lunyu-glyphs-batch-02.test.js tests/daxue-matakin-2012-supplement.test.js tests/zhongyong-matakin-2012-interpretation.test.js tests/daxue-qinmin-xinmin-variant.test.js tests/lunyu-14-39-matakin-variant.test.js tests/zhongyong-ix-pinyin-variant.test.js tests/mengzi-commentary-09-07.test.js tests/yun-hanzi-batch-01.test.js tests/yun-hanzi-batch-02.test.js tests/yun-hanzi-batch-03.test.js tests/zhu-xi-audit.test.js
