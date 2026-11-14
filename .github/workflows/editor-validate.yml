@@ -5,12 +5,18 @@ on:
     branches: [main]
     paths:
       - 'editor/**'
+      - 'sources/source-registry.json'
+      - 'tests/source-provenance.test.js'
+      - 'sishu/manifest.json'
       - 'catalog.json'
       - 'index.html'
       - '.github/workflows/editor-validate.yml'
   pull_request:
     paths:
       - 'editor/**'
+      - 'sources/source-registry.json'
+      - 'tests/source-provenance.test.js'
+      - 'sishu/manifest.json'
       - 'catalog.json'
       - 'index.html'
       - '.github/workflows/editor-validate.yml'
@@ -30,3 +36,4 @@ jobs:
           node editor/tests/validate.mjs
           node editor/tests/smoke.mjs
           node --test editor/tests/verse-markers.test.mjs
+          node --test tests/source-provenance.test.js
