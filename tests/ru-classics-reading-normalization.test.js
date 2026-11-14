@@ -26,6 +26,7 @@ test('Pinyin - Hokkian: existing pairs are neither removed nor doubled', () => {
   assert.equal(reading.normalize('Zi Lu - Zi Lu - Cu Lo', 'sishu.lunyu.11.13'), 'Zi Lu - Cu Lo');
   assert.equal(reading.normalize('Raja Wu - Bu-ting', 'sishu.mengzi.03.01'), 'Raja Wu Ding - Bu-ting');
   assert.equal(reading.normalize('Guan Zhong (Kwan Tiong)', 'sishu.mengzi.03.01'), 'Guan Zhong - Kwan Tiong');
+  assert.equal(reading.normalize('Zisi (Cusu)', 'sishu.mengzi.12.06'), 'Zisi - Cusu');
   assert.equal(reading.normalize('Tiong- hut', 'sishu.lunyu.18.11'), 'Zhong Hu - Tiong-hut');
   assert.equal(reading.normalize('Cing See dan Cing Sik', 'sample'), 'Zeng Xi - Cing See dan Zeng Xi - Cing Sik');
 
