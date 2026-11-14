@@ -70,6 +70,52 @@ test('contextual aliases are grounded in their exact source verse', () => {
   assert.equal(reading.normalize('Rajamuda Swan', 'sishu.lunyu.14.18'), 'Rajamuda Swan');
 });
 
+test('Jin 晉 and Qin 秦, classical title ranks, and personal names retain their own Hanzi', () => {
+  const read = id => {
+    const [,book,chapter] = id.split('.');
+    const data = JSON.parse(fs.readFileSync(path.join(BASE,book,chapter+'.json'),'utf8'));
+    const passage = data.passages.find(p=>p.id===id);
+    assert.ok(passage,id);
+    return {
+      source:passage.translation_indonesian,
+      display:reading.normalize(passage.translation_indonesian,id),
+      hanzi:passage.ruby_paragraphs.flat().map(t=>t.traditional||t.value||'').join('')
+    };
+  };
+  const baili=read('sishu.mengzi.09.09');
+  assert.match(baili.hanzi,/百里奚.*秦穆公.*晉人/);
+  assert.match(baili.display,/Baili Xi - Pik-li Hee/);
+  assert.match(baili.display,/Negeri Qin - Chien/);
+  assert.match(baili.display,/Negeri Jin - Cien/);
+  assert.match(baili.display,/Gong Zhiqi - Kiong Ciki/);
+  assert.doesNotMatch(baili.display,/Negeri Jin - Chien/);
+  assert.match(baili.source,/Negeri Jin - Chien/,'archived translation is not silently overwritten');
+  const zin=read('sishu.mengzi.04.02');
+  assert.match(zin.hanzi,/晉楚之富/);
+  assert.match(zin.display,/Kekayaan Negeri Jin - Cien dan Chu - Cho/);
+  const title=read('sishu.mengzi.10.02');
+  assert.match(title.hanzi,/天子一位，公一位，侯一位，伯一位，子、男/);
+  assert.match(title.display,/Tianzi - Thian-cu/);
+  assert.match(title.display,/Gong - Kong \(Duke\)/);
+  assert.match(title.display,/Hou - Ho \(Marquis\)/);
+  assert.match(title.display,/Bo - Pik \(Earl\)/);
+  assert.match(title.display,/Zi - Cu \(Count\)/);
+  assert.match(title.display,/Nan - Lam \(Baron\)/);
+  const wang=read('sishu.mengzi.06.06');
+  assert.match(wang.hanzi,/戴不勝/);
+  assert.match(wang.hanzi,/薛居州/);
+  assert.match(wang.display,/Dai Busheng - Tai Put-sing/);
+  assert.match(wang.display,/Xue Juzhou - Siat Ki-ciu/);
+  const gan=read('sishu.lunyu.02.09');
+  assert.match(gan.hanzi,/吾與回言終日/);
+  assert.match(gan.display,/Hui - Hwee \(Gan Yan\)/);
+  const unclear=read('sishu.daxue.11.14');
+  assert.match(unclear.hanzi,/《秦誓》/);
+  assert.match(unclear.display,/Pangeran Chien/,'translator phrasing awaits edition review');
+  const bo=read('sishu.lunyu.18.11');
+  assert.match(bo.display,/Pik-kwat/,'classical shi/kuo ambiguity remains review');
+});
+
 test('Yu (禹) is not confused with Yi (夷), Yi Yin (伊尹), or book-number notation', () => {
   const verse = id => {
     const [,book,chapter] = id.split('.');
