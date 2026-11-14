@@ -1,0 +1,200 @@
+{
+  "schema": "ru-classics.legge-source-snapshot.v1",
+  "batch": "daxue-b08-10-passages",
+  "captured_on": "2026-11-14",
+  "source_english": {
+    "url": "https://tianmu.org/good-work-library/confucian/general-texts/the-great-learning-james-legge",
+    "description": "James Legge public-domain text as transcribed by Tianmu; editorial copy, not certified against a physical print"
+  },
+  "source_chinese": {
+    "url": "https://confuciuspedia.com/lib/the-great-learning/",
+    "description": "Confuciuspedia bilingual transcription; simplified-to-traditional folding only for comparison, without changing Ru Classics glyphs"
+  },
+  "cross_reference": {
+    "url": "https://xinxingren.gen.nz/classics/%E5%A4%A7%E5%AD%B8_Great_Learning.html",
+    "print_comparison_url": "https://oll.libertyfund.org/title/2270",
+    "note": "Side-by-side Legge 1861 transcription and OLL 1869 publication provided as edition cross-check; transcription differences and OCR errors require manual review"
+  },
+  "units": [
+    {
+      "indonesian_passage_id": "sishu.daxue.03.01",
+      "legge_ref": "The Great Learning, Commentary of Tsang, Chapter II §1",
+      "hanzi_span": "湯之《盤銘》曰：“苟日新，日日新，又日新。”",
+      "source_hanzi_transcription": "汤之盘铭曰：“苟日新，日日新，又日新。”",
+      "source_hanzi_url": "https://confuciuspedia.com/lib/the-great-learning/",
+      "english_transcription": "On the bathing tub of T'ang, the following words were engraved: \"If you can one day renovate yourself, do so from day to day. Yea, let there be daily renovation.\"",
+      "english_source_lines": [
+        46,
+        46
+      ],
+      "chinese_source_lines": [
+        64,
+        66
+      ],
+      "normalized_hanzi_similarity": 1,
+      "review_discrepancy": "Sumber digital menulis 盤銘 tanpa tanda kurung kitab, sedangkan teks proyek 《盤銘》; tanda baca tidak mempengaruhi rentang Hanzi."
+    },
+    {
+      "indonesian_passage_id": "sishu.daxue.03.02",
+      "legge_ref": "The Great Learning, Commentary of Tsang, Chapter II §2",
+      "hanzi_span": "《康誥》曰：“作新民。”",
+      "source_hanzi_transcription": "《康诰》曰：“作新民。”",
+      "source_hanzi_url": "https://confuciuspedia.com/lib/the-great-learning/",
+      "english_transcription": "In the Announcement to K'ang, it is said, \"To stir up the new people.\"",
+      "english_source_lines": [
+        48,
+        48
+      ],
+      "chinese_source_lines": [
+        68,
+        69
+      ],
+      "normalized_hanzi_similarity": 1,
+      "review_discrepancy": "Tidak ada pengubahan naskah utama; verifikasi manual terhadap cetakan James Legge dan cetakan MATAKIN 2012 tetap diperlukan sebelum Final."
+    },
+    {
+      "indonesian_passage_id": "sishu.daxue.03.03",
+      "legge_ref": "The Great Learning, Commentary of Tsang, Chapter II §3",
+      "hanzi_span": "《詩》曰：“周雖舊邦，其命維新。”",
+      "source_hanzi_transcription": "《诗》曰：“周虽旧邦，其命维新。”",
+      "source_hanzi_url": "https://confuciuspedia.com/lib/the-great-learning/",
+      "english_transcription": "In the Book of Poetry, it is said, \"Although Chau was an ancient state, the ordinance which lighted on it was new.\"",
+      "english_source_lines": [
+        50,
+        50
+      ],
+      "chinese_source_lines": [
+        71,
+        73
+      ],
+      "normalized_hanzi_similarity": 1,
+      "review_discrepancy": "Tidak ada pengubahan naskah utama; verifikasi manual terhadap cetakan James Legge dan cetakan MATAKIN 2012 tetap diperlukan sebelum Final."
+    },
+    {
+      "indonesian_passage_id": "sishu.daxue.03.04",
+      "legge_ref": "The Great Learning, Commentary of Tsang, Chapter II §4",
+      "hanzi_span": "是故君子無所不用其極。",
+      "source_hanzi_transcription": "是故君子无所不用其极。",
+      "source_hanzi_url": "https://confuciuspedia.com/lib/the-great-learning/",
+      "english_transcription": "Therefore, the superior man in everything uses his utmost endeavors.",
+      "english_source_lines": [
+        52,
+        52
+      ],
+      "chinese_source_lines": [
+        71,
+        73
+      ],
+      "normalized_hanzi_similarity": 1,
+      "review_discrepancy": "Tidak ada pengubahan naskah utama; verifikasi manual terhadap cetakan James Legge dan cetakan MATAKIN 2012 tetap diperlukan sebelum Final."
+    },
+    {
+      "indonesian_passage_id": "sishu.daxue.04.01",
+      "legge_ref": "The Great Learning, Commentary of Tsang, Chapter III §1",
+      "hanzi_span": "《詩》云：“邦畿千里，維民所止。”",
+      "source_hanzi_transcription": "《诗》云：“邦畿千里，惟民所止。”",
+      "source_hanzi_url": "https://confuciuspedia.com/lib/the-great-learning/",
+      "english_transcription": "In the Book of Poetry, it is said, \"The royal domain of a thousand li is where the people rest.\"",
+      "english_source_lines": [
+        53,
+        53
+      ],
+      "chinese_source_lines": [
+        75,
+        77
+      ],
+      "normalized_hanzi_similarity": 0.9,
+      "review_discrepancy": "Hanzi proyek 維民所止, sumber bilingual 惟民所止 (1/10 karakter): varian tanpa mengubah bacaan MATAKIN; perlu foto cetak 2012 sebelum Final."
+    },
+    {
+      "indonesian_passage_id": "sishu.daxue.04.02",
+      "legge_ref": "The Great Learning, Commentary of Tsang, Chapter III §2",
+      "hanzi_span": "《詩》云：“緡蠻黃鳥，止於丘隅。”子曰：“於止，知其所止，可以人而不如鳥乎？”",
+      "source_hanzi_transcription": "《诗》云：“缗蛮黄鸟，止于丘隅。”子曰：“于止，知其所止，可以人而不如鸟乎？”",
+      "source_hanzi_url": "https://confuciuspedia.com/lib/the-great-learning/",
+      "english_transcription": "In the Book of Poetry, it is said, \"The twittering yellow bird rests on a corner of the mound.\" The Master said, \"When it rests, it knows where to rest. Is it possible that a man should not be equal to this bird?\"",
+      "english_source_lines": [
+        55,
+        55
+      ],
+      "chinese_source_lines": [
+        79,
+        84
+      ],
+      "normalized_hanzi_similarity": 1,
+      "review_discrepancy": "Tidak ada pengubahan naskah utama; verifikasi manual terhadap cetakan James Legge dan cetakan MATAKIN 2012 tetap diperlukan sebelum Final."
+    },
+    {
+      "indonesian_passage_id": "sishu.daxue.04.03",
+      "legge_ref": "The Great Learning, Commentary of Tsang, Chapter III §3",
+      "hanzi_span": "《詩》云：“穆穆文王，於緝熙敬止！”為人君，止於仁；為人臣，止於敬；為人子，止於孝；為人父，止於慈；與國人交，止於信。",
+      "source_hanzi_transcription": "《诗》云：“穆穆文王，於缉熙敬止。”为人君，止于仁；为人臣，止于敬；为人子，止于孝；为人父，止于慈；与国人交，止于信。",
+      "source_hanzi_url": "https://confuciuspedia.com/lib/the-great-learning/",
+      "english_transcription": "In the Book of Poetry, it is said, \"Profound was King Wan. With how bright and unceasing a feeling of reverence did he regard his resting places!\" As a sovereign, he rested in benevolence. As a minister, he rested in reverence. As a son, he rested in filial piety. As a father, he rested in kindness. In communication with his subjects, he rested in good faith.",
+      "english_source_lines": [
+        56,
+        56
+      ],
+      "chinese_source_lines": [
+        86,
+        87
+      ],
+      "normalized_hanzi_similarity": 1,
+      "review_discrepancy": "Tidak ada pengubahan naskah utama; verifikasi manual terhadap cetakan James Legge dan cetakan MATAKIN 2012 tetap diperlukan sebelum Final."
+    },
+    {
+      "indonesian_passage_id": "sishu.daxue.04.04",
+      "legge_ref": "The Great Learning, Commentary of Tsang, Chapter III §4",
+      "hanzi_span": "《詩》云：“瞻彼淇澳，菉竹猗猗。有斐君子，如切如磋，如琢如磨。瑟兮僴兮，赫兮喧兮。有斐君子，終不可諠兮！”“如切如磋”者，道學也。“如琢如磨”者，自修也。“瑟兮僴兮”者，恂栗也。“赫兮喧兮”者，威儀也。“有斐君子，終不可諠兮”者，道盛德至善，民之不能忘也。",
+      "source_hanzi_transcription": "《诗》云：“瞻彼淇澳，菉竹猗猗。有斐君子，如切如磋，如琢如磨。瑟兮僴兮，赫兮喧兮。有斐君子，终不可喧兮。”如切如磋者，道学也；如琢如磨者，自修也；瑟兮僴兮者，恂慄也；赫兮喧兮者，威仪也；有斐君子，终不可喧兮者，道盛德至善，民之不能忘也。",
+      "source_hanzi_url": "https://confuciuspedia.com/lib/the-great-learning/",
+      "english_transcription": "In the Book of Poetry, it is said, \"Look at that winding course of the Ch'i, with the green bamboos so luxuriant! Here is our elegant and accomplished prince! As we cut and then file; as we chisel and then grind: so has he cultivated himself. How grave is he and dignified! How majestic and distinguished! Our elegant and accomplished prince never can be forgotten.\" That expression — \"As we cut and then file\" — indicates the work of learning. \"As we chisel and then grind\" indicates that of self-culture. \"How grave is he and dignified!\" indicates the feeling of cautious reverence. \"How commanding and distinguished!\" indicates an awe-inspiring deportment. \"Our elegant and accomplished prince never can be forgotten\" indicates how, when virtue is complete and excellence extreme, the people cannot forget them.",
+      "english_source_lines": [
+        57,
+        58
+      ],
+      "chinese_source_lines": [
+        46,
+        48
+      ],
+      "normalized_hanzi_similarity": 0.967391,
+      "review_discrepancy": "Sumber bilingual memakai 喧 untuk dua kemunculan yang dalam proyek telah diperiksa sebagai 諠; sumber juga memiliki 恂慄, proyek 恂栗. Foto cetak MATAKIN 2012 menjadi acuan bagi teks proyek, bukan transkripsi pembanding."
+    },
+    {
+      "indonesian_passage_id": "sishu.daxue.04.05",
+      "legge_ref": "The Great Learning, Commentary of Tsang, Chapter III §5",
+      "hanzi_span": "《詩》云：“於戲，前王不忘！”君子賢其賢而親其親，小人樂其樂而利其利，此以沒世不忘也。",
+      "source_hanzi_transcription": "《诗》云：“於戏，前王不忘！”君子贤其贤而亲其亲，小人乐其乐而利其利，此以没世不忘也。",
+      "source_hanzi_url": "https://confuciuspedia.com/lib/the-great-learning/",
+      "english_transcription": "In the Book of Poetry, it is said, \"Ah! the former kings are not forgotten.\" Future princes deem worthy what they deemed worthy, and love what they loved. The common people delight in what delighted them, and are benefited by their beneficial arrangements. It is on this account that the former kings, after they have quitted the world, are not forgotten.",
+      "english_source_lines": [
+        59,
+        59
+      ],
+      "chinese_source_lines": [
+        49,
+        51
+      ],
+      "normalized_hanzi_similarity": 1,
+      "review_discrepancy": "Tidak ada pengubahan naskah utama; verifikasi manual terhadap cetakan James Legge dan cetakan MATAKIN 2012 tetap diperlukan sebelum Final."
+    },
+    {
+      "indonesian_passage_id": "sishu.daxue.05.01",
+      "legge_ref": "The Great Learning, Commentary of Tsang, Chapter IV §1",
+      "hanzi_span": "子曰：“聽訟，吾猶人也。必也使無訟乎！”無情者不得盡其辭。大畏民志，此謂知本。",
+      "source_hanzi_transcription": "子曰：“听讼，吾犹人也。必也使无讼乎！”无情者，不得尽其辞，大畏民志。此谓知本。",
+      "source_hanzi_url": "https://confuciuspedia.com/lib/the-great-learning/",
+      "english_transcription": "The Master said, \"In hearing litigations, I am like any other body. What is necessary is to cause the people to have no litigations.\" So, those who are devoid of principle find it impossible to carry out their speeches, and a great awe would be struck into men's minds — this is called knowing the root.",
+      "english_source_lines": [
+        60,
+        60
+      ],
+      "chinese_source_lines": [
+        89,
+        90
+      ],
+      "normalized_hanzi_similarity": 1,
+      "review_discrepancy": "Tidak ada pengubahan naskah utama; verifikasi manual terhadap cetakan James Legge dan cetakan MATAKIN 2012 tetap diperlukan sebelum Final."
+    }
+  ]
+}
