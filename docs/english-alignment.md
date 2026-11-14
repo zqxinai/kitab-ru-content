@@ -213,3 +213,11 @@ Batch baru menambahkan sepuluh pasal **Da Xue X:1–9 dan XI:1**, seluruhnya ber
 - XI:14 memakai dua paragraf Legge sebagai **satu** pasal, dengan catatan `媢疾` dalam transkripsi banding vs `媢嫉` pada naskah proyek. XI:16 mencatat `命` proyek yang berkaitan dengan perbedaan bacaan `慢` pada tafsir 'disrespectful'; jangan memperbaiki sebelum foto MATAKIN/saksi asal diverifikasi.
 - XI:22 juga mempertahankan dua paragraf Legge pada satu pasal, termasuk kesimpulan `國不以利為利，以義為利`; tidak membuat versi Inggris sendiri.
 - **936/965 draf Inggris**, tersisa **29** (Da Xue 3 dan Lun Yu 26). **Final 0**. Hanzi, pinyin, Indonesia MATAKIN dan aset offline tidak diubah. Tes `node --test tests/daxue-batch-12.test.js` terhubung ke CI.
+
+
+## Lun Yu batch 13 — 10 draf Inggris Gutenberg (14 November 2026)
+
+- Pemetaan baru: `05.01`, `05.02`, `05.08`, `05.09`, `05.25`, `05.26`, `06.01`, `06.02`, `06.04`, `06.05`; semua Draft. Teks Legge bersumber dari [Gutenberg #3330](https://www.gutenberg.org/ebooks/3330) dan Hanzi pembanding dari [Gutenberg #4094](https://www.gutenberg.org/ebooks/4094). Snapshot `sources/legge/lunyu-b13-gutenberg-3330-4094.json` menyimpan sumber, ID dan bukti pemenggalan.
+- Legge V.I §§1–2 terpisah ke MATAKIN V:1–2; V.VII §§1–4 ke V:8; V.VIII §§1–3 ke V:9; V.XXIV dan V.XXV ke MATAKIN V:25–26. EBook #3330 mengulang label CHAP VII untuk bab ordinal VIII, sedangkan #4094 mencetak VIII; tidak diartikan sebagai pasal ganda.
+- Legge VI.I §§1,2–4 ke MATAKIN VI:1–2; VI.III §§1–2,3–4 ke VI:4–5. Perbedaan 縲絏/縲紲 dan 蔽/敝 dicatat sebagai varian korpus, tanpa mengubah Hanzi MATAKIN.
+- Cakupan sekarang **946/965**, **19 tersisa** (Da Xue 3, Lun Yu 16). Status Final **0**, tidak mengubah terjemahan Indonesia, pinyin, naskah primer, atau Android offline. Regresi `tests/lunyu-batch-13.test.js` menjaga batas sumber.
