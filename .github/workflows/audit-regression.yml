@@ -3,6 +3,7 @@ on:
   pull_request:
     paths:
       - "audit/**"
+      - "dist/sishu-english-passage-splits.json"
       - ".github/workflows/audit-regression.yml"
   push:
     branches:
