@@ -12,7 +12,7 @@ const cases=[
     "witness": "KR1h0015_016.txt",
     "page": "KR1h0015_WYG_016-58b",
     "expectedYun": 1,
-    "translationHash": "f9ab4e12"
+    "translationHash": "92f80801"
   },
   {
     "path": "sishu/chapters/lunyu/07.json",

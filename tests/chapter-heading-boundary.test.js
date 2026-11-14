@@ -7,7 +7,7 @@ const read = (file) => JSON.parse(fs.readFileSync(file, 'utf8'));
 const manifest = read('sishu/manifest.json');
 const chapters = manifest.chapters.map(entry => read(entry.path));
 const passages = chapters.flatMap(chapter => chapter.passages);
-const contaminant = /(?:TENGAH\s+SEMPURNA\s+BAB\s+[IVXLCDM]+|SABDA\s+SUCI\s+JILID\s+[IVXLCDM]+)(?:\s*[.:(]|\s|$)/i;
+const contaminant = /(?:TENGAH\s+SEMPURNA\s+BAB|SABDA\s+SUCI\s+JILID|AJARAN\s+BESAR\s+BAB|DA\s+XUE\s+BAB|MENGZI\s+(?:BAB|JILID)|MENG\s*CU\s+(?:BAB|JILID))\s+[IVXLCDM]+(?:\s*[.:(]|\s|$)/i;
 
 test('No next-chapter heading may appear inside any Indonesian passage', () => {
   assert.equal(chapters.length, 78, 'Si Shu chapter count unexpectedly changed');
