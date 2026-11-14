@@ -50,5 +50,5 @@ test('Split source paragraphs and disputed glyph variants remain explicit',()=>{
  assert.match(u('10.01').review_discrepancy,/悌.*弟/);
  assert.match(hanzi(byId.get('sishu.daxue.10.01')),/悌者/);
  assert.notEqual(u('10.05').english_transcription,u('10.09').english_transcription);
- assert.equal(alignment.entries.some(e=>e.indonesian_passage_ids.includes('sishu.daxue.06.01')),false);
+ assert.equal(alignment.entries.filter(e=>e.indonesian_passage_ids.includes('sishu.daxue.06.01')).length,1);
 });
