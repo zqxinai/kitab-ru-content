@@ -163,3 +163,13 @@ Tiga catatan `English translation: Legge 1861` di akhir transkripsi bab 1–3 di
 - Salinan sumber dan provenance: `sources/legge/mengzi-09-07-chinesenotes.json`; peta Inggris: `legge-mengzi-09-07`. Terjemahan Inggris ditampilkan sebagai **Draft**, tidak diubah atau diterjemahkan ulang oleh AI.
 - Cakupan editor meningkat dari **885 menjadi 886 dari 965 pasal**. Mengzi kini **260/260 draf Inggris**, tetapi belum satu pun disahkan Final. Tersisa **79 pasal**: Da Xue 53 dan Lun Yu 26.
 - Tes regresi `tests/mengzi-09-07-english.test.js` menjaga pasangan lengkap, provenance, perbedaan grafem, pemisahan komentar, dan ketiadaan status Final. Pemeriksaan terhadap cetakan utama James Legge dan approval reviewer tetap pekerjaan berikutnya.
+
+
+## Batch kecil Da Xue 08 — 14 November 2026 (10 pasal)
+
+- Draf Inggris James Legge untuk `sishu.daxue.03.01–03.04`, `04.01–04.05`, dan `05.01`: **10 pasal baru**; hanya overlay peta Inggris, tidak mengubah Hanzi, pinyin, Indonesia MATAKIN, pembagian pasal, status editorial, atau sumber Android.
+- Ref Legge yang benar mengikuti **Commentary of Tsang Chapters II §§1–4, III §§1–5, IV §1**, berbeda dari nomor bab MATAKIN (III–V). Perbandingan seluruh teks Hanzi diambil dari paket kerja dan sumber dwibahasa. Penyesuaian Hans/Hant dipakai hanya untuk kalkulasi kemiripan, tidak diterapkan ke naskah MATAKIN.
+- Bukti tersimpan: `sources/legge/daxue-b08-10-passages.json`; transkripsi Inggris James Legge https://tianmu.org/good-work-library/confucian/general-texts/the-great-learning-james-legge; Hanzi pembanding https://confuciuspedia.com/lib/the-great-learning/; pembanding lain https://xinxingren.gen.nz/classics/%E5%A4%A7%E5%AD%B8_Great_Learning.html; arsip karya Legge https://oll.libertyfund.org/title/2270.
+- Kasus `04.01`: sumber dwibahasa memakai `惟` sedangkan Hanzi proyek `維`. Kasus `04.04`: perbedaan `喧/諠` dan `恂慄/恂栗` terdokumentasi; jangan ganti aksara yang telah diaudit dari foto MATAKIN 2012. `03.01` hanya berbeda tanda buku `《盤銘》` vs `盤銘`.
+- Cakupan editor naik menjadi **896/965 (92,85%)**: Da Xue 21/64, Zhong Yong 129/129, Lun Yu 486/512, Mengzi 260/260. **69 belum tersedia**: Da Xue 43, Lun Yu 26. Final editorial **0**; semua 10 tetap `draft` dan memerlukan verifikasi terhadap cetakan Legge primer sebelum disetujui.
+- Regresi tambahan: `node --test tests/daxue-batch-08.test.js`, terintegrasi ke `editorial-review.yml`, memeriksa angka cakupan, ID unik, kesamaan snapshot Inggris, status Draft, posisi sumber, dan varian Hanzi yang tidak diubah.
