@@ -9,6 +9,12 @@
     ['Lai-cu', 'Lai Zhu'],
     ['Thai-kong Bong', 'Taigong Wang'],
     ['San Gi-sing', 'San Yisheng'],
+    ['Khiem Tiang', 'Qin Zhang'],
+    ['Cing Sik', 'Zeng Xi'],
+    ['Bok Phi', 'Mu Pi'],
+    ['Siau-tong', 'Xiaotong'],
+    ['Kwa Siau-kun', 'Gua Xiaojun'],
+    ['Hu-jien', 'Furen'],
     ['Sun', 'Shun'],
     ['Banciang', 'Wan Zhang'],
     ['Cutiang', 'Zizhang'],
@@ -33,7 +39,9 @@
     const pattern = new RegExp('(^|[^\\p{L}])(' + escaped(legacy) + ')(?=$|[^\\p{L}])', 'giu');
     const previous = new RegExp(escaped(modern) + '\\s*-\\s*$', 'iu');
     return text.replace(pattern, (match, prefix, token, start, source) => {
-      if (previous.test(source.slice(0, start + prefix.length))) return match;
+      const preceding = source.slice(0, start + prefix.length);
+      if (legacy === 'Hu-jien' && /\bKun\s*$/iu.test(preceding)) return match;
+      if (previous.test(preceding)) return match;
       return prefix + modern + ' - ' + token;
     });
   }
@@ -48,6 +56,13 @@
     result = result.replace(/\bYao\s*\(\s*Giau\s*\)/g, 'Yao - Giau');
     // 禹 (Yu) has the one-letter legacy name 'I': replace only verified name contexts.
     result = result.replace(/\bRaja I(?=$|[^\p{L}])/gu, 'Raja Yu - I');
+    // Nama diri dan istilah dengan Hanzi yang telah dikolasi dalam pasal terkait.
+    result = result.replace(/\bNegeri Tien\b/g, 'Negeri Chen - Tien'); // 陳
+    result = result.replace(/\bDinasti Ien\b/g, 'Dinasti Yin - Ien'); // 殷
+    result = result.replace(/\bsuku bangsa Tik\b/g, 'suku bangsa Di - Tik'); // 狄
+    result = result.replace(/\bsuku bangsa I\b/g, 'suku bangsa Yi - I'); // 夷
+    result = result.replace(/\bKun Hu-jien\b/g, 'Jun Furen - Kun Hu-jien'); // 君夫人
+    result = result.replace(/\bPangeran Ciu\b/g, 'Pangeran Zhou - Ciu'); // 周公
     result = result.replace(/(\bseperti )I(?=\s+dan\s+(?:Koo Yau|Gao Yao))/gu, '$1Yu - I');
     result = pair(result, 'Giau', 'Yao');
     for (const [legacy, modern] of PAIRS) result = pair(result, legacy, modern);
