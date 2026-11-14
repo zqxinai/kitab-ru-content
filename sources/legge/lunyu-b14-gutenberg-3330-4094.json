@@ -1,0 +1,244 @@
+{
+  "schema": "ru-classics.legge-source-snapshot.v1",
+  "batch": "lunyu-b14-10-passages",
+  "captured_on": "2026-11-14",
+  "source_english": {
+    "url": "https://www.gutenberg.org/ebooks/3330",
+    "note": "James Legge public-domain English transcription; exact segments selected by source book and CHAP labels."
+  },
+  "source_chinese": {
+    "url": "https://www.gutenberg.org/ebooks/4094",
+    "note": "Bilingual Hanzi source matches tracked by character count and differences; not blindly by MATAKIN numbering."
+  },
+  "units": [
+    {
+      "indonesian_passage_id": "sishu.lunyu.09.06",
+      "hanzi_span": "太宰問於子貢曰：“夫子聖者與，何其多能也？”子貢曰：“固天縱之將聖，又多能也。”子聞之，曰：“太宰知我乎？吾少也賤，故多能鄙事。君子多乎哉？不多也。”",
+      "source_hanzi_transcription": "大宰問於子貢曰夫子聖者與何其多能也子貢曰固天縱之將聖又多能也子聞之曰大宰知我乎吾少也賤故多能鄙事君子多乎哉不多也",
+      "normalized_hanzi_similarity": 0.964286,
+      "english_segments": [
+        {
+          "legge_ref": "The Chinese Classics: Confucian Analects, Book 9, CHAP. VI §§1,2,3",
+          "english_transcription": "1. A high officer asked Tsze-kung, saying, 'May we not say that your Master is a sage? How various is his ability!' 2. Tsze-kung said, 'Certainly Heaven has endowed him unlimitedly. He is about a sage. And, moreover, his ability is various.' 3. The Master heard of the conversation and said, 'Does the high officer know me? When I was young, my condition was low, and therefore I acquired my ability in many things, but they were mean matters. Must the superior man have such variety of ability? He does not need variety of ability.'",
+          "source_chapter_ordinal": 6,
+          "source_chapter_label": "VI",
+          "source_sections": [
+            1,
+            2,
+            3
+          ],
+          "english_offset": 55675
+        }
+      ],
+      "review_discrepancy": "Hanzi proyek 太宰, sumber dwibahasa 大宰, tidak diganti."
+    },
+    {
+      "indonesian_passage_id": "sishu.lunyu.09.07",
+      "hanzi_span": "牢曰：“子云：‘吾不試，故藝。’”",
+      "source_hanzi_transcription": "牢曰子云吾不試故藝",
+      "normalized_hanzi_similarity": 1,
+      "english_segments": [
+        {
+          "legge_ref": "The Chinese Classics: Confucian Analects, Book 9, CHAP. VI §§4",
+          "english_transcription": "4. Lao said, 'The Master said, \"Having no official employment, I acquired many arts.\"'",
+          "source_chapter_ordinal": 6,
+          "source_chapter_label": "VI",
+          "source_sections": [
+            4
+          ],
+          "english_offset": 55675
+        }
+      ],
+      "review_discrepancy": "Legge IX.VI §4 dipisah dari IX:6 MATAKIN; hindari pengulangan alinea."
+    },
+    {
+      "indonesian_passage_id": "sishu.lunyu.09.24",
+      "hanzi_span": "子曰：“法語之言，能無從乎？改之為貴。巽與之言，能無說乎？繹之為貴。說而不繹，從而不改，吾末如之何也已矣。”",
+      "source_hanzi_transcription": "子曰法語之言能無從乎改之為貴巽與之言能無說乎繹之為貴說而不繹從而不改吾末如之何也已矣",
+      "normalized_hanzi_similarity": 1,
+      "english_segments": [
+        {
+          "legge_ref": "The Chinese Classics: Confucian Analects, Book 9, CHAP. XXV",
+          "english_transcription": "The Master said, 'Can men refuse to assent to the words of strict admonition? But it is reforming the conduct because of them which is valuable. Can men refuse to be pleased with words of gentle advice? But it is unfolding their aim which is valuable. If a man be pleased with these words, but does not unfold their aim, and assents to those, but does not reform his conduct, I can really do nothing with him.'",
+          "source_chapter_ordinal": 23,
+          "source_chapter_label": "XXV",
+          "source_sections": [],
+          "english_offset": 60230
+        }
+      ],
+      "review_discrepancy": "Gutenberg mencetak XXV pada bab ordinal 23 dan 25 (salah nomor di #3330). Identifikasi dari awal Hanzi 法語之言, bukan hanya roman."
+    },
+    {
+      "indonesian_passage_id": "sishu.lunyu.10.08",
+      "hanzi_span": "食不厭精，膾不厭細。食饐而餲，魚餒而肉敗，不食；色惡，不食；臭惡，不食；失飪，不食；不時，不食；割不正，不食；不得其醬，不食。肉雖多，不使勝食氣。唯酒無量，不及亂。沽酒市脯，不食。不撤姜食，不多食。",
+      "source_hanzi_transcription": "食不厭精膾不厭細食饐而餲魚餒而肉敗不食色惡不食臭惡不食失飪不食不時不食割不正不食不得其醬不食肉雖多不使勝食氣惟酒無量不及亂沽酒市脯不食不撤薑食不多食",
+      "normalized_hanzi_similarity": 0.972973,
+      "english_segments": [
+        {
+          "legge_ref": "The Chinese Classics: Confucian Analects, Book 10, CHAP. VIII §§1,2,3,4,5,6,7",
+          "english_transcription": "1. He did not dislike to have his rice finely cleaned, nor to have his minced meat cut quite small. 2. He did not eat rice which had been injured by heat or damp and turned sour, nor fish or flesh which was gone. He did not eat what was discoloured, or what was of a bad flavour, nor anything which was ill-cooked, or was not in season. 3. He did not eat meat which was not cut properly, nor what was served without its proper sauce. 4. Though there might be a large quantity of meat, he would not allow what he took to exceed the due proportion for the rice. It was only in wine that he laid down no limit for himself, but he did not allow himself to be confused by it. 5. He did not partake of wine and dried meat bought in the market. 6. He was never without ginger when he ate. 7. He did not eat much.",
+          "source_chapter_ordinal": 7,
+          "source_chapter_label": "VIII",
+          "source_sections": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+          ],
+          "english_offset": 66013
+        }
+      ],
+      "review_discrepancy": "Hanya Legge X.VIII §§1–7, jangan menyertakan §§8–10 milik pasal MATAKIN berikutnya. Varian 姜/薑 dan 惟/唯 didokumentasikan."
+    },
+    {
+      "indonesian_passage_id": "sishu.lunyu.10.18",
+      "hanzi_span": "君賜食，必正席先嘗之；君賜腥，必熟而薦之；君賜生，必畜之。侍食於君，君祭，先飯。",
+      "source_hanzi_transcription": "君賜食必正席先嘗之君賜腥必熟而薦之君賜生必畜之侍食於君君祭先飯",
+      "normalized_hanzi_similarity": 1,
+      "english_segments": [
+        {
+          "legge_ref": "The Chinese Classics: Confucian Analects, Book 10, CHAP. XIII §§1,2",
+          "english_transcription": "1. When the prince sent him a gift of cooked meat, he would adjust his mat, first taste it, and then give it away to others. When the prince sent him a gift of undressed meat, he would have it cooked, and offer it to the spirits of his ancestors. When the prince sent him a gift of a living animal, he would keep it alive. 2. When he was in attendance on the prince and joining in the entertainment, the prince only sacrificed. He first tasted everything.",
+          "source_chapter_ordinal": 12,
+          "source_chapter_label": "XIII",
+          "source_sections": [
+            1,
+            2
+          ],
+          "english_offset": 68011
+        }
+      ],
+      "review_discrepancy": "Hanya Legge X.XIII §§1–2; §§3–4 tidak termasuk."
+    },
+    {
+      "indonesian_passage_id": "sishu.lunyu.10.25",
+      "hanzi_span": "見齊衰者，雖狎，必變。見冕者與瞽者，雖褻，必以貌。凶服者式之，式負版者。\n有盛饌，必變色而作。迅雷風烈，必變。",
+      "source_hanzi_transcription": "見齊衰者雖狎必變見冕者與瞽者雖褻必以貌凶服者式之式負版者有盛饌必變色而作迅雷風烈必變",
+      "normalized_hanzi_similarity": 1,
+      "english_segments": [
+        {
+          "legge_ref": "The Chinese Classics: Confucian Analects, Book 10, CHAP. XVI §§2,3,4,5",
+          "english_transcription": "2. When he saw any one in a mourning dress, though it might be an acquaintance, he would change countenance; when he saw any one wearing the cap of full dress, or a blind person, though he might be in his undress, he would salute them in a ceremonious manner. 3. To any person in mourning he bowed forward to the crossbar of his carriage; he bowed in the same way to any one bearing the tables of population. 4. When he was at an entertainment where there was an abundance of provisions set before him, he would change countenance and rise up. 5. On a sudden clap of thunder, or a violent wind, he would change countenance.",
+          "source_chapter_ordinal": 15,
+          "source_chapter_label": "XVI",
+          "source_sections": [
+            2,
+            3,
+            4,
+            5
+          ],
+          "english_offset": 69148
+        }
+      ],
+      "review_discrepancy": "Legge X.XVI §§2–5, bukan §1 (寢不尸)."
+    },
+    {
+      "indonesian_passage_id": "sishu.lunyu.11.25",
+      "hanzi_span": "子路使子羔為費宰，子曰：“賊夫人之子。”子路曰：“有民人焉，有社稷焉，何必讀書然後為學。”子曰：“是故惡夫佞者。”",
+      "source_hanzi_transcription": "子路使子羔為費宰子曰賊夫人之子子路曰有民人焉有社稷焉何必讀書然後為學子曰是故惡夫佞者",
+      "normalized_hanzi_similarity": 1,
+      "english_segments": [
+        {
+          "legge_ref": "The Chinese Classics: Confucian Analects, Book 11, CHAP. XXIV §§1,2,3,4",
+          "english_transcription": "1. Tsze-lu got Tsze-kao appointed governor of Pi. 2. The Master said, 'You are injuring a man's son.' 3. Tsze-lu said, 'There are (there) common people and officers; there are the altars of the spirits of the land and grain. Why must one read books before he can be considered to have learned?' 4. The Master said, 'It is on this account that I hate your glib-tongued people.'",
+          "source_chapter_ordinal": 24,
+          "source_chapter_label": "XXIV",
+          "source_sections": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "english_offset": 77046
+        }
+      ],
+      "review_discrepancy": "Legge XI.XXIV §§1–4, teks pasal lengkap mengenai Zi Lu dan Zi Gao."
+    },
+    {
+      "indonesian_passage_id": "sishu.lunyu.14.01",
+      "hanzi_span": "憲問恥，子曰：“邦有道，穀；邦無道，穀，恥也。”“克、伐、怨、欲不行焉，可以為仁矣？”子曰：“可以為難矣，仁則吾不知也。”",
+      "source_hanzi_transcription": "憲問恥子曰邦有道穀邦無道穀恥也克伐怨欲不行焉可以為仁矣子曰可以為難矣仁則吾不知也",
+      "normalized_hanzi_similarity": 1,
+      "english_segments": [
+        {
+          "legge_ref": "The Chinese Classics: Confucian Analects, Book 14, CHAP. I",
+          "english_transcription": "Hsien asked what was shameful. The Master said, 'When good government prevails in a state, to be thinking only of salary; and, when bad government prevails, to be thinking, in the same way, only of salary;— this is shameful.'",
+          "source_chapter_ordinal": 1,
+          "source_chapter_label": "I",
+          "source_sections": [],
+          "english_offset": 100828
+        },
+        {
+          "legge_ref": "The Chinese Classics: Confucian Analects, Book 14, CHAP. II §§1,2",
+          "english_transcription": "1. 'When the love of superiority, boasting, resentments, and covetousness are repressed, this may be deemed perfect virtue.' 2. The Master said, 'This may be regarded as the achievement of what is difficult. But I do not know that it is to be deemed perfect virtue.'",
+          "source_chapter_ordinal": 2,
+          "source_chapter_label": "II",
+          "source_sections": [
+            1,
+            2
+          ],
+          "english_offset": 101064
+        }
+      ],
+      "review_discrepancy": "MATAKIN XIV:1 menggabungkan Legge XIV.I dan XIV.II, kedua unit disimpan terpisah."
+    },
+    {
+      "indonesian_passage_id": "sishu.lunyu.14.26",
+      "hanzi_span": "子曰：“不在其位，不謀其政。”曾子曰：“君子思不出其位。”",
+      "source_hanzi_transcription": "子曰不在其位不謀其政曾子曰君子思不出其位",
+      "normalized_hanzi_similarity": 1,
+      "english_segments": [
+        {
+          "legge_ref": "The Chinese Classics: Confucian Analects, Book 14, CHAP. XXVII",
+          "english_transcription": "The Master said, 'He who is not in any particular office, has nothing to do with plans for the administration of its duties.'",
+          "source_chapter_ordinal": 27,
+          "source_chapter_label": "XXVII",
+          "source_sections": [],
+          "english_offset": 108719
+        },
+        {
+          "legge_ref": "The Chinese Classics: Confucian Analects, Book 14, CHAP. XXVIII",
+          "english_transcription": "The philosopher Tsang said, 'The superior man, in his thoughts, does not go out of his place.'",
+          "source_chapter_ordinal": 28,
+          "source_chapter_label": "XXVIII",
+          "source_sections": [],
+          "english_offset": 108858
+        }
+      ],
+      "review_discrepancy": "MATAKIN XIV:26 = Legge XIV.XXVII + XIV.XXVIII, tanpa membuat terjemahan baru."
+    },
+    {
+      "indonesian_passage_id": "sishu.lunyu.14.37",
+      "hanzi_span": "子曰：“賢者辟世，其次辟地，其次辟色，其次辟言。”子曰：“作者七人矣。”",
+      "source_hanzi_transcription": "子曰賢者辟世其次辟地其次辟色其次辟言子曰作者七人矣",
+      "normalized_hanzi_similarity": 1,
+      "english_segments": [
+        {
+          "legge_ref": "The Chinese Classics: Confucian Analects, Book 14, CHAP. XXXIX §§1,2,3,4",
+          "english_transcription": "1. The Master said, 'Some men of worth retire from the world. 2. Some retire from particular states. 3. Some retire because of disrespectful looks. 4. Some retire because of contradictory language.'",
+          "source_chapter_ordinal": 39,
+          "source_chapter_label": "XXXIX",
+          "source_sections": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "english_offset": 111370
+        },
+        {
+          "legge_ref": "The Chinese Classics: Confucian Analects, Book 14, CHAP. XL",
+          "english_transcription": "The Master said, 'Those who have done this are seven men.'",
+          "source_chapter_ordinal": 40,
+          "source_chapter_label": "XL",
+          "source_sections": [],
+          "english_offset": 111624
+        }
+      ],
+      "review_discrepancy": "MATAKIN XIV:37 menggabungkan Legge XIV.XXXIX dan XIV.XL; penjelasan tujuh orang tetap termasuk."
+    }
+  ]
+}
