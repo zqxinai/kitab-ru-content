@@ -1,0 +1,38 @@
+{
+  "schema": "kitab-ru.legge-source.v1",
+  "title": "Mengzi IX:7 (Wan Zhang I, 7) — bilingual James Legge digital source",
+  "status": "draft",
+  "attribution": "James Legge, The Works of Mencius; digital transcription from ChineseNotes (alexamies/chinesenotes.com), not a primary scanned edition",
+  "source_url": "https://github.com/alexamies/chinesenotes.com/blob/5d2e867ecfb33e16a6aed392c6b8b8cde3896030/corpus/mengzi/mengzi009.txt",
+  "source_commit_sha": "5d2e867ecfb33e16a6aed392c6b8b8cde3896030",
+  "source_file": "corpus/mengzi/mengzi009.txt",
+  "source_unit_indices": [
+    32,
+    33
+  ],
+  "source_line_numbers": [
+    103,
+    104,
+    106,
+    107
+  ],
+  "indonesian_passage_id": "sishu.mengzi.09.07",
+  "source_chinese_lines": [
+    "萬章問曰：「人有言『伊尹以割烹要湯』，有諸？」",
+    "孟子曰：「否，不然。伊尹耕於有莘之野，而樂堯舜之道焉。非其義也，非其道也，祿之以天下弗顧也，繫馬千駟弗視也。非其義也，非其道也，一介不以與人，一介不以取諸人。湯使人以幣聘之。囂囂然曰：『我何以湯之聘幣為哉？我豈若處畎畝之中，由是以樂堯舜之道哉？』湯三使往聘之。既而幡然改曰：『與我處畎畝之中，由是以樂堯舜之道，吾豈若使是君為堯舜之君哉？吾豈若使是民為堯舜之民哉？吾豈若於吾身親見之哉？天之生此民也，使先知覺後知，使先覺覺後覺也。予，天民之先覺者也。予將以斯道覺斯民也，非予覺之而誰也？』思天下之民匹夫匹婦有不被堯舜之澤者，若己推而內之溝中。其自任以天下之重如此，故就湯而說之以伐夏救民。吾未聞枉己而正人者也，況辱己以正天下者乎？聖人之行不同也，或遠或近，或去或不去，歸潔其身而已矣。吾聞其以堯舜之道要湯，未聞以割烹也。《伊訓》曰：『天誅造攻自牧宮，朕載自亳。』」"
+  ],
+  "source_english_lines": [
+    "Wan Zhang asked Mencius, saying, 'People say that Yi Yin sought an introduction to Tang by his knowledge of cookery. Was it so?'",
+    "Mencius replied, 'No, it was not so. Yi Yin was a farmer in the lands of the prince of Xin, delighting in the principles of Yao and Shun. In any matter contrary to the righteousness which they prescribed, or contrary to their principles, though he had been offered the throne, he would not have regarded it; though there had been yoked for him a thousand teams of horses, he would not have looked at them. In any matter contrary to the righteousness which they prescribed, or contrary to their principles, he would neither have given nor taken a single straw. Tang sent persons with presents of silk to entreat him to enter his service. With an air of indifference and self-satisfaction he said, \"What can I do with those silks with which Tang invites me? Is it not best for me to abide in the channelled fields, and so delight myself with the principles of Yao and Shun?\" Tang thrice sent messengers to invite him. After this, with the Zhange of resolution displayed in his countenance, he spoke in a different style, \"Instead of abiding in the channelled fields and thereby delighting myself with the principles of Yao and Shun, had I not better make this prince a prince like Yao or Shun, and this people like the people of Yao or Shun? Had I not better in my own person see these things for myself? \"Heaven's plan in the production of mankind is this: that they who are first informed should instruct those who are later in being informed, and they who first apprehend principles should instruct those who are slower to do so. I am one of Heaven's people who have first apprehended; I will take these principles and instruct this people in them. If I do not instruct them, who will do so?\" He thought that among all the people of the kingdom, even the private men and women, if there were any who did not enjoy such benefits as Yao and Shun conferred, it was as if he himself pushed them into a ditch. He took upon himself the heavy charge of the kingdom in this way, and therefore he went to Tang, and pressed upon him the subject of attacking Xia and saving the people. I have not heard of one who bent himself, and at the same time made others straight; how much less could one disgrace himself, and thereby rectify the whole kingdom? The actions of the sages have been different. Some have kept remote from court, and some have drawn near to it; some have left their offices, and some have not done so - that to which those different courses all agree is simply the keeping of their persons pure. I have heard that Yi Yin sought an introduction to Tang by the doctrines of Yao and Shun. I have not heard that he did so by his knowledge of cookery. In the \"Instructions of Yi,\" it is said, \"Heaven destroying Jie commenced attacking him in the palace of Mu. I commenced in Bo.\"'"
+  ],
+  "collation": {
+    "source_hanzi_characters": 340,
+    "project_hanzi_characters": 340,
+    "differing_characters": 1,
+    "source_variant": "繫",
+    "project_variant": "系",
+    "normalized_hanzi_similarity": 0.9970588235294118,
+    "policy": "Preserve the printed/project glyph; source divergence is not automatic evidence of a correction"
+  },
+  "review_note": "Pemisahan komentar 林氏曰 dan 愚謂 sudah selesai sebelum pemetaan Inggris. Inggris hanya draft; primary Legge comparison and reviewer approval remain required."
+}

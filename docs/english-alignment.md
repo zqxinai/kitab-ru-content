@@ -154,3 +154,12 @@ Tiga catatan `English translation: Legge 1861` di akhir transkripsi bab 1–3 di
 - Catatan perbedaan, rekomendasi Da Xue `親民/新民` dan backlog pinyin/nama: [audit perbedaan](sishu-textual-variants.md) dan [backlog](sishu-audit-backlog.md).
 - Cakupan terkini **885/965 draf Inggris**, tersisa **80** (Da Xue 53, Lun Yu 26, Mengzi 1). Semuanya **Perlu Review**; jumlah Final tetap 0. Teks Indonesia, Hanzi, pinyin dan aset Android **tidak berubah**.
 - Tes regresi: `node --test tests/textual-variants-b07.test.js`; semua versi batch sebelumnya tetap diperiksa sebagai batas minimum historis.
+
+
+## Batch khusus Mengzi IX:7 — 14 November 2026
+
+- Setelah kontaminasi komentar `林氏曰` dan `愚謂` dipisah dari teks utama dalam audit sebelumnya, Hanzi proyek untuk `sishu.mengzi.09.07` kembali dicocokkan terhadap sumber dwibahasa James Legge yang dipin ke commit `5d2e867ecfb33e16a6aed392c6b8b8cde3896030`.
+- Dua unit sumber berurutan 32–33 (baris 103–104, 106–107 pada `corpus/mengzi/mengzi009.txt`) meliputi seluruh pasal tanpa komentar Zhu Xi tambahan. Kesamaan setelah mengabaikan tanda baca: **339 dari 340 Hanzi (99,71%)**. Satu varian adalah `系` dalam Ru Classics vs `繫` pada transkripsi sumber; Hanzi MATAKIN tetap dipertahankan.
+- Salinan sumber dan provenance: `sources/legge/mengzi-09-07-chinesenotes.json`; peta Inggris: `legge-mengzi-09-07`. Terjemahan Inggris ditampilkan sebagai **Draft**, tidak diubah atau diterjemahkan ulang oleh AI.
+- Cakupan editor meningkat dari **885 menjadi 886 dari 965 pasal**. Mengzi kini **260/260 draf Inggris**, tetapi belum satu pun disahkan Final. Tersisa **79 pasal**: Da Xue 53 dan Lun Yu 26.
+- Tes regresi `tests/mengzi-09-07-english.test.js` menjaga pasangan lengkap, provenance, perbedaan grafem, pemisahan komentar, dan ketiadaan status Final. Pemeriksaan terhadap cetakan utama James Legge dan approval reviewer tetap pekerjaan berikutnya.
