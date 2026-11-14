@@ -106,6 +106,23 @@ def main():
     (DIST / "build-report.json").write_text(
         json.dumps(summary, indent=2) + "\n", encoding="utf-8"
     )
+    # The catalog checksum must be updated in the same deterministic build as dist.
+    # Do not change manually curated editorial coverage or approval metadata here.
+    catalog_path = ROOT / "catalog.json"
+    catalog = json.loads(catalog_path.read_text(encoding="utf-8"))
+    if catalog.get("schema") != "kitab-ru.catalog.v1":
+        raise ValueError("Unexpected catalog schema")
+    collections = [item for item in catalog.get("collections", []) if item.get("id") == "sishu"]
+    if len(collections) != 1:
+        raise ValueError("Exactly one Si Shu catalog entry is required")
+    collection = collections[0]
+    collection["sha256"] = digest
+    collection["english_passages"] = english_count
+    collection["total_passages"] = source_count
+    updated_catalog = json.dumps(catalog, ensure_ascii=False, indent=2) + "\n"
+    if catalog_path.read_text(encoding="utf-8") != updated_catalog:
+        catalog_path.write_text(updated_catalog, encoding="utf-8")
+
     print(json.dumps(summary, ensure_ascii=False, indent=2))
 
 
