@@ -44,6 +44,10 @@ test('English is paired with exactly the unmodified Hanzi span and source text',
 
 test('Do not falsely cover Da Xue VI:1 with incomplete Legge text',()=>{
  assert.equal(source.excluded.id,'sishu.daxue.06.01');
- assert.equal(alignment.entries.some(a=>a.indonesian_passage_ids.includes(source.excluded.id)),false);
+ const verifiedSource=alignment.entries.filter(a=>a.indonesian_passage_ids.includes(source.excluded.id));
+ assert.equal(verifiedSource.length,1);
+ assert.equal(verifiedSource[0].english_segments.length,2);
+ assert.equal(verifiedSource[0].status,'draft');
+ assert.match(verifiedSource[0].english_segments[1].legge_ref,/Zhu Xi/);
  assert.match(source.units.find(u=>u.indonesian_passage_id==='sishu.daxue.09.01').review_discrepancy,/dua paragraf/);
 });
