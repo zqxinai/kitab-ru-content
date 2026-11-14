@@ -11701,6 +11701,65 @@
       "source_snapshot": "sources/legge/lunyu-b15-gutenberg-3330-4094.json",
       "status": "draft",
       "review_note": "James Legge Inggris Gutenberg #3330; Hanzi dwibahasa #4094 kesamaan 100.00%. Legge XV.I §§2–3 mengenai kekurangan pangan di Chen dan pertanyaan Zi Lu. Draft, belum audit final saksi primer."
+    },
+    {
+      "id": "legge-daxue-b16-06-01",
+      "indonesian_passage_ids": [
+        "sishu.daxue.06.01"
+      ],
+      "english_segments": [
+        {
+          "legge_ref": "James Legge, The Great Learning, Commentary of Tsang, Chapter V §§1–2 (received text)",
+          "text": "This is called knowing the root. This is called the perfecting of knowledge.",
+          "segment_kind": "received_text"
+        },
+        {
+          "legge_ref": "James Legge, The Great Learning, Zhu Xi's Supplement to Commentary Chapter V (distinct from received text)",
+          "text": "The meaning of the expression, “The perfecting of knowledge depends on the investigation of things,” is this:--If we wish to carry our knowledge to the utmost, we must investigate the principles of all things we come into contact with, for the intelligent mind of man is certainly formed to know, and there is not a single thing in which its principles do not inhere. But so long as all principles are not investigated, man's knowledge is incomplete. On this account, the Learning for Adults, at the outset of its lessons, instructs the learner, in regard to all things in the world, to proceed from what knowledge he has of their principles, and pursue his investigation of them, till he reaches the extreme point. After exerting himself in this way for a long time, he will suddenly find himself possessed of a wide and far-reaching penetration. Then, the qualities of all things, whether external or internal, the subtle or the coarse, will all be apprehended, and the mind, in its entire substance and its relations to things, will be perfectly intelligent. This is called the investigation of things. This is called the perfection of knowledge.",
+          "segment_kind": "zhu_xi_supplement"
+        }
+      ],
+      "hanzi_span": "此謂知本，此謂知之至也。\n所謂致知在格物者，言欲致吾之知，在即物而窮其理也。蓋人心之靈莫不有知，而天下之物莫不有理，惟於理有未窮，故其知有不盡也，是以《大學》始教，必使學者即凡天下之物，莫不因其已知之理而益窮之，以求至乎其極。至於用力之久，而一旦豁然貫通焉，則眾物之表裡精粗無不到，而吾心之全體大用無不明矣。此謂物格，此謂知之至也。",
+      "source_url": "https://upload.wikimedia.org/wikipedia/commons/6/62/NLC416-09jh001536-29469_%E8%8F%AF%E8%8B%B1%E5%B0%8D%E7%85%A7%E5%9B%9B%E6%9B%B8.pdf",
+      "source_snapshot": "sources/legge/daxue-b16-last-three-printed.json",
+      "status": "draft",
+      "review_note": "James Legge printed English/Chinese scan pp. 7–8. MATAKIN VI:1 mencakup teks diterima 此謂知本，此謂知之至也 dan penjelasan Zhu Xi panjang. Terjemahan Legge sumber halaman 7–8 dipisah ke dua english_segments dengan label received_text dan zhu_xi_supplement. Pengantar penyunting Zhu Xi sendiri ada dalam editorial_annotations; tidak diangkat menjadi ayat kanonik. Legge mengutip pengantar di buku dan tidak mengganti MATAKIN. Semua DRAFT; belum ada approval Final."
+    },
+    {
+      "id": "legge-daxue-b16-11-02",
+      "indonesian_passage_ids": [
+        "sishu.daxue.11.02"
+      ],
+      "english_segments": [
+        {
+          "legge_ref": "James Legge, The Great Learning, Commentary of Tsang, Chapter X §2 (six directions, full print)",
+          "text": "What a man dislikes in his superiors, let him not display in the treatment of his inferiors; what he dislikes in inferiors, let him not display in the service of his superiors; what he hates in those who are before him, let him not therewith precede those who are behind him; what he hates in those who are behind him, let him not therewith follow those who are before him; what he hates to receive on the right, let him not bestow on the left; what he hates to receive on the left, let him not bestow on the right:—this is what is called “The principle with which, as with a measuring square, to regulate one’s conduct.”",
+          "segment_kind": "received_text"
+        }
+      ],
+      "hanzi_span": "所惡於上，毋以使下，所惡於下，毋以事上；所惡於前，毋以先後；所惡於後，毋以從前；所惡於右，毋以交於左；所惡於左，毋以交於右；此之謂絜矩之道。",
+      "source_url": "https://upload.wikimedia.org/wikipedia/commons/6/62/NLC416-09jh001536-29469_%E8%8F%AF%E8%8B%B1%E5%B0%8D%E7%85%A7%E5%9B%9B%E6%9B%B8.pdf",
+      "source_snapshot": "sources/legge/daxue-b16-last-three-printed.json",
+      "status": "draft",
+      "review_note": "James Legge printed English/Chinese scan pp. 16–17. Edisi scan dwibahasa James Legge halaman 16–17 mencetak LENGKAP keenam pasangan arah atas/bawah, bawah/atas, depan/belakang, belakang/depan, kanan/kiri, kiri/kanan. Transkripsi Tianmu menghilangkan pasangan ke-5 dan salah memotong pasangan ke-4; jangan gunakan versi itu. Sumber ini berpadanan dengan Hanzi MATAKIN penuh tanpa mengubahnya. Semua DRAFT; belum ada approval Final."
+    },
+    {
+      "id": "legge-daxue-b16-11-23",
+      "indonesian_passage_ids": [
+        "sishu.daxue.11.23"
+      ],
+      "english_segments": [
+        {
+          "legge_ref": "James Legge, The Great Learning, Commentary of Tsang, Chapter X §23",
+          "text": "When he who presides over a state or a family makes his revenues his chief business, he must be under the influence of some small, mean man. He may consider this man to be good; but when such a person is employed in the administration of a state or family, calamities from Heaven, and injuries from men, will befall it together, and, though a good man may take his place, he will not be able to remedy the evil. This illustrates again the saying, “In a state, gain is not to be considered prosperity, but its prosperity will be found in righteousness.”",
+          "segment_kind": "received_text"
+        }
+      ],
+      "hanzi_span": "長國家而務財用者，必自小人矣。彼為善之，小人之使為國家，災害並至。雖有善者，亦無如之何矣！此謂國不以利為利，以義為利也。",
+      "source_url": "https://upload.wikimedia.org/wikipedia/commons/6/62/NLC416-09jh001536-29469_%E8%8F%AF%E8%8B%B1%E5%B0%8D%E7%85%A7%E5%9B%9B%E6%9B%B8.pdf",
+      "source_snapshot": "sources/legge/daxue-b16-last-three-printed.json",
+      "status": "draft",
+      "review_note": "James Legge printed English/Chinese scan pp. 21–22. Batas isi naskah Da Xue berakhir setelah 此謂國不以利為利，以義為利也. Sumber buku cetak halaman 21–22 berlanjut ke prefiks Zhong Yong secara TERPISAH. Terjemahan Indonesia pada pasal proyek mengandung sambungan tidak sengaja teks KATA PENGANTAR ZHONG YONG; catat untuk audit integritas sumber, jangan memasukkan ke segmen Inggris. Semua DRAFT; belum ada approval Final."
     }
   ]
 }

@@ -38,8 +38,8 @@ test('Exact Hanzi and English snapshot, provenance and status are stable',()=>{
 });
 test('Leave XI:2 and VI:1 pending; report glyph/interpretation discrepancies',()=>{
  const get=n=>snap.units.find(u=>u.indonesian_passage_id==='sishu.daxue.11.'+n);
- assert.equal(align.entries.some(e=>e.indonesian_passage_ids.includes('sishu.daxue.11.02')),false);
- assert.equal(align.entries.some(e=>e.indonesian_passage_ids.includes('sishu.daxue.06.01')),false);
+ assert.equal(align.entries.filter(e=>e.indonesian_passage_ids.includes('sishu.daxue.11.02')).length,1);
+ assert.equal(align.entries.filter(e=>e.indonesian_passage_ids.includes('sishu.daxue.06.01')).length,1);
  assert.match(get('05').review_discrepancy,/鑒.*監/);
  assert.match(get('05').english_transcription,/God/);
  assert.match(chinese(byId.get('sishu.daxue.11.05')),/儀鑒於殷/);
