@@ -36,9 +36,12 @@ test('MATAKIN Indonesian translation remains byte-for-byte identical to audited 
   assert.equal(fnv16(p.translation_indonesian),'7ebb66c0');
   assert.equal(dist.translation_indonesian,p.translation_indonesian);
 });
-test('Mengzi 09.07 Legge mapping remains withheld until separately verified',()=>{
+test('Mengzi 09.07 Legge mapping now exists as Draft, with editorial Final still withheld',()=>{
   const a=read('dist/sishu-english-alignment.json');
   const final=read('dist/sishu-review-status.json');
-  assert.ok(!a.entries.some(e=>e.indonesian_passage_ids.includes(p.id)));
+  const matches=a.entries.filter(e=>e.indonesian_passage_ids.includes(p.id));
+  assert.equal(matches.length,1);
+  assert.equal(matches[0].id,'legge-mengzi-09-07');
+  assert.equal(matches[0].status,'draft');
   assert.ok(!final.entries.some(e=>e.passage_id===p.id));
 });
