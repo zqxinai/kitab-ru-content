@@ -1,0 +1,157 @@
+{
+  "schema": "ru-classics.source-registry.v1",
+  "version": "1.0.0",
+  "date": "2026-11-14",
+  "status": "editorial-baseline-not-final-certification",
+  "rule": "MATAKIN 2011 base text; 2012 verified photos control attested printed readings/presentation; compare Hanzi contextually without forced reference equality; James Legge English edition fixed by book.",
+  "matakin": {
+    "base": {
+      "id": "matakin2011",
+      "work": "Si Shu (Kitab Yang Empat), MATAKIN, PDF supplied by project owner",
+      "role": "indonesian-base-text-and-available-verse-structure",
+      "availability": "user-supplied-source-not-public-in-this-repository",
+      "full_hanzi_pinyin": false
+    },
+    "print_witness": {
+      "id": "matakin2012",
+      "work": "Si Shu MATAKIN cetakan 2012, physical copy photographed selectively",
+      "role": "printed-edition-evidence-and-presentation-style",
+      "availability": "selected-photographs-only",
+      "coverage": "partial; passage by passage",
+      "presentation": {
+        "main_script": "traditional",
+        "supplemental_simplified": "in parentheses when printed or editorially attested; do not invent print attestation",
+        "pinyin": "contextual tone-marked; record printed alternative distinctly",
+        "names": "Hanyu Pinyin alongside MATAKIN Hokkian",
+        "cross_references": "include book title even for same-book references",
+        "verse_units": "preserve pasal plus internal ayat"
+      }
+    },
+    "note": "A 2012 photo can override a confirmed 2011 difference only for the photographed span; preserve both witnesses and the decision."
+  },
+  "hanzi": {
+    "current_project_origin": {
+      "id": "hanzhaodeng-chinese-ancient-text",
+      "repository_url": "https://github.com/hanzhaodeng/chinese-ancient-text",
+      "processing": "original simplified corpus, converted with ICU Hans-to-Hant for initial project text",
+      "authority": "legacy ingest, NOT MATAKIN 2012 print"
+    },
+    "locked_comparator": {
+      "id": "zhu-xi-wyg",
+      "title": "朱熹《四書章句集註》",
+      "edition": "欽定四庫全書 (WYG)",
+      "repository_url": "https://github.com/kanripo/KR1h0015",
+      "commit": "84c6b2c5093c57ae5d41c60a73c02323d2420ef0",
+      "role": "fixed classical comparison and commentary boundary evidence",
+      "authority": "secondary to available MATAKIN 2012 photo for what was printed"
+    },
+    "character_policy": "Classify traditional/simplified, legitimate historical glyph variant, mistaken shape, context-sensitive character and commentary contamination before correction."
+  },
+  "legge": {
+    "bibliographic_master": [
+      {
+        "id": "legge-vol1-1893",
+        "title": "The Chinese Classics, Vol. I: Confucian Analects, The Great Learning, and The Doctrine of the Mean",
+        "edition": "2nd revised",
+        "year": 1893,
+        "publisher": "Clarendon Press, Oxford",
+        "reference_url": "https://ignca.gov.in/Asi_data/28599.pdf",
+        "covers": [
+          "lunyu",
+          "daxue",
+          "zhongyong"
+        ],
+        "status": "edition-identity-verified; transcripts not fully collated"
+      },
+      {
+        "id": "legge-vol2-1895",
+        "title": "The Chinese Classics, Vol. II: The Works of Mencius",
+        "edition": "2nd revised",
+        "year": 1895,
+        "publisher": "Clarendon Press, Oxford",
+        "reference_url": "https://catalogue.bnf.fr/ark:/12148/cb33299473g",
+        "covers": [
+          "mengzi"
+        ],
+        "status": "edition-identity-verified; transcripts not fully collated"
+      }
+    ],
+    "canonical_edition_by_book": {
+      "daxue": "legge-vol1-1893",
+      "zhongyong": "legge-vol1-1893",
+      "lunyu": "legge-vol1-1893",
+      "mengzi": "legge-vol2-1895"
+    },
+    "digital_witnesses": [
+      {
+        "id": "gutenberg-3330",
+        "url": "https://www.gutenberg.org/ebooks/3330",
+        "role": "Lun Yu English transcription",
+        "snapshot_example": "sources/legge/lunyu-b13-gutenberg-3330-4094.json",
+        "status": "draft-transcription-not-proven-identical-to-master"
+      },
+      {
+        "id": "gutenberg-4094",
+        "url": "https://www.gutenberg.org/ebooks/4094",
+        "role": "Lun Yu bilingual English/Hanzi transcription",
+        "snapshot_example": "sources/legge/lunyu-b13-gutenberg-3330-4094.json",
+        "status": "draft-transcription-not-proven-identical-to-master"
+      },
+      {
+        "id": "confuciuspedia",
+        "url": "https://confuciuspedia.com/lib/the-doctrine-of-the-mean/amp/",
+        "role": "Zhong Yong attributed Legge English plus Hanzi alignment",
+        "snapshot_example": "sources/legge/zhongyong-confuciuspedia.json",
+        "status": "secondary-transcription-needs-print-collation"
+      },
+      {
+        "id": "chinesenotes",
+        "url": "https://github.com/alexamies/chinesenotes.com/tree/main/corpus/mengzi",
+        "role": "Mengzi attributed Legge bilingual digital source",
+        "snapshot_example": "sources/legge/mengzi-chinesenotes-01-03.json",
+        "status": "secondary-transcription-needs-print-collation"
+      },
+      {
+        "id": "tianmu",
+        "url": "https://tianmu.org/good-work-library/confucian/general-texts/the-great-learning-james-legge",
+        "role": "Da Xue Legge English digital source",
+        "snapshot_example": "sources/legge/daxue-b08-10-passages.json",
+        "status": "secondary-transcription-needs-print-collation"
+      },
+      {
+        "id": "four-books-print-scan",
+        "url": "https://upload.wikimedia.org/wikipedia/commons/6/62/NLC416-09jh001536-29469_%E8%8F%AF%E8%8B%B1%E5%B0%8D%E7%85%A7%E5%9B%9B%E6%9B%B8.pdf",
+        "role": "historic bilingual print witness for problematic Da Xue boundaries; bibliographic identity to master not yet certified",
+        "snapshot_example": "sources/legge/daxue-b16-last-three-printed.json",
+        "status": "historical-witness-needs-edition-collation"
+      }
+    ],
+    "fidelity_rule": "A digital witness is NOT a new canonical translation. Preserve Legge text, note site/edition and differences, never concatenate or repeat an English source segment merely to match MATAKIN pasal numbering."
+  },
+  "review": {
+    "current_counts": {
+      "chapters": 78,
+      "legacy_passages": 965,
+      "english_draft_coverage": 965
+    },
+    "approvals": "No automatic Final; edition-level bibliography does not certify verse-level fidelity.",
+    "reopen_only_on": [
+      "new confirmed primary evidence",
+      "source text changed",
+      "specific failed regression",
+      "demonstrable loss or misalignment"
+    ],
+    "change_log_required": [
+      "pasal_id",
+      "source_edition_id",
+      "source_locator",
+      "actual_text",
+      "proposed_text",
+      "glyph_category",
+      "linguistic_reason",
+      "translation_context",
+      "decision",
+      "test_result"
+    ]
+  }
+}
