@@ -229,3 +229,11 @@ Batch baru menambahkan sepuluh pasal **Da Xue X:1–9 dan XI:1**, seluruhnya ber
 - MATAKIN XIV:1 merupakan gabungan Legge XIV.I + XIV.II; XIV:26 gabungan Legge XIV.XXVII + XIV.XXVIII; XIV:37 gabungan Legge XIV.XXXIX + XIV.XL. Dua segmen sumber tetap terpisah dalam masing-masing alignment; **jangan mengarang segmen gabungan**.
 - Untuk buku X, X:8 memakai hanya Legge X.VIII §§1–7; X:18 memakai X.XIII §§1–2; X:25 memakai X.XVI §§2–5. XIX? Tidak menambahkan seksi tetangga. Varian 太/大 pada IX:6 dan 姜/薑 pada X:8 dicatat tanpa koreksi otomatis.
 - **956/965 draf Inggris**, tersisa **9** (Da Xue 3, Lun Yu 6); Final **0**. Pengujian `tests/lunyu-batch-14.test.js` menjaga Hanzi utuh, banyak segmen, provenance, dan status Draft.
+
+
+## Lun Yu batch 15 — enam draf terakhir (14 November 2026)
+
+- Tambah MATAKIN `XI:26`, `XIV:32`, `XIV:43`, `XIV:44`, `XV:1`, dan `XV:2`, bersumber James Legge [Gutenberg #3330](https://www.gutenberg.org/ebooks/3330) serta Hanzi dwibahasa [#4094](https://www.gutenberg.org/ebooks/4094). Salinan segmen ada di `sources/legge/lunyu-b15-gutenberg-3330-4094.json`.
+- XI:26 mencakup seluruh 12 seksi sumber. Dalam teks dwibahasa, penjelasan grafem `曾(上析、下日、與晰同)` tidak disalin sebagai ayat. XIV:32 memiliki varian 棲/栖. XIV:43–44 dibedakan berdasarkan unit dan Hanzi, meskipun digitalisasi Legge menggandakan label CHAP XLVI.
+- MATAKIN XV:1 hanya Legge XV.I §1 sedangkan XV:2 menggunakan §§2–3. Tidak ada penerjemahan ulang AI atau perubahan teks kitab MATAKIN.
+- **962/965 draf Inggris**, seluruh 512 Lun Yu kini tersedia sebagai Draft. Tersisa tiga pasal Da Xue VI:1, XI:2, XI:23; Final **0**. Pengujian `tests/lunyu-batch-15.test.js` memeriksa semua unit dan perbedaannya.
