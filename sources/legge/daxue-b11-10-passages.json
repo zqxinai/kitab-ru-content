@@ -1,0 +1,189 @@
+{
+  "schema": "ru-classics.legge-source-snapshot.v1",
+  "batch": "daxue-b11-10-passages",
+  "captured_on": "2026-11-14",
+  "source_english": {
+    "url": "https://tianmu.org/good-work-library/confucian/general-texts/the-great-learning-james-legge",
+    "description": "James Legge 1893 public-domain Tianmu transcription; source line numbers refer to web HTML, not printed pages."
+  },
+  "source_chinese": {
+    "url": "https://confuciuspedia.com/lib/the-great-learning/",
+    "description": "Confuciuspedia text segmented by exact Hanzi scope; grouped webpage lines recorded as ranges. Character variants require manual review."
+  },
+  "cross_reference": {
+    "url": "https://oll.libertyfund.org/title/2270",
+    "note": "Verify printed Legge before Final. Da Xue XI:2 held for suspicious direction omissions; VI:1 held due embedded Zhu Xi commentary."
+  },
+  "units": [
+    {
+      "indonesian_passage_id": "sishu.daxue.11.03",
+      "legge_ref": "The Great Learning, Commentary of Tsang, Chapter X §3",
+      "hanzi_span": "《詩》云：“樂只君子，民之父母。”民之所好好之，民之所惡惡之，此之謂民之父母。",
+      "source_hanzi_transcription": "《诗》云：“乐只君子，民之父母”。民之所好好之，民之所恶恶之，此之谓民之父母。",
+      "english_transcription": "In the Book of Poetry, it is said, \"How much to be rejoiced in are these princes, the parents of the people!\" When a prince loves what the people love, and hates what the people hate, then is he what is called the parent of the people.",
+      "english_source_lines": [
+        92,
+        92
+      ],
+      "chinese_source_lines": [
+        126,
+        128
+      ],
+      "normalized_hanzi_similarity": 1,
+      "review_discrepancy": "Kutipan Sanjak dan penjelasan 民之所好好之 dalam satu unit."
+    },
+    {
+      "indonesian_passage_id": "sishu.daxue.11.04",
+      "legge_ref": "The Great Learning, Commentary of Tsang, Chapter X §4",
+      "hanzi_span": "《詩》云：“節彼南山，維石岩岩。赫赫師尹，民具爾瞻。”有國者不可以不慎，辟，則為天下僇矣。",
+      "source_hanzi_transcription": "《诗》云：“节彼南山，维石岩岩；赫赫师尹，民具尔瞻。”有国者不可以不慎，辟，则为天下僇矣！",
+      "english_transcription": "In the Book of Poetry, it is said, \"Lofty is that southern hill, with its rugged masses of rocks! Greatly distinguished are you, O grand-teacher Yin, the people all look up to you.\" Rulers of states may not neglect to be careful. If they deviate to a mean selfishness, they will be a disgrace in the kingdom.",
+      "english_source_lines": [
+        93,
+        93
+      ],
+      "chinese_source_lines": [
+        130,
+        131
+      ],
+      "normalized_hanzi_similarity": 1,
+      "review_discrepancy": "Tianmu merapikan tanda kutip dibanding Confuciuspedia; tidak mengubah Hanzi."
+    },
+    {
+      "indonesian_passage_id": "sishu.daxue.11.05",
+      "legge_ref": "The Great Learning, Commentary of Tsang, Chapter X §5",
+      "hanzi_span": "《詩》云：“殷之未喪師，克配上帝。儀鑒於殷，峻命不易。”道得眾則得國，失眾則失國。",
+      "source_hanzi_transcription": "《诗》云：“殷之未丧师，克配上帝。仪监于殷，峻命不易。”道得众则得国，失众则失国。",
+      "english_transcription": "In the Book of Poetry, it is said, \"Before the sovereigns of the Yin dynasty had lost the hearts of the people, they could appear before God. Take warning from the house of Yin. The great decree is not easily preserved.\" This shows that, by gaining the people, the kingdom is gained, and, by losing the people, the kingdom is lost.",
+      "english_source_lines": [
+        94,
+        94
+      ],
+      "chinese_source_lines": [
+        133,
+        137
+      ],
+      "normalized_hanzi_similarity": 0.966667,
+      "review_discrepancy": "Hanzi proyek 儀鑒 vs sumber 仪监, varian 鑒/監. Legge memakai 'God' untuk 上帝; bukan ralat MATAKIN."
+    },
+    {
+      "indonesian_passage_id": "sishu.daxue.11.06",
+      "legge_ref": "The Great Learning, Commentary of Tsang, Chapter X §6",
+      "hanzi_span": "是故君子先慎乎德。有德此有人，有人此有土，有土此有財，有財此有用。",
+      "source_hanzi_transcription": "是故君子先慎乎德。有德此有人，有人此有土，有土此有财，有财此有用。",
+      "english_transcription": "On this account, the ruler will first take pains about his own virtue. Possessing virtue will give him the people. Possessing the people will give him the territory. Possessing the territory will give him its wealth. Possessing the wealth, he will have resources for expenditure.",
+      "english_source_lines": [
+        95,
+        95
+      ],
+      "chinese_source_lines": [
+        136,
+        137
+      ],
+      "normalized_hanzi_similarity": 1,
+      "review_discrepancy": "Urutan 德→人→土→財→用 satu unit."
+    },
+    {
+      "indonesian_passage_id": "sishu.daxue.11.07",
+      "legge_ref": "The Great Learning, Commentary of Tsang, Chapter X §7",
+      "hanzi_span": "德者本也，財者末也。",
+      "source_hanzi_transcription": "德者本也，财者末也。",
+      "english_transcription": "Virtue is the root; wealth is the result.",
+      "english_source_lines": [
+        97,
+        97
+      ],
+      "chinese_source_lines": [
+        136,
+        137
+      ],
+      "normalized_hanzi_similarity": 1,
+      "review_discrepancy": "Legge memilih 'result' untuk 末."
+    },
+    {
+      "indonesian_passage_id": "sishu.daxue.11.08",
+      "legge_ref": "The Great Learning, Commentary of Tsang, Chapter X §8",
+      "hanzi_span": "外本內末，爭民施奪。",
+      "source_hanzi_transcription": "外本内末，争民施夺。",
+      "english_transcription": "If he make the root his secondary object, and the result his primary, he will only wrangle with his people, and teach them rapine.",
+      "english_source_lines": [
+        99,
+        99
+      ],
+      "chinese_source_lines": [
+        136,
+        138
+      ],
+      "normalized_hanzi_similarity": 1,
+      "review_discrepancy": "Sumber XI:8 dibedakan dari XI:7."
+    },
+    {
+      "indonesian_passage_id": "sishu.daxue.11.09",
+      "legge_ref": "The Great Learning, Commentary of Tsang, Chapter X §9",
+      "hanzi_span": "是故財聚則民散，財散則民聚。",
+      "source_hanzi_transcription": "是故财聚则民散，财散则民聚。",
+      "english_transcription": "Hence, the accumulation of wealth is the way to scatter the people; and the letting it be scattered among them is the way to collect the people.",
+      "english_source_lines": [
+        100,
+        100
+      ],
+      "chinese_source_lines": [
+        136,
+        138
+      ],
+      "normalized_hanzi_similarity": 1,
+      "review_discrepancy": "Kedua klausa 財聚/財散 utuh."
+    },
+    {
+      "indonesian_passage_id": "sishu.daxue.11.10",
+      "legge_ref": "The Great Learning, Commentary of Tsang, Chapter X §10",
+      "hanzi_span": "是故言悖而出者，亦悖而入；貨悖而入者，亦悖而出。",
+      "source_hanzi_transcription": "是故言悖而出者，亦悖而入；货悖而入者，亦悖而出。",
+      "english_transcription": "And hence, the ruler's words going forth contrary to right, will come back to him in the same way, and wealth, gotten by improper ways, will take its departure by the same.",
+      "english_source_lines": [
+        102,
+        102
+      ],
+      "chinese_source_lines": [
+        136,
+        138
+      ],
+      "normalized_hanzi_similarity": 1,
+      "review_discrepancy": "Kedua klausa 言悖/貨悖 utuh."
+    },
+    {
+      "indonesian_passage_id": "sishu.daxue.11.11",
+      "legge_ref": "The Great Learning, Commentary of Tsang, Chapter X §11",
+      "hanzi_span": "《康誥》曰：“惟命不於常。”道善則得之，不善則失之矣。",
+      "source_hanzi_transcription": "《康诰》曰：“惟命不于常。”道善则得之，不善则失之矣。",
+      "english_transcription": "In the Announcement to K'ang, it is said, \"The decree indeed may not always rest on us\" — that is, goodness obtains the decree, and the want of goodness loses it.",
+      "english_source_lines": [
+        104,
+        104
+      ],
+      "chinese_source_lines": [
+        139,
+        141
+      ],
+      "normalized_hanzi_similarity": 1,
+      "review_discrepancy": "Kutipan Kanggao dan tafsir kalimat berikutnya satu pasal."
+    },
+    {
+      "indonesian_passage_id": "sishu.daxue.11.12",
+      "legge_ref": "The Great Learning, Commentary of Tsang, Chapter X §12",
+      "hanzi_span": "《楚書》曰：“楚國無以為寶，惟善以為寶。”",
+      "source_hanzi_transcription": "《楚书》曰：“楚国无以为宝，惟善以为宝。”",
+      "english_transcription": "In the Book of Ch'u, it is said, \"The kingdom of Ch'u does not consider that to be valuable. It values, instead, its good men.\"",
+      "english_source_lines": [
+        105,
+        105
+      ],
+      "chinese_source_lines": [
+        143,
+        145
+      ],
+      "normalized_hanzi_similarity": 1,
+      "review_discrepancy": "Legge memilih 'good men' untuk 善, berbeda dari keterangan MATAKIN Kebaikan, perlu review."
+    }
+  ]
+}
