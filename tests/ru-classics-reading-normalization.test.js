@@ -13,6 +13,9 @@ test('Pinyin - Hokkian: existing pairs are neither removed nor doubled', () => {
   assert.equal(reading.normalize('Yao (Giau) dan Sun', 'sample'), 'Yao - Giau dan Shun - Sun');
   assert.equal(reading.normalize('Dari Sing Thong, I- ien dan Lai-cu', 'sample'), 'Dari Cheng Tang - Sing Thong, Yi Yin - I- ien dan Lai Zhu - Lai-cu');
   assert.equal(reading.normalize('Thai-kong Bong dan San Gi-sing', 'sample'), 'Taigong Wang - Thai-kong Bong dan San Yisheng - San Gi-sing');
+  assert.equal(reading.normalize('Orang-orang seperti I dan Koo Yau', 'sample'), 'Orang-orang seperti Yu - I dan Gao Yao - Koo Yau');
+  assert.equal(reading.normalize('Raja I dan Raja Wen - Bun', 'sample'), 'Raja Yu - I dan Raja Wen - Bun');
+  assert.equal(reading.normalize('(IIB:13) Raja', 'sample'), '(IIB:13) Raja');
 });
 
 test('only Mengzi VII B:38 drops extraneous terminal colophon; legitimate Siancai stays', () => {
