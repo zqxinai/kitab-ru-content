@@ -1,4 +1,4 @@
-/* MATAKIN 2012-style reference display — manually checked pilot batches 01 and 02.
+/* MATAKIN 2012-style reference display — manually checked pilot batches 01–03.
  * Original MATAKIN 2011 translation_indonesian MUST remain unchanged.
  * Replacements are keyed by stable passage ID and exact old reference string.
  * This is a presentation convention, NOT a transcription claim about
@@ -26,7 +26,20 @@
     Object.freeze({"passage_id":"sishu.lunyu.10.01","source":"(S.S. III: 15)","display":"(Sabda Suci — Lun Yu III:15)","target_id":"sishu.lunyu.03.15","decision":"presentation-only / printed 2012 phrasing not attested"}),
     Object.freeze({"passage_id":"sishu.lunyu.10.07","source":"(S.S. VII: 13)","display":"(Sabda Suci — Lun Yu VII:13)","target_id":"sishu.lunyu.07.13","decision":"presentation-only / printed 2012 phrasing not attested"}),
     Object.freeze({"passage_id":"sishu.lunyu.10.08","source":"(S.S. IX: 16)","display":"(Sabda Suci — Lun Yu IX:16)","target_id":"sishu.lunyu.09.16","decision":"presentation-only / printed 2012 phrasing not attested"}),
-    Object.freeze({"passage_id":"sishu.lunyu.05.08","source":"(T.S. VIII)","display":"(Tengah Sempurna — Zhong Yong VIII)","target_id":null,"decision":"presentation-only / chapter-level reference; no passage link; printed 2012 phrasing not attested"})
+    Object.freeze({"passage_id":"sishu.lunyu.05.08","source":"(T.S. VIII)","display":"(Tengah Sempurna — Zhong Yong VIII)","target_id":null,"decision":"presentation-only / chapter-level reference; no passage link; printed 2012 phrasing not attested"}),
+    Object.freeze({"passage_id":"sishu.lunyu.05.12","source":"(A.B. IX: 4)","display":"(Ajaran Besar — Da Xue IX:4)","target_id":"sishu.daxue.10.04","decision":"presentation-only / theme: reciprocity / cross-reference numbering retained; printed 2012 phrasing not attested"}),
+    Object.freeze({"passage_id":"sishu.lunyu.05.25","source":"(S.S. I: 3)","display":"(Sabda Suci — Lun Yu I:3)","target_id":"sishu.lunyu.01.03","decision":"presentation-only / theme: speech and outward manner; printed 2012 phrasing not attested"}),
+    Object.freeze({"passage_id":"sishu.lunyu.10.21","source":"(S.S. III: 15)","display":"(Sabda Suci — Lun Yu III:15)","target_id":"sishu.lunyu.03.15","decision":"presentation-only / text parallel: temple asking; printed 2012 phrasing not attested"}),
+    Object.freeze({"passage_id":"sishu.lunyu.10.25","source":"(S.S. IX: 10)","display":"(Sabda Suci — Lun Yu IX:10)","target_id":"sishu.lunyu.09.10","decision":"presentation-only / text parallel: mourning and ceremonial clothes; printed 2012 phrasing not attested"}),
+    Object.freeze({"passage_id":"sishu.lunyu.16.09","source":"(T.S. XIX: 9)","display":"(Tengah Sempurna — Zhong Yong XIX:9)","target_id":"sishu.zhongyong.20.09","decision":"presentation-only / theme: learning and attaining knowledge; printed 2012 phrasing not attested"}),
+    Object.freeze({"passage_id":"sishu.lunyu.16.12","source":"(S.S. XII: 10)","display":"(Sabda Suci — Lun Yu XII:10)","target_id":"sishu.lunyu.12.10","decision":"presentation-only / theme: cultivating virtue; printed 2012 phrasing not attested"}),
+    Object.freeze({"passage_id":"sishu.lunyu.12.10","source":"(S.S. XVI: 12)","display":"(Sabda Suci — Lun Yu XVI:12)","target_id":"sishu.lunyu.16.12","decision":"presentation-only / cross-reference present but thematic alignment not certified; printed 2012 phrasing not attested"}),
+    Object.freeze({"passage_id":"sishu.lunyu.12.14","source":"(S.S. XIII: 3)","display":"(Sabda Suci — Lun Yu XIII:3)","target_id":"sishu.lunyu.13.03","decision":"presentation-only / cross-reference present but thematic alignment not certified; printed 2012 phrasing not attested"}),
+    Object.freeze({"passage_id":"sishu.lunyu.12.16","source":"(T.S. IX: 3)","display":"(Tengah Sempurna — Zhong Yong IX:3)","target_id":"sishu.zhongyong.10.03","decision":"presentation-only / cross-reference present but thematic alignment not certified; printed 2012 phrasing not attested"}),
+    Object.freeze({"passage_id":"sishu.zhongyong.10.03","source":"(S.S. XII:16)","display":"(Sabda Suci — Lun Yu XII:16)","target_id":"sishu.lunyu.12.16","decision":"presentation-only / cross-reference present but thematic alignment not certified; printed 2012 phrasing not attested"}),
+    Object.freeze({"passage_id":"sishu.lunyu.12.22","source":"(Bc. VIIA: 46)","display":"(Mengzi — Bing Cu VII A:46)","target_id":"sishu.mengzi.13.46","decision":"presentation-only / theme: love and wisdom; printed 2012 phrasing not attested"}),
+    Object.freeze({"passage_id":"sishu.lunyu.12.13","source":"(A.B. IV )","display":"(Ajaran Besar — Da Xue IV)","target_id":null,"decision":"presentation-only / chapter-only; no passage link; printed 2012 phrasing not attested"}),
+    Object.freeze({"passage_id":"sishu.lunyu.12.20","source":"(T.S. VIII)","display":"(Tengah Sempurna — Zhong Yong VIII)","target_id":null,"decision":"presentation-only / chapter-only; no passage link; printed 2012 phrasing not attested"})
   ]);
   const byId=new Map();
   for(const r of records){
