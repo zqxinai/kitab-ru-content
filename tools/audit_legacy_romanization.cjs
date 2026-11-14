@@ -31,10 +31,11 @@ if (all.length !== 965) throw Error('Incomplete scan');
 const names = new Map();
 function add(key, property, row, snippet) {
   let item = names.get(key);
-  if (!item) { item = {term:key, orphan:0, paired:0, examples:[], matches:0}; names.set(key, item); }
+  if (!item) { item = {term:key, orphan:0, paired:0, pairedExamples:[], orphanExamples:[], matches:0}; names.set(key, item); }
   item[property]++;
   item.matches++;
-  if (item.examples.length < 3) item.examples.push({id:row.id, context:snippet});
+  const sampleKey = property === 'paired' ? 'pairedExamples' : 'orphanExamples';
+  if (item[sampleKey].length < 3) item[sampleKey].push({id:row.id, context:snippet});
 }
 const pairRegex = /(?<![\p{L}])([\p{Lu}][\p{L}]+(?:\s+[\p{Lu}][\p{L}]+){0,2})\s+-\s+([\p{Lu}][\p{L}-]+(?:\s+[\p{Lu}][\p{L}-]+){0,2})\b/gu;
 for (const row of all) {
@@ -54,17 +55,34 @@ function escaped(s) {return s.replace(/[.*+?^$()|[\]{}\\]/g, '\\$&');}
 for (const term of terms) {
   const patt = new RegExp('(^|[^\\p{L}])(' + escaped(term) + ')(?=$|[^\\p{L}])', 'giu');
   for (const row of all) {
-    for (const m of row.text.matchAll(patt)) {
+    const displayed = reading.normalize(row.text, row.id);
+    for (const m of displayed.matchAll(patt)) {
       const index = m.index + m[1].length;
-      const before = row.text.slice(Math.max(0, index - 8), index);
+      const before = displayed.slice(Math.max(0, index - 8), index);
       const rightSide = /\s-\s$/.test(before);
       // Paired terms are counted by the extraction above, so only emit uncovered occurrences here.
-      if (!rightSide) add(term, 'orphan', row, row.text.slice(Math.max(0,index-50),Math.min(row.text.length,index+term.length+70)));
+      if (!rightSide) add(term, 'orphan', row, displayed.slice(Math.max(0,index-50),Math.min(displayed.length,index+term.length+70)));
     }
   }
 }
 const orphans = [...names.values()].filter(x=>x.orphan>0)
   .sort((a,b)=>b.orphan-a.orphan || b.paired-a.paired || a.term.localeCompare(b.term));
+
+const duplicatePairs = [];
+const duplicatePattern = /(?<![\p{L}])([\p{Lu}][\p{L}]+(?:\s+[\p{Lu}][\p{L}]+)?)\s+-\s+\1\s+-\s+([\p{Lu}][\p{L}-]+)/giu;
+for (const row of all) {
+  for (const m of row.text.matchAll(duplicatePattern)) {
+    duplicatePairs.push({id:row.id, match:m[0], after:reading.normalize(row.text,row.id).slice(m.index,m.index+85)});
+  }
+}
+const parenthetical = [];
+const parentPattern = /\b([\p{Lu}][\p{L}]+(?:\s+[\p{Lu}][\p{L}]+)?)\s+\(([\p{Lu}][\p{L}-]+(?:\s+[\p{Lu}][\p{L}-]+){0,2})\)/gu;
+for (const row of all) {
+  for (const m of row.text.matchAll(parentPattern)) {
+    parenthetical.push({id:row.id, pair:m[0], displayed:reading.normalize(m[0],row.id)});
+  }
+}
+
 const distinctive = all.filter(row => /(?:KATA PENGANTAR|BAB UTAMA|^JILID\s+[IVX]|SIANCAI\s*$)/u.test(row.text))
   .map(row=>({id:row.id, finalInChapter:row.finalInChapter, end:row.text.slice(-260)}));
 const tailCases = all.filter(row=>row.finalInChapter).map(row=>({id:row.id,end:row.text.slice(-180)}));
@@ -73,11 +91,14 @@ const result = {
   schema: 'ru-classics.legacy-romanization-candidates.v1',
   generated_note: 'Automated candidates only; Hanzi-level confirmation required before editing.',
   passages: all.length, counts, changed, candidate_terms:terms.length,
-  orphan_entries:orphans, distinct_headings_or_colophons:distinctive,
+  orphan_entries:orphans, duplicate_name_pairs:duplicatePairs, parenthetical_romanizations:parenthetical,
+  distinct_headings_or_colophons:distinctive,
   chapter_endings:tailCases
 };
 fs.mkdirSync(path.join(__dirname,'../audit/reports'),{recursive:true});
 fs.writeFileSync(path.join(__dirname,'../audit/reports/legacy-romanization-inventory.json'), JSON.stringify(result,null,2)+'\n');
-console.log('SUMMARY ' + JSON.stringify({passages:all.length,counts,changed,candidateTerms:terms.length,termsWithOrphans:orphans.length,headingsOrColophons:distinctive.length}));
+console.log('SUMMARY ' + JSON.stringify({passages:all.length,counts,changed,candidateTerms:terms.length,termsWithOrphans:orphans.length,duplicatedPairs:duplicatePairs.length,parenthetical:parenthetical.length,headingsOrColophons:distinctive.length}));
 console.log('ORPHAN_TOP_100 ' + JSON.stringify(orphans.slice(0,100)));
 console.log('BOUNDARY_FLAGS ' + JSON.stringify(distinctive));
+console.log('DUPLICATED_NAMES ' + JSON.stringify(duplicatePairs));
+console.log('PARENTHETICAL_SAMPLES ' + JSON.stringify(parenthetical.slice(0,90)));
