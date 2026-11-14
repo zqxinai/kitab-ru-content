@@ -318,6 +318,16 @@
           rb.append(document.createTextNode(t.traditional||'□'));
           if(t.pinyin){const rt=document.createElement('rt');rt.textContent=t.pinyin;rb.append(rt)}
           p.append(rb);
+          // MATAKIN 2012 shows supplemental simplified glyphs in parentheses
+          // after traditional characters. They are NOT separate classical text
+          // and must not be included in Hanzi matching or verse boundaries.
+          if(t.modern&&t.modern!==t.traditional){
+            const simplified=document.createElement('span');
+            simplified.className='simplified-variant';
+            simplified.textContent='（'+t.modern+'）';
+            simplified.setAttribute('title','Aksara sederhana dari metadata; belum tentu terverifikasi pada setiap halaman cetakan 2012');
+            p.append(simplified);
+          }
         }
       }
       root.append(p);
