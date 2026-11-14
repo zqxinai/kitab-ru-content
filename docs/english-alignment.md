@@ -1,5 +1,7 @@
 # Pemetaan Pasal Indonesia MATAKIN ↔ James Legge
 
+> **Acuan tetap sejak 14 November 2026:** [standar sumber v2.0](source-policy.md) dan [registri mesin](../sources/source-registry.json). Legge Vol. I (edisi kedua revisi 1893) berlaku untuk Lun Yu, Da Xue, Zhong Yong; **Vol. II (1895) untuk Mengzi**. Daftar Gutenberg/Confuciuspedia/Tianmu/ChineseNotes di bawah merekam **transkripsi digital dan histori pengambilan**, bukan pergantian edisi utama. Seluruh pemetaan 965 pasal tetap Draf, belum dinyatakan setia seluruhnya terhadap kedua volume cetak. Bagian historis di bawah mempertahankan angka kemajuan pada tanggal masing-masing.
+
 Editor membaca `dist/sishu-english-alignment.json` untuk padanan eksplisit berdasarkan rentang Hanzi proyek, yang **bukan** bagian dari PDF MATAKIN. Asal Hanzi ada di [`docs/hanzi-provenance.md`](hanzi-provenance.md). Berkas ini tidak mengganti penomoran MATAKIN ataupun James Legge.
 
 Satu entri dapat menghubungkan banyak `indonesian_passage_ids` dengan banyak `english_segments`, dan satu pasal Indonesia dapat muncul di lebih dari satu entri untuk pemetaan parsial. Gunakan ID passage stabil yang sudah ada di `dist/sishu-content.json`.
