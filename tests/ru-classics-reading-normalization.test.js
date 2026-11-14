@@ -20,6 +20,15 @@ test('Pinyin - Hokkian: existing pairs are neither removed nor doubled', () => {
   assert.equal(reading.normalize('Negeri Tien, Dinasti Ien, suku bangsa Tik dan suku bangsa I', 'sample'), 'Negeri Chen - Tien, Dinasti Yin - Ien, suku bangsa Di - Tik dan suku bangsa Yi - I');
   assert.equal(reading.normalize('Kun Hu-jien, Hu-jien, Siau-tong, Kwa Siau-kun', 'sample'), 'Jun Furen - Kun Hu-jien, Furen - Hu-jien, Xiaotong - Siau-tong, Gua Xiaojun - Kwa Siau-kun');
   assert.equal(reading.normalize('Pik-tat, Pik-kwat, Tiong-tut, Tiong-hut, Siok-ya, Siok-he, Kwi-swi dan Kwi-wa', 'sample'), 'Bo Da - Pik-tat, Pik-kwat, Zhong Tu - Tiong-tut, Zhong Hu - Tiong-hut, Shu Ye - Siok-ya, Shu Xia - Siok-he, Ji Sui - Kwi-swi dan Ji Gua - Kwi-wa');
+
+  assert.equal(reading.normalize('Sun-i Khun', 'sishu.mengzi.07.17'), 'Chunyu Kun - Sun-i Khun');
+  assert.equal(reading.normalize('Kong-sun Thio', 'sishu.mengzi.03.01'), 'Gongsun Chou - Kong-sun Thio');
+  assert.equal(reading.normalize('Zi Lu - Zi Lu - Cu Lo', 'sishu.lunyu.11.13'), 'Zi Lu - Cu Lo');
+  assert.equal(reading.normalize('Raja Wu - Bu-ting', 'sishu.mengzi.03.01'), 'Raja Wu Ding - Bu-ting');
+  assert.equal(reading.normalize('Guan Zhong (Kwan Tiong)', 'sishu.mengzi.03.01'), 'Guan Zhong - Kwan Tiong');
+  assert.equal(reading.normalize('Tiong- hut', 'sishu.lunyu.18.11'), 'Zhong Hu - Tiong-hut');
+  assert.equal(reading.normalize('Cing See dan Cing Sik', 'sample'), 'Zeng Xi - Cing See dan Zeng Xi - Cing Sik');
+
 });
 
 test('only Mengzi VII B:38 drops extraneous terminal colophon; legitimate Siancai stays', () => {
