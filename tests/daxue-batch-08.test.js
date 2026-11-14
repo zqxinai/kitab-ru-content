@@ -7,7 +7,7 @@ const catalog=read('catalog.json').collections.find(x=>x.id==='sishu');
 const content=read('dist/sishu-content.json');
 const status=read('dist/sishu-review-status.json');
 const byId=new Map(content.chapters.flatMap(c=>c.passages).map(p=>[p.id,p]));
-const hanzi=p=>p.ruby_paragraphs.map(r=>r.map(t=>t.type==='ruby'?(t.traditional||''):(t.value||'')).join('')).join('\\n');
+const hanzi=p=>p.ruby_paragraphs.map(r=>r.map(t=>t.type==='ruby'?(t.traditional||''):(t.value||'')).join('')).join('\n');
 const expected=['03.01','03.02','03.03','03.04','04.01','04.02','04.03','04.04','04.05','05.01'].map(x=>'sishu.daxue.'+x);
 test('Da Xue batch 08 includes exactly ten previously missing mapped draft passages',()=>{
  assert.deepEqual(snapshot.units.map(u=>u.indonesian_passage_id),expected);
@@ -37,7 +37,7 @@ test('English and Hanzi snapshots map one-to-one without changing source scriptu
   assert.equal(entry.source_url,snapshot.source_english.url);
   assert.ok(u.english_source_lines[0]>0&&u.english_source_lines[1]>=u.english_source_lines[0]);
   assert.ok(u.normalized_hanzi_similarity>=0.9);
-  assert.doesNotMatch(u.english_transcription,/\\p{Script=Han}/u);
+  assert.doesNotMatch(u.english_transcription,/\p{Script=Han}/u);
  }
 });
 test('Keep documented source variants as review notes, not silent corrections',()=>{
