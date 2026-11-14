@@ -11,7 +11,7 @@ import hashlib
 import json
 from pathlib import Path
 
-SOURCE_SHA256 = "7dddd5ca9a20491a7f5b289fa2380c3960df696b926da71653af730d84069f12"
+SOURCE_SHA256 = "41c73ee3bf2e22e04d50add07f94ffdf619a3d4fffd1775c2698305f9e84652b"
 EXPECTED_BOOKS = ["daxue", "zhongyong", "lunyu", "mengzi"]
 EXPECTED_PASSAGES = 965
 EXPECTED_CHAPTERS = 78

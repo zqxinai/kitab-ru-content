@@ -7,6 +7,13 @@ on:
       - 'tests/contextual-pinyin-stage2.test.js'
       - 'tests/contextual-pinyin-polyphones-batch2.test.js'
       - 'tests/master-stage2-register.test.js'
+      - 'tests/matakin-2012-six-photos.test.js'
+      - 'tests/daxue-batch-11.test.js'
+      - 'tests/daxue-batch-12.test.js'
+      - 'tests/daxue-qinmin-xinmin-variant.test.js'
+      - 'tests/english-passage-splits.test.js'
+      - 'dist/sishu-english-alignment.json'
+      - 'dist/sishu-english-passage-splits.json'
       - 'docs/audits/master-stage2-register-2026-11-14.json'
       - '.github/workflows/content-audit.yml'
   push:
@@ -33,3 +40,5 @@ jobs:
         run: python3 tools/build_sishu.py
       - name: Verify 965 passages and contextual readings
         run: node --test tests/chapter-heading-boundary.test.js tests/contextual-pinyin-stage2.test.js tests/contextual-pinyin-polyphones-batch2.test.js tests/master-stage2-register.test.js
+      - name: Verify photographed MATAKIN 2012 readings and immutable Legge source
+        run: node --test tests/matakin-2012-six-photos.test.js tests/daxue-batch-11.test.js tests/daxue-batch-12.test.js tests/daxue-qinmin-xinmin-variant.test.js tests/english-passage-splits.test.js tests/english-full-draft-coverage.test.js

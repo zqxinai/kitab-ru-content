@@ -57,3 +57,10 @@ Audit ini tidak memutihkan perbedaan pada bagian yang terpotong dan tidak mengul
 - Penyelarasan `dist/sishu-english-alignment.json` pada Da Xue X:5/X:14 mengikuti Hanzi proyek terbaru; transkrip/snapshot sumber Legge tidak diubah. Pengujian historis memastikan bentuk lama tetap dicatat sebagai saksi berbeda.
 - `tests/matakin-2012-six-photos.test.js` menegakkan pembacaan, romanisasi, batas bukti foto, ketakterubahan ID/struktur 78 bab dan 965 pasal, serta status belum Final.
 - Pemberlakuan pada website/APK memerlukan build, CI, dan verifikasi deploy terpisah. Jangan klaim sukses dari commit sumber saja.
+
+## Pin integritas pasca-build
+
+- Paket `dist/sishu-content.json` dibangun ulang oleh workflow Build Si Shu JSON package setelah commit sumber, SHA-256 `41c73ee3bf2e22e04d50add07f94ffdf619a3d4fffd1775c2698305f9e84652b`.
+- Indeks Inggris mempunyai Git blob SHA-1 `61512233f1bec4204564937ec1dd4328fe626cfa`; 650 entri diperiksa dibanding versi sebelumnya dan seluruh `english_segments` identik byte-ke-byte pada perbandingan isi JSON (hanya tiga catatan/hanzi_span berubah).
+- Pengunci di `tools/build_ru_classics_web.py` dan `dist/sishu-english-passage-splits.json` diperbarui sesuai artefak yang diverifikasi, bukan pemeriksaan dinonaktifkan.
+- Pemeriksaan terpisah dibutuhkan untuk mengonfirmasi CI dan Pages benar-benar lulus.

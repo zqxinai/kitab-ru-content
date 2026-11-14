@@ -1,6 +1,6 @@
 {
   "schema": "kitab-ru.english-passage-splits.v1",
-  "source_alignment_blob_sha": "4b5ddeba0482dbc6b7ea3b8379e6a77a68495605",
+  "source_alignment_blob_sha": "61512233f1bec4204564937ec1dd4328fe626cfa",
   "source_edition": "James Legge / Zhong Yong (per original alignment source)",
   "review_status": "draft-split-requires-human-review",
   "policy": "Each passage text is a contiguous, non-overlapping source slice. Concatenating pieces in source passage order must reproduce the original complete Legge english_segments[0].text exactly, with all whitespace and punctuation. No retranslation or editorial Final approval.",
