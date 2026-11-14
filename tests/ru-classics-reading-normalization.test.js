@@ -43,6 +43,25 @@ test('Pinyin - Hokkian: existing pairs are neither removed nor doubled', () => {
 
 });
 
+test('contextual aliases are grounded in their exact source verse', () => {
+  for (const [id, rules] of Object.entries(reading.contextual)) {
+    const [,book,chapter] = id.split('.');
+    const chapterData = JSON.parse(fs.readFileSync(path.join(BASE,book,chapter.padStart(2,'0')+'.json'),'utf8'));
+    const verse = chapterData.passages.find(x=>x.id===id);
+    assert.ok(verse, 'known verse '+id);
+    const display = reading.normalize(verse.translation_indonesian,id);
+    for (const [source,replacement] of rules) {
+      assert.ok(verse.translation_indonesian.includes(source),'exact source for '+id+': '+source);
+      assert.ok(display.includes(replacement),'display replacement for '+id+': '+replacement);
+    }
+  }
+  assert.match(reading.normalize('Negeri Jin - Chien', 'sishu.mengzi.01.05'), /Negeri Jin - Chien/,
+    'out-of-context substring is not rewritten by heuristic');
+  assert.equal(reading.normalize('Pembesar Swan', 'sishu.lunyu.14.18'), 'Pembesar Zhuan - Swan');
+  assert.equal(reading.normalize('Rajamuda Swan', 'sishu.mengzi.10.09'), 'Rajamuda Xuan - Swan');
+  assert.equal(reading.normalize('Rajamuda Swan', 'sishu.lunyu.14.18'), 'Rajamuda Swan');
+});
+
 test('only Mengzi VII B:38 drops extraneous terminal colophon; legitimate Siancai stays', () => {
   const tail = 'Mengapa tiada yang meneruskan ajaran Nya?" ( IIB:13 ). SIANCAI';
   assert.equal(reading.normalize(tail, 'sishu.mengzi.14.38'), 'Mengapa tiada yang meneruskan ajaran Nya?" ( IIB:13 ).');
