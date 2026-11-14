@@ -195,3 +195,13 @@ Batch baru menambahkan sepuluh pasal **Da Xue X:1–9 dan XI:1**, seluruhnya ber
 - Pengujian `tests/daxue-batch-10.test.js` mengunci ID, teks Hanzi persis, sumber Inggris, status Draft, dan batas pasal dua paragraf. Teks Hanzi, pinyin, Indonesia MATAKIN, dan registry Final tidak disentuh.
 
 **Ketersediaan Inggris editor kini 916/965** (246 tertanam + 670 dari alignment), **49 belum tersedia**. Per kitab: Da Xue 41/64; Lun Yu 486/512; Zhong Yong 129/129; Mengzi 260/260. Seluruhnya masih Draft; Final editorial 0.
+
+
+## Da Xue batch 11 — 10 draf Inggris tambahan (14 November 2026)
+
+- Menambah **Da Xue XI:3–12** sebagai **Draft** dari transkripsi James Legge di [Tianmu](https://tianmu.org/good-work-library/confucian/general-texts/the-great-learning-james-legge), baris HTML 92–105. Hanzi pembanding mengikuti [Confuciuspedia](https://confuciuspedia.com/lib/the-great-learning/), dengan rentang sumber dan catatan pada `sources/legge/daxue-b11-10-passages.json`.
+- Penomoran MATAKIN XI:3–12 terkait dengan *Commentary of Tsang* Chapter X §§3–12 berdasarkan rentang Hanzi, bukan kesamaan nomor bab. Normalisasi Hans/Hant hanya untuk perbandingan, bukan pengubahan kitab.
+- **XI:5** mencatat varian `儀鑒` (proyek) dan `仪监` (sumber pembanding), serta Legge menerjemahkan `上帝` sebagai `God`; MATAKIN Indonesia tetap sebagai rujukan dan tidak diganti. **XI:12** mencatat interpretasi `善` menjadi `good men` dalam Legge.
+- **XI:2 ditahan** karena teks Legge digital tentang arah kanan/kiri perlu diteliti lagi. **VI:1 ditahan** karena teks dan komentar Zhu Xi belum dipisah dengan benar.
+- `tests/daxue-batch-11.test.js` melindungi kesetiaan sumber, ID, status draf, provenance, dan kasus sengaja ditahan; angka tes batch 10 menjadi batas minimum historis.
+- **Ketersediaan draf Inggris: 926/965** (246 tertanam, 680 lewat overlay), **39 belum tersedia** (Da Xue 13, Lun Yu 26); **Final editorial 0**. Hanzi, pinyin, Indonesia MATAKIN dan paket Android offline tidak diubah.
