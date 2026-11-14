@@ -59,7 +59,8 @@ test('public reader loads alignment module and actually renders numbered ruby an
   assert.match(app,/\+hanziWithSubverses\(p,aligned\)\+'<\/div>'/);
   assert.match(app,/\+indonesiaWithSubverses\(p,aligned\)\+'<\/section>'/);
   assert.match(app,/if\(!aligned\)return ruby\(p\.ruby_paragraphs\)/);
-  assert.match(app,/if\(!verses\)return '<p>'\+H\(p\.translation_indonesian/);
+  assert.match(app,/if\(!verses\)return '<p>'\+H\(display\(p\.translation_indonesian/);
+  assert.match(app,/Matakin2012References\?\.present\(p\.id,text\)/);
   assert.doesNotMatch(app,/if\(!aligned\)return hanziWithSubverses/);
   assert.doesNotMatch(app,/if\(!verses\)return indonesiaWithSubverses/);
 });
