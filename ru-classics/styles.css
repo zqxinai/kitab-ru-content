@@ -2,3 +2,11 @@
 .home-footer{display:flex;gap:8px;align-items:center;flex-wrap:wrap;color:var(--muted);font-size:12px;margin:30px 0 0;padding-top:15px;border-top:1px solid var(--line)}.home-footer strong{color:var(--ink)}@media(max-width:590px){.brand{min-width:0;gap:8px}.brand small{display:none}.brand b{font-size:18px}.brand-mark{flex:0 0 41px}.login-button{padding:0 8px}}
 
 .book-card h3,.book-card p{position:relative;z-index:1;white-space:normal;overflow-wrap:break-word}@media(max-width:590px){.book-card h3{font-size:17px}.book-card p{font-size:11px}}
+
+/* Numbered MATAKIN ayat: unobtrusive in paper, light and dark themes. */
+.ayat-label{display:block;color:var(--muted);font:600 11px/1.55 system-ui,sans-serif;letter-spacing:.04em;margin-bottom:5px}
+.hanzi-verse{margin-bottom:18px}
+.hanzi-verse:last-child{margin-bottom:0}
+.hanzi-verse p{margin:0}
+.translation .translation-verse{margin:0 0 14px;white-space:pre-wrap}
+.translation .translation-verse:last-child{margin-bottom:0}
