@@ -8,7 +8,6 @@
     ['Cweecu', 'Cuizi'], // 崔子
     ['Tien Buncu', 'Chen Wenzi'], // 陳文子
     ['Culo', 'Zilu'], // 子路
-    ['Siancai', 'Shanzai'], // 善哉
     ['Siau Jien', 'Xiaoren'], // 小人
     ['Ien', 'Yin'], // 尹 or 殷 context; guard Ling Ien and Yi Yin
     ['Bun', 'Wen'], // 文, used for Wen Wang
@@ -224,6 +223,9 @@
   // Kolasi khusus berdasarkan Hanzi. Satu ejaan Hokkian bisa mewakili
   // aksara berbeda: Chien => 晉 (Jin) atau 秦 (Qin); Swan => 僎 atau 宣.
   const CONTEXTUAL = Object.freeze({
+    'sishu.lunyu.12.11': [
+      ['Siancai!', 'Shanzai - Siancai!'], // 善哉
+    ],
     'sishu.mengzi.03.01': [
       ['He, Ten dan Ciu', 'Xia - He, Yin - Ten dan Zhou - Ciu'], // 夏後 殷 周; keep printed 'Ten' as variant
     ],
@@ -566,12 +568,14 @@
       ['Gunung Hua dan Gak', 'Gunung Huayue - Hua dan Gak']
     ],
     'sishu.mengzi.02.04': [
+      ['Siancai!', 'Shanzai - Siancai!'], // 善哉
       ['lagu Ti-siau dan Kak-siau', 'lagu Zhi Shao - Ti-siau dan Jue Shao - Kak-siau'], // 徵招、角招
       ['daerah Cwan-hu', 'daerah Zhuanfu - Cwan-hu'],
       ['Tiau-bu', 'Chaowu - Tiau-bu'],
       ['daerah Long-ya', 'daerah Langya - Long-ya']
     ],
     'sishu.mengzi.02.05': [
+      ['Siancai,', 'Shanzai - Siancai,'], // 善哉
       ['memerintah di daerah Ki', 'memerintah di daerah Qi - Ki'], // 岐
       ['Bukit Ki', 'Bukit Qi - Ki']
     ],
