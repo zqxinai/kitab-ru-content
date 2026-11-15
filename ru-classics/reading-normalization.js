@@ -291,10 +291,10 @@
       ['daerah Khong', 'daerah Kuang - Khong']
     ],
     'sishu.lunyu.13.17': [
-      ['daerah Ki-hu', 'daerah Jufu - Ki-hu']
+      ['Daerah Ki-hu', 'Daerah Jufu - Ki-hu']
     ],
     'sishu.lunyu.14.09': [
-      ['daerah Pian', 'daerah Pianyi - Pian']
+      ['daerah Pian yang', 'daerah Pianyi - Pian yang']
     ],
     'sishu.lunyu.16.12': [
       ['Gunung Siu-yang', 'Gunung Shouyang - Siu-yang']
