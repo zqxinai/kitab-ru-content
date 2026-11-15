@@ -117,6 +117,42 @@ test('Historical homographs are read using Hanzi and not guessed by Hokkian spel
   }
 });
 
+test('16 newly verified personal names keep Hanzi identities and pair Hokkian everywhere', () => {
+  const checks = [
+    ['sishu.mengzi.03.02', 'Gaozi - Kocu'],
+    ['sishu.mengzi.11.06', 'Gongduzi - Kongtocu'],
+    ['sishu.mengzi.02.16', 'Yuezhengzi - Gakcingcu'],
+    ['sishu.mengzi.02.16', 'Meng Ke - Bing Khoo'],
+    ['sishu.mengzi.12.10', 'Bai Gui - Pik-kwi'],
+    ['sishu.mengzi.05.04', 'Xu Xing - Hi Hing'],
+    ['sishu.mengzi.06.07', 'Yang Huo - Yang Ho'],
+    ['sishu.mengzi.06.07', 'Duan Ganmu - Twan Kan-bok'],
+    ['sishu.mengzi.06.07', 'Xie Liu - Siat Liu'],
+    ['sishu.mengzi.10.03', 'Meng Xianzi - Bing Hiancu'],
+    ['sishu.mengzi.10.03', 'Yuezheng Qiu - Gak- cing Kiu'],
+    ['sishu.mengzi.10.03', 'Mu Zhong - Bok Tiong'],
+    ['sishu.mengzi.10.03', 'Hubungan Meng Xianzi - Hiancu'],
+    ['sishu.mengzi.12.03', 'Gao Sou - Kooso'],
+    ['sishu.mengzi.12.03', 'Gaozi - Koocu'],
+    ['sishu.mengzi.12.05', 'Chu Zi - Thicu'],
+    ['sishu.mengzi.12.05', 'Wuluzi - Ok-locu'],
+    ['sishu.mengzi.08.02', 'Zichan - Cu-san'],
+    ['sishu.mengzi.08.01', 'Bi Ying - Piet-ting']
+  ];
+  for (const [id, expected] of checks) {
+    const [, book, chapter] = id.split('.');
+    const passage = JSON.parse(fs.readFileSync(path.join(BASE, book, chapter + '.json'),'utf8')).passages.find(p => p.id === id);
+    assert.ok(passage, id);
+    const view = reading.normalize(passage.translation_indonesian,id);
+    assert.ok(view.includes(expected),id+': expected '+expected);
+    assert.equal(reading.normalize(view,id),view,id+': duplicated name pairing');
+  }
+  assert.equal(reading.normalize('Yang Ho', 'sishu.mengzi.06.07'), 'Yang Huo - Yang Ho');
+  assert.equal(reading.normalize('Yang Ho berkata', 'sishu.mengzi.05.03'), 'Yang Hu - Yang Ho berkata');
+  assert.equal(reading.normalize('Yang Ho', 'sample'), 'Yang Ho',
+    '同音 Hokkian harus dipetakan menurut Hanzi, bukan global');
+});
+
 test('contextual aliases are grounded in their exact source verse', () => {
   for (const [id, rules] of Object.entries(reading.contextual)) {
     const [,book,chapter] = id.split('.');
