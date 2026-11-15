@@ -46,6 +46,7 @@ jobs:
       - name: Validate and assemble Ru Classics website
         run: |
           node --check ru-classics/app.js
+          node --check ru-classics/reading-normalization.js
           node --check ru-classics/editor.js
           node --check ru-classics/firebase-config.js
           node --test ru-classics/tests/auth-google.cjs
@@ -53,6 +54,7 @@ jobs:
           node ru-classics/tests/smoke.cjs
           node --test ru-classics/tests/subverses.cjs
           node --test ru-classics/tests/reading-navigation.cjs
+          node --test tests/ru-classics-reading-normalization.test.js
           node --test tests/matakin-reference-overlay.test.cjs
       - name: Configure optional Google editor login
         env:

@@ -75,7 +75,9 @@ test('Browser loads reference and typography modules before the reader',()=>{
  assert.match(reader,/RuReferenceLinks\?\.parts/);
  assert.match(reader,/data-ref-ayat/);
  assert.match(reader,/readableIndonesian:/);
- assert.match(reader,/readingParagraphs\(p\.translation_english,'en',H\)/);
+ assert.match(reader,/englishReading\(p\)/);
+ assert.match(reader,/id="jump-ayat"/);
+ assert.match(reader,/id="jump-chapter"/);
  assert.match(editor,/app\(\)\?\.readableIndonesian/);
  assert.match(editor,/app\(\)\?\.readableEnglish/);
 });
