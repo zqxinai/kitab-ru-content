@@ -13,6 +13,10 @@ const KNOWN_MANDARIN = new Set([
   'Raja Tang','Raja Xuan','Raja Cheng','Raja Yu','Raja Li',
   'Dinasti Zhou','Pangeran Ai','Rajamuda Ling','Rajamuda Ping',
   'Raja Negeri','Raja Besar','Raja Muda','Raja Suci',
+  // Sudah memakai Pinyin atau merupakan istilah Indonesia, bukan Hokkian:
+  'Negeri Kun', // awal frasa "Negeri Kun Yi - Khun I", 昆夷, sudah berpasangan
+  'Negeri Tengah', // kata geografis Indonesia, bukan nama fonetis
+  'Rajamuda Xuan', // Xuan adalah Mandarin, tanpa ejaan Hokkian terpisah
   'Pangeran Negeri','Pangeran Barat','Rajamuda Negeri',
   'Rajamuda Pemimpin','Raja Dinasti'
 ]);
