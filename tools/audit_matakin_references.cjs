@@ -39,8 +39,13 @@ function classify(reference,book){
 }
 function scan(){
  const manifest=read('sishu/manifest.json'),results=[];
- const compound=read('sources/references/matakin-compound-batch01.json');
- const compoundIndex=new Map(compound.entries.map(r=>[r.passage_id+'::'+r.source,r]));
+ const compoundFiles=[
+  'sources/references/matakin-compound-batch01.json',
+  'sources/references/matakin-compound-batch02.json'
+ ];
+ const compoundEntries=compoundFiles.flatMap(file=>read(file).entries);
+ const compoundIndex=new Map(compoundEntries.map(r=>[r.passage_id+'::'+r.source,r]));
+ if(compoundIndex.size!==compoundEntries.length)throw Error('Duplicate source ID + citation text in compound registries');
  let count=0;
  for(const item of manifest.chapters){
    const c=read(item.path);count+=c.passages.length;
