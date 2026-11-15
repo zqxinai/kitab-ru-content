@@ -18,7 +18,13 @@ test('Published Ru Classics reader exposes Google editor only, without false def
  assert.match(script,/email:user\.email,role:'pending'/);
  assert.match(script,/Masuk dengan Google/);
  assert.doesNotMatch(script,/GithubAuthProvider|Masuk dengan GitHub|Login GitHub/);
- assert.match(cfg,/window\.RU_FIREBASE_CONFIG = null/);
+ const match=cfg.match(/window\.RU_FIREBASE_CONFIG\s*=\s*(\{[^\n]*\})\s*;/);
+ assert.ok(match,'Firebase Web App public config must be present');
+ const publicConfig=JSON.parse(match[1]);
+ assert.equal(publicConfig.projectId,'ru-classics');
+ assert.equal(publicConfig.authDomain,'ru-classics.firebaseapp.com');
+ for(const k of ['apiKey','appId','messagingSenderId']) assert.ok(publicConfig[k],k+' missing');
+ assert.doesNotMatch(cfg, /-----BEGIN PRIVATE KEY-----|private_key\s*:/);
 });
 
 test('Pages deployment reads explicit Firebase public config and keeps website optional',()=>{
