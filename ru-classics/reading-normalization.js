@@ -2,6 +2,11 @@
 (function (root) {
   'use strict';
   const PAIRS = Object.freeze([
+    ['Tam-tay Biat-bing', 'Tantai Mieming'], // 澹臺滅明
+    ['Cong Bu-tiong', 'Zang Wuzhong'], // 臧武仲 (beda dari 臧文仲)
+    ['Chiong Gi', 'Chong Yu'], // 充虞
+    ['Ong-hwan', 'Wang Huan'], // 王驩
+    ['Hong-siok', 'Fangshu'], // 方叔
     ['Liem Hong', 'Lin Fang'], // 林放
     ['Ong Sun-ke', 'Wangsun Jia'], // 王孫賈
     ['Kwan-tiong', 'Guan Zhong'], // 管仲
@@ -138,6 +143,51 @@
   // Kolasi khusus berdasarkan Hanzi. Satu ejaan Hokkian bisa mewakili
   // aksara berbeda: Chien => 晉 (Jin) atau 秦 (Qin); Swan => 僎 atau 宣.
   const CONTEXTUAL = Object.freeze({
+    'sishu.mengzi.04.05': [
+      ['Kota Ling-khiu', 'Kota Lingqiu - Ling-khiu'], // 靈丘
+    ],
+    'sishu.mengzi.04.06': [
+      ['Kota Khap', 'Kota Ge - Khap'], // 蓋, 反切古盍切 di 孟子注疏
+    ],
+    'sishu.mengzi.04.07': [
+      ['Kota Ing', 'Kota Ying - Ing'], // 嬴
+    ],
+    'sishu.mengzi.04.14': [
+      ['daerah Hiu', 'daerah Xiu - Hiu'], // 休
+      ['Kota Cong', 'Kota Chong - Cong'], // 崇
+    ],
+    'sishu.lunyu.11.26': [
+      ['Sungai Ki', 'Sungai Yi - Ki'], // 沂; berbeda 淇 di Da Xue
+    ],
+    'sishu.lunyu.18.09': [
+      ['Negeri Jin - Chien', 'Negeri Qin - Chien'], // 秦; edisi Hokkian Chien ambigu dengan 晉
+      ['musik, Ci, lari', 'musik, Zhi - Ci, lari'], // 摯
+      ['dua, Kan, lari', 'dua, Gan - Kan, lari'], // 乾
+      ['tiga, Liau, lari', 'tiga, Liao - Liau, lari'], // 繚
+      ['empat, Khwat, lari', 'empat, Que - Khwat, lari'], // 缺
+      ['Sungai Hoo', 'Sungai He - Hoo'], // 河
+      ['tambur kecil, Bu, lari', 'tambur kecil, Wu - Bu, lari'], // 武
+      ['musik, Yang, serta', 'musik, Yang - Yang, serta'], // 陽 (Mandarin = legacy; identitas tetap jelas)
+      ['batu, Siang, lari', 'batu, Xiang - Siang, lari'], // 襄
+    ],
+    'sishu.lunyu.07.19': [
+      ['Negeri Siap', 'Negeri She - Siap'], // 葉 (地名 shè)
+    ],
+    'sishu.lunyu.14.08': [
+      ['menteri luar negeri Cu-i', 'menteri luar negeri Ziyu - Cu-i'], // 行人子羽
+    ],
+    'sishu.lunyu.06.14': [
+      ['kota Busing', 'kota Wucheng - Busing'], // 武城
+    ],
+    'sishu.lunyu.17.04': [
+      ['kota Bu-sing', 'kota Wucheng - Bu-sing'], // 武城
+    ],
+    'sishu.lunyu.14.14': [
+      ['daerah Hong', 'daerah Fang - Hong'], // 防
+    ],
+    'sishu.lunyu.15.06': [
+      ['daerah Ban dan Bekpun', 'daerah Man - Ban dan Mo - Bekpun'], // 蠻貊, kelompok manusia bukan nama daerah
+    ],
     // Lun Yu III: pasangan dari Hanzi pasal dan konteks terjemahan MATAKIN.
     // Nama dan istilah yang homofon dengan bahasa Indonesia tetap dibatasi pada ID pasal.
     'sishu.lunyu.03.01': [
@@ -325,6 +375,8 @@
       ['Gunung Thai', 'Gunung Taishan - Thai']
     ],
     'sishu.lunyu.06.09': [
+      ['Keluarga Kwi', 'Keluarga Ji - Kwi'], // 季氏
+      ['sungai Bun', 'sungai Wen - Bun'], // 汶
       ['daerah Pi', 'daerah Bi - Pi']
     ],
     'sishu.lunyu.11.25': [
