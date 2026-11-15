@@ -422,6 +422,6 @@ test('Browser scripts load the single shared overlay before either reader',()=>{
  const editorCode=fs.readFileSync(path.join(root,'editor/app.js'),'utf8');
  assert(reader.indexOf('reference-overlay.js')<reader.indexOf('src="./app.js"'));
  assert(editor.indexOf('reference-overlay.js')<editor.indexOf('src="./app.js"'));
-  assert.ok(readerCode.includes('api.segments(id,text)'), 'Reader must use safe linked reference segments');
- assert.match(editorCode,/Matakin2012References\?\.present\(passageId,part\)/);
+  assert.ok(readerCode.includes('RuReferenceLinks?.parts(id,text,overlay)') && readerCode.includes('overlay.segments(id,text)'), 'Reader must use verified reference parts with an overlay fallback');
+  assert.ok(editorCode.includes('RuReferenceLinks?.parts(passageId,source,overlay)') && editorCode.includes('appendReferencedText(p,passageId,part)'), 'Editor must render verified reference parts as links');
 });

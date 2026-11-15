@@ -136,14 +136,22 @@ setTimeout(()=>{
   click({book:'lunyu'});
   click({chapter:'sishu.lunyu.03'});
   click({passage:'sishu.lunyu.03.07'});
-  assert.match(nodes.main.innerHTML,/data-passage="sishu\\.mengzi\\.03\\.07" data-ref-ayat="5"/,
+  assert.match(nodes.main.innerHTML,/data-passage="sishu\.mengzi\.03\.07" data-ref-ayat="5"/,
     'MATAKIN slash /5 should be a verified ayat-level navigation control');
-  assert.match(nodes.main.innerHTML,/data-passage="sishu\\.zhongyong\\.14\\.05"/,
+  assert.match(nodes.main.innerHTML,/data-passage="sishu\.zhongyong\.14\.05"/,
     'Both sides of the compound citation must have independent targets');
   click({passage:'sishu.mengzi.03.07',refAyat:'5'});
   assert.equal(location.hash,'read=sishu.mengzi.03.07&ayat=5');
   assert.match(nodes.main.innerHTML,/translation-verse ayat-active" data-ayat="5"/,
     'Ayat-level deep link must select the referenced numbered ayat');
+  click({book:'mengzi'});
+  click({chapter:'sishu.mengzi.03'});
+  assert.match(nodes.main.innerHTML,/class="verse-disclosure"/,
+    'Chapter must expose an expandable numbered ayat chooser');
+  assert.match(nodes.main.innerHTML,/data-passage="sishu\.mengzi\.03\.07" data-ref-ayat="5"/,
+    'Each chapter ayat control must navigate to its verified number');
+  click({passage:'sishu.mengzi.03.07',refAyat:'5'});
+  assert.match(nodes.main.innerHTML,/translation-verse ayat-active" data-ayat="5"/);
   click({book:'lunyu'});click({chapter:'sishu.lunyu.03'});click({passage:'sishu.lunyu.03.07'});
   assert.ok(visibleText(nodes.main.innerHTML).includes('Tengah Sempurna — Zhong Yong XIII:5; Mengzi — Bing Cu II A:7/5'),
     'Batch 06 multi-book citation must display both books and preserve /5');

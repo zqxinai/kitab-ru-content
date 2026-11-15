@@ -39,8 +39,22 @@
     const b=book(state.book),chapters=state.chapters.filter(c=>c.book===b.id);
     main.innerHTML='<button class="back" data-action="all">← Semua kitab</button><section class="book-hero"><span class="big-hanzi" lang="zh-Hant">'+b.hanzi+'</span><div><span class="eyebrow">Si Shu · '+chapters.length+' bab</span><h1>'+b.name+'</h1><p>'+b.desc+'</p></div></section>'+sectionTitle('Daftar bab','<small class="muted">'+count(b.id)+' pasal</small>')+'<div class="chapter-grid">'+chapters.map(c=>'<button class="chapter-card" data-chapter="'+H(c.id)+'"><span><strong>'+H(c.title)+'</strong><small>'+c.passages.length+' pasal</small></span><span class="arrow">›</span></button>').join('')+'</div>';
   }
-  function chapter(){const c=state.chapters.find(c=>c.id===state.chapter);if(!c){navigate('books');return;}const b=book(c.book);
-    main.innerHTML='<button class="back" data-book="'+b.id+'">← '+b.name+'</button><div class="chapter-title"><span class="eyebrow">'+b.name+' · '+b.hanzi+'</span><h1>'+H(c.title)+'</h1><p class="muted">'+c.passages.length+' pasal</p></div><div class="passage-list">'+c.passages.map((p,i)=>'<button class="result" data-passage="'+H(p.id)+'"><small>PASAL '+p.number+'</small><strong>'+H(c.title)+'</strong><span class="excerpt">'+H(byId(p.id)?.translation_indonesian||'')+'</span></button>').join('')+'</div>';
+  function chapter(){
+    const c=state.chapters.find(c=>c.id===state.chapter);
+    if(!c){navigate('books');return;}
+    const b=book(c.book);
+    // A passage remains the canonical source; confirmed numbered ayat are
+    // offered as direct navigation choices without splitting scripture data.
+    const items=c.passages.map(p=>{
+      const text=byId(p.id)?.translation_indonesian||'';
+      const verses=globalThis.RuSubverses?.splitIndonesia(text);
+      const chooser=verses?.length>1
+        ?'<details class="verse-disclosure"><summary>Pilih ayat · '+verses.length+' ayat</summary><div class="verse-picker">'+
+          verses.map(v=>'<button type="button" data-passage="'+H(p.id)+'" data-ref-ayat="'+v.number+'">Ayat '+v.number+'</button>').join('')+
+          '</div></details>':'';
+      return '<div class="passage-entry"><button class="result" data-passage="'+H(p.id)+'"><small>PASAL '+p.number+(verses?' · '+verses.length+' AYAT':'')+'</small><strong>'+H(c.title)+'</strong><span class="excerpt">'+H(text)+'</span></button>'+chooser+'</div>';
+    }).join('');
+    main.innerHTML='<button class="back" data-book="'+b.id+'">← '+b.name+'</button><div class="chapter-title"><span class="eyebrow">'+b.name+' · '+b.hanzi+'</span><h1>'+H(c.title)+'</h1><p class="muted">'+c.passages.length+' pasal</p></div><div class="passage-list">'+items+'</div>';
   }
   function ruby(paragraphs){if(!Array.isArray(paragraphs))return '';return paragraphs.map(par=>'<p>'+((Array.isArray(par)?par:[]).map(tok=>tok.type==='ruby'?'<ruby>'+H(tok.traditional||'')+'<rt>'+H(tok.pinyin||'')+'</rt></ruby>'+(tok.modern&&tok.modern!==tok.traditional?'<span class="modern" title="Aksara sederhana dari metadata, bukan bagian teks utama">（'+H(tok.modern)+'）</span>':''):H(tok.value||'')).join(''))+'</p>').join('');}
   function annotation(p){const a=Array.isArray(p.editorial_annotations)?p.editorial_annotations:[];if(!a.length)return '<div class="rule"></div><h3>Komentar Ru</h3><p>Belum ada komentar dari sumber yang tertaut pada pasal ini.</p>';
