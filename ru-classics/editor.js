@@ -8,7 +8,7 @@
     editorial_annotations:'Komentar & anotasi sumber'
   };
   const H=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-  const state={ready:false,user:null,role:'guest',profile:null,db:null,auth:null,lib:null,edits:[],users:[],selected:null,field:'translation_indonesian',busy:false,error:''};
+  const state={ready:false,user:null,role:'guest',profile:null,db:null,auth:null,lib:null,edits:[],users:[],selected:null,book:null,chapter:null,verse:0,field:'translation_indonesian',auditStatus:new Map(),busy:false,error:''};
   const app=()=>window.RuApp;
   const formatTime=t=>t&&typeof t.toDate==='function'?t.toDate().toLocaleString('id-ID'):'—';
   const currentText=(p,field)=>!p?'':typeof p[field]==='string'?p[field]:JSON.stringify(p[field]||[],null,2);
@@ -89,18 +89,40 @@
   function selectedPassage(){return app()?.getPassage(state.selected)||null;}
   function fillSelected(){
     const ps=app()?.getPassages()||[];
-    if(!state.selected||!ps.some(p=>p.id===state.selected))state.selected=app()?.getCurrent()||ps[0]?.id||null;
+    if(!ps.length)return ps;
+    if(!state.selected||!ps.some(p=>p.id===state.selected))
+      state.selected=ps.some(p=>p.id===app()?.getCurrent())?app().getCurrent():ps[0].id;
+    const chosen=ps.find(p=>p.id===state.selected);
+    state.book=chosen._book;state.chapter=chosen._chapter;
     return ps;
   }
+  const BOOK_NAMES={daxue:'Da Xue · Ajaran Besar',zhongyong:'Zhong Yong · Tengah Sempurna',lunyu:'Lun Yu · Sabda Suci',mengzi:'Mengzi · Bingcu'};
   function editorForm(){
-    const all=fillSelected();const selected=selectedPassage();if(!all.length)return '<p>Data kitab sedang dimuat.</p>';
-    return '<section class="editor-panel"><h2>Ajukan perbaikan teks</h2><p>Perubahan Anda tidak langsung terbit. Pemilik proyek akan meninjau setiap usulan secara terpisah. Sumber asli tetap tersimpan.</p>'
-      +'<form id="editor-form" class="editor-form"><label>Pasal<select id="edit-passage" required>'+all.map(p=>'<option value="'+H(p.id)+'" '+(p.id===state.selected?'selected':'')+'>'+H(p.id)+' — '+H(p._chapterTitle)+'</option>').join('')+'</select></label>'
-      +'<label>Bagian teks<select id="edit-field">'+Object.entries(fields).map(([k,v])=>'<option value="'+k+'" '+(state.field===k?'selected':'')+'>'+H(v)+'</option>').join('')+'</select></label>'
-      +'<label>Teks saat ini<div id="edit-original" class="editor-compare">'+H(currentText(selected,state.field))+'</div></label>'
-      +'<label>Usulan perbaikan<textarea id="edit-content" required spellcheck="false">'+H(currentText(selected,state.field))+'</textarea></label>'
-      +(state.field==='ruby_paragraphs'||state.field==='editorial_annotations'?'<p>Bagian ini menggunakan data JSON terstruktur. Semua karakter, atribut pinyin, dan susunan paragraf harus dijaga. Usulan akan divalidasi sebelum dapat dikirim.</p>':'')
-      +'<button type="submit" class="primary" '+(state.busy?'disabled':'')+'>Kirim untuk persetujuan</button></form></section>';
+    const all=fillSelected(),p=selectedPassage();
+    if(!all.length||!p)return '<p>Data kitab sedang dimuat.</p>';
+    const books=[...new Set(all.map(x=>x._book))];
+    const chapterIds=[...new Set(all.filter(x=>x._book===state.book).map(x=>x._chapter))];
+    const chapterPassages=all.filter(x=>x._chapter===state.chapter);
+    const verses=globalThis.RuSubverses?.editable(p.translation_indonesian)||null;
+    const canSelectVerse=state.field==='translation_indonesian'&&verses?.length>1;
+    const chosen=canSelectVerse?verses.find(x=>x.number===state.verse):null;
+    if(!chosen)state.verse=0;
+    const current=chosen?chosen.text:currentText(p,state.field);
+    return '<section class="editor-panel"><h2>Ajukan perbaikan teks</h2><p>Pilih kitab, bab, pasal, lalu ayat. Ayat yang diubah akan dipasang kembali ke pasal lengkap tanpa mengubah ayat lain, dan semua usulan tetap menunggu persetujuan admin.</p>'+
+      '<form id="editor-form" class="editor-form"><div class="editor-filters">'+
+      '<label>Kitab<select id="edit-book">'+books.map(id=>'<option value="'+H(id)+'" '+(id===state.book?'selected':'')+'>'+H(BOOK_NAMES[id]||id)+'</option>').join('')+'</select></label>'+
+      '<label>Bab<select id="edit-chapter">'+chapterIds.map(id=>{const x=all.find(p=>p._chapter===id);return '<option value="'+H(id)+'" '+(id===state.chapter?'selected':'')+'>'+H(x?._chapterTitle||id)+'</option>';}).join('')+'</select></label>'+
+      '<label>Pasal<select id="edit-passage">'+chapterPassages.map(x=>'<option value="'+H(x.id)+'" '+(x.id===state.selected?'selected':'')+'>Pasal '+H(x.number)+'</option>').join('')+'</select></label>'+
+      '<label>Ayat<select id="edit-ayat" '+(!canSelectVerse?'disabled':'')+'><option value="0">Seluruh pasal</option>'+
+      (canSelectVerse?verses.map(x=>'<option value="'+x.number+'" '+(x.number===state.verse?'selected':'')+'>Ayat '+x.number+'</option>').join(''):'')+
+      '</select></label></div>'+
+      (!canSelectVerse?'<p>Belum ada penanda ayat berurutan yang dapat dipastikan; penyuntingan tetap pada tingkat pasal.</p>':'')+
+      '<label>Bagian teks<select id="edit-field">'+Object.entries(fields).map(([k,v])=>'<option value="'+k+'" '+(state.field===k?'selected':'')+'>'+H(v)+'</option>').join('')+'</select></label>'+
+      '<label>Teks saat ini'+(chosen?' · Ayat '+chosen.number:'')+'<div id="edit-original" class="editor-compare">'+H(current)+'</div></label>'+
+      '<label>Usulan perbaikan<textarea id="edit-content" required spellcheck="false">'+H(current)+'</textarea></label>'+
+      (chosen?'<p>Hanya Ayat '+chosen.number+' yang disunting. Batas Hanzi, pinyin, dan Inggris tidak diasumsikan sejajar dengan ayat ini.</p>':'')+
+      (state.field==='ruby_paragraphs'||state.field==='editorial_annotations'?'<p>Format JSON terstruktur wajib dipertahankan dan divalidasi sebelum pengiriman.</p>':'')+
+      '<button type="submit" class="primary" '+(state.busy?'disabled':'')+'>Kirim untuk persetujuan</button></form></section>';
   }
   function renderRequests(){
     if(!state.users.length)return '';
@@ -110,7 +132,7 @@
     const pending=state.edits.filter(e=>e.status==='pending').sort((a,b)=>(a.createdAt?.seconds||0)-(b.createdAt?.seconds||0));
     const history=state.edits.filter(e=>e.status!=='pending').sort((a,b)=>(b.createdAt?.seconds||0)-(a.createdAt?.seconds||0)).slice(0,20);
     const row=(e,review)=>{const source=app()?.getPassage(e.passageId),now=currentText(source,e.field),conflict=now!==e.baseText;
-      return '<article class="editor-entry"><span class="status-tag">'+H(e.status||'pending')+'</span> <strong>'+H(e.passageId)+' · '+H(fields[e.field]||e.field)+'</strong><p><small>Oleh '+H(e.authorName||'Editor')+' · '+formatTime(e.createdAt)+'</small></p>'
+      return '<article class="editor-entry"><span class="status-tag">'+H(e.status||'pending')+'</span> <strong>'+H(e.passageId)+' · '+H(fields[e.field]||e.field)+(e.field==='translation_indonesian'&&globalThis.RuSubverses?.changedVerse(e.baseText,e.proposedText)?' · Ayat '+globalThis.RuSubverses.changedVerse(e.baseText,e.proposedText):'')+'</strong><p><small>Oleh '+H(e.authorName||'Editor')+' · '+formatTime(e.createdAt)+'</small></p>'
       +'<div class="editor-columns"><div><strong>Teks sebelumnya</strong><div class="editor-compare">'+H(e.baseText)+'</div></div><div><strong>Teks usulan</strong><div class="editor-compare">'+H(e.proposedText)+'</div></div></div>'
       +(conflict&&review?'<p><strong>Perhatian:</strong> Naskah sudah berubah setelah usulan dibuat. Tolak usulan ini dan minta pengajuan ulang agar tidak menimpa revisi terbaru.</p>':'')
       +(review?'<div class="actions"><button class="primary" data-change-approve="'+H(e.id)+'" '+(conflict?'disabled title="Bacaan sumber sudah berubah"':'')+'>Setujui dan terbitkan</button><button class="secondary" data-change-reject="'+H(e.id)+'">Tolak usulan</button></div>':'')+'</article>';
@@ -134,7 +156,10 @@
   }
   async function createProposal(){
     if(!['admin','editor'].includes(state.role)||state.busy)return;
-    const p=selectedPassage(),newText=document.getElementById('edit-content').value,oldText=currentText(p,state.field);
+    const p=selectedPassage(),entryText=document.getElementById('edit-content').value,oldText=currentText(p,state.field);
+    const newText=state.verse&&state.field==='translation_indonesian'?
+      globalThis.RuSubverses?.replaceVerse(oldText,state.verse,entryText):entryText;
+    if(newText==null){message('Usulan ayat tidak valid atau penanda ayat berubah; naskah tidak diubah.');return;}
     if(!p||!newText.trim()){message('Pilih pasal dan isi usulan.');return;}
     if(newText===oldText){message('Teks usulan belum berbeda dari sumber.');return;}
     if(['ruby_paragraphs','editorial_annotations'].includes(state.field)){
@@ -189,11 +214,20 @@
     if(b.dataset.changeReject)decideEdit(b.dataset.changeReject,false);
   });
   document.addEventListener('change',e=>{
-    if(e.target.id==='edit-passage'){state.selected=e.target.value;update();}
-    if(e.target.id==='edit-field'){state.field=e.target.value;update();}
+    if(e.target.id==='edit-book'){
+      const next=app()?.getPassages().find(p=>p._book===e.target.value);
+      if(next){state.selected=next.id;state.verse=0;update();}
+    }
+    if(e.target.id==='edit-chapter'){
+      const next=app()?.getPassages().find(p=>p._chapter===e.target.value);
+      if(next){state.selected=next.id;state.verse=0;update();}
+    }
+    if(e.target.id==='edit-passage'){state.selected=e.target.value;state.verse=0;update();}
+    if(e.target.id==='edit-ayat'){state.verse=Number(e.target.value)||0;update();}
+    if(e.target.id==='edit-field'){state.field=e.target.value;state.verse=0;update();}
   });
   document.addEventListener('submit',e=>{if(e.target.id==='editor-form'){e.preventDefault();createProposal();}});
-  window.RuEditorial={render,canEdit:()=>['admin','editor'].includes(state.role),startProposal:id=>{state.selected=id;update();}};
+  window.RuEditorial={render,canEdit:()=>['admin','editor'].includes(state.role),startProposal:(id,verse=0)=>{state.selected=id;state.field='translation_indonesian';state.verse=Number(verse)||0;update();}};
   window.addEventListener('ru:ready',update);
   init();
 })();
