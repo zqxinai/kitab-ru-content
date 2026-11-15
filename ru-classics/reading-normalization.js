@@ -2,6 +2,22 @@
 (function (root) {
   'use strict';
   const PAIRS = Object.freeze([
+    ['Kongtocu', 'Gongduzi'], // 公都子
+    ['Gakcingcu', 'Yuezhengzi'], // 樂正子
+    ['Pik-kwi', 'Bai Gui'], // 白圭
+    ['Hi Hing', 'Xu Xing'], // 許行
+    ['Bing Hiancu', 'Meng Xianzi'], // 孟獻子
+    ['Kooso', 'Gao Sou'], // 高叟
+    ['Thicu', 'Chu Zi'], // 儲子
+    ['Siat Liu', 'Xie Liu'], // 洩柳
+    ['Twan Kan-bok', 'Duan Ganmu'], // 段乾木
+    ['Bing Khoo', 'Meng Ke'], // 孟軻
+    ['Liongcu', 'Longzi'], // 龍子
+    ['Cu-san', 'Zichan'], // 子產
+    ['Ok-locu', 'Wuluzi'], // 屋廬子
+    ['Koocu', 'Gaozi'], // 高子 (bukan 告子)
+    ['Kocu', 'Gaozi'], // 告子
+    ['Kongsun Thio', 'Gongsun Chou'], // 公孫醜, varian tanpa tanda hubung
     ['Sing Thong', 'Cheng Tang'],
     ['Sing-thong', 'Cheng Tang'], // 湯, Lun Yu XII:22
     ['Liuhe Hwi', 'Liu Xiahui'], // 柳下惠
