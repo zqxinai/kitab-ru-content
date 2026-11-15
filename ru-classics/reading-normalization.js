@@ -143,11 +143,15 @@
       ['Raja Shun - Sun dan I.', 'Raja Shun - Sun dan Yu - I.'] // 舜禹
     ],
     'sishu.mengzi.05.04': [
+      ['sungai Cee dan Liap', 'sungai Ji - Cee dan Ta - Liap'], // nama lokasi, cocokkan Hanzi pada sishu.mengzi.05.04
+      ['Sungai Ji dan Han', 'Sungai Ru - Ji dan Han'], // nama lokasi, cocokkan Hanzi pada sishu.mengzi.05.04
+      ['Sungai Hwai dan Su', 'Sungai Huai - Hwai dan Si - Su'], // nama lokasi, cocokkan Hanzi pada sishu.mengzi.05.04
       ['Negeri King dan Si', 'Negeri Jing - King dan Shu - Si'], // 荊舒
       ['I disuruh mengatur', 'Yu - I disuruh mengatur'], // 禹
       ['I selama 8 tahun', 'Yu - I selama 8 tahun'] // 禹
     ],
     'sishu.mengzi.06.09': [
+      ['Sungai Kang', 'Sungai Jiang - Kang'], // nama lokasi, cocokkan Hanzi pada sishu.mengzi.06.09
       ['Negeri-negeri King dan Si', 'Negeri-negeri Jing - King dan Shu - Si'], // 荊舒
       ['I disuruhnya mengatasi', 'Yu - I disuruhnya mengatasi'], // 禹
       ['I lalu menggali', 'Yu - I lalu menggali'], // 禹
@@ -193,6 +197,61 @@
     ],
     'sishu.lunyu.03.24': [
       ['Negeri Gi', 'Negeri Yi - Gi'] // 儀, berbeda dengan 虞 Yu (Mengzi)
+    ],
+    'sishu.mengzi.02.14': [
+      ['daerah Siat', 'daerah Xue - Siat'],
+      ['Gunung Ki', 'Gunung Qishan - Ki'] // toponim diverifikasi dengan Hanzi sumber
+    ],
+    'sishu.mengzi.02.15': [
+      ['Gunung Ki', 'Gunung Qishan - Ki'] // toponim diverifikasi dengan Hanzi sumber
+    ],
+    'sishu.mengzi.04.11': [
+      ['Kota Tiu', 'Kota Zhou - Tiu'] // toponim diverifikasi dengan Hanzi sumber
+    ],
+    'sishu.mengzi.04.12': [
+      ['Kota Tiu', 'Kota Zhou - Tiu'] // toponim diverifikasi dengan Hanzi sumber
+    ],
+    'sishu.mengzi.05.02': [
+      ['Kota Coo', 'Kota Zou - Coo'] // toponim diverifikasi dengan Hanzi sumber
+    ],
+    'sishu.mengzi.07.08': [
+      ['Sungai Chong-long', 'Sungai Canglang - Chong-long'] // toponim diverifikasi dengan Hanzi sumber
+    ],
+    'sishu.mengzi.08.02': [
+      ['Sungai Cien dan Wi', 'Sungai Zhen - Cien dan Wei - Wi'] // toponim diverifikasi dengan Hanzi sumber
+    ],
+    'sishu.mengzi.09.03': [
+      ['Gunung Cong', 'Gunung Chongshan - Cong'],
+      ['Gunung I', 'Gunung Yushan - I'],
+      ['daerah Yu-pi', 'daerah Youbi - Yu-pi'] // toponim diverifikasi dengan Hanzi sumber
+    ],
+    'sishu.mengzi.09.06': [
+      ['Kota Yang-sing', 'Kota Yangcheng - Yang-sing'],
+      ['Gunung Ki', 'Gunung Jishan - Ki'],
+      ['daerah Tong', 'daerah Tong - Tong'] // toponim diverifikasi dengan Hanzi sumber
+    ],
+    'sishu.mengzi.12.01': [
+      ['kota Co', 'kota Zou - Co'] // toponim diverifikasi dengan Hanzi sumber
+    ],
+    'sishu.mengzi.12.02': [
+      ['kota Co', 'kota Zou - Co'] // toponim diverifikasi dengan Hanzi sumber
+    ],
+    'sishu.mengzi.12.05': [
+      ['kota Co', 'kota Zou - Co'],
+      ['kota Jiem', 'kota Ren - Jiem'],
+      ['Ping-Liok', 'Pinglu - Ping-Liok'],
+      ['Ping-liok', 'Pinglu - Ping-liok'] // toponim diverifikasi dengan Hanzi sumber
+    ],
+    'sishu.mengzi.12.06': [
+      ['Sungai Ki', 'Sungai Qi - Ki'],
+      ['daerah Kootong', 'daerah Gaotang - Kootong'] // toponim diverifikasi dengan Hanzi sumber
+    ],
+    'sishu.mengzi.13.24': [
+      ['gunung Tong San', 'gunung Dongshan - Tong San'],
+      ['gunung Thai', 'gunung Taishan - Thai'] // toponim diverifikasi dengan Hanzi sumber
+    ],
+    'sishu.mengzi.13.36': [
+      ['kota Hwan', 'kota Fan - Hwan'] // toponim diverifikasi dengan Hanzi sumber
     ],
     'sishu.mengzi.01.02': [
       ['Kitab Thong Si', 'Kitab Tang Shi - Thong Si'] // 湯誓
@@ -249,6 +308,7 @@
       ['serangan Negeri Jin - Chien dan Cho', 'serangan Negeri Qin - Chien dan Chu - Cho'] // 秦楚
     ],
     'sishu.mengzi.01.07': [
+      ['Gunung Thai', 'Gunung Taishan - Thai'], // nama lokasi, cocokkan Hanzi pada sishu.mengzi.01.07
       ['Pangeran Hwan', 'Pangeran Huan - Hwan'], // 齊桓
       ['Pangeran Bun dari Negeri Cien', 'Pangeran Wen - Bun dari Negeri Jin - Cien'], // 晉文
       ['seperti Chien dan Cho', 'seperti Qin - Chien dan Chu - Cho'], // 秦楚
