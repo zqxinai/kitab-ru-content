@@ -1,0 +1,29 @@
+name: Ru Classics — audit normalisasi 965 pasal
+on:
+  push:
+    branches: [main]
+    paths:
+      - "ru-classics/reading-normalization.js"
+      - "ru-classics/app.js"
+      - "ru-classics/index.html"
+      - "sishu/chapters/**"
+      - "tests/ru-classics-reading*.test.js"
+      - ".github/workflows/ru-reading-regression.yml"
+  pull_request:
+    paths:
+      - "ru-classics/reading-normalization.js"
+      - "sishu/chapters/**"
+      - "tests/ru-classics-reading*.test.js"
+      - ".github/workflows/ru-reading-regression.yml"
+jobs:
+  reading-regression:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Validate all four books and their names
+        run: node --test tests/ru-classics-reading-normalization.test.js tests/ru-classics-reading-corpus.test.js
+      - name: Reader UI smoke test
+        run: node ru-classics/tests/smoke.cjs
