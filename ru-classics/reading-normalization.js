@@ -7,7 +7,6 @@
     ['Ong-pa', 'Wang Bao'], // 王豹
     ['Ki Pik-giok', 'Qu Boyu'], // 蘧伯玉
     ['Yan Ping-tiong', 'Yan Pingzhong'], // 晏平仲
-    ['Siem-yu', 'Shenyou'], // 沈猶
     ['Sien-cu', 'Shenzi'], // 慎子
     ['Siencu', 'Shenzi'], // 慎子
     ['Sik-khiu', 'Shiqiu'], // 石丘
@@ -330,6 +329,7 @@
       ['Hian bertanya', 'Xian - Hian bertanya'], // 憲
     ],
     'sishu.mengzi.08.31': [
+      ['keluarga Siem-yu', 'keluarga Shenyou - Siem-yu'], // 沈猶, but 沈猶行 uses full name elsewhere
       ['Bu-sing', 'Wucheng - Bu-sing'], // 武城
     ],
     'sishu.lunyu.18.06': [
