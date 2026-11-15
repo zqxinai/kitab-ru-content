@@ -171,6 +171,7 @@
       ['Raja Kiat dan Tiu sendiri', 'Raja Jie - Kiat dan Zhou - Tiu sendiri'] // 桀與紂
     ],
     'sishu.mengzi.09.07': [
+      ['daerah Yu Sien', 'daerah Youshen - Yu Sien'], // Hanzi verified context
       ['Raja He Kiat', 'Raja Xia - He Jie - Kiat'], // 夏桀
       ['istana Bokkiong', 'istana Mu Gong - Bokkiong'] // 牧宮
     ],
@@ -231,6 +232,8 @@
       ['Sungai Cien dan Wi', 'Sungai Zhen - Cien dan Wei - Wi'] // toponim diverifikasi dengan Hanzi sumber
     ],
     'sishu.mengzi.09.03': [
+      ['daerah Sambiau', 'daerah Sanmiao - Sambiau'], // Hanzi verified context
+      ['Sam-gwi', 'Sanwei - Sam-gwi'], // Hanzi verified context
       ['Gunung Cong', 'Gunung Chongshan - Cong'],
       ['Gunung I', 'Gunung Yushan - I'],
       ['daerah Yu-pi', 'daerah Youbi - Yu-pi'] // toponim diverifikasi dengan Hanzi sumber
@@ -272,6 +275,7 @@
       ['daerah Pi', 'daerah Bi - Pi']
     ],
     'sishu.lunyu.16.01': [
+      ['gunung Tong Bong', 'gunung Dongmeng - Tong Bong'], // Hanzi verified context
       ['daerah Pi', 'daerah Bi - Pi'],
       ['daerah Cwan-ji', 'daerah Zhuanyu - Cwan-ji'],
       ['daerah Cwan Ji', 'daerah Zhuanyu - Cwan Ji'],
@@ -279,6 +283,35 @@
     ],
     'sishu.lunyu.17.05': [
       ['daerah Pi', 'daerah Bi - Pi']
+    ],
+    'sishu.lunyu.09.02': [
+      ['daerah Tat-hang', 'daerah Daxiang - Tat-hang']
+    ],
+    'sishu.lunyu.11.23': [
+      ['daerah Khong', 'daerah Kuang - Khong']
+    ],
+    'sishu.lunyu.13.17': [
+      ['daerah Ki-hu', 'daerah Jufu - Ki-hu']
+    ],
+    'sishu.lunyu.14.09': [
+      ['daerah Pian', 'daerah Pianyi - Pian']
+    ],
+    'sishu.lunyu.16.12': [
+      ['Gunung Siu-yang', 'Gunung Shouyang - Siu-yang']
+    ],
+    'sishu.lunyu.17.07': [
+      ['daerah Tiong-bo', 'daerah Zhongmou - Tiong-bo']
+    ],
+    'sishu.zhongyong.26.08': [
+      ['Gunung Hua dan Gak', 'Gunung Huayue - Hua dan Gak']
+    ],
+    'sishu.mengzi.02.04': [
+      ['daerah Cwan-hu', 'daerah Zhuanfu - Cwan-hu'],
+      ['Tiau-bu', 'Chaowu - Tiau-bu'],
+      ['daerah Long-ya', 'daerah Langya - Long-ya']
+    ],
+    'sishu.mengzi.02.05': [
+      ['Bukit Ki', 'Bukit Qi - Ki']
     ],
     'sishu.mengzi.01.02': [
       ['Kitab Thong Si', 'Kitab Tang Shi - Thong Si'] // 湯誓
@@ -305,6 +338,7 @@
       ['orang Cee', 'orang Qi - Cee'] // 齊
     ],
     'sishu.mengzi.09.09': [
+      ['daerah Swi-kik', 'daerah Chuiji - Swi-kik'], // Hanzi verified context
       ['Pik-li Hee', 'Baili Xi - Pik-li Hee'], // 百里奚
       ['Kiong Ciki', 'Gong Zhiqi - Kiong Ciki'], // 宮之奇
       ['Rajamuda Bok dari Negeri Jin - Chien', 'Rajamuda Mu - Bok dari Negeri Qin - Chien'], // 秦穆公
@@ -324,6 +358,7 @@
       ['Lam (Baron)', 'Nan - Lam (Baron)'] // 男
     ],
     'sishu.mengzi.11.08': [
+      ['gunung Giu', 'gunung Niushan - Giu'], // Hanzi verified context
       ['Hati Nuraninya (Liang Siem)', 'Hati Nuraninya (Liangxin - Liang Siem)'] // 良心
     ],
     'sishu.lunyu.02.09': [
