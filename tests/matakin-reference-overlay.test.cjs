@@ -237,12 +237,15 @@ test('Every segmented cross-reference means related content, not required verbat
  ];
  assert.equal(batches.flatMap(x=>x.entries).length,15);
  for(const batch of batches){
-  assert.match(batch.reference_intent,/content-relatedness/);
+  assert.match(batch.reference_intent,/MATAKIN cross-reference/);
+  assert.equal(batch.reference_authority,'MATAKIN');
+  assert.equal(batch.relationship_review_required,false);
   for(const entry of batch.entries){
    assert.equal(entry.reference_intent,'content-related');
    assert.equal(entry.relation_source,'MATAKIN cross-reference');
    assert.equal(entry.verbatim_match_required,false);
-   assert.match(entry.relation_verification,/source-declared/);
+   assert.equal(entry.relationship_review_required,false);
+   assert.match(entry.relation_verification,/accepted-on-MATAKIN-authority/);
    assert.ok(entry.components.every(c=>c.reference_intent==='content-related'&&c.verbatim_match_required===false));
   }
  }
