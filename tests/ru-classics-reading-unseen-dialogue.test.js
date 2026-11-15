@@ -29,8 +29,8 @@ const cases={
     "Xiang - Chiang",
     "Gong Gong - Kiong-kong",
     "Youzhou - Yu-ciu",
-    "San Miao - Sambiau",
-    "San Wei - Sam-gwi",
+    "Sanmiao - Sambiau",
+    "Sanwei - Sam-gwi",
     "Gun - Kun",
     "Yushan - I"
   ],
