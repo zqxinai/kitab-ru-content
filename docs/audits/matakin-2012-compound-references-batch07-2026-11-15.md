@@ -1,5 +1,10 @@
 # Ru Classics — Normalisasi MATAKIN rujukan majemuk batch 07
 
+## Pembaruan terbaru berdasarkan foto cetak MATAKIN 2012 (15 November 2026)
+
+Keterangan sebelumnya **`29 kelompok, 28 siap, 1 ditahan` telah digantikan**: rujukan `Lun Yu IX:5` terbukti pada foto tertulis **`VII.23`** tanpa tanda petik. Kini registri berisi **29 kelompok gabungan, semuanya siap tampil (29/29), dan overlay berjumlah 92 rujukan**. Rujukan tampilan sudah diperbaiki melalui mekanisme overlay ID+teks sumber; naskah MATAKIN 2011 tetap utuh. [Bukti dan perubahan terinci](matakin-2012-lunyu-09-05-photo-correction-2026-11-15.md). Keterangan historis sebelum koreksi dipertahankan di bawah untuk provenance.
+
+
 **15 November 2026 WIB** · **Pekerjaan diterapkan ke repositori dan pembaca** · Referensi semantik **otoritatif MATAKIN**; tidak ada audit ulang hubungan ajaran.
 
 ## Hasil aktual
