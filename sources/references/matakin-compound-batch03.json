@@ -1,0 +1,633 @@
+{
+  "schema": "ru-classics.compound-references.v1",
+  "date": "2026-11-15",
+  "scope": "MATAKIN 2011 compound-reference presentation, inherited abbreviations; text source preserved",
+  "reference_authority": "MATAKIN",
+  "relationship_review_required": false,
+  "reference_intent": "MATAKIN cross-reference denotes related passages or verses; thematic relation accepted on MATAKIN authority; no independent interpretation or semantic validation required",
+  "book_aliases": {
+    "SS": "lunyu",
+    "AB": "daxue",
+    "BC": "mengzi",
+    "TS": "zhongyong"
+  },
+  "entries": [
+    {
+      "passage_id": "sishu.lunyu.01.08",
+      "source": "(S.S. IV:7; V:25)",
+      "display_status": "display-ready",
+      "display": "(Sabda Suci — Lun Yu IV:7; Lun Yu V:25)",
+      "printed_2012_attested": false,
+      "reference_intent": "content-related",
+      "relation_source": "MATAKIN cross-reference",
+      "reference_authority": "MATAKIN",
+      "relationship_review_required": false,
+      "verbatim_match_required": false,
+      "relation_verification": "accepted-on-MATAKIN-authority; no independent thematic review required",
+      "review_note": "Inherited book abbreviations and comma-separated passage references resolved by MATAKIN notation; original transcription preserved; printed 2012 phrasing not attested",
+      "components": [
+        {
+          "order": 1,
+          "source_segment": "S.S. IV:7",
+          "book_id": "lunyu",
+          "target_passage_ids": [
+            "sishu.lunyu.04.07"
+          ],
+          "status": "passage-exists-not-quotation-certified",
+          "subverse_number": null,
+          "subverse_target_id": null,
+          "reference_intent": "content-related",
+          "verbatim_match_required": false
+        },
+        {
+          "order": 2,
+          "source_segment": "V:25",
+          "book_id": "lunyu",
+          "target_passage_ids": [
+            "sishu.lunyu.05.25"
+          ],
+          "status": "passage-exists-not-quotation-certified",
+          "subverse_number": null,
+          "subverse_target_id": null,
+          "reference_intent": "content-related",
+          "verbatim_match_required": false
+        }
+      ]
+    },
+    {
+      "passage_id": "sishu.lunyu.03.21",
+      "source": "(S.S. II:19; V:10)",
+      "display_status": "display-ready",
+      "display": "(Sabda Suci — Lun Yu II:19; Lun Yu V:10)",
+      "printed_2012_attested": false,
+      "reference_intent": "content-related",
+      "relation_source": "MATAKIN cross-reference",
+      "reference_authority": "MATAKIN",
+      "relationship_review_required": false,
+      "verbatim_match_required": false,
+      "relation_verification": "accepted-on-MATAKIN-authority; no independent thematic review required",
+      "review_note": "Inherited book abbreviations and comma-separated passage references resolved by MATAKIN notation; original transcription preserved; printed 2012 phrasing not attested",
+      "components": [
+        {
+          "order": 1,
+          "source_segment": "S.S. II:19",
+          "book_id": "lunyu",
+          "target_passage_ids": [
+            "sishu.lunyu.02.19"
+          ],
+          "status": "passage-exists-not-quotation-certified",
+          "subverse_number": null,
+          "subverse_target_id": null,
+          "reference_intent": "content-related",
+          "verbatim_match_required": false
+        },
+        {
+          "order": 2,
+          "source_segment": "V:10",
+          "book_id": "lunyu",
+          "target_passage_ids": [
+            "sishu.lunyu.05.10"
+          ],
+          "status": "passage-exists-not-quotation-certified",
+          "subverse_number": null,
+          "subverse_target_id": null,
+          "reference_intent": "content-related",
+          "verbatim_match_required": false
+        }
+      ]
+    },
+    {
+      "passage_id": "sishu.lunyu.03.24",
+      "source": "(S.S. VII: 23; IX: 5)",
+      "display_status": "display-ready",
+      "display": "(Sabda Suci — Lun Yu VII:23; Lun Yu IX:5)",
+      "printed_2012_attested": false,
+      "reference_intent": "content-related",
+      "relation_source": "MATAKIN cross-reference",
+      "reference_authority": "MATAKIN",
+      "relationship_review_required": false,
+      "verbatim_match_required": false,
+      "relation_verification": "accepted-on-MATAKIN-authority; no independent thematic review required",
+      "review_note": "Inherited book abbreviations and comma-separated passage references resolved by MATAKIN notation; original transcription preserved; printed 2012 phrasing not attested",
+      "components": [
+        {
+          "order": 1,
+          "source_segment": "S.S. VII: 23",
+          "book_id": "lunyu",
+          "target_passage_ids": [
+            "sishu.lunyu.07.23"
+          ],
+          "status": "passage-exists-not-quotation-certified",
+          "subverse_number": null,
+          "subverse_target_id": null,
+          "reference_intent": "content-related",
+          "verbatim_match_required": false
+        },
+        {
+          "order": 2,
+          "source_segment": "IX: 5",
+          "book_id": "lunyu",
+          "target_passage_ids": [
+            "sishu.lunyu.09.05"
+          ],
+          "status": "passage-exists-not-quotation-certified",
+          "subverse_number": null,
+          "subverse_target_id": null,
+          "reference_intent": "content-related",
+          "verbatim_match_required": false
+        }
+      ]
+    },
+    {
+      "passage_id": "sishu.lunyu.05.02",
+      "source": "(S.S. VI: 1,2; XI: 5)",
+      "display_status": "display-ready",
+      "display": "(Sabda Suci — Lun Yu VI:1,2; Lun Yu XI:5)",
+      "printed_2012_attested": false,
+      "reference_intent": "content-related",
+      "relation_source": "MATAKIN cross-reference",
+      "reference_authority": "MATAKIN",
+      "relationship_review_required": false,
+      "verbatim_match_required": false,
+      "relation_verification": "accepted-on-MATAKIN-authority; no independent thematic review required",
+      "review_note": "Inherited book abbreviations and comma-separated passage references resolved by MATAKIN notation; original transcription preserved; printed 2012 phrasing not attested",
+      "components": [
+        {
+          "order": 1,
+          "source_segment": "S.S. VI: 1,2",
+          "book_id": "lunyu",
+          "target_passage_ids": [
+            "sishu.lunyu.06.01",
+            "sishu.lunyu.06.02"
+          ],
+          "status": "passage-exists-not-quotation-certified",
+          "subverse_number": null,
+          "subverse_target_id": null,
+          "reference_intent": "content-related",
+          "verbatim_match_required": false
+        },
+        {
+          "order": 2,
+          "source_segment": "XI: 5",
+          "book_id": "lunyu",
+          "target_passage_ids": [
+            "sishu.lunyu.11.05"
+          ],
+          "status": "passage-exists-not-quotation-certified",
+          "subverse_number": null,
+          "subverse_target_id": null,
+          "reference_intent": "content-related",
+          "verbatim_match_required": false
+        }
+      ]
+    },
+    {
+      "passage_id": "sishu.lunyu.05.04",
+      "source": "(S.S. I: 10; II: 12, 13)",
+      "display_status": "display-ready",
+      "display": "(Sabda Suci — Lun Yu I:10; Lun Yu II:12,13)",
+      "printed_2012_attested": false,
+      "reference_intent": "content-related",
+      "relation_source": "MATAKIN cross-reference",
+      "reference_authority": "MATAKIN",
+      "relationship_review_required": false,
+      "verbatim_match_required": false,
+      "relation_verification": "accepted-on-MATAKIN-authority; no independent thematic review required",
+      "review_note": "Inherited book abbreviations and comma-separated passage references resolved by MATAKIN notation; original transcription preserved; printed 2012 phrasing not attested",
+      "components": [
+        {
+          "order": 1,
+          "source_segment": "S.S. I: 10",
+          "book_id": "lunyu",
+          "target_passage_ids": [
+            "sishu.lunyu.01.10"
+          ],
+          "status": "passage-exists-not-quotation-certified",
+          "subverse_number": null,
+          "subverse_target_id": null,
+          "reference_intent": "content-related",
+          "verbatim_match_required": false
+        },
+        {
+          "order": 2,
+          "source_segment": "II: 12, 13",
+          "book_id": "lunyu",
+          "target_passage_ids": [
+            "sishu.lunyu.02.12",
+            "sishu.lunyu.02.13"
+          ],
+          "status": "passage-exists-not-quotation-certified",
+          "subverse_number": null,
+          "subverse_target_id": null,
+          "reference_intent": "content-related",
+          "verbatim_match_required": false
+        }
+      ]
+    },
+    {
+      "passage_id": "sishu.lunyu.09.16",
+      "source": "(S.S. VII: 2; X: 8)",
+      "display_status": "display-ready",
+      "display": "(Sabda Suci — Lun Yu VII:2; Lun Yu X:8)",
+      "printed_2012_attested": false,
+      "reference_intent": "content-related",
+      "relation_source": "MATAKIN cross-reference",
+      "reference_authority": "MATAKIN",
+      "relationship_review_required": false,
+      "verbatim_match_required": false,
+      "relation_verification": "accepted-on-MATAKIN-authority; no independent thematic review required",
+      "review_note": "Inherited book abbreviations and comma-separated passage references resolved by MATAKIN notation; original transcription preserved; printed 2012 phrasing not attested",
+      "components": [
+        {
+          "order": 1,
+          "source_segment": "S.S. VII: 2",
+          "book_id": "lunyu",
+          "target_passage_ids": [
+            "sishu.lunyu.07.02"
+          ],
+          "status": "passage-exists-not-quotation-certified",
+          "subverse_number": null,
+          "subverse_target_id": null,
+          "reference_intent": "content-related",
+          "verbatim_match_required": false
+        },
+        {
+          "order": 2,
+          "source_segment": "X: 8",
+          "book_id": "lunyu",
+          "target_passage_ids": [
+            "sishu.lunyu.10.08"
+          ],
+          "status": "passage-exists-not-quotation-certified",
+          "subverse_number": null,
+          "subverse_target_id": null,
+          "reference_intent": "content-related",
+          "verbatim_match_required": false
+        }
+      ]
+    },
+    {
+      "passage_id": "sishu.lunyu.12.20",
+      "source": "(S.S. XIII. 20; XV. 6)",
+      "display_status": "display-ready",
+      "display": "(Sabda Suci — Lun Yu XIII:20; Lun Yu XV:6)",
+      "printed_2012_attested": false,
+      "reference_intent": "content-related",
+      "relation_source": "MATAKIN cross-reference",
+      "reference_authority": "MATAKIN",
+      "relationship_review_required": false,
+      "verbatim_match_required": false,
+      "relation_verification": "accepted-on-MATAKIN-authority; no independent thematic review required",
+      "review_note": "Inherited book abbreviations and comma-separated passage references resolved by MATAKIN notation; original transcription preserved; printed 2012 phrasing not attested",
+      "components": [
+        {
+          "order": 1,
+          "source_segment": "S.S. XIII. 20",
+          "book_id": "lunyu",
+          "target_passage_ids": [
+            "sishu.lunyu.13.20"
+          ],
+          "status": "passage-exists-not-quotation-certified",
+          "subverse_number": null,
+          "subverse_target_id": null,
+          "reference_intent": "content-related",
+          "verbatim_match_required": false
+        },
+        {
+          "order": 2,
+          "source_segment": "XV. 6",
+          "book_id": "lunyu",
+          "target_passage_ids": [
+            "sishu.lunyu.15.06"
+          ],
+          "status": "passage-exists-not-quotation-certified",
+          "subverse_number": null,
+          "subverse_target_id": null,
+          "reference_intent": "content-related",
+          "verbatim_match_required": false
+        }
+      ]
+    },
+    {
+      "passage_id": "sishu.lunyu.14.20",
+      "source": "(S.S. IV: 22; XIV: 27)",
+      "display_status": "display-ready",
+      "display": "(Sabda Suci — Lun Yu IV:22; Lun Yu XIV:27)",
+      "printed_2012_attested": false,
+      "reference_intent": "content-related",
+      "relation_source": "MATAKIN cross-reference",
+      "reference_authority": "MATAKIN",
+      "relationship_review_required": false,
+      "verbatim_match_required": false,
+      "relation_verification": "accepted-on-MATAKIN-authority; no independent thematic review required",
+      "review_note": "Inherited book abbreviations and comma-separated passage references resolved by MATAKIN notation; original transcription preserved; printed 2012 phrasing not attested",
+      "components": [
+        {
+          "order": 1,
+          "source_segment": "S.S. IV: 22",
+          "book_id": "lunyu",
+          "target_passage_ids": [
+            "sishu.lunyu.04.22"
+          ],
+          "status": "passage-exists-not-quotation-certified",
+          "subverse_number": null,
+          "subverse_target_id": null,
+          "reference_intent": "content-related",
+          "verbatim_match_required": false
+        },
+        {
+          "order": 2,
+          "source_segment": "XIV: 27",
+          "book_id": "lunyu",
+          "target_passage_ids": [
+            "sishu.lunyu.14.27"
+          ],
+          "status": "passage-exists-not-quotation-certified",
+          "subverse_number": null,
+          "subverse_target_id": null,
+          "reference_intent": "content-related",
+          "verbatim_match_required": false
+        }
+      ]
+    },
+    {
+      "passage_id": "sishu.lunyu.20.02",
+      "source": "(S.S.IV:18;XIII:26;VII: 38 )",
+      "display_status": "display-ready",
+      "display": "(Sabda Suci — Lun Yu IV:18; Lun Yu XIII:26; Lun Yu VII:38)",
+      "printed_2012_attested": false,
+      "reference_intent": "content-related",
+      "relation_source": "MATAKIN cross-reference",
+      "reference_authority": "MATAKIN",
+      "relationship_review_required": false,
+      "verbatim_match_required": false,
+      "relation_verification": "accepted-on-MATAKIN-authority; no independent thematic review required",
+      "review_note": "Inherited book abbreviations and comma-separated passage references resolved by MATAKIN notation; original transcription preserved; printed 2012 phrasing not attested",
+      "components": [
+        {
+          "order": 1,
+          "source_segment": "S.S.IV:18",
+          "book_id": "lunyu",
+          "target_passage_ids": [
+            "sishu.lunyu.04.18"
+          ],
+          "status": "passage-exists-not-quotation-certified",
+          "subverse_number": null,
+          "subverse_target_id": null,
+          "reference_intent": "content-related",
+          "verbatim_match_required": false
+        },
+        {
+          "order": 2,
+          "source_segment": "XIII:26",
+          "book_id": "lunyu",
+          "target_passage_ids": [
+            "sishu.lunyu.13.26"
+          ],
+          "status": "passage-exists-not-quotation-certified",
+          "subverse_number": null,
+          "subverse_target_id": null,
+          "reference_intent": "content-related",
+          "verbatim_match_required": false
+        },
+        {
+          "order": 3,
+          "source_segment": "VII: 38",
+          "book_id": "lunyu",
+          "target_passage_ids": [
+            "sishu.lunyu.07.38"
+          ],
+          "status": "passage-exists-not-quotation-certified",
+          "subverse_number": null,
+          "subverse_target_id": null,
+          "reference_intent": "content-related",
+          "verbatim_match_required": false
+        }
+      ]
+    },
+    {
+      "passage_id": "sishu.lunyu.14.36",
+      "source": "(S.S. VII: 23; IX: 5; Bc. IB: 16)",
+      "display_status": "display-ready",
+      "display": "(Sabda Suci — Lun Yu VII:23; Lun Yu IX:5; Mengzi — Bing Cu I B:16)",
+      "printed_2012_attested": false,
+      "reference_intent": "content-related",
+      "relation_source": "MATAKIN cross-reference",
+      "reference_authority": "MATAKIN",
+      "relationship_review_required": false,
+      "verbatim_match_required": false,
+      "relation_verification": "accepted-on-MATAKIN-authority; no independent thematic review required",
+      "review_note": "Inherited book abbreviations and comma-separated passage references resolved by MATAKIN notation; original transcription preserved; printed 2012 phrasing not attested",
+      "components": [
+        {
+          "order": 1,
+          "source_segment": "S.S. VII: 23",
+          "book_id": "lunyu",
+          "target_passage_ids": [
+            "sishu.lunyu.07.23"
+          ],
+          "status": "passage-exists-not-quotation-certified",
+          "subverse_number": null,
+          "subverse_target_id": null,
+          "reference_intent": "content-related",
+          "verbatim_match_required": false
+        },
+        {
+          "order": 2,
+          "source_segment": "IX: 5",
+          "book_id": "lunyu",
+          "target_passage_ids": [
+            "sishu.lunyu.09.05"
+          ],
+          "status": "passage-exists-not-quotation-certified",
+          "subverse_number": null,
+          "subverse_target_id": null,
+          "reference_intent": "content-related",
+          "verbatim_match_required": false
+        },
+        {
+          "order": 3,
+          "source_segment": "Bc. IB: 16",
+          "book_id": "mengzi",
+          "target_passage_ids": [
+            "sishu.mengzi.02.16"
+          ],
+          "status": "passage-exists-not-quotation-certified",
+          "subverse_number": null,
+          "subverse_target_id": null,
+          "reference_intent": "content-related",
+          "verbatim_match_required": false
+        }
+      ]
+    },
+    {
+      "passage_id": "sishu.lunyu.13.21",
+      "source": "(Bc. VII B: 37; S.S. V: 22)",
+      "display_status": "display-ready",
+      "display": "(Mengzi — Bing Cu VII B:37; Sabda Suci — Lun Yu V:22)",
+      "printed_2012_attested": false,
+      "reference_intent": "content-related",
+      "relation_source": "MATAKIN cross-reference",
+      "reference_authority": "MATAKIN",
+      "relationship_review_required": false,
+      "verbatim_match_required": false,
+      "relation_verification": "accepted-on-MATAKIN-authority; no independent thematic review required",
+      "review_note": "Inherited book abbreviations and comma-separated passage references resolved by MATAKIN notation; original transcription preserved; printed 2012 phrasing not attested",
+      "components": [
+        {
+          "order": 1,
+          "source_segment": "Bc. VII B: 37",
+          "book_id": "mengzi",
+          "target_passage_ids": [
+            "sishu.mengzi.14.37"
+          ],
+          "status": "passage-exists-not-quotation-certified",
+          "subverse_number": null,
+          "subverse_target_id": null,
+          "reference_intent": "content-related",
+          "verbatim_match_required": false
+        },
+        {
+          "order": 2,
+          "source_segment": "S.S. V: 22",
+          "book_id": "lunyu",
+          "target_passage_ids": [
+            "sishu.lunyu.05.22"
+          ],
+          "status": "passage-exists-not-quotation-certified",
+          "subverse_number": null,
+          "subverse_target_id": null,
+          "reference_intent": "content-related",
+          "verbatim_match_required": false
+        }
+      ]
+    },
+    {
+      "passage_id": "sishu.lunyu.13.26",
+      "source": "(A.B. X: 18; S.S. XX: 2)",
+      "display_status": "display-ready",
+      "display": "(Ajaran Besar — Da Xue X:18; Sabda Suci — Lun Yu XX:2)",
+      "printed_2012_attested": false,
+      "reference_intent": "content-related",
+      "relation_source": "MATAKIN cross-reference",
+      "reference_authority": "MATAKIN",
+      "relationship_review_required": false,
+      "verbatim_match_required": false,
+      "relation_verification": "accepted-on-MATAKIN-authority; no independent thematic review required",
+      "review_note": "Inherited book abbreviations and comma-separated passage references resolved by MATAKIN notation; original transcription preserved; printed 2012 phrasing not attested",
+      "components": [
+        {
+          "order": 1,
+          "source_segment": "A.B. X: 18",
+          "book_id": "daxue",
+          "target_passage_ids": [
+            "sishu.daxue.11.18"
+          ],
+          "status": "passage-exists-not-quotation-certified",
+          "subverse_number": null,
+          "subverse_target_id": null,
+          "reference_intent": "content-related",
+          "verbatim_match_required": false
+        },
+        {
+          "order": 2,
+          "source_segment": "S.S. XX: 2",
+          "book_id": "lunyu",
+          "target_passage_ids": [
+            "sishu.lunyu.20.02"
+          ],
+          "status": "passage-exists-not-quotation-certified",
+          "subverse_number": null,
+          "subverse_target_id": null,
+          "reference_intent": "content-related",
+          "verbatim_match_required": false
+        }
+      ]
+    },
+    {
+      "passage_id": "sishu.lunyu.11.12",
+      "source": "(S.S. VII 21; T.S. X: 1)",
+      "display_status": "display-ready",
+      "display": "(Sabda Suci — Lun Yu VII:21; Tengah Sempurna — Zhong Yong X:1)",
+      "printed_2012_attested": false,
+      "reference_intent": "content-related",
+      "relation_source": "MATAKIN cross-reference",
+      "reference_authority": "MATAKIN",
+      "relationship_review_required": false,
+      "verbatim_match_required": false,
+      "relation_verification": "accepted-on-MATAKIN-authority; no independent thematic review required",
+      "review_note": "Inherited book abbreviations and comma-separated passage references resolved by MATAKIN notation; original transcription preserved; printed 2012 phrasing not attested",
+      "components": [
+        {
+          "order": 1,
+          "source_segment": "S.S. VII 21",
+          "book_id": "lunyu",
+          "target_passage_ids": [
+            "sishu.lunyu.07.21"
+          ],
+          "status": "passage-exists-not-quotation-certified",
+          "subverse_number": null,
+          "subverse_target_id": null,
+          "reference_intent": "content-related",
+          "verbatim_match_required": false
+        },
+        {
+          "order": 2,
+          "source_segment": "T.S. X: 1",
+          "book_id": "zhongyong",
+          "target_passage_ids": [
+            "sishu.zhongyong.11.01"
+          ],
+          "status": "passage-exists-not-quotation-certified",
+          "subverse_number": null,
+          "subverse_target_id": null,
+          "reference_intent": "content-related",
+          "verbatim_match_required": false
+        }
+      ]
+    },
+    {
+      "passage_id": "sishu.lunyu.14.01",
+      "source": "(S.S. VIII: 13; Bc. VIIA: 6,7)",
+      "display_status": "display-ready",
+      "display": "(Sabda Suci — Lun Yu VIII:13; Mengzi — Bing Cu VII A:6,7)",
+      "printed_2012_attested": false,
+      "reference_intent": "content-related",
+      "relation_source": "MATAKIN cross-reference",
+      "reference_authority": "MATAKIN",
+      "relationship_review_required": false,
+      "verbatim_match_required": false,
+      "relation_verification": "accepted-on-MATAKIN-authority; no independent thematic review required",
+      "review_note": "Inherited book abbreviations and comma-separated passage references resolved by MATAKIN notation; original transcription preserved; printed 2012 phrasing not attested",
+      "components": [
+        {
+          "order": 1,
+          "source_segment": "S.S. VIII: 13",
+          "book_id": "lunyu",
+          "target_passage_ids": [
+            "sishu.lunyu.08.13"
+          ],
+          "status": "passage-exists-not-quotation-certified",
+          "subverse_number": null,
+          "subverse_target_id": null,
+          "reference_intent": "content-related",
+          "verbatim_match_required": false
+        },
+        {
+          "order": 2,
+          "source_segment": "Bc. VIIA: 6,7",
+          "book_id": "mengzi",
+          "target_passage_ids": [
+            "sishu.mengzi.13.06",
+            "sishu.mengzi.13.07"
+          ],
+          "status": "passage-exists-not-quotation-certified",
+          "subverse_number": null,
+          "subverse_target_id": null,
+          "reference_intent": "content-related",
+          "verbatim_match_required": false
+        }
+      ]
+    }
+  ]
+}
