@@ -127,13 +127,22 @@
       ['Raja Shun - Sun dan I.', 'Raja Shun - Sun dan Yu - I.'] // 舜禹
     ],
     'sishu.mengzi.05.04': [
+      ['Negeri King dan Si', 'Negeri Jing - King dan Shu - Si'], // 荊舒
       ['I disuruh mengatur', 'Yu - I disuruh mengatur'], // 禹
       ['I selama 8 tahun', 'Yu - I selama 8 tahun'] // 禹
     ],
     'sishu.mengzi.06.09': [
+      ['Negeri-negeri King dan Si', 'Negeri-negeri Jing - King dan Shu - Si'], // 荊舒
       ['I disuruhnya mengatasi', 'Yu - I disuruhnya mengatasi'], // 禹
       ['I lalu menggali', 'Yu - I lalu menggali'], // 禹
       ['I setelah mengatasi', 'Yu - I setelah mengatasi'] // 禹; 夷 remains "I"
+    ],
+    'sishu.mengzi.07.09': [
+      ['Raja Kiat dan Tiu sendiri', 'Raja Jie - Kiat dan Zhou - Tiu sendiri'] // 桀與紂
+    ],
+    'sishu.mengzi.09.07': [
+      ['Raja He Kiat', 'Raja Xia - He Jie - Kiat'], // 夏桀
+      ['istana Bokkiong', 'istana Mu Gong - Bokkiong'] // 牧宮
     ],
     'sishu.mengzi.01.02': [
       ['Kitab Thong Si', 'Kitab Tang Shi - Thong Si'] // 湯誓
