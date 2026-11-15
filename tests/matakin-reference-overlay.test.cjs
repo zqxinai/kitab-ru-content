@@ -17,10 +17,10 @@ const expectedTargets={
  'sishu.daxue.11.23':'sishu.mengzi.01.01',
  'sishu.mengzi.01.01':'sishu.daxue.11.23'
 };
-test('Ninety-two exact references preserve original sources and resolve only evidenced targets',()=>{
+test('One hundred nineteen exact references preserve original sources and resolve only evidenced targets',()=>{
  assert.equal(chapters.length,78);
  assert.equal(byId.size,965);
- assert.equal(overlay.records.length,92);
+ assert.equal(overlay.records.length,119);
  // Historical batch 01 is immutable; batch 02 allows multiple references in one passage.
  for(const [sourceId,targetId] of Object.entries(expectedTargets))
   assert.ok(overlay.records.some(r=>r.passage_id===sourceId&&r.target_id===targetId),'legacy mapping changed: '+sourceId);
@@ -303,6 +303,37 @@ test('Every segmented cross-reference means related content, not required verbat
    assert.ok(entry.components.every(c=>c.reference_intent==='content-related'&&c.verbatim_match_required===false));
   }
  }
+});
+test('Batch 08 single-book references have exact source text, validated targets and only display changes',()=>{
+ const data=read('sources/references/matakin-single-batch08.json');
+ assert.equal(data.schema,'ru-classics.single-reference-batch.v1');
+ assert.deepEqual(data.book_aliases,{SS:'lunyu',AB:'daxue',BC:'mengzi',TS:'zhongyong'});
+ assert.equal(data.records.length,27);
+ assert.equal(new Set(data.records.map(r=>r.passage_id+'::'+r.source)).size,27);
+ assert.equal(data.records.filter(r=>r.passage_id.startsWith('sishu.zhongyong.')).length,13);
+ assert.equal(data.records.filter(r=>r.passage_id.startsWith('sishu.mengzi.')).length,14);
+ for(const r of data.records){
+  const p=byId.get(r.passage_id);
+  assert.ok(p,'source pasal missing: '+r.passage_id);
+  assert.equal(p.translation_indonesian.split(r.source).length,2,'source reference mismatch: '+r.passage_id+' '+r.source);
+  assert.ok(byId.has(r.target_id),'target passage missing: '+r.target_id);
+  assert.equal(r.reference_authority,'MATAKIN');
+  assert.equal(r.relationship_review_required,false);
+  assert.equal(r.printed_2012_wording_attested,false,'not a transcription of a photograph');
+  const same=overlay.records.filter(x=>x.passage_id===r.passage_id&&x.source===r.source);
+  assert.equal(same.length,1,'exact display overlay missing/duplicate: '+r.passage_id);
+  assert.equal(same[0].target_id,r.target_id);
+  assert.equal(same[0].display,r.display);
+  const output=overlay.present(r.passage_id,p.translation_indonesian);
+  assert.ok(output.includes(r.display),'display not applied to exact source');
+  assert.ok(!output.includes(r.source),'old reference should be hidden only in display');
+  assert.equal(overlay.present(r.passage_id,output),output,'idempotency violated');
+  assert.equal(p.translation_indonesian.includes(r.source),true,'original 2011 source rewritten');
+ }
+ const shared=byId.get('sishu.mengzi.03.02');
+ const result=overlay.present(shared.id,shared.translation_indonesian);
+ for(const fragment of ['Sabda Suci — Lun Yu XI:3','Sabda Suci — Lun Yu VII:2','Sabda Suci — Lun Yu VII:26','Sabda Suci — Lun Yu XII:22','Sabda Suci — Lun Yu IX:9'])
+  assert.ok(result.includes(fragment),'one of five independent references missing: '+fragment);
 });
 test('The exact legacy references remain intact in every source and the overlay changes only display',()=>{
  for(const r of overlay.records){
