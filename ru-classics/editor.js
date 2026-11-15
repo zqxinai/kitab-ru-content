@@ -124,6 +124,67 @@
       (state.field==='ruby_paragraphs'||state.field==='editorial_annotations'?'<p>Format JSON terstruktur wajib dipertahankan dan divalidasi sebelum pengiriman.</p>':'')+
       '<button type="submit" class="primary" '+(state.busy?'disabled':'')+'>Kirim untuk persetujuan</button></form></section>';
   }
+  function sourceHanzi(p){
+    return (p?.ruby_paragraphs||[]).flat().map(t=>t.type==='ruby'?t.traditional||'':t.value||'').join('');
+  }
+  function sourceRuby(paragraphs){
+    return (Array.isArray(paragraphs)?paragraphs:[]).map(tokens=>
+      '<p>'+((Array.isArray(tokens)?tokens:[]).map(t=>t.type==='ruby'?
+        '<ruby>'+H(t.traditional||'')+'<rt>'+H(t.pinyin||'')+'</rt></ruby>':H(t.value||'')).join(''))+'</p>'
+    ).join('');
+  }
+  function editorialStatus(p){
+    const r=state.auditStatus.get(p.id)||{};
+    const source=app()?.getOriginal(p.id);
+    const traced=typeof r.reviewed_by==='string'&&!!r.reviewed_by.trim()&&
+      typeof r.reviewed_at==='string'&&!!r.reviewed_at.trim()&&
+      Number.isInteger(r.source_issue)&&r.source_issue>0&&
+      r.hanzi_span===sourceHanzi(source);
+    return {
+      indonesian:!!(traced&&r.indonesian==='final'&&r.indonesian_text===source?.translation_indonesian),
+      english:!!(traced&&r.english==='final'&&r.english_text===source?.translation_english)
+    };
+  }
+  async function loadAuditStatus(){
+    try{
+      const response=await fetch('../dist/sishu-review-status.json',{cache:'no-store'});
+      if(!response.ok)return;
+      const data=await response.json();
+      if(data?.schema!=='kitab-ru.review-status.v1'||!Array.isArray(data.entries))return;
+      state.auditStatus=new Map(data.entries.filter(x=>typeof x.passage_id==='string').map(x=>[x.passage_id,x]));
+      update();
+    }catch(_){/* A missing registry can never imply Final. */}
+  }
+  function auditPanel(){
+    const all=fillSelected(),p=selectedPassage();
+    if(!p)return '';
+    const verses=globalThis.RuSubverses?.editable(p.translation_indonesian);
+    const selected=state.field==='translation_indonesian'?verses?.find(x=>x.number===state.verse):null;
+    const aligned=selected?globalThis.RuSubverses?.align(p)?.find(x=>x.number===selected.number):null;
+    const status=editorialStatus(p);
+    const pStatus=state.edits.filter(e=>e.passageId===p.id&&e.status==='pending').length;
+    const annot=Array.isArray(p.editorial_annotations)?p.editorial_annotations:[];
+    const sourceInfo=H(p.translation_english_source||p.english_source||'Keterangan sumber per pasal belum tersedia');
+    return '<section class="editor-panel audit-panel"><h2>Dashboard audit Si Shu</h2>'+
+      '<p>'+all.length+' pasal dalam 78 bab · '+state.auditStatus.size+' entri register status editorial · '+pStatus+' usulan Firebase menunggu review pada pasal ini.</p>'+
+      '<p><strong>'+H(BOOK_NAMES[p._book]||p._book)+' · '+H(p._chapterTitle)+' · Pasal '+H(p.number)+
+      (selected?' · Ayat '+selected.number:'')+'</strong></p>'+
+      '<p>Audit naskah: Indonesia <strong>'+(status.indonesian?'Final terverifikasi':'Perlu review')+
+      '</strong> · Inggris <strong>'+(status.english?'Final terverifikasi':'Perlu review')+'</strong>. '+
+      'Status persetujuan website terpisah dan tidak otomatis mengesahkan teks MATAKIN.</p>'+
+      '<div class="audit-columns">'+
+      '<div><strong>Hanzi & pinyin'+(selected&&!aligned?' (tingkat pasal; batas ayat belum terverifikasi)':'')+'</strong>'+
+      '<div class="audit-ruby" lang="zh-Hant">'+sourceRuby(aligned?[aligned.ruby_tokens]:p.ruby_paragraphs)+'</div></div>'+
+      '<div><strong>Terjemahan Indonesia · MATAKIN</strong><div class="editor-compare">'+H(selected?selected.text:p.translation_indonesian)+'</div></div>'+
+      '<div><strong>English · James Legge (tingkat pasal)</strong><div class="editor-compare">'+H(p.translation_english||'Belum tersedia')+'</div>'+
+      '<small>'+sourceInfo+'</small></div>'+
+      '<div><strong>Komentar sumber · terpisah</strong><div class="editor-compare">'+
+      (annot.length?annot.map(a=>'<p><strong>'+H(a.title_indonesian||'Catatan')+'</strong> '+H(a.description_indonesian||'')+
+        (a.attribution?' <small>— '+H(a.attribution)+'</small>':'')+'</p>').join(''):'Belum tersedia')+
+      '</div></div></div>'+
+      '<p><a class="text-link" href="../editor/">Lihat arsip dashboard audit lama</a> · Usulan baru gunakan Firebase di bawah ini.</p>'+
+      '</section>';
+  }
   function renderRequests(){
     if(!state.users.length)return '';
     return '<section class="editor-panel"><h2>Permohonan editor · '+state.users.length+'</h2><p>Hanya pemilik dengan peran Admin dapat mengizinkan akun baru mengedit.</p>'+state.users.map(u=>'<div class="editor-entry"><strong>'+H(u.displayName||u.id)+'</strong><p><small>Email Google: '+H(u.email||'Tidak tersedia')+'</small></p><p><small>UID: '+H(u.uid)+'</small></p><div class="actions"><button class="primary" data-editor-approve="'+H(u.id)+'">Setujui editor</button><button class="secondary" data-editor-reject="'+H(u.id)+'">Tolak permohonan</button></div></div>').join('')+'</section>';
@@ -143,7 +204,7 @@
   }
   function render(element){
     if(!element)return;
-    element.innerHTML='<div class="chapter-title"><span class="eyebrow">Ruang kolaborasi</span><h1>Editor Ru Classics</h1><p class="muted">Pendaftaran editor dan semua perubahan teks membutuhkan persetujuan pemilik.</p></div>'
+    element.innerHTML='<div class="chapter-title"><span class="eyebrow">Audit dan kolaborasi</span><h1>Ruang Editor Ru Classics</h1><p class="muted">Pendaftaran editor dan semua perubahan teks membutuhkan persetujuan pemilik.</p></div>'
       +(state.error?'<div class="empty" role="alert">'+H(state.error)+'</div>':'')
       +(!state.ready?'<div class="editor-panel"><p>Memeriksa status autentikasi…</p></div>':'')
       +(!state.auth?'<section class="editor-panel"><h2>Login editor belum diaktifkan</h2><p>Ruang baca sudah tersedia. Untuk masuk dengan Google, pemilik perlu mengaktifkan Google Sign-In pada Firebase Authentication, mengonfigurasi Firestore dan menerbitkan aturan akses aman. Akun yang baru masuk belum bisa mengedit sampai disetujui admin.</p><button type="button" class="secondary" disabled aria-disabled="true">Masuk dengan Google — belum aktif</button></section>':'')
@@ -152,7 +213,7 @@
       +(state.user&&state.role==='pending'?'<section class="editor-panel"><h2>Permohonan menunggu persetujuan</h2><p>Akun Anda telah terdaftar, tetapi belum mendapat izin mengirim usulan teks. Pengelola harus menyetujui akun ini dahulu. Anda dapat kembali lagi untuk memeriksa status.</p></section>':'')
       +(state.user&&state.role==='rejected'?'<section class="editor-panel"><h2>Permohonan belum disetujui</h2><p>Akun ini tidak memiliki hak mengedit. Hubungi pengelola untuk klarifikasi.</p></section>':'')
       +(state.user&&state.role==='admin'?renderRequests():'')
-      +(state.user&&['admin','editor'].includes(state.role)?editorForm()+renderEdits():'');
+      +(state.user&&['admin','editor'].includes(state.role)?auditPanel()+editorForm()+renderEdits():'');
   }
   async function createProposal(){
     if(!['admin','editor'].includes(state.role)||state.busy)return;
@@ -230,4 +291,5 @@
   window.RuEditorial={render,canEdit:()=>['admin','editor'].includes(state.role),startProposal:(id,verse=0)=>{state.selected=id;state.field='translation_indonesian';state.verse=Number(verse)||0;update();}};
   window.addEventListener('ru:ready',update);
   init();
+  loadAuditStatus();
 })();
