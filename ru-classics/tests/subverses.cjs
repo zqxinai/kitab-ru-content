@@ -64,3 +64,44 @@ test('public reader loads alignment module and actually renders numbered ruby an
   assert.doesNotMatch(app,/if\(!aligned\)return hanziWithSubverses/);
   assert.doesNotMatch(app,/if\(!verses\)return indonesiaWithSubverses/);
 });
+
+
+test('editable ayat can be selected and reassembled without changing adjacent MATAKIN text',()=>{
+  const p=passage(SOURCE[0][0],SOURCE[0][1]);
+  const original=p.translation_indonesian;
+  const segments=api.editable(original);
+  assert.equal(segments.length,6);
+  for(const selected of [segments[0],segments[2],segments[5]]){
+    const candidate=api.replaceVerse(original,selected.number,'Usulan pengujian ayat '+selected.number+'.');
+    assert.ok(candidate);
+    assert.equal(api.changedVerse(original,candidate),selected.number);
+    const next=api.editable(candidate);
+    assert.deepEqual(next.map(v=>v.number),segments.map(v=>v.number));
+    for(let i=0;i<segments.length;i++){
+      if(segments[i].number===selected.number)assert.notEqual(segments[i].text,next[i].text);
+      else assert.equal(segments[i].text,next[i].text,'Unrelated ayat mutated');
+    }
+  }
+  assert.equal(p.translation_indonesian,original,'Never modify MATAKIN source');
+});
+test('rejects invalid ayat edit attempts without corrupting verse markers',()=>{
+  const original=passage(SOURCE[0][0],SOURCE[0][1]).translation_indonesian;
+  assert.equal(api.replaceVerse(original,99,'x'),null);
+  assert.equal(api.replaceVerse(original,2,' '),null);
+  assert.equal(api.replaceVerse(original,2,'Teks baru (3) penanda palsu'),null);
+  assert.equal(api.replaceVerse('Tidak ada penanda ayat.',1,'x'),null);
+  assert.equal(api.changedVerse(original,'Teks dengan pembagian berbeda'),null);
+});
+test('Firebase editor and public reader can choose ayat without changing Firestore schema',()=>{
+  const reader=fs.readFileSync(path.join(root,'ru-classics/app.js'),'utf8');
+  const editor=fs.readFileSync(path.join(root,'ru-classics/editor.js'),'utf8');
+  assert.match(reader,/data-ayat-select/);
+  assert.match(reader,/startProposal\?\.\(state\.id,state\.ayat\)/);
+  assert.match(editor,/id="edit-book"/);
+  assert.match(editor,/id="edit-chapter"/);
+  assert.match(editor,/id="edit-passage"/);
+  assert.match(editor,/id="edit-ayat"/);
+  assert.match(editor,/replaceVerse\(oldText,state\.verse,entryText\)/);
+  assert.match(editor,/passageId:p\.id,field:state\.field,baseText:oldText,proposedText:newText/);
+  assert.match(editor,/auditPanel\(\)\+editorForm\(\)\+renderEdits\(\)/);
+});
