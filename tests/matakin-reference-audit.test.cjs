@@ -67,6 +67,23 @@ test('Batch 06 records two uncertain cases and leaves slash-based subverse targe
  assert.equal(slash?.segments[1].target_passage_ids[0],'sishu.mengzi.03.02');
  assert.equal(slash?.segments[1].subverse_target_id,null);
 });
+test('Compound rujukan means related content rather than an exact verbal quotation',()=>{
+ const all=scan();
+ const entries=all.all_references.filter(x=>x.segmentation_status);
+ assert.equal(entries.length,15);
+ assert.ok(entries.every(x=>x.reference_intent==='content-related'));
+ assert.ok(entries.every(x=>x.verbatim_match_required===false));
+ assert.ok(entries.every(x=>x.relation_verification.includes('precise thematic relationship pending editorial review')));
+ assert.ok(entries.every(x=>x.segments.every(y=>y.reference_intent==='content-related'&&y.verbatim_match_required===false)));
+ const slash=entries.find(x=>x.passage_id==='sishu.lunyu.03.07');
+ assert.equal(slash.segments[1].subverse_number,5);
+ assert.equal(slash.segments[1].subverse_marker_status,'verified-in-2011-transcript');
+ assert.equal(slash.segments[1].subverse_target_id,null);
+ const two=entries.find(x=>x.passage_id==='sishu.lunyu.07.02');
+ assert.equal(two.segments[1].subverse_number,19);
+ const twentyEight=entries.find(x=>x.passage_id==='sishu.lunyu.09.09');
+ assert.equal(twentyEight.segments[1].subverse_number,28);
+});
 test('Full source audit identifies reference records without changing scripture',()=>{
  const all=scan(),byId=id=>all.all_references.filter(x=>x.passage_id===id);
  assert.equal(all.passage_count,965);
