@@ -16,7 +16,7 @@
       "display_status": "display-ready",
       "display": "(Tengah Sempurna — Zhong Yong XIII:5; Mengzi — Bing Cu II A:7/5)",
       "printed_2012_attested": false,
-      "review_note": "/5 retained from printed 2011; not a verified subverse",
+      "review_note": "Pemilik buku mengonfirmasi bentuk Pasal/Ayat (/N berarti Ayat N). Penanda ayat terkait ditemukan berurutan pada teks MATAKIN 2011. Tautan langsung ke ayat dan kesamaan kutipan persis edisi 2012 belum disahkan.",
       "components": [
         {
           "order": 1,
@@ -36,7 +36,9 @@
             "sishu.mengzi.03.07"
           ],
           "status": "passage-exists-not-quotation-certified",
-          "subverse_target_id": null
+          "subverse_target_id": null,
+          "subverse_number": 5,
+          "subverse_marker_status": "verified-in-2011-transcript"
         }
       ]
     },
@@ -76,7 +78,7 @@
       "display_status": "display-ready",
       "display": "(Sabda Suci — Lun Yu IX:16; Mengzi — Bing Cu II A:2/19)",
       "printed_2012_attested": false,
-      "review_note": "/19 retained from printed 2011; not a verified subverse",
+      "review_note": "Pemilik buku mengonfirmasi bentuk Pasal/Ayat (/N berarti Ayat N). Penanda ayat terkait ditemukan berurutan pada teks MATAKIN 2011. Tautan langsung ke ayat dan kesamaan kutipan persis edisi 2012 belum disahkan.",
       "components": [
         {
           "order": 1,
@@ -96,7 +98,9 @@
             "sishu.mengzi.03.02"
           ],
           "status": "passage-exists-not-quotation-certified",
-          "subverse_target_id": null
+          "subverse_target_id": null,
+          "subverse_number": 19,
+          "subverse_marker_status": "verified-in-2011-transcript"
         }
       ]
     },
@@ -136,7 +140,7 @@
       "display_status": "display-ready",
       "display": "(Sabda Suci — Lun Yu XVIII:5; Mengzi — Bing Cu II A:2/28)",
       "printed_2012_attested": false,
-      "review_note": "/28 retained from printed 2011; not a verified subverse",
+      "review_note": "Pemilik buku mengonfirmasi bentuk Pasal/Ayat (/N berarti Ayat N). Penanda ayat terkait ditemukan berurutan pada teks MATAKIN 2011. Tautan langsung ke ayat dan kesamaan kutipan persis edisi 2012 belum disahkan.",
       "components": [
         {
           "order": 1,
@@ -156,7 +160,9 @@
             "sishu.mengzi.03.02"
           ],
           "status": "passage-exists-not-quotation-certified",
-          "subverse_target_id": null
+          "subverse_target_id": null,
+          "subverse_number": 28,
+          "subverse_marker_status": "verified-in-2011-transcript"
         }
       ]
     },
@@ -270,5 +276,6 @@
         }
       ]
     }
-  ]
+  ],
+  "citation_slash_semantics": "In references, /N denotes Ayat N inside the preceding Pasal (owner confirmed 2026-11-15)."
 }
