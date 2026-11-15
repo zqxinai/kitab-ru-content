@@ -247,10 +247,10 @@
     {
       "passage_id": "sishu.lunyu.02.05",
       "source": "(S.S. I:9; III: 1,2; XIX:5; Bc. IIIA: 2)",
-      "display_status": "review-only",
-      "display": null,
+      "display_status": "display-ready",
+      "display": "(Sabda Suci — Lun Yu I:9; Lun Yu III:1,2; Lun Yu XIX:5; Mengzi — Bing Cu III A:2)",
       "printed_2012_attested": false,
-      "review_note": "Inherited S.S. references and the comma in III: 1,2 require verse-boundary confirmation; preserve original display until reviewed.",
+      "review_note": "Technical book inheritance resolved: prior named book applies to subsequent unlabelled numerals until a new named book appears. Comma-separated numbers are passage numbers, not slash ayat. Targets exist; 2012 printed phrasing not attested.",
       "components": [
         {
           "order": 1,
@@ -259,7 +259,7 @@
           "target_passage_ids": [
             "sishu.lunyu.01.09"
           ],
-          "status": "numbering-provisional",
+          "status": "passage-exists-not-quotation-certified",
           "subverse_target_id": null,
           "reference_intent": "content-related",
           "verbatim_match_required": false
@@ -272,7 +272,7 @@
             "sishu.lunyu.03.01",
             "sishu.lunyu.03.02"
           ],
-          "status": "numbering-provisional",
+          "status": "passage-exists-not-quotation-certified",
           "subverse_target_id": null,
           "reference_intent": "content-related",
           "verbatim_match_required": false
@@ -284,7 +284,7 @@
           "target_passage_ids": [
             "sishu.lunyu.19.05"
           ],
-          "status": "numbering-provisional",
+          "status": "passage-exists-not-quotation-certified",
           "subverse_target_id": null,
           "reference_intent": "content-related",
           "verbatim_match_required": false
@@ -296,7 +296,7 @@
           "target_passage_ids": [
             "sishu.mengzi.05.02"
           ],
-          "status": "numbering-provisional",
+          "status": "passage-exists-not-quotation-certified",
           "subverse_target_id": null,
           "reference_intent": "content-related",
           "verbatim_match_required": false
