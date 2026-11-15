@@ -168,6 +168,33 @@ setTimeout(()=>{
     'MATAKIN 2012 photographed citation must correct the displayed VII:23 numbering');
   assert.ok(!nodes.main.innerHTML.includes('VII &quot;: 23'),
     'Spurious quote in original 2011 transcription must not leak into reader display');
+  // Batch 08: book names also normalize in Zhong Yong and Mengzi.
+  click({book:'zhongyong'});
+  click({chapter:'sishu.zhongyong.20'});
+  click({passage:'sishu.zhongyong.20.10'});
+  assert.ok(nodes.main.innerHTML.includes('Sabda Suci — Lun Yu IX:29'),
+    'Zhong Yong XIX:10 reference to Lun Yu IX:29 should display');
+  click({book:'zhongyong'});
+  click({chapter:'sishu.zhongyong.29'});
+  click({passage:'sishu.zhongyong.29.04'});
+  assert.ok(nodes.main.innerHTML.includes('Tengah Sempurna — Zhong Yong XIX:7'),
+    'Zhong Yong self-reference must retain printed XIX numbering');
+  click({book:'mengzi'});
+  click({chapter:'sishu.mengzi.03'});
+  click({passage:'sishu.mengzi.03.02'});
+  assert.ok(nodes.main.innerHTML.includes('Sabda Suci — Lun Yu XI:3'),
+    'Mengzi IIA:2 first single-book reference missing');
+  assert.ok(nodes.main.innerHTML.includes('Sabda Suci — Lun Yu VII:26'),
+    'Mengzi IIA:2 second single-book reference missing');
+  assert.ok(nodes.main.innerHTML.includes('Sabda Suci — Lun Yu IX:9'),
+    'Mengzi IIA:2 space-separated abbreviation missing');
+  click({book:'mengzi'});
+  click({chapter:'sishu.mengzi.04'});
+  click({passage:'sishu.mengzi.04.13'});
+  assert.ok(nodes.main.innerHTML.includes('Sabda Suci — Lun Yu XIV:35'),
+    'Mengzi IIB:13 first reference missing');
+  assert.ok(nodes.main.innerHTML.includes('Sabda Suci — Lun Yu IX:5'),
+    'Mengzi IIB:13 second reference missing');
   console.log('Ru Classics smoke test passed: Paper, 4 books, chapter, reader, Ruby, Indonesian, English');
  }catch(e){console.error(e);process.exitCode=1;}
 },0);
