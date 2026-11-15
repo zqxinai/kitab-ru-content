@@ -37,7 +37,8 @@ assert.equal(nodes[1].className,'textual-editorial-note textual-comparison-note'
 assert.match(nodes[1].children[0].textContent,/己 \/ 已/);
 assert.match(nodes[1].children[1].textContent,/jǐ/);
 assert.match(nodes[1].children[2].textContent,/斯已而已矣/);
-assert.equal(el.indonesianText.textContent,target.translation_indonesian);
-assert.match(el.englishText.textContent,/give over his wish/);
+const renderedText=node=>(node.textContent||'')+(node.children||[]).map(renderedText).join('');
+assert.equal(renderedText(el.indonesianText),target.translation_indonesian);
+assert.match(renderedText(el.englishText),/give over his wish/);
 assert.match(el.reviewDetail.textContent,/perlu review/);
 console.log('PASS: Lun Yu XIV:39 keeps MATAKIN text, labels WYG variant and displays original Legge English.');
