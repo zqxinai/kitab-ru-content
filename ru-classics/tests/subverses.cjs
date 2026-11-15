@@ -59,7 +59,7 @@ test('public reader loads alignment module and actually renders numbered ruby an
   assert.match(app,/\+hanziWithSubverses\(p,aligned\)\+'<\/div>'/);
   assert.match(app,/\+indonesiaWithSubverses\(p,aligned\)\+'<\/section>'/);
   assert.match(app,/if\(!aligned\)return ruby\(p\.ruby_paragraphs\)/);
-  assert.match(app,/if\(!verses\)return '<p>'\+display\(p\.translation_indonesian/);
+  assert.match(app,/if\(!verses\)return '<div class="translation-prose">'\+format\(p\.translation_indonesian/);
   assert.match(app,/const display=text=>referenceMarkup\(p\.id,text\)/);
   assert.doesNotMatch(app,/if\(!aligned\)return hanziWithSubverses/);
   assert.doesNotMatch(app,/if\(!verses\)return indonesiaWithSubverses/);
