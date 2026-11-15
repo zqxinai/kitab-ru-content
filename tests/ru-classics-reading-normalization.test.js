@@ -51,6 +51,26 @@ test('Pinyin - Hokkian: existing pairs are neither removed nor doubled', () => {
 
 });
 
+test('Mengzi III A:3 ayat 10: each historical school term has Pinyin without altering ordinary Indonesian', () => {
+  const chapter = JSON.parse(fs.readFileSync(path.join(BASE, 'mengzi', '05.json'), 'utf8'));
+  const verse = chapter.passages.find(p => p.id === 'sishu.mengzi.05.03');
+  assert.ok(verse);
+  const source = verse.translation_indonesian;
+  const display = reading.normalize(source, verse.id);
+  assert.match(source, /Siang, Si, Hak dan Hau/);
+  assert.match(display, /Xiang - Siang, Xu - Si, Xue - Hak dan Xiao - Hau/);
+  assert.match(display, /Badan yang dinamai Xiang - Siang/);
+  assert.match(display, /Xiao - Hau mengutamakan pendidikan umum/);
+  assert.match(display, /dan Xu - Si mengutamakan kecakapan/);
+  assert.match(display, /Dinasti Xia - He menamai badan pendidikan itu Xiao - Hau/);
+  assert.match(display, /Dinasti Yin - Ien menamainya Xu - Si/);
+  assert.match(display, /Dinasti Zhou - Ciu menamainya Xiang - Siang/);
+  assert.match(display, /Istilah Xue - Hak \(sekolah negara\)/);
+  assert.match(display, /'Siang hari ambillah rumput/, 'ordinary Indonesian siang stays intact');
+  assert.equal(reading.normalize(display, verse.id), display, 'normalization must be idempotent');
+  assert.equal(reading.normalize('Siang hari ambillah rumput', 'sample'), 'Siang hari ambillah rumput');
+});
+
 test('contextual aliases are grounded in their exact source verse', () => {
   for (const [id, rules] of Object.entries(reading.contextual)) {
     const [,book,chapter] = id.split('.');
