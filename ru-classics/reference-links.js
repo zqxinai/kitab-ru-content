@@ -14,9 +14,9 @@ function componentParts(label,component){
      if(hits.length===ids.length){
        const out=[];let previous=0;
        for(let i=0;i<hits.length;i++){
-         const h=hits[i],before=(i===0?match[1]:'')+match[2].slice(previous,h.index);
+         const h=hits[i],before=match[2].slice(previous,h.index);
          if(before)out.push({text:before,target_id:null});
-         out.push({text:h[0],target_id:ids[i],ayat:null});
+         out.push({text:(i===0?match[1]:'')+h[0],target_id:ids[i],ayat:null});
          previous=h.index+h[0].length;
        }
        if(previous<match[2].length)out.push({text:match[2].slice(previous),target_id:null});
