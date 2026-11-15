@@ -17,10 +17,10 @@ const expectedTargets={
  'sishu.daxue.11.23':'sishu.mengzi.01.01',
  'sishu.mengzi.01.01':'sishu.daxue.11.23'
 };
-test('Thirty-four exact references preserve original sources and resolve only evidenced targets',()=>{
+test('Sixty-three exact references preserve original sources and resolve only evidenced targets',()=>{
  assert.equal(chapters.length,78);
  assert.equal(byId.size,965);
- assert.equal(overlay.records.length,34);
+ assert.equal(overlay.records.length,63);
  // Historical batch 01 is immutable; batch 02 allows multiple references in one passage.
  for(const [sourceId,targetId] of Object.entries(expectedTargets))
   assert.ok(overlay.records.some(r=>r.passage_id===sourceId&&r.target_id===targetId),'legacy mapping changed: '+sourceId);
@@ -66,6 +66,56 @@ test('Thirty-four exact references preserve original sources and resolve only ev
   else assert.ok(byId.has(r.target_id),'target missing: '+r.target_id);
   assert.match(r.decision,/not attested/);
  }
+});
+test('Batch 04 checks 29 new SS AB BC TS sources, number mapping and single-book safety',()=>{
+ const cases=[
+  ['01.07','(S.S. IX: 18)','lunyu.09.18'],
+  ['01.09','(S.S. II: 5)','lunyu.02.05'],
+  ['01.10','(S.S. V:4)','lunyu.05.04'],
+  ['01.11','(S.S. IV: 20)','lunyu.04.20'],
+  ['01.12','(S.S. IV: 13)','lunyu.04.13'],
+  ['01.14','(S.S. II: 15)','lunyu.02.15'],
+  ['01.15','(S.S. XIV: 10)','lunyu.14.10'],
+  ['01.16','(S.S. XIV: 30)','lunyu.14.30'],
+  ['02.02','(S.S. XIII: 5)','lunyu.13.05'],
+  ['02.03','(Bc. VIIA: 3)','mengzi.13.03'],
+  ['02.04','(S.S. VII: 17)','lunyu.07.17'],
+  ['02.05','(S.S. VI.22)','lunyu.06.22'],
+  ['02.06','(S.S. V:8)','lunyu.05.08'],
+  ['02.12','(S.S. V:4)','lunyu.05.04'],
+  ['02.13','(S.S. V.4)','lunyu.05.04'],
+  ['02.14','(S.S. XIII: 23)','lunyu.13.23'],
+  ['02.15','(S.S. I:14)','lunyu.01.14'],
+  ['02.20','(S.S. X: 16)','lunyu.10.16'],
+  ['02.23','(S.S. III:9)','lunyu.03.09'],
+  ['04.02','(S.S. XV. 9)','lunyu.15.09'],
+  ['04.03','(A.B. X 15)','daxue.11.15'],
+  ['04.04','(S.S. XIV: 6)','lunyu.14.06'],
+  ['04.07','(S.S. I: 8)','lunyu.01.08'],
+  ['04.12','(A.B. X: 23)','daxue.11.23'],
+  ['03.10','(T.S. XVIII:6)','zhongyong.19.06'],
+  ['03.14','(T.S. XXVII: 5)','zhongyong.28.05'],
+  ['07.26','(Bc. VIIB: 25)','mengzi.14.25'],
+  ['07.30','(A.B. IX. 3)','daxue.10.03'],
+  ['09.08','(T.S. V)',null]
+ ];
+ assert.equal(cases.length,29);
+ for(const [source,original,target] of cases){
+  const id='sishu.lunyu.'+source;
+  const r=overlay.records.find(x=>x.passage_id===id&&x.source===original);
+  assert.ok(r,'batch 04 citation missing: '+id+' '+original);
+  assert.equal(r.target_id,target?'sishu.'+target:null,'wrong target: '+id);
+  const text=byId.get(id)?.translation_indonesian;
+  assert.equal(text?.split(original).length,2,'original source location missing or repeated: '+id);
+  assert.ok(overlay.present(id,text).includes(r.display),'normalization not applied: '+id);
+ }
+ const compound=byId.get('sishu.lunyu.02.05').translation_indonesian;
+ const displayed=overlay.present('sishu.lunyu.02.05',compound);
+ assert.ok(displayed.includes('(Sabda Suci — Lun Yu VI:22)'));
+ assert.ok(displayed.includes('(S.S. I:9; III: 1,2; XIX:5; Bc. IIIA: 2)'),
+   'multi-book citation must remain unresolved rather than silently split');
+ const chapterOnly=overlay.records.find(r=>r.passage_id==='sishu.lunyu.09.08'&&r.source==='(T.S. V)');
+ assert.equal(chapterOnly.target_id,null,'chapter-only reference must not point to a fabricated verse');
 });
 test('The exact legacy references remain intact in every source and the overlay changes only display',()=>{
  for(const r of overlay.records){
