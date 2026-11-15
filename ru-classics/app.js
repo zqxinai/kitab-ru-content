@@ -7,7 +7,7 @@
     {id:'mengzi',name:'Mengzi',hanzi:'孟子',title:'Mengzi',desc:'Percakapan mengenai kebajikan, manusia, dan pemerintahan.'}
   ];
   const main=document.getElementById('main');
-  const state={tab:'home',book:null,chapter:null,id:null,data:null,chapters:[],passages:[],map:new Map(),overrides:[],saved:[],notes:{},last:null,search:'',filter:'all',theme:'paper',settings:{hanzi:true,pinyin:true,indo:true,english:true,font:32}};
+  const state={tab:'home',book:null,chapter:null,id:null,ayat:0,data:null,chapters:[],passages:[],map:new Map(),overrides:[],saved:[],notes:{},last:null,search:'',filter:'all',theme:'paper',settings:{hanzi:true,pinyin:true,indo:true,english:true,font:32}};
   const STORE='ru_classics_web_v1';
   const H=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
   const book=id=>BOOKS.find(b=>b.id===id)||BOOKS[0];
@@ -75,8 +75,8 @@
     const verses=aligned||globalThis.RuSubverses?.splitIndonesia(p.translation_indonesian||'');
     if(!verses)return '<p>'+display(p.translation_indonesian||'Belum tersedia')+'</p>';
     return verses.map(verse=>
-      '<p class="translation-verse" data-ayat="'+verse.number+'">'+
-      '<span class="ayat-label">Ayat '+verse.number+'</span>'+
+      '<p class="translation-verse'+(state.ayat===verse.number?' ayat-active':'')+'" data-ayat="'+verse.number+'">'+
+      '<button type="button" class="ayat-label ayat-select" data-ayat-select="'+verse.number+'" aria-pressed="'+(state.ayat===verse.number)+'" title="Pilih ayat '+verse.number+'">Ayat '+verse.number+'</button>'+
       display(verse.indonesian||verse.text)+'</p>'
     ).join('');
   }
@@ -88,7 +88,7 @@
     +(s.indo?'<section class="translation"><h3>Bahasa Indonesia · MATAKIN</h3>'+indonesiaWithSubverses(p,aligned)+'</section>':'')
     +(s.english&&p.translation_english?'<section class="translation english"><h3>English · James Legge'+(aligned?' · tingkat pasal':'')+'</h3><p lang="en">'+H(p.translation_english)+'</p></section>':'')
     +'</article><aside class="reader-aside"><h3>Catatan pribadi</h3><p>Catatan ini disimpan hanya di browser perangkat Anda.</p><textarea id="personal-note" aria-label="Catatan pribadi" placeholder="Tuliskan pemikiran Anda…">'+H(state.notes[p.id]||'')+'</textarea><button class="primary" data-action="save-note">Simpan catatan</button>'
-    +annotation(p)+(window.RuEditorial?.canEdit?.()?'<div class="rule"></div><button class="secondary" data-action="propose" style="width:100%">Usulkan revisi teks</button>':'')
+    +annotation(p)+(window.RuEditorial?.canEdit?.()?'<div class="rule"></div><button class="secondary" data-action="propose" style="width:100%">'+(state.ayat?'Usulkan revisi Ayat '+state.ayat:'Usulkan revisi teks')+'</button>':'')
     +'</aside></div><div class="reader-nav"><button '+(prev?'data-passage="'+H(prev.id)+'"':'disabled')+'>← Pasal sebelumnya</button><button '+(next?'data-passage="'+H(next.id)+'"':'disabled')+'>Pasal berikutnya →</button></div>';
   }
   function renderSearchResults(){const box=document.getElementById('search-results');if(!box)return;const term=norm(state.search.trim());const candidates=state.passages.filter(p=>state.filter==='all'||p._book===state.filter);
@@ -102,7 +102,7 @@
   }
   function navHighlight(){document.querySelectorAll('[data-nav]').forEach(btn=>{const active=btn.dataset.nav===(state.tab==='reader'||state.tab==='chapter'?'books':state.tab);btn.classList.toggle('active',active);if(active)btn.setAttribute('aria-current','page');else btn.removeAttribute('aria-current');});}
   function render(){navHighlight();if(!state.data)return;if(state.tab==='home')home();else if(state.tab==='books')library();else if(state.tab==='chapter')chapter();else if(state.tab==='reader')reader();else if(state.tab==='search')search();else if(state.tab==='saved')saved();else if(state.tab==='editor')window.RuEditorial?.render?.(main);window.scrollTo({top:0,behavior:'instant'});}
-  function navigate(tab,identity=null){state.tab=tab;if(tab==='books'&&identity!==null)state.book=identity;if(tab==='chapter')state.chapter=identity;if(tab==='reader')state.id=identity;location.hash=tab==='reader'?'read='+encodeURIComponent(identity):tab==='chapter'?'chapter='+encodeURIComponent(identity):tab==='books'&&state.book?'book='+state.book:tab;render();}
+  function navigate(tab,identity=null){state.tab=tab;if(tab==='books'&&identity!==null)state.book=identity;if(tab==='chapter')state.chapter=identity;if(tab==='reader'){if(state.id!==identity)state.ayat=0;state.id=identity;}location.hash=tab==='reader'?'read='+encodeURIComponent(identity):tab==='chapter'?'chapter='+encodeURIComponent(identity):tab==='books'&&state.book?'book='+state.book:tab;render();}
   function route(){if(!state.data)return;const raw=decodeURIComponent(location.hash.replace(/^#/,''));if(raw.startsWith('read=')){const id=raw.substring(5);if(state.map.has(id)){state.id=id;state.tab='reader';}}else if(raw.startsWith('chapter=')){state.chapter=raw.substring(8);state.tab='chapter';}else if(raw.startsWith('book=')){state.book=raw.substring(5);state.tab='books';}else if(['home','books','search','saved','editor'].includes(raw)){state.tab=raw;if(raw==='books')state.book=null;}render();}
   function parseBundle(data){if(data.schema!=='ru-classics.content.v1'||data.collection!=='sishu'||!Array.isArray(data.chapters))throw Error('Format paket kitab tidak sesuai');const chap=data.chapters;const pass=[];const ids=new Set();for(const c of chap){for(const p of (c.passages||[])){if(ids.has(p.id))throw Error('ID pasal ganda');ids.add(p.id);p._book=c.book;p._chapter=c.id;p._chapterTitle=c.title;pass.push(p);}}
     if(chap.length!==78||pass.length!==965)throw Error('Data Si Shu belum lengkap ('+chap.length+' bab, '+pass.length+' pasal).');
@@ -111,6 +111,17 @@
   async function boot(){restore();try{let response=await fetch('./data/sishu.json');if(!response.ok)throw Error('Data belum tersedia pada hasil publikasi');parseBundle(await response.json());route();window.dispatchEvent(new Event('ru:ready'));}catch(e){main.innerHTML='<div class="empty"><h2>Perpustakaan belum bisa dibuka</h2><p>'+H(e.message)+'</p><p>Periksa hasil build GitHub Pages atau coba lagi setelah publikasi selesai.</p><button class="secondary" onclick="location.reload()">Coba lagi</button></div>';}}
   document.addEventListener('click',e=>{
     const t=e.target.closest('button');if(!t)return;
+    if(t.hasAttribute('data-ayat-select')){
+      const n=Number(t.dataset.ayatSelect);
+      state.ayat=state.ayat===n?0:n;
+      document.querySelectorAll('.translation-verse[data-ayat]').forEach(el=>
+        el.classList.toggle('ayat-active',Number(el.dataset.ayat)===state.ayat));
+      document.querySelectorAll('[data-ayat-select]').forEach(el=>
+        el.setAttribute('aria-pressed',String(Number(el.dataset.ayatSelect)===state.ayat)));
+      const propose=document.querySelector('[data-action="propose"]');
+      if(propose)propose.textContent=state.ayat?'Usulkan revisi Ayat '+state.ayat:'Usulkan revisi teks';
+      return;
+    }
     if(t.dataset.nav){if(t.dataset.nav==='books')state.book=null;navigate(t.dataset.nav);return;}
     if(t.dataset.book){state.book=t.dataset.book;navigate('books',t.dataset.book);return;}
     if(t.dataset.chapter){navigate('chapter',t.dataset.chapter);return;}
@@ -127,7 +138,7 @@
       if(a==='bookmark'&&state.id){const i=state.saved.indexOf(state.id);if(i===-1)state.saved.push(state.id);else state.saved.splice(i,1);save();render();toast(i===-1?'Pasal disimpan':'Pasal dihapus dari koleksi');}
       if(a==='save-note'&&state.id){state.notes[state.id]=document.getElementById('personal-note').value;save();toast('Catatan disimpan pada perangkat ini.');}
       if(a==='editor'){navigate('editor');}
-      if(a==='propose'){navigate('editor');window.RuEditorial?.startProposal?.(state.id);}
+      if(a==='propose'){navigate('editor');window.RuEditorial?.startProposal?.(state.id,state.ayat);}
     }
   });
   document.addEventListener('input',e=>{if(e.target.id==='search-input'){state.search=e.target.value;renderSearchResults();}});
