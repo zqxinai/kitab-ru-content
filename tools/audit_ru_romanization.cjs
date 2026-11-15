@@ -42,7 +42,7 @@ const NOT_HOKKIAN_PLACE = new Map([
   ['istana Salju', 'Indonesian translation of 雪宮, not Hokkian'],
   ['istana Yao', 'Yao is already Hanyu Pinyin']
 ]);
-const ORDINARY_FIRST = /^(?:Adapun|Anak|Bukankah|Bulan|Cara|Cinta|Daerah|Demikianlah|Hal|Hanya|Inilah|Karena|Kawan|Kebajikan|Keluhuran|Kerajaan|Maka|Nasehat|Siswa|Suci|Tata|Tiga)\b/;
+const ORDINARY_FIRST = /^(?:Adapun|Anak|Bukankah|Bulan|Cara|Cinta|Daerah|Demikianlah|Hal|Hanya|Inilah|Karena|Kata|Kawan|Kebajikan|Keluhuran|Kerajaan|Maka|Nasehat|Siswa|Suci|Tata|Tiga)\b/;
 const otherPlaces = new Map(), otherPeople = new Map();
 function record(map,term,id) {
   const v = map.get(term) || {term, count:0, passages:[]};
