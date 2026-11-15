@@ -15,3 +15,23 @@
 .translation .reference-link{display:inline;border:0;border-bottom:1px dotted currentColor;background:transparent;color:var(--accent);font:inherit;padding:0 1px;text-align:left;cursor:pointer;white-space:inherit}
 .translation .reference-link:hover{border-bottom-style:solid}
 .translation .reference-link:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:2px}
+
+
+/* Unified editorial workspace: responsive hierarchy and source-separated audit. */
+.editor-filters{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.editor-filters label{min-width:0}
+.audit-panel .audit-columns{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin:14px 0}
+.audit-panel .audit-columns>div{min-width:0;border:1px solid var(--line);background:var(--bg);padding:14px;border-radius:13px}
+.audit-panel .audit-columns>div>strong{display:block;margin-bottom:9px;color:var(--accent);font-size:13px}
+.audit-panel .editor-compare{background:var(--panel);margin-top:4px;max-height:260px;overflow:auto;white-space:pre-wrap;line-height:1.75;font-size:13px}
+.audit-ruby{font-family:"Songti SC","Noto Serif CJK SC",serif;font-size:20px;line-height:2;max-height:260px;overflow:auto}
+.audit-ruby p{margin:0 0 8px;color:var(--ink)}
+.audit-ruby ruby{ruby-position:over}
+.audit-ruby rt{font:11px system-ui,sans-serif;color:var(--muted)}
+.ayat-select{display:inline-block;width:auto;text-align:left;padding:3px 8px;border:1px solid var(--line);background:var(--panel2);border-radius:8px;color:var(--accent);cursor:pointer}
+.ayat-select[aria-pressed="true"]{border-color:var(--accent);background:var(--panel2);box-shadow:0 0 0 1px var(--accent)}
+.translation .translation-verse.ayat-active{border-left:3px solid var(--accent);padding-left:12px;background:var(--panel2);border-radius:0 8px 8px 0}
+@media(max-width:760px){
+  .editor-filters,.audit-panel .audit-columns{grid-template-columns:1fr}
+  .audit-panel .audit-columns>div{padding:12px}
+}
