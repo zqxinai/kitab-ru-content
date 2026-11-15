@@ -227,8 +227,7 @@
     ],
     'sishu.mengzi.09.06': [
       ['Kota Yang-sing', 'Kota Yangcheng - Yang-sing'],
-      ['Gunung Ki', 'Gunung Jishan - Ki'],
-      ['daerah Tong', 'daerah Tong - Tong'] // toponim diverifikasi dengan Hanzi sumber
+      ['Gunung Ki', 'Gunung Jishan - Ki'] // 箕山; Tong 桐 already written in Pinyin
     ],
     'sishu.mengzi.12.01': [
       ['kota Co', 'kota Zou - Co'] // toponim diverifikasi dengan Hanzi sumber
