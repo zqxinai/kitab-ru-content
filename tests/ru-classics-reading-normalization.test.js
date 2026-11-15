@@ -261,8 +261,8 @@ test('Yu (禹) is not confused with Yi (夷), Yi Yin (伊尹), or book-number no
   };
   const source = verse('sishu.mengzi.09.06').translation_indonesian;
   const normalized = reading.normalize(source,'sishu.mengzi.09.06');
-  assert.match(normalized,/Sun mengusulkan Yu - I kepada Tuhan YME/);
-  assert.match(normalized,/Yu - I mengusulkan Ik kepada Tuhan YME/);
+  assert.match(normalized,/Shun - Sun mengusulkan Yu - I kepada Tuhan YME/);
+  assert.match(normalized,/Yu - I mengusulkan Yi - Ik kepada Tuhan YME/);
   assert.match(normalized,/Yi Yin - I-ien/);
   assert.match(normalized,/Shu Jing - Su King I\.I\.4/);
   assert.equal(reading.normalize(normalized,'sishu.mengzi.09.06'),normalized);
