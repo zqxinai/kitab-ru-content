@@ -124,6 +124,27 @@ setTimeout(()=>{
   click({passage:'sishu.lunyu.02.05'});
   assert.ok(nodes.main.innerHTML.includes('(S.S. I:9; III: 1,2; XIX:5; Bc. IIIA: 2)'),
     'Review-only compound reference should remain in its original form');
+  click({book:'lunyu'});
+  click({chapter:'sishu.lunyu.03'});
+  click({passage:'sishu.lunyu.03.07'});
+  assert.ok(nodes.main.innerHTML.includes('Tengah Sempurna — Zhong Yong XIII:5; Mengzi — Bing Cu II A:7/5'),
+    'Batch 06 multi-book citation must display both books and preserve /5');
+  click({passage:'sishu.lunyu.03.09'});
+  assert.ok(nodes.main.innerHTML.includes('Tengah Sempurna — Zhong Yong XXVII:5; Sabda Suci — Lun Yu II:23'),
+    'Batch 06 TS and SS reference normalization missing');
+  click({book:'lunyu'});
+  click({chapter:'sishu.lunyu.07'});
+  click({passage:'sishu.lunyu.07.02'});
+  assert.ok(nodes.main.innerHTML.includes('Sabda Suci — Lun Yu IX:16; Mengzi — Bing Cu II A:2/19'),
+    'Batch 06 BC subverse notation must be retained as source text');
+  click({passage:'sishu.lunyu.07.23'});
+  assert.ok(nodes.main.innerHTML.includes('(S.S. III: 24; IX: 5)'),
+    'Inherited SS second citation must remain unmodified pending review');
+  click({book:'lunyu'});
+  click({chapter:'sishu.lunyu.09'});
+  click({passage:'sishu.lunyu.09.29'});
+  assert.ok(nodes.main.innerHTML.includes('Sabda Suci — Lun Yu XIV:28; Tengah Sempurna — Zhong Yong XIX:10'),
+    'Batch 06 SS plus TS normalization missing');
   console.log('Ru Classics smoke test passed: Paper, 4 books, chapter, reader, Ruby, Indonesian, English');
  }catch(e){console.error(e);process.exitCode=1;}
 },0);
