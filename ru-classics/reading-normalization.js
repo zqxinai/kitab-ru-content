@@ -170,9 +170,14 @@
     'sishu.mengzi.10.03': [
       ['Negeri Cien', 'Negeri Jin - Cien'], // 晉
       ['Negeri Pi', 'Negeri Bi - Pi'], // 費: 朱熹費音祕, bì
-      ['Gak- cing Kiu', 'Yuezheng Qiu - Gak- cing Kiu'], // 樂正裘
+      ['Gak- cing Kiu', 'Yuezheng Qiu - Gak-cing Kiu'], // 樂正裘
       ['Bok Tiong', 'Mu Zhong - Bok Tiong'], // 牧仲
-      ['Hubungan Hiancu', 'Hubungan Meng Xianzi - Hiancu'] // 孟獻子
+      ['Hubungan Hiancu', 'Hubungan Meng Xianzi - Hiancu'],
+      ['keluarga Hiancu', 'keluarga Meng Xianzi - Hiancu'], // 孟獻子
+      ['Gan Puan', 'Yan Ban - Gan Puan'], // 顏般, 般音班 (Zhu Xi)
+      ['Ong Sun', 'Wang Shun - Ong Sun'], // 王順
+      ['Tiang Siet', 'Chang Xi - Tiang Siet'], // 長息
+      ['Hai Tong', 'Hai Tang - Hai Tong'] // 亥唐 // 孟獻子
     ],
     'sishu.mengzi.14.23': [
       ['Negeri Cien', 'Negeri Jin - Cien'] // 晉人
@@ -296,6 +301,7 @@
     return text.replace(pattern, (match, prefix, token, start, source) => {
       const preceding = source.slice(0, start + prefix.length);
       if (legacy === 'Hu-jien' && /\bKun\s*$/iu.test(preceding)) return match;
+      if (legacy === 'Sun' && /\bOng\s*$/iu.test(preceding)) return match; // 王順 ≠ 舜
       if (previous.test(preceding)) return match;
       return prefix + modern + ' - ' + token;
     });
