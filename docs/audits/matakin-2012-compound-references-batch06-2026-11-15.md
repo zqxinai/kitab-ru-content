@@ -7,7 +7,7 @@
 
 **Koreksi terhadap penilaian awal dalam laporan ini:** tanda `/N` pada rujukan menunjukkan **ayat ke-N dari pasal yang ditunjuk**, bukan nomor yang ambigu. Dengan demikian `Bc IIA:7/5` berarti **Mengzi II A pasal 7 ayat 5**; `IIA:2/19` dan `IIA:2/28` berarti **Mengzi II A pasal 2 ayat 19 dan ayat 28**. Penanda ayat 5, 19, dan 28 sudah ditemukan berurutan pada teks MATAKIN 2011 digital. Metadata kini menyimpan `subverse_number` dan bukti `verified-in-2011-transcript`, sedangkan `subverse_target_id` masih `null` hanya karena **tautan langsung ke ayat belum memiliki kontrak navigasi yang teruji**, bukan karena arti `/N` diragukan.
 
-**Makna rujukan silang:** pasal/ayat yang dirujuk mempunyai **keterkaitan isi atau ajaran**, tidak harus sama kalimatnya. Karena itu, hubungan ini dicatat sebagai `reference_intent: "content-related"` dan `verbatim_match_required: false`. Ketepatan tema spesifik tiap pasangan tetap bisa diperiksa, tetapi teks berbeda bukan otomatis discrepancy.
+**Makna rujukan silang:** pasal/ayat yang dirujuk mempunyai **keterkaitan isi atau ajaran**, tidak harus sama kalimatnya. Karena itu, hubungan ini dicatat sebagai `reference_intent: "content-related"` dan `verbatim_match_required: false`. Keterkaitan isi diterima berdasarkan otoritas MATAKIN tanpa pemeriksaan tematik ulang; teks berbeda bukan discrepancy.
 
 
 ## Keputusan editorial
@@ -31,7 +31,7 @@ Nama kitab lengkap yang digunakan mengikuti **konvensi** MATAKIN 2012; bukan ber
 
 ### Dua kasus yang belum boleh dinormalisasi
 
-1. **Lun Yu VII:23:** `(S.S. III: 24; IX: 5)` — `IX:5` mewarisi penanda kitab `S.S.`; kandidat target tersedia, tetapi hubungan dan tata tulisnya ditahan untuk review.
+1. **Lun Yu VII:23:** `(S.S. III: 24; IX: 5)` — `IX:5` mewarisi penanda kitab `S.S.`; kandidat target tersedia; hanya kepastian penyalinan dan penomoran tampilan yang ditahan untuk review.
 2. **Lun Yu IX:5:** `(S.S. III: 24; VII ": 23; XIV: 36; Bc. IB: 16)` — ada tanda `"` yang mencurigakan dalam `VII ": 23`. Bentuk tersebut tetap utuh; tidak diperbaiki berdasarkan dugaan OCR.
 
 ## Perubahan sistem
