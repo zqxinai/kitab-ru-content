@@ -161,6 +161,9 @@
   // Kolasi khusus berdasarkan Hanzi. Satu ejaan Hokkian bisa mewakili
   // aksara berbeda: Chien => 晉 (Jin) atau 秦 (Qin); Swan => 僎 atau 宣.
   const CONTEXTUAL = Object.freeze({
+    'sishu.mengzi.07.24': [
+      ['Gak Zengzi - Cingcu', 'Yuezhengzi - Gak Cingcu'] // 樂正子, no Zengzi: overlay only, source preserved
+    ],
     'sishu.mengzi.06.10': [
       ['Khong Ciang', 'Kuang Zhang - Khong Ciang'], // 匡章
       ['Tien Tiongcu', 'Chen Zhongzi - Tien Tiongcu'], // 陳仲子
@@ -572,6 +575,7 @@
     return text.replace(pattern, (match, prefix, token, start, source) => {
       const preceding = source.slice(0, start + prefix.length);
       if (legacy === 'Hu-jien' && /\bKun\s*$/iu.test(preceding)) return match;
+      if (legacy === 'Cingcu' && /\bGak\s*$/iu.test(preceding)) return match; // 樂正子 not 曾子
       if (legacy === 'Sun' && /\bOng\s*$/iu.test(preceding)) return match; // 王順 ≠ 舜
       if (previous.test(preceding)) return match;
       return prefix + modern + ' - ' + token;
