@@ -79,6 +79,32 @@ test('Mengzi III A:3 ayat 10: each historical school term has Pinyin without alt
   assert.equal(reading.normalize('Siang hari ambillah rumput', 'sample'), 'Siang hari ambillah rumput');
 });
 
+test('standalone people and place names remain paired without inventing matching Hanzi', () => {
+  const get=id=>{
+    const [,book,chapter]=id.split('.');
+    const ch=JSON.parse(fs.readFileSync(path.join(BASE,book,chapter+'.json'),'utf8'));
+    const p=ch.passages.find(x=>x.id===id);
+    assert.ok(p,id);
+    return reading.normalize(p.translation_indonesian,id);
+  };
+  const src = get('sishu.mengzi.10.03');
+  for(const term of ['Meng Xianzi - Bing Hiancu','Yuezheng Qiu - Gak-cing Kiu',
+    'Mu Zhong - Bok Tiong','Yan Ban - Gan Puan','Wang Shun - Ong Sun',
+    'Chang Xi - Tiang Siet','Hai Tang - Hai Tong',
+    'Negeri Jin - Cien','Negeri Bi - Pi'])assert.ok(src.includes(term),term);
+  assert.match(get('sishu.mengzi.02.14'),/Gunung Qishan - Ki/); // 岐山
+  assert.match(get('sishu.mengzi.09.06'),/Gunung Jishan - Ki/); // 箕山
+  assert.match(get('sishu.mengzi.07.08'),/Sungai Canglang - Chong-long/); // 滄浪
+  assert.match(get('sishu.mengzi.12.05'),/kota Zou - Co/); // 鄒
+  assert.match(get('sishu.lunyu.16.01'),/daerah Zhuanyu - Cwan-ji/); // 顓臾
+  assert.match(get('sishu.lunyu.16.01'),/daerah Bi - Pi/); // 費
+  assert.match(get('sishu.lunyu.03.06'),/Gunung Taishan - Thai/); // 泰山
+  assert.match(get('sishu.lunyu.02.23'),/Zizhang - Cu-tiang/); // 子張
+  assert.match(get('sishu.lunyu.12.03'),/Sima Niu - Suma Giu/); // 司馬牛
+  assert.match(get('sishu.lunyu.05.26'),/Yan Yuan - Gan Yan/); // 顏淵
+});
+
+
 test('Xia - He dynasty is paired wherever the unambiguous dynasty phrase occurs', () => {
   assert.equal(reading.normalize('Dinasti He dan Dinasti Ien', 'sample'), 'Dinasti Xia - He dan Dinasti Yin - Ien');
   assert.equal(reading.normalize('Dinasti Xia - He', 'sample'), 'Dinasti Xia - He');
@@ -217,7 +243,7 @@ test('Jin 晉 and Qin 秦, classical title ranks, and personal names retain thei
   assert.match(wang.display,/Xue Juzhou - Siat Ki-ciu/);
   const gan=read('sishu.lunyu.02.09');
   assert.match(gan.hanzi,/吾與回言終日/);
-  assert.match(gan.display,/Hui - Hwee \(Gan Yan\)/);
+  assert.match(gan.display,/Hui - Hwee \(Yan Yuan - Gan Yan\)/);
   const unclear=read('sishu.daxue.11.14');
   assert.match(unclear.hanzi,/《秦誓》/);
   assert.match(unclear.source,/Pangeran Chien/,'MATAKIN archived text stays untouched');
