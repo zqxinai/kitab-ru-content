@@ -26,7 +26,7 @@ test('Linked reference segments preserve all 965 Indonesian texts and never inve
   for(const part of parts){
    if(part.target_id!==null){
     assert.ok(byId.has(part.target_id),'missing link target: '+id+' => '+part.target_id);
-    assert.ok(/^sishu\\.(daxue|zhongyong|lunyu|mengzi)\\.\\d{2}\\.\\d{2}$/.test(part.target_id));
+    assert.ok(/^sishu\.(daxue|zhongyong|lunyu|mengzi)\.\d{2}\.\d{2}$/.test(part.target_id));
     linked++;
    }
   }
@@ -422,6 +422,6 @@ test('Browser scripts load the single shared overlay before either reader',()=>{
  const editorCode=fs.readFileSync(path.join(root,'editor/app.js'),'utf8');
  assert(reader.indexOf('reference-overlay.js')<reader.indexOf('src="./app.js"'));
  assert(editor.indexOf('reference-overlay.js')<editor.indexOf('src="./app.js"'));
- assert.match(readerCode,/Matakin2012References\?\.present\(p\.id,text\)/);
+  assert.ok(readerCode.includes('api.segments(id,text)'), 'Reader must use safe linked reference segments');
  assert.match(editorCode,/Matakin2012References\?\.present\(passageId,part\)/);
 });
