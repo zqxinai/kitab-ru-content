@@ -662,7 +662,8 @@
       const preceding = source.slice(0, start + prefix.length);
       if (legacy === 'Hu-jien' && /\bKun\s*$/iu.test(preceding)) return match;
       if (legacy === 'Cingcu' && /\bGak\s*$/iu.test(preceding)) return match; // 樂正子 not 曾子
-      if (legacy === 'Sun' && /\bOng\s*$/iu.test(preceding)) return match; // 王順 ≠ 舜
+      if (legacy === 'Sun' && /\bOng\s*$/iu.test(preceding)) return match;
+      if (legacy === 'I-cu' && /\bBing\s*$/iu.test(preceding)) return match; // 孟懿子 Meng Yizi, not 夷子 // 王順 ≠ 舜
       if (previous.test(preceding)) return match;
       return prefix + modern + ' - ' + token;
     });
