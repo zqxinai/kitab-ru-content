@@ -43,7 +43,6 @@ Contoh terverifikasi:
 | Lun Yu XI:3 冉伯牛 | Ran Boniu – Jiam Pik-giu |
 | Lun Yu VI:10 伯牛 | Bo Niu – Pik-Giu |
 | Mengzi II A:2 北宮黝, 孟施捨 | Beigong You – Pak-kiong Yu; Meng Shishe – Bing See-sia |
-| Mengzi IV A:4, 17 莊? | **Tidak ditebak**: semua pemetaan diambil dari ayat tertentu, bukan substitusi fonetik menyeluruh |
 | Mengzi VI A:7 易牙, 子都 | Yi Ya – Ik-ge; Zi Du – Cu-to |
 | Mengzi V A:3 象, 共工, 幽州, 三苗, 三危, 鯀 | Xiang – Chiang; Gong Gong – Kiong-kong; Youzhou – Yu-ciu; Sanmiao – Sambiau; Sanwei – Sam-gwi; Gun – Kun |
 | Mengzi VI B:6 王豹, 綿駒 | Wang Bao – Ong-pa; Mian Ju – Bian-ki |
