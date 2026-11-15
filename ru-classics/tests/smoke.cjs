@@ -164,8 +164,10 @@ setTimeout(()=>{
   click({book:'lunyu'});
   click({chapter:'sishu.lunyu.09'});
   click({passage:'sishu.lunyu.09.05'});
-  assert.ok(nodes.main.innerHTML.includes('VII &quot;: 23'),
-    'Malformed citation should be preserved and not silently fixed');
+  assert.ok(nodes.main.innerHTML.includes('Sabda Suci — Lun Yu III:24; Lun Yu VII:23; Lun Yu XIV:36; Mengzi — Bing Cu I B:16'),
+    'MATAKIN 2012 photographed citation must correct the displayed VII:23 numbering');
+  assert.ok(!nodes.main.innerHTML.includes('VII &quot;: 23'),
+    'Spurious quote in original 2011 transcription must not leak into reader display');
   console.log('Ru Classics smoke test passed: Paper, 4 books, chapter, reader, Ruby, Indonesian, English');
  }catch(e){console.error(e);process.exitCode=1;}
 },0);
