@@ -2,6 +2,24 @@
 (function (root) {
   'use strict';
   const PAIRS = Object.freeze([
+    ['Khong-cu', 'Kongzi'], // 孔子
+    ['Hi-cu', 'Xu Zi'], // 許子 (Xu Xing)
+    ['Ong-pa', 'Wang Bao'], // 王豹
+    ['Ki Pik-giok', 'Qu Boyu'], // 蘧伯玉
+    ['Yan Ping-tiong', 'Yan Pingzhong'], // 晏平仲
+    ['Siem-yu', 'Shenyou'], // 沈猶
+    ['Sien-cu', 'Shenzi'], // 慎子
+    ['Siencu', 'Shenzi'], // 慎子
+    ['Sik-khiu', 'Shiqiu'], // 石丘
+    ['Su-gi', 'Shi Yu'], // 史魚
+    ['Su-khong', 'Shi Kuang'], // 師曠
+    ['Thai-Pik', 'Taibo'], // 泰伯
+    ['Thay-kak', 'Tai Jia'], // 太甲
+    ['Tiat-tik', 'Dieze'], // 垤澤
+    ['Tiong-yulah', 'Zhong You'], // 仲由 with suffix -lah
+    ['Tong-li', 'Dongli'], // 東里
+    ['Jiam Pik-giu', 'Ran Boniu'], // 冉伯牛
+    ['Pik-Giu', 'Bo Niu'], // 伯牛
     ['Gan-yu', 'Yan You'], // 言游
     ['Cu-see', 'Zi Xi'], // 子西
     ['Hwi-liam', 'Fei Lian'], // 飛廉
@@ -290,6 +308,21 @@
   // Kolasi khusus berdasarkan Hanzi. Satu ejaan Hokkian bisa mewakili
   // aksara berbeda: Chien => 晉 (Jin) atau 秦 (Qin); Swan => 僎 atau 宣.
   const CONTEXTUAL = Object.freeze({
+    'sishu.mengzi.12.08': [
+      ['(Kiang) Thaikong', '(Jiang - Kiang) Taigong - Thaikong'], // 姜太公
+    ],
+    'sishu.mengzi.14.25': [
+      ['(Sien)', '(Shen - Sien)'], // 神
+    ],
+    'sishu.daxue.10.06': [
+      ['(Thoo)', '(Tao - Thoo)'], // 桃
+    ],
+    'sishu.mengzi.13.22': [
+      ['Thai-kong', 'Taigong - Thai-kong'], // 太公
+    ],
+    'sishu.mengzi.07.13': [
+      ['Thai-kong', 'Taigong - Thai-kong'], // 太公
+    ],
     'sishu.lunyu.09.07': [
       ['bernama Loo berkata', 'bernama Lao - Loo berkata'], // 牢
     ],
@@ -606,6 +639,9 @@
       ['Sungai Cien dan Wi', 'Sungai Zhen - Cien dan Wei - Wi'] // toponim diverifikasi dengan Hanzi sumber
     ],
     'sishu.mengzi.09.03': [
+      ['orang-orang Yu-pi', 'orang-orang Youbi - Yu-pi'], // 有庳
+      ['di Yu-pi itu', 'di Youbi - Yu-pi itu'], // 有庳
+      ['kepala daerah Yu-pi itu', 'kepala daerah Youbi - Yu-pi itu'], // 有庳
       ['Chiang', 'Xiang - Chiang'], // 象; Shun's brother
       ['menghukum Kun di', 'menghukum Gun - Kun di'], // 鯀
       ['daerah Sambiau', 'daerah Sanmiao - Sambiau'], // Hanzi verified context
@@ -829,6 +865,7 @@
       if (legacy === 'Sun' && /\b(?:Ong|Kong)\s*$/iu.test(preceding)) return match; // 王順 / 公孫 ≠ 舜
       if (legacy === 'I-cu' && /\bBing\s*$/iu.test(preceding)) return match;
       if (legacy === 'Cu-tiang' && /\bZhu Zhang\s*-\s*$/iu.test(preceding)) return match;
+      if (legacy === 'Pik-Giu' && /\bJiam\s*$/iu.test(preceding)) return match; // 冉伯牛 full alias is paired first
       if (legacy === 'Khiu' && /\bKhong\s*$/iu.test(preceding)) return match; // 孔丘 is paired as a complete name // 朱張 not 子張
       if (legacy === 'Thong' && /\bSing\s*$/iu.test(preceding)) return match; // 成湯 already covered by long name
       if (legacy === 'Ien' && /\b(?:I|Ling)\s*$/iu.test(preceding)) return match; // 伊尹 / 令尹, keep the full name
