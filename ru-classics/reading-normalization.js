@@ -2,6 +2,20 @@
 (function (root) {
   'use strict';
   const PAIRS = Object.freeze([
+    ['Ling Ien', 'Lingyin'], // 令尹, office of chief minister
+    ['I Ien', 'Yi Yin'], // 伊尹, separate from generic 殷
+    ['Cu-bun', 'Ziwen'], // 子文
+    ['Cweecu', 'Cuizi'], // 崔子
+    ['Tien Buncu', 'Chen Wenzi'], // 陳文子
+    ['Culo', 'Zilu'], // 子路
+    ['Siancai', 'Shanzai'], // 善哉
+    ['Siau Jien', 'Xiaoren'], // 小人
+    ['Thong', 'Tang'], // 湯; avoid suffix within Sing Thong via guard
+    ['Ien', 'Yin'], // 尹 or 殷 context; guard Ling Ien and Yi Yin
+    ['Bun', 'Wen'], // 文, used for Wen Wang
+    ['Cho', 'Chu'], // 楚
+    ['Ciu', 'Zhou'], // 周, exclude hyphenated names
+    ['Khun', 'Kun'], // 髡; guard the full Chunyu Kun name
     ['Pi Hee', 'Bi Xi'], // 嬖奚
     ['Ong-liang', 'Wang Liang'], // 王良
     ['Ong Liang', 'Wang Liang'], // 王良
@@ -212,6 +226,15 @@
   // Kolasi khusus berdasarkan Hanzi. Satu ejaan Hokkian bisa mewakili
   // aksara berbeda: Chien => 晉 (Jin) atau 秦 (Qin); Swan => 僎 atau 宣.
   const CONTEXTUAL = Object.freeze({
+    'sishu.mengzi.03.01': [
+      ['He, Ten dan Ciu', 'Xia - He, Yin - Ten dan Zhou - Ciu'], // 夏後 殷 周; keep printed 'Ten' as variant
+    ],
+    'sishu.zhongyong.18.02': [
+      ['Kwi dan Bun', 'Ji - Kwi dan Wen - Bun'], // 王季 文王
+    ],
+    'sishu.daxue.04.05': [
+      ['Bun dan Bu', 'Wen - Bun dan Wu - Bu'], // 文王武王
+    ],
     'sishu.lunyu.05.10': [
       ['kepada I tidak', 'kepada Yu - I tidak'], // 宰予 Yu, different from 禹 Yu
       ['I-lah yang', 'Yu - I-lah yang'], // 宰予; printed suffix lah preserved
@@ -672,7 +695,10 @@
       if (legacy === 'Hu-jien' && /\bKun\s*$/iu.test(preceding)) return match;
       if (legacy === 'Cingcu' && /\bGak\s*$/iu.test(preceding)) return match; // 樂正子 not 曾子
       if (legacy === 'Sun' && /\b(?:Ong|Kong)\s*$/iu.test(preceding)) return match; // 王順 / 公孫 ≠ 舜
-      if (legacy === 'I-cu' && /\bBing\s*$/iu.test(preceding)) return match; // 孟懿子 Meng Yizi, not 夷子
+      if (legacy === 'I-cu' && /\bBing\s*$/iu.test(preceding)) return match;
+      if (legacy === 'Thong' && /\bSing\s*$/iu.test(preceding)) return match; // 成湯 already covered by long name
+      if (legacy === 'Ien' && /\b(?:I|Ling)\s*$/iu.test(preceding)) return match; // 伊尹 / 令尹, keep the full name
+      if (legacy === 'Khun' && /\bSun-i\s*$/iu.test(preceding)) return match; // 淳於髡 full name already paired // 孟懿子 Meng Yizi, not 夷子
       if (previous.test(preceding)) return match;
       return prefix + modern + ' - ' + token;
     });
