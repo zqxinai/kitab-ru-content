@@ -61,7 +61,9 @@ for (const term of terms) {
       const before = displayed.slice(Math.max(0, index - 8), index);
       const rightSide = /\s-\s$/.test(before);
       // Paired terms are counted by the extraction above, so only emit uncovered occurrences here.
-      if (!rightSide) add(term, 'orphan', row, displayed.slice(Math.max(0,index-50),Math.min(displayed.length,index+term.length+70)));
+      const after = displayed.slice(index + term.length, index + term.length + 16);
+      const leftSide = /^\s*-\s*[\p{L}]/u.test(after);
+      if (!rightSide && !leftSide) add(term, 'orphan', row, displayed.slice(Math.max(0,index-50),Math.min(displayed.length,index+term.length+70)));
     }
   }
 }
