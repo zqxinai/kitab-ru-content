@@ -1,0 +1,245 @@
+{
+  "schema": "ru-classics.compound-references.v1",
+  "date": "2026-11-15",
+  "scope": "MATAKIN 2011 parenthetical compound citations; editorial presentation only, never mutate translation_indonesian",
+  "baseline": "MATAKIN 2011 PDF source, edition convention confirmed for MATAKIN 2012 (abbreviation identities owner-confirmed), not photographed phrase evidence",
+  "book_aliases": {
+    "SS": "lunyu",
+    "AB": "daxue",
+    "BC": "mengzi",
+    "TS": "zhongyong"
+  },
+  "entries": [
+    {
+      "passage_id": "sishu.lunyu.02.19",
+      "source": "(T.S. XIX: 1; S.S. III: 21)",
+      "display_status": "display-ready",
+      "display": "(Tengah Sempurna — Zhong Yong XIX:1; Sabda Suci — Lun Yu III:21)",
+      "printed_2012_attested": false,
+      "review_note": "Book identity and passage existence verified; quoted content and exact 2012 typography not certified.",
+      "components": [
+        {
+          "order": 1,
+          "source_segment": "T.S. XIX: 1",
+          "book_id": "zhongyong",
+          "target_passage_ids": [
+            "sishu.zhongyong.20.01"
+          ],
+          "status": "passage-exists-not-quotation-certified",
+          "subverse_target_id": null
+        },
+        {
+          "order": 2,
+          "source_segment": "S.S. III: 21",
+          "book_id": "lunyu",
+          "target_passage_ids": [
+            "sishu.lunyu.03.21"
+          ],
+          "status": "passage-exists-not-quotation-certified",
+          "subverse_target_id": null
+        }
+      ]
+    },
+    {
+      "passage_id": "sishu.lunyu.07.05",
+      "source": "(T.S. XVII: 3; S.S. VIII: 11)",
+      "display_status": "display-ready",
+      "display": "(Tengah Sempurna — Zhong Yong XVII:3; Sabda Suci — Lun Yu VIII:11)",
+      "printed_2012_attested": false,
+      "review_note": "Book identity and passage existence verified; quoted content and exact 2012 typography not certified.",
+      "components": [
+        {
+          "order": 1,
+          "source_segment": "T.S. XVII: 3",
+          "book_id": "zhongyong",
+          "target_passage_ids": [
+            "sishu.zhongyong.18.03"
+          ],
+          "status": "passage-exists-not-quotation-certified",
+          "subverse_target_id": null
+        },
+        {
+          "order": 2,
+          "source_segment": "S.S. VIII: 11",
+          "book_id": "lunyu",
+          "target_passage_ids": [
+            "sishu.lunyu.08.11"
+          ],
+          "status": "passage-exists-not-quotation-certified",
+          "subverse_target_id": null
+        }
+      ]
+    },
+    {
+      "passage_id": "sishu.lunyu.07.21",
+      "source": "(S.S. XI: 12; T.S. X: 1)",
+      "display_status": "display-ready",
+      "display": "(Sabda Suci — Lun Yu XI:12; Tengah Sempurna — Zhong Yong X:1)",
+      "printed_2012_attested": false,
+      "review_note": "Book identity and passage existence verified; quoted content and exact 2012 typography not certified.",
+      "components": [
+        {
+          "order": 1,
+          "source_segment": "S.S. XI: 12",
+          "book_id": "lunyu",
+          "target_passage_ids": [
+            "sishu.lunyu.11.12"
+          ],
+          "status": "passage-exists-not-quotation-certified",
+          "subverse_target_id": null
+        },
+        {
+          "order": 2,
+          "source_segment": "T.S. X: 1",
+          "book_id": "zhongyong",
+          "target_passage_ids": [
+            "sishu.zhongyong.11.01"
+          ],
+          "status": "passage-exists-not-quotation-certified",
+          "subverse_target_id": null
+        }
+      ]
+    },
+    {
+      "passage_id": "sishu.lunyu.05.16",
+      "source": "(S.S. XIV: 9; Bc. IV B.2)",
+      "display_status": "display-ready",
+      "display": "(Sabda Suci — Lun Yu XIV:9; Mengzi — Bing Cu IV B:2)",
+      "printed_2012_attested": false,
+      "review_note": "Book identity and passage existence verified; quoted content and exact 2012 typography not certified.",
+      "components": [
+        {
+          "order": 1,
+          "source_segment": "S.S. XIV: 9",
+          "book_id": "lunyu",
+          "target_passage_ids": [
+            "sishu.lunyu.14.09"
+          ],
+          "status": "passage-exists-not-quotation-certified",
+          "subverse_target_id": null
+        },
+        {
+          "order": 2,
+          "source_segment": "Bc. IV B.2",
+          "book_id": "mengzi",
+          "target_passage_ids": [
+            "sishu.mengzi.08.02"
+          ],
+          "status": "passage-exists-not-quotation-certified",
+          "subverse_target_id": null
+        }
+      ]
+    },
+    {
+      "passage_id": "sishu.lunyu.05.22",
+      "source": "(S.S. XV: 2; Bc. VII B: 37)",
+      "display_status": "display-ready",
+      "display": "(Sabda Suci — Lun Yu XV:2; Mengzi — Bing Cu VII B:37)",
+      "printed_2012_attested": false,
+      "review_note": "Book identity and passage existence verified; quoted content and exact 2012 typography not certified.",
+      "components": [
+        {
+          "order": 1,
+          "source_segment": "S.S. XV: 2",
+          "book_id": "lunyu",
+          "target_passage_ids": [
+            "sishu.lunyu.15.02"
+          ],
+          "status": "passage-exists-not-quotation-certified",
+          "subverse_target_id": null
+        },
+        {
+          "order": 2,
+          "source_segment": "Bc. VII B: 37",
+          "book_id": "mengzi",
+          "target_passage_ids": [
+            "sishu.mengzi.14.37"
+          ],
+          "status": "passage-exists-not-quotation-certified",
+          "subverse_target_id": null
+        }
+      ]
+    },
+    {
+      "passage_id": "sishu.lunyu.05.23",
+      "source": "(Bc. II. A: 2; S.S. VII: 15)",
+      "display_status": "display-ready",
+      "display": "(Mengzi — Bing Cu II A:2; Sabda Suci — Lun Yu VII:15)",
+      "printed_2012_attested": false,
+      "review_note": "Book identity and passage existence verified; quoted content and exact 2012 typography not certified.",
+      "components": [
+        {
+          "order": 1,
+          "source_segment": "Bc. II. A: 2",
+          "book_id": "mengzi",
+          "target_passage_ids": [
+            "sishu.mengzi.03.02"
+          ],
+          "status": "passage-exists-not-quotation-certified",
+          "subverse_target_id": null
+        },
+        {
+          "order": 2,
+          "source_segment": "S.S. VII: 15",
+          "book_id": "lunyu",
+          "target_passage_ids": [
+            "sishu.lunyu.07.15"
+          ],
+          "status": "passage-exists-not-quotation-certified",
+          "subverse_target_id": null
+        }
+      ]
+    },
+    {
+      "passage_id": "sishu.lunyu.02.05",
+      "source": "(S.S. I:9; III: 1,2; XIX:5; Bc. IIIA: 2)",
+      "display_status": "review-only",
+      "display": null,
+      "printed_2012_attested": false,
+      "review_note": "Inherited S.S. references and the comma in III: 1,2 require verse-boundary confirmation; preserve original display until reviewed.",
+      "components": [
+        {
+          "order": 1,
+          "source_segment": "S.S. I:9",
+          "book_id": "lunyu",
+          "target_passage_ids": [
+            "sishu.lunyu.01.09"
+          ],
+          "status": "numbering-provisional",
+          "subverse_target_id": null
+        },
+        {
+          "order": 2,
+          "source_segment": "III: 1,2",
+          "book_id": "lunyu",
+          "target_passage_ids": [
+            "sishu.lunyu.03.01",
+            "sishu.lunyu.03.02"
+          ],
+          "status": "numbering-provisional",
+          "subverse_target_id": null
+        },
+        {
+          "order": 3,
+          "source_segment": "XIX:5",
+          "book_id": "lunyu",
+          "target_passage_ids": [
+            "sishu.lunyu.19.05"
+          ],
+          "status": "numbering-provisional",
+          "subverse_target_id": null
+        },
+        {
+          "order": 4,
+          "source_segment": "Bc. IIIA: 2",
+          "book_id": "mengzi",
+          "target_passage_ids": [
+            "sishu.mengzi.05.02"
+          ],
+          "status": "numbering-provisional",
+          "subverse_target_id": null
+        }
+      ]
+    }
+  ]
+}
