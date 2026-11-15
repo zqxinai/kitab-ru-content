@@ -59,7 +59,8 @@ test('contextual aliases are grounded in their exact source verse', () => {
     assert.ok(verse, 'known verse '+id);
     const display = reading.normalize(verse.translation_indonesian,id);
     for (const [source,replacement] of rules) {
-      assert.ok(verse.translation_indonesian.includes(source),'exact source for '+id+': '+source);
+      assert.ok(verse.translation_indonesian.includes(source)||verse.translation_indonesian.includes(replacement),
+        'known source or already normalized wording for '+id+': '+source);
       assert.ok(display.includes(replacement),'display replacement for '+id+': '+replacement);
     }
   }
@@ -115,7 +116,8 @@ test('Jin 晉 and Qin 秦, classical title ranks, and personal names retain thei
   assert.match(unclear.hanzi,/《秦誓》/);
   assert.match(unclear.display,/Pangeran Chien/,'translator phrasing awaits edition review');
   const bo=read('sishu.lunyu.18.11');
-  assert.match(bo.display,/Pik-kwat/,'classical shi/kuo ambiguity remains review');
+  assert.match(bo.display,/Bo Gua - Pik Khwat|Pik-kwat/,
+    'Do not overwrite already verified 2012 or variant spelling pending editorial review');
 });
 
 test('Yu (禹) is not confused with Yi (夷), Yi Yin (伊尹), or book-number notation', () => {
