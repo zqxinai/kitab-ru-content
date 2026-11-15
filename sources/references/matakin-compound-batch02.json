@@ -253,10 +253,10 @@
     {
       "passage_id": "sishu.lunyu.07.23",
       "source": "(S.S. III: 24; IX: 5)",
-      "display_status": "review-only",
-      "display": null,
+      "display_status": "display-ready",
+      "display": "(Sabda Suci — Lun Yu III:24; Lun Yu IX:5)",
       "printed_2012_attested": false,
-      "review_note": "Second part inherits S.S.; manuscript/edition punctuation to review before display expansion",
+      "review_note": "Technical book inheritance resolved: prior named book applies to subsequent unlabelled numerals until a new named book appears. Comma-separated numbers are passage numbers, not slash ayat. Targets exist; 2012 printed phrasing not attested.",
       "components": [
         {
           "order": 1,
@@ -265,7 +265,7 @@
           "target_passage_ids": [
             "sishu.lunyu.03.24"
           ],
-          "status": "numbering-provisional",
+          "status": "passage-exists-not-quotation-certified",
           "subverse_target_id": null,
           "reference_intent": "content-related",
           "verbatim_match_required": false
@@ -277,7 +277,7 @@
           "target_passage_ids": [
             "sishu.lunyu.09.05"
           ],
-          "status": "numbering-provisional",
+          "status": "passage-exists-not-quotation-certified",
           "subverse_target_id": null,
           "reference_intent": "content-related",
           "verbatim_match_required": false
