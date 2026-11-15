@@ -34,7 +34,7 @@ jobs:
       - name: Independent broad legacy orphan inventory (965 passages)
         run: |
           node tools/audit_legacy_romanization.cjs > /tmp/legacy-romanization-audit.log
-          node -e "const v=require('./audit/reports/legacy-romanization-inventory.json'); console.log('Broad scan: '+v.passages+' passages; '+v.orphan_entries.length+' candidate terms; '+v.duplicate_name_pairs.length+' source duplicate aliases'); console.log('Orphan terms (candidate, not verified error): '+JSON.stringify(v.orphan_entries.slice(0,100).map(x=>({term:x.term,count:x.orphan}))))"
+          node -e "const v=require('./audit/reports/legacy-romanization-inventory.json'); console.log('Broad scan: '+v.passages+' passages; '+v.orphan_entries.length+' candidate terms; '+v.duplicate_name_pairs.length+' source duplicate aliases'); console.log('Orphan terms with examples: '+JSON.stringify(v.orphan_entries.slice(0,100).map(x=>({term:x.term,count:x.orphan,examples:x.orphanExamples.slice(0,3)}))))"
       - name: Save candidate inventory for editorial review
         uses: actions/upload-artifact@v4
         with:
