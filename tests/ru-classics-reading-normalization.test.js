@@ -103,6 +103,10 @@ test('Historical homographs are read using Hanzi and not guessed by Hokkian spel
   assert.match(yi.display, /Negeri Yi - Gi/); // 儀
   const yu = get('sishu.mengzi.09.09');
   assert.match(yu.display, /Negeri Yu - Gi/); // 虞, independent of 儀
+  const gwi = get('sishu.mengzi.06.07');
+  assert.match(gwi.source, /Negeri Gwi/);
+  assert.match(gwi.display, /Negeri Wei - Gwi/); // 魏文侯 per anotasi Zhu Xi
+  assert.equal(reading.normalize(gwi.display, 'sishu.mengzi.06.07'), gwi.display);
   const mo = get('sishu.mengzi.12.10');
   assert.match(mo.source, /bangsa Bek/);
   assert.match(mo.display, /bangsa Mo - Bek/); // 貉 mò, northern people, not animal hé
