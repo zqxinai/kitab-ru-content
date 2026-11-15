@@ -2,11 +2,19 @@
 
 **Tanggal:** 15 November 2026 WIB. **Hasil:** 8 kelompok gabungan baru / 18 segmen tercatat, terdiri atas **6 siap ditampilkan** dan **2 perlu review**. Data asal MATAKIN 2011 **tidak diubah**.
 
+
+## Klarifikasi resmi dari pemilik cetakan, 15 November 2026
+
+**Koreksi terhadap penilaian awal dalam laporan ini:** tanda `/N` pada rujukan menunjukkan **ayat ke-N dari pasal yang ditunjuk**, bukan nomor yang ambigu. Dengan demikian `Bc IIA:7/5` berarti **Mengzi II A pasal 7 ayat 5**; `IIA:2/19` dan `IIA:2/28` berarti **Mengzi II A pasal 2 ayat 19 dan ayat 28**. Penanda ayat 5, 19, dan 28 sudah ditemukan berurutan pada teks MATAKIN 2011 digital. Metadata kini menyimpan `subverse_number` dan bukti `verified-in-2011-transcript`, sedangkan `subverse_target_id` masih `null` hanya karena **tautan langsung ke ayat belum memiliki kontrak navigasi yang teruji**, bukan karena arti `/N` diragukan.
+
+**Makna rujukan silang:** pasal/ayat yang dirujuk mempunyai **keterkaitan isi atau ajaran**, tidak harus sama kalimatnya. Karena itu, hubungan ini dicatat sebagai `reference_intent: "content-related"` dan `verbatim_match_required: false`. Ketepatan tema spesifik tiap pasangan tetap bisa diperiksa, tetapi teks berbeda bukan otomatis discrepancy.
+
+
 ## Keputusan editorial
 
-Semua singkatan yang sudah dikonfirmasi tetap berlaku: **SS = Sabda Suci/Lun Yu**, **AB = Ajaran Besar/Da Xue**, **BC = Bingcu/Mengzi**, **TS = Tengah Sempurna/Zhong Yong**. Pada gabungan rujukan, setiap komponen memiliki `book_id` sendiri. Komponen seperti `Bc. IIA:2/19` mempunyai `target_passage_ids = ["sishu.mengzi.03.02"]`, tetapi **`subverse_target_id = null`**: bagian `/19` belum dianggap subayat tervalidasi. Teks `/19`, `/28`, dan `/5` tetap dipertahankan pada tampilan.
+Semua singkatan yang sudah dikonfirmasi tetap berlaku: **SS = Sabda Suci/Lun Yu**, **AB = Ajaran Besar/Da Xue**, **BC = Bingcu/Mengzi**, **TS = Tengah Sempurna/Zhong Yong**. Pada gabungan rujukan, setiap komponen memiliki `book_id` sendiri. Komponen seperti `Bc. IIA:2/19` mempunyai `target_passage_ids = ["sishu.mengzi.03.02"]`, tetapi **`subverse_target_id = null`**: nomor ayat `/19` sudah terkonfirmasi dan penanda Ayat 19 ada pada teks 2011, tetapi deep-link belum diuji. Teks `/19`, `/28`, dan `/5` tetap dipertahankan pada tampilan.
 
-Nama kitab lengkap yang digunakan mengikuti **konvensi** MATAKIN 2012; bukan berarti ejaan, jarak, atau tanda bacanya sudah diperiksa kata demi kata pada halaman cetak yang belum terfoto. ID pasal tujuan yang ada di repositori bukan bukti bahwa kedua kalimat adalah kutipan identik. Tidak ada tautan tunggal yang dikarang dari kutipan berisi beberapa target.
+Nama kitab lengkap yang digunakan mengikuti **konvensi** MATAKIN 2012; bukan berarti ejaan, jarak, atau tanda bacanya sudah diperiksa kata demi kata pada halaman cetak yang belum terfoto. ID pasal tujuan yang ada di repositori bukan bukti bahwa kedua kalimat adalah kutipan identik. Tidak ada tautan tunggal yang dikarang dari rujukan gabungan berisi beberapa target.
 
 ## Delapan kelompok batch 06
 
@@ -37,6 +45,6 @@ Nama kitab lengkap yang digunakan mengikuti **konvensi** MATAKIN 2012; bukan ber
 
 ## Posisi keseluruhan
 
-Dari **497 pola rujukan** yang terdeteksi pada pemindaian heuristik seluruh 965 pasal, sudah **75 catatan overlay** yang ditangani (termasuk 12 kelompok gabungan dengan tampilan baru). Angka 497 adalah hasil deteksi pola, bukan jumlah kesalahan, dan status **Draft/Perlu Review** teks tidak berubah. Audit berikutnya berfokus pada rujukan dengan nomor turunannya, tanda pemisah tidak biasa, atau singkatan kitab yang diwariskan antarsemen; jika bukti belum cukup, pertahankan sumber asli dan catat kandidat sebagai metadata.
+Dari **497 pola rujukan** yang terdeteksi pada pemindaian heuristik seluruh 965 pasal, sudah **75 catatan overlay** yang ditangani (termasuk 12 kelompok gabungan dengan tampilan baru). Angka 497 adalah hasil deteksi pola, bukan jumlah kesalahan, dan status **Draft/Perlu Review** teks tidak berubah. Audit berikutnya berfokus pada rujukan dengan tanda pemisah tidak biasa, atau singkatan kitab yang diwariskan antarsemen; jika bukti belum cukup, pertahankan sumber asli dan catat kandidat sebagai metadata.
 
 **Tidak dikerjakan dalam batch ini:** perubahan Hanzi, pinyin, penerjemahan Legge, nomor ayat sumber, persetujuan Final, maupun pembuatan APK.
