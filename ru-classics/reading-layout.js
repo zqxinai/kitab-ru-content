@@ -10,13 +10,13 @@ function paragraphs(source,locale='id'){
    new Intl.Segmenter(locale==='en'?'en':'id',{granularity:'sentence'}):null;
  function addBlock(block){
    if(!block)return;
-   if(!segmenter||block.length<410){result.push(block);return;}
+   if(!segmenter||block.length<300){result.push(block);return;}
    const sentences=[...segmenter.segment(block)].map(x=>x.segment);
    if(sentences.join('')!==block){result.push(block);return;}
    let current='',depth=0;
    for(const sentence of sentences){
      // Do not visually break inside parentheses, including MATAKIN citations.
-     if(current.length>=180&&current.length+sentence.length>355&&depth===0){
+     if(current.length>=140&&current.length+sentence.length>320&&depth===0){
        result.push(current);current='';
      }
      current+=sentence;
