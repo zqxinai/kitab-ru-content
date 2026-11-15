@@ -278,7 +278,7 @@ test('only Mengzi VII B:38 drops extraneous terminal colophon; legitimate Sianca
   const tail = 'Mengapa tiada yang meneruskan ajaran Nya?" ( IIB:13 ). SIANCAI';
   assert.equal(reading.normalize(tail, 'sishu.mengzi.14.38'), 'Mengapa tiada yang meneruskan ajaran Nya?" ( IIB:13 ).');
   assert.equal(reading.normalize('Ia berkata, "Siancai! Sungguh tepat."', 'sishu.lunyu.12.11'),
-    'Ia berkata, "Siancai! Sungguh tepat."');
+    'Ia berkata, "Shanzai - Siancai! Sungguh tepat."');
   assert.equal(reading.normalize(tail, 'other'), tail);
 });
 
