@@ -2,6 +2,24 @@
 (function (root) {
   'use strict';
   const PAIRS = Object.freeze([
+    ['Cu-go', 'Zi Ao'], // 子敖
+    ['Hamkhiu Bong', 'Xianqiu Meng'], // 咸丘蒙
+    ['Ien-su', 'Yin Shi'], // 尹士
+    ['Biet-cu', 'Mizi'], // 彌子
+    ['Bing I-cu', 'Meng Yizi'], // 孟懿子
+    ['Bing Kwicu', 'Meng Jizi'], // 孟季子
+    ['Ciok Too', 'Zhu Tuo'], // 祝鮀
+    ['Coo Kau', 'Cao Jiao'], // 曹交
+    ['Cu-khiem', 'Zi Qin'], // 子禽
+    ['Cu-koo', 'Zigao'], // 子羔
+    ['Cucok Jicu', 'Zizhuo Ruzi'], // 子濯孺子
+    ['Cuhok Kingpik', 'Zifu Jingbo'], // 子服景伯
+    ['Kongpik Liau', 'Gongbo Liao'], // 公伯寮
+    ['Hong Bong', 'Pang Meng'], // 逄蒙
+    ['Kongbing Gi', 'Gongming Yi'], // 公明儀
+    ['Ongsun Ke', 'Wangsun Jia'], // 王孫賈
+    ['Tiongsiok Gi', 'Zhongshu Yu'], // 仲叔圉
+    ['Gan Siu-yu', 'Yan Chouyou'], // 顏讎由
     ['Tam-tay Biat-bing', 'Tantai Mieming'], // 澹臺滅明
     ['Cong Bu-tiong', 'Zang Wuzhong'], // 臧武仲 (beda dari 臧文仲)
     ['Chiong Gi', 'Chong Yu'], // 充虞
