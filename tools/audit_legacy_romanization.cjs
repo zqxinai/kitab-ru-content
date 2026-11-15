@@ -53,7 +53,7 @@ const extraTerms = ['Khongcu','Bingcu','Kuncu','Cingcu','Cusu','Thiacu','Thai Ha
 const terms = [...new Set([...seeds,...extraTerms])];
 function escaped(s) {return s.replace(/[.*+?^$()|[\]{}\\]/g, '\\$&');}
 for (const term of terms) {
-  const patt = new RegExp('(^|[^\\p{L}])(' + escaped(term) + ')(?=$|[^\\p{L}])', 'giu');
+  const patt = new RegExp('(^|[^\\p{L}-])(' + escaped(term) + ')(?=$|[^\\p{L}-])', 'giu');
   for (const row of all) {
     const displayed = reading.normalize(row.text, row.id);
     for (const m of displayed.matchAll(patt)) {
@@ -63,7 +63,13 @@ for (const term of terms) {
       // Paired terms are counted by the extraction above, so only emit uncovered occurrences here.
       const after = displayed.slice(index + term.length, index + term.length + 16);
       const leftSide = /^\s*-\s*[\p{L}]/u.test(after);
-      if (!rightSide && !leftSide) add(term, 'orphan', row, displayed.slice(Math.max(0,index-50),Math.min(displayed.length,index+term.length+70)));
+      const recentSegment = displayed.slice(Math.max(0,index-90), index).split(/[.,:;!?()“”"'\n]/u).pop();
+      const lastPair = recentSegment.lastIndexOf(' - ');
+      const suffixPrefix = lastPair >= 0 ? recentSegment.slice(lastPair+3) : '';
+      const inCompositePair = lastPair >= 0
+        && !/\b(?:dan|atau|yang|dari|dengan|kepada|sebagai|kemudian|lalu)\b/iu.test(suffixPrefix)
+        && /^(?:[\p{L}-]+\s+){0,2}$/u.test(suffixPrefix);
+      if (!rightSide && !leftSide && !inCompositePair) add(term, 'orphan', row, displayed.slice(Math.max(0,index-50),Math.min(displayed.length,index+term.length+70)));
     }
   }
 }
