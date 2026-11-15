@@ -204,6 +204,32 @@ test('Batch 06 has six display-ready compounds, two review-only cases, and never
  assert.equal(slash.components[1].source_segment,'Bc. IIA: 2/19');
  assert.equal(slash.components[1].subverse_target_id,null);
 });
+test('MATAKIN pasal/ayat notation resolves slash N to an existing Mengzi verse without inventing deep links',()=>{
+ const refs=read('sources/references/matakin-compound-batch02.json');
+ assert.match(refs.citation_slash_semantics,/Ayat N/);
+ const cases=[
+  ['sishu.lunyu.03.07','sishu.mengzi.03.07',5,'Bc IIA: 7/5'],
+  ['sishu.lunyu.07.02','sishu.mengzi.03.02',19,'Bc. IIA: 2/19'],
+  ['sishu.lunyu.09.09','sishu.mengzi.03.02',28,'Bc. IIA: 2/28']
+ ];
+ for(const [sourceId,targetId,ayat,segment] of cases){
+  const entry=refs.entries.find(e=>e.passage_id===sourceId);
+  assert.ok(entry,'missing source '+sourceId);
+  const part=entry.components.find(c=>c.source_segment===segment);
+  assert.equal(part?.subverse_number,ayat,'slash must map to numbered ayat');
+  assert.equal(part.subverse_marker_status,'verified-in-2011-transcript');
+  assert.deepEqual(part.target_passage_ids,[targetId]);
+  assert.equal(part.subverse_target_id,null,'no verified deep-link URI exists yet');
+  const p=byId.get(targetId);
+  assert.ok(p,'target passage absent '+targetId);
+  const found=[...p.translation_indonesian.matchAll(/(?:^|\s)\((\d{1,2})\)(?=\s|["“'‘])/g)].map(m=>Number(m[1]));
+  assert.ok(found.includes(ayat),'MATAKIN Indonesian ayat marker missing '+targetId+'/'+ayat);
+  assert.deepEqual(found,Array.from({length:found.length},(_,i)=>i+2),'verse numbering discontinuity '+targetId);
+  const original=byId.get(sourceId).translation_indonesian;
+  assert.ok(original.includes(entry.source),'source references must stay untouched');
+  assert.ok(overlay.present(sourceId,original).includes('/'+ayat),'reader should preserve the printed slash notation');
+ }
+});
 test('The exact legacy references remain intact in every source and the overlay changes only display',()=>{
  for(const r of overlay.records){
   const source=byId.get(r.passage_id).translation_indonesian;
