@@ -307,6 +307,9 @@
   // Kolasi khusus berdasarkan Hanzi. Satu ejaan Hokkian bisa mewakili
   // aksara berbeda: Chien => 晉 (Jin) atau 秦 (Qin); Swan => 僎 atau 宣.
   const CONTEXTUAL = Object.freeze({
+    'sishu.mengzi.07.28': [
+      ['Sun-lah', 'Shun - Sun-lah'], // 舜, printed Indonesian suffix -lah
+    ],
     'sishu.mengzi.12.08': [
       ['(Kiang) Thaikong', '(Jiang - Kiang) Taigong - Thaikong'], // 姜太公
     ],
