@@ -67,7 +67,7 @@
   function hanziWithSubverses(p,aligned){
     if(!aligned)return ruby(p.ruby_paragraphs);
     return aligned.map(verse=>
-      '<div class="hanzi-verse" data-ayat="'+verse.number+'">'+
+      '<div class="hanzi-verse'+(state.ayat===verse.number?' ayat-active':'')+'" data-ayat="'+verse.number+'">'+
       '<span class="ayat-label">Ayat '+verse.number+'</span>'+
       ruby([verse.ruby_tokens])+'</div>'
     ).join('');
@@ -133,7 +133,7 @@
   function reader(){const p=byId(state.id);if(!p){navigate('books');return;}state.last=p.id;save();const c=state.chapters.find(c=>c.id===p._chapter);const b=book(p._book);const pos=state.passages.findIndex(x=>x.id===p.id);const prev=state.passages[pos-1],next=state.passages[pos+1];const s=state.settings;const aligned=globalThis.RuSubverses?.align(p)||null;
     main.innerHTML='<div class="breadcrumb"><button data-action="all">Kitab</button> › <button data-book="'+b.id+'">'+b.name+'</button> › <button data-chapter="'+H(c.id)+'">'+H(c.title)+'</button></div>'
     +jumpMenu(p,c,b)
-     +'<div class="reader-heading"><div><span class="eyebrow">Si Shu · '+b.hanzi+'</span><h1>'+H(c.title)+'</h1><p>Pasal '+p.number+'</p></div><div class="chips">'+[['hanzi','Hanzi'],['pinyin','Pinyin'],['indo','Indonesia'],['english','English']].map(([key,text])=>'<button class="chip '+(s[key]?'on':'')+'" data-toggle="'+key+'" aria-pressed="'+s[key]+'">'+text+'</button>').join('')+'</div></div>'
+     +'<div class="reader-heading"><div><span class="eyebrow">Si Shu · '+b.hanzi+'</span><h1>'+H(c.title)+'</h1><p>Pasal '+p.number+(state.ayat?' · Ayat '+state.ayat+' dipilih':'')+'</p></div><div class="chips">'+[['hanzi','Hanzi'],['pinyin','Pinyin'],['indo','Indonesia'],['english','English']].map(([key,text])=>'<button class="chip '+(s[key]?'on':'')+'" data-toggle="'+key+'" aria-pressed="'+s[key]+'">'+text+'</button>').join('')+'</div></div>'
     +'<div class="reader-grid"><article class="paper-page"><div class="passage-top"><span>PASAL '+p.number+'</span><button class="save-btn" data-action="bookmark" aria-pressed="'+state.saved.includes(p.id)+'">'+(state.saved.includes(p.id)?'♥ Tersimpan':'♡ Simpan')+'</button></div>'
     +(s.hanzi?'<div class="hanzi-text '+(s.pinyin?'':'no-pinyin')+'" style="--hanzi-size:'+s.font+'px" lang="zh-Hant">'+hanziWithSubverses(p,aligned)+'</div>':'')
     +(s.indo?'<section class="translation"><h3>Bahasa Indonesia · MATAKIN</h3>'+indonesiaWithSubverses(p,aligned)+'</section>':'')
@@ -145,7 +145,7 @@
   function renderSearchResults(){const box=document.getElementById('search-results');if(!box)return;const term=norm(state.search.trim());const candidates=state.passages.filter(p=>state.filter==='all'||p._book===state.filter);
     if(!term){box.innerHTML='<p class="muted">Ketik kata kunci untuk mencari dalam teks Hanzi, pinyin, atau terjemahan.</p>';return;}
     const matches=candidates.filter(p=>{const x=byId(p.id);const hanzi=(x.ruby_paragraphs||[]).flat().map(t=>t.traditional||t.value||'').join('');const pinyin=(x.ruby_paragraphs||[]).flat().map(t=>t.pinyin||'').join(' ');return norm([hanzi,pinyin,x.translation_indonesian,displayIndo(p.id,x.translation_indonesian),x.translation_english].join(' ')).includes(term);});
-    box.innerHTML='<p class="muted">'+matches.length+' pasal ditemukan'+(matches.length>60?' · menampilkan 60 pertama':'')+'</p><div class="results">'+matches.slice(0,60).map(p=>'<button class="result" data-passage="'+H(p.id)+'"><small>'+book(p._book).name+' · Pasal '+p.number+'</small><strong>'+H(p._chapterTitle)+'</strong><span class="excerpt">'+H(byId(p.id).translation_indonesian||'')+'</span></button>').join('')+'</div>';
+    box.innerHTML='<p class="muted">'+matches.length+' pasal ditemukan'+(matches.length>60?' · menampilkan 60 pertama':'')+'</p><div class="results">'+matches.slice(0,60).map(p=>'<button class="result" data-passage="'+H(p.id)+'"><small>'+book(p._book).name+' · Pasal '+p.number+'</small><strong>'+H(p._chapterTitle)+'</strong><span class="excerpt">'+H(displayIndo(p.id,byId(p.id).translation_indonesian||''))+'</span></button>').join('')+'</div>';
   }
   function search(){main.innerHTML='<div class="chapter-title"><span class="eyebrow">Pencarian</span><h1>Temukan sebuah ayat</h1><p class="muted">Cari di seluruh '+state.passages.length+' pasal Si Shu.</p></div><label class="searchbox"><span aria-hidden="true">⌕</span><input id="search-input" type="search" autocomplete="off" placeholder="Ketik Hanzi, pinyin, atau terjemahan…" value="'+H(state.search)+'"></label><div class="search-filters"><select id="search-book" aria-label="Filter kitab"><option value="all">Semua kitab</option>'+BOOKS.map(b=>'<option value="'+b.id+'" '+(state.filter===b.id?'selected':'')+'>'+b.name+'</option>').join('')+'</select></div><div id="search-results"></div>';renderSearchResults();}
   function saved(){const bookmarked=state.saved.map(byId).filter(Boolean);const notes=Object.keys(state.notes).filter(k=>state.notes[k]).length;
@@ -153,8 +153,11 @@
   }
   function navHighlight(){document.querySelectorAll('[data-nav]').forEach(btn=>{const active=btn.dataset.nav===(state.tab==='reader'||state.tab==='chapter'?'books':state.tab);btn.classList.toggle('active',active);if(active)btn.setAttribute('aria-current','page');else btn.removeAttribute('aria-current');});}
   function render(){navHighlight();if(!state.data)return;if(state.tab==='home')home();else if(state.tab==='books')library();else if(state.tab==='chapter')chapter();else if(state.tab==='reader')reader();else if(state.tab==='search')search();else if(state.tab==='saved')saved();else if(state.tab==='editor')window.RuEditorial?.render?.(main);
-    if(state.tab==='reader'&&state.ayat&&state.settings.indo){
-      window.requestAnimationFrame?.(()=>document.querySelector('.translation-verse[data-ayat="'+state.ayat+'"]')?.scrollIntoView?.({block:'center',behavior:'smooth'}));
+    if(state.tab==='reader'&&state.ayat){
+      window.requestAnimationFrame?.(()=>{
+        const selected=document.querySelector('.translation-verse[data-ayat="'+state.ayat+'"]')||document.querySelector('.hanzi-verse[data-ayat="'+state.ayat+'"]');
+        selected?.scrollIntoView?.({block:'center',behavior:'smooth'});
+      });
     }else window.scrollTo({top:0,behavior:'instant'});}
   function navigate(tab,identity=null,verse=0){state.tab=tab;if(tab==='books'&&identity!==null)state.book=identity;if(tab==='chapter')state.chapter=identity;if(tab==='reader'){state.id=identity;state.ayat=Number(verse)||0;}location.hash=tab==='reader'?'read='+encodeURIComponent(identity)+(state.ayat?'&ayat='+state.ayat:''):tab==='chapter'?'chapter='+encodeURIComponent(identity):tab==='books'&&state.book?'book='+state.book:tab;render();}
   function route(){if(!state.data)return;const raw=decodeURIComponent(location.hash.replace(/^#/,''));if(raw.startsWith('read=')){const [id,verseParam]=raw.substring(5).split('&ayat=');if(state.map.has(id)){const requested=Number(verseParam)||0;const original=state.map.get(id);const valid=requested>0&&globalThis.RuSubverses?.splitIndonesia(original.translation_indonesian)?.some(v=>v.number===requested);state.id=id;state.ayat=valid?requested:0;state.tab='reader';}}else if(raw.startsWith('chapter=')){state.chapter=raw.substring(8);state.tab='chapter';}else if(raw.startsWith('book=')){state.book=raw.substring(5);state.tab='books';}else if(['home','books','search','saved','editor'].includes(raw)){state.tab=raw;if(raw==='books')state.book=null;}render();}

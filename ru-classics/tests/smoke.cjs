@@ -12,7 +12,8 @@ const nodes={
  'about-dialog':{showModal(){}},
  'theme-options':{innerHTML:''},
  'reading-options':{innerHTML:''},
- 'font-label':{textContent:''}
+ 'font-label':{textContent:''},
+ 'search-results':{innerHTML:''}
 };
 const handlers={};
 const doc={
@@ -232,6 +233,19 @@ setTimeout(()=>{
     'Mengzi IIB:13 first reference missing');
   assert.ok(visibleText(nodes.main.innerHTML).includes('Sabda Suci — Lun Yu IX:5'),
     'Mengzi IIB:13 second reference missing');
+  // The reader must pair Pinyin-Hokkian consistently, including search excerpts.
+  click({nav:'search'});
+  handlers.input[0]({target:{id:'search-input',value:'Kong-sun Thio'}});
+  assert.match(nodes['search-results'].innerHTML,/class="excerpt">[^<]*Gongsun Chou - Kong-sun Thio/,
+    'Search excerpt must use the non-destructive Pinyin-Hokkian reading overlay');
+  // Selected ayat stays identified even when the Indonesian view is hidden.
+  click({passage:'sishu.mengzi.01.01'});
+  change('jump-ayat','3');
+  assert.match(nodes.main.innerHTML,/class="hanzi-verse ayat-active" data-ayat="3"/);
+  assert.match(nodes.main.innerHTML,/Pasal 1 · Ayat 3 dipilih/);
+  click({toggle:'indo'});
+  assert.match(nodes.main.innerHTML,/class="hanzi-verse ayat-active" data-ayat="3"/);
+  assert.match(nodes.main.innerHTML,/Pasal 1 · Ayat 3 dipilih/);
   console.log('Ru Classics smoke test passed: Paper, 4 books, chapter, reader, Ruby, Indonesian, English');
  }catch(e){console.error(e);process.exitCode=1;}
 },0);
