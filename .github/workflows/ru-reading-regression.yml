@@ -31,11 +31,17 @@ jobs:
         run: |
           node tools/audit_ru_romanization.cjs --json > ru-romanization-candidates.json
           node -e "const x=require('./ru-romanization-candidates.json'); console.log('965 passages audited; '+x.unresolvedTitleCandidates+' historical-title candidates remain to be reviewed')"
+      - name: Independent broad legacy orphan inventory (965 passages)
+        run: |
+          node tools/audit_legacy_romanization.cjs > /tmp/legacy-romanization-audit.log
+          node -e "const v=require('./audit/reports/legacy-romanization-inventory.json'); console.log('Broad scan: '+v.passages+' passages; '+v.orphan_entries.length+' candidate terms; '+v.duplicate_name_pairs.length+' source duplicate aliases'); console.log('Orphan terms (candidate, not verified error): '+JSON.stringify(v.orphan_entries.slice(0,100).map(x=>({term:x.term,count:x.orphan}))))"
       - name: Save candidate inventory for editorial review
         uses: actions/upload-artifact@v4
         with:
           name: ru-hokkian-review-candidates
-          path: ru-romanization-candidates.json
+          path: |
+            ru-romanization-candidates.json
+            audit/reports/legacy-romanization-inventory.json
       - name: Assemble reader test bundle
         run: python tools/build_ru_classics_web.py --source dist/sishu-content.json --alignment dist/sishu-english-alignment.json --splits dist/sishu-english-passage-splits.json --output ru-classics/data/sishu.json
       - name: Reader UI smoke test
