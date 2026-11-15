@@ -145,7 +145,32 @@
     }
     return result;
   }
-  const api=Object.freeze({records,present});
+  // Return display segments with optional passage targets. Never invent subayat
+  // links for compounds or chapter-only references (target_id === null).
+  function segments(passageId,text){
+    if(typeof text!=='string')return [];
+    const matches=[];
+    for(const r of byId.get(passageId)||[]){
+      if(!r.source)continue;
+      let at=0;
+      while((at=text.indexOf(r.source,at))!==-1){
+        matches.push({start:at,end:at+r.source.length,text:r.display,target_id:r.target_id??null});
+        at+=r.source.length;
+      }
+    }
+    matches.sort((a,b)=>a.start-b.start||b.end-a.end);
+    const parts=[];
+    let cursor=0;
+    for(const r of matches){
+      if(r.start<cursor)continue;
+      if(r.start>cursor)parts.push({text:text.slice(cursor,r.start),target_id:null});
+      parts.push({text:r.text,target_id:r.target_id});
+      cursor=r.end;
+    }
+    if(cursor<text.length||!parts.length)parts.push({text:text.slice(cursor),target_id:null});
+    return parts;
+  }
+  const api=Object.freeze({records,present,segments});
   if(typeof module!=='undefined'&&module.exports)module.exports=api;
   scope.Matakin2012References=api;
 })(typeof globalThis!=='undefined'?globalThis:this);
