@@ -105,6 +105,25 @@ setTimeout(()=>{
   click({passage:'sishu.lunyu.09.08'});
   assert.match(nodes.main.innerHTML,/Tengah Sempurna — Zhong Yong V/,
     'Batch 04 chapter-only TS reference should not invent a verse');
+  // Compound citation batch: preserve each source's book without collapsing targets.
+  click({book:'lunyu'});
+  click({chapter:'sishu.lunyu.02'});
+  click({passage:'sishu.lunyu.02.19'});
+  assert.ok(nodes.main.innerHTML.includes('Tengah Sempurna — Zhong Yong XIX:1; Sabda Suci — Lun Yu III:21'),
+    'Compound TS + SS book names are missing');
+  click({book:'lunyu'});
+  click({chapter:'sishu.lunyu.05'});
+  click({passage:'sishu.lunyu.05.16'});
+  assert.ok(nodes.main.innerHTML.includes('Sabda Suci — Lun Yu XIV:9; Mengzi — Bing Cu IV B:2'),
+    'Compound SS + BC book names are missing');
+  click({passage:'sishu.lunyu.05.23'});
+  assert.ok(nodes.main.innerHTML.includes('Mengzi — Bing Cu II A:2; Sabda Suci — Lun Yu VII:15'),
+    'Compound BC + SS book names are missing');
+  click({book:'lunyu'});
+  click({chapter:'sishu.lunyu.02'});
+  click({passage:'sishu.lunyu.02.05'});
+  assert.ok(nodes.main.innerHTML.includes('(S.S. I:9; III: 1,2; XIX:5; Bc. IIIA: 2)'),
+    'Review-only compound reference should remain in its original form');
   console.log('Ru Classics smoke test passed: Paper, 4 books, chapter, reader, Ruby, Indonesian, English');
  }catch(e){console.error(e);process.exitCode=1;}
 },0);
