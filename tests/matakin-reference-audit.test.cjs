@@ -41,8 +41,8 @@ test('Full MATAKIN reference inventory combines 29 compound groups across three 
  const a=scan();
  assert.equal(a.passage_count,965);
  assert.equal(a.compound_segmented,29);
- assert.equal(a.compound_display_ready,28);
- assert.equal(a.compound_review_only,1);
+ assert.equal(a.compound_display_ready,29);
+ assert.equal(a.compound_review_only,0);
  const ready=a.all_references.find(x=>x.passage_id==='sishu.lunyu.02.19'&&x.original_reference==='(T.S. XIX: 1; S.S. III: 21)');
  assert.equal(ready?.segmentation_status,'display-ready');
  assert.deepEqual(ready?.segments.map(x=>x.book_id),['zhongyong','lunyu']);
@@ -53,10 +53,10 @@ test('Full MATAKIN reference inventory combines 29 compound groups across three 
  assert.equal(complex?.segments.flatMap(x=>x.target_passage_ids).length,5);
  assert.ok(complex.segments.every(x=>x.subverse_target_id===null));
 });
-test('Batch 06 keeps malformed text under review and resolves inherited-book citations',()=>{
+test('Batch 06 includes photo-evidenced IX:5 correction with original source preserved',()=>{
  const data=scan();
  const malformed=data.all_references.find(x=>x.passage_id==='sishu.lunyu.09.05'&&x.original_reference.includes('VII ": 23'));
- assert.equal(malformed?.segmentation_status,'review-only');
+ assert.equal(malformed?.segmentation_status,'display-ready');
  assert.deepEqual(malformed?.segments.map(x=>x.book_id),['lunyu','lunyu','lunyu','mengzi']);
  assert.ok(malformed.segments.every(x=>x.subverse_target_id===null));
  const inheritance=data.all_references.find(x=>x.passage_id==='sishu.lunyu.07.23'&&x.original_reference==='(S.S. III: 24; IX: 5)');
@@ -103,8 +103,13 @@ test('Batch 07 inherited-book references are indexed without thematic re-review'
   assert.ok(found.segments.length>=2);
  }
  const still=audit.all_references.filter(r=>r.segmentation_status==='review-only');
- assert.equal(still.length,1);
- assert.equal(still[0].passage_id,'sishu.lunyu.09.05');
+ assert.equal(still.length,0);
+ const resolved=audit.all_references.find(x=>x.passage_id==='sishu.lunyu.09.05'&&x.segments);
+ assert.equal(resolved.segmentation_status,'display-ready');
+ assert.deepEqual(resolved.segments.map(x=>x.book_id),['lunyu','lunyu','lunyu','mengzi']);
+ assert.deepEqual(resolved.segments.flatMap(x=>x.target_passage_ids),[
+  'sishu.lunyu.03.24','sishu.lunyu.07.23','sishu.lunyu.14.36','sishu.mengzi.02.16'
+ ]);
 });
 test('All MATAKIN cross-reference records signify related contents regardless of quote wording',()=>{
  const audit=scan();
