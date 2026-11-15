@@ -40,8 +40,8 @@ test('All existing Mengzi A/B references map only to exact known destinations',(
    }
    assert.ok(displayed.length>=input.length,'display must never delete source content');
  }
- assert.equal(candidates,53,'source has changed; re-audit references before release');
- assert.equal(linked,52,'only references with verified target passage and ayat are interactive');
+ assert.equal(candidates,55,'source has changed; re-audit references before release');
+ assert.equal(linked,54,'only references with verified target passage and ayat are interactive');
 });
 test('Missing and ambiguous references remain original, without fake destinations',()=>{
  assert.equal(parse('sishu.lunyu.01.01','III. A.3.10'),null);
