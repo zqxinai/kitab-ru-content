@@ -6,7 +6,7 @@
 
 1. Nama kitab yang dikonfirmasi pemilik cetak: **SS = Sabda Suci (Lun Yu), AB = Ajaran Besar (Da Xue), BC = Bingcu/Mengzi, TS = Tengah Sempurna/Zhong Yong.**
 2. `translation_indonesian` dari MATAKIN 2011 **tetap utuh**, sementara [modul overlay](../../ru-classics/reference-overlay.js) menampilkan nama kitab lengkap hanya ketika **ID pasal dan bentuk rujukan awal persis cocok**. Catatan sumber 2012 yang belum terfoto tidak dinyatakan sudah terbukti sama persis.
-3. Angka tujuan dikonfirmasi terhadap **ID pasal yang benar-benar ada di repositori**, tetapi hubungan tematik dan bunyi kutipan pada setiap target **belum seluruhnya disahkan melalui kolasi teks**. Registri ini **tidak membuat hyperlink otomatis**.
+3. Angka tujuan dikonfirmasi terhadap **ID pasal yang benar-benar ada di repositori**, tetapi hubungan isi pada rujukan silang **diterima menurut otoritas MATAKIN tanpa verifikasi tematik ulang**, sementara ketepatan penyalinan/nomor tetap diperiksa. Registri ini **tidak membuat hyperlink otomatis**.
 4. Da Xue dan Zhong Yong menyimpan *Bab Utama* sebagai kelompok pertama; karena itu Da Xue X:15 disimpan di `sishu.daxue.11.15`, dan Zhong Yong XXVII:5 di `sishu.zhongyong.28.05`.
 5. Rujukan majemuk lintas kitab, subayat yang belum diverifikasi, serta nomor tanpa nama kitab **tidak diganti massal**. Rujukan `(T.S. V)` pada Lun Yu IX:8 hanya menunjuk bab; `target_id: null`.
 
