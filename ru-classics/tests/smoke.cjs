@@ -88,7 +88,7 @@ setTimeout(()=>{
   click({passage:'sishu.lunyu.02.05'});
   assert.match(nodes.main.innerHTML,/Sabda Suci — Lun Yu VI:22/,
     'Batch 04 SS citation with dot separator should render in canonical form');
-  assert.match(nodes.main.innerHTML,/S\\.S\\. I:9; III: 1,2; XIX:5; Bc\\. IIIA: 2/,
+  assert.ok(nodes.main.innerHTML.includes('(S.S. I:9; III: 1,2; XIX:5; Bc. IIIA: 2)'),
     'Composite unresolved references must remain visible and unaltered');
   click({book:'lunyu'});
   click({chapter:'sishu.lunyu.03'});
