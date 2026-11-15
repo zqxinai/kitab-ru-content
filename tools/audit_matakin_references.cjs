@@ -65,6 +65,8 @@ function scan(){
              source_segment:c.source_segment,
              book_id:c.book_id,
              target_passage_ids:c.target_passage_ids,
+             subverse_number:c.subverse_number??null,
+             subverse_marker_status:c.subverse_marker_status??null,
              subverse_target_id:c.subverse_target_id
            }))
          }:{}),
