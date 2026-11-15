@@ -147,9 +147,6 @@
       ['Bangsa I dan Tik', 'Bangsa Yi - I dan Di - Tik'], // 夷狄
       ['Kerajaan He ini', 'Kerajaan Xia - He ini'] // 夏
     ],
-    'sishu.lunyu.03.06': [
-      ['Keluarga Kwi', 'Keluarga Ji - Kwi'] // 季氏
-    ],
     'sishu.lunyu.03.07': [
       ['cara Iep', 'cara Yi - Iep'] // 揖
     ],
@@ -324,6 +321,7 @@
       ['kota Hwan', 'kota Fan - Hwan'] // toponim diverifikasi dengan Hanzi sumber
     ],
     'sishu.lunyu.03.06': [
+      ['Keluarga Kwi', 'Keluarga Ji - Kwi'], // 季氏
       ['Gunung Thai', 'Gunung Taishan - Thai']
     ],
     'sishu.lunyu.06.09': [
@@ -338,9 +336,6 @@
       ['daerah Cwan-ji', 'daerah Zhuanyu - Cwan-ji'],
       ['daerah Cwan Ji', 'daerah Zhuanyu - Cwan Ji'],
       ['daerah Cwanji', 'daerah Zhuanyu - Cwanji']
-    ],
-    'sishu.lunyu.17.05': [
-      ['daerah Pi', 'daerah Bi - Pi']
     ],
     'sishu.lunyu.09.02': [
       ['daerah Tat-hang', 'daerah Daxiang - Tat-hang']
@@ -439,6 +434,7 @@
       ['dan Cho menyerbunya', 'dan Chu - Cho menyerbunya'] // 齊楚
     ],
     'sishu.lunyu.17.05': [
+      ['daerah Pi', 'daerah Bi - Pi'], // 費
       ['Kong-son Hut-jiau', 'Gongshan Furao - Kong-son Hut-jiau'], // 公山弗擾
       ['Negara Ciu Timur', 'Negara Zhou Timur - Ciu Timur'] // 東周
     ],
