@@ -78,7 +78,14 @@
     const overlay=globalThis.Matakin2012References;
     if(!overlay?.segments)return H(displayIndo(id,overlay?.present(id,text)??text));
     const parts=globalThis.RuReferenceLinks?.parts(id,text,overlay)||overlay.segments(id,text);
-    return parts.map(part=>{
+    // A/B without a printed book alias means Mengzi only within Mengzi.
+    // Only known passages and observed MATAKIN ayat can become deep links.
+    const linked=globalThis.RuSameBookReferences?.expand(id,parts,ref=>{
+      const target=state.map.get(ref.target_id);
+      if(!target)return false;
+      return !ref.ayat||!!globalThis.RuSubverses?.splitIndonesia(target.translation_indonesian)?.some(v=>v.number===ref.ayat);
+    })||parts;
+    return linked.map(part=>{
       const label=H(displayIndo(id,part.text));
       if(!part.target_id||!state.map.has(part.target_id))return label;
       const n=Number(part.ayat)||0;
@@ -117,18 +124,17 @@
       +'<label>Ayat<select id="jump-ayat" aria-label="Pilih ayat"'+(verses.length>1?'':' disabled title="Ayat bernomor belum terverifikasi"')+'>'+option('0','Seluruh pasal',!state.ayat)+verses.map(x=>option(x.number,'Ayat '+x.number,state.ayat===x.number)).join('')+'</select></label>'
       +'</nav>';
   }
-  // English prose has independently witnessed Legge paragraph boundaries,
-  // but its sentence boundaries are not assumed to equal MATAKIN ayat.
+  // Legge supplies source paragraphs, NOT the MATAKIN numbered ayat.
+  // Do not invent "Bagian 1/2" as if they were a different verse system.
+  // Future editor-verified cross-language alignments can add per-ayat
+  // English units without changing either canonical text.
   function englishReading(p){
     const source=p.translation_english||'';
     const verses=globalThis.RuSubverses?.splitIndonesia(p.translation_indonesian);
-    if(!verses||verses.length<=1)
-      return '<div class="translation-prose" lang="en">'+readingParagraphs(source,'en',H)+'</div>';
-    const parts=(globalThis.RuReadingLayout?.paragraphs(source,'en')||[source]).filter(x=>x.trim());
-    const note='<p class="english-alignment-note">Bagian bacaan mengikuti paragraf James Legge. Batas ayat Inggris belum diverifikasi terhadap penomoran MATAKIN.</p>';
-    return note+'<div class="translation-prose english-sections" lang="en">'+parts.map((x,i)=>
-      '<section class="english-reading-section"><span class="english-reading-index">Bagian '+(i+1)+'</span><p class="reading-paragraph">'+H(x)+'</p></section>'
-    ).join('')+'</div>';
+    const note=verses?.length>1
+      ?'<p class="english-alignment-note">Nomor ayat mengikuti MATAKIN. Terjemahan James Legge masih ditampilkan untuk seluruh pasal karena batas ayatnya belum diselaraskan satu per satu'+(state.ayat?' (Ayat '+state.ayat+' sedang dipilih pada MATAKIN)':'')+'. Paragraf di bawah bukan nomor ayat tambahan.</p>'
+      :'';
+    return note+'<div class="translation-prose" lang="en">'+readingParagraphs(source,'en',H)+'</div>';
   }
   function reader(){const p=byId(state.id);if(!p){navigate('books');return;}state.last=p.id;save();const c=state.chapters.find(c=>c.id===p._chapter);const b=book(p._book);const pos=state.passages.findIndex(x=>x.id===p.id);const prev=state.passages[pos-1],next=state.passages[pos+1];const s=state.settings;const aligned=globalThis.RuSubverses?.align(p)||null;
     main.innerHTML='<div class="breadcrumb"><button data-action="all">Kitab</button> › <button data-book="'+b.id+'">'+b.name+'</button> › <button data-chapter="'+H(c.id)+'">'+H(c.title)+'</button></div>'
