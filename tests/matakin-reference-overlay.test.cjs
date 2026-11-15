@@ -17,10 +17,10 @@ const expectedTargets={
  'sishu.daxue.11.23':'sishu.mengzi.01.01',
  'sishu.mengzi.01.01':'sishu.daxue.11.23'
 };
-test('Seventy-five exact references preserve original sources and resolve only evidenced targets',()=>{
+test('Ninety-one exact references preserve original sources and resolve only evidenced targets',()=>{
  assert.equal(chapters.length,78);
  assert.equal(byId.size,965);
- assert.equal(overlay.records.length,75);
+ assert.equal(overlay.records.length,91);
  // Historical batch 01 is immutable; batch 02 allows multiple references in one passage.
  for(const [sourceId,targetId] of Object.entries(expectedTargets))
   assert.ok(overlay.records.some(r=>r.passage_id===sourceId&&r.target_id===targetId),'legacy mapping changed: '+sourceId);
@@ -112,17 +112,17 @@ test('Batch 04 checks 29 new SS AB BC TS sources, number mapping and single-book
  const compound=byId.get('sishu.lunyu.02.05').translation_indonesian;
  const displayed=overlay.present('sishu.lunyu.02.05',compound);
  assert.ok(displayed.includes('(Sabda Suci — Lun Yu VI:22)'));
- assert.ok(displayed.includes('(S.S. I:9; III: 1,2; XIX:5; Bc. IIIA: 2)'),
-   'multi-book citation must remain unresolved rather than silently split');
+ assert.ok(displayed.includes('(Sabda Suci — Lun Yu I:9; Lun Yu III:1,2; Lun Yu XIX:5; Mengzi — Bing Cu III A:2)'),
+   'multi-book citation should preserve all inherited books and passage numbers');
  const chapterOnly=overlay.records.find(r=>r.passage_id==='sishu.lunyu.09.08'&&r.source==='(T.S. V)');
  assert.equal(chapterOnly.target_id,null,'chapter-only reference must not point to a fabricated verse');
 });
-test('Seven compound citations are individually segmented; six display, one remains review-only',()=>{
+test('Seven compound citations are individually segmented and display-ready',()=>{
  const data=read('sources/references/matakin-compound-batch01.json');
  assert.equal(data.schema,'ru-classics.compound-references.v1');
  assert.deepEqual(data.book_aliases,{SS:'lunyu',AB:'daxue',BC:'mengzi',TS:'zhongyong'});
  assert.equal(data.entries.length,7);
- assert.equal(data.entries.filter(r=>r.display_status==='display-ready').length,6);
+ assert.equal(data.entries.filter(r=>r.display_status==='display-ready').length,7);
  assert.equal(data.entries.reduce((n,r)=>n+r.components.length,0),16);
  const originalIds=new Set();
  for(const entry of data.entries){
@@ -159,13 +159,13 @@ test('Seven compound citations are individually segmented; six display, one rema
  }
  assert.equal(originalIds.size,7);
 });
-test('Batch 06 has six display-ready compounds, two review-only cases, and never invents subverse links',()=>{
+test('Batch 06 has seven display-ready compounds, one technical review-only case, and never invents subverse links',()=>{
  const data=read('sources/references/matakin-compound-batch02.json');
  assert.equal(data.schema,'ru-classics.compound-references.v1');
  assert.deepEqual(data.book_aliases,{SS:'lunyu',AB:'daxue',BC:'mengzi',TS:'zhongyong'});
  assert.equal(data.entries.length,8);
- assert.equal(data.entries.filter(e=>e.display_status==='display-ready').length,6);
- assert.equal(data.entries.filter(e=>e.display_status==='review-only').length,2);
+ assert.equal(data.entries.filter(e=>e.display_status==='display-ready').length,7);
+ assert.equal(data.entries.filter(e=>e.display_status==='review-only').length,1);
  assert.equal(data.entries.reduce((n,e)=>n+e.components.length,0),18);
  for(const entry of data.entries){
   const source=byId.get(entry.passage_id);
@@ -204,6 +204,51 @@ test('Batch 06 has six display-ready compounds, two review-only cases, and never
  assert.equal(slash.components[1].source_segment,'Bc. IIA: 2/19');
  assert.equal(slash.components[1].subverse_target_id,null);
 });
+test('Batch 07 resolves 14 inherited-book compound markers and preserves each printed number',()=>{
+ const doc=read('sources/references/matakin-compound-batch03.json');
+ assert.equal(doc.reference_authority,'MATAKIN');
+ assert.equal(doc.relationship_review_required,false);
+ assert.equal(doc.entries.length,14);
+ assert.equal(doc.entries.reduce((n,e)=>n+e.components.length,0),30);
+ assert.equal(doc.entries.filter(e=>e.display_status==='display-ready').length,14);
+ for(const e of doc.entries){
+  const p=byId.get(e.passage_id);
+  assert.ok(p,'batch 07 source missing '+e.passage_id);
+  assert.equal(p.translation_indonesian.split(e.source).length,2,'exact source must occur once');
+  assert.equal(e.printed_2012_attested,false);
+  assert.equal(e.relationship_review_required,false);
+  assert.equal(e.verbatim_match_required,false);
+  const hits=overlay.records.filter(r=>r.passage_id===e.passage_id&&r.source===e.source);
+  assert.equal(hits.length,1,'batch 07 overlay missing/duplicated');
+  assert.equal(hits[0].target_id,null,'multi-link marker has no single destination');
+  assert.equal(hits[0].display,e.display);
+  assert.ok(overlay.present(e.passage_id,p.translation_indonesian).includes(e.display));
+  for(const c of e.components){
+   assert.ok(e.source.includes(c.source_segment),'component fragment not found');
+   assert.ok(c.target_passage_ids.length>=1);
+   for(const id of c.target_passage_ids){
+    assert.ok(byId.has(id),'target ID nonexistent '+id);
+    assert.ok(id.startsWith('sishu.'+c.book_id+'.'),'wrong book for '+id);
+   }
+   assert.equal(c.subverse_target_id,null);
+  }
+ }
+ const special=doc.entries.find(x=>x.passage_id==='sishu.lunyu.05.02');
+ assert.deepEqual(special.components[0].target_passage_ids,['sishu.lunyu.06.01','sishu.lunyu.06.02']);
+ const another=doc.entries.find(x=>x.passage_id==='sishu.lunyu.14.01');
+ assert.deepEqual(another.components[1].target_passage_ids,['sishu.mengzi.13.06','sishu.mengzi.13.07']);
+ for(const [file,id] of [
+  ['sources/references/matakin-compound-batch01.json','sishu.lunyu.02.05'],
+  ['sources/references/matakin-compound-batch02.json','sishu.lunyu.07.23']
+ ]){
+  const e=read(file).entries.find(x=>x.passage_id===id);
+  assert.equal(e.display_status,'display-ready');
+  assert.ok(overlay.present(id,byId.get(id).translation_indonesian).includes(e.display));
+ }
+ const malformed=read('sources/references/matakin-compound-batch02.json').entries.find(x=>x.passage_id==='sishu.lunyu.09.05');
+ assert.equal(malformed.display_status,'review-only');
+ assert.ok(overlay.present(malformed.passage_id,byId.get(malformed.passage_id).translation_indonesian).includes(malformed.source));
+});
 test('MATAKIN pasal/ayat notation resolves slash N to an existing Mengzi verse without inventing deep links',()=>{
  const refs=read('sources/references/matakin-compound-batch02.json');
  assert.match(refs.citation_slash_semantics,/Ayat N/);
@@ -233,9 +278,10 @@ test('MATAKIN pasal/ayat notation resolves slash N to an existing Mengzi verse w
 test('Every segmented cross-reference means related content, not required verbatim identity',()=>{
  const batches=[
   read('sources/references/matakin-compound-batch01.json'),
-  read('sources/references/matakin-compound-batch02.json')
+  read('sources/references/matakin-compound-batch02.json'),
+  read('sources/references/matakin-compound-batch03.json')
  ];
- assert.equal(batches.flatMap(x=>x.entries).length,15);
+ assert.equal(batches.flatMap(x=>x.entries).length,29);
  for(const batch of batches){
   assert.match(batch.reference_intent,/MATAKIN cross-reference/);
   assert.equal(batch.reference_authority,'MATAKIN');
