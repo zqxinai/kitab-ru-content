@@ -80,6 +80,31 @@ setTimeout(()=>{
   click({passage:'sishu.lunyu.12.22'});
   assert.match(nodes.main.innerHTML,/Mengzi — Bing Cu VII A:46/,
     'BC should resolve to Mengzi while preserving chapter/verse numbers');
+  click({book:'lunyu'});
+  click({chapter:'sishu.lunyu.02'});
+  click({passage:'sishu.lunyu.02.03'});
+  assert.match(nodes.main.innerHTML,/Mengzi — Bing Cu VII A:3/,
+    'Batch 04 BC target should preserve the printed book and passage numbering');
+  click({passage:'sishu.lunyu.02.05'});
+  assert.match(nodes.main.innerHTML,/Sabda Suci — Lun Yu VI:22/,
+    'Batch 04 SS citation with dot separator should render in canonical form');
+  assert.match(nodes.main.innerHTML,/S\\.S\\. I:9; III: 1,2; XIX:5; Bc\\. IIIA: 2/,
+    'Composite unresolved references must remain visible and unaltered');
+  click({book:'lunyu'});
+  click({chapter:'sishu.lunyu.03'});
+  click({passage:'sishu.lunyu.03.14'});
+  assert.match(nodes.main.innerHTML,/Tengah Sempurna — Zhong Yong XXVII:5/,
+    'Batch 04 TS reference should map only the displayed book title');
+  click({book:'lunyu'});
+  click({chapter:'sishu.lunyu.04'});
+  click({passage:'sishu.lunyu.04.03'});
+  assert.match(nodes.main.innerHTML,/Ajaran Besar — Da Xue X:15/,
+    'Batch 04 A.B. should show Da Xue by printed chapter numbering');
+  click({book:'lunyu'});
+  click({chapter:'sishu.lunyu.09'});
+  click({passage:'sishu.lunyu.09.08'});
+  assert.match(nodes.main.innerHTML,/Tengah Sempurna — Zhong Yong V/,
+    'Batch 04 chapter-only TS reference should not invent a verse');
   console.log('Ru Classics smoke test passed: Paper, 4 books, chapter, reader, Ruby, Indonesian, English');
  }catch(e){console.error(e);process.exitCode=1;}
 },0);
