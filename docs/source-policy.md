@@ -23,6 +23,14 @@ Kapitalisasi dan tanda titik adalah varian ejaan singkatan. Identitas **kitab** 
 
 Normalisasi nama lengkap untuk pembaca/editor berasal dari [overlay rujukan ber-ID](../ru-classics/reference-overlay.js); `translation_indonesian` berbasis PDF 2011 tetap identik. Kebijakan ini hanya menyatakan format penyajian sesuai 2012, bukan menyatakan setiap nama/penulisan hasil overlay sudah ditranskripsi kata per kata dari foto cetakan.
 
+## Makna rujukan silang dan notasi pasal/ayat — dikonfirmasi pemilik cetakan
+
+- **Rujukan silang menyatakan keterkaitan isi, tema, atau ajaran** antara pasal dan/atau ayat yang ditunjuk. Rujukan **tidak harus** berisi kalimat yang sama, bukan klaim bahwa teks dikutip secara verbatim, dan bukan alasan untuk menandai ketidaksamaan frasa sebagai *discrepancy*.
+- Bentuk **`Kitab Bab:Pasal/Ayat`** berarti `/N` adalah **ayat ke-N di dalam pasal tersebut**, sesuai konfirmasi pemilik buku pada 15 November 2026. Contoh `Bc IIA:7/5` menunjuk **Mengzi II A, pasal 7, ayat 5**.
+- Tiga contoh dari [registri batch 06](../sources/references/matakin-compound-batch02.json) telah diperiksa terhadap penanda ayat yang berurutan pada terjemahan MATAKIN 2011: **Mengzi IIA:7/5**, **IIA:2/19**, **IIA:2/28**. Pengenalan nomor ayat yang sah **tidak otomatis membuktikan** ketersediaan deep-link teruji atau ketepatan setiap hubungan isi secara editorial.
+- Saat audit, pisahkan **kepastian identitas kitab**, **resolusi nomor bab/pasal/ayat**, **keberadaan target di teks**, dan **penilaian keterkaitan isi**. Kesamaan kata-demi-kata hanya diperiksa ketika rujukan secara jelas merupakan kutipan langsung; tidak diwajibkan pada rujukan silang biasa.
+- Untuk metadata rujukan gabungan, `reference_intent: "content-related"` dan `verbatim_match_required: false` menegaskan maksud edisi. Rujukan yang belum pasti nomor atau tanda bacanya tetap `review-only` meskipun maksud hubungannya sudah jelas.
+
 ## Pemeriksaan sebelum menyatakan sebuah karakter salah
 
 - Bandingkan frase lengkap, fungsi tata bahasa klasik, konteks terjemahan Indonesia, dan identitas tokoh/nama diri.
