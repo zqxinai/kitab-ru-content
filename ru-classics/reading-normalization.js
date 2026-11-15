@@ -2,6 +2,12 @@
 (function (root) {
   'use strict';
   const PAIRS = Object.freeze([
+    ['Liem Hong', 'Lin Fang'], // 林放
+    ['Ong Sun-ke', 'Wangsun Jia'], // 王孫賈
+    ['Kwan-tiong', 'Guan Zhong'], // 管仲
+    ['Pat Iet', 'Ba Yi'], // 八佾, tata delapan baris penari
+    ['Kwan-chi', 'Guan Ju'], // 關雎, judul sanjak
+    ['Bok-tok', 'Mu Duo'], // 木鐸, genta kayu
     ['Cu-tiang', 'Zizhang'], // 子張
     ['Cu-yu', 'Ziyou'], // 子游
     ['Cai-ngo', 'Zai Wo'], // 宰我
@@ -132,6 +138,58 @@
   // Kolasi khusus berdasarkan Hanzi. Satu ejaan Hokkian bisa mewakili
   // aksara berbeda: Chien => 晉 (Jin) atau 秦 (Qin); Swan => 僎 atau 宣.
   const CONTEXTUAL = Object.freeze({
+    // Lun Yu III: pasangan dari Hanzi pasal dan konteks terjemahan MATAKIN.
+    // Nama dan istilah yang homofon dengan bahasa Indonesia tetap dibatasi pada ID pasal.
+    'sishu.lunyu.03.01': [
+      ['keluarga Kwi', 'keluarga Ji - Kwi'] // 季氏
+    ],
+    'sishu.lunyu.03.05': [
+      ['Bangsa I dan Tik', 'Bangsa Yi - I dan Di - Tik'], // 夷狄
+      ['Kerajaan He ini', 'Kerajaan Xia - He ini'] // 夏
+    ],
+    'sishu.lunyu.03.06': [
+      ['Keluarga Kwi', 'Keluarga Ji - Kwi'] // 季氏
+    ],
+    'sishu.lunyu.03.07': [
+      ['cara Iep', 'cara Yi - Iep'] // 揖
+    ],
+    'sishu.lunyu.03.08': [
+      ['Engkaulah Siang', 'Engkaulah Shang - Siang'] // 商, nama pribadi Zixia; bukan 朝代
+    ],
+    'sishu.lunyu.03.09': [
+      ['Kerajaan He', 'Kerajaan Xia - He'], // 夏
+      ['Kerajaan Ien', 'Kerajaan Yin - Ien'] // 殷
+    ],
+    'sishu.lunyu.03.10': [
+      ['Sembahyang Tee', 'Sembahyang Di - Tee'] // 禘
+    ],
+    'sishu.lunyu.03.11': [
+      ['Sembahyang Tee', 'Sembahyang Di - Tee'] // 禘
+    ],
+    'sishu.lunyu.03.13': [
+      ['malaikat Oo', 'malaikat Ao - Oo'], // 奧
+      ['Malaikat Co', 'Malaikat Zao - Co'] // 灶
+    ],
+    'sishu.lunyu.03.15': [
+      ['Bio Besar', 'Taimiao - Bio Besar'] // 太廟
+    ],
+    'sishu.lunyu.03.17': [
+      ['Su, engkau', 'Ci - Su, engkau'] // 賜, nama pribadi Zi Gong
+    ],
+    'sishu.lunyu.03.21': [
+      ['Kerajaan He', 'Kerajaan Xia - He'], // 夏
+      ['Kerajaan Ien', 'Kerajaan Yin - Ien'], // 殷
+      ['pohon Siong', 'pohon Song - Siong'], // 松
+      ['pohon Pik', 'pohon Bai - Pik'], // 柏
+      ['pohon Lik', 'pohon Li - Lik'] // 栗
+    ],
+    'sishu.lunyu.03.22': [
+      ['panggung Sam-kui', 'panggung San Gui - Sam-kui'] // 三歸
+    ],
+    'sishu.lunyu.03.25': [
+      ['musik Siau', 'musik Shao - Siau'], // 韶
+      ['musik Bu', 'musik Wu - Bu'] // 武
+    ],
     'sishu.mengzi.05.03': [
       // III A:3 ayat 10: 庠 xiang, 序 xu, 學 xue, 校 xiao;
       // 夏 Xia, 殷 Yin, 周 Zhou. Batasi ke frasa yang cocok agar
