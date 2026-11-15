@@ -58,13 +58,16 @@ const context={
   URL,encodeURIComponent
 };
 vm.runInNewContext(readFileSync('ru-classics/reference-overlay.js','utf8'),context,{timeout:5000,filename:'ru-classics/reference-overlay.js'});
+for(const name of ['reference-links.js','reading-layout.js'])vm.runInNewContext(readFileSync('ru-classics/'+name,'utf8'),context,{timeout:5000,filename:'ru-classics/'+name});
 vm.runInNewContext(code,context,{timeout:5000,filename:'editor/app.js'});
 await new Promise(resolve=>setImmediate(resolve));
+
+const visible=node=>node.children?.length?node.children.map(visible).join(''):String(node.textContent??'');
 
 assert.equal(fetchCalls,1);
 assert.equal(elements.loadingView.hidden,true);
 assert.equal(elements.readerView.hidden,false,'Reader failed to open: '+elements.errorMessage.textContent);
-assert.equal(elements.indonesianText.textContent,selected.translation_indonesian);
+assert.equal(visible(elements.indonesianText),selected.translation_indonesian);
 assert.equal(elements.bookList.children.length,4);
 assert.equal(elements.chapterList.children.length,1);
 assert.equal(elements.chapterList.children[0].children[0].textContent,'Bab Utama');
@@ -83,7 +86,7 @@ assert.equal(rubyForXue?.children[1]?.textContent,'xué','Pinyin remains over tr
 assert(!rubyForXue.children.some(node=>node.textContent==='（学）'),'Simplified glyph must not be inside the ruby');
 
 const initialEnglish=selected.translation_english?.trim();
-assert.equal(elements.englishText.textContent,
+assert.equal(visible(elements.englishText),
   initialEnglish||'Terjemahan Inggris belum tersedia atau belum disetujui untuk pasal ini.');
 
 elements.editButton.click();
@@ -102,7 +105,7 @@ const issueBody=target.searchParams.get('body');
 assert(issueBody.includes(selected.id));
 assert(issueBody.includes('Koreksi pemeriksa'));
 assert(issueBody.includes('Pemeriksaan makna'));
-assert.equal(elements.indonesianText.textContent,selected.translation_indonesian,
+assert.equal(visible(elements.indonesianText),selected.translation_indonesian,
   'A proposal must not silently modify the published translation');
 
 elements.discardDraft.click();
