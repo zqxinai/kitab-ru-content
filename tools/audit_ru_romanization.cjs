@@ -42,7 +42,7 @@ const NOT_HOKKIAN_PLACE = new Map([
   ['istana Salju', 'Indonesian translation of 雪宮, not Hokkian'],
   ['istana Yao', 'Yao is already Hanyu Pinyin']
 ]);
-const ORDINARY_FIRST = /^(?:Adapun|Anak|Bukankah|Bulan|Cara|Cinta|Daerah|Demikianlah|Hal|Hanya|Inilah|Karena|Kawan|Kebajikan|Keluhuran|Kerajaan|Maka|Nasehat|Siswa|Suci|Tata|Tiga)\\b/;
+const ORDINARY_FIRST = /^(?:Adapun|Anak|Bukankah|Bulan|Cara|Cinta|Daerah|Demikianlah|Hal|Hanya|Inilah|Karena|Kawan|Kebajikan|Keluhuran|Kerajaan|Maka|Nasehat|Siswa|Suci|Tata|Tiga)\b/;
 const otherPlaces = new Map(), otherPeople = new Map();
 function record(map,term,id) {
   const v = map.get(term) || {term, count:0, passages:[]};
@@ -56,10 +56,10 @@ function unpairedInView(view,term) {
     if(pos>0&&/[\p{L}-]/u.test(view[pos-1]))continue;
     if(pos+term.length<view.length&&/[\p{L}-]/u.test(view[pos+term.length]))continue;
     if(view.slice(Math.max(0,pos-3),pos)===' - ')continue;
-    if(/^\\s*-\\s*\\p{L}/u.test(view.slice(pos+term.length)))continue; // Pinyin at left of pair
+    if(/^\s*-\s*\p{L}/u.test(view.slice(pos+term.length)))continue; // Pinyin at left of pair
     if(term.includes(' - '))continue; // already a complete Pinyin–Hokkian pair
     const nearby = view.slice(Math.max(0,pos-60),pos).split(/[.,;:!?()“”"']/u).pop();
-    if(/\\s-\\s[\\p{L}\\s-]*$/u.test(nearby))continue; // nested Hokkian suffix in a paired full name
+    if(/\s-\s[\p{L}\s-]*$/u.test(nearby))continue; // nested Hokkian suffix in a paired full name
     return true;
   }
   return false;
