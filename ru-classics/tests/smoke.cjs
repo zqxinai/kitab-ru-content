@@ -28,10 +28,12 @@ const page={addEventListener(){},dispatchEvent(){},scrollTo(){}};
 const localStorage={getItem(){return null;},setItem(){}};
 const context={document:doc,window:page,location,localStorage,console,Event,clearTimeout,setTimeout,
  fetch:async()=>({ok:true,json:async()=>bundle})};
+vm.runInNewContext(fs.readFileSync(path.join(__dirname,'../reading-normalization.js'),'utf8'),context,{filename:'reading-normalization.js'});
 vm.runInNewContext(fs.readFileSync(path.join(__dirname,'../reference-overlay.js'),'utf8'),context,{filename:'reference-overlay.js'});
 for(const name of ['reference-links.js','reading-layout.js','subverses.js'])vm.runInNewContext(fs.readFileSync(path.join(__dirname,'../'+name),'utf8'),context,{filename:name});
 vm.runInNewContext(fs.readFileSync(path.join(__dirname,'../app.js'),'utf8'),context,{filename:'app.js'});
 function click(dataset){handlers.click[0]({target:{closest(){return {dataset,hasAttribute(name){return name==='data-ayat-select'&&Object.hasOwn(dataset,'ayatSelect');}};}}});}
+function change(id,value,dataset={}){handlers.change[0]({target:{id,value,dataset}});}
 function visibleText(html){return html.replace(/<[^>]+>/g,'');}
 setTimeout(()=>{
  try{
@@ -140,18 +142,27 @@ setTimeout(()=>{
     'MATAKIN slash /5 should be a verified ayat-level navigation control');
   assert.match(nodes.main.innerHTML,/data-passage="sishu\.zhongyong\.14\.05"/,
     'Both sides of the compound citation must have independent targets');
+  change('chapter-passage','sishu.mengzi.03.07');
+  for(const id of ['jump-book','jump-chapter','jump-passage','jump-ayat'])
+    assert.ok(nodes.main.innerHTML.includes('id="'+id+'"'),'Missing dropdown '+id);
+  change('jump-ayat','5');
+  assert.equal(location.hash,'read=sishu.mengzi.03.07&ayat=5');
+  assert.match(nodes.main.innerHTML,/english-reading-section/);
   click({passage:'sishu.mengzi.03.07',refAyat:'5'});
   assert.equal(location.hash,'read=sishu.mengzi.03.07&ayat=5');
   assert.match(nodes.main.innerHTML,/translation-verse ayat-active" data-ayat="5"/,
     'Ayat-level deep link must select the referenced numbered ayat');
   click({book:'mengzi'});
   click({chapter:'sishu.mengzi.03'});
-  assert.match(nodes.main.innerHTML,/class="verse-disclosure"/,
-    'Chapter must expose an expandable numbered ayat chooser');
-  assert.match(nodes.main.innerHTML,/data-passage="sishu\.mengzi\.03\.07" data-ref-ayat="5"/,
-    'Each chapter ayat control must navigate to its verified number');
+  assert.match(nodes.main.innerHTML,/class="chapter-ayat-label"/,
+    'Chapter must expose an numbered ayat dropdown');
+  assert.match(nodes.main.innerHTML,/data-ayat-for="sishu.mengzi.03.07"/,
+    'Each chapter ayat dropdown must retain its original passage ID');
   click({passage:'sishu.mengzi.03.07',refAyat:'5'});
   assert.match(nodes.main.innerHTML,/translation-verse ayat-active" data-ayat="5"/);
+  click({passage:'sishu.mengzi.03.01'});
+  assert.ok(visibleText(nodes.main.innerHTML).includes('Gongsun Chou - Kong-sun Thio'),
+    'Pinyin–Hokkian display overlay should render known personal name');
   click({book:'lunyu'});click({chapter:'sishu.lunyu.03'});click({passage:'sishu.lunyu.03.07'});
   assert.ok(visibleText(nodes.main.innerHTML).includes('Tengah Sempurna — Zhong Yong XIII:5; Mengzi — Bing Cu II A:7/5'),
     'Batch 06 multi-book citation must display both books and preserve /5');
