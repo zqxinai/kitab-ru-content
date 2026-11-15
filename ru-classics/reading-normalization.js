@@ -66,7 +66,11 @@
       ['Dinasti He menamai badan pendidikan itu Hau', 'Dinasti Xia - He menamai badan pendidikan itu Xiao - Hau'],
       ['Dinasti Ien menamainya Si', 'Dinasti Yin - Ien menamainya Xu - Si'],
       ['Dinasti Zhou - Ciu menamainya Siang', 'Dinasti Zhou - Ciu menamainya Xiang - Siang'],
-      ['Istilah Hak (sekolah negara)', 'Istilah Xue - Hak (sekolah negara)']
+      ['Istilah Hak (sekolah negara)', 'Istilah Xue - Hak (sekolah negara)'],
+      ['Pangeran Bun dari Negeri Tin', 'Pangeran Wen - Bun dari Negeri Teng - Tin'], // 滕文公
+      ['Yang Ho berkata', 'Yang Hu - Yang Ho berkata'], // 陽虎
+      ['Liongcu berkata', 'Longzi - Liongcu berkata'], // 龍子
+      ['Piet Cian bertanya', 'Bi Zhan - Piet Cian bertanya'] // 畢戰
     ],
     'sishu.lunyu.08.18': [
       ['Raja Shun - Sun dan I.', 'Raja Shun - Sun dan Yu - I.'] // 舜禹
@@ -246,12 +250,20 @@
     // Nama diri dan istilah dengan Hanzi yang telah dikolasi dalam pasal terkait.
     result = result.replace(/\bNegeri Tien\b/g, 'Negeri Chen - Tien'); // 陳
     result = result.replace(/\bDinasti Ien\b/g, 'Dinasti Yin - Ien'); // 殷
+    result = result.replace(/\bDinasti He\b/g, 'Dinasti Xia - He'); // 夏
     result = result.replace(/\bsuku bangsa Tik\b/g, 'suku bangsa Di - Tik'); // 狄
     result = result.replace(/\bsuku bangsa I\b/g, 'suku bangsa Yi - I'); // 夷
     result = result.replace(/\bPangeran Ciu\b/g, 'Pangeran Zhou - Ciu'); // 周公
     result = result.replace(/(\bseperti )I(?=\s+dan\s+(?:Koo Yau|Gao Yao))/gu, '$1Yu - I');
     result = pair(result, 'Giau', 'Yao');
     for (const [legacy, modern] of PAIRS) result = pair(result, legacy, modern);
+    // III A:3, tata pajak: 助 zhù, 貢 gòng, 徹 chè.
+    // Ketiganya merupakan istilah teknis khusus konteks pasal, bukan alias global.
+    if (passageId === 'sishu.mengzi.05.03') {
+      for (const [legacy, modern] of [['Co', 'Zhu'], ['Khong', 'Gong'], ['Tiat', 'Che']]) {
+        result = pair(result, legacy, modern);
+      }
+    }
     return result;
   }
   root.RuReading = Object.freeze({ normalize, pairs: PAIRS, contextual: CONTEXTUAL });
