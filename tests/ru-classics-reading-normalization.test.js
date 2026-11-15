@@ -84,6 +84,35 @@ test('Xia - He dynasty is paired wherever the unambiguous dynasty phrase occurs'
   assert.equal(reading.normalize('Dinasti Xia - He', 'sample'), 'Dinasti Xia - He');
 });
 
+test('Historical homographs are read using Hanzi and not guessed by Hokkian spelling', () => {
+  const get = id => {
+    const [, book, chapter] = id.split('.');
+    const chapterData = JSON.parse(fs.readFileSync(path.join(BASE, book, chapter + '.json'), 'utf8'));
+    const verse = chapterData.passages.find(p => p.id === id);
+    assert.ok(verse, id);
+    return { source: verse.translation_indonesian, display: reading.normalize(verse.translation_indonesian, id) };
+  };
+  const tai = get('sishu.mengzi.02.14');
+  assert.match(tai.source, /Raja Thai/);
+  assert.match(tai.display, /Raja Taiwang - Thai/); // 大王 = 太王 tài wáng, not dà wáng.
+  assert.doesNotMatch(tai.display, /Da Wang/);
+  const jin = get('sishu.mengzi.10.03');
+  assert.match(jin.display, /Negeri Jin - Cien/); // 晉, not 秦
+  assert.match(jin.display, /Negeri Bi - Pi/); // 費音祕 (Zhu Xi)
+  const yi = get('sishu.lunyu.03.24');
+  assert.match(yi.display, /Negeri Yi - Gi/); // 儀
+  const yu = get('sishu.mengzi.09.09');
+  assert.match(yu.display, /Negeri Yu - Gi/); // 虞, independent of 儀
+  const mo = get('sishu.mengzi.12.10');
+  assert.match(mo.source, /bangsa Bek/);
+  assert.match(mo.display, /bangsa Mo - Bek/); // 貉 mò, northern people, not animal hé
+  assert.match(mo.display, /Negeri Mo - Bek/);
+  assert.match(get('sishu.lunyu.14.15').display, /Negeri Jin - Cien/);
+  for (const id of ['sishu.mengzi.08.21', 'sishu.mengzi.14.23', 'sishu.lunyu.14.11']) {
+    assert.match(get(id).display, /Negeri Jin - Cien/, id);
+  }
+});
+
 test('contextual aliases are grounded in their exact source verse', () => {
   for (const [id, rules] of Object.entries(reading.contextual)) {
     const [,book,chapter] = id.split('.');
