@@ -30,5 +30,7 @@ assert.match(nodes[3].children[0].textContent,/bukan teks utama/);
 assert.match(nodes[3].children[1].textContent,/Chengzi/);
 assert.match(nodes[3].children[2].textContent,/蓋釋格物/);
 assert.equal(nodes[4].tag,'p');
-assert.equal(els.indonesianText.textContent,chapter.passages[0].translation_indonesian);
+const assembledText=node=>(node.textContent||'')+(node.children||[]).map(assembledText).join('');
+assert.equal(assembledText(els.indonesianText),chapter.passages[0].translation_indonesian,
+  'Paragraph DOM must preserve the complete canonical MATAKIN translation');
 console.log('PASS: Da Xue V displays source text, Zhu Xi note, supplement separately, with MATAKIN translation intact.');
