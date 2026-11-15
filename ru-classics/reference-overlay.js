@@ -1,4 +1,4 @@
-/* MATAKIN 2012-style reference display — manually checked pilot batches 01–04.
+/* MATAKIN 2012-style reference display — manually checked pilot batches 01–06.
  * Original MATAKIN 2011 translation_indonesian MUST remain unchanged.
  * Replacements are keyed by stable passage ID and exact old reference string.
  * This is a presentation convention, NOT a transcription claim about
@@ -76,6 +76,13 @@
     Object.freeze({"passage_id":"sishu.lunyu.05.16","source":"(S.S. XIV: 9; Bc. IV B.2)","display":"(Sabda Suci — Lun Yu XIV:9; Mengzi — Bing Cu IV B:2)","target_id":null,"decision":"presentation-only / compound citation targets documented per segment in sources/references/matakin-compound-batch01.json; no passage link; printed 2012 phrasing not attested"}),
     Object.freeze({"passage_id":"sishu.lunyu.05.22","source":"(S.S. XV: 2; Bc. VII B: 37)","display":"(Sabda Suci — Lun Yu XV:2; Mengzi — Bing Cu VII B:37)","target_id":null,"decision":"presentation-only / compound citation targets documented per segment in sources/references/matakin-compound-batch01.json; no passage link; printed 2012 phrasing not attested"}),
     Object.freeze({"passage_id":"sishu.lunyu.05.23","source":"(Bc. II. A: 2; S.S. VII: 15)","display":"(Mengzi — Bing Cu II A:2; Sabda Suci — Lun Yu VII:15)","target_id":null,"decision":"presentation-only / compound citation targets documented per segment in sources/references/matakin-compound-batch01.json; no passage link; printed 2012 phrasing not attested"})
+,
+    Object.freeze({"passage_id":"sishu.lunyu.03.07","source":"(T.S. XIII: 5; Bc IIA: 7/5)","display":"(Tengah Sempurna — Zhong Yong XIII:5; Mengzi — Bing Cu II A:7/5)","target_id":null,"decision":"presentation-only / compound citation targets documented per segment in sources/references/matakin-compound-batch02.json; no passage link; printed 2012 phrasing not attested"}),
+    Object.freeze({"passage_id":"sishu.lunyu.03.09","source":"(T.S. XXVII: 5; S.S. II:23)","display":"(Tengah Sempurna — Zhong Yong XXVII:5; Sabda Suci — Lun Yu II:23)","target_id":null,"decision":"presentation-only / compound citation targets documented per segment in sources/references/matakin-compound-batch02.json; no passage link; printed 2012 phrasing not attested"}),
+    Object.freeze({"passage_id":"sishu.lunyu.07.02","source":"(S.S. IX: 16; Bc. IIA: 2/19)","display":"(Sabda Suci — Lun Yu IX:16; Mengzi — Bing Cu II A:2/19)","target_id":null,"decision":"presentation-only / compound citation targets documented per segment in sources/references/matakin-compound-batch02.json; no passage link; printed 2012 phrasing not attested"}),
+    Object.freeze({"passage_id":"sishu.lunyu.07.13","source":"(T.S. XV: 3; S.S. X: 7)","display":"(Tengah Sempurna — Zhong Yong XV:3; Sabda Suci — Lun Yu X:7)","target_id":null,"decision":"presentation-only / compound citation targets documented per segment in sources/references/matakin-compound-batch02.json; no passage link; printed 2012 phrasing not attested"}),
+    Object.freeze({"passage_id":"sishu.lunyu.09.09","source":"(S.S. XVIII 5; Bc. IIA: 2/28)","display":"(Sabda Suci — Lun Yu XVIII:5; Mengzi — Bing Cu II A:2/28)","target_id":null,"decision":"presentation-only / compound citation targets documented per segment in sources/references/matakin-compound-batch02.json; no passage link; printed 2012 phrasing not attested"}),
+    Object.freeze({"passage_id":"sishu.lunyu.09.29","source":"(S.S. XIV: 28; T.S. XIX: 10)","display":"(Sabda Suci — Lun Yu XIV:28; Tengah Sempurna — Zhong Yong XIX:10)","target_id":null,"decision":"presentation-only / compound citation targets documented per segment in sources/references/matakin-compound-batch02.json; no passage link; printed 2012 phrasing not attested"})
   ]);
   const byId=new Map();
   for(const r of records){
