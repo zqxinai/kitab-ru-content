@@ -16,7 +16,7 @@
       "display_status": "display-ready",
       "display": "(Tengah Sempurna — Zhong Yong XIII:5; Mengzi — Bing Cu II A:7/5)",
       "printed_2012_attested": false,
-      "review_note": "Pemilik buku mengonfirmasi bentuk Pasal/Ayat (/N berarti Ayat N). Penanda ayat terkait ditemukan berurutan pada teks MATAKIN 2011. Tautan langsung ke ayat dan hubungan isi khusus belum diperiksa secara editorial dan bentuk cetak 2012 belum diverifikasi persis.",
+      "review_note": "Pemilik buku mengonfirmasi bentuk Pasal/Ayat (/N berarti Ayat N). Penanda ayat terkait ditemukan berurutan pada teks MATAKIN 2011. Tautan langsung ke ayat dan bentuk cetak 2012 belum diverifikasi persis.",
       "components": [
         {
           "order": 1,
@@ -48,7 +48,8 @@
       "reference_intent": "content-related",
       "relation_source": "MATAKIN cross-reference",
       "verbatim_match_required": false,
-      "relation_verification": "source-declared; passage location checked; precise thematic relationship pending editorial review"
+      "relation_verification": "accepted-on-MATAKIN-authority; no independent thematic review required",
+      "relationship_review_required": false
     },
     {
       "passage_id": "sishu.lunyu.03.09",
@@ -56,7 +57,7 @@
       "display_status": "display-ready",
       "display": "(Tengah Sempurna — Zhong Yong XXVII:5; Sabda Suci — Lun Yu II:23)",
       "printed_2012_attested": false,
-      "review_note": "Cross-book comparison; exact specific thematic link not separately verified; verbatim match not required",
+      "review_note": "Rujukan silang MATAKIN diterima sebagai hubungan isi; bentuk cetak 2012 belum diverifikasi.",
       "components": [
         {
           "order": 1,
@@ -86,7 +87,8 @@
       "reference_intent": "content-related",
       "relation_source": "MATAKIN cross-reference",
       "verbatim_match_required": false,
-      "relation_verification": "source-declared; passage location checked; precise thematic relationship pending editorial review"
+      "relation_verification": "accepted-on-MATAKIN-authority; no independent thematic review required",
+      "relationship_review_required": false
     },
     {
       "passage_id": "sishu.lunyu.07.02",
@@ -94,7 +96,7 @@
       "display_status": "display-ready",
       "display": "(Sabda Suci — Lun Yu IX:16; Mengzi — Bing Cu II A:2/19)",
       "printed_2012_attested": false,
-      "review_note": "Pemilik buku mengonfirmasi bentuk Pasal/Ayat (/N berarti Ayat N). Penanda ayat terkait ditemukan berurutan pada teks MATAKIN 2011. Tautan langsung ke ayat dan hubungan isi khusus belum diperiksa secara editorial dan bentuk cetak 2012 belum diverifikasi persis.",
+      "review_note": "Pemilik buku mengonfirmasi bentuk Pasal/Ayat (/N berarti Ayat N). Penanda ayat terkait ditemukan berurutan pada teks MATAKIN 2011. Tautan langsung ke ayat dan bentuk cetak 2012 belum diverifikasi persis.",
       "components": [
         {
           "order": 1,
@@ -126,7 +128,8 @@
       "reference_intent": "content-related",
       "relation_source": "MATAKIN cross-reference",
       "verbatim_match_required": false,
-      "relation_verification": "source-declared; passage location checked; precise thematic relationship pending editorial review"
+      "relation_verification": "accepted-on-MATAKIN-authority; no independent thematic review required",
+      "relationship_review_required": false
     },
     {
       "passage_id": "sishu.lunyu.07.13",
@@ -134,7 +137,7 @@
       "display_status": "display-ready",
       "display": "(Tengah Sempurna — Zhong Yong XV:3; Sabda Suci — Lun Yu X:7)",
       "printed_2012_attested": false,
-      "review_note": "Book and passage IDs checked, specific thematic link not separately verified; verbatim match not required",
+      "review_note": "Identitas kitab dan pasal tercatat; hubungan isi mengikuti rujukan MATAKIN.",
       "components": [
         {
           "order": 1,
@@ -164,7 +167,8 @@
       "reference_intent": "content-related",
       "relation_source": "MATAKIN cross-reference",
       "verbatim_match_required": false,
-      "relation_verification": "source-declared; passage location checked; precise thematic relationship pending editorial review"
+      "relation_verification": "accepted-on-MATAKIN-authority; no independent thematic review required",
+      "relationship_review_required": false
     },
     {
       "passage_id": "sishu.lunyu.09.09",
@@ -172,7 +176,7 @@
       "display_status": "display-ready",
       "display": "(Sabda Suci — Lun Yu XVIII:5; Mengzi — Bing Cu II A:2/28)",
       "printed_2012_attested": false,
-      "review_note": "Pemilik buku mengonfirmasi bentuk Pasal/Ayat (/N berarti Ayat N). Penanda ayat terkait ditemukan berurutan pada teks MATAKIN 2011. Tautan langsung ke ayat dan hubungan isi khusus belum diperiksa secara editorial dan bentuk cetak 2012 belum diverifikasi persis.",
+      "review_note": "Pemilik buku mengonfirmasi bentuk Pasal/Ayat (/N berarti Ayat N). Penanda ayat terkait ditemukan berurutan pada teks MATAKIN 2011. Tautan langsung ke ayat dan bentuk cetak 2012 belum diverifikasi persis.",
       "components": [
         {
           "order": 1,
@@ -204,7 +208,8 @@
       "reference_intent": "content-related",
       "relation_source": "MATAKIN cross-reference",
       "verbatim_match_required": false,
-      "relation_verification": "source-declared; passage location checked; precise thematic relationship pending editorial review"
+      "relation_verification": "accepted-on-MATAKIN-authority; no independent thematic review required",
+      "relationship_review_required": false
     },
     {
       "passage_id": "sishu.lunyu.09.29",
@@ -242,7 +247,8 @@
       "reference_intent": "content-related",
       "relation_source": "MATAKIN cross-reference",
       "verbatim_match_required": false,
-      "relation_verification": "source-declared; passage location checked; precise thematic relationship pending editorial review"
+      "relation_verification": "accepted-on-MATAKIN-authority; no independent thematic review required",
+      "relationship_review_required": false
     },
     {
       "passage_id": "sishu.lunyu.07.23",
@@ -280,7 +286,8 @@
       "reference_intent": "content-related",
       "relation_source": "MATAKIN cross-reference",
       "verbatim_match_required": false,
-      "relation_verification": "source-declared; passage location checked; precise thematic relationship pending editorial review"
+      "relation_verification": "accepted-on-MATAKIN-authority; no independent thematic review required",
+      "relationship_review_required": false
     },
     {
       "passage_id": "sishu.lunyu.09.05",
@@ -342,9 +349,12 @@
       "reference_intent": "content-related",
       "relation_source": "MATAKIN cross-reference",
       "verbatim_match_required": false,
-      "relation_verification": "source-declared; passage location checked; precise thematic relationship pending editorial review"
+      "relation_verification": "accepted-on-MATAKIN-authority; no independent thematic review required",
+      "relationship_review_required": false
     }
   ],
   "citation_slash_semantics": "In references, /N denotes Ayat N inside the preceding Pasal (owner confirmed 2026-11-15).",
-  "reference_intent": "content-relatedness: the referenced pasal/ayat bears a thematic/content relationship indicated by the MATAKIN citation, not necessarily a verbatim quotation"
+  "reference_intent": "MATAKIN cross-reference denotes related passages or verses; thematic relation accepted on MATAKIN authority; no independent interpretation or semantic validation required",
+  "reference_authority": "MATAKIN",
+  "relationship_review_required": false
 }
