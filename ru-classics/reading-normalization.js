@@ -55,6 +55,19 @@
   // Kolasi khusus berdasarkan Hanzi. Satu ejaan Hokkian bisa mewakili
   // aksara berbeda: Chien => 晉 (Jin) atau 秦 (Qin); Swan => 僎 atau 宣.
   const CONTEXTUAL = Object.freeze({
+    'sishu.mengzi.05.03': [
+      // III A:3 ayat 10: 庠 xiang, 序 xu, 學 xue, 校 xiao;
+      // 夏 Xia, 殷 Yin, 周 Zhou. Batasi ke frasa yang cocok agar
+      // 'Siang hari' (ayat 2) dan kata Indonesia lain tidak berubah.
+      ['Siang, Si, Hak dan Hau', 'Xiang - Siang, Xu - Si, Xue - Hak dan Xiao - Hau'],
+      ['Badan yang dinamai Siang', 'Badan yang dinamai Xiang - Siang'],
+      ['Hau mengutamakan pendidikan umum', 'Xiao - Hau mengutamakan pendidikan umum'],
+      ['dan Si mengutamakan kecakapan', 'dan Xu - Si mengutamakan kecakapan'],
+      ['Dinasti He menamai badan pendidikan itu Hau', 'Dinasti Xia - He menamai badan pendidikan itu Xiao - Hau'],
+      ['Dinasti Ien menamainya Si', 'Dinasti Yin - Ien menamainya Xu - Si'],
+      ['Dinasti Zhou - Ciu menamainya Siang', 'Dinasti Zhou - Ciu menamainya Xiang - Siang'],
+      ['Istilah Hak (sekolah negara)', 'Istilah Xue - Hak (sekolah negara)']
+    ],
     'sishu.lunyu.08.18': [
       ['Raja Shun - Sun dan I.', 'Raja Shun - Sun dan Yu - I.'] // 舜禹
     ],
