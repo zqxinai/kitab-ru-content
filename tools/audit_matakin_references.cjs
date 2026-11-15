@@ -41,7 +41,8 @@ function scan(){
  const manifest=read('sishu/manifest.json'),results=[];
  const compoundFiles=[
   'sources/references/matakin-compound-batch01.json',
-  'sources/references/matakin-compound-batch02.json'
+  'sources/references/matakin-compound-batch02.json',
+  'sources/references/matakin-compound-batch03.json'
  ];
  const compoundEntries=compoundFiles.flatMap(file=>read(file).entries);
  const compoundIndex=new Map(compoundEntries.map(r=>[r.passage_id+'::'+r.source,r]));
