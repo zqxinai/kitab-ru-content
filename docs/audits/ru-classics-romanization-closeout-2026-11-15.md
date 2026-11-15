@@ -1,5 +1,16 @@
 # Audit ulang ejaan Hokkian dan pasangan Hanyu Pinyin — 15 November 2026
 
+> **Koreksi audit (16 November 2026):** Istilah “nol kandidat” dalam laporan ini
+> hanya berlaku untuk kosakata yang telah dikenal oleh dua pemindai lama.
+> Audit baru **tanpa seed kamus** menemukan sejumlah nama orang, tempat,
+> gelar, dan istilah yang benar-benar belum dipasangkan, misalnya
+> **少連 Shao Lian – Siau-lian**, **長沮 Chang Ju – Tiang-chi** dan
+> **朱張 Zhu Zhang – Cu-tiang** (berbeda dari 子張 Zizhang).
+> Maka “closeout” pada judul sebelumnya **bukan** bukti kelengkapan filologis.
+> Temuan dan koreksi penerus dicatat dalam
+> `docs/audits/ru-classics-unseeded-romanization-2026-11-16.md`.
+
+
 ## Ruang lingkup dan keputusan
 
 Audit ini meliputi keempat kitab Si Shu pada repositori, **78 bab dan 965 pasal**

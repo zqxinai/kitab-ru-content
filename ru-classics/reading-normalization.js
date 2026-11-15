@@ -2,6 +2,90 @@
 (function (root) {
   'use strict';
   const PAIRS = Object.freeze([
+    ['Khong-cu', 'Kongzi'], // 孔子
+    ['Hi-cu', 'Xu Zi'], // 許子 (Xu Xing)
+    ['Ong-pa', 'Wang Bao'], // 王豹
+    ['Ki Pik-giok', 'Qu Boyu'], // 蘧伯玉
+    ['Yan Ping-tiong', 'Yan Pingzhong'], // 晏平仲
+    ['Sien-cu', 'Shenzi'], // 慎子
+    ['Siencu', 'Shenzi'], // 慎子
+    ['Sik-khiu', 'Shiqiu'], // 石丘
+    ['Su-gi', 'Shi Yu'], // 史魚
+    ['Su-khong', 'Shi Kuang'], // 師曠
+    ['Thai-Pik', 'Taibo'], // 泰伯
+    ['Thay-kak', 'Tai Jia'], // 太甲
+    ['Tiat-tik', 'Dieze'], // 垤澤
+    ['Tiong-yulah', 'Zhong You'], // 仲由 with suffix -lah
+    ['Tong-li', 'Dongli'], // 東里
+    ['Jiam Pik-giu', 'Ran Boniu'], // 冉伯牛
+    ['Pik-Giu', 'Bo Niu'], // 伯牛
+    ['Gan-yu', 'Yan You'], // 言游
+    ['Cu-see', 'Zi Xi'], // 子西
+    ['Hwi-liam', 'Fei Lian'], // 飛廉
+    ['Kiong-kong', 'Gong Gong'], // 共工
+    ['Cai-i', 'Zai Yu'], // 宰予
+    ['Ciap-i', 'Jie Yu'], // 接輿
+    ['Ien-han', 'Yun Han'], // 雲漢
+    ['Koo-so', 'Gao Sou'], // 高叟
+    ['Yu Jiak', 'You Ruo'], // 有若
+    ['Jikongci Su', 'Yu Gong Zhi Si'], // 庾公之斯
+    ['Ienkongci Too', 'Yin Gong Zhi Ta'], // 尹公之他
+    ['Konggicu', 'Gongyi Zi'], // 公儀子
+    ['Culiu', 'Zi Liu'], // 子柳
+    ['Pik-li He', 'Baili Xi'], // 百里奚
+    ['Ho-chik', 'Hou Ji'], // 后稷
+    ['Cu-siok Gi', 'Zishu Yi'], // 子叔疑
+    ['Hwan Tau', 'Huan Dou'], // 驩兜
+    ['Yu-ciu', 'Youzhou'], // 幽州
+    ['Siau Pwan', 'Xiao Bian'], // 小弁
+    ['Khai Hong', 'Kai Feng'], // 凱風
+    ['Thai-kak', 'Tai Jia'], // 太甲
+    ['Ko-kong Than-hu', 'Gu Gong Danfu'], // 古公亶父
+    ['Cuhok King-pik', 'Zifu Jingbo'], // 子服景伯
+    ['Siau-lian', 'Shao Lian'], // 少連
+    ['Gi-tiong', 'Yu Zhong'], // 虞仲
+    ['I-iet', 'Yi Yi'], // 夷逸
+    ['Tiang-chi', 'Chang Ju'], // 長沮
+    ['Kiat-lik', 'Jie Ni'], // 桀溺
+    ['Kia-tlik', 'Jie Ni'], // 桀溺 variant
+    ['Hwan-twee', 'Huan Tui'], // 桓魋
+    ['Jiam-yong', 'Ran Yong'], // 冉雍
+    ['Bu-sing', 'Wucheng'], // 武城
+    ['Pik-gi', 'Bo Yu'], // 伯魚
+    ['Hwan-su', 'Fan Xu'], // 樊須
+    ['Chiet-tiau Khai', 'Qi Diao Kai'], // 漆雕開
+    ['Bing Ci-hwan', 'Meng Zhifan'], // 孟之反
+    ['Ho-hiang', 'Hu Xiang'], // 互鄉
+    ['Sioksun Bu-siok', 'Shusun Wushu'], // 叔孫武叔
+    ['Bing Kong-too', 'Meng Gongchuo'], // 孟公綽
+    ['Khwat-tong', 'Que Dang'], // 闕黨
+    ['Cu-to', 'Zi Du'], // 子都
+    ['Ik-ge', 'Yi Ya'], // 易牙
+    ['Ki-siem', 'Juxin'], // 距心
+    ['Bing See-sia', 'Meng Shishe'], // 孟施捨
+    ['Kong-bing Gi', 'Gongming Yi'], // 公明儀
+    ['Kwan-siok', 'Guan Shu'], // 管叔
+    ['Bu-king', 'Wu Geng'], // 武庚
+    ['Ciet-hwan', 'Ji Huan'], // 瘠環
+    ['Oh-hik', 'Wu Huo'], // 烏獲
+    ['Ok-lo', 'Wulu'], // 屋廬
+    ['Pak-kiong Yu', 'Beigong You'], // 北宮黝
+    ['Bian-ki', 'Mian Ju'], // 綿駒
+    ['Cu-bok', 'Zi Mo'], // 子莫
+    ['Cu-ci', 'Zi Zhi'], // 子之
+    ['Cu-kwee', 'Zi Kuai'], // 子噲
+    ['Cu-cian', 'Zi Jian'], // 子賤
+    ['Cu-hwa', 'Zihua'], // 子華
+    ['Hu-wat', 'Fu Yue'], // 傅說
+    ['Hong-hong', 'Fenghuang'], // 鳳凰
+    ['Kwi-khiu', 'Kuiqiu'], // 葵丘
+    ['Kong-ya Tiang', 'Gongye Chang'], // 公冶長
+    ['Kong-san Hut-jiau', 'Gongshan Furao'], // 公山弗擾
+    ['Kongsiok Bun-cu', 'Gongshu Wenzi'], // 公叔文子
+    ['Jiamcu', 'Ranzi'], // 冉子
+    ['Cu-Siang', 'Zixiang'], // 子襄
+    ['Kong Kiu', 'Kong Qiu'], // 孔丘
+    ['Khong Khiu', 'Kong Qiu'], // 孔丘
     ['Ling Ien', 'Lingyin'], // 令尹, office of chief minister
     ['I Ien', 'Yi Yin'], // 伊尹, separate from generic 殷
     ['Cu-bun', 'Ziwen'], // 子文
@@ -223,6 +307,44 @@
   // Kolasi khusus berdasarkan Hanzi. Satu ejaan Hokkian bisa mewakili
   // aksara berbeda: Chien => 晉 (Jin) atau 秦 (Qin); Swan => 僎 atau 宣.
   const CONTEXTUAL = Object.freeze({
+    'sishu.mengzi.07.28': [
+      ['Sun-lah', 'Shun - Sun-lah'], // 舜, printed Indonesian suffix -lah
+    ],
+    'sishu.mengzi.12.08': [
+      ['(Kiang) Thaikong', '(Jiang - Kiang) Taigong - Thaikong'], // 姜太公
+    ],
+    'sishu.mengzi.14.25': [
+      ['(Sien)', '(Shen - Sien)'], // 神
+    ],
+    'sishu.daxue.10.06': [
+      ['(Thoo)', '(Tao - Thoo)'], // 桃
+    ],
+    'sishu.mengzi.13.22': [
+      ['Thai-kong', 'Taigong - Thai-kong'], // 太公
+    ],
+    'sishu.mengzi.07.13': [
+      ['Thai-kong', 'Taigong - Thai-kong'], // 太公
+    ],
+    'sishu.lunyu.09.07': [
+      ['bernama Loo berkata', 'bernama Lao - Loo berkata'], // 牢
+    ],
+    'sishu.lunyu.14.01': [
+      ['Hian bertanya', 'Xian - Hian bertanya'], // 憲
+    ],
+    'sishu.mengzi.08.31': [
+      ['keluarga Siem-yu', 'keluarga Shenyou - Siem-yu'], // 沈猶, but 沈猶行 uses full name elsewhere
+      ['Bu-sing', 'Wucheng - Bu-sing'], // 武城
+    ],
+    'sishu.lunyu.18.06': [
+      ['Khong Khiu', 'Kong Qiu - Khong Khiu'], // 孔丘
+    ],
+    'sishu.lunyu.06.03': [
+      ['Hwee-lah', 'Hui - Hwee-lah'], // 回也
+    ],
+    'sishu.lunyu.18.08': [
+      ['Cu-tiang', 'Zhu Zhang - Cu-tiang'], // 朱張; NOT Zizhang 子張
+      ['I- iet', 'Yi Yi - I- iet'], // 夷逸; PDF broken line
+    ],
     'sishu.mengzi.13.33': [
       ['raja (Cee)', 'raja (Qi - Cee)'], // 齊 identified by context
       ['bernama Tiam', 'bernama Dian - Tiam'], // 墊
@@ -316,6 +438,18 @@
       ['Kota Cong', 'Kota Chong - Cong'], // 崇
     ],
     'sishu.lunyu.11.26': [
+      ['denganmu, Kiu?', 'denganmu, Qiu - Kiu?'], // 求
+      ['kepada Kiu;', 'kepada Qiu - Kiu;'], // 求
+      ['Musik, Kiu menunggu', 'Musik, Qiu - Kiu menunggu'], // 求
+      ['diucapkan Kiu juga', 'diucapkan Qiu - Kiu juga'], // 求
+      ['denganmu Chik?', 'denganmu Chi - Chik?'], // 赤
+      ['"Chik tidak', '"Chi - Chik tidak'], // 赤
+      ['istana, Chik kiranya', 'istana, Chi - Chik kiranya'], // 赤
+      ['kata-kata Chik juga', 'kata-kata Chi - Chik juga'], // 赤
+      ['kalau Chik hanya', 'kalau Chi - Chik hanya'], // 赤
+      ['denganmu, Tiam?', 'denganmu, Dian - Tiam?'], // 點
+      ['Tiam ingin', 'Dian - Tiam ingin'], // 點
+      ['denganmu, Tiam!', 'denganmu, Dian - Tiam!'], // 點
       ['Sungai Ki', 'Sungai Yi - Ki'], // 沂; berbeda 淇 di Da Xue
     ],
     'sishu.lunyu.18.09': [
@@ -417,6 +551,7 @@
       ['Raja Shun - Sun dan I.', 'Raja Shun - Sun dan Yu - I.'] // 舜禹
     ],
     'sishu.mengzi.05.04': [
+      ['menyuruh Siat menjadi', 'menyuruh Xie - Siat menjadi'], // 契
       ['Tien Liang', 'Chen Liang - Tien Liang'], // 陳良
       ['penganut ajaran Sien-long', 'penganut ajaran Shennong - Sien-long'], // 神農
       ['Tien Sien', 'Chen Xin - Tien Sien'], // 陳辛
@@ -446,6 +581,10 @@
     ],
     // Negeri Cien = 晉/Jin pada pasal ini, bukan 秦/Qin.
     'sishu.mengzi.08.01': [
+      ['Cu-ping', 'Zhufeng - Cu-ping'], // 諸馮
+      ['Hu-he', 'Fuxia - Hu-he'], // 負夏
+      ['Bing-tiau', 'Mingtiao - Bing-tiau'], // 鳴條
+      ['Ki-ciu', 'Qizhou - Ki-ciu'], // 岐周
       ['Piet-ting', 'Bi Ying - Piet-ting'] // 畢郢
     ],
     'sishu.mengzi.08.21': [
@@ -503,6 +642,11 @@
       ['Sungai Cien dan Wi', 'Sungai Zhen - Cien dan Wei - Wi'] // toponim diverifikasi dengan Hanzi sumber
     ],
     'sishu.mengzi.09.03': [
+      ['orang-orang Yu-pi', 'orang-orang Youbi - Yu-pi'], // 有庳
+      ['di Yu-pi itu', 'di Youbi - Yu-pi itu'], // 有庳
+      ['kepala daerah Yu-pi itu', 'kepala daerah Youbi - Yu-pi itu'], // 有庳
+      ['Chiang', 'Xiang - Chiang'], // 象; Shun's brother
+      ['menghukum Kun di', 'menghukum Gun - Kun di'], // 鯀
       ['daerah Sambiau', 'daerah Sanmiao - Sambiau'], // Hanzi verified context
       ['Sam-gwi', 'Sanwei - Sam-gwi'], // Hanzi verified context
       ['Gunung Cong', 'Gunung Chongshan - Cong'],
@@ -723,6 +867,9 @@
       if (legacy === 'Cingcu' && /\bGak\s*$/iu.test(preceding)) return match; // 樂正子 not 曾子
       if (legacy === 'Sun' && /\b(?:Ong|Kong)\s*$/iu.test(preceding)) return match; // 王順 / 公孫 ≠ 舜
       if (legacy === 'I-cu' && /\bBing\s*$/iu.test(preceding)) return match;
+      if (legacy === 'Cu-tiang' && /\bZhu Zhang\s*-\s*$/iu.test(preceding)) return match;
+      if (legacy === 'Pik-Giu' && /\bJiam\s*$/iu.test(preceding)) return match; // 冉伯牛 full alias is paired first
+      if (legacy === 'Khiu' && /\bKhong\s*$/iu.test(preceding)) return match; // 孔丘 is paired as a complete name // 朱張 not 子張
       if (legacy === 'Thong' && /\bSing\s*$/iu.test(preceding)) return match; // 成湯 already covered by long name
       if (legacy === 'Ien' && /\b(?:I|Ling)\s*$/iu.test(preceding)) return match; // 伊尹 / 令尹, keep the full name
       if (legacy === 'Khun' && /\bSun-i\s*$/iu.test(preceding)) return match; // 淳於髡 full name already paired // 孟懿子 Meng Yizi, not 夷子
