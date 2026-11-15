@@ -230,6 +230,23 @@ test('MATAKIN pasal/ayat notation resolves slash N to an existing Mengzi verse w
   assert.ok(overlay.present(sourceId,original).includes('/'+ayat),'reader should preserve the printed slash notation');
  }
 });
+test('Every segmented cross-reference means related content, not required verbatim identity',()=>{
+ const batches=[
+  read('sources/references/matakin-compound-batch01.json'),
+  read('sources/references/matakin-compound-batch02.json')
+ ];
+ assert.equal(batches.flatMap(x=>x.entries).length,15);
+ for(const batch of batches){
+  assert.match(batch.reference_intent,/content-relatedness/);
+  for(const entry of batch.entries){
+   assert.equal(entry.reference_intent,'content-related');
+   assert.equal(entry.relation_source,'MATAKIN cross-reference');
+   assert.equal(entry.verbatim_match_required,false);
+   assert.match(entry.relation_verification,/source-declared/);
+   assert.ok(entry.components.every(c=>c.reference_intent==='content-related'&&c.verbatim_match_required===false));
+  }
+ }
+});
 test('The exact legacy references remain intact in every source and the overlay changes only display',()=>{
  for(const r of overlay.records){
   const source=byId.get(r.passage_id).translation_indonesian;
