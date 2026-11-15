@@ -1,0 +1,29 @@
+name: Ru Classics · Google login readiness
+
+on:
+  pull_request:
+    paths:
+      - 'tools/ru_firebase_readiness.cjs'
+      - 'tools/tests/ru_firebase_readiness.test.cjs'
+      - '.github/workflows/ru-firebase-readiness.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  readiness:
+    runs-on: ubuntu-latest
+    timeout-minutes: 4
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Test status checker
+        run: node --test tools/tests/ru_firebase_readiness.test.cjs
+      - name: Report code readiness and published Firebase configuration
+        if: github.event_name == 'workflow_dispatch'
+        run: |
+          node tools/ru_firebase_readiness.cjs \
+            --public https://zqxinai.github.io/kitab-ru-content/ru-classics/firebase-config.js

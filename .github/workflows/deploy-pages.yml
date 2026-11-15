@@ -74,6 +74,8 @@ jobs:
               )
               print('Google login config ditambahkan ke pembaca publik (bukan bukti login berhasil).')
           PY
+      - name: Report Firebase Google editor readiness
+        run: node tools/ru_firebase_readiness.cjs
       - name: Configure Pages
         uses: actions/configure-pages@v5
         with:
