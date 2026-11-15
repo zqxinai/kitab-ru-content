@@ -61,3 +61,38 @@ test('Historical pairs do not alter ordinary Indonesian, non-contextual terms or
     assert.ok(p.ruby_paragraphs.length, 'Hanzi source cannot be removed');
   }
 });
+
+
+test('Distinct Qi (淇), Yi (沂), and Qi (岐) keep their contextual names', () => {
+  const da = passage('sishu.daxue.04.04');
+  const lun = passage('sishu.lunyu.11.26');
+  const meng = passage('sishu.mengzi.02.05');
+  assert.match(reading.normalize(da.translation_indonesian, da.id), /tebing sungai Qi - Ki/);
+  assert.match(reading.normalize(lun.translation_indonesian, lun.id), /Sungai Yi - Ki/);
+  assert.match(reading.normalize(meng.translation_indonesian, meng.id), /memerintah di daerah Qi - Ki/);
+});
+
+test('Mengzi toponyms and personal names are paired using Chinese source', () => {
+  const samples = {
+    'sishu.mengzi.09.05': ['daerah Nanhe - Lam Hoo'],
+    'sishu.mengzi.10.02': ['Daerah Fuyong - Hu-yong', 'Beigong Qi - Pak-kiong Ki'],
+    'sishu.mengzi.09.07': ['kota Bo - Pok'],
+    'sishu.mengzi.09.09': ['daerah Qu - Khut'],
+    'sishu.mengzi.06.10': [
+      'Kuang Zhang - Khong Ciang',
+      'Chen Zhongzi - Tien Tiongcu',
+      'Wuling - O-ling',
+      'Ge - Khap',
+      'perampok Zhi - Cik',
+      'Zhongzi - Tiongcu'
+    ]
+  };
+  for (const [id, terms] of Object.entries(samples)) {
+    const item = passage(id), view = reading.normalize(item.translation_indonesian, id);
+    for (const term of terms) assert.ok(view.includes(term), 'Missing '+term+' in '+id);
+    assert.equal(reading.normalize(view, id), view);
+  }
+  const chen = passage('sishu.mengzi.06.10');
+  const display = reading.normalize(chen.translation_indonesian, chen.id);
+  assert.doesNotMatch(display, /Tien Zhongzi - Tiongcu/, 'Nested alias must not duplicate a name');
+});
