@@ -48,18 +48,22 @@ test('965 pasal: all four books preserve source and normalized display is stable
     assert.equal(count, expected.passages, book + ': passage count changed');
   }
   assert.equal(total, 965);
-  assert.equal(reading.verifiedPhrases.length, 28);
+  assert.equal(reading.verifiedPhrases.length, 46);
   assert.ok(modified > 0 && paired > 0);
   for (const [legacy] of reading.verifiedPhrases) {
     assert.ok(used.has(legacy), 'Document verified phrase absent from corpus: ' + legacy);
   }
   console.log('Reading regression: ' + total + ' pasal, ' + modified +
-    ' tampilan tersanding, ' + paired + ' kemunculan 28 frasa terverifikasi.');
+    ' tampilan tersanding, ' + paired + ' kemunculan 46 frasa terverifikasi.');
 });
 
 test('homograph guardrails: real Indonesian words and already-paired names stay intact', () => {
   assert.equal(reading.normalize('Siang hari di desa; Si memanah.', 'sample'),
     'Siang hari di desa; Si memanah.');
+  assert.equal(reading.normalize('Raja Siang dari Negeri Liang, Dinasti Siang', 'sample'),
+    'Raja Xiang - Siang dari Negeri Liang, Dinasti Shang - Siang');
+  assert.equal(reading.normalize('Pangeran Siap, Pangeran King, Pangeran Kian', 'sample'),
+    'Pangeran She - Siap, Pangeran Jing - King, Pangeran Jian - Kian');
   assert.equal(reading.normalize('Negeri Tin dan Negeri Ting', 'sample'),
     'Negeri Teng - Tin dan Negeri Zheng - Ting');
   assert.equal(reading.normalize('Negeri Coo, Negeri Co', 'sample'),
