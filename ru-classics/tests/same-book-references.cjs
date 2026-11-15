@@ -38,8 +38,7 @@ test('All existing Mengzi A/B references map only to exact known destinations',(
      assert.ok(ref.text.includes('Mengzi — Bing Cu'));
      assert.ok(canNavigate(ref));
    }
-   assert.equal(displayed.replace(/\(Mengzi — Bing Cu ([IVXLCDM]+) ([AB]):(\d+)(?:\/(\d+))?\)/g,
-     (full,r,ab,p,n)=>'('+r+(ab==='A'?'A':'B')+'.'+p+(n?'.'+n:'')+')').includes('unreachable-sentinel'),false);
+   assert.ok(displayed.length>=input.length,'display must never delete source content');
  }
  assert.equal(candidates,53,'source has changed; re-audit references before release');
  assert.equal(linked,52,'only references with verified target passage and ayat are interactive');
