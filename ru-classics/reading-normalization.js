@@ -223,6 +223,14 @@
   // Kolasi khusus berdasarkan Hanzi. Satu ejaan Hokkian bisa mewakili
   // aksara berbeda: Chien => 晉 (Jin) atau 秦 (Qin); Swan => 僎 atau 宣.
   const CONTEXTUAL = Object.freeze({
+    'sishu.mengzi.13.33': [
+      ['raja (Cee)', 'raja (Qi - Cee)'], // 齊 identified by context
+      ['bernama Tiam', 'bernama Dian - Tiam'], // 墊
+    ],
+    'sishu.mengzi.08.30': [
+      ['Khongciang', 'Kuang Zhang - Khongciang'], // 匡章
+      ['negeri (Cee)', 'negeri (Qi - Cee)'], // 齊 contextual court of Qi; Chinese verse does not spell 齊
+    ],
     'sishu.lunyu.12.11': [
       ['Siancai!', 'Shanzai - Siancai!'], // 善哉
     ],
@@ -501,6 +509,22 @@
       ['daerah Yu-pi', 'daerah Youbi - Yu-pi'] // toponim diverifikasi dengan Hanzi sumber
     ],
     'sishu.mengzi.09.06': [
+      ['Ik', 'Yi - Ik'], // 益
+      ['Khee', 'Qi - Khee'], // 啓
+      ['Tancu', 'Dan Zhu - Tancu'], // 丹朱
+      ['Siang-kien', 'Shang Jun - Siang-kien'], // 商均 from MATAKIN note, not literal Hanzi core
+      ['Baginda Thong', 'Baginda Tang - Thong'], // 湯
+      ['Setelah Thong', 'Setelah Tang - Thong'], // 湯崩
+      ['Thai ting', 'Tai Ding - Thai ting'], // 太丁
+      ['Thai-ting', 'Tai Ding - Thai-ting'], // 太丁
+      ['Gwee-ping', 'Wai Bing - Gwee-ping'], // 外丙
+      ['Tiong-jiem', 'Zhong Ren - Tiong-jiem'], // 仲壬
+      ['Thai-kak', 'Tai Jia - Thai-kak'], // 太甲
+      ['ibukota Pok', 'ibukota Bo - Pok'], // 亳
+      ['dan Ciu mewariskan', 'dan Zhou - Ciu mewariskan'], // 周
+      ['Kerajaan Tong', 'Kerajaan Tang - Tong'], // 唐 as 唐虞, not 桐
+      ['Gi (Sun)', 'Yu - Gi (Shun - Sun)'], // 虞; Shun title
+      ['Kiat dan Tiu', 'Jie - Kiat dan Zhou - Tiu'], // 桀紂
       ['Kota Yang-sing', 'Kota Yangcheng - Yang-sing'],
       ['Gunung Ki', 'Gunung Jishan - Ki'] // 箕山; Tong 桐 already written in Pinyin
     ],
