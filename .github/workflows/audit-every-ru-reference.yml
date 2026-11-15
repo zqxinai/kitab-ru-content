@@ -1,0 +1,55 @@
+name: Audit setiap rujukan Ru Classics (965 pasal)
+on:
+  push:
+    branches: [main]
+    paths:
+      - "tools/audit_matakin_each_reference.cjs"
+      - "ru-classics/book-references.js"
+      - "ru-classics/same-book-references.js"
+      - "ru-classics/reference-overlay.js"
+      - "ru-classics/reference-links.js"
+      - "ru-classics/subverses.js"
+      - ".github/workflows/audit-every-ru-reference.yml"
+  pull_request:
+    paths:
+      - "tools/audit_matakin_each_reference.cjs"
+      - "ru-classics/book-references.js"
+      - "ru-classics/same-book-references.js"
+      - "ru-classics/reference-overlay.js"
+      - "ru-classics/reference-links.js"
+      - "ru-classics/subverses.js"
+      - ".github/workflows/audit-every-ru-reference.yml"
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  per-reference:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Audit individual references and test each target
+        run: |
+          node --test tests/matakin-reference-audit.test.cjs ru-classics/tests/book-references.cjs ru-classics/tests/same-book-references.cjs
+          node tools/audit_matakin_each_reference.cjs > /tmp/reference-audit.log
+          grep -E '^(REFERENCE_AUDIT_SUMMARY|GROUP |CASE )' /tmp/reference-audit.log | head -n 150
+      - name: Summary
+        run: |
+          node - <<'NODE'
+          const fs=require('node:fs');
+          const r=require('./audit/reports/matakin-reference-every-occurrence-2026-11-16.json');
+          const s=r.summary;
+          fs.appendFileSync(process.env.GITHUB_STEP_SUMMARY,'## Audit rujukan satu per satu\n\nPasal: '+s.passages+'; rujukan: '+s.total+' ('+s.additional+' tambahan detektor).\n\n'+Object.entries(s.statuses).map(([k,v])=>'- '+k+': '+v).join('\n')+'\n\nFull ledger: CSV, JSON, dan Markdown tersedia dalam artifact.\n');
+          if(s.passages!==965||s.total<s.baseline)process.exitCode=1;
+          NODE
+      - name: Attach per-reference inventory
+        uses: actions/upload-artifact@v4
+        with:
+          name: matakin-reference-audit-every-occurrence
+          path: |
+            audit/reports/matakin-reference-every-occurrence-2026-11-16.json
+            audit/reports/matakin-reference-every-occurrence-2026-11-16.csv
+            audit/reports/matakin-reference-every-occurrence-2026-11-16.md
+          retention-days: 30
