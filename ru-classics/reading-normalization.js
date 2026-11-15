@@ -2,6 +2,9 @@
 (function (root) {
   'use strict';
   const PAIRS = Object.freeze([
+    ['Pi Hee', 'Bi Xi'], // 嬖奚
+    ['Ong-liang', 'Wang Liang'], // 王良
+    ['Ong Liang', 'Wang Liang'], // 王良
     ['Hoo-sing Put-hai', 'Haosheng Buhai'], // 浩生不害
     ['Bik Khee', 'Mo Ji'], // 貉稽
     ['Chicu', 'Xu Zi'], // 徐子
@@ -209,6 +212,10 @@
   // Kolasi khusus berdasarkan Hanzi. Satu ejaan Hokkian bisa mewakili
   // aksara berbeda: Chien => 晉 (Jin) atau 秦 (Qin); Swan => 僎 atau 宣.
   const CONTEXTUAL = Object.freeze({
+    'sishu.lunyu.05.10': [
+      ['kepada I tidak', 'kepada Yu - I tidak'], // 宰予 Yu, different from 禹 Yu
+      ['I-lah yang', 'Yu - I-lah yang'], // 宰予; printed suffix lah preserved
+    ],
     'sishu.mengzi.13.35': [
       ['Ko-so', 'Gu Sou - Ko-so'], // 瞽瞍
     ],
@@ -219,6 +226,8 @@
       ['Ting King', 'Teng Geng - Ting King'], // 滕更
     ],
     'sishu.mengzi.06.01': [
+      ['Kancu berkata', 'Jianzi - Kancu berkata'], // 簡子 abbreviates 趙簡子
+      ['Ong- Liang', 'Wang Liang - Ong- Liang'], // 王良 broken PDF hyphen
       ['Ong Liang', 'Wang Liang - Ong Liang'], // 王良
       ['Thio Kancu', 'Zhao Jianzi - Thio Kancu'], // 趙簡子
     ],
