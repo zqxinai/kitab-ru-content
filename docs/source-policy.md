@@ -23,13 +23,15 @@ Kapitalisasi dan tanda titik adalah varian ejaan singkatan. Identitas **kitab** 
 
 Normalisasi nama lengkap untuk pembaca/editor berasal dari [overlay rujukan ber-ID](../ru-classics/reference-overlay.js); `translation_indonesian` berbasis PDF 2011 tetap identik. Kebijakan ini hanya menyatakan format penyajian sesuai 2012, bukan menyatakan setiap nama/penulisan hasil overlay sudah ditranskripsi kata per kata dari foto cetakan.
 
-## Makna rujukan silang dan notasi pasal/ayat — dikonfirmasi pemilik cetakan
+## Makna dan otoritas rujukan silang MATAKIN — keputusan final
 
-- **Rujukan silang menyatakan keterkaitan isi, tema, atau ajaran** antara pasal dan/atau ayat yang ditunjuk. Rujukan **tidak harus** berisi kalimat yang sama, bukan klaim bahwa teks dikutip secara verbatim, dan bukan alasan untuk menandai ketidaksamaan frasa sebagai *discrepancy*.
-- Bentuk **`Kitab Bab:Pasal/Ayat`** berarti `/N` adalah **ayat ke-N di dalam pasal tersebut**, sesuai konfirmasi pemilik buku pada 15 November 2026. Contoh `Bc IIA:7/5` menunjuk **Mengzi II A, pasal 7, ayat 5**.
-- Tiga contoh dari [registri batch 06](../sources/references/matakin-compound-batch02.json) telah diperiksa terhadap penanda ayat yang berurutan pada terjemahan MATAKIN 2011: **Mengzi IIA:7/5**, **IIA:2/19**, **IIA:2/28**. Pengenalan nomor ayat yang sah **tidak otomatis membuktikan** ketersediaan deep-link teruji atau ketepatan setiap hubungan isi secara editorial.
-- Saat audit, pisahkan **kepastian identitas kitab**, **resolusi nomor bab/pasal/ayat**, **keberadaan target di teks**, dan **penilaian keterkaitan isi**. Kesamaan kata-demi-kata hanya diperiksa ketika rujukan secara jelas merupakan kutipan langsung; tidak diwajibkan pada rujukan silang biasa.
-- Untuk metadata rujukan gabungan, `reference_intent: "content-related"` dan `verbatim_match_required: false` menegaskan maksud edisi. Rujukan yang belum pasti nomor atau tanda bacanya tetap `review-only` meskipun maksud hubungannya sudah jelas.
+Rujukan silang yang tercantum dalam **sumber otoritatif MATAKIN** diterima sebagai penanda keterkaitan isi/ajaran antar-pasal atau antar-ayat. **Tidak perlu menilai, mengaudit, membuktikan kembali, atau menyetujui ulang ketepatan hubungan ajarannya.** Rujukan itu **bukan** klaim bahwa kedua pasal mengandung kutipan verbatim. Tidak adanya kesamaan kalimat bukan discrepancy.
+
+Kebijakan pelaksanaan audit **hanya** mencakup: (1) kesetiaan penyalinan penanda rujukan dari MATAKIN, (2) identitas kitab SS/AB/BC/TS, (3) angka bab, pasal, dan ayat yang ditunjuk, (4) keberadaan tujuan pada dataset dan pemetaan ke ID internal, serta (5) keamanan penggantian tampilan dan navigasi. Jangan menciptakan daftar *perlu review hubungan ajaran*.
+
+**Notasi:** `Kitab Bab:Pasal/Ayat` bermakna `/N` adalah **Ayat N dalam pasal rujukan**, sesuai konfirmasi pemilik buku tanggal 15 November 2026. Contoh `Bc IIA:7/5` = Mengzi II A pasal 7 ayat 5; `IIA:2/19` dan `IIA:2/28` = Mengzi II A pasal 2 ayat 19 dan 28. Ketiga penanda ayat itu ditemukan berurutan pada naskah MATAKIN 2011 digital. Ketersediaan nomor ayat berbeda dari ketersediaan *deep link* yang dapat dipakai.
+
+Pada metadata, `reference_intent: "content-related"` dan `verbatim_match_required: false` berlaku, dengan `reference_authority: "MATAKIN"` dan `relationship_review_required: false`. Status `review-only` **hanya untuk masalah teknis yang belum tuntas**, misalnya nomor ambigu, salah baca tanda baca, sumber belum terfoto, atau penentuan tautan/ayat yang belum dapat dibuktikan. Status itu **bukan** permintaan mengaudit hubungan teologis/filosofis.
 
 ## Pemeriksaan sebelum menyatakan sebuah karakter salah
 
