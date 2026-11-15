@@ -38,7 +38,7 @@ test('Slash /5 is target Ayat 5, comma-separated passages stay distinct',()=>{
  assert.equal(parts.find(x=>x.target_id==='sishu.mengzi.03.07').ayat,5);
  const multi=originals.find(x=>x.passage_id==='sishu.lunyu.05.02');
  const fragments=links.parts(multi.passage_id,multi.source,overlay);
- assert.ok(fragments.some(x=>x.text==='1'&&x.target_id==='sishu.lunyu.06.01'));
+ assert.ok(fragments.some(x=>x.text.endsWith('VI:1')&&x.target_id==='sishu.lunyu.06.01'));
  assert.ok(fragments.some(x=>x.text==='2'&&x.target_id==='sishu.lunyu.06.02'));
  assert.equal(fragments.map(x=>x.text).join(''),multi.display);
 });
