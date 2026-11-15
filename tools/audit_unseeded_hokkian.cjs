@@ -95,7 +95,10 @@ const result={
  schema:'ru-classics.unseeded-name-candidates.v1',
  description:'Unseeded source-based orthography candidates; NOT proven Hokkian until Hanzi compared.',
  passageCount:rows.length,
- hyphenated:list(hyphen),singleNameBeforeVerb:list(short),parenthetical:list(paren)
+ hyphenated:list(hyphen),singleNameBeforeVerb:list(short),parenthetical:list(paren),
+ unreviewed,
+ reviewedAsIndonesian:{hyphen:excluded(hyphen,INDONESIAN_HYPHEN),verbs:excluded(short,INDONESIAN_VERBS),parenthetical:excluded(paren,INDONESIAN_PARENTHESES)},
+ citationFormatToReview:excluded(hyphen,CITATION_FORMAT)
 };
 const output=path.join(__dirname,'..','audit','reports','unseen-hokkian-candidates.json');
 fs.mkdirSync(path.dirname(output),{recursive:true});
