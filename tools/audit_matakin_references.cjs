@@ -60,11 +60,14 @@ function scan(){
          original_reference:m[0],offset:m.index,
          // MATAKIN cross-references signal related teaching/content, not an exact quote.
          reference_intent:'content-related',verbatim_match_required:false,
+         reference_authority:'MATAKIN',relationship_review_required:false,
          ...classification,
          ...(matched?{
            segmentation_status:matched.display_status,
            reference_intent:matched.reference_intent,
            verbatim_match_required:matched.verbatim_match_required,
+           reference_authority:'MATAKIN',
+           relationship_review_required:matched.relationship_review_required,
            relation_verification:matched.relation_verification,
            segments:matched.components.map(c=>({
              source_segment:c.source_segment,
@@ -86,11 +89,12 @@ function scan(){
  const counts=Object.fromEntries([...new Set(results.map(x=>x.kind))].sort().map(x=>[x,results.filter(y=>y.kind===x).length]));
  return {
   schema:'ru-classics.reference-audit.v1',
-  policy:'2011 transcript preserved; MATAKIN references denote related content (not required verbatim) and slash N denotes ayat; 2012-style full book names in display',
+  policy:'2011 transcript preserved; MATAKIN cross-reference relationships accepted as authoritative without independent thematic review; slash N denotes ayat; 2012-style full book names in display',
   passage_count:count,reviewed_references:results.length,counts,
   compound_segmented:results.filter(r=>r.segments).length,
   compound_display_ready:results.filter(r=>r.segmentation_status==='display-ready').length,
   compound_review_only:results.filter(r=>r.segmentation_status==='review-only').length,
+  // Historical field: technical citation identification, NOT a review of MATAKIN teaching links.
   review_required:results.filter(r=>r.kind!=='explicit-book'),
   all_references:results
  };
