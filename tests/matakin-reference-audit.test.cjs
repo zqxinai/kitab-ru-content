@@ -73,7 +73,8 @@ test('Compound rujukan means related content rather than an exact verbal quotati
  assert.equal(entries.length,15);
  assert.ok(entries.every(x=>x.reference_intent==='content-related'));
  assert.ok(entries.every(x=>x.verbatim_match_required===false));
- assert.ok(entries.every(x=>x.relation_verification.includes('precise thematic relationship pending editorial review')));
+ assert.ok(entries.every(x=>x.relation_verification.includes('accepted-on-MATAKIN-authority')));
+ assert.ok(entries.every(x=>x.reference_authority==='MATAKIN'&&x.relationship_review_required===false));
  assert.ok(entries.every(x=>x.segments.every(y=>y.reference_intent==='content-related'&&y.verbatim_match_required===false)));
  const slash=entries.find(x=>x.passage_id==='sishu.lunyu.03.07');
  assert.equal(slash.segments[1].subverse_number,5);
@@ -88,6 +89,7 @@ test('All MATAKIN cross-reference records signify related contents regardless of
  const audit=scan();
  assert.equal(audit.passage_count,965);
  assert.ok(audit.reviewed_references>0);
+ assert.ok(audit.all_references.every(r=>r.reference_authority==='MATAKIN'&&r.relationship_review_required===false));
  assert.ok(audit.all_references.every(r=>r.reference_intent==='content-related'));
  assert.ok(audit.all_references.every(r=>r.verbatim_match_required===false));
  assert.match(audit.policy,/slash N denotes ayat/);
