@@ -31,7 +31,7 @@ const context={document:doc,window:page,location,localStorage,console,Event,clea
 vm.runInNewContext(fs.readFileSync(path.join(__dirname,'../reference-overlay.js'),'utf8'),context,{filename:'reference-overlay.js'});
 for(const name of ['reference-links.js','reading-layout.js','subverses.js'])vm.runInNewContext(fs.readFileSync(path.join(__dirname,'../'+name),'utf8'),context,{filename:name});
 vm.runInNewContext(fs.readFileSync(path.join(__dirname,'../app.js'),'utf8'),context,{filename:'app.js'});
-function click(dataset){handlers.click[0]({target:{closest(){return {dataset};}}});}
+function click(dataset){handlers.click[0]({target:{closest(){return {dataset,hasAttribute(name){return name==='data-ayat-select'&&Object.hasOwn(dataset,'ayatSelect');}};}}});}
 function visibleText(html){return html.replace(/<[^>]+>/g,'');}
 setTimeout(()=>{
  try{
