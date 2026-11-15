@@ -249,6 +249,7 @@ setTimeout(()=>{
   assert.match(nodes.main.innerHTML,/Pasal 1 · Ayat 3 dipilih/);
   // Mengzi III.A.3.10 is a same-book reference to passage III A:3 Ayat 10.
   click({book:'mengzi'});click({chapter:'sishu.mengzi.01'});click({passage:'sishu.mengzi.01.03'});
+  click({toggle:'indo'}); // Restore Indonesian from preceding display-options test.
   assert.ok(visibleText(nodes.main.innerHTML).includes('Mengzi — Bing Cu III A:3/10'));
   assert.match(nodes.main.innerHTML,/data-passage="sishu\.mengzi\.05\.03" data-ref-ayat="10"/);
   click({passage:'sishu.mengzi.05.03',refAyat:'10'});
