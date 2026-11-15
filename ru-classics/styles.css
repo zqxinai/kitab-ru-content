@@ -120,3 +120,5 @@
 .english-reading-section .reading-paragraph{margin:0!important;line-height:1.88}
 @media(max-width:800px){.reader-jump{grid-template-columns:repeat(2,minmax(0,1fr));padding:12px}}
 @media(max-width:450px){.reader-jump{column-gap:8px;row-gap:12px}.reader-jump select{font-size:12px;padding:8px}.english-reading-section{padding-left:11px}}
+/* Highlight independently verified Hanzi ayat without changing source tokens. */
+.hanzi-text .hanzi-verse.ayat-active{border-inline-start:3px solid var(--accent);padding-inline-start:12px;background:var(--panel2);border-radius:0 8px 8px 0}
