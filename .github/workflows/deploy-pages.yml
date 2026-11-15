@@ -47,6 +47,8 @@ jobs:
         run: |
           node --check ru-classics/app.js
           node --check ru-classics/editor.js
+          node --check ru-classics/firebase-config.js
+          node --test ru-classics/tests/auth-google.cjs
           python tools/build_ru_classics_web.py --source dist/sishu-content.json --alignment dist/sishu-english-alignment.json --splits dist/sishu-english-passage-splits.json --output ru-classics/data/sishu.json
           node ru-classics/tests/smoke.cjs
           node --test ru-classics/tests/subverses.cjs
@@ -65,6 +67,8 @@ jobs:
               cfg = json.loads(raw)
               if not isinstance(cfg, dict) or not all(isinstance(cfg.get(k), str) and cfg[k] for k in ('apiKey','authDomain','projectId','appId')):
                   raise ValueError('Firebase web config tidak lengkap')
+              if cfg['projectId'] != 'ru-classics' or cfg['authDomain'] != 'ru-classics.firebaseapp.com':
+                  raise ValueError('Firebase web config harus menggunakan proyek ru-classics')
               # Only public web-app config belongs in the downloadable site.
               if any(k not in ('apiKey','authDomain','projectId','appId','measurementId','storageBucket','messagingSenderId','databaseURL') for k in cfg):
                   raise ValueError('Tidak boleh menyertakan field Firebase yang tidak dikenal dalam config publik')
