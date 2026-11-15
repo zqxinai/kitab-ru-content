@@ -106,13 +106,38 @@
       format(verse.indonesian||verse.text)+'</div>'
     ).join('');
   }
+  function jumpMenu(p,c,b){
+    const chapters=state.chapters.filter(ch=>ch.book===b.id);
+    const verses=globalThis.RuSubverses?.splitIndonesia(p.translation_indonesian)||[];
+    const option=(value,label,active)=>'<option value="'+H(value)+'"'+(active?' selected':'')+'>'+H(label)+'</option>';
+    return '<nav class="reader-jump" aria-label="Navigasi Kitab Bab Pasal Ayat">'
+      +'<label>Kitab<select id="jump-book" aria-label="Pilih kitab">'+BOOKS.map(x=>option(x.id,x.name,x.id===b.id)).join('')+'</select></label>'
+      +'<label>Bab<select id="jump-chapter" aria-label="Pilih bab">'+chapters.map(x=>option(x.id,x.title,x.id===c.id)).join('')+'</select></label>'
+      +'<label>Pasal<select id="jump-passage" aria-label="Pilih pasal">'+c.passages.map(x=>option(x.id,'Pasal '+x.number,x.id===p.id)).join('')+'</select></label>'
+      +'<label>Ayat<select id="jump-ayat" aria-label="Pilih ayat"'+(verses.length>1?'':' disabled title="Ayat bernomor belum terverifikasi"')+'>'+option('0','Seluruh pasal',!state.ayat)+verses.map(x=>option(x.number,'Ayat '+x.number,state.ayat===x.number)).join('')+'</select></label>'
+      +'</nav>';
+  }
+  // English prose has independently witnessed Legge paragraph boundaries,
+  // but its sentence boundaries are not assumed to equal MATAKIN ayat.
+  function englishReading(p){
+    const source=p.translation_english||'';
+    const verses=globalThis.RuSubverses?.splitIndonesia(p.translation_indonesian);
+    if(!verses||verses.length<=1)
+      return '<div class="translation-prose" lang="en">'+readingParagraphs(source,'en',H)+'</div>';
+    const parts=(globalThis.RuReadingLayout?.paragraphs(source,'en')||[source]).filter(x=>x.trim());
+    const note='<p class="english-alignment-note">Bagian bacaan mengikuti paragraf James Legge. Batas ayat Inggris belum diverifikasi terhadap penomoran MATAKIN.</p>';
+    return note+'<div class="translation-prose english-sections" lang="en">'+parts.map((x,i)=>
+      '<section class="english-reading-section"><span class="english-reading-index">Bagian '+(i+1)+'</span><p class="reading-paragraph">'+H(x)+'</p></section>'
+    ).join('')+'</div>';
+  }
   function reader(){const p=byId(state.id);if(!p){navigate('books');return;}state.last=p.id;save();const c=state.chapters.find(c=>c.id===p._chapter);const b=book(p._book);const pos=state.passages.findIndex(x=>x.id===p.id);const prev=state.passages[pos-1],next=state.passages[pos+1];const s=state.settings;const aligned=globalThis.RuSubverses?.align(p)||null;
     main.innerHTML='<div class="breadcrumb"><button data-action="all">Kitab</button> › <button data-book="'+b.id+'">'+b.name+'</button> › <button data-chapter="'+H(c.id)+'">'+H(c.title)+'</button></div>'
-    +'<div class="reader-heading"><div><span class="eyebrow">Si Shu · '+b.hanzi+'</span><h1>'+H(c.title)+'</h1><p>Pasal '+p.number+'</p></div><div class="chips">'+[['hanzi','Hanzi'],['pinyin','Pinyin'],['indo','Indonesia'],['english','English']].map(([key,text])=>'<button class="chip '+(s[key]?'on':'')+'" data-toggle="'+key+'" aria-pressed="'+s[key]+'">'+text+'</button>').join('')+'</div></div>'
+    +jumpMenu(p,c,b)
+     +'<div class="reader-heading"><div><span class="eyebrow">Si Shu · '+b.hanzi+'</span><h1>'+H(c.title)+'</h1><p>Pasal '+p.number+'</p></div><div class="chips">'+[['hanzi','Hanzi'],['pinyin','Pinyin'],['indo','Indonesia'],['english','English']].map(([key,text])=>'<button class="chip '+(s[key]?'on':'')+'" data-toggle="'+key+'" aria-pressed="'+s[key]+'">'+text+'</button>').join('')+'</div></div>'
     +'<div class="reader-grid"><article class="paper-page"><div class="passage-top"><span>PASAL '+p.number+'</span><button class="save-btn" data-action="bookmark" aria-pressed="'+state.saved.includes(p.id)+'">'+(state.saved.includes(p.id)?'♥ Tersimpan':'♡ Simpan')+'</button></div>'
     +(s.hanzi?'<div class="hanzi-text '+(s.pinyin?'':'no-pinyin')+'" style="--hanzi-size:'+s.font+'px" lang="zh-Hant">'+hanziWithSubverses(p,aligned)+'</div>':'')
     +(s.indo?'<section class="translation"><h3>Bahasa Indonesia · MATAKIN</h3>'+indonesiaWithSubverses(p,aligned)+'</section>':'')
-    +(s.english&&p.translation_english?'<section class="translation english"><h3>English · James Legge · tingkat pasal</h3><div class="translation-prose" lang="en">'+readingParagraphs(p.translation_english,'en',H)+'</div></section>':'')
+     +(s.english&&p.translation_english?'<section class="translation english"><h3>English · James Legge · tingkat pasal</h3>'+englishReading(p)+'</section>':'')
     +'</article><aside class="reader-aside"><h3>Catatan pribadi</h3><p>Catatan ini disimpan hanya di browser perangkat Anda.</p><textarea id="personal-note" aria-label="Catatan pribadi" placeholder="Tuliskan pemikiran Anda…">'+H(state.notes[p.id]||'')+'</textarea><button class="primary" data-action="save-note">Simpan catatan</button>'
     +annotation(p)+(window.RuEditorial?.canEdit?.()?'<div class="rule"></div><button class="secondary" data-action="propose" style="width:100%">'+(state.ayat?'Usulkan revisi Ayat '+state.ayat:'Usulkan revisi teks')+'</button>':'')
     +'</aside></div><div class="reader-nav"><button '+(prev?'data-passage="'+H(prev.id)+'"':'disabled')+'>← Pasal sebelumnya</button><button '+(next?'data-passage="'+H(next.id)+'"':'disabled')+'>Pasal berikutnya →</button></div>';
