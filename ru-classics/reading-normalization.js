@@ -2,6 +2,31 @@
 (function (root) {
   'use strict';
   const PAIRS = Object.freeze([
+    ['Gan-yu', 'Yan You'], // 言游
+    ['Cu-see', 'Zi Xi'], // 子西
+    ['Hwi-liam', 'Fei Lian'], // 飛廉
+    ['Kiong-kong', 'Gong Gong'], // 共工
+    ['Cai-i', 'Zai Yu'], // 宰予
+    ['Ciap-i', 'Jie Yu'], // 接輿
+    ['Ien-han', 'Yun Han'], // 雲漢
+    ['Koo-so', 'Gao Sou'], // 高叟
+    ['Yu Jiak', 'You Ruo'], // 有若
+    ['Jikongci Su', 'Yu Gong Zhi Si'], // 庾公之斯
+    ['Ienkongci Too', 'Yin Gong Zhi Ta'], // 尹公之他
+    ['Konggicu', 'Gongyi Zi'], // 公儀子
+    ['Culiu', 'Zi Liu'], // 子柳
+    ['Pik-li He', 'Baili Xi'], // 百里奚
+    ['Ho-chik', 'Hou Ji'], // 后稷
+    ['Cu-siok Gi', 'Zishu Yi'], // 子叔疑
+    ['Hwan Tau', 'Huan Dou'], // 驩兜
+    ['Sambiau', 'San Miao'], // 三苗
+    ['Sam-gwi', 'San Wei'], // 三危
+    ['Yu-ciu', 'Youzhou'], // 幽州
+    ['Siau Pwan', 'Xiao Bian'], // 小弁
+    ['Khai Hong', 'Kai Feng'], // 凱風
+    ['Thai-kak', 'Tai Jia'], // 太甲
+    ['Ko-kong Than-hu', 'Gu Gong Danfu'], // 古公亶父
+    ['Cuhok King-pik', 'Zifu Jingbo'], // 子服景伯
     ['Siau-lian', 'Shao Lian'], // 少連
     ['Gi-tiong', 'Yu Zhong'], // 虞仲
     ['I-iet', 'Yi Yi'], // 夷逸
@@ -267,6 +292,12 @@
   // Kolasi khusus berdasarkan Hanzi. Satu ejaan Hokkian bisa mewakili
   // aksara berbeda: Chien => 晉 (Jin) atau 秦 (Qin); Swan => 僎 atau 宣.
   const CONTEXTUAL = Object.freeze({
+    'sishu.lunyu.09.07': [
+      ['bernama Loo berkata', 'bernama Lao - Loo berkata'], // 牢
+    ],
+    'sishu.lunyu.14.01': [
+      ['Hian bertanya', 'Xian - Hian bertanya'], // 憲
+    ],
     'sishu.mengzi.08.31': [
       ['Bu-sing', 'Wucheng - Bu-sing'], // 武城
     ],
@@ -373,6 +404,18 @@
       ['Kota Cong', 'Kota Chong - Cong'], // 崇
     ],
     'sishu.lunyu.11.26': [
+      ['denganmu, Kiu?', 'denganmu, Qiu - Kiu?'], // 求
+      ['kepada Kiu;', 'kepada Qiu - Kiu;'], // 求
+      ['Musik, Kiu menunggu', 'Musik, Qiu - Kiu menunggu'], // 求
+      ['diucapkan Kiu juga', 'diucapkan Qiu - Kiu juga'], // 求
+      ['denganmu Chik?', 'denganmu Chi - Chik?'], // 赤
+      ['"Chik tidak', '"Chi - Chik tidak'], // 赤
+      ['istana, Chik kiranya', 'istana, Chi - Chik kiranya'], // 赤
+      ['kata-kata Chik juga', 'kata-kata Chi - Chik juga'], // 赤
+      ['kalau Chik hanya', 'kalau Chi - Chik hanya'], // 赤
+      ['denganmu, Tiam?', 'denganmu, Dian - Tiam?'], // 點
+      ['Tiam ingin', 'Dian - Tiam ingin'], // 點
+      ['denganmu, Tiam!', 'denganmu, Dian - Tiam!'], // 點
       ['Sungai Ki', 'Sungai Yi - Ki'], // 沂; berbeda 淇 di Da Xue
     ],
     'sishu.lunyu.18.09': [
@@ -474,6 +517,7 @@
       ['Raja Shun - Sun dan I.', 'Raja Shun - Sun dan Yu - I.'] // 舜禹
     ],
     'sishu.mengzi.05.04': [
+      ['menyuruh Siat menjadi', 'menyuruh Xie - Siat menjadi'], // 契
       ['Tien Liang', 'Chen Liang - Tien Liang'], // 陳良
       ['penganut ajaran Sien-long', 'penganut ajaran Shennong - Sien-long'], // 神農
       ['Tien Sien', 'Chen Xin - Tien Sien'], // 陳辛
@@ -564,6 +608,9 @@
       ['Sungai Cien dan Wi', 'Sungai Zhen - Cien dan Wei - Wi'] // toponim diverifikasi dengan Hanzi sumber
     ],
     'sishu.mengzi.09.03': [
+      ['Chiang', 'Xiang - Chiang'], // 象; Shun's brother
+      ['Gunung I', 'Gunung Yushan - I'], // 羽山
+      ['menghukum Kun di', 'menghukum Gun - Kun di'], // 鯀
       ['daerah Sambiau', 'daerah Sanmiao - Sambiau'], // Hanzi verified context
       ['Sam-gwi', 'Sanwei - Sam-gwi'], // Hanzi verified context
       ['Gunung Cong', 'Gunung Chongshan - Cong'],
