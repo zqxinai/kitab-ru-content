@@ -1,5 +1,6 @@
-// Public website works without an editor backend.
-// To enable GitHub login + approval workflow, set the repository Actions variable
-// RU_FIREBASE_CONFIG_JSON to a Firebase web app's public config object.
-// The Pages workflow will replace this placeholder during deployment.
+// Ru Classics reader is public; editor authentication requires Firebase.
+// To activate Google Sign-In and admin approval, set the Actions variable
+// RU_FIREBASE_CONFIG_JSON to the Firebase Web App's public configuration.
+// This is NOT an OAuth client secret. Firestore security rules must be deployed.
+// The Pages workflow replaces the placeholder when the website is published.
 window.RU_FIREBASE_CONFIG = null;

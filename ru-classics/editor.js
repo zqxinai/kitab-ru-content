@@ -10,7 +10,6 @@
   const H=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
   const state={ready:false,user:null,role:'guest',profile:null,db:null,auth:null,lib:null,edits:[],users:[],selected:null,field:'translation_indonesian',busy:false,error:''};
   const app=()=>window.RuApp;
-  const owner='zqxinai';
   const formatTime=t=>t&&typeof t.toDate==='function'?t.toDate().toLocaleString('id-ID'):'—';
   const currentText=(p,field)=>!p?'':typeof p[field]==='string'?p[field]:JSON.stringify(p[field]||[],null,2);
   function update(){if(location.hash==='#editor')render(document.getElementById('main'));}
@@ -28,9 +27,20 @@
       state.auth=authLib.getAuth(fb);state.db=dbLib.getFirestore(fb);
       authLib.onAuthStateChanged(state.auth,async user=>{
         state.user=user;state.role='guest';state.error='';
-        try{if(user){const ref=dbLib.doc(state.db,'users',user.uid);let snap=await dbLib.getDoc(ref);
+        try{
+          if(user){
+            // A cached GitHub/password session must never inherit editor rights.
+            const token=await user.getIdTokenResult();
+            if(token.claims.firebase?.sign_in_provider!=='google.com'||!user.emailVerified||!user.email){
+              await authLib.signOut(state.auth);
+              state.ready=true;
+              message('Akses editor hanya melalui Google dengan email terverifikasi. Silakan masuk kembali.');
+              return;
+            }
+            const ref=dbLib.doc(state.db,'users',user.uid);let snap=await dbLib.getDoc(ref);
           if(!snap.exists()){
-            await dbLib.setDoc(ref,{uid:user.uid,displayName:user.displayName||'Editor',role:'pending',createdAt:dbLib.serverTimestamp()});
+            await dbLib.setDoc(ref,{uid:user.uid,displayName:user.displayName||'Editor',
+              email:user.email,role:'pending',createdAt:dbLib.serverTimestamp()});
             snap=await dbLib.getDoc(ref);
           }
           state.profile=snap.data();state.role=state.profile.role||'pending';
@@ -62,7 +72,18 @@
   }
   async function signIn(){
     if(!state.auth||!state.lib){message('Login belum diaktifkan. Pengelola perlu menghubungkan Firebase Auth dan Firestore terlebih dahulu.');return;}
-    try{const provider=new state.lib.GithubAuthProvider();provider.addScope('read:user');await state.lib.signInWithPopup(state.auth,provider);}catch(e){message('Login GitHub gagal: '+e.message);}
+    try{
+      const provider=new state.lib.GoogleAuthProvider();
+      provider.setCustomParameters({prompt:'select_account'});
+      await state.lib.signInWithPopup(state.auth,provider);
+    }catch(e){
+      if(e.code==='auth/popup-closed-by-user')return;
+      if(e.code==='auth/popup-blocked'){
+        message('Jendela login Google diblokir browser. Izinkan pop-up untuk website Ru Classics, lalu coba lagi.');
+      }else if(e.code==='auth/account-exists-with-different-credential'){
+        message('Email ini terhubung ke metode login lain. Hubungi admin untuk migrasi akun; hak editor tidak dipindahkan otomatis.');
+      }else message('Login Google gagal: '+e.message);
+    }
   }
   async function signOut(){if(state.auth){await state.lib.signOut(state.auth);state.role='guest';update();}}
   function selectedPassage(){return app()?.getPassage(state.selected)||null;}
@@ -83,7 +104,7 @@
   }
   function renderRequests(){
     if(!state.users.length)return '';
-    return '<section class="editor-panel"><h2>Permohonan editor · '+state.users.length+'</h2><p>Hanya pemilik dengan peran Admin dapat mengizinkan akun baru mengedit.</p>'+state.users.map(u=>'<div class="editor-entry"><strong>'+H(u.displayName||u.id)+'</strong><p><small>UID: '+H(u.uid)+'</small></p><div class="actions"><button class="primary" data-editor-approve="'+H(u.id)+'">Setujui editor</button><button class="secondary" data-editor-reject="'+H(u.id)+'">Tolak permohonan</button></div></div>').join('')+'</section>';
+    return '<section class="editor-panel"><h2>Permohonan editor · '+state.users.length+'</h2><p>Hanya pemilik dengan peran Admin dapat mengizinkan akun baru mengedit.</p>'+state.users.map(u=>'<div class="editor-entry"><strong>'+H(u.displayName||u.id)+'</strong><p><small>Email Google: '+H(u.email||'Tidak tersedia')+'</small></p><p><small>UID: '+H(u.uid)+'</small></p><div class="actions"><button class="primary" data-editor-approve="'+H(u.id)+'">Setujui editor</button><button class="secondary" data-editor-reject="'+H(u.id)+'">Tolak permohonan</button></div></div>').join('')+'</section>';
   }
   function renderEdits(){
     const pending=state.edits.filter(e=>e.status==='pending').sort((a,b)=>(a.createdAt?.seconds||0)-(b.createdAt?.seconds||0));
@@ -103,8 +124,8 @@
     element.innerHTML='<div class="chapter-title"><span class="eyebrow">Ruang kolaborasi</span><h1>Editor Ru Classics</h1><p class="muted">Pendaftaran editor dan semua perubahan teks membutuhkan persetujuan pemilik.</p></div>'
       +(state.error?'<div class="empty" role="alert">'+H(state.error)+'</div>':'')
       +(!state.ready?'<div class="editor-panel"><p>Memeriksa status autentikasi…</p></div>':'')
-      +(!state.auth?'<section class="editor-panel"><h2>Login editor belum diaktifkan</h2><p>Ruang baca sudah tersedia. Sebelum login GitHub dan permohonan editor bisa digunakan, pemilik perlu mengonfigurasi Firebase Authentication, Firestore, serta aturan persetujuan pada proyek ini.</p><p>Untuk sementara, Anda dapat meminta akses melalui GitHub. Permohonan tidak otomatis memberikan hak untuk mengubah teks.</p><a class="secondary" href="https://github.com/zqxinai/kitab-ru-content/issues/new?title=Permohonan%20akses%20editor%20Ru%20Classics" target="_blank" rel="noopener noreferrer">Ajukan melalui GitHub</a></section>':'')
-      +(state.auth&&!state.user?'<section class="editor-panel"><h2>Masuk sebagai editor</h2><p>Gunakan akun GitHub. Setelah masuk pertama kali, akun Anda tetap dalam status menunggu persetujuan.</p><button class="primary" data-editor-login>Masuk dengan GitHub</button></section>':'')
+      +(!state.auth?'<section class="editor-panel"><h2>Login editor belum diaktifkan</h2><p>Ruang baca sudah tersedia. Untuk masuk dengan Google, pemilik perlu mengaktifkan Google Sign-In pada Firebase Authentication, mengonfigurasi Firestore dan menerbitkan aturan akses aman. Akun yang baru masuk belum bisa mengedit sampai disetujui admin.</p><button type="button" class="secondary" disabled aria-disabled="true">Masuk dengan Google — belum aktif</button></section>':'')
+      +(state.auth&&!state.user?'<section class="editor-panel"><h2>Masuk sebagai editor</h2><p>Gunakan akun Google Anda. Masuk pertama kali hanya mengirim permohonan editor; admin harus menyetujui sebelum Anda dapat mengusulkan perubahan.</p><button class="primary" data-editor-login>Masuk dengan Google</button></section>':'')
       +(state.auth&&state.user?'<div class="editor-tools"><span class="status-tag">'+H(state.role.toUpperCase())+'</span><span class="muted">'+H(state.user.displayName||state.user.uid)+'</span><button class="text-link" data-editor-logout>Keluar</button><button class="text-link" data-editor-refresh>Perbarui antrean</button></div>':'')
       +(state.user&&state.role==='pending'?'<section class="editor-panel"><h2>Permohonan menunggu persetujuan</h2><p>Akun Anda telah terdaftar, tetapi belum mendapat izin mengirim usulan teks. Pengelola harus menyetujui akun ini dahulu. Anda dapat kembali lagi untuk memeriksa status.</p></section>':'')
       +(state.user&&state.role==='rejected'?'<section class="editor-panel"><h2>Permohonan belum disetujui</h2><p>Akun ini tidak memiliki hak mengedit. Hubungi pengelola untuk klarifikasi.</p></section>':'')
