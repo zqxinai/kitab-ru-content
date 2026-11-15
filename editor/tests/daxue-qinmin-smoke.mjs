@@ -37,6 +37,6 @@ assert.match(nodes[1].children[1].textContent,/renovate the people/);
 assert.match(nodes[1].children[2].textContent,/親，當作新/);
 const renderedText=node=>(node.textContent||'')+(node.children||[]).map(renderedText).join('');
 assert.equal(renderedText(el.indonesianText),chapter.passages[0].translation_indonesian);
-assert.ok(el.englishText.textContent.includes('to renovate the people'));
+assert.ok(renderedText(el.englishText).includes('to renovate the people'));
 assert.match(el.reviewDetail.textContent,/perlu review/);
 console.log('PASS: Da Xue 親民 and Chengzi 新民 displayed separately; MATAKIN and Legge translations intact.');
