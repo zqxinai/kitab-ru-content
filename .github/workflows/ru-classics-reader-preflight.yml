@@ -29,6 +29,7 @@ jobs:
           node --check ru-classics/reading-normalization.js
           node --check ru-classics/editor.js
           node --check ru-classics/reference-overlay.js
+          node --check ru-classics/same-book-references.js
           node --check ru-classics/firebase-config.js
           node --test ru-classics/tests/auth-google.cjs
       - name: Build reader package and test reference navigation
@@ -37,5 +38,6 @@ jobs:
           node ru-classics/tests/smoke.cjs
           node --test ru-classics/tests/subverses.cjs
           node --test ru-classics/tests/reading-navigation.cjs
+          node --test ru-classics/tests/same-book-references.cjs
           node --test tests/ru-classics-reading-normalization.test.js
           node --test tests/matakin-reference-overlay.test.cjs
