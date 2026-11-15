@@ -37,6 +37,22 @@ test('Mengzi-specific volume letter reference is only a candidate',()=>{
  assert.equal(classify('II.5.4.4','mengzi').kind,'ambiguous-unlabeled');
  assert.equal(classify('2','mengzi'),null);
 });
+test('Full MATAKIN reference inventory carries 16 explicitly reviewed compound segments',()=>{
+ const a=scan();
+ assert.equal(a.passage_count,965);
+ assert.equal(a.compound_segmented,7);
+ assert.equal(a.compound_display_ready,6);
+ assert.equal(a.compound_review_only,1);
+ const ready=a.all_references.find(x=>x.passage_id==='sishu.lunyu.02.19'&&x.original_reference==='(T.S. XIX: 1; S.S. III: 21)');
+ assert.equal(ready?.segmentation_status,'display-ready');
+ assert.deepEqual(ready?.segments.map(x=>x.book_id),['zhongyong','lunyu']);
+ assert.deepEqual(ready?.segments.flatMap(x=>x.target_passage_ids),['sishu.zhongyong.20.01','sishu.lunyu.03.21']);
+ const complex=a.all_references.find(x=>x.passage_id==='sishu.lunyu.02.05'&&x.original_reference==='(S.S. I:9; III: 1,2; XIX:5; Bc. IIIA: 2)');
+ assert.equal(complex?.segmentation_status,'review-only');
+ assert.deepEqual(complex?.segments.map(x=>x.book_id),['lunyu','lunyu','lunyu','mengzi']);
+ assert.equal(complex?.segments.flatMap(x=>x.target_passage_ids).length,5);
+ assert.ok(complex.segments.every(x=>x.subverse_target_id===null));
+});
 test('Full source audit identifies reference records without changing scripture',()=>{
  const all=scan(),byId=id=>all.all_references.filter(x=>x.passage_id===id);
  assert.equal(all.passage_count,965);
