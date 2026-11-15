@@ -80,11 +80,15 @@
     const parts=globalThis.RuReferenceLinks?.parts(id,text,overlay)||overlay.segments(id,text);
     // A/B without a printed book alias means Mengzi only within Mengzi.
     // Only known passages and observed MATAKIN ayat can become deep links.
-    const linked=globalThis.RuSameBookReferences?.expand(id,parts,ref=>{
+    const canNavigate=ref=>{
       const target=state.map.get(ref.target_id);
       if(!target)return false;
       return !ref.ayat||!!globalThis.RuSubverses?.splitIndonesia(target.translation_indonesian)?.some(v=>v.number===ref.ayat);
-    })||parts;
+    };
+    const sameBook=globalThis.RuSameBookReferences?.expand(id,parts,canNavigate)||parts;
+    // Only four explicitly identified Si Shu books may be inherited within
+    // a single reference group; external and ambiguous references stay text.
+    const linked=globalThis.RuBookReferences?.expand(sameBook,canNavigate)||sameBook;
     return linked.map(part=>{
       const label=H(displayIndo(id,part.text));
       if(!part.target_id||!state.map.has(part.target_id))return label;
