@@ -25,6 +25,27 @@ function matchesAsStandalone(text, phrase) {
   const escaped = phrase.replace(/[|\\{}()[\]^$+*?.]/g, '\\$&');
   return new RegExp('(^|[^\\p{L}-])'+escaped+'(?=$|[^\\p{L}-])','u').test(text);
 }
+const placePattern = /\b(?:kota|Kota|daerah|Daerah|desa|Desa|Gunung|gunung|Sungai|sungai|Bukit|bukit|Negeri|negeri|Istana|istana|lembah|Lembah|telaga|Telaga)\s+[\p{Lu}][\p{L}-]{1,25}(?:\s+[\p{Lu}][\p{L}-]{1,25}){0,2}/gu;
+const personPattern = /\b([\p{Lu}][\p{L}-]{2,}(?:[ -]+[\p{Lu}][\p{L}-]{2,}){0,2})\s+(?=bertanya|berkata|menjawab|datang|menemui|menyuruh|diangkat|membunuh|berdiam|yang|memerintah|menerima|pernah|meninggalkan|mewakili|berkuasa|mengajak)/gu;
+const commonPlaceNames = new Set(['Negeri Yan','Negeri Song','Negeri Liang','Negeri Qi','Negeri Lu','Negeri Chu','Negeri Wei','Negeri Jin','Negeri Ge']);
+const notPeople = new Set(['Jalan Suci','Cinta Kasih','Yang Maha','Kitab Sanjak','Raja Muda','Raja Besar','Nabi Kongzi','Tuhan Yang']);
+const otherPlaces = new Map(), otherPeople = new Map();
+function record(map,term,id) {
+  const v = map.get(term) || {term, count:0, passages:[]};
+  v.count++;
+  if(v.passages.length<5&&!v.passages.includes(id))v.passages.push(id);
+  map.set(term,v);
+}
+function unpairedInView(view,term) {
+  let pos=-1;
+  while((pos=view.indexOf(term,pos+1))>=0){
+    if(pos>0&&/[\p{L}-]/u.test(view[pos-1]))continue;
+    if(pos+term.length<view.length&&/[\p{L}-]/u.test(view[pos+term.length]))continue;
+    if(view.slice(Math.max(0,pos-3),pos)===' - ')continue;
+    return true;
+  }
+  return false;
+}
 let passages = 0, changed = 0, paired = 0;
 const candidates = new Map();
 for (const [book, chapters] of Object.entries(BOOKS)) {
@@ -45,15 +66,36 @@ for (const [book, chapters] of Object.entries(BOOKS)) {
         row.count++;
         if (row.passages.length < 6 && !row.passages.includes(verse.id)) row.passages.push(verse.id);
       }
+      for (const m of source.matchAll(placePattern)) {
+        const term=m[0], label=term.replace(/^[^ ]+ /,'');
+        if(term.includes(' - ')||commonPlaceNames.has(term)||/^(Timur|Barat|Utara|Selatan|Tengah|Suci|Besar)\b/.test(label))continue;
+        if(!unpairedInView(view,term))continue;
+        record(otherPlaces,term,verse.id);
+      }
+      for(const m of source.matchAll(personPattern)){
+        const term=m[1],before=source.slice(Math.max(0,m.index-3),m.index);
+        if(before===' - '||notPeople.has(term))continue;
+        if(/^(?:Negeri|negeri|kota|Kota|Gunung|gunung|Sungai|sungai|daerah|Kitab|Raja|Rajamuda|Pangeran|Nabi|Tuhan|Orang|Pembesar|Seorang|Sang|Suku|Murid|Badan|Dahulu|Ketika|Kini|Para)\b/.test(term))continue;
+        if(!term.includes(' ')&&!term.includes('-')&&!/(?:cu|zi|tong|thio|kwi|liam|yan|sik)$/i.test(term))continue;
+        if(!unpairedInView(view,term))continue;
+        record(otherPeople,term,verse.id);
+      }
     }
   }
 }
 const unresolved = [...candidates.values()].sort((a,b)=>b.count-a.count||a.term.localeCompare(b.term,'id'));
+const sortReview = map => [...map.values()].sort((a,b)=>b.count-a.count||a.term.localeCompare(b.term,'id'));
+const unpairedPlaces = sortReview(otherPlaces), unpairedPeople = sortReview(otherPeople);
 const result = {
   passages,
   normalizedPassages:changed,
   recognizedTitleOccurrences:paired,
   unresolvedTitleCandidates:unresolved.length,
+  unresolvedPlaceCandidates:unpairedPlaces.length,
+  unresolvedPersonCandidates:unpairedPeople.length,
+  placeCandidates:unpairedPlaces,
+  personCandidates:unpairedPeople,
+  warning:'Candidate finder is heuristic; zero candidates never proves full Hanzi-level completeness.',
   status:'requires-contextual-review',
   explanation:'Kandidat mencakup nama Hokkian, ejaan Mandarin yang belum di-allowlist, dan frasa editorial MATAKIN; tidak otomatis salah.',
   candidates:unresolved
@@ -63,5 +105,7 @@ else {
   console.log('Ru Classics: '+passages+' pasal; '+changed+' dengan normalisasi tampilan.');
   console.log('Kandidat nama yang perlu pemeriksaan kontekstual: '+unresolved.length);
   for (const row of unresolved.slice(0,80)) console.log(row.count+'x '+row.term+' ['+row.passages.join(', ')+']');
+  console.log('Kandidat lokasi: '+unpairedPlaces.length+'; nama orang tanpa gelar: '+unpairedPeople.length);
+  for(const [label,rows] of [['TEMPAT',unpairedPlaces],['ORANG',unpairedPeople]]) for(const row of rows.slice(0,35)) console.log(label+' '+row.count+'x '+row.term+' ['+row.passages.join(', ')+']');
 }
 if (passages !== 965) process.exitCode = 1;
