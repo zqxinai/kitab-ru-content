@@ -52,6 +52,39 @@
     ['Lun Gi', 'Lun Yu'],
     ['Su King', 'Shu Jing']
   ]);
+  // Pasangan frasa historis yang tidak ambigu setelah kolasi dengan Hanzi
+  // pada korpus 4 kitab (bukan replace ejaan lepas konteks).
+  // Urutan frasa panjang dahulu; batas kata mencegah 'Tin' mengenai 'Ting'.
+  const VERIFIED_PHRASES = Object.freeze([
+    ['Negeri Tin', 'Negeri Teng - Tin'],       // 滕
+    ['Negeri Ting', 'Negeri Zheng - Ting'],     // 鄭
+    ['Negeri Pien', 'Negeri Bin - Pien'],      // 邠
+    ['Negeri Go', 'Negeri Wu - Go'],           // 吳
+    ['Negeri Coo', 'Negeri Zou - Coo'],        // 鄒
+    ['Negeri Co', 'Negeri Zou - Co'],          // 鄹, Lun Yu III:15
+    ['Negeri Wat', 'Negeri Yue - Wat'],        // 越
+    ['Negeri Jiem', 'Negeri Ren - Jiem'],      // 任
+    ['Negeri Khong', 'Negeri Kuang - Khong'],  // 匡
+    ['Negeri Loo', 'Negeri Lu - Loo'],        // 魯
+    ['Negeri Ki', 'Negeri Qi - Ki'],          // 杞
+    ['Negeri Chai', 'Negeri Cai - Chai'],     // 蔡
+    ['Negeri Siat', 'Negeri Xue - Siat'],     // 薛
+    ['Rajamuda King', 'Rajamuda Jing - King'], // 景公
+    ['Rajamuda Bun', 'Rajamuda Wen - Bun'],   // 滕文公
+    ['Rajamuda Hwan', 'Rajamuda Huan - Hwan'],// 桓公
+    ['Pangeran Bun', 'Pangeran Wen - Bun'],   // 文
+    ['Pangeran Ting', 'Pangeran Ding - Ting'],// 定公
+    ['Pangeran Siap', 'Pangeran She - Siap'], // 葉公 shè, bukan yè
+    ['Pangeran Chien', 'Pangeran Qin - Chien'],// 秦
+    ['Raja Tiu', 'Raja Zhou - Tiu'],         // 紂, bukan 周
+    ['Raja Kiat', 'Raja Jie - Kiat'],        // 桀
+    ['Raja Gee', 'Raja Yi - Gee'],           // 羿
+    ['Raja Goo', 'Raja Ao - Goo'],           // 奡
+    ['Raja Koocong', 'Raja Gaozong - Koocong'], // 高宗
+    ['Raja Kwi', 'Raja Ji - Kwi'],           // 王季
+    ['Negeri Hun Yok', 'Negeri Xunyu - Hun Yok'], // 獯鬻
+    ['Raja Koo Cian', 'Raja Goujian - Koo Cian']  // 勾踐
+  ]);
   // Kolasi khusus berdasarkan Hanzi. Satu ejaan Hokkian bisa mewakili
   // aksara berbeda: Chien => 晉 (Jin) atau 秦 (Qin); Swan => 僎 atau 宣.
   const CONTEXTUAL = Object.freeze({
@@ -256,6 +289,11 @@
     result = result.replace(/\bPangeran Ciu\b/g, 'Pangeran Zhou - Ciu'); // 周公
     result = result.replace(/(\bseperti )I(?=\s+dan\s+(?:Koo Yau|Gao Yao))/gu, '$1Yu - I');
     result = pair(result, 'Giau', 'Yao');
+    // Hanya frasa nama/gelar utuh, bukan suku kata Hokkian berdiri sendiri.
+    for (const [legacy, paired] of VERIFIED_PHRASES) {
+      const pattern = new RegExp('(^|[^\\p{L}-])(' + escaped(legacy) + ')(?=$|[^\\p{L}-])', 'giu');
+      result = result.replace(pattern, (_full, prefix) => prefix + paired);
+    }
     for (const [legacy, modern] of PAIRS) result = pair(result, legacy, modern);
     // III A:3, tata pajak: 助 zhù, 貢 gòng, 徹 chè.
     // Ketiganya merupakan istilah teknis khusus konteks pasal, bukan alias global.
@@ -266,6 +304,6 @@
     }
     return result;
   }
-  root.RuReading = Object.freeze({ normalize, pairs: PAIRS, contextual: CONTEXTUAL });
+  root.RuReading = Object.freeze({ normalize, pairs: PAIRS, verifiedPhrases: VERIFIED_PHRASES, contextual: CONTEXTUAL });
   if (typeof module !== 'undefined' && module.exports) module.exports = root.RuReading;
 })(typeof globalThis !== 'undefined' ? globalThis : this);
