@@ -31,7 +31,7 @@ const context={document:doc,window:page,location,localStorage,console,Event,clea
  fetch:async()=>({ok:true,json:async()=>bundle})};
 vm.runInNewContext(fs.readFileSync(path.join(__dirname,'../reading-normalization.js'),'utf8'),context,{filename:'reading-normalization.js'});
 vm.runInNewContext(fs.readFileSync(path.join(__dirname,'../reference-overlay.js'),'utf8'),context,{filename:'reference-overlay.js'});
-for(const name of ['reference-links.js','reading-layout.js','subverses.js'])vm.runInNewContext(fs.readFileSync(path.join(__dirname,'../'+name),'utf8'),context,{filename:name});
+for(const name of ['reference-links.js','same-book-references.js','reading-layout.js','subverses.js'])vm.runInNewContext(fs.readFileSync(path.join(__dirname,'../'+name),'utf8'),context,{filename:name});
 vm.runInNewContext(fs.readFileSync(path.join(__dirname,'../app.js'),'utf8'),context,{filename:'app.js'});
 function click(dataset){handlers.click[0]({target:{closest(){return {dataset,hasAttribute(name){return name==='data-ayat-select'&&Object.hasOwn(dataset,'ayatSelect');}};}}});}
 function change(id,value,dataset={}){handlers.change[0]({target:{id,value,dataset}});}
@@ -148,7 +148,8 @@ setTimeout(()=>{
     assert.ok(nodes.main.innerHTML.includes('id="'+id+'"'),'Missing dropdown '+id);
   change('jump-ayat','5');
   assert.equal(location.hash,'read=sishu.mengzi.03.07&ayat=5');
-  assert.match(nodes.main.innerHTML,/english-reading-section/);
+  assert.match(nodes.main.innerHTML,/english-alignment-note/);
+  assert.doesNotMatch(nodes.main.innerHTML,/english-reading-section/,'Legge paragraphs are not MATAKIN ayat');
   click({passage:'sishu.mengzi.03.07',refAyat:'5'});
   assert.equal(location.hash,'read=sishu.mengzi.03.07&ayat=5');
   assert.match(nodes.main.innerHTML,/translation-verse ayat-active" data-ayat="5"/,
@@ -246,6 +247,17 @@ setTimeout(()=>{
   click({toggle:'indo'});
   assert.match(nodes.main.innerHTML,/class="hanzi-verse ayat-active" data-ayat="3"/);
   assert.match(nodes.main.innerHTML,/Pasal 1 · Ayat 3 dipilih/);
+  // Mengzi III.A.3.10 is a same-book reference to passage III A:3 Ayat 10.
+  click({book:'mengzi'});click({chapter:'sishu.mengzi.01'});click({passage:'sishu.mengzi.01.03'});
+  click({toggle:'indo'}); // Restore Indonesian from preceding display-options test.
+  assert.ok(visibleText(nodes.main.innerHTML).includes('Mengzi — Bing Cu III A:3/10'));
+  assert.match(nodes.main.innerHTML,/data-passage="sishu\.mengzi\.05\.03" data-ref-ayat="10"/);
+  click({passage:'sishu.mengzi.05.03',refAyat:'10'});
+  assert.equal(location.hash,'read=sishu.mengzi.05.03&ayat=10');
+  assert.match(nodes.main.innerHTML,/Pasal 3 · Ayat 10 dipilih/);
+  assert.match(nodes.main.innerHTML,/Nomor ayat mengikuti MATAKIN/);
+  assert.doesNotMatch(nodes.main.innerHTML,/english-reading-section/);
+  assert.doesNotMatch(nodes.main.innerHTML,/english-reading-index/);
   console.log('Ru Classics smoke test passed: Paper, 4 books, chapter, reader, Ruby, Indonesian, English');
  }catch(e){console.error(e);process.exitCode=1;}
 },0);
