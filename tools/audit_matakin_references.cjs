@@ -61,10 +61,15 @@ function scan(){
          ...classification,
          ...(matched?{
            segmentation_status:matched.display_status,
+           reference_intent:matched.reference_intent,
+           verbatim_match_required:matched.verbatim_match_required,
+           relation_verification:matched.relation_verification,
            segments:matched.components.map(c=>({
              source_segment:c.source_segment,
              book_id:c.book_id,
              target_passage_ids:c.target_passage_ids,
+             reference_intent:c.reference_intent,
+             verbatim_match_required:c.verbatim_match_required,
              subverse_number:c.subverse_number??null,
              subverse_marker_status:c.subverse_marker_status??null,
              subverse_target_id:c.subverse_target_id
