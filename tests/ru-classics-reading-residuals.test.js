@@ -39,13 +39,13 @@ test('Final identified legacy orphans have contextual Pinyin without changing th
 });
 test('Short names do not rewrite unrelated compound names',()=>{
   const examples=[
-    ['Ciu Jiem','Zhou Ren - Ciu Jiem'],
-    ['Kitab Thong Si','Kitab Tang Shi - Thong Si'],
-    ['Sing Thong','Cheng Tang - Sing Thong'],
-    ['Meng Yizi - Bing I-cu','Meng Yizi - Bing I-cu'],
-    ['Chunyu Kun - Sun-i Khun','Chunyu Kun - Sun-i Khun']
+    ['Ciu Jiem','Zhou Ren - Ciu Jiem','sample'],
+    ['Kitab Thong Si','Kitab Tang Shi - Thong Si','sishu.mengzi.01.02'],
+    ['Sing Thong','Cheng Tang - Sing Thong','sample'],
+    ['Meng Yizi - Bing I-cu','Meng Yizi - Bing I-cu','sample'],
+    ['Chunyu Kun - Sun-i Khun','Chunyu Kun - Sun-i Khun','sample']
   ];
-  for(const [before,after]of examples)assert.equal(reading.normalize(before,'sample'),after,before);
+  for(const [before,after,id]of examples)assert.equal(reading.normalize(before,id),after,before);
 });
 test('Terminal SIANCAI remains a colophon, legitimate 善哉 gets Pinyin',()=>{
   assert.equal(reading.normalize('SIANCAI','sample'),'SIANCAI');
