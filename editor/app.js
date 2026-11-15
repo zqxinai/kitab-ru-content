@@ -351,21 +351,45 @@
     }
     if(!root.childNodes.length)root.textContent='Teks Hanzi belum tersedia.';
   }
+  function appendReferencedText(node,passageId,source){
+    const overlay=globalThis.Matakin2012References;
+    const parts=globalThis.RuReferenceLinks?.parts(passageId,source,overlay)||
+      overlay?.segments?.(passageId,source)||[{text:source,target_id:null}];
+    for(const part of parts){
+      const dest=part.target_id&&byId.get(part.target_id);
+      if(!dest){node.append(document.createTextNode(part.text));continue;}
+      const n=Number(part.ayat)||0;
+      const verified=n>0&&globalThis.MatakinVerses?.splitIndonesia(dest.passage.translation_indonesian)?.some(v=>v.number===n);
+      const link=document.createElement('a');
+      link.className='reference-link';
+      link.textContent=part.text;
+      link.href='../ru-classics/#read='+encodeURIComponent(part.target_id)+(verified?'&ayat='+n:'');
+      link.setAttribute('aria-label','Buka rujukan '+part.text+(verified?' ayat '+n:''));
+      node.append(link);
+    }
+  }
+  function appendReadingParagraphs(node,source,lang,passageId=null){
+    const parts=globalThis.RuReadingLayout?.paragraphs(source,lang)||[source];
+    for(const part of parts){
+      const p=document.createElement('p');
+      p.className='reading-paragraph';
+      if(passageId)appendReferencedText(p,passageId,part);
+      else p.textContent=part;
+      node.append(p);
+    }
+  }
   function showIndonesianText(text,passageId){
-    const root=$('indonesianText');
-    const display=part=>globalThis.Matakin2012References?.present(passageId,part)??part;
-    const verses=globalThis.MatakinVerses?.splitIndonesia(text);
+    const root=$('indonesianText'),verses=globalThis.MatakinVerses?.splitIndonesia(text);
     root.replaceChildren();
-    if(!verses){root.textContent=display(text);return}
+    if(!verses){appendReadingParagraphs(root,text,'id',passageId);return}
     for(const verse of verses){
-      const block=document.createElement('p');
+      const block=document.createElement('div');
       block.className='verse-block';
       const label=document.createElement('span');
       label.className='verse-number';
       label.textContent='Ayat '+verse.number;
-      const body=document.createElement('span');
-      body.textContent=display(verse.text);
-      block.append(label,body);
+      block.append(label);
+      appendReadingParagraphs(block,verse.text,'id',passageId);
       root.append(block);
     }
   }
@@ -389,7 +413,8 @@
     const mappings=englishAlignments.get(p.id)||[];
     const segments=mappings.flatMap(entry=>entry.english_segments||[]);
     const en=englishTextFor(p.id).trim();
-    $('englishText').textContent=en||'Terjemahan Inggris belum tersedia atau belum disetujui untuk pasal ini.';
+    $('englishText').replaceChildren();
+    appendReadingParagraphs($('englishText'),en||'Terjemahan Inggris belum tersedia atau belum disetujui untuk pasal ini.','en');
     $('englishText').classList.toggle('unavailable',!en);
     if(mappings.length){
       const refs=[...new Set(segments.map(segment=>segment.legge_ref).filter(Boolean))];
