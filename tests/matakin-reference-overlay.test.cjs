@@ -17,6 +17,29 @@ const expectedTargets={
  'sishu.daxue.11.23':'sishu.mengzi.01.01',
  'sishu.mengzi.01.01':'sishu.daxue.11.23'
 };
+test('Linked reference segments preserve all 965 Indonesian texts and never invent target passages',()=>{
+ let linked=0;
+ for(const [id,p] of byId){
+  const original=p.translation_indonesian||'';
+  const parts=overlay.segments(id,original);
+  assert.equal(parts.map(x=>x.text).join(''),overlay.present(id,original),'display mismatch: '+id);
+  for(const part of parts){
+   if(part.target_id!==null){
+    assert.ok(byId.has(part.target_id),'missing link target: '+id+' => '+part.target_id);
+    assert.ok(/^sishu\.(daxue|zhongyong|lunyu|mengzi)\.\d{2}\.\d{2}$/.test(part.target_id));
+    linked++;
+   }
+  }
+ }
+ assert.ok(linked>60,'expected many exactly verified single-passage references');
+ assert.deepEqual(overlay.segments('sishu.lunyu.18.06','Tidak ada rujukan'),[{text:'Tidak ada rujukan',target_id:null}]);
+ const multi=overlay.segments('sishu.lunyu.02.05',byId.get('sishu.lunyu.02.05').translation_indonesian);
+ assert.ok(multi.some(x=>x.text.includes('Lun Yu I:9; Lun Yu III:1,2')&&x.target_id===null),
+   'compound cross-reference must remain plain text pending per-segment navigation');
+ const chapter=overlay.segments('sishu.lunyu.09.08',byId.get('sishu.lunyu.09.08').translation_indonesian);
+ assert.ok(chapter.some(x=>x.text.includes('Tengah Sempurna — Zhong Yong V')&&x.target_id===null),
+   'chapter-only reference must not link to a fabricated verse');
+});
 test('One hundred nineteen exact references preserve original sources and resolve only evidenced targets',()=>{
  assert.equal(chapters.length,78);
  assert.equal(byId.size,965);
@@ -399,6 +422,6 @@ test('Browser scripts load the single shared overlay before either reader',()=>{
  const editorCode=fs.readFileSync(path.join(root,'editor/app.js'),'utf8');
  assert(reader.indexOf('reference-overlay.js')<reader.indexOf('src="./app.js"'));
  assert(editor.indexOf('reference-overlay.js')<editor.indexOf('src="./app.js"'));
- assert.match(readerCode,/Matakin2012References\?\.present\(p\.id,text\)/);
+  assert.ok(readerCode.includes('api.segments(id,text)'), 'Reader must use safe linked reference segments');
  assert.match(editorCode,/Matakin2012References\?\.present\(passageId,part\)/);
 });

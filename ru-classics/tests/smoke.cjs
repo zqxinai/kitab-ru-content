@@ -56,6 +56,10 @@ setTimeout(()=>{
   click({passage:'sishu.lunyu.18.06'});
   assert.match(nodes.main.innerHTML,/Sabda Suci — Lun Yu XIV:39/,'Full 2012-style book name should display');
   assert.doesNotMatch(nodes.main.innerHTML,/\\(S\\.S\\. XIV: 39\\)/,'Old abbreviated citation should not display');
+  assert.match(nodes.main.innerHTML,/class="reference-link" data-passage="sishu\\.lunyu\\.14\\.39"/,
+    'Verified single reference should render as a target passage button');
+  click({passage:'sishu.lunyu.14.39'});
+  assert.match(nodes.main.innerHTML,/Pasal 39/,'Reference button must open the correct target passage');
   click({book:'lunyu'});
   click({chapter:'sishu.lunyu.05'});
   click({passage:'sishu.lunyu.05.08'});

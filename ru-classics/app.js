@@ -57,16 +57,27 @@
       ruby([verse.ruby_tokens])+'</div>'
     ).join('');
   }
+  // Only exact MATAKIN references with a known passage target become links.
+  // Plain text is escaped before insertion; source translation is never edited.
+  function referenceMarkup(id,text){
+    const api=globalThis.Matakin2012References;
+    if(!api?.segments)return H(api?.present(id,text)??text);
+    return api.segments(id,text).map(part=>{
+      const label=H(part.text);
+      if(!part.target_id||!state.map.has(part.target_id))return label;
+      return '<button type="button" class="reference-link" data-passage="'+H(part.target_id)+'" title="Buka pasal rujukan" aria-label="Buka rujukan '+label+'">'+label+'</button>';
+    }).join('');
+  }
   function indonesiaWithSubverses(p,aligned){
     // Display-layer normalization: underlying MATAKIN translation stays intact.
     // Each exact reference is scoped to a verified passage ID.
-    const display=text=>globalThis.Matakin2012References?.present(p.id,text)??text;
+    const display=text=>referenceMarkup(p.id,text);
     const verses=aligned||globalThis.RuSubverses?.splitIndonesia(p.translation_indonesian||'');
-    if(!verses)return '<p>'+H(display(p.translation_indonesian||'Belum tersedia'))+'</p>';
+    if(!verses)return '<p>'+display(p.translation_indonesian||'Belum tersedia')+'</p>';
     return verses.map(verse=>
       '<p class="translation-verse" data-ayat="'+verse.number+'">'+
       '<span class="ayat-label">Ayat '+verse.number+'</span>'+
-      H(display(verse.indonesian||verse.text))+'</p>'
+      display(verse.indonesian||verse.text)+'</p>'
     ).join('');
   }
   function reader(){const p=byId(state.id);if(!p){navigate('books');return;}state.last=p.id;save();const c=state.chapters.find(c=>c.id===p._chapter);const b=book(p._book);const pos=state.passages.findIndex(x=>x.id===p.id);const prev=state.passages[pos-1],next=state.passages[pos+1];const s=state.settings;const aligned=globalThis.RuSubverses?.align(p)||null;
