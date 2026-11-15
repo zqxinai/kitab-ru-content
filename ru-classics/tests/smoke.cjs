@@ -12,7 +12,8 @@ const nodes={
  'about-dialog':{showModal(){}},
  'theme-options':{innerHTML:''},
  'reading-options':{innerHTML:''},
- 'font-label':{textContent:''}
+ 'font-label':{textContent:''},
+ 'search-results':{innerHTML:''}
 };
 const handlers={};
 const doc={
@@ -235,7 +236,7 @@ setTimeout(()=>{
   // The reader must pair Pinyin-Hokkian consistently, including search excerpts.
   click({nav:'search'});
   handlers.input[0]({target:{id:'search-input',value:'Kong-sun Thio'}});
-  assert.match(nodes.main.innerHTML,/class="excerpt">[^<]*Gongsun Chou - Kong-sun Thio/,
+  assert.match(nodes['search-results'].innerHTML,/class="excerpt">[^<]*Gongsun Chou - Kong-sun Thio/,
     'Search excerpt must use the non-destructive Pinyin-Hokkian reading overlay');
   // Selected ayat stays identified even when the Indonesian view is hidden.
   click({passage:'sishu.mengzi.01.01'});
