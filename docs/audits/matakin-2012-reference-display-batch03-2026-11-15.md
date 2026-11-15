@@ -5,7 +5,7 @@
 ## Prinsip dan keterbatasan
 
 - SS = Sabda Suci / Lun Yu, AB = Ajaran Besar / Da Xue, BC = Bingcu / Mengzi, TS = Tengah Sempurna / Zhong Yong, sesuai konfirmasi pemilik buku cetak 2012.
-- Pemetaan ID tujuan di bawah dikonfirmasi **ada** pada naskah digital. Keberadaan target dan kesamaan tema **bukan jaminan** rujukan tersebut mengutip teks persis sama; hubungan berupa perbandingan gagasan ditandai sebagai belum bersertifikat.
+- Pemetaan ID tujuan di bawah dikonfirmasi **ada** pada naskah digital. Rujukan silang MATAKIN merupakan **hubungan isi yang diterima sebagai otoritatif**, bukan tuntutan agar kedua pasal mengutip teks persis sama; pemeriksaan hanya pada penyalinan dan nomor.
 - Penulisan nama kitab lengkap adalah **konvensi presentasi** mengikuti 2012, **bukan** transkripsi ejaan persis dari foto halaman 2012 yang belum diberikan.
 - Rujukan yang hanya menyebut **bab** tetap ditampilkan tanpa target pasal, dan **tidak boleh** diberi hyperlink pasal rekaan.
 - Semua `translation_indonesian`, Hanzi, pinyin, English James Legge, dan status persetujuan editor **tetap**.
