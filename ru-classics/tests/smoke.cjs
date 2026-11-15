@@ -31,7 +31,7 @@ const context={document:doc,window:page,location,localStorage,console,Event,clea
  fetch:async()=>({ok:true,json:async()=>bundle})};
 vm.runInNewContext(fs.readFileSync(path.join(__dirname,'../reading-normalization.js'),'utf8'),context,{filename:'reading-normalization.js'});
 vm.runInNewContext(fs.readFileSync(path.join(__dirname,'../reference-overlay.js'),'utf8'),context,{filename:'reference-overlay.js'});
-for(const name of ['reference-links.js','same-book-references.js','reading-layout.js','subverses.js'])vm.runInNewContext(fs.readFileSync(path.join(__dirname,'../'+name),'utf8'),context,{filename:name});
+for(const name of ['reference-links.js','same-book-references.js','book-references.js','reading-layout.js','subverses.js'])vm.runInNewContext(fs.readFileSync(path.join(__dirname,'../'+name),'utf8'),context,{filename:name});
 vm.runInNewContext(fs.readFileSync(path.join(__dirname,'../app.js'),'utf8'),context,{filename:'app.js'});
 function click(dataset){handlers.click[0]({target:{closest(){return {dataset,hasAttribute(name){return name==='data-ayat-select'&&Object.hasOwn(dataset,'ayatSelect');}};}}});}
 function change(id,value,dataset={}){handlers.change[0]({target:{id,value,dataset}});}
@@ -258,6 +258,22 @@ setTimeout(()=>{
   assert.match(nodes.main.innerHTML,/Nomor ayat mengikuti MATAKIN/);
   assert.doesNotMatch(nodes.main.innerHTML,/english-reading-section/);
   assert.doesNotMatch(nodes.main.innerHTML,/english-reading-index/);
+  // From Zhong Yong, each inherited S.S. citation opens its Lun Yu target.
+  click({book:'zhongyong'});click({chapter:'sishu.zhongyong.09'});click({passage:'sishu.zhongyong.09.01'});
+  assert.match(nodes.main.innerHTML,/data-passage="sishu\.lunyu\.05\.08"/);
+  assert.match(nodes.main.innerHTML,/data-passage="sishu\.lunyu\.12\.20"/);
+  assert.ok(visibleText(nodes.main.innerHTML).includes('Sabda Suci — Lun Yu V:8; Lun Yu XII:20'));
+  click({passage:'sishu.lunyu.12.20'});
+  assert.equal(location.hash,'read=sishu.lunyu.12.20');
+  // From Lun Yu, A.B. leads to Da Xue; T.S. leads to Zhong Yong.
+  click({book:'lunyu'});click({chapter:'sishu.lunyu.15'});click({passage:'sishu.lunyu.15.24'});
+  assert.match(nodes.main.innerHTML,/data-passage="sishu\.daxue\.10\.04"/);
+  click({book:'lunyu'});click({chapter:'sishu.lunyu.12'});click({passage:'sishu.lunyu.12.16'});
+  assert.match(nodes.main.innerHTML,/data-passage="sishu\.zhongyong\.10\.03"/);
+  // From Da Xue, two S.S. references each open their own pasal.
+  click({book:'daxue'});click({chapter:'sishu.daxue.10'});click({passage:'sishu.daxue.10.04'});
+  assert.match(nodes.main.innerHTML,/data-passage="sishu\.lunyu\.05\.12"/);
+  assert.match(nodes.main.innerHTML,/data-passage="sishu\.lunyu\.15\.24"/);
   console.log('Ru Classics smoke test passed: Paper, 4 books, chapter, reader, Ruby, Indonesian, English');
  }catch(e){console.error(e);process.exitCode=1;}
 },0);
