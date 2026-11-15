@@ -1,5 +1,10 @@
 # Ru Classics — Audit rujukan gabungan batch 06
 
+## Pembaruan status berdasarkan foto MATAKIN 2012 (15 November 2026)
+
+**Status `Lun Yu IX:5` pada laporan ini sudah tidak berlaku sebagai review-only.** Foto cetakan MATAKIN 2012 menunjukkan rujukan **`Lun Yu VII.23`**, bukan `VII ": 23`. Koreksi tampilan sudah diterapkan tanpa mengubah teks sumber PDF 2011, dan metadata telah ditingkatkan menjadi `display-ready`. Lun Yu VII:23 yang sebelumnya tertunda karena pewarisan SS juga sudah selesai pada batch 07. Dengan demikian kasus gabungan batch 06 kini **8 siap / 0 tertahan**. [Rincian bukti foto](matakin-2012-lunyu-09-05-photo-correction-2026-11-15.md). Bagian sejarah audit di bawah dipertahankan sebagai catatan keputusan sebelum bukti baru diterima.
+
+
 **Tanggal:** 15 November 2026 WIB. **Hasil:** 8 kelompok gabungan baru / 18 segmen tercatat, terdiri atas **6 siap ditampilkan** dan **2 perlu review**. Data asal MATAKIN 2011 **tidak diubah**.
 
 
