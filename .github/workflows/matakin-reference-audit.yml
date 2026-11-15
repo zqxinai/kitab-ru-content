@@ -8,6 +8,7 @@ on:
       - 'tests/matakin-reference-overlay.test.cjs'
       - 'ru-classics/reference-overlay.js'
       - 'sources/references/matakin-compound-batch01.json'
+      - 'sources/references/matakin-compound-batch02.json'
       - '.github/workflows/matakin-reference-audit.yml'
   pull_request:
     paths:
@@ -17,6 +18,7 @@ on:
       - 'tests/matakin-reference-overlay.test.cjs'
       - 'ru-classics/reference-overlay.js'
       - 'sources/references/matakin-compound-batch01.json'
+      - 'sources/references/matakin-compound-batch02.json'
       - '.github/workflows/matakin-reference-audit.yml'
   workflow_dispatch:
 
