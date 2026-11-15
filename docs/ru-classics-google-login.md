@@ -4,10 +4,13 @@
 
 ## Dua alamat yang saat ini tersedia
 
-- `/editor/`: **ruang audit editorial lama** yang mengirim usulan melalui GitHub Issues. Tombol "Konfirmasi final" hanya mengirim permintaan; tidak menerbitkan Final.
-- `/ru-classics/#editor`: **ruang kolaborasi baru** yang memakai Google Sign-In dengan Firestore. Hanya editor yang disetujui dapat mengirim usulan; admin memutuskan akun dan revisi. Revisi approved menjadi overlay di website pembaca, **belum otomatis** masuk file sumber, status Final MATAKIN, maupun APK.
+- `/editor/`: **arsip dashboard audit lama** (alur usulan GitHub Issues masih tersedia untuk pekerjaan historis; tidak menetapkan status Final).
+- `/ru-classics/#editor`: **ruang kerja utama** yang kini menampilkan panel audit MATAKIN, Hanzi/pinyin, padanan Inggris tingkat pasal, anotasi terpisah, dan antrean persetujuan editor Firebase. Hanya akun editor yang disetujui dapat membuat usulan. Revisi approved menjadi overlay website pembaca dan **tidak** otomatis masuk sumber resmi, status Final MATAKIN, atau APK.
+- `/` kini mengarahkan pengguna ke editor Firebase utama, sementara arsip tetap dapat dibuka.
 
-Keduanya belum digabung menjadi satu ruang kerja; jangan menyamakan status permohonan GitHub dengan status akun Firestore.
+**Navigasi ayat:** `Kitab → Bab → Pasal → Ayat` tersedia jika terjemahan Indonesia memiliki penanda ayat eksplisit berurutan yang dikenali. Usulan untuk satu ayat disimpan sebagai teks pasal utuh dengan ayat lain dipertahankan; tidak ada perubahan skema Firestore atau aturan akses. Pemilihan ayat tidak berarti batas Hanzi/pinyin maupun Legge sudah disejajarkan; Hanzi ayat hanya dipisahkan pada kasus dengan bukti sumber yang telah dikurasi. Pilihan lain tetap tingkat pasal.
+
+Jangan menyamakan status permohonan GitHub dengan status akun Firestore ataupun status audit final.
 
 ## Pengaktifan
 
