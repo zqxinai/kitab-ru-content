@@ -161,12 +161,18 @@
       ['istana Bokkiong', 'istana Mu Gong - Bokkiong'] // 牧宮
     ],
     // Negeri Cien = 晉/Jin pada pasal ini, bukan 秦/Qin.
+    'sishu.mengzi.08.01': [
+      ['Piet-ting', 'Bi Ying - Piet-ting'] // 畢郢
+    ],
     'sishu.mengzi.08.21': [
       ['Negeri Cien', 'Negeri Jin - Cien'] // 晉
     ],
     'sishu.mengzi.10.03': [
       ['Negeri Cien', 'Negeri Jin - Cien'], // 晉
-      ['Negeri Pi', 'Negeri Bi - Pi'] // 費: 朱熹費音祕, bì
+      ['Negeri Pi', 'Negeri Bi - Pi'], // 費: 朱熹費音祕, bì
+      ['Gak- cing Kiu', 'Yuezheng Qiu - Gak- cing Kiu'], // 樂正裘
+      ['Bok Tiong', 'Mu Zhong - Bok Tiong'], // 牧仲
+      ['Hubungan Hiancu', 'Hubungan Meng Xianzi - Hiancu'] // 孟獻子
     ],
     'sishu.mengzi.14.23': [
       ['Negeri Cien', 'Negeri Jin - Cien'] // 晉人
@@ -191,9 +197,9 @@
       ['Bing Tiongcu', 'Meng Zhongzi - Bing Tiongcu'] // 孟仲子
     ],
     'sishu.mengzi.06.07': [
-      // Dalam terjemahan MATAKIN ini keterangan historis bukan bagian Hanzi inti;
-      // anotasi Zhu Xi: 段干木魏文侯時人, jadi 魏 = Wei (bukan 衛).
-      ['Negeri Gwi', 'Negeri Wei - Gwi']
+      // Nama tambahan dalam anotasi Zhu Xi: 段干木魏文侯時人
+      ['Negeri Gwi', 'Negeri Wei - Gwi'], // 魏
+      ['Yang Ho', 'Yang Huo - Yang Ho'] // 陽貨, berbeda 陽虎 Yang Hu
     ],
     'sishu.mengzi.06.03': [
       ['Ciu Siau bertanya', 'Zhou Xiao - Ciu Siau bertanya'], // 周霄
