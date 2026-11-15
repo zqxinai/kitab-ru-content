@@ -167,13 +167,7 @@
     const t=e.target.closest('button');if(!t)return;
     if(t.hasAttribute('data-ayat-select')){
       const n=Number(t.dataset.ayatSelect);
-      state.ayat=state.ayat===n?0:n;
-      document.querySelectorAll('.translation-verse[data-ayat]').forEach(el=>
-        el.classList.toggle('ayat-active',Number(el.dataset.ayat)===state.ayat));
-      document.querySelectorAll('[data-ayat-select]').forEach(el=>
-        el.setAttribute('aria-pressed',String(Number(el.dataset.ayatSelect)===state.ayat)));
-      const propose=document.querySelector('[data-action="propose"]');
-      if(propose)propose.textContent=state.ayat?'Usulkan revisi Ayat '+state.ayat:'Usulkan revisi teks';
+      navigate('reader',state.id,state.ayat===n?0:n);
       return;
     }
     if(t.dataset.nav){if(t.dataset.nav==='books')state.book=null;navigate(t.dataset.nav);return;}
@@ -196,7 +190,31 @@
     }
   });
   document.addEventListener('input',e=>{if(e.target.id==='search-input'){state.search=e.target.value;renderSearchResults();}});
-  document.addEventListener('change',e=>{if(e.target.id==='search-book'){state.filter=e.target.value;renderSearchResults();}if(e.target.dataset.setting){state.settings[e.target.dataset.setting]=e.target.checked;save();if(state.tab==='reader')render();}});
+  document.addEventListener('change',e=>{
+    const target=e.target,id=target.id,value=target.value;
+    if(id==='jump-book'){
+      const chapter=state.chapters.find(c=>c.book===value);
+      if(chapter?.passages?.length)navigate('reader',chapter.passages[0].id);
+      return;
+    }
+    if(id==='jump-chapter'){
+      const chapter=state.chapters.find(c=>c.id===value);
+      if(chapter?.passages?.length)navigate('reader',chapter.passages[0].id);
+      return;
+    }
+    if(id==='jump-passage'||id==='chapter-passage'){
+      if(value&&state.map.has(value))navigate('reader',value);
+      return;
+    }
+    if(id==='jump-ayat'){
+      navigate('reader',state.id,Number(value)||0);
+      return;
+    }
+    if(target.dataset?.ayatFor){
+      if(value&&state.map.has(target.dataset.ayatFor))navigate('reader',target.dataset.ayatFor,Number(value)||0);
+      return;
+    }
+    if(e.target.id==='search-book'{state.filter=e.target.value;renderSearchResults();}if(e.target.dataset.setting){state.settings[e.target.dataset.setting]=e.target.checked;save();if(state.tab==='reader')render();}});
   document.addEventListener('click',e=>{const t=e.target.closest('[data-theme-value]');if(t){setTheme(t.dataset.themeValue);fillSettings();render();}});
   function fillSettings(){document.getElementById('theme-options').innerHTML=[['paper','Paper'],['light','Light'],['dark','Dark']].map(([k,label])=>'<button class="'+(state.theme===k?'active':'')+'" data-theme-value="'+k+'">'+label+'</button>').join('');
     document.getElementById('reading-options').innerHTML=[['hanzi','Hanzi'],['pinyin','Pinyin Ruby'],['indo','Indonesia'],['english','English']].map(([k,label])=>'<label class="toggle-row">'+label+'<input type="checkbox" data-setting="'+k+'" '+(state.settings[k]?'checked':'')+'></label>').join('');document.getElementById('font-label').textContent=state.settings.font+' px';}
