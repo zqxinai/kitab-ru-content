@@ -59,6 +59,38 @@ for(const p of rows){
   }
 }
 function list(m){return [...m.values()].sort((a,b)=>b.count-a.count||a.term.localeCompare(b.term));}
+// Human review ledger for the specific spelling forms observed across 965
+// passages. These remain in the raw candidate lists for independent inspection.
+// Adding new names to these sets without a documented linguistic reason is forbidden.
+const INDONESIAN_HYPHEN = new Set([
+ 'Kitab-Kitab','Rajamuda-rajamuda','Kitab-kitab','Hati-hatilah','Tuhan-lah',
+ 'Adat-istiadat','Ajaran-ajaranNya','Alang-alang','Banyak-banyaklah',
+ 'Barang-barang','Batas-batas','Beliau-Beliau','Berhati-hati','Cara-cara',
+ 'Cinta-Kasih','Gotong-royong','Kadang-kadang','Kata-katamu','Kawan-kawan',
+ 'Ke-empat','Kitab-kitabnya','Kitab-Kitabnya','Lebih-lebih','Masing-masing',
+ 'Mula-mula','Murid-muridKu','Napsu-napsu','Nasehat-nasehatnya','Negeri-negeri',
+ 'Orang-orangpun','Panglima-panglima','Pasar-pasar','Pembesar-pembesar',
+ 'Rumah-rumah','Saudara-saudaraku','Setinggi-tinggi','Sia-sia',
+ 'Sia-siakanlah','Was-was','YME-lah'
+]);
+const CITATION_FORMAT = new Set(['Si-kingIII']);
+const INDONESIAN_VERBS = new Set([
+ 'Memberanikan','Liang','Mohon','Harus','Perampok','Setelah','Siapa','YME',
+ 'Aku','Asal','Bijaksana','Dalam','Dapat','Demikianlah','Hamba','Hendak',
+ 'Janganlah','Kasihlah','Kusirnya','Makna','Saya','Sebelas','Sekali',
+ 'Siapakah','Suka','Tentang'
+]);
+const INDONESIAN_PARENTHESES = new Set([
+ 'Kebajikannya','Anugerah','Baron','Bathin','Count','Duke','Earl',
+ 'Genta','Gotong-royong','Hasrat','Karunia','Kuil','Marquis',
+ 'Pujangga','Pungutan','Sastrawan','Susilawan','Tujuan','Upeti'
+]);
+function excluded(map,set){return list(map).filter(item=>set.has(item.term));}
+const unreviewed=[
+ ...list(hyphen).filter(x=>!INDONESIAN_HYPHEN.has(x.term)&&!CITATION_FORMAT.has(x.term)).map(x=>({...x,category:'hyphen'})),
+ ...list(short).filter(x=>!INDONESIAN_VERBS.has(x.term)).map(x=>({...x,category:'single-before-verb'})),
+ ...list(paren).filter(x=>!INDONESIAN_PARENTHESES.has(x.term)).map(x=>({...x,category:'parenthetical'}))
+];
 const result={
  schema:'ru-classics.unseeded-name-candidates.v1',
  description:'Unseeded source-based orthography candidates; NOT proven Hokkian until Hanzi compared.',
@@ -68,7 +100,10 @@ const result={
 const output=path.join(__dirname,'..','audit','reports','unseen-hokkian-candidates.json');
 fs.mkdirSync(path.dirname(output),{recursive:true});
 fs.writeFileSync(output,JSON.stringify(result,null,2)+'\n');
-console.log('UNSEEDED AUDIT SUMMARY '+JSON.stringify({passages:rows.length,hyphenated:hyphen.size,verbs:short.size,parentheses:paren.size}));
+console.log('UNSEEDED AUDIT SUMMARY '+JSON.stringify({passages:rows.length,hyphenated:hyphen.size,verbs:short.size,parentheses:paren.size,unreviewed:unreviewed.length,citationIssues:result.citationFormatToReview.length}));
 for(const [label,items]of [['HYPHEN',result.hyphenated],['VERB',result.singleNameBeforeVerb],['PAREN',result.parenthetical]]){
  for(const t of items.slice(0,90))console.log(label+' '+t.count+'x '+t.term+' ['+t.refs.join(', ')+'] '+t.sample.slice(0,130));
 }
+
+for(const item of unreviewed)console.log('UNREVIEWED '+item.category+' '+item.term+' '+item.refs.join(','));
+if(process.argv.includes('--strict') && unreviewed.length)process.exitCode=1;
