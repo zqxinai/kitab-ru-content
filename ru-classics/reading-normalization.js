@@ -143,6 +143,26 @@
   // Kolasi khusus berdasarkan Hanzi. Satu ejaan Hokkian bisa mewakili
   // aksara berbeda: Chien => 晉 (Jin) atau 秦 (Qin); Swan => 僎 atau 宣.
   const CONTEXTUAL = Object.freeze({
+    'sishu.mengzi.06.10': [
+      ['Khong Ciang', 'Kuang Zhang - Khong Ciang'], // 匡章
+      ['Tien Tiongcu', 'Chen Zhongzi - Tien Tiongcu'], // 陳仲子
+      ['didaerah O-ling', 'didaerah Wuling - O-ling'], // 於陵; 於音烏, Zhu Xi
+      ['di O-ling', 'di Wuling - O-ling'], // 於陵
+      ['daerah Khap', 'daerah Ge - Khap'], // 蓋, 食采於蓋 (Zhao Qi)
+      ['perampok Cik', 'perampok Zhi - Cik'], // 盜跖
+      ['Tiongcu-lah', 'Zhongzi - Tiongcu-lah'], // 仲子
+      ['apakah Tiongcu benar-benar', 'apakah Zhongzi - Tiongcu benar-benar'], // 仲子
+      ['yang ditempati Tiongcu itu', 'yang ditempati Zhongzi - Tiongcu itu'], // 仲子
+      ['Tiongcu, kiranya', 'Zhongzi - Tiongcu, kiranya'], // 仲子
+      ['Tiongcu adalah', 'Zhongzi - Tiongcu adalah'], // 仲子
+      ['Tiongcu ini', 'Zhongzi - Tiongcu ini'], // 仲子
+    ],
+    'sishu.mengzi.09.05': [
+      ['daerah Lam Hoo', 'daerah Nanhe - Lam Hoo'], // 南河
+    ],
+    'sishu.daxue.04.04': [
+      ['tebing sungai Ki', 'tebing sungai Qi - Ki'], // 淇, not 沂
+    ],
     'sishu.mengzi.04.05': [
       ['Kota Ling-khiu', 'Kota Lingqiu - Ling-khiu'], // 靈丘
     ],
@@ -276,6 +296,7 @@
       ['Raja Kiat dan Tiu sendiri', 'Raja Jie - Kiat dan Zhou - Tiu sendiri'] // 桀與紂
     ],
     'sishu.mengzi.09.07': [
+      ['kota Pok', 'kota Bo - Pok'], // 亳
       ['daerah Yu Sien', 'daerah Youshen - Yu Sien'], // Hanzi verified context
       ['Raja He Kiat', 'Raja Xia - He Jie - Kiat'], // 夏桀
       ['istana Bokkiong', 'istana Mu Gong - Bokkiong'] // 牧宮
@@ -416,6 +437,7 @@
       ['daerah Long-ya', 'daerah Langya - Long-ya']
     ],
     'sishu.mengzi.02.05': [
+      ['memerintah di daerah Ki', 'memerintah di daerah Qi - Ki'], // 岐
       ['Bukit Ki', 'Bukit Qi - Ki']
     ],
     'sishu.mengzi.01.02': [
@@ -443,6 +465,7 @@
       ['orang Cee', 'orang Qi - Cee'] // 齊
     ],
     'sishu.mengzi.09.09': [
+      ['daerah Khut', 'daerah Qu - Khut'], // 屈產
       ['daerah Swi-kik', 'daerah Chuiji - Swi-kik'], // Hanzi verified context
       ['Pik-li Hee', 'Baili Xi - Pik-li Hee'], // 百里奚
       ['Kiong Ciki', 'Gong Zhiqi - Kiong Ciki'], // 宮之奇
@@ -455,6 +478,8 @@
       ['Negeri Khik', 'Negeri Guo - Khik'] // 虢
     ],
     'sishu.mengzi.10.02': [
+      ['Daerah Hu-yong', 'Daerah Fuyong - Hu-yong'], // 附庸; political territory, not place name
+      ['Pak-kiong Ki', 'Beigong Qi - Pak-kiong Ki'], // 北宮錡
       ['Tian (Tian - Thian)-cu', 'Tianzi - Thian-cu'], // 天子
       ['Kong (Duke)', 'Gong - Kong (Duke)'], // 公
       ['Ho (Marquis)', 'Hou - Ho (Marquis)'], // 侯
