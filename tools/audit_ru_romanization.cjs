@@ -106,6 +106,6 @@ else {
   console.log('Kandidat nama yang perlu pemeriksaan kontekstual: '+unresolved.length);
   for (const row of unresolved.slice(0,80)) console.log(row.count+'x '+row.term+' ['+row.passages.join(', ')+']');
   console.log('Kandidat lokasi: '+unpairedPlaces.length+'; nama orang tanpa gelar: '+unpairedPeople.length);
-  for(const [label,rows] of [['TEMPAT',unpairedPlaces],['ORANG',unpairedPeople]]) for(const row of rows.slice(0,35)) console.log(label+' '+row.count+'x '+row.term+' ['+row.passages.join(', ')+']');
+  for(const [label,rows] of [['TEMPAT',unpairedPlaces],['ORANG',unpairedPeople]]) for(const row of rows.slice(0,150)) console.log(label+' '+row.count+'x '+row.term+' ['+row.passages.join(', ')+']');
 }
 if (passages !== 965) process.exitCode = 1;
