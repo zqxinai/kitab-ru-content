@@ -2,6 +2,16 @@
 (function (root) {
   'use strict';
   const PAIRS = Object.freeze([
+    ['Cu-tiang', 'Zizhang'], // 子張
+    ['Cu-yu', 'Ziyou'], // 子游
+    ['Cai-ngo', 'Zai Wo'], // 宰我
+    ['Gan Yan', 'Yan Yuan'], // 顏淵 (juga rujukan Yan Hui)
+    ['Ko-cu', 'Gaozi'], // 告子
+    ['Tiong-kiong', 'Zhonggong'], // 仲弓
+    ['Suma Giu', 'Sima Niu'], // 司馬牛
+    ['Bing Bu-pik', 'Meng Wubo'], // 孟武伯
+    ['Tien Khong', 'Chen Kang'], // 陳亢
+    ['Bin Cukhian', 'Min Ziqian'], // 閔子騫
     ['Kongtocu', 'Gongduzi'], // 公都子
     ['Gakcingcu', 'Yuezhengzi'], // 樂正子
     ['Pik-kwi', 'Bai Gui'], // 白圭
@@ -252,6 +262,24 @@
     'sishu.mengzi.13.36': [
       ['kota Hwan', 'kota Fan - Hwan'] // toponim diverifikasi dengan Hanzi sumber
     ],
+    'sishu.lunyu.03.06': [
+      ['Gunung Thai', 'Gunung Taishan - Thai']
+    ],
+    'sishu.lunyu.06.09': [
+      ['daerah Pi', 'daerah Bi - Pi']
+    ],
+    'sishu.lunyu.11.25': [
+      ['daerah Pi', 'daerah Bi - Pi']
+    ],
+    'sishu.lunyu.16.01': [
+      ['daerah Pi', 'daerah Bi - Pi'],
+      ['daerah Cwan-ji', 'daerah Zhuanyu - Cwan-ji'],
+      ['daerah Cwan Ji', 'daerah Zhuanyu - Cwan Ji'],
+      ['daerah Cwanji', 'daerah Zhuanyu - Cwanji']
+    ],
+    'sishu.lunyu.17.05': [
+      ['daerah Pi', 'daerah Bi - Pi']
+    ],
     'sishu.mengzi.01.02': [
       ['Kitab Thong Si', 'Kitab Tang Shi - Thong Si'] // 湯誓
     ],
@@ -424,7 +452,7 @@
     // 禹 (Yu) has the one-letter legacy name 'I': replace only verified name contexts.
     result = result.replace(/\bRaja I(?=$|[^\p{L}-])/gu, 'Raja Yu - I');
     // Nama diri dan istilah dengan Hanzi yang telah dikolasi dalam pasal terkait.
-    result = result.replace(/\bNegeri Tien\b/g, 'Negeri Chen - Tien'); // 陳
+    result = result.replace(/\b([Nn]egeri) Tien\b/g, (_,prefix) => prefix + ' Chen - Tien'); // 陳
     result = result.replace(/\bDinasti Ien\b/g, 'Dinasti Yin - Ien'); // 殷
     result = result.replace(/\bDinasti He\b/g, 'Dinasti Xia - He'); // 夏
     result = result.replace(/\bsuku bangsa Tik\b/g, 'suku bangsa Di - Tik'); // 狄
