@@ -147,7 +147,8 @@ test('Jin 晉 and Qin 秦, classical title ranks, and personal names retain thei
   assert.match(gan.display,/Hui - Hwee \(Gan Yan\)/);
   const unclear=read('sishu.daxue.11.14');
   assert.match(unclear.hanzi,/《秦誓》/);
-  assert.match(unclear.display,/Pangeran Chien/,'translator phrasing awaits edition review');
+  assert.match(unclear.source,/Pangeran Chien/,'MATAKIN archived text stays untouched');
+  assert.match(unclear.display,/Pangeran Qin - Chien/,'reading overlay accompanies Chien without rewriting MATAKIN source');
   const bo=read('sishu.lunyu.18.11');
   assert.match(bo.display,/Bo Gua - Pik Khwat|Pik-kwat/,
     'Do not overwrite already verified 2012 or variant spelling pending editorial review');
