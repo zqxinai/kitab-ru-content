@@ -17,10 +17,10 @@ const expectedTargets={
  'sishu.daxue.11.23':'sishu.mengzi.01.01',
  'sishu.mengzi.01.01':'sishu.daxue.11.23'
 };
-test('Sixty-nine exact references preserve original sources and resolve only evidenced targets',()=>{
+test('Seventy-five exact references preserve original sources and resolve only evidenced targets',()=>{
  assert.equal(chapters.length,78);
  assert.equal(byId.size,965);
- assert.equal(overlay.records.length,69);
+ assert.equal(overlay.records.length,75);
  // Historical batch 01 is immutable; batch 02 allows multiple references in one passage.
  for(const [sourceId,targetId] of Object.entries(expectedTargets))
   assert.ok(overlay.records.some(r=>r.passage_id===sourceId&&r.target_id===targetId),'legacy mapping changed: '+sourceId);
@@ -158,6 +158,51 @@ test('Seven compound citations are individually segmented; six display, one rema
   originalIds.add(entry.passage_id);
  }
  assert.equal(originalIds.size,7);
+});
+test('Batch 06 has six display-ready compounds, two review-only cases, and never invents subverse links',()=>{
+ const data=read('sources/references/matakin-compound-batch02.json');
+ assert.equal(data.schema,'ru-classics.compound-references.v1');
+ assert.deepEqual(data.book_aliases,{SS:'lunyu',AB:'daxue',BC:'mengzi',TS:'zhongyong'});
+ assert.equal(data.entries.length,8);
+ assert.equal(data.entries.filter(e=>e.display_status==='display-ready').length,6);
+ assert.equal(data.entries.filter(e=>e.display_status==='review-only').length,2);
+ assert.equal(data.entries.reduce((n,e)=>n+e.components.length,0),18);
+ for(const entry of data.entries){
+  const source=byId.get(entry.passage_id);
+  assert.ok(source,'source ID not present in MATAKIN chapters: '+entry.passage_id);
+  assert.equal(source.translation_indonesian.split(entry.source).length,2,'expected exactly one source occurrence: '+entry.passage_id);
+  assert.equal(entry.printed_2012_attested,false,'no unsupported print verification');
+  assert.equal(new Set(entry.components.map(c=>c.order)).size,entry.components.length);
+  assert.ok(entry.review_note);
+  for(const seg of entry.components){
+   assert.ok(entry.source.includes(seg.source_segment),'reference fragment absent: '+seg.source_segment);
+   assert.ok(['lunyu','daxue','mengzi','zhongyong'].includes(seg.book_id));
+   assert.equal(seg.subverse_target_id,null,'subverse target has not been proven');
+   assert.ok(seg.target_passage_ids.length>0);
+   for(const id of seg.target_passage_ids){
+    assert.ok(byId.has(id),'segment target missing: '+id);
+    assert.ok(id.startsWith('sishu.'+seg.book_id+'.'),'wrong-book segment target: '+id);
+   }
+  }
+  const found=overlay.records.filter(r=>r.passage_id===entry.passage_id&&r.source===entry.source);
+  if(entry.display_status==='display-ready'){
+   assert.equal(found.length,1,'missing display overlay for '+entry.passage_id);
+   assert.equal(found[0].display,entry.display);
+   assert.equal(found[0].target_id,null,'compound entry cannot have one synthetic link');
+   assert.ok(overlay.present(entry.passage_id,source.translation_indonesian).includes(entry.display));
+  }else{
+   assert.equal(entry.display_status,'review-only');
+   assert.equal(entry.display,null);
+   assert.equal(found.length,0,'uncertain editorial citation must not have an overlay');
+   assert.ok(overlay.present(entry.passage_id,source.translation_indonesian).includes(entry.source));
+  }
+ }
+ const malformed=data.entries.find(x=>x.passage_id==='sishu.lunyu.09.05');
+ assert.ok(malformed.source.includes('VII ": 23'));
+ assert.equal(malformed.display_status,'review-only');
+ const slash=data.entries.find(x=>x.passage_id==='sishu.lunyu.07.02');
+ assert.equal(slash.components[1].source_segment,'Bc. IIA: 2/19');
+ assert.equal(slash.components[1].subverse_target_id,null);
 });
 test('The exact legacy references remain intact in every source and the overlay changes only display',()=>{
  for(const r of overlay.records){
