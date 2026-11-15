@@ -258,6 +258,28 @@ setTimeout(()=>{
   assert.match(nodes.main.innerHTML,/Nomor ayat mengikuti MATAKIN/);
   assert.doesNotMatch(nodes.main.innerHTML,/english-reading-section/);
   assert.doesNotMatch(nodes.main.innerHTML,/english-reading-index/);
+  // Screenshot regression: names without a ruler title must be Pinyin-Hokkian
+  // in the actual rendered ayat, not only in the normalization helper.
+  click({book:'mengzi'});click({chapter:'sishu.mengzi.10'});click({passage:'sishu.mengzi.10.03'});
+  const actualNames=visibleText(nodes.main.innerHTML);
+  for(const name of [
+    'Meng Xianzi - Bing Hiancu', 'Yuezheng Qiu - Gak-cing Kiu',
+    'Mu Zhong - Bok Tiong', 'Meng Xianzi - Hiancu',
+    'Yan Ban - Gan Puan','Wang Shun - Ong Sun',
+    'Chang Xi - Tiang Siet','Hai Tang - Hai Tong'
+  ])assert.ok(actualNames.includes(name),'Reader must pair person '+name);
+  assert.ok(actualNames.includes('Negeri Bi - Pi'),'Reader must pair 費 place name');
+  assert.ok(actualNames.includes('Negeri Jin - Cien'),'Reader must pair 晉 place name');
+  click({passage:'sishu.mengzi.02.14'});
+  assert.ok(visibleText(nodes.main.innerHTML).includes('Gunung Qishan - Ki'),
+    '岐山 is Qishan, not 箕山 Jishan');
+  click({passage:'sishu.mengzi.09.06'});
+  assert.ok(visibleText(nodes.main.innerHTML).includes('Gunung Jishan - Ki'),
+    '箕山 is Jishan, not 岐山 Qishan');
+  click({passage:'sishu.mengzi.12.05'});
+  assert.ok(visibleText(nodes.main.innerHTML).includes('kota Zou - Co'),
+    '鄒 place names need Pinyin, even without Negeri title');
+
   // From Zhong Yong, each inherited S.S. citation opens its Lun Yu target.
   click({book:'zhongyong'});click({chapter:'sishu.zhongyong.09'});click({passage:'sishu.zhongyong.09.01'});
   assert.match(nodes.main.innerHTML,/data-passage="sishu\.lunyu\.05\.08"/);
