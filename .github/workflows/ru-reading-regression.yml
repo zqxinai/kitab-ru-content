@@ -8,12 +8,14 @@ on:
       - "ru-classics/index.html"
       - "sishu/chapters/**"
       - "tests/ru-classics-reading*.test.js"
+      - "tools/audit_ru_romanization.cjs"
       - ".github/workflows/ru-reading-regression.yml"
   pull_request:
     paths:
       - "ru-classics/reading-normalization.js"
       - "sishu/chapters/**"
       - "tests/ru-classics-reading*.test.js"
+      - "tools/audit_ru_romanization.cjs"
       - ".github/workflows/ru-reading-regression.yml"
 jobs:
   reading-regression:
@@ -25,6 +27,15 @@ jobs:
           node-version: '22'
       - name: Validate all four books and their names
         run: node --test tests/ru-classics-reading-normalization.test.js tests/ru-classics-reading-corpus.test.js
+      - name: Inventory unpaired title candidates across all passages
+        run: |
+          node tools/audit_ru_romanization.cjs --json > ru-romanization-candidates.json
+          node -e "const x=require('./ru-romanization-candidates.json'); console.log('965 passages audited; '+x.unresolvedTitleCandidates+' historical-title candidates remain to be reviewed')"
+      - name: Save candidate inventory for editorial review
+        uses: actions/upload-artifact@v4
+        with:
+          name: ru-hokkian-review-candidates
+          path: ru-romanization-candidates.json
       - name: Assemble reader test bundle
         run: python tools/build_ru_classics_web.py --source dist/sishu-content.json --alignment dist/sishu-english-alignment.json --splits dist/sishu-english-passage-splits.json --output ru-classics/data/sishu.json
       - name: Reader UI smoke test
