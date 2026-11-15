@@ -37,30 +37,30 @@ test('Mengzi-specific volume letter reference is only a candidate',()=>{
  assert.equal(classify('II.5.4.4','mengzi').kind,'ambiguous-unlabeled');
  assert.equal(classify('2','mengzi'),null);
 });
-test('Full MATAKIN reference inventory combines 15 compound groups from both batches',()=>{
+test('Full MATAKIN reference inventory combines 29 compound groups across three batches',()=>{
  const a=scan();
  assert.equal(a.passage_count,965);
- assert.equal(a.compound_segmented,15);
- assert.equal(a.compound_display_ready,12);
- assert.equal(a.compound_review_only,3);
+ assert.equal(a.compound_segmented,29);
+ assert.equal(a.compound_display_ready,28);
+ assert.equal(a.compound_review_only,1);
  const ready=a.all_references.find(x=>x.passage_id==='sishu.lunyu.02.19'&&x.original_reference==='(T.S. XIX: 1; S.S. III: 21)');
  assert.equal(ready?.segmentation_status,'display-ready');
  assert.deepEqual(ready?.segments.map(x=>x.book_id),['zhongyong','lunyu']);
  assert.deepEqual(ready?.segments.flatMap(x=>x.target_passage_ids),['sishu.zhongyong.20.01','sishu.lunyu.03.21']);
  const complex=a.all_references.find(x=>x.passage_id==='sishu.lunyu.02.05'&&x.original_reference==='(S.S. I:9; III: 1,2; XIX:5; Bc. IIIA: 2)');
- assert.equal(complex?.segmentation_status,'review-only');
+ assert.equal(complex?.segmentation_status,'display-ready');
  assert.deepEqual(complex?.segments.map(x=>x.book_id),['lunyu','lunyu','lunyu','mengzi']);
  assert.equal(complex?.segments.flatMap(x=>x.target_passage_ids).length,5);
  assert.ok(complex.segments.every(x=>x.subverse_target_id===null));
 });
-test('Batch 06 records two uncertain cases and leaves slash-based subverse targets unresolved',()=>{
+test('Batch 06 keeps malformed text under review and resolves inherited-book citations',()=>{
  const data=scan();
  const malformed=data.all_references.find(x=>x.passage_id==='sishu.lunyu.09.05'&&x.original_reference.includes('VII ": 23'));
  assert.equal(malformed?.segmentation_status,'review-only');
  assert.deepEqual(malformed?.segments.map(x=>x.book_id),['lunyu','lunyu','lunyu','mengzi']);
  assert.ok(malformed.segments.every(x=>x.subverse_target_id===null));
  const inheritance=data.all_references.find(x=>x.passage_id==='sishu.lunyu.07.23'&&x.original_reference==='(S.S. III: 24; IX: 5)');
- assert.equal(inheritance?.segmentation_status,'review-only');
+ assert.equal(inheritance?.segmentation_status,'display-ready');
  assert.equal(inheritance?.segments.length,2);
  const slash=data.all_references.find(x=>x.passage_id==='sishu.lunyu.07.02'&&x.original_reference==='(S.S. IX: 16; Bc. IIA: 2/19)');
  assert.equal(slash?.segmentation_status,'display-ready');
@@ -70,7 +70,7 @@ test('Batch 06 records two uncertain cases and leaves slash-based subverse targe
 test('Compound rujukan means related content rather than an exact verbal quotation',()=>{
  const all=scan();
  const entries=all.all_references.filter(x=>x.segmentation_status);
- assert.equal(entries.length,15);
+ assert.equal(entries.length,29);
  assert.ok(entries.every(x=>x.reference_intent==='content-related'));
  assert.ok(entries.every(x=>x.verbatim_match_required===false));
  assert.ok(entries.every(x=>x.relation_verification.includes('accepted-on-MATAKIN-authority')));
@@ -84,6 +84,27 @@ test('Compound rujukan means related content rather than an exact verbal quotati
  assert.equal(two.segments[1].subverse_number,19);
  const twentyEight=entries.find(x=>x.passage_id==='sishu.lunyu.09.09');
  assert.equal(twentyEight.segments[1].subverse_number,28);
+});
+test('Batch 07 inherited-book references are indexed without thematic re-review',()=>{
+ const audit=scan();
+ const refs=[
+  'sishu.lunyu.01.08','sishu.lunyu.03.21','sishu.lunyu.03.24',
+  'sishu.lunyu.05.02','sishu.lunyu.05.04','sishu.lunyu.09.16',
+  'sishu.lunyu.12.20','sishu.lunyu.14.20','sishu.lunyu.20.02',
+  'sishu.lunyu.14.36','sishu.lunyu.13.21','sishu.lunyu.13.26',
+  'sishu.lunyu.11.12','sishu.lunyu.14.01'
+ ];
+ for(const id of refs){
+  const found=audit.all_references.find(r=>r.passage_id===id&&r.segments);
+  assert.ok(found,'missing index for '+id);
+  assert.equal(found.segmentation_status,'display-ready');
+  assert.equal(found.reference_authority,'MATAKIN');
+  assert.equal(found.relationship_review_required,false);
+  assert.ok(found.segments.length>=2);
+ }
+ const still=audit.all_references.filter(r=>r.segmentation_status==='review-only');
+ assert.equal(still.length,1);
+ assert.equal(still[0].passage_id,'sishu.lunyu.09.05');
 });
 test('All MATAKIN cross-reference records signify related contents regardless of quote wording',()=>{
  const audit=scan();
