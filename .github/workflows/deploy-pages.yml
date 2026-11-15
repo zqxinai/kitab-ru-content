@@ -51,6 +51,29 @@ jobs:
           node ru-classics/tests/smoke.cjs
           node --test ru-classics/tests/subverses.cjs
           node --test tests/matakin-reference-overlay.test.cjs
+      - name: Configure optional Google editor login
+        env:
+          RU_FIREBASE_CONFIG_JSON: ${{ vars.RU_FIREBASE_CONFIG_JSON }}
+        run: |
+          python - <<'PY'
+          import json, os
+          from pathlib import Path
+          raw = os.environ.get('RU_FIREBASE_CONFIG_JSON', '').strip()
+          if not raw:
+              print('Firebase belum terhubung; pembaca tetap publik, login editor nonaktif.')
+          else:
+              cfg = json.loads(raw)
+              if not isinstance(cfg, dict) or not all(isinstance(cfg.get(k), str) and cfg[k] for k in ('apiKey','authDomain','projectId','appId')):
+                  raise ValueError('Firebase web config tidak lengkap')
+              # Only public web-app config belongs in the downloadable site.
+              if any(k not in ('apiKey','authDomain','projectId','appId','measurementId','storageBucket','messagingSenderId','databaseURL') for k in cfg):
+                  raise ValueError('Tidak boleh menyertakan field Firebase yang tidak dikenal dalam config publik')
+              Path('ru-classics/firebase-config.js').write_text(
+                  'window.RU_FIREBASE_CONFIG = ' + json.dumps(cfg, ensure_ascii=False) + ';\n',
+                  encoding='utf-8'
+              )
+              print('Google login config ditambahkan ke pembaca publik (bukan bukti login berhasil).')
+          PY
       - name: Configure Pages
         uses: actions/configure-pages@v5
         with:
