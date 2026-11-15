@@ -58,6 +58,8 @@ function scan(){
        results.push({
          passage_id:p.id,book:c.book,source_file:item.path,
          original_reference:m[0],offset:m.index,
+         // MATAKIN cross-references signal related teaching/content, not an exact quote.
+         reference_intent:'content-related',verbatim_match_required:false,
          ...classification,
          ...(matched?{
            segmentation_status:matched.display_status,
@@ -84,7 +86,7 @@ function scan(){
  const counts=Object.fromEntries([...new Set(results.map(x=>x.kind))].sort().map(x=>[x,results.filter(y=>y.kind===x).length]));
  return {
   schema:'ru-classics.reference-audit.v1',
-  policy:'2011 transcript preserved; MATAKIN 2012 full book names in same-book citations',
+  policy:'2011 transcript preserved; MATAKIN references denote related content (not required verbatim) and slash N denotes ayat; 2012-style full book names in display',
   passage_count:count,reviewed_references:results.length,counts,
   compound_segmented:results.filter(r=>r.segments).length,
   compound_display_ready:results.filter(r=>r.segmentation_status==='display-ready').length,
