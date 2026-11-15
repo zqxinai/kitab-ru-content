@@ -19,8 +19,6 @@
     ['Ho-chik', 'Hou Ji'], // 后稷
     ['Cu-siok Gi', 'Zishu Yi'], // 子叔疑
     ['Hwan Tau', 'Huan Dou'], // 驩兜
-    ['Sambiau', 'San Miao'], // 三苗
-    ['Sam-gwi', 'San Wei'], // 三危
     ['Yu-ciu', 'Youzhou'], // 幽州
     ['Siau Pwan', 'Xiao Bian'], // 小弁
     ['Khai Hong', 'Kai Feng'], // 凱風
@@ -609,7 +607,6 @@
     ],
     'sishu.mengzi.09.03': [
       ['Chiang', 'Xiang - Chiang'], // 象; Shun's brother
-      ['Gunung I', 'Gunung Yushan - I'], // 羽山
       ['menghukum Kun di', 'menghukum Gun - Kun di'], // 鯀
       ['daerah Sambiau', 'daerah Sanmiao - Sambiau'], // Hanzi verified context
       ['Sam-gwi', 'Sanwei - Sam-gwi'], // Hanzi verified context
