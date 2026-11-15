@@ -10,6 +10,7 @@ on:
       - 'sources/references/matakin-compound-batch01.json'
       - 'sources/references/matakin-compound-batch02.json'
       - 'sources/references/matakin-compound-batch03.json'
+      - 'sources/references/matakin-single-batch08.json'
       - '.github/workflows/matakin-reference-audit.yml'
   pull_request:
     paths:
@@ -21,6 +22,7 @@ on:
       - 'sources/references/matakin-compound-batch01.json'
       - 'sources/references/matakin-compound-batch02.json'
       - 'sources/references/matakin-compound-batch03.json'
+      - 'sources/references/matakin-single-batch08.json'
       - '.github/workflows/matakin-reference-audit.yml'
   workflow_dispatch:
 
