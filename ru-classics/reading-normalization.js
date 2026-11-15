@@ -2,6 +2,50 @@
 (function (root) {
   'use strict';
   const PAIRS = Object.freeze([
+    ['Siau-lian', 'Shao Lian'], // 少連
+    ['Gi-tiong', 'Yu Zhong'], // 虞仲
+    ['I-iet', 'Yi Yi'], // 夷逸
+    ['Tiang-chi', 'Chang Ju'], // 長沮
+    ['Kiat-lik', 'Jie Ni'], // 桀溺
+    ['Kia-tlik', 'Jie Ni'], // 桀溺 variant
+    ['Hwan-twee', 'Huan Tui'], // 桓魋
+    ['Jiam-yong', 'Ran Yong'], // 冉雍
+    ['Bu-sing', 'Wucheng'], // 武城
+    ['Pik-gi', 'Bo Yu'], // 伯魚
+    ['Hwan-su', 'Fan Xu'], // 樊須
+    ['Chiet-tiau Khai', 'Qi Diao Kai'], // 漆雕開
+    ['Bing Ci-hwan', 'Meng Zhifan'], // 孟之反
+    ['Ho-hiang', 'Hu Xiang'], // 互鄉
+    ['Sioksun Bu-siok', 'Shusun Wushu'], // 叔孫武叔
+    ['Bing Kong-too', 'Meng Gongchuo'], // 孟公綽
+    ['Khwat-tong', 'Que Dang'], // 闕黨
+    ['Cu-to', 'Zi Du'], // 子都
+    ['Ik-ge', 'Yi Ya'], // 易牙
+    ['Ki-siem', 'Juxin'], // 距心
+    ['Bing See-sia', 'Meng Shishe'], // 孟施捨
+    ['Kong-bing Gi', 'Gongming Yi'], // 公明儀
+    ['Kwan-siok', 'Guan Shu'], // 管叔
+    ['Bu-king', 'Wu Geng'], // 武庚
+    ['Ciet-hwan', 'Ji Huan'], // 瘠環
+    ['Oh-hik', 'Wu Huo'], // 烏獲
+    ['Ok-lo', 'Wulu'], // 屋廬
+    ['Pak-kiong Yu', 'Beigong You'], // 北宮黝
+    ['Bian-ki', 'Mian Ju'], // 綿駒
+    ['Cu-bok', 'Zi Mo'], // 子莫
+    ['Cu-ci', 'Zi Zhi'], // 子之
+    ['Cu-kwee', 'Zi Kuai'], // 子噲
+    ['Cu-cian', 'Zi Jian'], // 子賤
+    ['Cu-hwa', 'Zihua'], // 子華
+    ['Hu-wat', 'Fu Yue'], // 傅說
+    ['Hong-hong', 'Fenghuang'], // 鳳凰
+    ['Kwi-khiu', 'Kuiqiu'], // 葵丘
+    ['Kong-ya Tiang', 'Gongye Chang'], // 公冶長
+    ['Kong-san Hut-jiau', 'Gongshan Furao'], // 公山弗擾
+    ['Kongsiok Bun-cu', 'Gongshu Wenzi'], // 公叔文子
+    ['Jiamcu', 'Ranzi'], // 冉子
+    ['Cu-Siang', 'Zixiang'], // 子襄
+    ['Kong Kiu', 'Kong Qiu'], // 孔丘
+    ['Khong Khiu', 'Kong Qiu'], // 孔丘
     ['Ling Ien', 'Lingyin'], // 令尹, office of chief minister
     ['I Ien', 'Yi Yin'], // 伊尹, separate from generic 殷
     ['Cu-bun', 'Ziwen'], // 子文
@@ -223,6 +267,19 @@
   // Kolasi khusus berdasarkan Hanzi. Satu ejaan Hokkian bisa mewakili
   // aksara berbeda: Chien => 晉 (Jin) atau 秦 (Qin); Swan => 僎 atau 宣.
   const CONTEXTUAL = Object.freeze({
+    'sishu.mengzi.08.31': [
+      ['Bu-sing', 'Wucheng - Bu-sing'], // 武城
+    ],
+    'sishu.lunyu.18.06': [
+      ['Khong Khiu', 'Kong Qiu - Khong Khiu'], // 孔丘
+    ],
+    'sishu.lunyu.06.03': [
+      ['Hwee-lah', 'Hui - Hwee-lah'], // 回也
+    ],
+    'sishu.lunyu.18.08': [
+      ['Cu-tiang', 'Zhu Zhang - Cu-tiang'], // 朱張; NOT Zizhang 子張
+      ['I- iet', 'Yi Yi - I- iet'], // 夷逸; PDF broken line
+    ],
     'sishu.mengzi.13.33': [
       ['raja (Cee)', 'raja (Qi - Cee)'], // 齊 identified by context
       ['bernama Tiam', 'bernama Dian - Tiam'], // 墊
@@ -446,6 +503,10 @@
     ],
     // Negeri Cien = 晉/Jin pada pasal ini, bukan 秦/Qin.
     'sishu.mengzi.08.01': [
+      ['Cu-ping', 'Zhufeng - Cu-ping'], // 諸馮
+      ['Hu-he', 'Fuxia - Hu-he'], // 負夏
+      ['Bing-tiau', 'Mingtiao - Bing-tiau'], // 鳴條
+      ['Ki-ciu', 'Qizhou - Ki-ciu'], // 岐周
       ['Piet-ting', 'Bi Ying - Piet-ting'] // 畢郢
     ],
     'sishu.mengzi.08.21': [
@@ -723,6 +784,7 @@
       if (legacy === 'Cingcu' && /\bGak\s*$/iu.test(preceding)) return match; // 樂正子 not 曾子
       if (legacy === 'Sun' && /\b(?:Ong|Kong)\s*$/iu.test(preceding)) return match; // 王順 / 公孫 ≠ 舜
       if (legacy === 'I-cu' && /\bBing\s*$/iu.test(preceding)) return match;
+      if (legacy === 'Cu-tiang' && /\bZhu Zhang\s*-\s*$/iu.test(preceding)) return match; // 朱張 not 子張
       if (legacy === 'Thong' && /\bSing\s*$/iu.test(preceding)) return match; // 成湯 already covered by long name
       if (legacy === 'Ien' && /\b(?:I|Ling)\s*$/iu.test(preceding)) return match; // 伊尹 / 令尹, keep the full name
       if (legacy === 'Khun' && /\bSun-i\s*$/iu.test(preceding)) return match; // 淳於髡 full name already paired // 孟懿子 Meng Yizi, not 夷子
