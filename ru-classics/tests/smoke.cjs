@@ -88,8 +88,8 @@ setTimeout(()=>{
   click({passage:'sishu.lunyu.02.05'});
   assert.match(nodes.main.innerHTML,/Sabda Suci — Lun Yu VI:22/,
     'Batch 04 SS citation with dot separator should render in canonical form');
-  assert.ok(nodes.main.innerHTML.includes('(S.S. I:9; III: 1,2; XIX:5; Bc. IIIA: 2)'),
-    'Composite unresolved references must remain visible and unaltered');
+  assert.ok(nodes.main.innerHTML.includes('(Sabda Suci — Lun Yu I:9; Lun Yu III:1,2; Lun Yu XIX:5; Mengzi — Bing Cu III A:2)'),
+    'Compound references should retain distinct book and pasal numbers after normalization');
   click({book:'lunyu'});
   click({chapter:'sishu.lunyu.03'});
   click({passage:'sishu.lunyu.03.14'});
@@ -122,8 +122,8 @@ setTimeout(()=>{
   click({book:'lunyu'});
   click({chapter:'sishu.lunyu.02'});
   click({passage:'sishu.lunyu.02.05'});
-  assert.ok(nodes.main.innerHTML.includes('(S.S. I:9; III: 1,2; XIX:5; Bc. IIIA: 2)'),
-    'Review-only compound reference should remain in its original form');
+  assert.ok(nodes.main.innerHTML.includes('(Sabda Suci — Lun Yu I:9; Lun Yu III:1,2; Lun Yu XIX:5; Mengzi — Bing Cu III A:2)'),
+    'Promoted inherited-book reference should use approved full names');
   click({book:'lunyu'});
   click({chapter:'sishu.lunyu.03'});
   click({passage:'sishu.lunyu.03.07'});
@@ -138,13 +138,34 @@ setTimeout(()=>{
   assert.ok(nodes.main.innerHTML.includes('Sabda Suci — Lun Yu IX:16; Mengzi — Bing Cu II A:2/19'),
     'Batch 06 BC subverse notation must be retained as source text');
   click({passage:'sishu.lunyu.07.23'});
-  assert.ok(nodes.main.innerHTML.includes('(S.S. III: 24; IX: 5)'),
-    'Inherited SS second citation must remain unmodified pending review');
+  assert.ok(nodes.main.innerHTML.includes('(Sabda Suci — Lun Yu III:24; Lun Yu IX:5)'),
+    'Inherited SS second citation must show confirmed full book name');
   click({book:'lunyu'});
   click({chapter:'sishu.lunyu.09'});
   click({passage:'sishu.lunyu.09.29'});
   assert.ok(nodes.main.innerHTML.includes('Sabda Suci — Lun Yu XIV:28; Tengah Sempurna — Zhong Yong XIX:10'),
     'Batch 06 SS plus TS normalization missing');
+  click({book:'lunyu'});
+  click({chapter:'sishu.lunyu.05'});
+  click({passage:'sishu.lunyu.05.02'});
+  assert.ok(nodes.main.innerHTML.includes('Sabda Suci — Lun Yu VI:1,2; Lun Yu XI:5'),
+    'Two pasal VI:1,2 and XI:5 remain legible');
+  click({passage:'sishu.lunyu.05.04'});
+  assert.ok(nodes.main.innerHTML.includes('Sabda Suci — Lun Yu I:10; Lun Yu II:12,13'),
+    'Comma-separated pasal targets should be preserved');
+  click({book:'lunyu'});
+  click({chapter:'sishu.lunyu.14'});
+  click({passage:'sishu.lunyu.14.01'});
+  assert.ok(nodes.main.innerHTML.includes('Sabda Suci — Lun Yu VIII:13; Mengzi — Bing Cu VII A:6,7'),
+    'Mixed books and comma-separated Mengzi pasal should display');
+  click({passage:'sishu.lunyu.14.36'});
+  assert.ok(nodes.main.innerHTML.includes('Sabda Suci — Lun Yu VII:23; Lun Yu IX:5; Mengzi — Bing Cu I B:16'),
+    'Two inherited SS and one BC references should retain all numbers');
+  click({book:'lunyu'});
+  click({chapter:'sishu.lunyu.09'});
+  click({passage:'sishu.lunyu.09.05'});
+  assert.ok(nodes.main.innerHTML.includes('VII &quot;: 23'),
+    'Malformed citation should be preserved and not silently fixed');
   console.log('Ru Classics smoke test passed: Paper, 4 books, chapter, reader, Ruby, Indonesian, English');
  }catch(e){console.error(e);process.exitCode=1;}
 },0);
