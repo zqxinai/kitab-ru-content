@@ -94,3 +94,12 @@
  .translation.english .reading-paragraph{font-size:15.5px}
  .translation-prose,.translation-verse{max-width:100%}
 }
+
+/* Direct chapter → passage → numbered ayat navigation (visual only). */
+.passage-entry{min-width:0}
+.verse-disclosure{margin:5px 4px 12px}
+.verse-disclosure summary{display:list-item;width:max-content;max-width:100%;padding:9px 13px;cursor:pointer;color:var(--accent);font:700 12px/1.6 system-ui,sans-serif;border-radius:10px;list-style-position:inside}
+.verse-disclosure summary:hover,.verse-disclosure summary:focus-visible{background:var(--panel2);outline-offset:2px}
+.verse-picker{display:flex;flex-wrap:wrap;gap:7px;padding:8px 0 5px}
+.verse-picker button{border:1px solid var(--line);border-radius:9px;background:var(--panel);color:var(--accent);font:700 12px/1.4 system-ui,sans-serif;padding:9px 13px;min-height:38px}
+.verse-picker button:hover,.verse-picker button:focus-visible{border-color:var(--accent);background:var(--panel2)}
