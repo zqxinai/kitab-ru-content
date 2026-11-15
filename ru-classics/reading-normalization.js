@@ -84,7 +84,7 @@
     ['Raja Kwi', 'Raja Ji - Kwi'],           // 王季
     ['Negeri Hun Yok', 'Negeri Xunyu - Hun Yok'], // 獯鬻
     ['Raja Koo Cian', 'Raja Goujian - Koo Cian'], // 勾踐
-    ['Raja Thai', 'Raja Da Wang - Thai'],      // 大王, gelar klasik
+    ['Raja Thai', 'Raja Taiwang - Thai'],      // 大王 = 太王, dibaca tài wáng (MOE Taiwan)
     ['Rajamuda Bok', 'Rajamuda Mu - Bok'],     // 穆公 / 繆公 (mù)
     ['Raja Cee', 'Raja Qi - Cee'],            // 齊
     ['Pangeran Pi-kan', 'Pangeran Bi Gan - Pi-kan'], // 比乾 / 比干
