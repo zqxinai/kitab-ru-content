@@ -11,6 +11,7 @@ const links=require('../reference-links.js');
 const layout=require('../reading-layout.js');
 const verses=require('../subverses.js');
 const sameBook=require('../same-book-references.js');
+const namedBooks=require('../book-references.js');
 const chapters=[
   load('sishu/chapters/mengzi/01.json'),
   load('sishu/chapters/mengzi/03.json')
@@ -69,12 +70,14 @@ test('Browser loads reference and typography modules before the reader',()=>{
  const html=read('ru-classics/index.html');
  const reader=read('ru-classics/app.js');
  const editor=read('ru-classics/editor.js');
- for(const file of ['reference-links.js','same-book-references.js','reading-layout.js','subverses.js']){
+ for(const file of ['reference-links.js','same-book-references.js','book-references.js','reading-layout.js','subverses.js']){
    assert.ok(html.includes('src="./'+file+'"'));
    assert.ok(html.indexOf('src="./'+file+'"')<html.indexOf('src="./app.js"'));
  }
  assert.match(reader,/RuReferenceLinks\?\.parts/);
  assert.match(reader,/RuSameBookReferences\?\.expand/);
+ assert.match(reader,/RuBookReferences\?\.expand/);
+ assert.ok(namedBooks.BOOKS.zhongyong.offset===1);
  assert.equal(sameBook.parse('sishu.mengzi.01.03','III. A.3.10').target_id,'sishu.mengzi.05.03');
  assert.match(reader,/data-ref-ayat/);
  assert.match(reader,/readableIndonesian:/);
