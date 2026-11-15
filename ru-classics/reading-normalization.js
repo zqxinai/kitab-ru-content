@@ -83,7 +83,25 @@
     ['Raja Koocong', 'Raja Gaozong - Koocong'], // 高宗
     ['Raja Kwi', 'Raja Ji - Kwi'],           // 王季
     ['Negeri Hun Yok', 'Negeri Xunyu - Hun Yok'], // 獯鬻
-    ['Raja Koo Cian', 'Raja Goujian - Koo Cian']  // 勾踐
+    ['Raja Koo Cian', 'Raja Goujian - Koo Cian'], // 勾踐
+    ['Raja Thai', 'Raja Da Wang - Thai'],      // 大王, gelar klasik
+    ['Rajamuda Bok', 'Rajamuda Mu - Bok'],     // 穆公 / 繆公 (mù)
+    ['Raja Cee', 'Raja Qi - Cee'],            // 齊
+    ['Pangeran Pi-kan', 'Pangeran Bi Gan - Pi-kan'], // 比乾 / 比干
+    ['Raja Siang', 'Raja Xiang - Siang'],     // 梁襄王, bukan 商
+    ['Dinasti Siang', 'Dinasti Shang - Siang'], // 商
+    ['Negeri King', 'Negeri Jing - King'],    // 荊
+    ['Raja Tin', 'Raja Teng - Tin'],          // 滕
+    ['Negeri Pok', 'Negeri Bo - Pok'],        // 亳
+    ['Negeri Yam', 'Negeri Yan - Yam'],       // 奄
+    ['Raja He', 'Raja Xia - He'],             // 夏
+    ['Rajamuda Hwi', 'Rajamuda Hui - Hwi'],  // 惠
+    ['Rajamuda Hau', 'Rajamuda Xiao - Hau'], // 孝
+    ['Rajamuda Lo', 'Rajamuda Lu - Lo'],     // 魯
+    ['Raja Gi', 'Raja Yu - Gi'],             // 虞
+    ['Pangeran Lau', 'Pangeran Gong Liu - Lau'], // 公劉
+    ['Pangeran King', 'Pangeran Jing - King'], // 景公
+    ['Pangeran Kian', 'Pangeran Jian - Kian'] // 簡公
   ]);
   // Kolasi khusus berdasarkan Hanzi. Satu ejaan Hokkian bisa mewakili
   // aksara berbeda: Chien => 晉 (Jin) atau 秦 (Qin); Swan => 僎 atau 宣.
