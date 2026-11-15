@@ -10,6 +10,7 @@ on:
       - "tests/ru-classics-reading*.test.js"
       - "tools/audit_ru_romanization.cjs"
       - "tools/audit_legacy_romanization.cjs"
+      - "tools/audit_unseeded_hokkian.cjs"
       - ".github/workflows/ru-reading-regression.yml"
   pull_request:
     paths:
@@ -18,6 +19,7 @@ on:
       - "tests/ru-classics-reading*.test.js"
       - "tools/audit_ru_romanization.cjs"
       - "tools/audit_legacy_romanization.cjs"
+      - "tools/audit_unseeded_hokkian.cjs"
       - ".github/workflows/ru-reading-regression.yml"
 jobs:
   reading-regression:
@@ -37,6 +39,8 @@ jobs:
         run: |
           node tools/audit_legacy_romanization.cjs > /tmp/legacy-romanization-audit.log
           node -e "const v=require('./audit/reports/legacy-romanization-inventory.json'); console.log('Broad scan: '+v.passages+' passages; '+v.orphan_entries.length+' candidate terms; '+v.duplicate_name_pairs.length+' source duplicate aliases'); console.log('Orphan terms with examples: '+JSON.stringify(v.orphan_entries.slice(0,100).map(x=>({term:x.term,count:x.orphan,examples:x.orphanExamples.slice(0,3)})))); if(v.passages!==965||v.orphan_entries.length!==0)process.exitCode=1"
+      - name: Find names absent from historical dictionary (editorial triage)
+        run: node tools/audit_unseeded_hokkian.cjs > unseeded-audit.log && head -n 190 unseeded-audit.log
       - name: Save candidate inventory for editorial review
         uses: actions/upload-artifact@v4
         with:
@@ -44,6 +48,7 @@ jobs:
           path: |
             ru-romanization-candidates.json
             audit/reports/legacy-romanization-inventory.json
+            audit/reports/unseen-hokkian-candidates.json
       - name: Assemble reader test bundle
         run: python tools/build_ru_classics_web.py --source dist/sishu-content.json --alignment dist/sishu-english-alignment.json --splits dist/sishu-english-passage-splits.json --output ru-classics/data/sishu.json
       - name: Reader UI smoke test
