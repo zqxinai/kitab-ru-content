@@ -2,6 +2,54 @@
 (function (root) {
   'use strict';
   const PAIRS = Object.freeze([
+    ['Hoo-sing Put-hai', 'Haosheng Buhai'], // 浩生不害
+    ['Bik Khee', 'Mo Ji'], // 貉稽
+    ['Chicu', 'Xu Zi'], // 徐子
+    ['Huan Thi', 'Fan Chi'], // 樊遲
+    ['Hwan Thi', 'Fan Chi'], // 樊遲
+    ['I-ci', 'Yi Zhi'], // 夷之
+    ['I-cu', 'Yi Zi'], // 夷子
+    ['Jiam-kiu', 'Ran Qiu'], // 冉求
+    ['Jiam-yu', 'Ran You'], // 冉有
+    ['Kau-kik', 'Jiao Ge'], // 膠鬲
+    ['Kik Cu-sing', 'Ji Zicheng'], // 棘子成
+    ['King Chun', 'Jing Chun'], // 景春
+    ['Kong-bing Koo', 'Gongming Gao'], // 公明高
+    ['Kongto-cu', 'Gongduzi'], // 公都子
+    ['Kwi Cu-jian', 'Ji Ziran'], // 季子然
+    ['Kwi Jiem', 'Ji Ren'], // 季任
+    ['Kwi-lo', 'Ji Lu'], // 季路
+    ['Kwi-sun', 'Jisun'], // 季孫
+    ['Lam-kiong Kwat', 'Nangong Shi'], // 南宮適; text-based reading shì, alternative historical name Nangong Kuo
+    ['Phing-king', 'Peng Geng'], // 彭更
+    ['Ping-liok', 'Pinglu'], // 平陸
+    ['Siem-tong', 'Shen Tong'], // 沈同
+    ['Siem-yu Hing', 'Shenyou Xing'], // 沈猶行
+    ['Sing-han', 'Cheng Jian'], // 成覸
+    ['Tai Ing-ci', 'Dai Yingzhi'], // 戴盈之
+    ['Thai-cai', 'Taizai'], // 太宰 title
+    ['Thiau Ing', 'Tao Ying'], // 桃應
+    ['Tien Cien', 'Chen Zhen'], // 陳臻
+    ['Tien-Cien', 'Chen Zhen'], // 陳臻
+    ['Tien Siang', 'Chen Xiang'], // 陳相
+    ['Tien Sien', 'Chen Xin'], // 陳辛
+    ['Tien Singcu', 'Chen Chengzi'], // 陳成子
+    ['Tien Supai', 'Chen Sibai'], // 陳司敗
+    ['Tien Tai', 'Chen Dai'], // 陳代
+    ['Tiencu', 'Chen Zi'], // 陳子
+    ['Tong-kok', 'Dongguo'], // 東郭氏
+    ['Tiang-siet', 'Chang Xi'], // 長息
+    ['Ting King', 'Teng Geng'], // 滕更
+    ['Buma Ki', 'Wuma Qi'], // 巫馬期
+    ['Bing-sun', 'Mengsun'], // 孟孫
+    ['Thio Kancu', 'Zhao Jianzi'], // 趙簡子
+    ['Kong sun Yan', 'Gongsun Yan'], // 公孫衍
+    ['Tio Gi', 'Zhang Yi'], // 張儀
+    ['Bikcu', 'Mozi'], // 墨子 (general founder, not 墨者 title)
+    ['Sien-long', 'Shennong'], // 神農
+    ['Ko-so', 'Gu Sou'], // 瞽瞍
+    ['Hong-hun', 'Fang Xun'], // 放勳
+    ['King Thio', 'Jing Chou'], // 景醜
     ['Cu-go', 'Zi Ao'], // 子敖
     ['Hamkhiu Bong', 'Xianqiu Meng'], // 咸丘蒙
     ['Ien-su', 'Yin Shi'], // 尹士
@@ -161,6 +209,36 @@
   // Kolasi khusus berdasarkan Hanzi. Satu ejaan Hokkian bisa mewakili
   // aksara berbeda: Chien => 晉 (Jin) atau 秦 (Qin); Swan => 僎 atau 宣.
   const CONTEXTUAL = Object.freeze({
+    'sishu.mengzi.13.35': [
+      ['Ko-so', 'Gu Sou - Ko-so'], // 瞽瞍
+    ],
+    'sishu.mengzi.09.04': [
+      ['Ko-so', 'Gu Sou - Ko-so'], // 瞽瞍
+    ],
+    'sishu.mengzi.13.43': [
+      ['Ting King', 'Teng Geng - Ting King'], // 滕更
+    ],
+    'sishu.mengzi.06.01': [
+      ['Ong Liang', 'Wang Liang - Ong Liang'], // 王良
+      ['Thio Kancu', 'Zhao Jianzi - Thio Kancu'], // 趙簡子
+    ],
+    'sishu.mengzi.05.05': [
+      ['Chi Piet', 'Xu Pi - Chi Piet'], // 徐辟
+      ['Bikcu', 'Mozi - Bikcu'], // 墨子
+      ['I-ci', 'Yi Zhi - I-ci'], // 夷之
+    ],
+    'sishu.lunyu.14.21': [
+      ['Tien Hing telah', 'Chen Heng - Tien Hing telah'], // 陳恆, same referent as 陳成子
+    ],
+    'sishu.lunyu.07.31': [
+      ['Go Mengzi - Bingcu', 'Wu Mengzi - Go Mengzi - Bingcu'], // 吳孟子, not 孟軻; keep printed legacy
+    ],
+    'sishu.lunyu.18.04': [
+      ['Khongcupun', 'Kongzi - Khongcupun'], // 孔子; suffix pun preserved
+    ],
+    'sishu.lunyu.18.03': [
+      ['Khongcupun', 'Kongzi - Khongcupun'], // 孔子; suffix pun preserved
+    ],
     'sishu.mengzi.07.24': [
       ['Gak Zengzi - Cingcu', 'Yuezhengzi - Gak Cingcu'] // 樂正子, no Zengzi: overlay only, source preserved
     ],
@@ -299,6 +377,9 @@
       ['Raja Shun - Sun dan I.', 'Raja Shun - Sun dan Yu - I.'] // 舜禹
     ],
     'sishu.mengzi.05.04': [
+      ['Tien Liang', 'Chen Liang - Tien Liang'], // 陳良
+      ['penganut ajaran Sien-long', 'penganut ajaran Shennong - Sien-long'], // 神農
+      ['Tien Sien', 'Chen Xin - Tien Sien'], // 陳辛
       ['sungai Cee dan Liap', 'sungai Ji - Cee dan Ta - Liap'], // nama lokasi, cocokkan Hanzi pada sishu.mengzi.05.04
       ['Sungai Ji dan Han', 'Sungai Ru - Ji dan Han'], // nama lokasi, cocokkan Hanzi pada sishu.mengzi.05.04
       ['Sungai Hwai dan Su', 'Sungai Huai - Hwai dan Si - Su'], // nama lokasi, cocokkan Hanzi pada sishu.mengzi.05.04
@@ -342,6 +423,8 @@
       ['Hai Tong', 'Hai Tang - Hai Tong'] // 亥唐 // 孟獻子
     ],
     'sishu.mengzi.14.23': [
+      ['Phang Hu', 'Feng Fu - Phang Hu'], // 馮婦
+      ['Di Negeri Cien', 'Di Negeri Jin - Cien'], // 晉
       ['Negeri Cien', 'Negeri Jin - Cien'] // 晉人
     ],
     'sishu.mengzi.12.10': [
@@ -453,6 +536,7 @@
       ['Gunung Hua dan Gak', 'Gunung Huayue - Hua dan Gak']
     ],
     'sishu.mengzi.02.04': [
+      ['lagu Ti-siau dan Kak-siau', 'lagu Zhi Shao - Ti-siau dan Jue Shao - Kak-siau'], // 徵招、角招
       ['daerah Cwan-hu', 'daerah Zhuanfu - Cwan-hu'],
       ['Tiau-bu', 'Chaowu - Tiau-bu'],
       ['daerah Long-ya', 'daerah Langya - Long-ya']
@@ -465,6 +549,8 @@
       ['Kitab Thong Si', 'Kitab Tang Shi - Thong Si'] // 湯誓
     ],
     'sishu.mengzi.04.02': [
+      ['Kingcu berkata', 'Jingzi - Kingcu berkata'], // 景子
+      ['Kong- sun Thio', 'Gongsun Chou - Kong-sun Thio'], // 公孫醜; PDF broken hyphen
       ['Kekayaan Negeri Cien dan Cho', 'Kekayaan Negeri Jin - Cien dan Chu - Cho'], // 晉楚
       ['Bing Tiongcu', 'Meng Zhongzi - Bing Tiongcu'] // 孟仲子
     ],
