@@ -292,10 +292,10 @@
     {
       "passage_id": "sishu.lunyu.09.05",
       "source": "(S.S. III: 24; VII \": 23; XIV: 36; Bc. IB: 16)",
-      "display_status": "review-only",
-      "display": null,
-      "printed_2012_attested": false,
-      "review_note": "Malformed VII quote mark and inherited book numbering; no conjectural repair",
+      "display_status": "display-ready",
+      "display": "(Sabda Suci — Lun Yu III:24; Lun Yu VII:23; Lun Yu XIV:36; Mengzi — Bing Cu I B:16)",
+      "printed_2012_attested": true,
+      "review_note": "Tanda petik ganjil pada data PDF 2011 di VII \": 23 dikoreksi hanya untuk tampilan berdasarkan foto cetak MATAKIN 2012 yang memperlihatkan VII.23. Nomor ketiga rujukan Lun Yu dan Mengzi I B:16 terkonfirmasi. Teks sumber 2011 tidak diubah. Hubungan isi MATAKIN tidak diaudit ulang.",
       "components": [
         {
           "order": 1,
@@ -304,10 +304,11 @@
           "target_passage_ids": [
             "sishu.lunyu.03.24"
           ],
-          "status": "numbering-provisional",
+          "status": "passage-exists-and-citation-number-witnessed-in-2012",
           "subverse_target_id": null,
           "reference_intent": "content-related",
-          "verbatim_match_required": false
+          "verbatim_match_required": false,
+          "citation_number_attested": true
         },
         {
           "order": 2,
@@ -316,10 +317,14 @@
           "target_passage_ids": [
             "sishu.lunyu.07.23"
           ],
-          "status": "numbering-provisional",
+          "status": "passage-exists-and-citation-number-witnessed-in-2012",
           "subverse_target_id": null,
           "reference_intent": "content-related",
-          "verbatim_match_required": false
+          "verbatim_match_required": false,
+          "citation_number_attested": true,
+          "printed_2012_segment": "VII.23",
+          "normalized_source_segment": "VII:23",
+          "source_typo": "VII \": 23"
         },
         {
           "order": 3,
@@ -328,10 +333,11 @@
           "target_passage_ids": [
             "sishu.lunyu.14.36"
           ],
-          "status": "numbering-provisional",
+          "status": "passage-exists-and-citation-number-witnessed-in-2012",
           "subverse_target_id": null,
           "reference_intent": "content-related",
-          "verbatim_match_required": false
+          "verbatim_match_required": false,
+          "citation_number_attested": true
         },
         {
           "order": 4,
@@ -340,17 +346,29 @@
           "target_passage_ids": [
             "sishu.mengzi.02.16"
           ],
-          "status": "numbering-provisional",
+          "status": "passage-exists-and-citation-number-witnessed-in-2012",
           "subverse_target_id": null,
           "reference_intent": "content-related",
-          "verbatim_match_required": false
+          "verbatim_match_required": false,
+          "citation_number_attested": true
         }
       ],
       "reference_intent": "content-related",
       "relation_source": "MATAKIN cross-reference",
       "verbatim_match_required": false,
       "relation_verification": "accepted-on-MATAKIN-authority; no independent thematic review required",
-      "relationship_review_required": false
+      "relationship_review_required": false,
+      "printed_2012_display_verbatim": false,
+      "printed_2012_citation": "(Lun Yu - Lun Gi III.24; VII.23; XIV.36; Meng Zi - Bing Cu I B.16)",
+      "witness": {
+        "edition": "MATAKIN Si Shu cetakan 2012",
+        "book": "Sabda Suci (Lun Yu)",
+        "location": "Jilid IX, Pasal 5, rujukan pada akhir ayat 3",
+        "kind": "foto halaman buku fisik yang diberikan pengguna 15 November 2026",
+        "source_upload_name": "WhatsApp Image 2026-11-15 at 10.39.05.jpeg",
+        "supported_fact": "Referensi kedua ialah VII.23, tanpa tanda petik; seluruh urutan III.24, VII.23, XIV.36 dan Meng Zi - Bing Cu I B.16 terlihat",
+        "scope": "Ketepatan angka dan pembacaan rujukan, bukan identitas seluruh teks dan bukan bukti ejaan tampilan editorial"
+      }
     }
   ],
   "citation_slash_semantics": "In references, /N denotes Ayat N inside the preceding Pasal (owner confirmed 2026-11-15).",
