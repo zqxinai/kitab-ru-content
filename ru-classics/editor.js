@@ -167,6 +167,10 @@
     const pStatus=state.edits.filter(e=>e.passageId===p.id&&e.status==='pending').length;
     const annot=Array.isArray(original.editorial_annotations)?original.editorial_annotations:[];
     const sourceInfo=H(original.translation_english_source||original.english_source||'Keterangan sumber per pasal belum tersedia');
+    const primaryText=originalVerse?originalVerse.text:original.translation_indonesian;
+    const primaryHTML=app()?.readableIndonesian?.(p.id,primaryText)||H(primaryText);
+    const englishHTML=app()?.readableEnglish?.(original.translation_english||'Belum tersedia')||englishHTML;
+    const overlayHTML=app()?.readableIndonesian?.(p.id,selected?selected.text:p.translation_indonesian)||overlayHTML;
     return '<section class="editor-panel audit-panel"><h2>Dashboard audit Si Shu</h2>'+
       '<p>'+all.length+' pasal dalam 78 bab · '+state.auditStatus.size+' entri register status editorial · '+pStatus+' usulan Firebase menunggu review pada pasal ini.</p>'+
       '<p><strong>'+H(BOOK_NAMES[p._book]||p._book)+' · '+H(p._chapterTitle)+' · Pasal '+H(p.number)+
@@ -177,7 +181,7 @@
       '<div class="audit-columns">'+
       '<div><strong>Hanzi & pinyin'+(selected&&!aligned?' (tingkat pasal; batas ayat belum terverifikasi)':'')+'</strong>'+
       '<div class="audit-ruby" lang="zh-Hant">'+sourceRuby(aligned?[aligned.ruby_tokens]:original.ruby_paragraphs)+'</div></div>'+
-      '<div><strong>Terjemahan Indonesia · MATAKIN (sumber asli)</strong><div class="editor-compare">'+H(originalVerse?originalVerse.text:original.translation_indonesian)+'</div>'+      (p.translation_indonesian!==original.translation_indonesian?'<strong>Overlay website yang disetujui (bukan sumber MATAKIN)</strong><div class="editor-compare">'+H(selected?selected.text:p.translation_indonesian)+'</div>':'')+'</div>'+
+      '<div><strong>Terjemahan Indonesia · MATAKIN (sumber asli)</strong><div class="editor-compare">'+primaryHTML+'</div>'+      (p.translation_indonesian!==original.translation_indonesian?'<strong>Overlay website yang disetujui (bukan sumber MATAKIN)</strong><div class="editor-compare">'+H(selected?selected.text:p.translation_indonesian)+'</div>':'')+'</div>'+
       '<div><strong>English · James Legge (tingkat pasal, sumber asli)</strong><div class="editor-compare">'+H(original.translation_english||'Belum tersedia')+'</div>'+
       '<small>'+sourceInfo+'</small></div>'+
       '<div><strong>Komentar sumber · terpisah</strong><div class="editor-compare">'+
