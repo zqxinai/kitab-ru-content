@@ -84,6 +84,14 @@ test('Compound rujukan means related content rather than an exact verbal quotati
  const twentyEight=entries.find(x=>x.passage_id==='sishu.lunyu.09.09');
  assert.equal(twentyEight.segments[1].subverse_number,28);
 });
+test('All MATAKIN cross-reference records signify related contents regardless of quote wording',()=>{
+ const audit=scan();
+ assert.equal(audit.passage_count,965);
+ assert.ok(audit.reviewed_references>0);
+ assert.ok(audit.all_references.every(r=>r.reference_intent==='content-related'));
+ assert.ok(audit.all_references.every(r=>r.verbatim_match_required===false));
+ assert.match(audit.policy,/slash N denotes ayat/);
+});
 test('Full source audit identifies reference records without changing scripture',()=>{
  const all=scan(),byId=id=>all.all_references.filter(x=>x.passage_id===id);
  assert.equal(all.passage_count,965);
