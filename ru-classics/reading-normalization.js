@@ -10,11 +10,9 @@
     ['Culo', 'Zilu'], // 子路
     ['Siancai', 'Shanzai'], // 善哉
     ['Siau Jien', 'Xiaoren'], // 小人
-    ['Thong', 'Tang'], // 湯; avoid suffix within Sing Thong via guard
     ['Ien', 'Yin'], // 尹 or 殷 context; guard Ling Ien and Yi Yin
     ['Bun', 'Wen'], // 文, used for Wen Wang
     ['Cho', 'Chu'], // 楚
-    ['Ciu', 'Zhou'], // 周, exclude hyphenated names
     ['Khun', 'Kun'], // 髡; guard the full Chunyu Kun name
     ['Pi Hee', 'Bi Xi'], // 嬖奚
     ['Ong-liang', 'Wang Liang'], // 王良
