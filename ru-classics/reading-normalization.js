@@ -327,7 +327,7 @@
       ['Hati Nuraninya (Liang Siem)', 'Hati Nuraninya (Liangxin - Liang Siem)'] // 良心
     ],
     'sishu.lunyu.02.09': [
-      ['Hwee (Gan Yan)', 'Hui - Hwee (Gan Yan)'] // 回 (Yán Huí: 顏回)
+      ['Hwee (Gan Yan)', 'Hui - Hwee (Yan Yuan - Gan Yan)'] // 回 (Yán Huí: 顏回)
     ],
     'sishu.mengzi.01.05': [
       ['Dahulu, Negeri Cien', 'Dahulu, Negeri Jin - Cien'], // 晉國
