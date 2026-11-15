@@ -9,6 +9,7 @@ on:
       - "sishu/chapters/**"
       - "tests/ru-classics-reading*.test.js"
       - "tools/audit_ru_romanization.cjs"
+      - "tools/audit_legacy_romanization.cjs"
       - ".github/workflows/ru-reading-regression.yml"
   pull_request:
     paths:
@@ -16,6 +17,7 @@ on:
       - "sishu/chapters/**"
       - "tests/ru-classics-reading*.test.js"
       - "tools/audit_ru_romanization.cjs"
+      - "tools/audit_legacy_romanization.cjs"
       - ".github/workflows/ru-reading-regression.yml"
 jobs:
   reading-regression:
@@ -30,11 +32,11 @@ jobs:
       - name: Inventory unpaired title candidates across all passages
         run: |
           node tools/audit_ru_romanization.cjs --json > ru-romanization-candidates.json
-          node -e "const x=require('./ru-romanization-candidates.json'); console.log('965 passages audited; '+x.unresolvedTitleCandidates+' historical-title candidates remain to be reviewed')"
+          node -e "const x=require('./ru-romanization-candidates.json'); const n=x.unresolvedTitleCandidates+x.unresolvedPlaceCandidates+x.unresolvedPersonCandidates; console.log(x.passages+' passages audited; '+n+' unpaired candidate names/places'); if(x.passages!==965||n!==0)process.exitCode=1"
       - name: Independent broad legacy orphan inventory (965 passages)
         run: |
           node tools/audit_legacy_romanization.cjs > /tmp/legacy-romanization-audit.log
-          node -e "const v=require('./audit/reports/legacy-romanization-inventory.json'); console.log('Broad scan: '+v.passages+' passages; '+v.orphan_entries.length+' candidate terms; '+v.duplicate_name_pairs.length+' source duplicate aliases'); console.log('Orphan terms with examples: '+JSON.stringify(v.orphan_entries.slice(0,100).map(x=>({term:x.term,count:x.orphan,examples:x.orphanExamples.slice(0,3)}))))"
+          node -e "const v=require('./audit/reports/legacy-romanization-inventory.json'); console.log('Broad scan: '+v.passages+' passages; '+v.orphan_entries.length+' candidate terms; '+v.duplicate_name_pairs.length+' source duplicate aliases'); console.log('Orphan terms with examples: '+JSON.stringify(v.orphan_entries.slice(0,100).map(x=>({term:x.term,count:x.orphan,examples:x.orphanExamples.slice(0,3)})))); if(v.passages!==965||v.orphan_entries.length!==0)process.exitCode=1"
       - name: Save candidate inventory for editorial review
         uses: actions/upload-artifact@v4
         with:
