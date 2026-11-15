@@ -214,7 +214,7 @@
       if(value&&state.map.has(target.dataset.ayatFor))navigate('reader',target.dataset.ayatFor,Number(value)||0);
       return;
     }
-    if(e.target.id==='search-book'{state.filter=e.target.value;renderSearchResults();}if(e.target.dataset.setting){state.settings[e.target.dataset.setting]=e.target.checked;save();if(state.tab==='reader')render();}});
+    if(e.target.id==='search-book'){state.filter=e.target.value;renderSearchResults();}if(e.target.dataset.setting){state.settings[e.target.dataset.setting]=e.target.checked;save();if(state.tab==='reader')render();}});
   document.addEventListener('click',e=>{const t=e.target.closest('[data-theme-value]');if(t){setTheme(t.dataset.themeValue);fillSettings();render();}});
   function fillSettings(){document.getElementById('theme-options').innerHTML=[['paper','Paper'],['light','Light'],['dark','Dark']].map(([k,label])=>'<button class="'+(state.theme===k?'active':'')+'" data-theme-value="'+k+'">'+label+'</button>').join('');
     document.getElementById('reading-options').innerHTML=[['hanzi','Hanzi'],['pinyin','Pinyin Ruby'],['indo','Indonesia'],['english','English']].map(([k,label])=>'<label class="toggle-row">'+label+'<input type="checkbox" data-setting="'+k+'" '+(state.settings[k]?'checked':'')+'></label>').join('');document.getElementById('font-label').textContent=state.settings.font+' px';}
