@@ -66,9 +66,22 @@ test('Mengzi III A:3 ayat 10: each historical school term has Pinyin without alt
   assert.match(display, /Dinasti Yin - Ien menamainya Xu - Si/);
   assert.match(display, /Dinasti Zhou - Ciu menamainya Xiang - Siang/);
   assert.match(display, /Istilah Xue - Hak \(sekolah negara\)/);
+  assert.match(display, /Pangeran Wen - Bun dari Negeri Teng - Tin/);
+  assert.match(display, /Yang Hu - Yang Ho berkata/);
+  assert.match(display, /Longzi - Liongcu berkata/);
+  assert.match(display, /Bi Zhan - Piet Cian bertanya/);
+  assert.match(display, /Zhu - Co/);
+  assert.match(display, /Gong - Khong/);
+  assert.match(display, /Che - Tiat/);
+  assert.match(display, /Dinasti Xia - He menggunakan sistim/);
   assert.match(display, /'Siang hari ambillah rumput/, 'ordinary Indonesian siang stays intact');
   assert.equal(reading.normalize(display, verse.id), display, 'normalization must be idempotent');
   assert.equal(reading.normalize('Siang hari ambillah rumput', 'sample'), 'Siang hari ambillah rumput');
+});
+
+test('Xia - He dynasty is paired wherever the unambiguous dynasty phrase occurs', () => {
+  assert.equal(reading.normalize('Dinasti He dan Dinasti Ien', 'sample'), 'Dinasti Xia - He dan Dinasti Yin - Ien');
+  assert.equal(reading.normalize('Dinasti Xia - He', 'sample'), 'Dinasti Xia - He');
 });
 
 test('contextual aliases are grounded in their exact source verse', () => {
