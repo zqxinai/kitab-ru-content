@@ -144,6 +144,29 @@
       ['Raja He Kiat', 'Raja Xia - He Jie - Kiat'], // 夏桀
       ['istana Bokkiong', 'istana Mu Gong - Bokkiong'] // 牧宮
     ],
+    // Negeri Cien = 晉/Jin pada pasal ini, bukan 秦/Qin.
+    'sishu.mengzi.08.21': [
+      ['Negeri Cien', 'Negeri Jin - Cien'] // 晉
+    ],
+    'sishu.mengzi.10.03': [
+      ['Negeri Cien', 'Negeri Jin - Cien'], // 晉
+      ['Negeri Pi', 'Negeri Bi - Pi'] // 費: 朱熹費音祕, bì
+    ],
+    'sishu.mengzi.14.23': [
+      ['Negeri Cien', 'Negeri Jin - Cien'] // 晉人
+    ],
+    'sishu.mengzi.12.10': [
+      ['Bek', 'Mo - Bek'] // 貉: mò, suku utara; bukan hé (hewan)
+    ],
+    'sishu.lunyu.14.11': [
+      ['Negeri Cien', 'Negeri Jin - Cien'] // negara Jin, keterangan tentang Zhao/Wei
+    ],
+    'sishu.lunyu.14.15': [
+      ['Negeri Cien', 'Negeri Jin - Cien'] // 晉文公
+    ],
+    'sishu.lunyu.03.24': [
+      ['Negeri Gi', 'Negeri Yi - Gi'] // 儀, berbeda dengan 虞 Yu (Mengzi)
+    ],
     'sishu.mengzi.01.02': [
       ['Kitab Thong Si', 'Kitab Tang Shi - Thong Si'] // 湯誓
     ],
@@ -152,7 +175,8 @@
       ['Bing Tiongcu', 'Meng Zhongzi - Bing Tiongcu'] // 孟仲子
     ],
     'sishu.mengzi.06.03': [
-      ['Ciu Siau bertanya', 'Zhou Xiao - Ciu Siau bertanya'] // 周霄
+      ['Ciu Siau bertanya', 'Zhou Xiao - Ciu Siau bertanya'], // 周霄
+      ['Negeri Cien', 'Negeri Jin - Cien'] // 晉
     ],
     'sishu.mengzi.06.06': [
       ['Tai Put-sing', 'Dai Busheng - Tai Put-sing'], // 戴不勝
