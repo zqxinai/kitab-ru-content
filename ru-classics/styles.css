@@ -103,3 +103,20 @@
 .verse-picker{display:flex;flex-wrap:wrap;gap:7px;padding:8px 0 5px}
 .verse-picker button{border:1px solid var(--line);border-radius:9px;background:var(--panel);color:var(--accent);font:700 12px/1.4 system-ui,sans-serif;padding:9px 13px;min-height:38px}
 .verse-picker button:hover,.verse-picker button:focus-visible{border-color:var(--accent);background:var(--panel2)}
+
+/* Four-level reader navigation: genuine select dropdowns, not collapsed details. */
+.reader-jump{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin:16px 0 24px;padding:14px;background:var(--panel);border:1px solid var(--line);border-radius:16px}
+.reader-jump label,.chapter-quick label,.chapter-ayat-label{display:flex;flex-direction:column;gap:6px;min-width:0;color:var(--muted);font:700 11px/1.5 system-ui,sans-serif}
+.reader-jump select,.chapter-quick select,.chapter-ayat-label select{display:block;width:100%;min-width:0;min-height:42px;padding:9px 12px;border:1px solid var(--line);border-radius:10px;background:var(--bg);color:var(--ink);font:600 13px/1.4 system-ui,sans-serif;cursor:pointer;text-overflow:ellipsis}
+.reader-jump select:disabled{opacity:.55;cursor:not-allowed}
+.reader-jump select:focus-visible,.chapter-quick select:focus-visible,.chapter-ayat-label select:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.chapter-quick{max-width:340px;margin:16px 0 22px}
+.chapter-ayat-label{max-width:205px;margin:6px 6px 15px}
+.chapter-ayat-label select{background:var(--panel);min-height:38px}
+.english-alignment-note{margin:0 0 18px!important;color:var(--muted)!important;font:400 12px/1.7 system-ui,sans-serif!important}
+.english-reading-section{position:relative;padding:3px 0 15px 14px;margin:0 0 15px;border-left:2px solid var(--line)}
+.english-reading-section:last-child{margin-bottom:0;padding-bottom:0}
+.english-reading-index{display:block;color:var(--accent);font:700 11px/1.6 system-ui,sans-serif;letter-spacing:.02em;margin:0 0 7px}
+.english-reading-section .reading-paragraph{margin:0!important;line-height:1.88}
+@media(max-width:800px){.reader-jump{grid-template-columns:repeat(2,minmax(0,1fr));padding:12px}}
+@media(max-width:450px){.reader-jump{column-gap:8px;row-gap:12px}.reader-jump select{font-size:12px;padding:8px}.english-reading-section{padding-left:11px}}
