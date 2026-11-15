@@ -28,6 +28,45 @@
     }
     return verses.every(v=>v.text)?verses:null;
   }
+  // Keep the original byte ranges. A selected ayat is an editorial view,
+  // never a new source passage ID and never a guessed Hanzi/Legge alignment.
+  function editable(source){
+    const numbered=splitIndonesia(source);
+    if(!numbered)return null;
+    const boundaries=[];
+    for(const match of source.matchAll(markers)){
+      if(Number(match[2])>1)boundaries.push({
+        start:match.index+match[1].length,
+        after:match.index+match[0].length
+      });
+    }
+    if(boundaries.length!==numbered.length-1)return null;
+    return numbered.map((verse,i)=>{
+      const start=i?boundaries[i-1].after:0;
+      const end=i<boundaries.length?boundaries[i].start:source.length;
+      return {...verse,start,end,raw:source.slice(start,end)};
+    });
+  }
+  // An ayat-only change is persisted as the canonical full-passage translation.
+  // This is compatible with the deployed Firestore schema/rules; markers and
+  // all other ayat remain byte-for-byte untouched.
+  function replaceVerse(source,number,proposed){
+    const verses=editable(source),verse=verses?.find(x=>x.number===Number(number));
+    if(!verse||typeof proposed!=='string'||!proposed.trim())return null;
+    const leading=verse.raw.match(/^\s*/)[0],trailing=verse.raw.match(/\s*$/)[0];
+    const candidate=source.slice(0,verse.start)+leading+proposed.trim()+trailing+source.slice(verse.end);
+    const current=editable(candidate);
+    if(!current||current.length!==verses.length)return null;
+    if(current.some((x,i)=>x.number!==verses[i].number||
+      (x.number!==verse.number&&x.text!==verses[i].text)))return null;
+    return candidate;
+  }
+  function changedVerse(before,after){
+    const old=editable(before),next=editable(after);
+    if(!old||!next||old.length!==next.length)return null;
+    const changes=old.filter((v,i)=>v.number!==next[i].number||v.text!==next[i].text);
+    return changes.length===1?changes[0].number:null;
+  }
   const textOf=token=>token?.type==='ruby'?(token.traditional||''):(token?.value||'');
   function align(passage){
     const starts=STARTS[passage?.id];
@@ -67,7 +106,7 @@
     if(aligned.flatMap(x=>x.ruby_tokens).map(textOf).join('')!==source)return null;
     return aligned;
   }
-  const api=Object.freeze({splitIndonesia,align,alignedPassageIds:Object.freeze(Object.keys(STARTS))});
+  const api=Object.freeze({splitIndonesia,editable,replaceVerse,changedVerse,align,alignedPassageIds:Object.freeze(Object.keys(STARTS))});
   if(typeof module!=='undefined'&&module.exports)module.exports=api;
   scope.RuSubverses=api;
 })(typeof globalThis!=='undefined'?globalThis:this);
