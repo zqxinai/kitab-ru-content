@@ -100,6 +100,8 @@
     Object.freeze({"passage_id":"sishu.lunyu.14.01","source":"(S.S. VIII: 13; Bc. VIIA: 6,7)","display":"(Sabda Suci — Lun Yu VIII:13; Mengzi — Bing Cu VII A:6,7)","target_id":null,"decision":"presentation-only / MATAKIN compound citation with inherited book names; per-segment passages recorded; no passage link; printed 2012 phrasing not attested"}),
     Object.freeze({"passage_id":"sishu.lunyu.02.05","source":"(S.S. I:9; III: 1,2; XIX:5; Bc. IIIA: 2)","display":"(Sabda Suci — Lun Yu I:9; Lun Yu III:1,2; Lun Yu XIX:5; Mengzi — Bing Cu III A:2)","target_id":null,"decision":"presentation-only / MATAKIN compound citation with inherited book names; per-segment passages recorded; no passage link; printed 2012 phrasing not attested"}),
     Object.freeze({"passage_id":"sishu.lunyu.07.23","source":"(S.S. III: 24; IX: 5)","display":"(Sabda Suci — Lun Yu III:24; Lun Yu IX:5)","target_id":null,"decision":"presentation-only / MATAKIN compound citation with inherited book names; per-segment passages recorded; no passage link; printed 2012 phrasing not attested"})
+,
+    Object.freeze({"passage_id":"sishu.lunyu.09.05","source":"(S.S. III: 24; VII \": 23; XIV: 36; Bc. IB: 16)","display":"(Sabda Suci — Lun Yu III:24; Lun Yu VII:23; Lun Yu XIV:36; Mengzi — Bing Cu I B:16)","target_id":null,"decision":"presentation-only / 2012 MATAKIN photograph confirms VII.23 and all four referenced items; editorial naming is normalized, not a verbatim 2012 transcription; per-segment target IDs validated; no single passage link; 2011 source remains unchanged; printed 2012 citation witnessed"})
   ]);
   const byId=new Map();
   for(const r of records){
