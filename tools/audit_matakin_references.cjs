@@ -39,6 +39,8 @@ function classify(reference,book){
 }
 function scan(){
  const manifest=read('sishu/manifest.json'),results=[];
+ const compound=read('sources/references/matakin-compound-batch01.json');
+ const compoundIndex=new Map(compound.entries.map(r=>[r.passage_id+'::'+r.source,r]));
  let count=0;
  for(const item of manifest.chapters){
    const c=read(item.path);count+=c.passages.length;
@@ -47,10 +49,20 @@ function scan(){
      for(const m of text.matchAll(/\(([^()\n]{1,125})\)/g)){
        const classification=classify(m[1],c.book);
        if(!classification)continue;
+       const matched=compoundIndex.get(p.id+'::'+m[0]);
        results.push({
          passage_id:p.id,book:c.book,source_file:item.path,
          original_reference:m[0],offset:m.index,
          ...classification,
+         ...(matched?{
+           segmentation_status:matched.display_status,
+           segments:matched.components.map(c=>({
+             source_segment:c.source_segment,
+             book_id:c.book_id,
+             target_passage_ids:c.target_passage_ids,
+             subverse_target_id:c.subverse_target_id
+           }))
+         }:{}),
          context:text.slice(Math.max(0,m.index-55),Math.min(text.length,m.index+m[0].length+55))
        });
      }
@@ -62,6 +74,9 @@ function scan(){
   schema:'ru-classics.reference-audit.v1',
   policy:'2011 transcript preserved; MATAKIN 2012 full book names in same-book citations',
   passage_count:count,reviewed_references:results.length,counts,
+  compound_segmented:results.filter(r=>r.segments).length,
+  compound_display_ready:results.filter(r=>r.segmentation_status==='display-ready').length,
+  compound_review_only:results.filter(r=>r.segmentation_status==='review-only').length,
   review_required:results.filter(r=>r.kind!=='explicit-book'),
   all_references:results
  };
@@ -74,6 +89,9 @@ if(require.main===module){
  }
  console.log('MATAKIN references: '+JSON.stringify({
   passages:result.passage_count,references:result.reviewed_references,groups:result.counts,
+  compound_segmented:result.compound_segmented,
+  compound_display_ready:result.compound_display_ready,
+  compound_review_only:result.compound_review_only,
   samples:result.review_required.slice(0,15).map(x=>({id:x.passage_id,ref:x.original_reference,kind:x.kind,target:x.target_book}))
  },null,2));
 }
