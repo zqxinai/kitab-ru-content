@@ -174,6 +174,11 @@
       ['Kekayaan Negeri Cien dan Cho', 'Kekayaan Negeri Jin - Cien dan Chu - Cho'], // 晉楚
       ['Bing Tiongcu', 'Meng Zhongzi - Bing Tiongcu'] // 孟仲子
     ],
+    'sishu.mengzi.06.07': [
+      // Dalam terjemahan MATAKIN ini keterangan historis bukan bagian Hanzi inti;
+      // anotasi Zhu Xi: 段干木魏文侯時人, jadi 魏 = Wei (bukan 衛).
+      ['Negeri Gwi', 'Negeri Wei - Gwi']
+    ],
     'sishu.mengzi.06.03': [
       ['Ciu Siau bertanya', 'Zhou Xiao - Ciu Siau bertanya'], // 周霄
       ['Negeri Cien', 'Negeri Jin - Cien'] // 晉
