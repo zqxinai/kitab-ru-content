@@ -8,6 +8,7 @@ on:
     paths:
       - 'editor/**'
       - 'ru-classics/**'
+      - 'tests/ru-classics-reading*.test.js'
       - 'tools/build_ru_classics_web.py'
       - 'audit/**'
       - 'index.html'
@@ -55,6 +56,7 @@ jobs:
           node --test ru-classics/tests/subverses.cjs
           node --test ru-classics/tests/reading-navigation.cjs
           node --test tests/ru-classics-reading-normalization.test.js
+          node --test tests/ru-classics-reading-corpus.test.js
           node --test tests/matakin-reference-overlay.test.cjs
       - name: Configure optional Google editor login
         env:
