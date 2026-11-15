@@ -37,12 +37,12 @@ test('Mengzi-specific volume letter reference is only a candidate',()=>{
  assert.equal(classify('II.5.4.4','mengzi').kind,'ambiguous-unlabeled');
  assert.equal(classify('2','mengzi'),null);
 });
-test('Full MATAKIN reference inventory carries 16 explicitly reviewed compound segments',()=>{
+test('Full MATAKIN reference inventory combines 15 compound groups from both batches',()=>{
  const a=scan();
  assert.equal(a.passage_count,965);
- assert.equal(a.compound_segmented,7);
- assert.equal(a.compound_display_ready,6);
- assert.equal(a.compound_review_only,1);
+ assert.equal(a.compound_segmented,15);
+ assert.equal(a.compound_display_ready,12);
+ assert.equal(a.compound_review_only,3);
  const ready=a.all_references.find(x=>x.passage_id==='sishu.lunyu.02.19'&&x.original_reference==='(T.S. XIX: 1; S.S. III: 21)');
  assert.equal(ready?.segmentation_status,'display-ready');
  assert.deepEqual(ready?.segments.map(x=>x.book_id),['zhongyong','lunyu']);
@@ -52,6 +52,20 @@ test('Full MATAKIN reference inventory carries 16 explicitly reviewed compound s
  assert.deepEqual(complex?.segments.map(x=>x.book_id),['lunyu','lunyu','lunyu','mengzi']);
  assert.equal(complex?.segments.flatMap(x=>x.target_passage_ids).length,5);
  assert.ok(complex.segments.every(x=>x.subverse_target_id===null));
+});
+test('Batch 06 records two uncertain cases and leaves slash-based subverse targets unresolved',()=>{
+ const data=scan();
+ const malformed=data.all_references.find(x=>x.passage_id==='sishu.lunyu.09.05'&&x.original_reference.includes('VII ": 23'));
+ assert.equal(malformed?.segmentation_status,'review-only');
+ assert.deepEqual(malformed?.segments.map(x=>x.book_id),['lunyu','lunyu','lunyu','mengzi']);
+ assert.ok(malformed.segments.every(x=>x.subverse_target_id===null));
+ const inheritance=data.all_references.find(x=>x.passage_id==='sishu.lunyu.07.23'&&x.original_reference==='(S.S. III: 24; IX: 5)');
+ assert.equal(inheritance?.segmentation_status,'review-only');
+ assert.equal(inheritance?.segments.length,2);
+ const slash=data.all_references.find(x=>x.passage_id==='sishu.lunyu.07.02'&&x.original_reference==='(S.S. IX: 16; Bc. IIA: 2/19)');
+ assert.equal(slash?.segmentation_status,'display-ready');
+ assert.equal(slash?.segments[1].target_passage_ids[0],'sishu.mengzi.03.02');
+ assert.equal(slash?.segments[1].subverse_target_id,null);
 });
 test('Full source audit identifies reference records without changing scripture',()=>{
  const all=scan(),byId=id=>all.all_references.filter(x=>x.passage_id===id);
