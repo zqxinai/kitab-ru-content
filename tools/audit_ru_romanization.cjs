@@ -29,6 +29,20 @@ const placePattern = /\b(?:kota|Kota|daerah|Daerah|desa|Desa|Gunung|gunung|Sunga
 const personPattern = /\b([\p{Lu}][\p{L}-]{2,}(?:[ -]+[\p{Lu}][\p{L}-]{2,}){0,2})\s+(?=bertanya|berkata|menjawab|datang|menemui|menyuruh|diangkat|membunuh|berdiam|yang|memerintah|menerima|pernah|meninggalkan|mewakili|berkuasa|mengajak)/gu;
 const commonPlaceNames = new Set(['Negeri Yan','Negeri Song','Negeri Liang','Negeri Qi','Negeri Lu','Negeri Chu','Negeri Wei','Negeri Jin','Negeri Ge']);
 const notPeople = new Set(['Jalan Suci','Cinta Kasih','Yang Maha','Kitab Sanjak','Raja Muda','Raja Besar','Nabi Kongzi','Tuhan Yang']);
+// Exception ledger: these are not Hokkian names awaiting Pinyin. Their
+// identification was checked in the cited passage; do not hide new candidates.
+const NOT_HOKKIAN_PLACE = new Map([
+  ['daerah Tong', '桐; Tong is already the Mandarin spelling'],
+  ['daerah Negeri Chu', 'Indonesian nested geographic description'],
+  ['daerah Negeri Lu', 'Indonesian nested geographic description'],
+  ['daerah Selatankah', 'Indonesian directional adjective'],
+  ['daerah Utarakah', 'Indonesian directional adjective'],
+  ['daerah Sungai Han', 'Han is already the Mandarin river name'],
+  ['istana Guru', 'Indonesian possessive phrase, not toponym'],
+  ['istana Salju', 'Indonesian translation of 雪宮, not Hokkian'],
+  ['istana Yao', 'Yao is already Hanyu Pinyin']
+]);
+const ORDINARY_FIRST = /^(?:Adapun|Anak|Bukankah|Bulan|Cara|Cinta|Daerah|Demikianlah|Hal|Hanya|Inilah|Karena|Kata|Kawan|Kebajikan|Keluhuran|Kerajaan|Maka|Nasehat|Siswa|Suci|Tata|Tiga)\b/;
 const otherPlaces = new Map(), otherPeople = new Map();
 function record(map,term,id) {
   const v = map.get(term) || {term, count:0, passages:[]};
@@ -42,6 +56,10 @@ function unpairedInView(view,term) {
     if(pos>0&&/[\p{L}-]/u.test(view[pos-1]))continue;
     if(pos+term.length<view.length&&/[\p{L}-]/u.test(view[pos+term.length]))continue;
     if(view.slice(Math.max(0,pos-3),pos)===' - ')continue;
+    if(/^\s*-\s*\p{L}/u.test(view.slice(pos+term.length)))continue; // Pinyin at left of pair
+    if(term.includes(' - '))continue; // already a complete Pinyin–Hokkian pair
+    const nearby = view.slice(Math.max(0,pos-60),pos).split(/[.,;:!?()“”"']/u).pop();
+    if(/\s-\s[\p{L}\s-]*$/u.test(nearby))continue; // nested Hokkian suffix in a paired full name
     return true;
   }
   return false;
@@ -68,13 +86,13 @@ for (const [book, chapters] of Object.entries(BOOKS)) {
       }
       for (const m of source.matchAll(placePattern)) {
         const term=m[0], label=term.replace(/^[^ ]+ /,'');
-        if(term.includes(' - ')||commonPlaceNames.has(term)||/^(Timur|Barat|Utara|Selatan|Tengah|Suci|Besar)\b/.test(label))continue;
+        if(term.includes(' - ')||commonPlaceNames.has(term)||NOT_HOKKIAN_PLACE.has(term)||/^(Timur|Barat|Utara|Selatan|Tengah|Suci|Besar)\b/.test(label))continue;
         if(!unpairedInView(view,term))continue;
         record(otherPlaces,term,verse.id);
       }
       for(const m of source.matchAll(personPattern)){
         const term=m[1],before=source.slice(Math.max(0,m.index-3),m.index);
-        if(before===' - '||notPeople.has(term))continue;
+        if(before===' - '||notPeople.has(term)||term.includes(' - ')||ORDINARY_FIRST.test(term))continue;
         if(/^(?:Negeri|negeri|kota|Kota|Gunung|gunung|Sungai|sungai|daerah|Kitab|Raja|Rajamuda|Pangeran|Nabi|Tuhan|Orang|Pembesar|Seorang|Sang|Suku|Murid|Badan|Dahulu|Ketika|Kini|Para)\b/.test(term))continue;
         if(!term.includes(' ')&&!term.includes('-')&&!/(?:cu|zi|tong|thio|kwi|liam|yan|sik)$/i.test(term))continue;
         if(!unpairedInView(view,term))continue;
@@ -97,7 +115,8 @@ const result = {
   personCandidates:unpairedPeople,
   warning:'Candidate finder is heuristic; zero candidates never proves full Hanzi-level completeness.',
   status:'requires-contextual-review',
-  explanation:'Kandidat mencakup nama Hokkian, ejaan Mandarin yang belum di-allowlist, dan frasa editorial MATAKIN; tidak otomatis salah.',
+  explanation:'Kandidat tersisa setelah pengecualian Pinyin yang sudah tersanding dan frasa Indonesia; nol kandidat bukan bukti semua Hokkian telah terdeteksi.',
+  documentedNonHokkianPlaceExceptions:[...NOT_HOKKIAN_PLACE.entries()].map(([term,reason])=>({term,reason})),
   candidates:unresolved
 };
 if (process.argv.includes('--json')) process.stdout.write(JSON.stringify(result,null,2)+'\n');
@@ -106,6 +125,6 @@ else {
   console.log('Kandidat nama yang perlu pemeriksaan kontekstual: '+unresolved.length);
   for (const row of unresolved.slice(0,80)) console.log(row.count+'x '+row.term+' ['+row.passages.join(', ')+']');
   console.log('Kandidat lokasi: '+unpairedPlaces.length+'; nama orang tanpa gelar: '+unpairedPeople.length);
-  for(const [label,rows] of [['TEMPAT',unpairedPlaces],['ORANG',unpairedPeople]]) for(const row of rows.slice(0,35)) console.log(label+' '+row.count+'x '+row.term+' ['+row.passages.join(', ')+']');
+  for(const [label,rows] of [['TEMPAT',unpairedPlaces],['ORANG',unpairedPeople]]) for(const row of rows.slice(0,150)) console.log(label+' '+row.count+'x '+row.term+' ['+row.passages.join(', ')+']');
 }
 if (passages !== 965) process.exitCode = 1;

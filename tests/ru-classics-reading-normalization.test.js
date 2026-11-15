@@ -261,8 +261,8 @@ test('Yu (禹) is not confused with Yi (夷), Yi Yin (伊尹), or book-number no
   };
   const source = verse('sishu.mengzi.09.06').translation_indonesian;
   const normalized = reading.normalize(source,'sishu.mengzi.09.06');
-  assert.match(normalized,/Sun mengusulkan Yu - I kepada Tuhan YME/);
-  assert.match(normalized,/Yu - I mengusulkan Ik kepada Tuhan YME/);
+  assert.match(normalized,/Shun - Sun mengusulkan Yu - I kepada Tuhan YME/);
+  assert.match(normalized,/Yu - I mengusulkan Yi - Ik kepada Tuhan YME/);
   assert.match(normalized,/Yi Yin - I-ien/);
   assert.match(normalized,/Shu Jing - Su King I\.I\.4/);
   assert.equal(reading.normalize(normalized,'sishu.mengzi.09.06'),normalized);
@@ -278,7 +278,7 @@ test('only Mengzi VII B:38 drops extraneous terminal colophon; legitimate Sianca
   const tail = 'Mengapa tiada yang meneruskan ajaran Nya?" ( IIB:13 ). SIANCAI';
   assert.equal(reading.normalize(tail, 'sishu.mengzi.14.38'), 'Mengapa tiada yang meneruskan ajaran Nya?" ( IIB:13 ).');
   assert.equal(reading.normalize('Ia berkata, "Siancai! Sungguh tepat."', 'sishu.lunyu.12.11'),
-    'Ia berkata, "Siancai! Sungguh tepat."');
+    'Ia berkata, "Shanzai - Siancai! Sungguh tepat."');
   assert.equal(reading.normalize(tail, 'other'), tail);
 });
 
