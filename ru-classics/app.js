@@ -57,27 +57,38 @@
       ruby([verse.ruby_tokens])+'</div>'
     ).join('');
   }
-  // Only exact MATAKIN references with a known passage target become links.
-  // Plain text is escaped before insertion; source translation is never edited.
+  // Each registered component is independently navigable; chapter-only
+  // references remain unlinked. Slash /N points to Ayat N only if present.
   function referenceMarkup(id,text){
-    const api=globalThis.Matakin2012References;
-    if(!api?.segments)return H(api?.present(id,text)??text);
-    return api.segments(id,text).map(part=>{
+    const overlay=globalThis.Matakin2012References;
+    if(!overlay?.segments)return H(overlay?.present(id,text)??text);
+    const parts=globalThis.RuReferenceLinks?.parts(id,text,overlay)||overlay.segments(id,text);
+    return parts.map(part=>{
       const label=H(part.text);
       if(!part.target_id||!state.map.has(part.target_id))return label;
-      return '<button type="button" class="reference-link" data-passage="'+H(part.target_id)+'" title="Buka pasal rujukan" aria-label="Buka rujukan '+label+'">'+label+'</button>';
+      const n=Number(part.ayat)||0;
+      const target=state.map.get(part.target_id);
+      const verses=n?globalThis.RuSubverses?.splitIndonesia(target.translation_indonesian):null;
+      const verifiedAyat=verses?.some(v=>v.number===n)?n:0;
+      return '<button type="button" class="reference-link" data-passage="'+H(part.target_id)+'"'+
+        (verifiedAyat?' data-ref-ayat="'+verifiedAyat+'"':'')+
+        ' title="Buka '+(verifiedAyat?'Ayat '+verifiedAyat:'pasal')+' rujukan" aria-label="Buka rujukan '+label+'">'+label+'</button>';
     }).join('');
   }
+  function readingParagraphs(text,lang,renderer){
+    const pieces=globalThis.RuReadingLayout?.paragraphs(text,lang)||[text];
+    return pieces.map(part=>'<p class="reading-paragraph">'+renderer(part)+'</p>').join('');
+  }
   function indonesiaWithSubverses(p,aligned){
-    // Display-layer normalization: underlying MATAKIN translation stays intact.
-    // Each exact reference is scoped to a verified passage ID.
+    // Layout is separate from the canonical MATAKIN source string.
     const display=text=>referenceMarkup(p.id,text);
+    const format=text=>readingParagraphs(text,'id',display);
     const verses=aligned||globalThis.RuSubverses?.splitIndonesia(p.translation_indonesian||'');
-    if(!verses)return '<p>'+display(p.translation_indonesian||'Belum tersedia')+'</p>';
+    if(!verses)return '<div class="translation-prose">'+format(p.translation_indonesian||'Belum tersedia')+'</div>';
     return verses.map(verse=>
-      '<p class="translation-verse'+(state.ayat===verse.number?' ayat-active':'')+'" data-ayat="'+verse.number+'">'+
+      '<div class="translation-verse'+(state.ayat===verse.number?' ayat-active':'')+'" data-ayat="'+verse.number+'">'+
       '<button type="button" class="ayat-label ayat-select" data-ayat-select="'+verse.number+'" aria-pressed="'+(state.ayat===verse.number)+'" title="Pilih ayat '+verse.number+'">Ayat '+verse.number+'</button>'+
-      display(verse.indonesian||verse.text)+'</p>'
+      format(verse.indonesian||verse.text)+'</div>'
     ).join('');
   }
   function reader(){const p=byId(state.id);if(!p){navigate('books');return;}state.last=p.id;save();const c=state.chapters.find(c=>c.id===p._chapter);const b=book(p._book);const pos=state.passages.findIndex(x=>x.id===p.id);const prev=state.passages[pos-1],next=state.passages[pos+1];const s=state.settings;const aligned=globalThis.RuSubverses?.align(p)||null;
@@ -86,7 +97,7 @@
     +'<div class="reader-grid"><article class="paper-page"><div class="passage-top"><span>PASAL '+p.number+'</span><button class="save-btn" data-action="bookmark" aria-pressed="'+state.saved.includes(p.id)+'">'+(state.saved.includes(p.id)?'♥ Tersimpan':'♡ Simpan')+'</button></div>'
     +(s.hanzi?'<div class="hanzi-text '+(s.pinyin?'':'no-pinyin')+'" style="--hanzi-size:'+s.font+'px" lang="zh-Hant">'+hanziWithSubverses(p,aligned)+'</div>':'')
     +(s.indo?'<section class="translation"><h3>Bahasa Indonesia · MATAKIN</h3>'+indonesiaWithSubverses(p,aligned)+'</section>':'')
-    +(s.english&&p.translation_english?'<section class="translation english"><h3>English · James Legge'+(aligned?' · tingkat pasal':'')+'</h3><p lang="en">'+H(p.translation_english)+'</p></section>':'')
+    +(s.english&&p.translation_english?'<section class="translation english"><h3>English · James Legge · tingkat pasal</h3><div class="translation-prose" lang="en">'+readingParagraphs(p.translation_english,'en',H)+'</div></section>':'')
     +'</article><aside class="reader-aside"><h3>Catatan pribadi</h3><p>Catatan ini disimpan hanya di browser perangkat Anda.</p><textarea id="personal-note" aria-label="Catatan pribadi" placeholder="Tuliskan pemikiran Anda…">'+H(state.notes[p.id]||'')+'</textarea><button class="primary" data-action="save-note">Simpan catatan</button>'
     +annotation(p)+(window.RuEditorial?.canEdit?.()?'<div class="rule"></div><button class="secondary" data-action="propose" style="width:100%">'+(state.ayat?'Usulkan revisi Ayat '+state.ayat:'Usulkan revisi teks')+'</button>':'')
     +'</aside></div><div class="reader-nav"><button '+(prev?'data-passage="'+H(prev.id)+'"':'disabled')+'>← Pasal sebelumnya</button><button '+(next?'data-passage="'+H(next.id)+'"':'disabled')+'>Pasal berikutnya →</button></div>';
@@ -101,9 +112,12 @@
     main.innerHTML='<div class="chapter-title"><span class="eyebrow">Koleksi pribadi</span><h1>Pasal tersimpan</h1><p class="muted">'+bookmarked.length+' pasal disimpan · '+notes+' catatan pribadi</p></div>'+(bookmarked.length?'<div class="passage-list">'+bookmarked.map(p=>'<button class="result" data-passage="'+H(p.id)+'"><small>'+book(p._book).name+' · Pasal '+p.number+'</small><strong>'+H(p._chapterTitle)+'</strong><span class="excerpt">'+H(p.translation_indonesian)+'</span></button>').join('')+'</div>':'<div class="empty">Belum ada pasal tersimpan. Gunakan tombol ♡ Simpan di halaman bacaan.</div>');
   }
   function navHighlight(){document.querySelectorAll('[data-nav]').forEach(btn=>{const active=btn.dataset.nav===(state.tab==='reader'||state.tab==='chapter'?'books':state.tab);btn.classList.toggle('active',active);if(active)btn.setAttribute('aria-current','page');else btn.removeAttribute('aria-current');});}
-  function render(){navHighlight();if(!state.data)return;if(state.tab==='home')home();else if(state.tab==='books')library();else if(state.tab==='chapter')chapter();else if(state.tab==='reader')reader();else if(state.tab==='search')search();else if(state.tab==='saved')saved();else if(state.tab==='editor')window.RuEditorial?.render?.(main);window.scrollTo({top:0,behavior:'instant'});}
-  function navigate(tab,identity=null){state.tab=tab;if(tab==='books'&&identity!==null)state.book=identity;if(tab==='chapter')state.chapter=identity;if(tab==='reader'){if(state.id!==identity)state.ayat=0;state.id=identity;}location.hash=tab==='reader'?'read='+encodeURIComponent(identity):tab==='chapter'?'chapter='+encodeURIComponent(identity):tab==='books'&&state.book?'book='+state.book:tab;render();}
-  function route(){if(!state.data)return;const raw=decodeURIComponent(location.hash.replace(/^#/,''));if(raw.startsWith('read=')){const id=raw.substring(5);if(state.map.has(id)){if(state.id!==id)state.ayat=0;state.id=id;state.tab='reader';}}else if(raw.startsWith('chapter=')){state.chapter=raw.substring(8);state.tab='chapter';}else if(raw.startsWith('book=')){state.book=raw.substring(5);state.tab='books';}else if(['home','books','search','saved','editor'].includes(raw)){state.tab=raw;if(raw==='books')state.book=null;}render();}
+  function render(){navHighlight();if(!state.data)return;if(state.tab==='home')home();else if(state.tab==='books')library();else if(state.tab==='chapter')chapter();else if(state.tab==='reader')reader();else if(state.tab==='search')search();else if(state.tab==='saved')saved();else if(state.tab==='editor')window.RuEditorial?.render?.(main);
+    if(state.tab==='reader'&&state.ayat&&state.settings.indo){
+      window.requestAnimationFrame?.(()=>document.querySelector('.translation-verse[data-ayat="'+state.ayat+'"]')?.scrollIntoView?.({block:'center',behavior:'smooth'}));
+    }else window.scrollTo({top:0,behavior:'instant'});}
+  function navigate(tab,identity=null,verse=0){state.tab=tab;if(tab==='books'&&identity!==null)state.book=identity;if(tab==='chapter')state.chapter=identity;if(tab==='reader'){state.id=identity;state.ayat=Number(verse)||0;}location.hash=tab==='reader'?'read='+encodeURIComponent(identity)+(state.ayat?'&ayat='+state.ayat:''):tab==='chapter'?'chapter='+encodeURIComponent(identity):tab==='books'&&state.book?'book='+state.book:tab;render();}
+  function route(){if(!state.data)return;const raw=decodeURIComponent(location.hash.replace(/^#/,''));if(raw.startsWith('read=')){const [id,verseParam]=raw.substring(5).split('&ayat=');if(state.map.has(id)){const requested=Number(verseParam)||0;const original=state.map.get(id);const valid=requested>0&&globalThis.RuSubverses?.splitIndonesia(original.translation_indonesian)?.some(v=>v.number===requested);state.id=id;state.ayat=valid?requested:0;state.tab='reader';}}else if(raw.startsWith('chapter=')){state.chapter=raw.substring(8);state.tab='chapter';}else if(raw.startsWith('book=')){state.book=raw.substring(5);state.tab='books';}else if(['home','books','search','saved','editor'].includes(raw)){state.tab=raw;if(raw==='books')state.book=null;}render();}
   function parseBundle(data){if(data.schema!=='ru-classics.content.v1'||data.collection!=='sishu'||!Array.isArray(data.chapters))throw Error('Format paket kitab tidak sesuai');const chap=data.chapters;const pass=[];const ids=new Set();for(const c of chap){for(const p of (c.passages||[])){if(ids.has(p.id))throw Error('ID pasal ganda');ids.add(p.id);p._book=c.book;p._chapter=c.id;p._chapterTitle=c.title;pass.push(p);}}
     if(chap.length!==78||pass.length!==965)throw Error('Data Si Shu belum lengkap ('+chap.length+' bab, '+pass.length+' pasal).');
     state.data=data;state.chapters=chap;state.passages=pass;state.map=new Map(pass.map(p=>[p.id,p]));
@@ -125,7 +139,7 @@
     if(t.dataset.nav){if(t.dataset.nav==='books')state.book=null;navigate(t.dataset.nav);return;}
     if(t.dataset.book){state.book=t.dataset.book;navigate('books',t.dataset.book);return;}
     if(t.dataset.chapter){navigate('chapter',t.dataset.chapter);return;}
-    if(t.dataset.passage){navigate('reader',t.dataset.passage);return;}
+    if(t.dataset.passage){navigate('reader',t.dataset.passage,Number(t.dataset.refAyat)||0);return;}
     if(t.dataset.toggle){state.settings[t.dataset.toggle]=!state.settings[t.dataset.toggle];save();render();return;}
     if(t.dataset.action){
       const a=t.dataset.action;
