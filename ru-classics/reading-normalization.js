@@ -784,7 +784,8 @@
       if (legacy === 'Cingcu' && /\bGak\s*$/iu.test(preceding)) return match; // 樂正子 not 曾子
       if (legacy === 'Sun' && /\b(?:Ong|Kong)\s*$/iu.test(preceding)) return match; // 王順 / 公孫 ≠ 舜
       if (legacy === 'I-cu' && /\bBing\s*$/iu.test(preceding)) return match;
-      if (legacy === 'Cu-tiang' && /\bZhu Zhang\s*-\s*$/iu.test(preceding)) return match; // 朱張 not 子張
+      if (legacy === 'Cu-tiang' && /\bZhu Zhang\s*-\s*$/iu.test(preceding)) return match;
+      if (legacy === 'Khiu' && /\bKhong\s*$/iu.test(preceding)) return match; // 孔丘 is paired as a complete name // 朱張 not 子張
       if (legacy === 'Thong' && /\bSing\s*$/iu.test(preceding)) return match; // 成湯 already covered by long name
       if (legacy === 'Ien' && /\b(?:I|Ling)\s*$/iu.test(preceding)) return match; // 伊尹 / 令尹, keep the full name
       if (legacy === 'Khun' && /\bSun-i\s*$/iu.test(preceding)) return match; // 淳於髡 full name already paired // 孟懿子 Meng Yizi, not 夷子
