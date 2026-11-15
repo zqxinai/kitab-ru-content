@@ -17,10 +17,10 @@ const expectedTargets={
  'sishu.daxue.11.23':'sishu.mengzi.01.01',
  'sishu.mengzi.01.01':'sishu.daxue.11.23'
 };
-test('Ninety-one exact references preserve original sources and resolve only evidenced targets',()=>{
+test('Ninety-two exact references preserve original sources and resolve only evidenced targets',()=>{
  assert.equal(chapters.length,78);
  assert.equal(byId.size,965);
- assert.equal(overlay.records.length,91);
+ assert.equal(overlay.records.length,92);
  // Historical batch 01 is immutable; batch 02 allows multiple references in one passage.
  for(const [sourceId,targetId] of Object.entries(expectedTargets))
   assert.ok(overlay.records.some(r=>r.passage_id===sourceId&&r.target_id===targetId),'legacy mapping changed: '+sourceId);
@@ -159,19 +159,19 @@ test('Seven compound citations are individually segmented and display-ready',()=
  }
  assert.equal(originalIds.size,7);
 });
-test('Batch 06 has seven display-ready compounds, one technical review-only case, and never invents subverse links',()=>{
+test('Batch 06 has eight display-ready compounds, including photo-witnessed IX:5',()=>{
  const data=read('sources/references/matakin-compound-batch02.json');
  assert.equal(data.schema,'ru-classics.compound-references.v1');
  assert.deepEqual(data.book_aliases,{SS:'lunyu',AB:'daxue',BC:'mengzi',TS:'zhongyong'});
  assert.equal(data.entries.length,8);
- assert.equal(data.entries.filter(e=>e.display_status==='display-ready').length,7);
- assert.equal(data.entries.filter(e=>e.display_status==='review-only').length,1);
+ assert.equal(data.entries.filter(e=>e.display_status==='display-ready').length,8);
+ assert.equal(data.entries.filter(e=>e.display_status==='review-only').length,0);
  assert.equal(data.entries.reduce((n,e)=>n+e.components.length,0),18);
  for(const entry of data.entries){
   const source=byId.get(entry.passage_id);
   assert.ok(source,'source ID not present in MATAKIN chapters: '+entry.passage_id);
   assert.equal(source.translation_indonesian.split(entry.source).length,2,'expected exactly one source occurrence: '+entry.passage_id);
-  assert.equal(entry.printed_2012_attested,false,'no unsupported print verification');
+  assert.equal(entry.printed_2012_attested,entry.passage_id==='sishu.lunyu.09.05','photo witness scope mismatch');
   assert.equal(new Set(entry.components.map(c=>c.order)).size,entry.components.length);
   assert.ok(entry.review_note);
   for(const seg of entry.components){
@@ -198,8 +198,16 @@ test('Batch 06 has seven display-ready compounds, one technical review-only case
   }
  }
  const malformed=data.entries.find(x=>x.passage_id==='sishu.lunyu.09.05');
- assert.ok(malformed.source.includes('VII ": 23'));
- assert.equal(malformed.display_status,'review-only');
+ assert.ok(malformed.source.includes('VII ": 23'),'original MATAKIN 2011 spelling remains in registry');
+ assert.equal(malformed.display_status,'display-ready');
+ assert.equal(malformed.printed_2012_attested,true);
+ assert.equal(malformed.printed_2012_display_verbatim,false);
+ assert.match(malformed.witness.kind,/foto halaman/);
+ assert.ok(malformed.printed_2012_citation.includes('VII.23'));
+ assert.equal(malformed.components[1].printed_2012_segment,'VII.23');
+ assert.equal(malformed.components[1].normalized_source_segment,'VII:23');
+ assert.ok(malformed.display.includes('Lun Yu VII:23'));
+ assert.ok(!malformed.display.includes('VII "'));
  const slash=data.entries.find(x=>x.passage_id==='sishu.lunyu.07.02');
  assert.equal(slash.components[1].source_segment,'Bc. IIA: 2/19');
  assert.equal(slash.components[1].subverse_target_id,null);
@@ -246,8 +254,8 @@ test('Batch 07 resolves 14 inherited-book compound markers and preserves each pr
   assert.ok(overlay.present(id,byId.get(id).translation_indonesian).includes(e.display));
  }
  const malformed=read('sources/references/matakin-compound-batch02.json').entries.find(x=>x.passage_id==='sishu.lunyu.09.05');
- assert.equal(malformed.display_status,'review-only');
- assert.ok(overlay.present(malformed.passage_id,byId.get(malformed.passage_id).translation_indonesian).includes(malformed.source));
+ assert.equal(malformed.display_status,'display-ready');
+ assert.ok(overlay.present(malformed.passage_id,byId.get(malformed.passage_id).translation_indonesian).includes(malformed.display));
 });
 test('MATAKIN pasal/ayat notation resolves slash N to an existing Mengzi verse without inventing deep links',()=>{
  const refs=read('sources/references/matakin-compound-batch02.json');
