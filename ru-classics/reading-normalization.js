@@ -438,6 +438,7 @@
       ['Raja Kiat dan Tiu sendiri', 'Raja Jie - Kiat dan Zhou - Tiu sendiri'] // 桀與紂
     ],
     'sishu.mengzi.09.07': [
+      ['Baginda Thong', 'Baginda Tang - Thong'], // 湯 in 孟子萬章上, not 桐
       ['kota Pok', 'kota Bo - Pok'], // 亳
       ['daerah Yu Sien', 'daerah Youshen - Yu Sien'], // Hanzi verified context
       ['Raja He Kiat', 'Raja Xia - He Jie - Kiat'], // 夏桀
