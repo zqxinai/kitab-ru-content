@@ -26,7 +26,7 @@ jobs:
         with:
           node-version: '22'
       - name: Validate all four books and their names
-        run: node --test tests/ru-classics-reading-normalization.test.js tests/ru-classics-reading-corpus.test.js
+        run: node --test tests/ru-classics-reading*.test.js
       - name: Inventory unpaired title candidates across all passages
         run: |
           node tools/audit_ru_romanization.cjs --json > ru-romanization-candidates.json
