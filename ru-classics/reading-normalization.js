@@ -2,6 +2,35 @@
 (function (root) {
   'use strict';
   const PAIRS = Object.freeze([
+    ['Cu-go', 'Zi Ao'], // 子敖
+    ['Hamkhiu Bong', 'Xianqiu Meng'], // 咸丘蒙
+    ['Ien-su', 'Yin Shi'], // 尹士
+    ['Biet-cu', 'Mizi'], // 彌子
+    ['Bing I-cu', 'Meng Yizi'], // 孟懿子
+    ['Bing Kwicu', 'Meng Jizi'], // 孟季子
+    ['Ciok Too', 'Zhu Tuo'], // 祝鮀
+    ['Coo Kau', 'Cao Jiao'], // 曹交
+    ['Cu-khiem', 'Zi Qin'], // 子禽
+    ['Cu-koo', 'Zigao'], // 子羔
+    ['Cucok Jicu', 'Zizhuo Ruzi'], // 子濯孺子
+    ['Cuhok Kingpik', 'Zifu Jingbo'], // 子服景伯
+    ['Kongpik Liau', 'Gongbo Liao'], // 公伯寮
+    ['Hong Bong', 'Pang Meng'], // 逄蒙
+    ['Kongbing Gi', 'Gongming Yi'], // 公明儀
+    ['Ongsun Ke', 'Wangsun Jia'], // 王孫賈
+    ['Tiongsiok Gi', 'Zhongshu Yu'], // 仲叔圉
+    ['Gan Siu-yu', 'Yan Chouyou'], // 顏讎由
+    ['Tam-tay Biat-bing', 'Tantai Mieming'], // 澹臺滅明
+    ['Cong Bu-tiong', 'Zang Wuzhong'], // 臧武仲 (beda dari 臧文仲)
+    ['Chiong Gi', 'Chong Yu'], // 充虞
+    ['Ong-hwan', 'Wang Huan'], // 王驩
+    ['Hong-siok', 'Fangshu'], // 方叔
+    ['Liem Hong', 'Lin Fang'], // 林放
+    ['Ong Sun-ke', 'Wangsun Jia'], // 王孫賈
+    ['Kwan-tiong', 'Guan Zhong'], // 管仲
+    ['Pat Iet', 'Ba Yi'], // 八佾, tata delapan baris penari
+    ['Kwan-chi', 'Guan Ju'], // 關雎, judul sanjak
+    ['Bok-tok', 'Mu Duo'], // 木鐸, genta kayu
     ['Cu-tiang', 'Zizhang'], // 子張
     ['Cu-yu', 'Ziyou'], // 子游
     ['Cai-ngo', 'Zai Wo'], // 宰我
@@ -132,6 +161,123 @@
   // Kolasi khusus berdasarkan Hanzi. Satu ejaan Hokkian bisa mewakili
   // aksara berbeda: Chien => 晉 (Jin) atau 秦 (Qin); Swan => 僎 atau 宣.
   const CONTEXTUAL = Object.freeze({
+    'sishu.mengzi.07.24': [
+      ['Gak Zengzi - Cingcu', 'Yuezhengzi - Gak Cingcu'] // 樂正子, no Zengzi: overlay only, source preserved
+    ],
+    'sishu.mengzi.06.10': [
+      ['Khong Ciang', 'Kuang Zhang - Khong Ciang'], // 匡章
+      ['Tien Tiongcu', 'Chen Zhongzi - Tien Tiongcu'], // 陳仲子
+      ['didaerah O-ling', 'didaerah Wuling - O-ling'], // 於陵; 於音烏, Zhu Xi
+      ['di O-ling', 'di Wuling - O-ling'], // 於陵
+      ['daerah Khap', 'daerah Ge - Khap'], // 蓋, 食采於蓋 (Zhao Qi)
+      ['perampok Cik', 'perampok Zhi - Cik'], // 盜跖
+      ['Tiongcu-lah', 'Zhongzi - Tiongcu-lah'], // 仲子
+      ['apakah Tiongcu benar-benar', 'apakah Zhongzi - Tiongcu benar-benar'], // 仲子
+      ['yang ditempati Tiongcu itu', 'yang ditempati Zhongzi - Tiongcu itu'], // 仲子
+      ['Tiongcu, kiranya', 'Zhongzi - Tiongcu, kiranya'], // 仲子
+      ['Tiongcu adalah', 'Zhongzi - Tiongcu adalah'], // 仲子
+      ['Tiongcu ini', 'Zhongzi - Tiongcu ini'], // 仲子
+    ],
+    'sishu.mengzi.09.05': [
+      ['daerah Lam Hoo', 'daerah Nanhe - Lam Hoo'], // 南河
+    ],
+    'sishu.daxue.04.04': [
+      ['tebing sungai Ki', 'tebing sungai Qi - Ki'], // 淇, not 沂
+    ],
+    'sishu.mengzi.04.05': [
+      ['Kota Ling-khiu', 'Kota Lingqiu - Ling-khiu'], // 靈丘
+    ],
+    'sishu.mengzi.04.06': [
+      ['Kota Khap', 'Kota Ge - Khap'], // 蓋, 反切古盍切 di 孟子注疏
+    ],
+    'sishu.mengzi.04.07': [
+      ['Kota Ing', 'Kota Ying - Ing'], // 嬴
+    ],
+    'sishu.mengzi.04.14': [
+      ['daerah Hiu', 'daerah Xiu - Hiu'], // 休
+      ['Kota Cong', 'Kota Chong - Cong'], // 崇
+    ],
+    'sishu.lunyu.11.26': [
+      ['Sungai Ki', 'Sungai Yi - Ki'], // 沂; berbeda 淇 di Da Xue
+    ],
+    'sishu.lunyu.18.09': [
+      ['Negeri Jin - Chien', 'Negeri Qin - Chien'], // 秦; edisi Hokkian Chien ambigu dengan 晉
+      ['musik, Ci, lari', 'musik, Zhi - Ci, lari'], // 摯
+      ['dua, Kan, lari', 'dua, Gan - Kan, lari'], // 乾
+      ['tiga, Liau, lari', 'tiga, Liao - Liau, lari'], // 繚
+      ['empat, Khwat, lari', 'empat, Que - Khwat, lari'], // 缺
+      ['Sungai Hoo', 'Sungai He - Hoo'], // 河
+      ['tambur kecil, Bu, lari', 'tambur kecil, Wu - Bu, lari'], // 武
+      ['musik, Yang, serta', 'musik, Yang - Yang, serta'], // 陽 (Mandarin = legacy; identitas tetap jelas)
+      ['batu, Siang, lari', 'batu, Xiang - Siang, lari'], // 襄
+    ],
+    'sishu.lunyu.07.19': [
+      ['Negeri Siap', 'Negeri She - Siap'], // 葉 (地名 shè)
+    ],
+    'sishu.lunyu.14.08': [
+      ['menteri luar negeri Cu-i', 'menteri luar negeri Ziyu - Cu-i'], // 行人子羽
+    ],
+    'sishu.lunyu.06.14': [
+      ['kota Busing', 'kota Wucheng - Busing'], // 武城
+    ],
+    'sishu.lunyu.17.04': [
+      ['kota Bu-sing', 'kota Wucheng - Bu-sing'], // 武城
+    ],
+    'sishu.lunyu.14.14': [
+      ['daerah Hong', 'daerah Fang - Hong'], // 防
+    ],
+    'sishu.lunyu.15.06': [
+      ['daerah Ban dan Bekpun', 'daerah Man - Ban dan Mo - Bekpun'], // 蠻貊, kelompok manusia bukan nama daerah
+    ],
+    // Lun Yu III: pasangan dari Hanzi pasal dan konteks terjemahan MATAKIN.
+    // Nama dan istilah yang homofon dengan bahasa Indonesia tetap dibatasi pada ID pasal.
+    'sishu.lunyu.03.01': [
+      ['keluarga Kwi', 'keluarga Ji - Kwi'] // 季氏
+    ],
+    'sishu.lunyu.03.05': [
+      ['Bangsa I dan Tik', 'Bangsa Yi - I dan Di - Tik'], // 夷狄
+      ['Kerajaan He ini', 'Kerajaan Xia - He ini'] // 夏
+    ],
+    'sishu.lunyu.03.07': [
+      ['cara Iep', 'cara Yi - Iep'] // 揖
+    ],
+    'sishu.lunyu.03.08': [
+      ['Engkaulah Siang', 'Engkaulah Shang - Siang'] // 商, nama pribadi Zixia; bukan 朝代
+    ],
+    'sishu.lunyu.03.09': [
+      ['Kerajaan He', 'Kerajaan Xia - He'], // 夏
+      ['Kerajaan Ien', 'Kerajaan Yin - Ien'] // 殷
+    ],
+    'sishu.lunyu.03.10': [
+      ['Sembahyang Tee', 'Sembahyang Di - Tee'] // 禘
+    ],
+    'sishu.lunyu.03.11': [
+      ['Sembahyang Tee', 'Sembahyang Di - Tee'] // 禘
+    ],
+    'sishu.lunyu.03.13': [
+      ['malaikat Oo', 'malaikat Ao - Oo'], // 奧
+      ['Malaikat Co', 'Malaikat Zao - Co'] // 灶
+    ],
+    'sishu.lunyu.03.15': [
+      ['Bio Besar', 'Taimiao - Bio Besar'] // 太廟
+    ],
+    'sishu.lunyu.03.17': [
+      ['Su, engkau', 'Ci - Su, engkau'] // 賜, nama pribadi Zi Gong
+    ],
+    'sishu.lunyu.03.21': [
+      ['Kerajaan He', 'Kerajaan Xia - He'], // 夏
+      ['Kerajaan Ien', 'Kerajaan Yin - Ien'], // 殷
+      ['pohon Siong', 'pohon Song - Siong'], // 松
+      ['pohon Pik', 'pohon Bai - Pik'], // 柏
+      ['pohon Lik', 'pohon Li - Lik'] // 栗
+    ],
+    'sishu.lunyu.03.22': [
+      ['panggung Sam-kui', 'panggung San Gui - Sam-kui'] // 三歸
+    ],
+    'sishu.lunyu.03.25': [
+      ['musik Siau', 'musik Shao - Siau'], // 韶
+      ['musik Bu', 'musik Wu - Bu'] // 武
+    ],
     'sishu.mengzi.05.03': [
       // III A:3 ayat 10: 庠 xiang, 序 xu, 學 xue, 校 xiao;
       // 夏 Xia, 殷 Yin, 周 Zhou. Batasi ke frasa yang cocok agar
@@ -171,6 +317,7 @@
       ['Raja Kiat dan Tiu sendiri', 'Raja Jie - Kiat dan Zhou - Tiu sendiri'] // 桀與紂
     ],
     'sishu.mengzi.09.07': [
+      ['kota Pok', 'kota Bo - Pok'], // 亳
       ['daerah Yu Sien', 'daerah Youshen - Yu Sien'], // Hanzi verified context
       ['Raja He Kiat', 'Raja Xia - He Jie - Kiat'], // 夏桀
       ['istana Bokkiong', 'istana Mu Gong - Bokkiong'] // 牧宮
@@ -266,9 +413,12 @@
       ['kota Hwan', 'kota Fan - Hwan'] // toponim diverifikasi dengan Hanzi sumber
     ],
     'sishu.lunyu.03.06': [
+      ['Keluarga Kwi', 'Keluarga Ji - Kwi'], // 季氏
       ['Gunung Thai', 'Gunung Taishan - Thai']
     ],
     'sishu.lunyu.06.09': [
+      ['Keluarga Kwi', 'Keluarga Ji - Kwi'], // 季氏
+      ['sungai Bun', 'sungai Wen - Bun'], // 汶
       ['daerah Pi', 'daerah Bi - Pi']
     ],
     'sishu.lunyu.11.25': [
@@ -280,9 +430,6 @@
       ['daerah Cwan-ji', 'daerah Zhuanyu - Cwan-ji'],
       ['daerah Cwan Ji', 'daerah Zhuanyu - Cwan Ji'],
       ['daerah Cwanji', 'daerah Zhuanyu - Cwanji']
-    ],
-    'sishu.lunyu.17.05': [
-      ['daerah Pi', 'daerah Bi - Pi']
     ],
     'sishu.lunyu.09.02': [
       ['daerah Tat-hang', 'daerah Daxiang - Tat-hang']
@@ -311,6 +458,7 @@
       ['daerah Long-ya', 'daerah Langya - Long-ya']
     ],
     'sishu.mengzi.02.05': [
+      ['memerintah di daerah Ki', 'memerintah di daerah Qi - Ki'], // 岐
       ['Bukit Ki', 'Bukit Qi - Ki']
     ],
     'sishu.mengzi.01.02': [
@@ -338,6 +486,7 @@
       ['orang Cee', 'orang Qi - Cee'] // 齊
     ],
     'sishu.mengzi.09.09': [
+      ['daerah Khut', 'daerah Qu - Khut'], // 屈產
       ['daerah Swi-kik', 'daerah Chuiji - Swi-kik'], // Hanzi verified context
       ['Pik-li Hee', 'Baili Xi - Pik-li Hee'], // 百里奚
       ['Kiong Ciki', 'Gong Zhiqi - Kiong Ciki'], // 宮之奇
@@ -350,6 +499,8 @@
       ['Negeri Khik', 'Negeri Guo - Khik'] // 虢
     ],
     'sishu.mengzi.10.02': [
+      ['Daerah Hu-yong', 'Daerah Fuyong - Hu-yong'], // 附庸; political territory, not place name
+      ['Pak-kiong Ki', 'Beigong Qi - Pak-kiong Ki'], // 北宮錡
       ['Tian (Tian - Thian)-cu', 'Tianzi - Thian-cu'], // 天子
       ['Kong (Duke)', 'Gong - Kong (Duke)'], // 公
       ['Ho (Marquis)', 'Hou - Ho (Marquis)'], // 侯
@@ -381,6 +532,7 @@
       ['dan Cho menyerbunya', 'dan Chu - Cho menyerbunya'] // 齊楚
     ],
     'sishu.lunyu.17.05': [
+      ['daerah Pi', 'daerah Bi - Pi'], // 費
       ['Kong-son Hut-jiau', 'Gongshan Furao - Kong-son Hut-jiau'], // 公山弗擾
       ['Negara Ciu Timur', 'Negara Zhou Timur - Ciu Timur'] // 東周
     ],
@@ -423,6 +575,7 @@
     return text.replace(pattern, (match, prefix, token, start, source) => {
       const preceding = source.slice(0, start + prefix.length);
       if (legacy === 'Hu-jien' && /\bKun\s*$/iu.test(preceding)) return match;
+      if (legacy === 'Cingcu' && /\bGak\s*$/iu.test(preceding)) return match; // 樂正子 not 曾子
       if (legacy === 'Sun' && /\bOng\s*$/iu.test(preceding)) return match; // 王順 ≠ 舜
       if (previous.test(preceding)) return match;
       return prefix + modern + ' - ' + token;
