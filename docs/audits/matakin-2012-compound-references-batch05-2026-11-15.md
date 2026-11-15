@@ -7,7 +7,7 @@
 
 Rujukan silang pada MATAKIN menyatakan **keterkaitan isi** antara pasal/ayat, **bukan kewajiban bahwa kalimatnya sama**. Jika nomor memakai garis miring `Pasal/Ayat`, bagian setelah `/` adalah **ayat dalam pasal rujukan**. Contohnya `Bc IIA:7/5` menunjuk Mengzi II A pasal 7 ayat 5; penanda ayatnya ditemukan pada naskah digital MATAKIN 2011.
 
-Perbedaan bunyi kedua pasal bukan otomatis kesalahan kolasi. Identitas kitab dan nomor yang benar perlu dibedakan dari penilaian hubungan isi, sedangkan tautan ayat baru boleh dibuat setelah kontrak navigasi dipastikan.
+Perbedaan bunyi kedua pasal bukan otomatis kesalahan kolasi. Hubungan isi pada rujukan silang diterima berdasarkan otoritas MATAKIN tanpa penilaian ulang; pemeriksaan teknis nomor, penyalinan, dan tautan tetap diperlukan.
 
 
 ## Hasil inti
@@ -34,7 +34,7 @@ Perbedaan bunyi kedua pasal bukan otomatis kesalahan kolasi. Identitas kitab dan
 ## Perbedaan *segmentasi*, *tautan*, dan *kesetiaan teks*
 
 1. **Segmentasi:** memahami bahwa `(T.S. XIX: 1; S.S. III: 21)` mengandung dua rujukan dengan kitab tujuan yang berbeda, bukan satu target.
-2. **Resolusi pasal:** ID `sishu.zhongyong.20.01` dan `sishu.lunyu.03.21` ada pada naskah. Ini membuktikan target alamat, bukan kebenaran semantik hubungan keduanya.
+2. **Resolusi pasal:** ID `sishu.zhongyong.20.01` dan `sishu.lunyu.03.21` ada pada naskah. Ini membuktikan alamat target telah ditemukan; keterkaitan isi diterima dari rujukan resmi MATAKIN dan tidak perlu diaudit ulang.
 3. **Resolusi ayat:** rujukan seperti `Bc. II. A: 2` menunjuk ke pasal panjang yang dapat memiliki banyak ayat internal; bila memakai `Pasal/Ayat`, angka setelah garis miring adalah ayat yang ditunjuk. Pisahkan verifikasi penanda ayat dari pembuatan deep-link.
 4. **Validasi cetakan:** untuk menegaskan tanda baca/ejaan sama persis dengan MATAKIN 2012 diperlukan foto bagian relevan; normalisasi yang sudah berfungsi di web tidak mengklaim itu.
 
