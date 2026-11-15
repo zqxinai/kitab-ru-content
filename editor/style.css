@@ -174,3 +174,25 @@ button:focus-visible,input:focus-visible,textarea:focus-visible,a:focus-visible{
 .translation-text .verse-block{margin:0 0 1.05rem}
 .translation-text .verse-block:last-child{margin-bottom:0}
 .translation-text .verse-number{display:block;margin-bottom:.15rem;color:#64838a;font:600 12px/1.5 system-ui,sans-serif;letter-spacing:.025em}
+
+
+/* Translation reading layout is presentation-only; source strings are unchanged. */
+.translation-text{white-space:normal;max-width:74ch;overflow-wrap:break-word}
+.translation-text .reading-paragraph{
+  font:400 clamp(15.5px,1.2vw,17.5px)/1.92 Georgia,"Noto Serif",serif;
+  color:inherit;white-space:normal;max-width:72ch;
+  text-wrap:pretty;hyphens:auto;letter-spacing:.005em;
+  margin:0 0 1.15em;
+}
+.translation-text .reading-paragraph:last-child{margin-bottom:0}
+.translation-text .verse-block{margin:0 0 1.65em;padding-bottom:.5em;border-bottom:1px solid #e4edef}
+.translation-text .verse-block:last-child{border:0}
+.translation-text .verse-number{margin:0 0 .55em;font-size:12px}
+.translation-text .reference-link{
+ color:#216e83;text-decoration:underline;text-underline-offset:3px;
+ text-decoration-thickness:1px;font-weight:700;
+}
+.translation-text .reference-link:hover,.translation-text .reference-link:focus-visible{
+ color:#144b60;background:#e7f5f6;text-decoration-thickness:2px;
+}
+@media(max-width:760px){.translation-text .reading-paragraph{font-size:16px;line-height:1.9}}
