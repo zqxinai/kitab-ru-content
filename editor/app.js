@@ -357,15 +357,25 @@
       overlay?.segments?.(passageId,source)||[{text:source,target_id:null}];
     for(const part of parts){
       const dest=part.target_id&&byId.get(part.target_id);
-      if(!dest){node.append(document.createTextNode(part.text));continue;}
-      const n=Number(part.ayat)||0;
-      const verified=n>0&&globalThis.MatakinVerses?.splitIndonesia(dest.passage.translation_indonesian)?.some(v=>v.number===n);
-      const link=document.createElement('a');
-      link.className='reference-link';
-      link.textContent=part.text;
-      link.href='../ru-classics/#read='+encodeURIComponent(part.target_id)+(verified?'&ayat='+n:'');
-      link.setAttribute('aria-label','Buka rujukan '+part.text+(verified?' ayat '+n:''));
-      node.append(link);
+      if(!dest){
+        node.append(document.createTextNode(part.text));
+      }else{
+        const n=Number(part.ayat)||0;
+        const verified=n>0&&globalThis.MatakinVerses?.splitIndonesia(dest.passage.translation_indonesian)?.some(v=>v.number===n);
+        const link=document.createElement('a');
+        link.className='reference-link';
+        link.textContent=part.text;
+        link.href='../ru-classics/#read='+encodeURIComponent(part.target_id)+(verified?'&ayat='+n:'');
+        link.setAttribute('aria-label','Buka rujukan '+part.text+(verified?' ayat '+n:''));
+        node.append(link);
+      }
+      if(part.note){
+        const note=document.createElement('span');
+        note.className='reference-editor-note';
+        note.setAttribute('role','note');
+        note.textContent=' [Catatan rujukan: '+part.note+']';
+        node.append(note);
+      }
     }
   }
   function appendReadingParagraphs(node,source,lang,passageId=null){
