@@ -1040,7 +1040,7 @@
     result = result.replace(/\bTaijia\s*\(\s*Thai Kak\s*\)/g, 'Taijia - Thai Kak'); // 太甲
     result = result.replace(/\bShangdi\s*\(\s*Siang Tee\s*\)/gi, 'Shangdi - Siang Tee'); // 上帝
     result = result.replace(/\bYouzi\s*\(\s*Yucu\s*\)/g, 'Youzi - Yucu'); // 有子
-    result = result.replace(/\bNegeri Liang\b/g, 'Negeri Liang (梁, Liáng)'); // 梁, place name; preserve MATAKIN spelling
+    result = result.replace(/\bNegeri Liang\b(?!\s*\(梁,\s*Liáng\))/g, 'Negeri Liang (梁, Liáng)'); // 梁, place name; preserve MATAKIN spelling
     result = result.replace(/\bNegeri Ciu\b/g, 'Negeri Zhou - Ciu'); // 周
     result = result.replace(/\bKitab Kerajaan Cho\b/g, 'Kitab Kerajaan Chu - Cho'); // 楚書
     result = result.replace(/\bPangeran Wee\b/g, 'Pangeran Wei - Wee'); // 衛君
