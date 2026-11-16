@@ -55,6 +55,17 @@ setTimeout(()=>{
   click({passage:'sishu.daxue.01.01'});
   assert.match(nodes.main.innerHTML,/class="reading-paragraph"/,'Translations must be presented in paragraphs');
   assert.match(nodes.main.innerHTML,/class="translation-prose" lang="en"/,'English translation should have readable paragraph layout');
+  assert.match(nodes.main.innerHTML,/class="reader-chapter-card"/,'Compact chapter picker should lead the reading page');
+  assert.match(nodes.main.innerHTML,/class="reader-translation-stack"/,'Translations should have their own grouped panels');
+  assert.match(nodes.main.innerHTML,/id="reader-translation-indo"/,'Indonesian MATAKIN panel must be distinct');
+  assert.match(nodes.main.innerHTML,/id="reader-translation-en"/,'English Legge panel must be distinct');
+  assert.match(nodes.main.innerHTML,/class="reader-pager"/,'Passage navigation belongs in the bottom reader area');
+  assert.doesNotMatch(nodes.main.innerHTML,/class="reader-jump"/,'Old four-column top navigation must be absent');
+  assert.ok(nodes.main.innerHTML.indexOf('id="jump-chapter"')<nodes.main.innerHTML.indexOf('class="reader-page"'),
+    'Chapter navigation must appear before reading content');
+  assert.ok(nodes.main.innerHTML.indexOf('id="jump-passage"')>nodes.main.innerHTML.indexOf('id="reader-translation-en"'),
+    'Passage selector must appear below translations');
+
   
   assert.match(nodes.main.innerHTML,/Bahasa Indonesia/);
   assert.match(nodes.main.innerHTML,/James Legge/);
