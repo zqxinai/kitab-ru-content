@@ -163,7 +163,7 @@
         +c.passages.map(p=>'<button type="button" class="passage-number" data-passage="'+H(p.id)+'" aria-label="'+H(c.title)+' — Pasal '+p.number+'">'+p.number+'</button>').join('')
         +'</div></div></section>';
     };
-    main.innerHTML='<button class="back" data-action="all">← Semua kitab</button><section class="book-hero"><span class="big-hanzi" lang="zh-Hant">'+b.hanzi+'</span><div><span class="eyebrow">Si Shu · '+chapters.length+' bab · '+count(b.id)+' pasal</span><h1>'+b.name+'</h1><p>'+b.desc+'</p></div></section><div class="chapter-grid chapter-accordion">'+chapters.map(chapterCard).join('')+'</div>';
+    main.innerHTML='<button class="back" data-action="all">← '+H(tr('backToBooks'))+'</button><section class="book-hero"><span class="big-hanzi" lang="zh-Hant">'+b.hanzi+'</span><div><span class="eyebrow">Si Shu · '+chapters.length+' bab · '+count(b.id)+' pasal</span><h1>'+b.name+'</h1><p>'+b.desc+'</p></div></section><div class="chapter-grid chapter-accordion">'+chapters.map(chapterCard).join('')+'</div>';
   }
   function chapter(){
     const c=state.chapters.find(ch=>ch.id===state.chapter);
@@ -178,7 +178,7 @@
       return '<div class="passage-entry"><button class="result" data-passage="'+H(p.id)+'"><small>PASAL '+p.number+(verses?' · '+verses.length+' AYAT':'')+'</small><strong>'+H(c.title)+'</strong><span class="excerpt">'+H(displayIndo(p.id,text))+'</span></button>'+ayat+'</div>';
     };
     main.innerHTML='<button class="back" data-book="'+b.id+'">← '+b.name+'</button><div class="chapter-title"><span class="eyebrow">'+b.name+' · '+b.hanzi+'</span><h1>'+H(c.title)+'</h1><p class="muted">'+c.passages.length+' pasal</p></div>'
-      +'<div class="chapter-quick"><label>Langsung ke pasal<select id="chapter-passage" aria-label="Pilih pasal"><option value="">Pilih pasal…</option>'+c.passages.map(p=>'<option value="'+H(p.id)+'">Pasal '+p.number+'</option>').join('')+'</select></label></div>'
+      +'<div class="chapter-quick"><label>Langsung ke pasal<select id="chapter-passage" aria-label="'+H(tr('passage'))+'"><option value="">Pilih pasal…</option>'+c.passages.map(p=>'<option value="'+H(p.id)+'">Pasal '+p.number+'</option>').join('')+'</select></label></div>'
       +'<div class="passage-list">'+c.passages.map(entry).join('')+'</div>';
   }
   function ruby(paragraphs){if(!Array.isArray(paragraphs))return '';return paragraphs.map(par=>'<p>'+((Array.isArray(par)?par:[]).map(tok=>tok.type==='ruby'?'<ruby>'+H(tok.traditional||'')+'<rt>'+H(tok.pinyin||'')+'</rt></ruby>'+(tok.modern&&tok.modern!==tok.traditional?'<span class="modern" title="Aksara sederhana dari metadata, bukan bagian teks utama">（'+H(tok.modern)+'）</span>':''):H(tok.value||'')).join(''))+'</p>').join('');}
@@ -245,11 +245,11 @@
   function chapterPicker(p,c,b){
     const chapters=state.chapters.filter(ch=>ch.book===b.id);
     const option=(value,label,active)=>'<option value="'+H(value)+'"'+(active?' selected':'')+'>'+H(label)+'</option>';
-    return '<div class="reader-topline"><button type="button" class="reader-back" data-book="'+b.id+'">← Semua bab</button></div>'
+    return '<div class="reader-topline"><button type="button" class="reader-back" data-book="'+b.id+'">← '+H(tr('backToChapters'))+'</button></div>'
       +'<section class="reader-chapter-card" aria-label="Kitab dan bab yang sedang dibaca">'
       +'<div class="reader-chapter-meta">'+H(b.name)+' · <span lang="zh-Hant">'+H(b.hanzi)+'</span></div>'
       +'<label class="reader-chapter-choice"><span class="visually-hidden">Pilih bab</span>'
-      +'<select id="jump-chapter" aria-label="Pilih bab">'+chapters.map(ch=>option(ch.id,ch.title,ch.id===c.id)).join('')+'</select>'
+      +'<select id="jump-chapter" aria-label="'+H(tr('chapter'))+'">'+chapters.map(ch=>option(ch.id,ch.title,ch.id===c.id)).join('')+'</select>'
       +'<span class="reader-choice-arrow" aria-hidden="true">⌄</span></label>'
       +'<details class="reader-book-details"><summary data-i18n="changeBook">Ganti kitab</summary><label>Kitab<select id="jump-book" aria-label="Pilih kitab">'+BOOKS.map(x=>option(x.id,x.name,x.id===b.id)).join('')+'</select></label></details>'
       +'</section>';
@@ -258,14 +258,14 @@
     const verses=globalThis.RuSubverses?.splitIndonesia(p.translation_indonesian)||[];
     const option=(value,label,active)=>'<option value="'+H(value)+'"'+(active?' selected':'')+'>'+H(label)+'</option>';
     return '<nav class="reader-pager" aria-label="Navigasi pasal dan ayat">'
-      +'<button class="reader-pager-arrow" type="button" aria-label="Pasal sebelumnya" title="Pasal sebelumnya" '+(prev?'data-passage="'+H(prev.id)+'"':'disabled')+'>‹</button>'
-      +'<label class="reader-passage-selector"><span class="visually-hidden">Pilih pasal</span><select id="jump-passage" aria-label="Pilih pasal">'+c.passages.map(x=>option(x.id,'Pasal '+x.number,x.id===p.id)).join('')+'</select></label>'
-      +'<button class="reader-pager-arrow" type="button" aria-label="Pasal berikutnya" title="Pasal berikutnya" '+(next?'data-passage="'+H(next.id)+'"':'disabled')+'>›</button>'
+      +'<button class="reader-pager-arrow" type="button" aria-label="'+H(tr('prevPassage'))+'" title="'+H(tr('prevPassage'))+'" '+(prev?'data-passage="'+H(prev.id)+'"':'disabled')+'>‹</button>'
+      +'<label class="reader-passage-selector"><span class="visually-hidden">Pilih pasal</span><select id="jump-passage" aria-label="'+H(tr('passage'))+'">'+c.passages.map(x=>option(x.id,tr('passage')+' '+x.number,x.id===p.id)).join('')+'</select></label>'
+      +'<button class="reader-pager-arrow" type="button" aria-label="'+H(tr('nextPassage'))+'" title="'+H(tr('nextPassage'))+'" '+(next?'data-passage="'+H(next.id)+'"':'disabled')+'>›</button>'
       +'</nav>'
       +'<details class="reader-ayat-disclosure"'+(state.ayat?' open':'')+'>'
-      +'<summary>'+(state.ayat?'Ayat '+state.ayat+' dipilih':'Pilih ayat')+'</summary>'
-      +'<label><span class="visually-hidden">Pilih ayat</span><select id="jump-ayat" aria-label="Pilih ayat"'+(verses.length>1?'':' disabled title="Ayat bernomor belum terverifikasi"')+'>'
-      +option('0','Seluruh pasal',!state.ayat)+verses.map(x=>option(x.number,'Ayat '+x.number,state.ayat===x.number)).join('')+'</select></label>'
+      +'<summary>'+(state.ayat?tr('verse')+' '+state.ayat+' dipilih':tr('chooseVerse'))+'</summary>'
+      +'<label><span class="visually-hidden">Pilih ayat</span><select id="jump-ayat" aria-label="'+H(tr('chooseVerse'))+'"'+(verses.length>1?'':' disabled title="Ayat bernomor belum terverifikasi"')+'>'
+      +option('0',tr('wholePassage'),!state.ayat)+verses.map(x=>option(x.number,tr('verse')+' '+x.number,state.ayat===x.number)).join('')+'</select></label>'
       +'</details>';
   }
   // Legge supplies source paragraphs, NOT the MATAKIN numbered ayat.
@@ -290,7 +290,7 @@
     const aligned=globalThis.RuSubverses?.align(p)||null;
     main.innerHTML=chapterPicker(p,c,b)
       +'<div class="reader-grid"><article class="paper-page reader-page">'
-      +'<div class="reader-text-heading"><span>Pasal '+p.number+(state.ayat?' · Ayat '+state.ayat+' dipilih':'')+'</span></div>'
+      +'<div class="reader-text-heading"><span>'+tr('passage')+' '+p.number+(state.ayat?' · '+tr('verse')+' '+state.ayat+' dipilih':'')+'</span></div>'
       +(s.hanzi?'<section class="reader-script"><div class="hanzi-text '+(s.pinyin?'':'no-pinyin')+'" lang="zh-Hant">'+hanziWithSubverses(p,aligned)+'</div></section>':'')
       +'<div class="reader-translation-stack">'
       +(s.indo?'<section id="reader-translation-indo" class="translation translation-indo"><h3 data-i18n="translationId">Terjemahan Indonesia (MATAKIN)</h3>'+indonesiaWithSubverses(p,aligned)+'</section>':'')
