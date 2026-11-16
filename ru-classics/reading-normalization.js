@@ -313,6 +313,24 @@
   // Kolasi khusus berdasarkan Hanzi. Satu ejaan Hokkian bisa mewakili
   // aksara berbeda: Chien => 晉 (Jin) atau 秦 (Qin); Swan => 僎 atau 宣.
   const CONTEXTUAL = Object.freeze({
+    'sishu.lunyu.05.15': [
+      ['Khong Buncu', 'Kong Wenzi - Khong Buncu'], // 孔文子
+    ],
+    'sishu.mengzi.04.10': [
+      ['Sicu', 'Shizi - Sicu'], // 時子
+    ],
+    'sishu.lunyu.11.08': [
+      ['Gan Lo', 'Yan Lu - Gan Lo'], // 顏路
+    ],
+    'sishu.lunyu.09.21': [
+      ['Gan Hwee', 'Yan Yuan - Gan Hwee'], // 顏淵; printed variant
+    ],
+    'sishu.mengzi.13.25': [
+      ['Cik', 'Zhi - Cik'], // 跖 (robber Zhi), NOT 稷
+    ],
+    'sishu.lunyu.06.04': [
+      ['Tatkala Chik ke', 'Tatkala Chi - Chik ke'], // 赤
+    ],
     'sishu.mengzi.08.29': [
       ['dan Cik', 'dan Ji - Cik'], // 稷, not 蹠 Zhi in Mengzi III B:10
     ],
@@ -324,6 +342,7 @@
       ['"Kiu berpengetahuan', '"Qiu - Kiu berpengetahuan'], // matched verse Hanzi
     ],
     'sishu.lunyu.05.08': [
+      ['"Chik boleh', '"Chi - Chik boleh'], // 赤
       ['"Kiu boleh', '"Qiu - Kiu boleh'], // matched verse Hanzi
     ],
     'sishu.mengzi.14.26': [
@@ -468,6 +487,7 @@
       ['Kota Cong', 'Kota Chong - Cong'], // 崇
     ],
     'sishu.lunyu.11.26': [
+      ['Cing Sik', 'Zeng Xi - Cing Sik'], // 曾皙
       ['denganmu, Kiu?', 'denganmu, Qiu - Kiu?'], // 求
       ['kepada Kiu;', 'kepada Qiu - Kiu;'], // 求
       ['Musik, Kiu menunggu', 'Musik, Qiu - Kiu menunggu'], // 求
@@ -712,6 +732,7 @@
       ['kota Co', 'kota Zou - Co'] // toponim diverifikasi dengan Hanzi sumber
     ],
     'sishu.mengzi.12.05': [
+      ['Kwicu', 'Jizi - Kwicu'], // 季子; not 孟季子
       ['kota Co', 'kota Zou - Co'],
       ['kota Jiem', 'kota Ren - Jiem'],
       ['Ping-Liok', 'Pinglu - Ping-Liok'],
