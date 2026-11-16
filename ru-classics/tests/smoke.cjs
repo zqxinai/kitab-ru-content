@@ -19,6 +19,20 @@ const nodes={
  'font-latin':{value:'17'},'font-latin-label':{textContent:''},
  'search-results':{innerHTML:''}
 };
+const inspectorFields={};
+const inspector={
+  hidden:true,style:{},offsetHeight:350,ariaModal:'false',
+  classList:{toggle(){},remove(){}},
+  setAttribute(name,value){this[name]=value;},
+  querySelector(selector){
+    if(selector==='[data-character-close]')return {focus(){}};
+    const match=selector.match(/^\\[data-inspector="([^"]+)"\\]$/);
+    if(!match)return null;
+    return inspectorFields[match[1]]??={textContent:''};
+  }
+};
+nodes['character-inspector']=inspector;
+nodes['character-inspector-backdrop']={hidden:true};
 const handlers={};
 const doc={
  body:{dataset:{},style:{values:{},setProperty(key,value){this.values[key]=value;}}},
@@ -37,9 +51,23 @@ const context={document:doc,window:page,location,localStorage,console,Event,clea
  fetch:async()=>({ok:true,json:async()=>bundle})};
 vm.runInNewContext(fs.readFileSync(path.join(__dirname,'../reading-normalization.js'),'utf8'),context,{filename:'reading-normalization.js'});
 vm.runInNewContext(fs.readFileSync(path.join(__dirname,'../reference-overlay.js'),'utf8'),context,{filename:'reference-overlay.js'});
-for(const name of ['reference-links.js','same-book-references.js','book-references.js','reading-layout.js','subverses.js'])vm.runInNewContext(fs.readFileSync(path.join(__dirname,'../'+name),'utf8'),context,{filename:name});
+for(const name of ['reference-links.js','same-book-references.js','book-references.js','reading-layout.js','subverses.js','hanzi-layout.js','character-dictionary.js'])vm.runInNewContext(fs.readFileSync(path.join(__dirname,'../'+name),'utf8'),context,{filename:name});
 vm.runInNewContext(fs.readFileSync(path.join(__dirname,'../app.js'),'utf8'),context,{filename:'app.js'});
-function click(dataset){handlers.click[0]({target:{closest(){return {dataset,hasAttribute(name){return name==='data-ayat-select'&&Object.hasOwn(dataset,'ayatSelect');}};}}});}
+function click(dataset){
+  const target={
+    dataset,
+    hasAttribute(name){return name==='data-ayat-select'&&Object.hasOwn(dataset,'ayatSelect')||
+      name==='data-hanzi-char'&&Object.hasOwn(dataset,'hanziChar')||
+      name==='data-character-close'&&Object.hasOwn(dataset,'characterClose')||
+      name==='data-character-find'&&Object.hasOwn(dataset,'characterFind');},
+    setAttribute(name,value){this[name]=value;},
+    getBoundingClientRect(){return {left:70,bottom:90};},
+    closest(selector){return selector==='.hanzi-clause'?{dataset:{sourceClause:'大學之道，'}}:this;},
+    focus(){}
+  };
+  handlers.click[0]({target});
+  return target;
+}
 function change(id,value,dataset={}){handlers.change[0]({target:{id,value,dataset}});}
 function visibleText(html){return html.replace(/<[^>]+>/g,'');}
 setTimeout(()=>{
@@ -115,6 +143,27 @@ setTimeout(()=>{
   assert.match(nodes.main.innerHTML,/Catatan pribadi/);
   assert.match(nodes.main.innerHTML,/Ayat atau pasal berikutnya/,'Reader arrows now navigate ayat before adjacent passages');
   assert.match(nodes.main.innerHTML,/id="desktop-jump-ayat"/,'Desktop must offer a verse selector');
+  // Clicking a Hanzi opens the dictionary without changing the displayed passage.
+  assert.match(nodes.main.innerHTML,/data-hanzi-char="學"/,'Every Ruby character must be a dictionary trigger');
+  const originalReader=nodes.main.innerHTML;
+  const hanziTrigger=click({hanziChar:'學',hanziPinyin:'xué',hanziModern:'学'});
+  assert.equal(inspector.hidden,false);
+  assert.equal(inspectorFields.hanzi.textContent,'學');
+  assert.equal(inspectorFields.pinyin.textContent,'xué');
+  assert.equal(inspectorFields.simplified.textContent,'学');
+  assert.ok(inspectorFields.gloss.textContent.includes('belajar'));
+  assert.equal(inspectorFields['source-clause'].textContent,'大學之道，');
+  assert.equal(nodes.main.innerHTML,originalReader,'dictionary must not modify MATAKIN passage DOM');
+  click({characterClose:''});
+  assert.equal(inspector.hidden,true);
+  assert.equal(hanziTrigger['aria-expanded'],'false');
+  click({hanziChar:'龜',hanziPinyin:'',hanziModern:''});
+  assert.match(inspectorFields.gloss.textContent,/belum tersedia/);
+  click({characterFind:''});
+  assert.equal(inspector.hidden,true);
+  assert.equal(location.hash,'search');
+  assert.match(nodes.main.innerHTML,/Ketik Hanzi, pinyin, atau terjemahan/);
+  click({passage:'sishu.daxue.01.01'});
   click({book:'lunyu'});
   click({chapter:'sishu.lunyu.18'});
   click({passage:'sishu.lunyu.18.01'});
