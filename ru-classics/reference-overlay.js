@@ -194,6 +194,14 @@
     "decision": "Pemilik mengonfirmasi sumber Shi Jing II.5.4.4, berada dalam Mengzi I A:7 ayat 9. Tidak membuat tautan kitab luar Si Shu"
   },
   {
+    "passage_id": "sishu.mengzi.01.05",
+    "source": "(VII. B:4,2)",
+    "display": "(Mengzi - Bingcu VII.B:4/2)",
+    "target_id": "sishu.mengzi.14.04",
+    "ayat": 2,
+    "decision": "Confirmed implicit self-reference in Mengzi I A:5; VII B:4 ayat 2 exists. Display title per owner convention, preserve archived source."
+  },
+  {
     "passage_id": "sishu.daxue.03.03",
     "source": "(Si-kingIII.1.1.1)",
     "display": "(Shi Jing — Si King III.1.1.4)",
