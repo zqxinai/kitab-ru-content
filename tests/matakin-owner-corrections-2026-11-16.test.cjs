@@ -57,7 +57,7 @@ test('Lun Yu II:11 corrected XXVI:6; Lun Yu XIV:10 corrected I:15',()=>{
  assert.equal(a[0].target_id,'sishu.zhongyong.27.06');
  assert.match(a[0].text,/XXVI:6/);
  assert.equal(b[0].target_id,'sishu.lunyu.01.15');
- assert.match(b[0].text,/Lun Yu I:15/);
+ assert.match(b[0].text,/Lunyu - Sabda Suci I:15/);
 });
 test('Unconfirmed V A:3/4 remains printed, unlinked and documented; contextual candidate has Chinese grounding',()=>{
  const id='sishu.lunyu.06.26';
