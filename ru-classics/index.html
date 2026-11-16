@@ -37,20 +37,43 @@
 <button data-nav="saved"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3h12v18l-6-4-6 4z"/></svg><span>Koleksi</span></button>
 </nav>
 <div id="toast" role="status" aria-live="polite"></div>
-<dialog id="settings-dialog">
-<form method="dialog"><button class="close-btn" aria-label="Tutup dialog">×</button></form>
-<h2>Pengaturan Bacaan</h2><p class="muted">Tampilan yang nyaman untuk membaca.</p>
-<div class="setting"><strong>Tema</strong><div id="theme-options" class="segment"></div></div>
-<div class="setting"><strong>Tampilkan</strong><div id="reading-options"></div></div>
-<div class="setting"><strong>Ukuran Hanzi</strong><div class="size-row"><button data-action="smaller">A−</button><output id="font-label">32 px</output><button data-action="larger">A+</button></div></div>
+<dialog id="settings-dialog" aria-labelledby="settings-title">
+<form method="dialog"><button class="close-btn" aria-label="Tutup dialog" data-i18n-aria="close">×</button></form>
+<h2 id="settings-title" data-i18n="settings">Pengaturan</h2><p class="muted" data-i18n="settingsSubtitle">Atur tampilan dan bahasa sesuai kenyamanan membaca.</p>
+<section class="setting"><strong data-i18n="uiLanguage">Bahasa antarmuka</strong>
+<label class="settings-language"><span data-i18n="uiLanguageHint">Bahasa menu (bukan bahasa terjemahan kitab)</span><select id="ui-language" aria-label="Bahasa antarmuka"><option value="id">Bahasa Indonesia</option><option value="en">English</option></select></label></section>
+<section class="setting"><strong data-i18n="theme">Tema</strong><div id="theme-options" class="segment" role="group" aria-label="Tema"></div></section>
+<section class="setting"><strong data-i18n="readingLanguages">Bahasa dan aksara bacaan</strong><p class="setting-hint" data-i18n="readingHint">Pilih bagian yang tampil tanpa mengubah naskah sumber.</p><div id="reading-options"></div></section>
+<section class="setting"><strong data-i18n="fontSizes">Ukuran teks</strong><p class="setting-hint" data-i18n="fontSizeHint">Atur Hanzi, Pinyin Ruby, dan teks Latin secara terpisah.</p>
+<div class="font-control"><label for="font-hanzi" data-i18n="hanziSize">Hanzi</label><div class="font-control-actions"><button type="button" data-size-key="hanziSize" data-size-step="-2" aria-label="Perkecil Hanzi">−</button><input type="range" id="font-hanzi" data-font-slider="hanziSize" min="22" max="50" step="2" value="32"><button type="button" data-size-key="hanziSize" data-size-step="2" aria-label="Perbesar Hanzi">+</button><output id="font-hanzi-label" for="font-hanzi">32 px</output></div></div>
+<div class="font-control"><label for="font-pinyin" data-i18n="pinyinSize">Pinyin Ruby</label><div class="font-control-actions"><button type="button" data-size-key="pinyinSize" data-size-step="-1" aria-label="Perkecil Pinyin">−</button><input type="range" id="font-pinyin" data-font-slider="pinyinSize" min="10" max="22" step="1" value="14"><button type="button" data-size-key="pinyinSize" data-size-step="1" aria-label="Perbesar Pinyin">+</button><output id="font-pinyin-label" for="font-pinyin">14 px</output></div></div>
+<div class="font-control"><label for="font-latin" data-i18n="latinSize">Teks Latin (ID/EN)</label><div class="font-control-actions"><button type="button" data-size-key="latinSize" data-size-step="-1" aria-label="Perkecil teks Latin">−</button><input type="range" id="font-latin" data-font-slider="latinSize" min="14" max="26" step="1" value="17"><button type="button" data-size-key="latinSize" data-size-step="1" aria-label="Perbesar teks Latin">+</button><output id="font-latin-label" for="font-latin">17 px</output></div></div>
+<button type="button" class="settings-reset" data-action="reset-fonts" data-i18n="resetFonts">Kembalikan ukuran awal</button></section>
+<section class="setting settings-information"><strong data-i18n="information">Informasi</strong>
+<button type="button" data-action="about"><span data-i18n="about">Tentang Ru Classics</span><span aria-hidden="true">›</span></button>
+<button type="button" data-action="privacy"><span data-i18n="privacy">Kebijakan Privasi</span><span aria-hidden="true">›</span></button>
+<div class="settings-version"><span data-i18n="appVersion">Versi aplikasi</span><strong>Web Alpha 0.2.0</strong></div>
+</section>
 </dialog>
-<dialog id="about-dialog">
-<form method="dialog"><button class="close-btn" aria-label="Tutup dialog">×</button></form>
-<div class="about-glyph">儒</div><h2>Tentang Ru Classics</h2>
-<p>Perpustakaan digital klasik Ru, dimulai dari Si Shu (四書) — Da Xue, Zhong Yong, Lun Yu, dan Mengzi. Pembaca dapat menjelajahi teks Hanzi, pinyin, terjemahan Indonesia, dan padanan Inggris.</p>
-<p>Terjemahan Indonesia mengacu pada edisi Si Shu MATAKIN. Komentar sumber ditampilkan terpisah dari teks utama.</p>
-<p class="credit">Dibuat oleh <strong>周强信</strong> · Zhōu Qiángxìn</p>
-<details><summary>Versi dan status editorial</summary><p>Web Alpha 0.1. Naskah dan terjemahan Inggris masih melalui pemeriksaan editorial; perubahan yang diajukan editor tidak diterbitkan sebelum persetujuan. Hak atas terjemahan dan anotasi tetap milik pemegang hak terkait.</p></details>
+<dialog id="about-dialog" aria-labelledby="about-title">
+<form method="dialog"><button class="close-btn" aria-label="Tutup dialog" data-i18n-aria="close">×</button></form>
+<div class="about-glyph">儒</div><h2 id="about-title" data-i18n="about">Tentang Ru Classics</h2>
+<p data-i18n="aboutDescription">Perpustakaan digital klasik Ru, dimulai dari Si Shu (四書) — Da Xue, Zhong Yong, Lun Yu, dan Mengzi. Pembaca dapat menjelajahi teks Hanzi, pinyin, terjemahan Indonesia, dan padanan Inggris.</p>
+<p data-i18n="aboutSources">Terjemahan Indonesia mengacu pada edisi Si Shu MATAKIN. Komentar sumber ditampilkan terpisah dari teks utama.</p>
+<p class="credit"><span data-i18n="createdBy">Dibuat oleh</span> <strong>周强信</strong> · Zhōu Qiángxìn</p>
+<details><summary data-i18n="versionAndEditorial">Versi dan status editorial</summary><p><strong>Web Alpha 0.2.0.</strong> <span data-i18n="editorialStatus">Teks masih melalui pemeriksaan editorial. Perubahan editor harus disetujui sebelum diterbitkan. Hak atas terjemahan dan anotasi tetap milik pemegang hak masing-masing.</span></p></details>
+</dialog>
+<dialog id="privacy-dialog" aria-labelledby="privacy-title">
+<form method="dialog"><button class="close-btn" aria-label="Tutup dialog" data-i18n-aria="close">×</button></form>
+<h2 id="privacy-title" data-i18n="privacy">Kebijakan Privasi</h2>
+<p data-i18n="privacyIntro">Ru Classics adalah perpustakaan digital yang dapat dibaca tanpa akun. Fitur pembaca dan editor memiliki cara penyimpanan yang berbeda.</p>
+<h3 data-i18n="privacyLocalTitle">Data pada perangkat</h3>
+<p data-i18n="privacyLocal">Pilihan tema, bahasa, ukuran huruf, penanda bacaan, dan catatan pribadi disimpan dalam penyimpanan lokal browser perangkat ini. Data tersebut bisa hilang jika penyimpanan browser dihapus dan tidak otomatis tersinkron antarperangkat.</p>
+<h3 data-i18n="privacyEditorTitle">Akun dan ruang editor</h3>
+<p data-i18n="privacyEditor">Jika Anda masuk sebagai editor menggunakan Google, layanan Firebase Authentication dapat memproses data akun dan Firestore menyimpan informasi pengajuan serta persetujuan perubahan sesuai konfigurasi layanan. Membaca kitab tidak memerlukan login.</p>
+<h3 data-i18n="privacyHostingTitle">Hosting dan layanan pihak ketiga</h3>
+<p data-i18n="privacyHosting">Situs dihosting melalui GitHub Pages. GitHub, Google, dan penyedia jaringan dapat memproses data teknis sesuai kebijakan layanan masing-masing. Jangan menulis informasi sensitif pada pengajuan editorial.</p>
+<p class="privacy-version" data-i18n="privacyDate">Pembaruan kebijakan: 16 November 2026.</p>
 </dialog>
 </div>
 </body>
