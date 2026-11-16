@@ -36,7 +36,6 @@ test('CC-CIDICT is a corpus-filtered Indonesian dictionary with attribution',()=
  assert.ok(glossary.lookup(any,'sishu.lunyu.01.01').indonesianReadings?.length);
  const curated=glossary.lookup('仁','sishu.lunyu.01.01');
  assert.ok(curated.gloss,'editorial Indonesian gloss must remain unchanged');
- assert.ok(glossary.lookup('仁','sishu.lunyu.01.01').englishGloss===null || true);
  assert.equal(glossary.installCIDict({schema:'invalid',headwords:{'仁':[{"definitions":["forged"]}]}}),false);
  assert.ok(glossary.cidictCoverage());
 });
