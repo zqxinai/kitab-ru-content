@@ -17,7 +17,7 @@ test('Owner 2012 decisions cover nine distinct exact citations in 965 unchanged 
  assert.equal(chapters.length,78);assert.equal(all.length,965);
  assert.equal(owner.records.length,9);
  assert.equal(new Set(owner.records.map(r=>r.passage_id+'::'+r.source)).size,9);
- assert.equal(overlay.records.length,126);
+ assert.equal(overlay.records.length,127);
  for(const r of owner.records){
   const p=byId.get(r.passage_id);assert.ok(p,'Missing passage '+r.passage_id);
   assert.equal(p.translation_indonesian.split(r.source).length,2,'Source must appear once: '+r.passage_id);
