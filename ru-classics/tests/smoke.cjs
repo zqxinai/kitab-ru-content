@@ -71,7 +71,7 @@ setTimeout(()=>{
   for(const name of ['Weizi - Bicu','Jizi - Kicu','Bi Gan - Pikan'])
     assert.ok(visibleText(nodes.main.innerHTML).includes(name),'Lun Yu XVIII:1 missing '+name);
   click({passage:'sishu.lunyu.18.06'});
-  assert.match(nodes.main.innerHTML,/Sabda Suci — Lun Yu XIV:39/,'Full 2012-style book name should display');
+  assert.match(nodes.main.innerHTML,/Lunyu - Sabda Suci XIV:39/,'Full readable book name should display');
   assert.doesNotMatch(nodes.main.innerHTML,/\(S\.S\. XIV: 39\)/,'Old abbreviated citation should not display');
   assert.match(nodes.main.innerHTML,/class="reference-link" data-passage="sishu\.lunyu\.14\.39"/,
     'Verified single reference should render as a target passage button');
@@ -80,70 +80,70 @@ setTimeout(()=>{
   click({book:'lunyu'});
   click({chapter:'sishu.lunyu.05'});
   click({passage:'sishu.lunyu.05.08'});
-  assert.match(nodes.main.innerHTML,/Tengah Sempurna — Zhong Yong Bab VIII/,
+  assert.match(nodes.main.innerHTML,/Zhongyong - Tengah Sempurna Bab VIII/,
     'Owner-confirmed TS is displayed as book name without inventing a verse');
-  assert.match(nodes.main.innerHTML,/Sabda Suci — Lun Yu II:6/,
+  assert.match(nodes.main.innerHTML,/Lunyu - Sabda Suci II:6/,
     'Batch 02 SS normalized while TS remains separate');
-  assert.match(nodes.main.innerHTML,/Sabda Suci — Lun Yu VI:4/,
+  assert.match(nodes.main.innerHTML,/Lunyu - Sabda Suci VI:4/,
     'Second reference in one passage remains independently normalized');
   assert.doesNotMatch(nodes.main.innerHTML,/\\(T\\.S\\. VIII\\)/,
     'Legacy T.S. VIII should not display to reader');
   click({book:'lunyu'});
   click({chapter:'sishu.lunyu.16'});
   click({passage:'sishu.lunyu.16.09'});
-  assert.match(nodes.main.innerHTML,/Tengah Sempurna — Zhong Yong XIX:9/,
+  assert.match(nodes.main.innerHTML,/Zhongyong - Tengah Sempurna XIX:9/,
     '2012-style TS reference should be rendered in Lun Yu XVI:9');
   click({book:'lunyu'});
   click({chapter:'sishu.lunyu.12'});
   click({passage:'sishu.lunyu.12.13'});
-  assert.match(nodes.main.innerHTML,/Ajaran Besar — Da Xue IV/,
+  assert.match(nodes.main.innerHTML,/Daxue - Ajaran Besar IV/,
     'Chapter-only A.B. IV should not invent a verse');
   click({passage:'sishu.lunyu.12.22'});
-  assert.match(nodes.main.innerHTML,/Mengzi — Bing Cu VII A:46/,
+  assert.match(nodes.main.innerHTML,/Mengzi - Bingcu VII A:46/,
     'BC should resolve to Mengzi while preserving chapter/verse numbers');
   click({book:'lunyu'});
   click({chapter:'sishu.lunyu.02'});
   click({passage:'sishu.lunyu.02.03'});
-  assert.match(nodes.main.innerHTML,/Mengzi — Bing Cu VII A:3/,
+  assert.match(nodes.main.innerHTML,/Mengzi - Bingcu VII A:3/,
     'Batch 04 BC target should preserve the printed book and passage numbering');
   click({passage:'sishu.lunyu.02.05'});
-  assert.match(nodes.main.innerHTML,/Sabda Suci — Lun Yu VI:22/,
+  assert.match(nodes.main.innerHTML,/Lunyu - Sabda Suci VI:22/,
     'Batch 04 SS citation with dot separator should render in canonical form');
-  assert.ok(visibleText(nodes.main.innerHTML).includes('(Sabda Suci — Lun Yu I:9; Lun Yu III:1,2; Lun Yu XIX:5; Mengzi — Bing Cu III A:2)'),
+  assert.ok(visibleText(nodes.main.innerHTML).includes('(Lunyu - Sabda Suci I:9; Lun Yu III:1,2; Lun Yu XIX:5; Mengzi - Bingcu III A:2)'),
     'Compound references should retain distinct book and pasal numbers after normalization');
   click({book:'lunyu'});
   click({chapter:'sishu.lunyu.03'});
   click({passage:'sishu.lunyu.03.14'});
-  assert.match(nodes.main.innerHTML,/Tengah Sempurna — Zhong Yong XXVII:5/,
+  assert.match(nodes.main.innerHTML,/Zhongyong - Tengah Sempurna XXVII:5/,
     'Batch 04 TS reference should map only the displayed book title');
   click({book:'lunyu'});
   click({chapter:'sishu.lunyu.04'});
   click({passage:'sishu.lunyu.04.03'});
-  assert.match(nodes.main.innerHTML,/Ajaran Besar — Da Xue X:15/,
+  assert.match(nodes.main.innerHTML,/Daxue - Ajaran Besar X:15/,
     'Batch 04 A.B. should show Da Xue by printed chapter numbering');
   click({book:'lunyu'});
   click({chapter:'sishu.lunyu.09'});
   click({passage:'sishu.lunyu.09.08'});
-  assert.match(nodes.main.innerHTML,/Tengah Sempurna — Zhong Yong V/,
+  assert.match(nodes.main.innerHTML,/Zhongyong - Tengah Sempurna V/,
     'Batch 04 chapter-only TS reference should not invent a verse');
   // Compound citation batch: preserve each source's book without collapsing targets.
   click({book:'lunyu'});
   click({chapter:'sishu.lunyu.02'});
   click({passage:'sishu.lunyu.02.19'});
-  assert.ok(visibleText(nodes.main.innerHTML).includes('Tengah Sempurna — Zhong Yong XIX:1; Sabda Suci — Lun Yu III:21'),
+  assert.ok(visibleText(nodes.main.innerHTML).includes('Zhongyong - Tengah Sempurna XIX:1; Lunyu - Sabda Suci III:21'),
     'Compound TS + SS book names are missing');
   click({book:'lunyu'});
   click({chapter:'sishu.lunyu.05'});
   click({passage:'sishu.lunyu.05.16'});
-  assert.ok(visibleText(nodes.main.innerHTML).includes('Sabda Suci — Lun Yu XIV:9; Mengzi — Bing Cu IV B:2'),
+  assert.ok(visibleText(nodes.main.innerHTML).includes('Lunyu - Sabda Suci XIV:9; Mengzi - Bingcu IV B:2'),
     'Compound SS + BC book names are missing');
   click({passage:'sishu.lunyu.05.23'});
-  assert.ok(visibleText(nodes.main.innerHTML).includes('Mengzi — Bing Cu II A:2; Sabda Suci — Lun Yu VII:15'),
+  assert.ok(visibleText(nodes.main.innerHTML).includes('Mengzi - Bingcu II A:2; Lunyu - Sabda Suci VII:15'),
     'Compound BC + SS book names are missing');
   click({book:'lunyu'});
   click({chapter:'sishu.lunyu.02'});
   click({passage:'sishu.lunyu.02.05'});
-  assert.ok(visibleText(nodes.main.innerHTML).includes('(Sabda Suci — Lun Yu I:9; Lun Yu III:1,2; Lun Yu XIX:5; Mengzi — Bing Cu III A:2)'),
+  assert.ok(visibleText(nodes.main.innerHTML).includes('(Lunyu - Sabda Suci I:9; Lun Yu III:1,2; Lun Yu XIX:5; Mengzi - Bingcu III A:2)'),
     'Promoted inherited-book reference should use approved full names');
   click({book:'lunyu'});
   click({chapter:'sishu.lunyu.03'});
@@ -175,44 +175,44 @@ setTimeout(()=>{
   assert.ok(visibleText(nodes.main.innerHTML).includes('Gongsun Chou - Kong-sun Thio'),
     'Pinyin–Hokkian display overlay should render known personal name');
   click({book:'lunyu'});click({chapter:'sishu.lunyu.03'});click({passage:'sishu.lunyu.03.07'});
-  assert.ok(visibleText(nodes.main.innerHTML).includes('Tengah Sempurna — Zhong Yong XIII:5; Mengzi — Bing Cu II A:7/5'),
+  assert.ok(visibleText(nodes.main.innerHTML).includes('Zhongyong - Tengah Sempurna XIII:5; Mengzi - Bingcu II A:7/5'),
     'Batch 06 multi-book citation must display both books and preserve /5');
   click({passage:'sishu.lunyu.03.09'});
-  assert.ok(visibleText(nodes.main.innerHTML).includes('Tengah Sempurna — Zhong Yong XXVII:5; Sabda Suci — Lun Yu II:23'),
+  assert.ok(visibleText(nodes.main.innerHTML).includes('Zhongyong - Tengah Sempurna XXVII:5; Lunyu - Sabda Suci II:23'),
     'Batch 06 TS and SS reference normalization missing');
   click({book:'lunyu'});
   click({chapter:'sishu.lunyu.07'});
   click({passage:'sishu.lunyu.07.02'});
-  assert.ok(visibleText(nodes.main.innerHTML).includes('Sabda Suci — Lun Yu IX:16; Mengzi — Bing Cu II A:2/19'),
+  assert.ok(visibleText(nodes.main.innerHTML).includes('Lunyu - Sabda Suci IX:16; Mengzi - Bingcu II A:2/19'),
     'Batch 06 BC subverse notation must be retained as source text');
   click({passage:'sishu.lunyu.07.23'});
-  assert.ok(visibleText(nodes.main.innerHTML).includes('(Sabda Suci — Lun Yu III:24; Lun Yu IX:5)'),
+  assert.ok(visibleText(nodes.main.innerHTML).includes('(Lunyu - Sabda Suci III:24; Lun Yu IX:5)'),
     'Inherited SS second citation must show confirmed full book name');
   click({book:'lunyu'});
   click({chapter:'sishu.lunyu.09'});
   click({passage:'sishu.lunyu.09.29'});
-  assert.ok(visibleText(nodes.main.innerHTML).includes('Sabda Suci — Lun Yu XIV:28; Tengah Sempurna — Zhong Yong XIX:10'),
+  assert.ok(visibleText(nodes.main.innerHTML).includes('Lunyu - Sabda Suci XIV:28; Zhongyong - Tengah Sempurna XIX:10'),
     'Batch 06 SS plus TS normalization missing');
   click({book:'lunyu'});
   click({chapter:'sishu.lunyu.05'});
   click({passage:'sishu.lunyu.05.02'});
-  assert.ok(visibleText(nodes.main.innerHTML).includes('Sabda Suci — Lun Yu VI:1,2; Lun Yu XI:5'),
+  assert.ok(visibleText(nodes.main.innerHTML).includes('Lunyu - Sabda Suci VI:1,2; Lun Yu XI:5'),
     'Two pasal VI:1,2 and XI:5 remain legible');
   click({passage:'sishu.lunyu.05.04'});
-  assert.ok(visibleText(nodes.main.innerHTML).includes('Sabda Suci — Lun Yu I:10; Lun Yu II:12,13'),
+  assert.ok(visibleText(nodes.main.innerHTML).includes('Lunyu - Sabda Suci I:10; Lun Yu II:12,13'),
     'Comma-separated pasal targets should be preserved');
   click({book:'lunyu'});
   click({chapter:'sishu.lunyu.14'});
   click({passage:'sishu.lunyu.14.01'});
-  assert.ok(visibleText(nodes.main.innerHTML).includes('Sabda Suci — Lun Yu VIII:13; Mengzi — Bing Cu VII A:6,7'),
+  assert.ok(visibleText(nodes.main.innerHTML).includes('Lunyu - Sabda Suci VIII:13; Mengzi - Bingcu VII A:6,7'),
     'Mixed books and comma-separated Mengzi pasal should display');
   click({passage:'sishu.lunyu.14.36'});
-  assert.ok(visibleText(nodes.main.innerHTML).includes('Sabda Suci — Lun Yu VII:23; Lun Yu IX:5; Mengzi — Bing Cu I B:16'),
+  assert.ok(visibleText(nodes.main.innerHTML).includes('Lunyu - Sabda Suci VII:23; Lun Yu IX:5; Mengzi - Bingcu I B:16'),
     'Two inherited SS and one BC references should retain all numbers');
   click({book:'lunyu'});
   click({chapter:'sishu.lunyu.09'});
   click({passage:'sishu.lunyu.09.05'});
-  assert.ok(visibleText(nodes.main.innerHTML).includes('Sabda Suci — Lun Yu III:24; Lun Yu VII:23; Lun Yu XIV:36; Mengzi — Bing Cu I B:16'),
+  assert.ok(visibleText(nodes.main.innerHTML).includes('Lunyu - Sabda Suci III:24; Lun Yu VII:23; Lun Yu XIV:36; Mengzi - Bingcu I B:16'),
     'MATAKIN 2012 photographed citation must correct the displayed VII:23 numbering');
   assert.ok(!visibleText(nodes.main.innerHTML).includes('VII &quot;: 23'),
     'Spurious quote in original 2011 transcription must not leak into reader display');
@@ -220,28 +220,28 @@ setTimeout(()=>{
   click({book:'zhongyong'});
   click({chapter:'sishu.zhongyong.20'});
   click({passage:'sishu.zhongyong.20.10'});
-  assert.ok(visibleText(nodes.main.innerHTML).includes('Sabda Suci — Lun Yu IX:29'),
+  assert.ok(visibleText(nodes.main.innerHTML).includes('Lunyu - Sabda Suci IX:29'),
     'Zhong Yong XIX:10 reference to Lun Yu IX:29 should display');
   click({book:'zhongyong'});
   click({chapter:'sishu.zhongyong.29'});
   click({passage:'sishu.zhongyong.29.04'});
-  assert.ok(visibleText(nodes.main.innerHTML).includes('Tengah Sempurna — Zhong Yong XIX:7'),
+  assert.ok(visibleText(nodes.main.innerHTML).includes('Zhongyong - Tengah Sempurna XIX:7'),
     'Zhong Yong self-reference must retain printed XIX numbering');
   click({book:'mengzi'});
   click({chapter:'sishu.mengzi.03'});
   click({passage:'sishu.mengzi.03.02'});
-  assert.ok(visibleText(nodes.main.innerHTML).includes('Sabda Suci — Lun Yu XI:3'),
+  assert.ok(visibleText(nodes.main.innerHTML).includes('Lunyu - Sabda Suci XI:3'),
     'Mengzi IIA:2 first single-book reference missing');
-  assert.ok(visibleText(nodes.main.innerHTML).includes('Sabda Suci — Lun Yu VII:26'),
+  assert.ok(visibleText(nodes.main.innerHTML).includes('Lunyu - Sabda Suci VII:26'),
     'Mengzi IIA:2 second single-book reference missing');
-  assert.ok(visibleText(nodes.main.innerHTML).includes('Sabda Suci — Lun Yu IX:9'),
+  assert.ok(visibleText(nodes.main.innerHTML).includes('Lunyu - Sabda Suci IX:9'),
     'Mengzi IIA:2 space-separated abbreviation missing');
   click({book:'mengzi'});
   click({chapter:'sishu.mengzi.04'});
   click({passage:'sishu.mengzi.04.13'});
-  assert.ok(visibleText(nodes.main.innerHTML).includes('Sabda Suci — Lun Yu XIV:35'),
+  assert.ok(visibleText(nodes.main.innerHTML).includes('Lunyu - Sabda Suci XIV:35'),
     'Mengzi IIB:13 first reference missing');
-  assert.ok(visibleText(nodes.main.innerHTML).includes('Sabda Suci — Lun Yu IX:5'),
+  assert.ok(visibleText(nodes.main.innerHTML).includes('Lunyu - Sabda Suci IX:5'),
     'Mengzi IIB:13 second reference missing');
   // The reader must pair Pinyin-Hokkian consistently, including search excerpts.
   click({nav:'search'});
@@ -259,7 +259,7 @@ setTimeout(()=>{
   // Mengzi III.A.3.10 is a same-book reference to passage III A:3 Ayat 10.
   click({book:'mengzi'});click({chapter:'sishu.mengzi.01'});click({passage:'sishu.mengzi.01.03'});
   click({toggle:'indo'}); // Restore Indonesian from preceding display-options test.
-  assert.ok(visibleText(nodes.main.innerHTML).includes('Mengzi — Bing Cu III A:3/10'));
+  assert.ok(visibleText(nodes.main.innerHTML).includes('Mengzi - Bingcu III A:3/10'));
   assert.match(nodes.main.innerHTML,/data-passage="sishu\.mengzi\.05\.03" data-ref-ayat="10"/);
   click({passage:'sishu.mengzi.05.03',refAyat:'10'});
   assert.equal(location.hash,'read=sishu.mengzi.05.03&ayat=10');
@@ -293,7 +293,7 @@ setTimeout(()=>{
   click({book:'zhongyong'});click({chapter:'sishu.zhongyong.09'});click({passage:'sishu.zhongyong.09.01'});
   assert.match(nodes.main.innerHTML,/data-passage="sishu\.lunyu\.05\.08"/);
   assert.match(nodes.main.innerHTML,/data-passage="sishu\.lunyu\.12\.20"/);
-  assert.ok(visibleText(nodes.main.innerHTML).includes('Sabda Suci — Lun Yu V:8; Lun Yu XII:20'));
+  assert.ok(visibleText(nodes.main.innerHTML).includes('Lunyu - Sabda Suci V:8; Lun Yu XII:20'));
   click({passage:'sishu.lunyu.12.20'});
   assert.equal(location.hash,'read=sishu.lunyu.12.20');
   // From Lun Yu, A.B. leads to Da Xue; T.S. leads to Zhong Yong.
