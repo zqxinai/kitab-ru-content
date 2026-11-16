@@ -183,10 +183,16 @@
   }
   function ruby(paragraphs){
     if(!Array.isArray(paragraphs))return '';
+    const displayCharacter=character=>{
+      const vertical=globalThis.RuHanziLayout?.verticalForm?.(character)||character;
+      return '<span class="hanzi-mark-cell"><span class="hanzi-mark-source">'+H(character)+'</span>'+
+        (vertical!==character?'<span class="hanzi-mark-vertical" aria-hidden="true">'+H(vertical)+'</span>':'')+
+        '</span>';
+    };
     const tokenMarkup=tok=>tok.type==='ruby'
-      ?'<ruby>'+H(tok.traditional||'')+'<rt>'+H(tok.pinyin||'')+'</rt></ruby>'
-        +(tok.modern&&tok.modern!==tok.traditional?'<span class="modern" title="Aksara sederhana dari metadata, bukan bagian teks utama">（'+H(tok.modern)+'）</span>':'')
-      :H(tok.value||'');
+      ?'<span class="hanzi-unit"><ruby>'+H(tok.traditional||'')+'<rt>'+H(tok.pinyin||'')+'</rt></ruby>'
+        +(tok.modern&&tok.modern!==tok.traditional?'<span class="modern" title="Aksara sederhana dari metadata, bukan bagian teks utama">（'+H(tok.modern)+'）</span>':'')+'</span>'
+      :Array.from(String(tok.value||'')).map(character=>/\\s/u.test(character)?H(character):displayCharacter(character)).join('');
     return paragraphs.map(par=>{
       const tokens=Array.isArray(par)?par:[];
       const groups=globalThis.RuHanziLayout?.segment?.(tokens)||[{tokens,pause:'none',length:0}];
