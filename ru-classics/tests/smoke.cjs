@@ -61,7 +61,7 @@ setTimeout(()=>{
   assert.match(nodes.main.innerHTML,/id="reader-translation-en"/,'English Legge panel must be distinct');
   assert.match(nodes.main.innerHTML,/class="reader-pager"/,'Passage navigation belongs in the bottom reader area');
   assert.doesNotMatch(nodes.main.innerHTML,/class="reader-jump"/,'Old four-column top navigation must be absent');
-  assert.ok(nodes.main.innerHTML.indexOf('id="jump-chapter"')<nodes.main.innerHTML.indexOf('class="reader-page"'),
+  assert.ok(nodes.main.innerHTML.indexOf('id="jump-chapter"')<nodes.main.innerHTML.indexOf('class="paper-page reader-page"'),
     'Chapter navigation must appear before reading content');
   assert.ok(nodes.main.innerHTML.indexOf('id="jump-passage"')>nodes.main.innerHTML.indexOf('id="reader-translation-en"'),
     'Passage selector must appear below translations');
