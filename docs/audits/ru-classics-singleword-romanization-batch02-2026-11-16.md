@@ -53,6 +53,27 @@ Batch 2 menambahkan:
    `already_paired_occurrences`, dan daftar kandidat yang masih perlu
    diselidiki; semuanya dalam artefak JSON GitHub Actions.
 
+## Hasil CI pada batch 2
+
+Pada commit `a1a8753bd90c3715c7781a7e6b63e874449ded54`,
+workflow **Ru Classics — audit normalisasi 965 pasal** (run
+[43790611642](https://github.com/zqxinai/kitab-ru-content/actions/runs/43790611642))
+mencatat:
+- **62 tes lulus, 0 gagal**, seluruh **965 pasal** tercakup.
+- **674** kandidat ortografi tersisa pada **474** pasal setelah
+  pemisahan false positive dan koreksi yang dapat dibuktikan.
+- **161** istilah Indonesia yang benar-benar ditemukan di sumber
+  diklasifikasikan sebagai bahasa Indonesia, **bukan nama Hokkian**.
+- **2.792 kemunculan** sudah berada di dalam pasangan Pinyin–Hokkian
+  yang sebelumnya terhitung salah sebagai calon kekurangan Pinyin.
+
+Dari 896 kandidat pada scan lama menjadi 674 sekarang: **222 selisih
+istilah dalam inventaris**. Selisih ini **bukan 222 kesalahan yang sudah
+dibetulkan**; perubahan hasil berasal dari metode deteksi yang lebih
+tepat dan koreksi Hanzi yang terbatas. Ke-674 kandidat yang tersisa
+tetap memerlukan pengelompokan lanjut. Jangan menganggap mereka
+semuanya nama dan jangan menyebut 965 pasal sudah final filologis.
+
 **Interpretasi:** perubahan angka daftar kandidat mencerminkan perubahan
 metodologi *dan* koreksi, sehingga tidak boleh dianggap sebagai jumlah
 kesalahan yang diperbaiki satu per satu.
