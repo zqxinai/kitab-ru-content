@@ -7,12 +7,12 @@
     {id:'mengzi',name:'Mengzi',hanzi:'孟子',title:'Mengzi',desc:'Percakapan mengenai kebajikan, manusia, dan pemerintahan.'}
   ];
   const main=document.getElementById('main');
-  const state={tab:'home',book:null,chapter:null,id:null,ayat:0,data:null,chapters:[],passages:[],map:new Map(),overrides:[],saved:[],notes:{},expandedChapters:{},last:null,search:'',filter:'all',theme:'paper',uiLanguage:'id',settings:{hanzi:true,pinyin:true,indo:true,english:true,hanziSize:32,pinyinSize:14,latinSize:17}};
+  const state={tab:'home',book:null,chapter:null,id:null,ayat:0,data:null,chapters:[],passages:[],map:new Map(),overrides:[],saved:[],notes:{},expandedChapters:{},last:null,search:'',filter:'all',theme:'paper',uiLanguage:'id',settings:{hanzi:true,pinyin:true,indo:true,english:true,hanziSize:32,pinyinSize:14,latinSize:17,verticalHanzi:true}};
   const LOCALES={
     id:{
       settings:'Pengaturan',settingsSubtitle:'Atur tampilan dan bahasa sesuai kenyamanan membaca.',close:'Tutup dialog',
       uiLanguage:'Bahasa antarmuka',uiLanguageHint:'Bahasa menu (bukan bahasa terjemahan kitab)',
-      theme:'Tema',readingLanguages:'Bahasa dan aksara bacaan',readingHint:'Pilih bagian yang tampil tanpa mengubah naskah sumber.',
+      theme:'Tema',readingLanguages:'Bahasa dan aksara bacaan',readingHint:'Pilih bagian yang tampil tanpa mengubah naskah sumber.',verticalHanzi:'Hanzi vertikal pada desktop',
       fontSizes:'Ukuran teks',fontSizeHint:'Atur Hanzi, Pinyin Ruby, dan teks Latin secara terpisah.',
       hanziSize:'Hanzi',pinyinSize:'Pinyin Ruby',latinSize:'Teks Latin (ID/EN)',resetFonts:'Kembalikan ukuran awal',
       information:'Informasi',about:'Tentang Ru Classics',privacy:'Kebijakan Privasi',appVersion:'Versi aplikasi',
@@ -49,7 +49,7 @@
     en:{
       settings:'Settings',settingsSubtitle:'Customize the appearance and reading languages.',close:'Close dialog',
       uiLanguage:'Interface language',uiLanguageHint:'Language of menus (not the translations of the classics)',
-      theme:'Theme',readingLanguages:'Reading languages and scripts',readingHint:'Choose which text to display without changing the original sources.',
+      theme:'Theme',readingLanguages:'Reading languages and scripts',readingHint:'Choose which text to display without changing the original sources.',verticalHanzi:'Vertical Hanzi on desktop',
       fontSizes:'Text sizes',fontSizeHint:'Adjust Hanzi, Ruby Pinyin, and Latin text independently.',
       hanziSize:'Hanzi',pinyinSize:'Ruby Pinyin',latinSize:'Latin text (ID/EN)',resetFonts:'Restore default sizes',
       information:'Information',about:'About Ru Classics',privacy:'Privacy Policy',appVersion:'App version',
@@ -254,19 +254,49 @@
       +'<details class="reader-book-details"><summary data-i18n="changeBook">Ganti kitab</summary><label>Kitab<select id="jump-book" aria-label="Pilih kitab">'+BOOKS.map(x=>option(x.id,x.name,x.id===b.id)).join('')+'</select></label></details>'
       +'</section>';
   }
+  function readerStepAvailable(p,prev,next,direction){
+    const verses=globalThis.RuSubverses?.splitIndonesia(p.translation_indonesian)||[];
+    if(direction<0)return !!prev || (state.ayat>0&&verses.findIndex(x=>x.number===state.ayat)>0);
+    return !!next || (verses.length>1&&(!state.ayat||verses.findIndex(x=>x.number===state.ayat)<verses.length-1));
+  }
+  function stepReader(direction){
+    const p=byId(state.id);if(!p||![-1,1].includes(direction))return;
+    const verses=globalThis.RuSubverses?.splitIndonesia(p.translation_indonesian)||[];
+    const current=verses.findIndex(x=>x.number===state.ayat);
+    if(direction===1&&verses.length>1&&(state.ayat===0||current>=0&&current<verses.length-1)){
+      navigate('reader',p.id,verses[state.ayat===0?0:current+1].number);return;
+    }
+    if(direction===-1&&current>0){navigate('reader',p.id,verses[current-1].number);return;}
+    const index=state.passages.findIndex(x=>x.id===p.id);
+    const neighbor=state.passages[index+direction];if(!neighbor)return;
+    const nextVerses=globalThis.RuSubverses?.splitIndonesia(neighbor.translation_indonesian)||[];
+    navigate('reader',neighbor.id,nextVerses.length>1?(direction>0?nextVerses[0].number:nextVerses[nextVerses.length-1].number):0);
+  }
   function jumpMenu(p,c,b,prev,next){
     const verses=globalThis.RuSubverses?.splitIndonesia(p.translation_indonesian)||[];
     const option=(value,label,active)=>'<option value="'+H(value)+'"'+(active?' selected':'')+'>'+H(label)+'</option>';
+    const ayatDisabled=verses.length>1?'':' disabled title="Ayat bernomor belum terverifikasi"';
     return '<nav class="reader-pager" aria-label="Navigasi pasal dan ayat">'
-      +'<button class="reader-pager-arrow" type="button" aria-label="'+H(tr('prevPassage'))+'" title="'+H(tr('prevPassage'))+'" '+(prev?'data-passage="'+H(prev.id)+'"':'disabled')+'>‹</button>'
-      +'<label class="reader-passage-selector"><span class="visually-hidden">Pilih pasal</span><select id="jump-passage" aria-label="'+H(tr('passage'))+'">'+c.passages.map(x=>option(x.id,tr('passage')+' '+x.number,x.id===p.id)).join('')+'</select></label>'
-      +'<button class="reader-pager-arrow" type="button" aria-label="'+H(tr('nextPassage'))+'" title="'+H(tr('nextPassage'))+'" '+(next?'data-passage="'+H(next.id)+'"':'disabled')+'>›</button>'
-      +'</nav>'
-      +'<details class="reader-ayat-disclosure"'+(state.ayat?' open':'')+'>'
-      +'<summary>'+(state.ayat?tr('verse')+' '+state.ayat+' dipilih':tr('chooseVerse'))+'</summary>'
-      +'<label><span class="visually-hidden">Pilih ayat</span><select id="jump-ayat" aria-label="'+H(tr('chooseVerse'))+'"'+(verses.length>1?'':' disabled title="Ayat bernomor belum terverifikasi"')+'>'
+      +'<button class="reader-pager-arrow" type="button" data-reader-step="-1" aria-label="Ayat atau pasal sebelumnya" '+(readerStepAvailable(p,prev,next,-1)?'':'disabled')+'>‹</button>'
+      +'<label class="reader-passage-selector"><span class="visually-hidden">'+H(tr('passage'))+'</span><select id="jump-passage" aria-label="'+H(tr('passage'))+'">'+c.passages.map(x=>option(x.id,tr('passage')+' '+x.number,x.id===p.id)).join('')+'</select></label>'
+      +'<label class="reader-ayat-selector"><span class="visually-hidden">'+H(tr('verse'))+'</span><select id="jump-ayat" aria-label="'+H(tr('chooseVerse'))+'"'+ayatDisabled+'>'
       +option('0',tr('wholePassage'),!state.ayat)+verses.map(x=>option(x.number,tr('verse')+' '+x.number,state.ayat===x.number)).join('')+'</select></label>'
-      +'</details>';
+      +'<button class="reader-pager-arrow" type="button" data-reader-step="1" aria-label="Ayat atau pasal berikutnya" '+(readerStepAvailable(p,prev,next,1)?'':'disabled')+'>›</button>'
+      +'</nav>';
+  }
+  function desktopNavigation(p,c,b,prev,next){
+    const chapters=state.chapters.filter(ch=>ch.book===b.id);
+    const verses=globalThis.RuSubverses?.splitIndonesia(p.translation_indonesian)||[];
+    const option=(value,label,active)=>'<option value="'+H(value)+'"'+(active?' selected':'')+'>'+H(label)+'</option>';
+    const field=(id,label,options,disabled='')=>'<label class="reader-desktop-field"><span>'+H(label)+'</span><select id="'+id+'" aria-label="'+H(label)+'"'+disabled+'>'+options+'</select></label>';
+    return '<nav class="reader-desktop-navigation" aria-label="Navigasi kitab, bab, pasal dan ayat">'
+      +field('desktop-jump-book',tr('navBooks'),BOOKS.map(x=>option(x.id,x.title,x.id===b.id)).join(''))
+      +field('desktop-jump-chapter',tr('chapter'),chapters.map(x=>option(x.id,x.title,x.id===c.id)).join(''))
+      +field('desktop-jump-passage',tr('passage'),c.passages.map(x=>option(x.id,tr('passage')+' '+x.number,x.id===p.id)).join(''))
+      +field('desktop-jump-ayat',tr('verse'),option('0',tr('wholePassage'),!state.ayat)+verses.map(x=>option(x.number,tr('verse')+' '+x.number,state.ayat===x.number)).join(''),verses.length>1?'':' disabled title="Ayat bernomor belum terverifikasi"')
+      +'<button type="button" class="reader-desktop-step" data-reader-step="-1" aria-label="Sebelumnya" '+(readerStepAvailable(p,prev,next,-1)?'':'disabled')+'>‹</button>'
+      +'<button type="button" class="reader-desktop-step" data-reader-step="1" aria-label="Berikutnya" '+(readerStepAvailable(p,prev,next,1)?'':'disabled')+'>›</button>'
+      +'</nav>';
   }
   // Legge supplies source paragraphs, NOT the MATAKIN numbered ayat.
   // Do not invent "Bagian 1/2" as if they were a different verse system.
@@ -288,8 +318,8 @@
     const prev=state.passages[pos-1],next=state.passages[pos+1];
     const s=state.settings;
     const aligned=globalThis.RuSubverses?.align(p)||null;
-    main.innerHTML=chapterPicker(p,c,b)
-      +'<div class="reader-grid"><article class="paper-page reader-page">'
+    main.innerHTML=chapterPicker(p,c,b)+desktopNavigation(p,c,b,prev,next)
+      +'<div class="reader-grid'+(s.verticalHanzi===false?' horizontal-hanzi':'')+'"><article class="paper-page reader-page">'
       +'<div class="reader-text-heading"><span>'+tr('passage')+' '+p.number+(state.ayat?' · '+tr('verse')+' '+state.ayat+' dipilih':'')+'</span></div>'
       +(s.hanzi?'<section class="reader-script"><div class="hanzi-text '+(s.pinyin?'':'no-pinyin')+'" lang="zh-Hant">'+hanziWithSubverses(p,aligned)+'</div></section>':'')
       +'<div class="reader-translation-stack">'
@@ -339,6 +369,7 @@
   async function boot(){restore();try{let response=await fetch('./data/sishu.json');if(!response.ok)throw Error('Data belum tersedia pada hasil publikasi');parseBundle(await response.json());route();window.dispatchEvent(new Event('ru:ready'));}catch(e){main.innerHTML='<div class="empty"><h2>Perpustakaan belum bisa dibuka</h2><p>'+H(e.message)+'</p><p>Periksa hasil build GitHub Pages atau coba lagi setelah publikasi selesai.</p><button class="secondary" onclick="location.reload()">Coba lagi</button></div>';}}
   document.addEventListener('click',e=>{
     const t=e.target.closest('button');if(!t)return;
+    if(t.hasAttribute('data-reader-step')){stepReader(Number(t.dataset.readerStep));return;}
     if(t.hasAttribute('data-ayat-select')){
       const n=Number(t.dataset.ayatSelect);
       navigate('reader',state.id,state.ayat===n?0:n);
@@ -377,7 +408,7 @@
       if(a==='home')navigate('home');if(a==='all'){state.book=null;navigate('books');}
       if(a==='start')navigate('reader',state.last&&state.map.has(state.last)?state.last:state.passages[0]?.id);
       if(a==='translation'){const target=document.getElementById('reader-translation-indo')||document.getElementById('reader-translation-en');target?.scrollIntoView?.({behavior:'smooth',block:'start'});}
-      if(a==='notes'){const notes=document.getElementById('reader-notes');if(notes){notes.open=true;notes.scrollIntoView?.({behavior:'smooth',block:'start'});}}
+      if(a==='notes'){const notes=document.getElementById('reader-notes');if(notes){notes.open=!notes.open;if(notes.open&&window.matchMedia?.('(max-width: 999px)').matches)notes.scrollIntoView?.({behavior:'smooth',block:'start'});}}
 
       if(a==='theme'){const arr=['paper','light','dark'];setTheme(arr[(arr.indexOf(state.theme)+1)%arr.length]);render();}
       if(a==='settings'){applyLanguage();fillSettings();document.getElementById('settings-dialog').showModal();}
@@ -403,21 +434,22 @@
     if(id==='ui-language'&&['id','en'].includes(value)){
       state.uiLanguage=value;save();render();applyLanguage();fillSettings();return;
     }
-    if(id==='jump-book'){
+    if(id==='vertical-hanzi'){state.settings.verticalHanzi=target.checked;save();if(state.tab==='reader')render();return;}
+    if(id==='jump-book'||id==='desktop-jump-book'){
       const chapter=state.chapters.find(c=>c.book===value);
       if(chapter?.passages?.length)navigate('reader',chapter.passages[0].id);
       return;
     }
-    if(id==='jump-chapter'){
+    if(id==='jump-chapter'||id==='desktop-jump-chapter'){
       const chapter=state.chapters.find(c=>c.id===value);
       if(chapter?.passages?.length)navigate('reader',chapter.passages[0].id);
       return;
     }
-    if(id==='jump-passage'||id==='chapter-passage'){
+    if(id==='jump-passage'||id==='desktop-jump-passage'||id==='chapter-passage'){
       if(value&&state.map.has(value))navigate('reader',value);
       return;
     }
-    if(id==='jump-ayat'){
+    if(id==='jump-ayat'||id==='desktop-jump-ayat'){
       navigate('reader',state.id,Number(value)||0);
       return;
     }
@@ -453,6 +485,7 @@
     ).join('');
     const language=document.getElementById('ui-language');
     if(language)language.value=state.uiLanguage;
+    const vertical=document.getElementById('vertical-hanzi');if(vertical)vertical.checked=state.settings.verticalHanzi!==false;
     updateFontControls();
   }
   window.RuApp={navigate,render,toast,referenceMarkup,readableIndonesian:(id,text)=>readingParagraphs(text,'id',part=>referenceMarkup(id,part)),readableEnglish:text=>readingParagraphs(text,'en',H),getPassage:byId,getOriginal:id=>state.map.get(id),getPassages:()=>state.passages,getCurrent:()=>state.id,applyApproved:items=>{state.overrides=Array.isArray(items)?items:[];if(state.data&&state.tab!=='editor')render();}};
