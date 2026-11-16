@@ -7,7 +7,104 @@
     {id:'mengzi',name:'Mengzi',hanzi:'孟子',title:'Mengzi',desc:'Percakapan mengenai kebajikan, manusia, dan pemerintahan.'}
   ];
   const main=document.getElementById('main');
-  const state={tab:'home',book:null,chapter:null,id:null,ayat:0,data:null,chapters:[],passages:[],map:new Map(),overrides:[],saved:[],notes:{},expandedChapters:{},last:null,search:'',filter:'all',theme:'paper',settings:{hanzi:true,pinyin:true,indo:true,english:true,font:32}};
+  const state={tab:'home',book:null,chapter:null,id:null,ayat:0,data:null,chapters:[],passages:[],map:new Map(),overrides:[],saved:[],notes:{},expandedChapters:{},last:null,search:'',filter:'all',theme:'paper',uiLanguage:'id',settings:{hanzi:true,pinyin:true,indo:true,english:true,hanziSize:32,pinyinSize:14,latinSize:17}};
+  const LOCALES={
+    id:{
+      settings:'Pengaturan',settingsSubtitle:'Atur tampilan dan bahasa sesuai kenyamanan membaca.',close:'Tutup dialog',
+      uiLanguage:'Bahasa antarmuka',uiLanguageHint:'Bahasa menu (bukan bahasa terjemahan kitab)',
+      theme:'Tema',readingLanguages:'Bahasa dan aksara bacaan',readingHint:'Pilih bagian yang tampil tanpa mengubah naskah sumber.',
+      fontSizes:'Ukuran teks',fontSizeHint:'Atur Hanzi, Pinyin Ruby, dan teks Latin secara terpisah.',
+      hanziSize:'Hanzi',pinyinSize:'Pinyin Ruby',latinSize:'Teks Latin (ID/EN)',resetFonts:'Kembalikan ukuran awal',
+      information:'Informasi',about:'Tentang Ru Classics',privacy:'Kebijakan Privasi',appVersion:'Versi aplikasi',
+      aboutDescription:'Perpustakaan digital klasik Ru, dimulai dari Si Shu (四書) — Da Xue, Zhong Yong, Lun Yu, dan Mengzi. Pembaca dapat menjelajahi teks Hanzi, pinyin, terjemahan Indonesia, dan padanan Inggris.',
+      aboutSources:'Terjemahan Indonesia mengacu pada edisi Si Shu MATAKIN. Komentar sumber ditampilkan terpisah dari teks utama.',
+      createdBy:'Dibuat oleh',versionAndEditorial:'Versi dan status editorial',
+      editorialStatus:'Teks masih melalui pemeriksaan editorial. Perubahan editor harus disetujui sebelum diterbitkan. Hak atas terjemahan dan anotasi tetap milik pemegang hak masing-masing.',
+      privacyIntro:'Ru Classics adalah perpustakaan digital yang dapat dibaca tanpa akun. Fitur pembaca dan editor memiliki cara penyimpanan yang berbeda.',
+      privacyLocalTitle:'Data pada perangkat',privacyLocal:'Pilihan tema, bahasa, ukuran huruf, penanda bacaan, dan catatan pribadi disimpan dalam penyimpanan lokal browser perangkat ini. Data tersebut bisa hilang jika penyimpanan browser dihapus dan tidak otomatis tersinkron antarperangkat.',
+      privacyEditorTitle:'Akun dan ruang editor',privacyEditor:'Jika Anda masuk sebagai editor menggunakan Google, layanan Firebase Authentication dapat memproses data akun dan Firestore menyimpan informasi pengajuan serta persetujuan perubahan sesuai konfigurasi layanan. Membaca kitab tidak memerlukan login.',
+      privacyHostingTitle:'Hosting dan layanan pihak ketiga',privacyHosting:'Situs dihosting melalui GitHub Pages. GitHub, Google, dan penyedia jaringan dapat memproses data teknis sesuai kebijakan layanan masing-masing. Jangan menulis informasi sensitif pada pengajuan editorial.',
+      privacyDate:'Pembaruan kebijakan: 16 November 2026.',
+      navHome:'Beranda',navBooks:'Kitab',navSearch:'Cari',navSaved:'Koleksi',navEditor:'Ruang Editor',
+      chooseBook:'Pilih kitab',backToBooks:'Semua kitab',backToChapters:'Semua bab',changeBook:'Ganti kitab',
+      passage:'Pasal',verse:'Ayat',chooseVerse:'Pilih ayat',wholePassage:'Seluruh pasal',read:'Baca sekarang',
+      translation:'Terjemahan',notes:'Catatan & komentar',personalNotes:'Catatan pribadi',saveNote:'Simpan catatan',
+      savePassage:'Simpan pasal',removePassage:'Hapus dari koleksi',nextPassage:'Pasal berikutnya',prevPassage:'Pasal sebelumnya',
+      language:'Bahasa',hanzi:'汉字 · Hanzi',pinyin:'Pinyin',indo:'ID · Indonesia',english:'EN · English',
+      translationId:'Terjemahan Indonesia (MATAKIN)',translationEn:'English · James Legge',
+      readingLibrary:'Perpustakaan',exploreBooks:'Jelajahi kitab',chooseBookChapter:'Pilih kitab, bab, lalu pasal.',
+      featuredBooks:'Kitab Yang Empat',seeAll:'Lihat semua →',readingSpace:'Ruang baca Anda',
+      backToReading:'Lanjutkan bacaan',startJourney:'Awali perjalanan',beginFirst:'Mulai dari kitab pertama.',
+      heroTitle:'Menemukan kebijaksanaan dalam setiap pasal.',
+      heroDesc:'Bacalah kitab-kitab klasik Ru dengan Hanzi, pinyin, dan terjemahan untuk mendampingi pemahaman.',
+      startReading:'Mulai membaca',explore:'Jelajahi kitab',chapter:'Bab',searchTitle:'Temukan sebuah ayat',
+      searchPrompt:'Cari di seluruh koleksi Si Shu.',searchPlaceholder:'Ketik Hanzi, pinyin, atau terjemahan…',
+      savedTitle:'Pasal tersimpan',savedPrompt:'Koleksi pribadi',noSaved:'Belum ada pasal tersimpan. Gunakan tombol Simpan di halaman bacaan.',
+      notesLocal:'Catatan ini disimpan hanya di browser perangkat Anda.',notePlaceholder:'Tuliskan pemikiran Anda…',
+      noComment:'Belum ada komentar dari sumber yang tertaut pada pasal ini.',
+      noteSaved:'Catatan disimpan pada perangkat ini.',saveBookmark:'Pasal disimpan',removeBookmark:'Pasal dihapus dari koleksi',
+      textSourceNote:'Nomor ayat mengikuti MATAKIN. Teks Inggris ditampilkan untuk seluruh pasal; pembagian ayat James Legge belum diselaraskan.',
+      readerTools:'Alat baca'
+    },
+    en:{
+      settings:'Settings',settingsSubtitle:'Customize the appearance and reading languages.',close:'Close dialog',
+      uiLanguage:'Interface language',uiLanguageHint:'Language of menus (not the translations of the classics)',
+      theme:'Theme',readingLanguages:'Reading languages and scripts',readingHint:'Choose which text to display without changing the original sources.',
+      fontSizes:'Text sizes',fontSizeHint:'Adjust Hanzi, Ruby Pinyin, and Latin text independently.',
+      hanziSize:'Hanzi',pinyinSize:'Ruby Pinyin',latinSize:'Latin text (ID/EN)',resetFonts:'Restore default sizes',
+      information:'Information',about:'About Ru Classics',privacy:'Privacy Policy',appVersion:'App version',
+      aboutDescription:'A digital library of Ru classics, starting with the Four Books (四書): Da Xue, Zhong Yong, Lun Yu, and Mengzi. Read traditional Hanzi, Pinyin, the Indonesian translation, and the English translation.',
+      aboutSources:'The Indonesian translation follows the Si Shu MATAKIN edition. Source annotations are separate from the primary texts.',
+      createdBy:'Created by',versionAndEditorial:'Version and editorial status',
+      editorialStatus:'The texts are still undergoing editorial review. Editor submissions require approval before publication. Translation and annotation rights remain with their respective owners.',
+      privacyIntro:'Ru Classics can be read without an account. Reader features and editor features store information differently.',
+      privacyLocalTitle:'Data on your device',privacyLocal:'Theme, language, text sizes, bookmarks, and personal notes are stored in this browser’s local storage. These may be lost if browser data is cleared and are not automatically synchronized between devices.',
+      privacyEditorTitle:'Editor accounts',privacyEditor:'If you sign in as an editor with Google, Firebase Authentication may process account data, and Firestore may store submitted edits and approval records under the service configuration. Reading does not require signing in.',
+      privacyHostingTitle:'Hosting and third parties',privacyHosting:'This website is hosted on GitHub Pages. GitHub, Google, and network providers may process technical information under their own policies. Do not include sensitive information in editorial submissions.',
+      privacyDate:'Policy updated November 16, 2026.',
+      navHome:'Home',navBooks:'Books',navSearch:'Search',navSaved:'Collection',navEditor:'Editor',
+      chooseBook:'Choose book',backToBooks:'All books',backToChapters:'All chapters',changeBook:'Change book',
+      passage:'Passage',verse:'Verse',chooseVerse:'Choose verse',wholePassage:'Entire passage',read:'Read now',
+      translation:'Translation',notes:'Notes & commentary',personalNotes:'Personal notes',saveNote:'Save note',
+      savePassage:'Save passage',removePassage:'Remove bookmark',nextPassage:'Next passage',prevPassage:'Previous passage',
+      language:'Language',hanzi:'汉字 · Hanzi',pinyin:'Pinyin',indo:'ID · Indonesian',english:'EN · English',
+      translationId:'Indonesian translation (MATAKIN)',translationEn:'English · James Legge',
+      readingLibrary:'Library',exploreBooks:'Explore the books',chooseBookChapter:'Choose a book, chapter, then passage.',
+      featuredBooks:'The Four Books',seeAll:'See all →',readingSpace:'Your reading space',
+      backToReading:'Continue reading',startJourney:'Begin reading',beginFirst:'Start from the first book.',
+      heroTitle:'Discover wisdom in every passage.',
+      heroDesc:'Read the Ru classics with Hanzi, Pinyin, and translations to support your understanding.',
+      startReading:'Start reading',explore:'Explore books',chapter:'Chapter',searchTitle:'Find a verse',
+      searchPrompt:'Search throughout the Four Books.',searchPlaceholder:'Search Hanzi, Pinyin, or translations…',
+      savedTitle:'Saved passages',savedPrompt:'Personal collection',noSaved:'No saved passages yet. Use Save while reading.',
+      notesLocal:'Notes are saved only in this browser.',notePlaceholder:'Write your thoughts…',
+      noComment:'No source commentary has been linked to this passage.',
+      noteSaved:'Note saved on this device.',saveBookmark:'Passage bookmarked',removeBookmark:'Bookmark removed',
+      textSourceNote:'Verse numbering follows MATAKIN. The English translation is shown for the entire passage; James Legge verse divisions have not been aligned.',
+      readerTools:'Reading tools'
+    }
+  };
+  const tr=key=>LOCALES[state.uiLanguage]?.[key]||LOCALES.id[key]||key;
+  const FONT_SIZES=Object.freeze({hanziSize:[22,50,2,32],pinyinSize:[10,22,1,14],latinSize:[14,26,1,17]});
+  function normalizeFont(value,key){
+    const [min,max,step,def]=FONT_SIZES[key];
+    const x=Number(value);
+    if(!Number.isFinite(x))return def;
+    return Math.max(min,Math.min(max,min+Math.round((x-min)/step)*step));
+  }
+  function applyTypography(){
+    const css=document.body.style;
+    css?.setProperty?.('--hanzi-size',state.settings.hanziSize+'px');
+    css?.setProperty?.('--pinyin-size',state.settings.pinyinSize+'px');
+    css?.setProperty?.('--latin-size',state.settings.latinSize+'px');
+  }
+  function applyLanguage(){
+    document.documentElement?.setAttribute?.('lang',state.uiLanguage);
+    document.querySelectorAll?.('[data-i18n]')?.forEach(el=>{el.textContent=tr(el.dataset.i18n);});
+    document.querySelectorAll?.('[data-i18n-aria]')?.forEach(el=>{el.setAttribute('aria-label',tr(el.dataset.i18nAria));});
+    document.querySelectorAll?.('[data-i18n-title]')?.forEach(el=>{el.setAttribute('title',tr(el.dataset.i18nTitle));});
+  }
+
   const STORE='ru_classics_web_v1';
   const H=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
   const book=id=>BOOKS.find(b=>b.id===id)||BOOKS[0];
@@ -25,8 +122,23 @@
     return merged;
   };
   function toast(s){const el=document.getElementById('toast');el.textContent=s;el.classList.add('visible');clearTimeout(toast.timer);toast.timer=setTimeout(()=>el.classList.remove('visible'),2800);}
-  function save(){try{localStorage.setItem(STORE,JSON.stringify({saved:state.saved,notes:state.notes,last:state.last,theme:state.theme,settings:state.settings}));}catch(e){toast('Penyimpanan lokal browser tidak tersedia.');}}
-  function restore(){try{const v=JSON.parse(localStorage.getItem(STORE)||'{}');if(Array.isArray(v.saved))state.saved=v.saved;if(v.notes&&typeof v.notes==='object')state.notes=v.notes;if(typeof v.last==='string')state.last=v.last;if(['paper','light','dark'].includes(v.theme))state.theme=v.theme;if(v.settings)state.settings={...state.settings,...v.settings};state.settings.font=Number.isFinite(Number(state.settings.font))?Math.max(22,Math.min(50,Number(state.settings.font))):32;}catch(e){}setTheme(state.theme,false);}
+  function save(){try{localStorage.setItem(STORE,JSON.stringify({saved:state.saved,notes:state.notes,last:state.last,theme:state.theme,uiLanguage:state.uiLanguage,settings:state.settings}));}catch(e){toast('Penyimpanan lokal browser tidak tersedia.');}}
+  function restore(){
+    try{
+      const v=JSON.parse(localStorage.getItem(STORE)||'{}');
+      if(Array.isArray(v.saved))state.saved=v.saved;
+      if(v.notes&&typeof v.notes==='object')state.notes=v.notes;
+      if(typeof v.last==='string')state.last=v.last;
+      if(['paper','light','dark'].includes(v.theme))state.theme=v.theme;
+      if(['id','en'].includes(v.uiLanguage))state.uiLanguage=v.uiLanguage;
+      if(v.settings&&typeof v.settings==='object'){
+        state.settings={...state.settings,...v.settings};
+        if(v.settings.hanziSize===undefined&&v.settings.font!==undefined)state.settings.hanziSize=v.settings.font;
+      }
+    }catch(e){}
+    for(const key of Object.keys(FONT_SIZES))state.settings[key]=normalizeFont(state.settings[key],key);
+    setTheme(state.theme,false);applyTypography();applyLanguage();
+  }
   function setTheme(theme,persist=true){if(!['paper','light','dark'].includes(theme))return;state.theme=theme;document.body.dataset.theme=theme;document.querySelector('meta[name="theme-color"]').content=theme==='paper'?'#f5efe3':theme==='dark'?'#0c2025':'#edf9f7';if(persist)save();}
   function sectionTitle(title,right=''){return '<div class="section-title"><h2>'+title+'</h2>'+right+'</div>';}
   function card(b){return '<button class="book-card" data-book="'+b.id+'"><small>'+state.chapters.filter(c=>c.book===b.id).length+' BAB · '+count(b.id)+' PASAL</small><span class="book-hanzi" lang="zh-Hant">'+b.hanzi+'</span><h3>'+b.name+'</h3><p>'+b.title+'</p></button>';}
