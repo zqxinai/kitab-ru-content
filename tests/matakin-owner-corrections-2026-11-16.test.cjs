@@ -1,3 +1,4 @@
+const canonicalDisplay=s=>s.replaceAll('Sabda Suci — Lun Yu','Lunyu - Sabda Suci').replaceAll('Ajaran Besar — Da Xue','Daxue - Ajaran Besar').replaceAll('Tengah Sempurna — Zhong Yong','Zhongyong - Tengah Sempurna').replaceAll('Mengzi — Bing Cu','Mengzi - Bingcu');
 'use strict';
 const test=require('node:test'),assert=require('node:assert/strict');
 const fs=require('node:fs'),path=require('node:path');
@@ -22,10 +23,10 @@ test('Owner 2012 decisions cover nine distinct exact citations in 965 unchanged 
   const p=byId.get(r.passage_id);assert.ok(p,'Missing passage '+r.passage_id);
   assert.equal(p.translation_indonesian.split(r.source).length,2,'Source must appear once: '+r.passage_id);
   assert.equal(overlay.records.filter(x=>x.passage_id===r.passage_id&&x.source===r.source).length,1);
-  assert.ok(overlay.present(r.passage_id,p.translation_indonesian).includes(r.display));
-  assert.equal(overlay.present(r.passage_id,r.display),r.display,'Already normalized view must be idempotent');
+  assert.ok(overlay.present(r.passage_id,p.translation_indonesian).includes(canonicalDisplay(r.display)));
+  assert.equal(overlay.present(r.passage_id,canonicalDisplay(r.display)),canonicalDisplay(r.display),'Already normalized view must be idempotent');
   const parsed=overlay.segments(r.passage_id,r.source);
-  assert.equal(parsed.map(x=>x.text).join(''),r.display);
+  assert.equal(parsed.map(x=>x.text).join(''),canonicalDisplay(r.display));
   if(r.target_id)assert.ok(byId.has(r.target_id),'Missing curated target '+r.target_id);
   assert.ok(r.decision);
   assert.ok(!p.translation_indonesian.includes('Zhong Yong Bab VIII'),'No source text rewrite');
@@ -84,7 +85,7 @@ test('Shi Jing external references are named but never assigned fictitious Si Sh
   ['sishu.daxue.03.03','(Si-kingIII.1.1.1)','(Shi Jing — Si King III.1.1.4)']
  ]){
    const result=view(id,raw);
-   assert.equal(result.map(p=>p.text).join(''),display);
+   assert.equal(result.map(p=>p.text).join(''),canonicalDisplay(display));
    assert.ok(result.every(p=>!p.target_id));
  }
 });
