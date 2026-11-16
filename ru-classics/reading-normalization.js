@@ -2,6 +2,12 @@
 (function (root) {
   'use strict';
   const PAIRS = Object.freeze([
+    ['Tiong Kiong', 'Zhonggong'], // 仲弓
+    ['Hwee', 'Hui'], // 回 / 惠 (Hui); guard full names
+    ['Gee', 'Yi'], // 羿
+    ['Hicu', 'Xu Zi'], // 許子
+    ['Kiat', 'Jie'], // 桀
+    ['Tiu', 'Zhou'], // 紂
     ['Khong-cu', 'Kongzi'], // 孔子
     ['Hi-cu', 'Xu Zi'], // 許子 (Xu Xing)
     ['Ong-pa', 'Wang Bao'], // 王豹
@@ -307,6 +313,49 @@
   // Kolasi khusus berdasarkan Hanzi. Satu ejaan Hokkian bisa mewakili
   // aksara berbeda: Chien => 晉 (Jin) atau 秦 (Qin); Swan => 僎 atau 宣.
   const CONTEXTUAL = Object.freeze({
+    'sishu.lunyu.05.15': [
+      ['Khong Buncu', 'Kong Wenzi - Khong Buncu'], // 孔文子
+    ],
+    'sishu.mengzi.04.10': [
+      ['Sicu', 'Shizi - Sicu'], // 時子
+    ],
+    'sishu.lunyu.11.08': [
+      ['Gan Lo', 'Yan Lu - Gan Lo'], // 顏路
+    ],
+    'sishu.lunyu.09.21': [
+      ['Gan Hwee', 'Yan Yuan - Gan Hwee'], // 顏淵; printed variant
+    ],
+    'sishu.mengzi.13.25': [
+      ['Cik', 'Zhi - Cik'], // 跖 (robber Zhi), NOT 稷
+    ],
+    'sishu.lunyu.06.04': [
+      ['Tatkala Chik ke', 'Tatkala Chi - Chik ke'], // 赤
+    ],
+    'sishu.mengzi.08.29': [
+      ['dan Cik', 'dan Ji - Cik'], // 稷, not 蹠 Zhi in Mengzi III B:10
+    ],
+    'sishu.lunyu.14.05': [
+      ['Cik ialah', 'Ji - Cik ialah'], // 稷, not 蹠 Zhi in Mengzi III B:10
+    ],
+    'sishu.lunyu.06.08': [
+      ['Dapatkah Kiu diserahi', 'Dapatkah Qiu - Kiu diserahi'], // matched verse Hanzi
+      ['"Kiu berpengetahuan', '"Qiu - Kiu berpengetahuan'], // matched verse Hanzi
+    ],
+    'sishu.lunyu.05.08': [
+      ['Chik boleh', 'Chi - Chik boleh'], // 赤
+      ['"Kiu boleh', '"Qiu - Kiu boleh'], // matched verse Hanzi
+    ],
+    'sishu.mengzi.14.26': [
+      ['Yangcu', 'Yang Zhu - Yangcu'], // matched verse Hanzi
+    ],
+    'sishu.mengzi.13.26': [
+      ['Yangcu', 'Yangzi - Yangcu'], // matched verse Hanzi
+    ],
+    'sishu.lunyu.18.01': [
+      ['Bicu menyingkirkan diri', 'Weizi - Bicu menyingkirkan diri'], // 微子去之
+      ['Kicu dihukum menjadi budak', 'Jizi - Kicu dihukum menjadi budak'], // 箕子為之奴
+      ['Pikan dianiaya sehingga mati', 'Bi Gan - Pikan dianiaya sehingga mati'], // 比乾諫而死
+    ],
     'sishu.mengzi.07.28': [
       ['Sun-lah', 'Shun - Sun-lah'], // 舜, printed Indonesian suffix -lah
     ],
@@ -438,6 +487,7 @@
       ['Kota Cong', 'Kota Chong - Cong'], // 崇
     ],
     'sishu.lunyu.11.26': [
+      ['Cing Sik', 'Zeng Xi - Cing Sik'], // 曾皙
       ['denganmu, Kiu?', 'denganmu, Qiu - Kiu?'], // 求
       ['kepada Kiu;', 'kepada Qiu - Kiu;'], // 求
       ['Musik, Kiu menunggu', 'Musik, Qiu - Kiu menunggu'], // 求
@@ -563,6 +613,8 @@
       ['I selama 8 tahun', 'Yu - I selama 8 tahun'] // 禹
     ],
     'sishu.mengzi.06.09': [
+      ['Yangcu', 'Yang Zhu - Yangcu'], // matched verse Hanzi
+      ['Bik Tik', 'Mo Di - Bik Tik'], // matched verse Hanzi
       ['Sungai Kang', 'Sungai Jiang - Kang'], // nama lokasi, cocokkan Hanzi pada sishu.mengzi.06.09
       ['Negeri-negeri King dan Si', 'Negeri-negeri Jing - King dan Shu - Si'], // 荊舒
       ['I disuruhnya mengatasi', 'Yu - I disuruhnya mengatasi'], // 禹
@@ -680,6 +732,7 @@
       ['kota Co', 'kota Zou - Co'] // toponim diverifikasi dengan Hanzi sumber
     ],
     'sishu.mengzi.12.05': [
+      ['Kwicu', 'Jizi - Kwicu'], // 季子; not 孟季子
       ['kota Co', 'kota Zou - Co'],
       ['kota Jiem', 'kota Ren - Jiem'],
       ['Ping-Liok', 'Pinglu - Ping-Liok'],
@@ -867,6 +920,7 @@
       if (legacy === 'Cingcu' && /\bGak\s*$/iu.test(preceding)) return match; // 樂正子 not 曾子
       if (legacy === 'Sun' && /\b(?:Ong|Kong)\s*$/iu.test(preceding)) return match; // 王順 / 公孫 ≠ 舜
       if (legacy === 'I-cu' && /\bBing\s*$/iu.test(preceding)) return match;
+      if (legacy === 'Hwee' && /\b(?:Liuhe|Gan)\s*$/iu.test(preceding)) return match; // keep full historical names intact
       if (legacy === 'Cu-tiang' && /\bZhu Zhang\s*-\s*$/iu.test(preceding)) return match;
       if (legacy === 'Pik-Giu' && /\bJiam\s*$/iu.test(preceding)) return match; // 冉伯牛 full alias is paired first
       if (legacy === 'Khiu' && /\bKhong\s*$/iu.test(preceding)) return match; // 孔丘 is paired as a complete name // 朱張 not 子張

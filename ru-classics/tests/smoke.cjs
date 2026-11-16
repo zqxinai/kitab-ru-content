@@ -61,6 +61,9 @@ setTimeout(()=>{
   assert.match(nodes.main.innerHTML,/Pasal berikutnya/);
   click({book:'lunyu'});
   click({chapter:'sishu.lunyu.18'});
+  click({passage:'sishu.lunyu.18.01'});
+  for(const name of ['Weizi - Bicu','Jizi - Kicu','Bi Gan - Pikan'])
+    assert.ok(visibleText(nodes.main.innerHTML).includes(name),'Lun Yu XVIII:1 missing '+name);
   click({passage:'sishu.lunyu.18.06'});
   assert.match(nodes.main.innerHTML,/Sabda Suci — Lun Yu XIV:39/,'Full 2012-style book name should display');
   assert.doesNotMatch(nodes.main.innerHTML,/\(S\.S\. XIV: 39\)/,'Old abbreviated citation should not display');
