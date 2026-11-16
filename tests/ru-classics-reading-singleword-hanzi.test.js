@@ -35,7 +35,7 @@ test('Single-word names receive Chinese-character-grounded Pinyin without replac
 });
 test('Cik can be Ji 稷 or Zhi 蹠 depending on exact passage',()=>{
  const id='sishu.mengzi.06.10',p=byId.get(id),shown=reader.normalize(p.translation_indonesian,id);
- assert.match(hanzi(p),/蹠/);
+ assert.match(hanzi(p),/[跖蹠]/); // 盜跖, not 稷
  assert.ok(shown.includes('perampok Zhi - Cik'));
  assert.ok(!shown.includes('perampok Ji - Cik'));
  assert.equal(reader.normalize(shown,id),shown);
