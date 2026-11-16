@@ -132,8 +132,8 @@ test('Desktop layout activates at tablet viewport and does not rely on :has or s
  assert.doesNotMatch(css,/reader-page:has\(/);
  assert.match(app,/reader-two-column/);
  assert.match(app,/main\.classList\?\.toggle\?\.\('is-reading'/);
- assert.match(html,/styles\.css\?v=20261116-clauses-v3/);
- assert.match(html,/app\.js\?v=20261116-clauses-v3/);
+ assert.match(html,/styles\.css\?v=20261116-vertical-clreq-v4/);
+ assert.match(html,/app\.js\?v=20261116-vertical-clreq-v4/);
 });
 
 test('Hanzi clauses respect original punctuation and keep quote closures with the preceding question',()=>{
@@ -178,4 +178,36 @@ test('Display-only punctuation segmentation preserves Hanzi and Ruby across all 
  }
  assert.equal(count,965);
  assert.ok(multi>300,'Punctuation grouping should affect a substantial part of the corpus');
+});
+
+test('Traditional Chinese vertical punctuation display is distinct from source and covers major marks',()=>{
+ const glyphs={
+  ':':'：', ',':'，', ';':'；', '!':'！', '?':'？', '.':'。',
+  '“':'「','”':'」','‘':'『','’':'』'
+ };
+ for(const [source,vertical] of Object.entries(glyphs))
+   assert.equal(hanziLayout.verticalForm(source),vertical,'vertical form for '+source);
+ for(const ch of ['，','。','：','；','！','？','「','」','學','仁'])
+   assert.equal(hanziLayout.verticalForm(ch),ch,'do not rewrite traditional form '+ch);
+ const original=[{type:'text',value:'：“你好！”'}];
+ const snapshot=JSON.stringify(original);
+ assert.equal(hanziLayout.segment(original).flatMap(group=>group.tokens).map(hanziLayout.textOf).join(''),original[0].value);
+ assert.equal(JSON.stringify(original),snapshot,'source token data must not be rewritten');
+});
+test('Vertical reader uses uniform character cells and horizontal Ruby while mobile retains original marks',()=>{
+ const css=read('ru-classics/styles.css');
+ const app=read('ru-classics/app.js');
+ assert.match(app,/class="hanzi-unit"/);
+ assert.match(app,/class="hanzi-mark-cell/);
+ assert.match(app,/class="hanzi-mark-source"/);
+ assert.match(app,/class="hanzi-mark-vertical"/);
+ assert.match(css,/--vertical-step:calc\(/);
+ assert.match(css,/--vertical-column-width:max\(/);
+ assert.match(css,/\.hanzi-unit\{[\s\S]*?width:var\(--vertical-column-width\);height:var\(--vertical-step\)/);
+ assert.match(css,/\.hanzi-mark-cell\{[\s\S]*?width:var\(--vertical-column-width\);height:var\(--vertical-step\)/);
+ assert.match(css,/\.hanzi-unit ruby\{[\s\S]*?display:ruby;writing-mode:horizontal-tb/);
+ assert.match(css,/\.hanzi-mark-cell\.has-vertical-form \.hanzi-mark-source\{[\s\S]*?display:none/);
+ assert.match(css,/\.hanzi-mark-vertical\{display:none/);
+ assert.match(css,/\.hanzi-clause\.keep-together\{[\s\S]*?display:contents/);
+ assert.match(css,/\.hanzi-text\.no-pinyin \.hanzi-unit ruby rt\{[\s\S]*?display:none/);
 });
