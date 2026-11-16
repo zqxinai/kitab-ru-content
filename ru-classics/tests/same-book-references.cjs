@@ -21,7 +21,7 @@ test('Mengzi III A:3/10 links to existing section, passage, and ayat 10',()=>{
  assert.ok(p.translation_indonesian.includes(source));
  const expanded=expand(p.id,[{text:source,target_id:null}],canNavigate);
  assert.equal(expanded.length,1);
- assert.deepEqual(expanded[0],{text:'(Mengzi — Bing Cu III A:3/10)',target_id:'sishu.mengzi.05.03',ayat:10});
+ assert.deepEqual(expanded[0],{text:'(Mengzi - Bingcu III A:3/10)',target_id:'sishu.mengzi.05.03',ayat:10});
  assert.ok(splitIndonesia(byId.get(expanded[0].target_id).translation_indonesian).some(v=>v.number===10));
 });
 test('All existing Mengzi A/B references map only to exact known destinations',()=>{
@@ -35,7 +35,7 @@ test('All existing Mengzi A/B references map only to exact known destinations',(
    for(const ref of segments.filter(x=>x.target_id)){
      linked++;
      assert.ok(byId.has(ref.target_id));
-     assert.ok(ref.text.includes('Mengzi — Bing Cu'));
+     assert.ok(ref.text.includes('Mengzi - Bingcu'));
      assert.ok(canNavigate(ref));
    }
    assert.ok(displayed.length>=input.length,'display must never delete source content');
