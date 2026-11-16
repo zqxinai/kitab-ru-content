@@ -293,7 +293,7 @@ setTimeout(()=>{
   click({book:'zhongyong'});click({chapter:'sishu.zhongyong.09'});click({passage:'sishu.zhongyong.09.01'});
   assert.match(nodes.main.innerHTML,/data-passage="sishu\.lunyu\.05\.08"/);
   assert.match(nodes.main.innerHTML,/data-passage="sishu\.lunyu\.12\.20"/);
-  assert.ok(visibleText(nodes.main.innerHTML).includes('Lunyu - Sabda Suci V:8; Lun Yu XII:20'));
+  assert.ok(visibleText(nodes.main.innerHTML).includes('Sabda Suci — Lun Yu V:8; Lun Yu XII:20'));
   click({passage:'sishu.lunyu.12.20'});
   assert.equal(location.hash,'read=sishu.lunyu.12.20');
   // From Lun Yu, A.B. leads to Da Xue; T.S. leads to Zhong Yong.
