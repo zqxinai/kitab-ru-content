@@ -513,3 +513,131 @@
   .character-inspector.as-sheet{animation:character-sheet-in .16s ease-out both}
   @keyframes character-sheet-in{from{transform:translateY(15px);opacity:.7}to{transform:translateY(0);opacity:1}}
 }
+
+
+/* 2026-11-16 Mobile reader: Ruby, source Hanzi and simplified annotation
+   must stay in one unbreakable character cell. No source token is changed.
+   Desktop vertical book layout is intentionally unaffected. */
+@media(max-width:767px){
+  .reader-page .reader-script{
+    min-width:0;
+    padding:16px 0 28px;
+  }
+  .reader-page .hanzi-text{
+    --mobile-pinyin-line:calc(var(--pinyin-size,14px) * 1.38);
+    --mobile-hanzi-line:calc(var(--hanzi-size,32px) * 1.16);
+    --mobile-modern-line:calc(max(11px,var(--pinyin-size,14px) * .90) * 1.3);
+    --mobile-cell-height:calc(var(--mobile-pinyin-line) + var(--mobile-hanzi-line) + var(--mobile-modern-line) + 5px);
+    line-height:1;
+    word-break:normal;
+    overflow-wrap:normal;
+    letter-spacing:0;
+  }
+  .reader-page .hanzi-text p{
+    line-height:1;
+    margin:0 0 22px;
+  }
+  .reader-page .hanzi-text .hanzi-clause{
+    display:contents;
+  }
+  .reader-page .hanzi-text .hanzi-unit,
+  .reader-page .hanzi-text .hanzi-mark-cell{
+    box-sizing:border-box;
+    display:inline-flex;
+    position:relative;
+    writing-mode:horizontal-tb;
+    flex-direction:column;
+    justify-content:flex-start;
+    align-items:center;
+    width:max-content;
+    min-width:var(--hanzi-size,32px);
+    height:var(--mobile-cell-height);
+    padding:0 2px;
+    margin:0 1px 3px;
+    vertical-align:top;
+    line-height:1;
+    white-space:nowrap;
+    break-inside:avoid;
+  }
+  .reader-page .hanzi-text .hanzi-unit .hanzi-lookup{
+    box-sizing:border-box;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:flex-start;
+    min-width:100%;
+    height:100%;
+    padding:0;
+    margin:0;
+    font:inherit;
+    line-height:1;
+  }
+  .reader-page .hanzi-text .hanzi-unit ruby{
+    display:inline-flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:flex-start;
+    min-height:calc(var(--mobile-pinyin-line) + var(--mobile-hanzi-line));
+    margin:0;
+    padding:0;
+    white-space:nowrap;
+    font:400 var(--hanzi-size,32px)/1.16 "Noto Serif CJK TC","Noto Serif CJK SC","Songti SC",serif;
+    ruby-position:over;
+  }
+  .reader-page .hanzi-text .hanzi-unit ruby rt{
+    display:block;
+    order:-1;
+    flex:none;
+    height:var(--mobile-pinyin-line);
+    min-height:var(--mobile-pinyin-line);
+    padding:0 1px;
+    margin:0;
+    font:500 var(--pinyin-size,14px)/1.28 system-ui,sans-serif;
+    text-align:center;
+    white-space:nowrap;
+    color:var(--accent);
+  }
+  .reader-page .hanzi-text.no-pinyin ruby rt{
+    display:none;
+  }
+  .reader-page .hanzi-text.no-pinyin{
+    --mobile-pinyin-line:0px;
+  }
+  .reader-page .hanzi-text .hanzi-unit .modern{
+    position:absolute;
+    left:0;
+    right:0;
+    bottom:0;
+    display:block;
+    margin:0;
+    font:400 clamp(11px,calc(var(--pinyin-size,14px) * .9),16px)/1.25 system-ui,sans-serif;
+    text-align:center;
+    color:var(--muted);
+    white-space:nowrap;
+    pointer-events:none;
+  }
+  .reader-page .hanzi-text .hanzi-unit .hanzi-lookup:not(:has(ruby)){
+    padding-top:var(--mobile-pinyin-line);
+    font-size:var(--hanzi-size,32px);
+    line-height:1.16;
+  }
+  .reader-page .hanzi-text .hanzi-mark-cell{
+    min-width:calc(var(--hanzi-size,32px) * .55);
+    width:auto;
+    padding-top:calc(var(--mobile-pinyin-line) + var(--hanzi-size,32px) * .18);
+    font:400 calc(var(--hanzi-size,32px) * .70)/1.1 "Noto Serif CJK TC","Songti SC",serif;
+  }
+  .reader-page .hanzi-text .hanzi-mark-source{display:inline}
+  .reader-page .hanzi-text .hanzi-mark-vertical{display:none}
+  /* Avoid two overlapping floating docks on narrow screens. */
+  .reader-bottom-controls{
+    position:static;
+    bottom:auto;
+    margin:20px auto 0;
+    box-shadow:none;
+    backdrop-filter:none;
+  }
+  #main:has(.reader-page){
+    padding-bottom:calc(140px + env(safe-area-inset-bottom));
+  }
+}
