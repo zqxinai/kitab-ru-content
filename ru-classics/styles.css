@@ -15,6 +15,8 @@
 .translation .reference-link{display:inline;border:0;border-bottom:1px dotted currentColor;background:transparent;color:var(--accent);font:inherit;padding:0 1px;text-align:left;cursor:pointer;white-space:inherit}
 .translation .reference-link:hover{border-bottom-style:solid}
 .translation .reference-link:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:2px}
+.reference-editor-note{display:inline;color:var(--muted);font-size:.83em;line-height:1.4;white-space:normal;overflow-wrap:anywhere;margin-inline-start:.35em}
+
 
 
 /* Unified editorial workspace: responsive hierarchy and source-separated audit. */
