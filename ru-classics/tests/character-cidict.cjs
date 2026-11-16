@@ -28,6 +28,13 @@ test('CC-CIDICT is a corpus-filtered Indonesian dictionary with attribution',()=
  assert.equal(payload.single_character_covered,Object.keys(payload.headwords).filter(k=>Array.from(k).length===1).length);
  assert.ok(payload.source_entries_parsed>50000);
  assert.ok(payload.single_character_covered>350,'CIDICT must cover a substantial new set of Hanzi in Indonesian');
+ // Corpus-wide Indonesian glossary union: CC-CIDICT headwords plus
+ // explicitly sourced rare-character editorial overrides.
+ for(const char of chars){
+   const curated=glossary.lookup(char,'sishu.lunyu.01.01');
+   assert.ok(Object.prototype.hasOwnProperty.call(payload.headwords,char)||curated.gloss,
+     'No Indonesian meaning from either CC-CIDICT or sourced editorial fallback: '+char);
+ }
  assert.ok(Object.keys(payload.headwords).every(k=>words.has(k)));
  assert.ok(Object.values(payload.headwords).every(readings=>Array.isArray(readings)&&readings.length&&readings.every(r=>r.definitions.length)));
  assert.ok(glossary.installCIDict(payload));
@@ -60,4 +67,14 @@ test('Compound lookup is position-aware and never matches across punctuation',()
  assert.match(app,/phrasesAt/);
  assert.match(app,/data-hanzi-index/);
  assert.match(app,/dictionary\.indonesianReadings/);
+});
+
+test('Four rare missing CIDICT characters have sourced Indonesian glosses without invented context',()=>{
+ for(const [char,source] of [['儛','moe.edu.tw'],['覸','zdic.net'],['鞟','zdic.net'],['鼁','zdic.net']]){
+   const entry=glossary.lookup(char,'sishu.lunyu.01.01');
+   assert.ok(entry.gloss,'Missing curated Indonesian fallback for '+char);
+   assert.ok(entry.source?.includes(source),'Missing dictionary provenance for '+char);
+   assert.equal(entry.context,null,'Cannot manufacture verse-level interpretation');
+ }
+ assert.match(glossary.lookup('覸','sishu.mengzi.01.01').note,/nama orang/);
 });
