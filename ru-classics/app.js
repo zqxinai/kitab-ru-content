@@ -189,18 +189,77 @@
         (vertical!==character?'<span class="hanzi-mark-vertical" aria-hidden="true">'+H(vertical)+'</span>':'')+
         '</span>';
     };
+    const lookupButton=(character,pinyin,modern,content)=>
+      '<button type="button" class="hanzi-lookup" data-hanzi-char="'+H(character)+'" data-hanzi-pinyin="'+H(pinyin||'')+'" data-hanzi-modern="'+H(modern||'')+
+      '" aria-haspopup="dialog" aria-label="Lihat arti Hanzi '+H(character)+(pinyin?' ('+H(pinyin)+')':'')+'">'+content+'</button>';
     const tokenMarkup=tok=>tok.type==='ruby'
-      ?'<span class="hanzi-unit"><ruby>'+H(tok.traditional||'')+'<rt>'+H(tok.pinyin||'')+'</rt></ruby>'
-        +(tok.modern&&tok.modern!==tok.traditional?'<span class="modern" title="Aksara sederhana dari metadata, bukan bagian teks utama">（'+H(tok.modern)+'）</span>':'')+'</span>'
-      :Array.from(String(tok.value||'')).map(character=>character.trim()===''?H(character):displayCharacter(character)).join('');
+      ?'<span class="hanzi-unit">'+lookupButton(tok.traditional||'',tok.pinyin||'',tok.modern||'',
+        '<ruby>'+H(tok.traditional||'')+'<rt>'+H(tok.pinyin||'')+'</rt></ruby>'+
+        (tok.modern&&tok.modern!==tok.traditional?'<span class="modern" title="Aksara sederhana dari metadata, bukan bagian teks utama">（'+H(tok.modern)+'）</span>':''))+'</span>'
+      :Array.from(String(tok.value||'')).map(character=>character.trim()===''?H(character):
+        /[\u3400-\u9FFF\uF900-\uFAFF]/u.test(character)
+          ?'<span class="hanzi-unit">'+lookupButton(character,'','',H(character))+'</span>'
+          :displayCharacter(character)).join('');
     return paragraphs.map(par=>{
       const tokens=Array.isArray(par)?par:[];
       const groups=globalThis.RuHanziLayout?.segment?.(tokens)||[{tokens,pause:'none',length:0}];
       return '<p>'+groups.map(group=>
         '<span class="hanzi-clause'+(group.pause==='strong'?' pause-strong':group.pause==='soft'?' pause-soft':'')+
-        (group.length<=4?' keep-together':'')+'">'+group.tokens.map(tokenMarkup).join('')+'</span>'
+        (group.length<=4?' keep-together':'')+'" data-source-clause="'+H(group.tokens.map(tok=>tok.type==='ruby'?(tok.traditional||''):(tok.value||'')).join(''))+'">'+group.tokens.map(tokenMarkup).join('')+'</span>'
       ).join('')+'</p>';
     }).join('');
+  }
+  // Character inspector uses source Ruby metadata and a separate, explicitly
+  // editorial glossary. It never modifies or infers translations of MATAKIN.
+  let characterTrigger=null;
+  function closeCharacterInspector(restoreFocus=false){
+    const popup=document.getElementById('character-inspector');
+    const veil=document.getElementById('character-inspector-backdrop');
+    if(!popup||popup.hidden)return;
+    popup.hidden=true;
+    popup.classList?.remove?.('as-sheet');
+    if(veil)veil.hidden=true;
+    if(characterTrigger?.setAttribute)characterTrigger.setAttribute('aria-expanded','false');
+    if(restoreFocus)characterTrigger?.focus?.({preventScroll:true});
+    characterTrigger=null;
+  }
+  function openCharacterInspector(trigger){
+    const popup=document.getElementById('character-inspector');
+    const veil=document.getElementById('character-inspector-backdrop');
+    const ch=trigger?.dataset?.hanziChar;
+    if(!popup||!ch||state.tab!=='reader')return;
+    if(!popup.hidden&&characterTrigger===trigger){closeCharacterInspector(true);return;}
+    closeCharacterInspector(false);
+    characterTrigger=trigger;
+    const p=byId(state.id),c=state.chapters.find(x=>x.id===p?._chapter);
+    const dictionary=globalThis.RuCharacterDictionary?.lookup?.(ch,state.id)||{};
+    const put=(name,value)=>{const el=popup.querySelector('[data-inspector="'+name+'"]');if(el)el.textContent=value;};
+    const simplified=trigger.dataset.hanziModern;
+    const clause=trigger.closest?.('.hanzi-clause')?.dataset?.sourceClause||'';
+    put('hanzi',ch);
+    put('pinyin',trigger.dataset.hanziPinyin||'Pinyin belum tersedia pada sumber');
+    put('simplified',simplified&&simplified!==ch?simplified:'Sama / tidak dicantumkan');
+    put('gloss',dictionary.gloss||'Arti belum tersedia dalam glosarium awal.');
+    put('note',dictionary.note||'Tidak ada catatan leksikal tambahan.');
+    put('context',dictionary.context||'Belum ada penjelasan makna yang ditinjau khusus untuk pasal ini.');
+    put('passage',p?book(p._book).title+' · '+(c?.title||'')+' · Pasal '+p.number:'');
+    put('source-clause',clause||'Penggalan teks sumber tidak tersedia.');
+    put('provenance',dictionary.source||'Hanzi dan Pinyin berasal dari token naskah. Belum ada sumber kamus untuk arti karakter ini.');
+    const coarse=!!window.matchMedia?.('(max-width: 767px), (pointer: coarse)')?.matches;
+    popup.classList?.toggle?.('as-sheet',coarse);
+    popup.hidden=false;
+    if(veil)veil.hidden=!coarse;
+    popup.setAttribute?.('aria-modal',coarse?'true':'false');
+    if(!coarse){
+      const rect=trigger.getBoundingClientRect?.();
+      const viewportWidth=window.innerWidth||1024,viewportHeight=window.innerHeight||768;
+      const width=Math.min(355,viewportWidth-20);
+      const height=popup.offsetHeight||365;
+      popup.style.left=Math.max(10,Math.min(viewportWidth-width-10,rect?.left||10))+'px';
+      popup.style.top=Math.max(10,Math.min(viewportHeight-height-10,(rect?.bottom||30)+8))+'px';
+    }else{popup.style.left='';popup.style.top='';}
+    trigger.setAttribute?.('aria-expanded','true');
+    popup.querySelector('[data-character-close]')?.focus?.({preventScroll:true});
   }
   function annotation(p){const a=Array.isArray(p.editorial_annotations)?p.editorial_annotations:[];if(!a.length)return '<div class="rule"></div><h3>Komentar Ru</h3><p>Belum ada komentar dari sumber yang tertaut pada pasal ini.</p>';
     return '<div class="rule"></div><h3>Catatan & komentar sumber</h3>'+a.map(x=>'<div class="comment"><h4>'+H(x.title_indonesian||'Catatan teks')+'</h4>'+(x.hanzi?'<p lang="zh-Hant">'+H(x.hanzi)+'</p>':'')+(x.description_indonesian?'<p>'+H(x.description_indonesian)+'</p>':'')+(x.attribution?'<small>'+H(x.attribution)+'</small>':'')+'</div>').join('');
@@ -341,7 +400,7 @@
     main.innerHTML=chapterPicker(p,c,b)+desktopNavigation(p,c,b,prev,next)
       +'<div class="reader-grid'+(s.verticalHanzi===false?' horizontal-hanzi':'')+'"><article class="paper-page reader-page'+(s.hanzi?' reader-two-column':'')+'">'
       +'<div class="reader-text-heading"><span>'+tr('passage')+' '+p.number+(state.ayat?' · '+tr('verse')+' '+state.ayat+' dipilih':'')+'</span></div>'
-      +(s.hanzi?'<section class="reader-script"><div class="hanzi-text '+(s.pinyin?'':'no-pinyin')+'" lang="zh-Hant">'+hanziWithSubverses(p,aligned)+'</div></section>':'')
+      +(s.hanzi?'<section class="reader-script"><p class="hanzi-lookup-hint">Ketuk karakter Hanzi untuk melihat Pinyin dan arti.</p><div class="hanzi-text '+(s.pinyin?'':'no-pinyin')+'" lang="zh-Hant">'+hanziWithSubverses(p,aligned)+'</div></section>':'')
       +'<div class="reader-translation-stack">'
       +(s.indo?'<section id="reader-translation-indo" class="translation translation-indo"><h3 data-i18n="translationId">Terjemahan Indonesia (MATAKIN)</h3>'+indonesiaWithSubverses(p,aligned)+'</section>':'')
       +(s.english&&p.translation_english?'<section id="reader-translation-en" class="translation english"><h3 data-i18n="translationEn">English · James Legge</h3>'+englishReading(p)+'</section>':'')
@@ -373,7 +432,7 @@
     main.innerHTML='<div class="chapter-title"><span class="eyebrow" data-i18n="savedPrompt">Koleksi pribadi</span><h1 data-i18n="savedTitle">Pasal tersimpan</h1><p class="muted">'+bookmarked.length+' pasal disimpan · '+notes+' catatan pribadi</p></div>'+(bookmarked.length?'<div class="passage-list">'+bookmarked.map(p=>'<button class="result" data-passage="'+H(p.id)+'"><small>'+book(p._book).name+' · Pasal '+p.number+'</small><strong>'+H(p._chapterTitle)+'</strong><span class="excerpt">'+H(displayIndo(p.id,p.translation_indonesian))+'</span></button>').join('')+'</div>':'<div class="empty" data-i18n="noSaved">Belum ada pasal tersimpan. Gunakan tombol ♡ Simpan di halaman bacaan.</div>');
   }
   function navHighlight(){document.querySelectorAll('[data-nav]').forEach(btn=>{const active=btn.dataset.nav===(state.tab==='reader'||state.tab==='chapter'?'books':state.tab);btn.classList.toggle('active',active);if(active)btn.setAttribute('aria-current','page');else btn.removeAttribute('aria-current');});}
-  function render(){navHighlight();if(!state.data)return;main.classList?.toggle?.('is-reading',state.tab==='reader');if(state.tab==='home')home();else if(state.tab==='books')library();else if(state.tab==='chapter')chapter();else if(state.tab==='reader')reader();else if(state.tab==='search')search();else if(state.tab==='saved')saved();else if(state.tab==='editor')window.RuEditorial?.render?.(main);applyLanguage();
+  function render(){closeCharacterInspector(false);navHighlight();if(!state.data)return;main.classList?.toggle?.('is-reading',state.tab==='reader');if(state.tab==='home')home();else if(state.tab==='books')library();else if(state.tab==='chapter')chapter();else if(state.tab==='reader')reader();else if(state.tab==='search')search();else if(state.tab==='saved')saved();else if(state.tab==='editor')window.RuEditorial?.render?.(main);applyLanguage();
     if(state.tab==='reader'&&state.ayat){
       window.requestAnimationFrame?.(()=>{
         const selected=document.querySelector('.translation-verse[data-ayat="'+state.ayat+'"]')||document.querySelector('.hanzi-verse[data-ayat="'+state.ayat+'"]');
@@ -389,6 +448,14 @@
   async function boot(){restore();try{let response=await fetch('./data/sishu.json');if(!response.ok)throw Error('Data belum tersedia pada hasil publikasi');parseBundle(await response.json());route();window.dispatchEvent(new Event('ru:ready'));}catch(e){main.innerHTML='<div class="empty"><h2>Perpustakaan belum bisa dibuka</h2><p>'+H(e.message)+'</p><p>Periksa hasil build GitHub Pages atau coba lagi setelah publikasi selesai.</p><button class="secondary" onclick="location.reload()">Coba lagi</button></div>';}}
   document.addEventListener('click',e=>{
     const t=e.target.closest('button');if(!t)return;
+    if(t.hasAttribute('data-hanzi-char')){openCharacterInspector(t);return;}
+    if(t.hasAttribute('data-character-close')){closeCharacterInspector(true);return;}
+    if(t.hasAttribute('data-character-find')){
+      const character=characterTrigger?.dataset?.hanziChar;
+      closeCharacterInspector(false);
+      if(character){state.search=character;state.filter='all';navigate('search');}
+      return;
+    }
     if(t.hasAttribute('data-reader-step')){stepReader(Number(t.dataset.readerStep));return;}
     if(t.hasAttribute('data-ayat-select')){
       const n=Number(t.dataset.ayatSelect);
@@ -441,6 +508,16 @@
       if(a==='propose'){navigate('editor');window.RuEditorial?.startProposal?.(state.id,state.ayat);}
     }
   });
+  document.addEventListener('click',e=>{
+    const popup=document.getElementById('character-inspector');
+    if(!popup||popup.hidden)return;
+    if(e.target?.closest?.('[data-hanzi-char]')||e.target?.closest?.('#character-inspector'))return;
+    closeCharacterInspector(false);
+  });
+  document.addEventListener('keydown',e=>{
+    if(e.key==='Escape')closeCharacterInspector(true);
+  });
+  window.addEventListener?.('resize',()=>closeCharacterInspector(false));
   document.addEventListener('input',e=>{
     if(e.target.id==='search-input'){state.search=e.target.value;renderSearchResults();return;}
     const key=e.target.dataset?.fontSlider;

@@ -7,7 +7,7 @@
 <meta name="description" content="Ru Classics, ruang baca Si Shu dengan Hanzi, pinyin, bahasa Indonesia dan Inggris.">
 <title>Ru Classics · Kitab Klasik Ru</title>
 <link rel="icon" href="./favicon.svg" type="image/svg+xml">
-<link rel="stylesheet" href="./styles.css?v=20261116-vertical-clreq-v4">
+<link rel="stylesheet" href="./styles.css?v=20261116-dictionary-v1">
 <script src="./firebase-config.js"></script>
 <script src="./reading-normalization.js?v=20261115-people-places-v2" defer></script>
 <script src="./reference-overlay.js" defer></script>
@@ -17,7 +17,8 @@
 <script src="./reading-layout.js" defer></script>
 <script src="./subverses.js" defer></script>
 <script src="./hanzi-layout.js" defer></script>
-<script src="./app.js?v=20261116-vertical-clreq-v4" defer></script>
+<script src="./character-dictionary.js" defer></script>
+<script src="./app.js?v=20261116-dictionary-v1" defer></script>
 <script type="module" src="./editor.js"></script>
 </head>
 <body data-theme="paper">
@@ -39,6 +40,35 @@
 <button data-nav="saved"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3h12v18l-6-4-6 4z"/></svg><span data-i18n="navSaved">Koleksi</span></button>
 </nav>
 <div id="toast" role="status" aria-live="polite"></div>
+<div id="character-inspector-backdrop" class="character-inspector-backdrop" aria-hidden="true" hidden></div>
+<aside id="character-inspector" class="character-inspector" role="dialog" aria-modal="false" aria-label="Kamus Kontekstual Hanzi" hidden>
+  <header class="character-inspector-header">
+    <span class="character-inspector-eyebrow">Kamus Kontekstual · Ru Classics</span>
+    <button type="button" data-character-close aria-label="Tutup kamus karakter" class="character-inspector-close">×</button>
+  </header>
+  <div class="character-inspector-identity">
+    <span class="character-inspector-hanzi" lang="zh-Hant" data-inspector="hanzi"></span>
+    <div class="character-inspector-identity-text">
+      <strong data-inspector="pinyin"></strong>
+      <span>Sederhana: <span lang="zh-Hans" data-inspector="simplified"></span></span>
+    </div>
+  </div>
+  <section class="character-inspector-section">
+    <h3>Arti karakter</h3>
+    <p data-inspector="gloss"></p>
+    <p class="character-inspector-detail" data-inspector="note"></p>
+  </section>
+  <section class="character-inspector-section">
+    <h3>Dalam bacaan ini</h3>
+    <p class="character-inspector-passage" data-inspector="passage"></p>
+    <p class="character-inspector-original" lang="zh-Hant" data-inspector="source-clause"></p>
+    <p class="character-inspector-detail" data-inspector="context"></p>
+  </section>
+  <p class="character-inspector-provenance" data-inspector="provenance"></p>
+  <div class="character-inspector-actions">
+    <button type="button" data-character-find class="character-inspector-find">Cari karakter di kitab</button>
+  </div>
+</aside>
 <dialog id="settings-dialog" aria-labelledby="settings-title">
 <form method="dialog"><button class="close-btn" aria-label="Tutup dialog" data-i18n-aria="close">×</button></form>
 <h2 id="settings-title" data-i18n="settings">Pengaturan</h2><p class="muted" data-i18n="settingsSubtitle">Atur tampilan dan bahasa sesuai kenyamanan membaca.</p>
