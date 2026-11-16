@@ -40,10 +40,10 @@ test('Linked reference segments preserve all 965 Indonesian texts and never inve
  assert.ok(chapter.some(x=>x.text.includes('Tengah Sempurna — Zhong Yong V')&&x.target_id===null),
    'chapter-only reference must not link to a fabricated verse');
 });
-test('One hundred nineteen exact references preserve original sources and resolve only evidenced targets',()=>{
+test('One hundred twenty six exact references preserve original sources and resolve only evidenced targets',()=>{
  assert.equal(chapters.length,78);
  assert.equal(byId.size,965);
- assert.equal(overlay.records.length,119);
+ assert.equal(overlay.records.length,126);
  // Historical batch 01 is immutable; batch 02 allows multiple references in one passage.
  for(const [sourceId,targetId] of Object.entries(expectedTargets))
   assert.ok(overlay.records.some(r=>r.passage_id===sourceId&&r.target_id===targetId),'legacy mapping changed: '+sourceId);
@@ -74,7 +74,7 @@ test('One hundred nineteen exact references preserve original sources and resolv
   ['sishu.zhongyong.10.03','(S.S. XII:16)','sishu.lunyu.12.16'],
   ['sishu.lunyu.12.22','(Bc. VIIA: 46)','sishu.mengzi.13.46'],
   ['sishu.lunyu.12.13','(A.B. IV )',null],
-  ['sishu.lunyu.12.20','(T.S. VIII)',null]
+  ['sishu.lunyu.12.20','(T.S. VIII)','sishu.zhongyong.09.01']
  ];
  for(const [source,ref,target] of batch3){
   const found=overlay.records.find(r=>r.passage_id===source&&r.source===ref);
@@ -85,9 +85,12 @@ test('One hundred nineteen exact references preserve original sources and resolv
    'no duplicate exact-match patterns within one passage');
  for(const r of overlay.records){
   assert.ok(byId.has(r.passage_id),'source missing: '+r.passage_id);
-  if(r.target_id===null)assert.match(r.decision,/no passage link/);
-  else assert.ok(byId.has(r.target_id),'target missing: '+r.target_id);
-  assert.match(r.decision,/not attested/);
+  if(r.target_id!==null)assert.ok(byId.has(r.target_id),'target missing: '+r.target_id);
+  const curated=read('sources/references/matakin-owner-corrections-2026-11-16.json').records.some(x=>x.passage_id===r.passage_id&&x.source===r.source);
+  if(!curated){
+    if(r.target_id===null)assert.match(r.decision,/no passage link/);
+    assert.match(r.decision,/not attested/);
+  }
  }
 });
 test('Batch 04 checks 29 new SS AB BC TS sources, number mapping and single-book safety',()=>{
@@ -384,10 +387,10 @@ test('Multiple citations in one passage expand independently without changing su
  assert.equal(p.translation_indonesian,before);
  assert.ok(shown.includes('(2)'), 'subayat marker (2) disappeared');
  assert.equal(overlay.present(p.id,shown),shown);
- assert.ok(shown.includes('(Tengah Sempurna — Zhong Yong VIII)'),'TS book name missing');
+ assert.ok(shown.includes('(Tengah Sempurna — Zhong Yong Bab VIII)'),'TS book name missing');
  assert.ok(!shown.includes('(T.S. VIII)'),'unexpanded TS remains');
  const chapterOnly=overlay.records.find(r=>r.passage_id===p.id&&r.source==='(T.S. VIII)');
- assert.equal(chapterOnly?.target_id,null,'chapter-only reference must not assert a passage target');
+ assert.equal(chapterOnly?.target_id,'sishu.zhongyong.09.01','single-passage chapter VIII now links to sole passage');
 });
 test('Batch 03 preserves cross-references without fabricating chapter-only passage links',()=>{
  const quote=byId.get('sishu.lunyu.12.16');
@@ -398,8 +401,9 @@ test('Batch 03 preserves cross-references without fabricating chapter-only passa
  const chapterOnly=byId.get('sishu.lunyu.12.13');
  assert.ok(overlay.present(chapterOnly.id,chapterOnly.translation_indonesian).includes('(Ajaran Besar — Da Xue IV)'));
  const tsChapter=byId.get('sishu.lunyu.12.20');
- assert.ok(overlay.present(tsChapter.id,tsChapter.translation_indonesian).includes('(Tengah Sempurna — Zhong Yong VIII)'));
- assert.ok(overlay.records.filter(r=>r.source==='(A.B. IV )'||r.source==='(T.S. VIII)').every(r=>r.target_id===null));
+ assert.ok(overlay.present(tsChapter.id,tsChapter.translation_indonesian).includes('(Tengah Sempurna — Zhong Yong Bab VIII)'));
+ assert.ok(overlay.records.filter(r=>r.source==='(A.B. IV )').every(r=>r.target_id===null));
+ assert.ok(overlay.records.filter(r=>r.source==='(T.S. VIII)').every(r=>r.target_id==='sishu.zhongyong.09.01'));
 });
 test('Verse numbers, unrelated scripture references and original Hanzi are unaffected',()=>{
  const m=byId.get('sishu.mengzi.01.01');

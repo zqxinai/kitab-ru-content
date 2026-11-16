@@ -7,6 +7,8 @@ on:
       - "ru-classics/book-references.js"
       - "ru-classics/same-book-references.js"
       - "ru-classics/reference-overlay.js"
+      - "sources/references/matakin-owner-corrections-2026-11-16.json"
+      - "tests/matakin-owner-corrections-2026-11-16.test.cjs"
       - "ru-classics/reference-links.js"
       - "ru-classics/subverses.js"
       - ".github/workflows/audit-every-ru-reference.yml"
@@ -16,6 +18,8 @@ on:
       - "ru-classics/book-references.js"
       - "ru-classics/same-book-references.js"
       - "ru-classics/reference-overlay.js"
+      - "sources/references/matakin-owner-corrections-2026-11-16.json"
+      - "tests/matakin-owner-corrections-2026-11-16.test.cjs"
       - "ru-classics/reference-links.js"
       - "ru-classics/subverses.js"
       - ".github/workflows/audit-every-ru-reference.yml"
@@ -32,7 +36,7 @@ jobs:
           node-version: '22'
       - name: Audit individual references and test each target
         run: |
-          node --test tests/matakin-reference-audit.test.cjs ru-classics/tests/book-references.cjs ru-classics/tests/same-book-references.cjs
+          node --test tests/matakin-reference-audit.test.cjs ru-classics/tests/book-references.cjs ru-classics/tests/same-book-references.cjs tests/matakin-owner-corrections-2026-11-16.test.cjs
           node tools/audit_matakin_each_reference.cjs > /tmp/reference-audit.log
           grep -E '^(REFERENCE_AUDIT_SUMMARY|GROUP |CASE )' /tmp/reference-audit.log | head -n 150
       - name: Summary

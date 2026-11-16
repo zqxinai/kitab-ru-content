@@ -109,7 +109,7 @@
     if(!Array.isArray(parts))return [];
     if(typeof canNavigate!=='function')return parts;
     return parts.flatMap(part=>{
-      if(part.target_id||typeof part.text!=='string')return [part];
+      if(part.target_id||part.note||typeof part.text!=='string')return [part]; // owner-flagged uncertain references must remain plain
       const results=[];let cursor=0;
       for(const m of part.text.matchAll(PARENS)){
         const parsed=inner(m[1],canNavigate);

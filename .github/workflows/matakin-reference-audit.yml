@@ -7,6 +7,10 @@ on:
       - 'tests/matakin-reference-audit.test.cjs'
       - 'tests/matakin-reference-overlay.test.cjs'
       - 'ru-classics/reference-overlay.js'
+      - 'ru-classics/reference-links.js'
+      - 'ru-classics/book-references.js'
+      - 'sources/references/matakin-owner-corrections-2026-11-16.json'
+      - 'tests/matakin-owner-corrections-2026-11-16.test.cjs'
       - 'sources/references/matakin-compound-batch01.json'
       - 'sources/references/matakin-compound-batch02.json'
       - 'sources/references/matakin-compound-batch03.json'
@@ -19,6 +23,10 @@ on:
       - 'tests/matakin-reference-audit.test.cjs'
       - 'tests/matakin-reference-overlay.test.cjs'
       - 'ru-classics/reference-overlay.js'
+      - 'ru-classics/reference-links.js'
+      - 'ru-classics/book-references.js'
+      - 'sources/references/matakin-owner-corrections-2026-11-16.json'
+      - 'tests/matakin-owner-corrections-2026-11-16.test.cjs'
       - 'sources/references/matakin-compound-batch01.json'
       - 'sources/references/matakin-compound-batch02.json'
       - 'sources/references/matakin-compound-batch03.json'
@@ -42,6 +50,7 @@ jobs:
         run: |
           node --test tests/matakin-reference-audit.test.cjs
           node --test tests/matakin-reference-overlay.test.cjs
+          node --test tests/matakin-owner-corrections-2026-11-16.test.cjs
           node tools/audit_matakin_references.cjs --out matakin-reference-review.json
           node -e "const r=require('./matakin-reference-review.json'); require('node:fs').appendFileSync(process.env.GITHUB_STEP_SUMMARY,'## Rujukan MATAKIN 2011 → 2012\n\nPasal: '+r.passage_count+'; rujukan terdeteksi: '+r.reviewed_references+'.\n\n'+Object.entries(r.counts).map(([k,v])=>'- '+k+': '+v).join('\n')+'\n\nBelum ada perubahan teks Indonesia; klasifikasi masih perlu review cetakan 2012.\n')"
       - uses: actions/upload-artifact@v4
