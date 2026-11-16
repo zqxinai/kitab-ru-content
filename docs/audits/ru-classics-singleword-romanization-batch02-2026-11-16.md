@@ -63,8 +63,10 @@ tidak dijadikan substitusi fonetik global.
 **Sumber pendukung untuk bentuk nama yang disingkat dalam Hanzi pasal:**
 anotasi Zhu Xi pada Lun Yu XI menjelaskan bahwa `柴` adalah murid
 bermarga 高 (*Gao Chai*), `參` adalah Zengzi (*Zeng Shen*),
-dan `師` adalah murid Zhuansun Shi; lihat
-<https://zh.wikisource.org/zh-hant/%E5%9B%9B%E6%9B%B8%E7%AB%A0%E5%8F%A5%E9%9B%86%E8%A8%BB_%28%E5%9B%9B%E5%BA%AB%E5%85%A8%E6%9B%B8%E6%9C%AC%29/%E8%AB%96%E8%AA%9E%E5%8D%B706>.
+sedangkan `師` adalah Zhuansun Shi. Bandingkan
+<https://zh.wikisource.org/zh-hant/%E5%9B%9B%E6%9B%B8%E7%AB%A0%E5%8F%A5%E9%9B%86%E8%A8%BB_%28%E5%9B%9B%E5%BA%AB%E5%85%A8%E6%9B%B8%E6%9C%AC%29/%E8%AB%96%E8%AA%9E%E5%8D%B706>
+dan `論語譯注` pada
+<https://big5.quanwenyuedu.io/n/lunyu-yizhuben/11.html>.
 Untuk `佛肸`, kamus Kementerian Pendidikan Taiwan mencatat
 `bì xì` (ditampilkan tanpa nada sebagai **Bi Xi**), lihat
 <https://dict.revised.moe.edu.tw/dictView.jsp?ID=17837&q=1&word=%E4%BD%9B>.
@@ -124,6 +126,27 @@ semuanya nama dan jangan menyebut 965 pasal sudah final filologis.
 **Interpretasi:** perubahan angka daftar kandidat mencerminkan perubahan
 metodologi *dan* koreksi, sehingga tidak boleh dianggap sebagai jumlah
 kesalahan yang diperbaiki satu per satu.
+
+## Hasil tahap tambahan yang sudah lulus
+
+Setelah 19 koreksi Hanzi pada 14 pasal di atas, GitHub Actions
+[run #43791373174](https://github.com/zqxinai/kitab-ru-content/actions/runs/43791373174)
+mencatat **66 tes lulus, 0 gagal**; seluruh 965 pasal dievaluasi
+dan smoke pembaca tetap berhasil.
+
+| Ukuran | Sebelum batch 2 | Setelah batch 2 dan pemeriksaan tambahan |
+|---|---:|---:|
+| Kandidat ortografi tersisa | 896 | **665** |
+| Pasal dengan kandidat | 728 | **473** |
+| Pasal dengan penyesuaian tampilan Pinyin–Hokkian | 379 | **387** |
+| Token kapital yang sudah diketahui sebagai kata Indonesia | belum diklasifikasi | **161** istilah ditemukan |
+| Kemunculan sisi pasangan yang sudah benar, sebelumnya dapat terhitung calon kekurangan | belum dipisahkan | **2.823** |
+
+**Penting:** penurunan daftar 896 → 665 merupakan gabungan pembetulan pemindai,
+pemilahan kata Indonesia dan pasangan yang sudah ada, **serta** penambahan
+Pinyin yang sudah terbukti. Perubahan itu **bukan** 231 nama yang langsung
+dinyatakan salah dan diperbaiki. Ke-665 kandidat tetap merupakan antrean
+review, bukan bukti setiap istilah masih kurang Pinyin.
 
 ## Pengujian
 
