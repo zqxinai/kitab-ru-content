@@ -91,14 +91,15 @@
     const linked=globalThis.RuBookReferences?.expand(sameBook,canNavigate)||sameBook;
     return linked.map(part=>{
       const label=H(displayIndo(id,part.text));
-      if(!part.target_id||!state.map.has(part.target_id))return label;
+      const editorialNote=part.note?'<span class="reference-editor-note" role="note">[Catatan rujukan: '+H(part.note)+']</span>':'';
+      if(!part.target_id||!state.map.has(part.target_id))return label+editorialNote;
       const n=Number(part.ayat)||0;
       const target=state.map.get(part.target_id);
       const verses=n?globalThis.RuSubverses?.splitIndonesia(target.translation_indonesian):null;
       const verifiedAyat=verses?.some(v=>v.number===n)?n:0;
       return '<button type="button" class="reference-link" data-passage="'+H(part.target_id)+'"'+
         (verifiedAyat?' data-ref-ayat="'+verifiedAyat+'"':'')+
-        ' title="Buka '+(verifiedAyat?'Ayat '+verifiedAyat:'pasal')+' rujukan" aria-label="Buka rujukan '+label+'">'+label+'</button>';
+        ' title="Buka '+(verifiedAyat?'Ayat '+verifiedAyat:'pasal')+' rujukan" aria-label="Buka rujukan '+label+'">'+label+'</button>'+editorialNote;
     }).join('');
   }
   function readingParagraphs(text,lang,renderer){
