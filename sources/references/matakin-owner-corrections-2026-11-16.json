@@ -45,8 +45,8 @@
       "source": "(Mengzi - Bingcu IIA: 1/8)",
       "display": "(Mengzi — Bing Cu II A:1/8)",
       "target_id": "sishu.mengzi.03.01",
-      "decision": "Nama kitab dan pasal dipastikan; pemilik menyebut ayat 5 walaupun rujukan tercetak berbunyi /8. Link sementara hanya pada pasal, bukan ayat",
-      "note": "Rujukan sumber mencantumkan II A:1/8, sedangkan keterangan pemilik menyebut ayat 5. Nomor ayat masih perlu rekonsiliasi; tautan diarahkan ke pasal II A:1 tanpa memaksakan ayat 5 atau 8."
+      "decision": "Pemilik mengoreksi salah ketik dalam konfirmasi sebelumnya: Mengzi II A:1 ayat 8 memang benar; tautan langsung ke ayat 8 jika subayat tersedia",
+      "ayat": 8
     },
     {
       "passage_id": "sishu.mengzi.03.02",
