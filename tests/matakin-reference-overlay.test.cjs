@@ -256,8 +256,8 @@ test('Batch 07 resolves 14 inherited-book compound markers and preserves each pr
   const hits=overlay.records.filter(r=>r.passage_id===e.passage_id&&r.source===e.source);
   assert.equal(hits.length,1,'batch 07 overlay missing/duplicated');
   assert.equal(hits[0].target_id,null,'multi-link marker has no single destination');
-  assert.equal(hits[0].display,e.display);
-  assert.ok(overlay.present(e.passage_id,p.translation_indonesian).includes(e.display));
+  assert.equal(hits[0].display,canonicalDisplay(e.display));
+  assert.ok(overlay.present(e.passage_id,p.translation_indonesian).includes(canonicalDisplay(e.display)));
   for(const c of e.components){
    assert.ok(e.source.includes(c.source_segment),'component fragment not found');
    assert.ok(c.target_passage_ids.length>=1);
@@ -278,11 +278,11 @@ test('Batch 07 resolves 14 inherited-book compound markers and preserves each pr
  ]){
   const e=read(file).entries.find(x=>x.passage_id===id);
   assert.equal(e.display_status,'display-ready');
-  assert.ok(overlay.present(id,byId.get(id).translation_indonesian).includes(e.display));
+  assert.ok(overlay.present(id,byId.get(id).translation_indonesian).includes(canonicalDisplay(e.display)));
  }
  const malformed=read('sources/references/matakin-compound-batch02.json').entries.find(x=>x.passage_id==='sishu.lunyu.09.05');
  assert.equal(malformed.display_status,'display-ready');
- assert.ok(overlay.present(malformed.passage_id,byId.get(malformed.passage_id).translation_indonesian).includes(malformed.display));
+ assert.ok(overlay.present(malformed.passage_id,byId.get(malformed.passage_id).translation_indonesian).includes(canonicalDisplay(malformed.display)));
 });
 test('MATAKIN pasal/ayat notation resolves slash N to an existing Mengzi verse without inventing deep links',()=>{
  const refs=read('sources/references/matakin-compound-batch02.json');
