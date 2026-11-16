@@ -5,6 +5,8 @@ on:
     paths:
       - 'ru-classics/**'
       - 'tools/build_ru_classics_web.py'
+      - 'tools/build_ru_unihan_glossary.py'
+      - 'tools/test_ru_unihan_glossary.py'
       - '.github/workflows/ru-classics-reader-preflight.yml'
   workflow_dispatch:
 
