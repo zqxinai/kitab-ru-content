@@ -94,3 +94,28 @@ test('Browser loads reference and typography modules before the reader',()=>{
  assert.match(editor,/app\(\)\?\.readableIndonesian/);
  assert.match(editor,/app\(\)\?\.readableEnglish/);
 });
+
+
+test('Mobile passage and ayat selectors share one pager; desktop has independent four-level navigation',()=>{
+  const app=read('ru-classics/app.js');
+  const html=read('ru-classics/index.html');
+  const styles=read('ru-classics/styles.css');
+  for(const id of ['desktop-jump-book','desktop-jump-chapter','desktop-jump-passage','desktop-jump-ayat','jump-passage','jump-ayat']){
+    assert.ok(app.includes(id),'missing navigation id '+id);
+  }
+  assert.match(app,/data-reader-step/);
+  assert.match(app,/function stepReader\(direction\)/);
+  assert.match(app,/function readerStepAvailable/);
+  assert.match(app,/reader-desktop-navigation/);
+  assert.match(app,/verticalHanzi:true/);
+  assert.match(html,/id="vertical-hanzi"/);
+  assert.match(styles,/grid-template-columns:42px minmax\(0,1fr\) minmax\(0,1fr\) 42px/);
+  assert.match(styles,/writing-mode:vertical-rl/);
+  assert.match(styles,/\.reader-script \.hanzi-text ruby rt/);
+  assert.match(styles,/writing-mode:horizontal-tb/);
+  assert.match(styles,/\.reader-grid:not\(\.horizontal-hanzi\)/);
+  assert.match(styles,/\.reader-desktop-navigation\{position:sticky/);
+  // The number/meaning of source ayat remains supplied by the existing MATAKIN split module.
+  assert.match(app,/RuSubverses\?\.splitIndonesia\(p\.translation_indonesian\)/);
+  assert.match(app,/English units without changing either canonical text/);
+});

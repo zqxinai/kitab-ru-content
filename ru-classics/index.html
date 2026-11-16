@@ -23,6 +23,7 @@
 <div class="shell">
 <header class="topbar">
 <button class="brand bare" data-action="home" aria-label="Ru Classics — beranda"><span class="brand-mark" aria-hidden="true">儒</span><span><b>Ru Classics</b><small>儒家經典 · Kitab Klasik Ru</small></span></button>
+<nav class="desktop-main-nav" aria-label="Navigasi utama desktop"><button data-nav="home" data-i18n="navHome">Beranda</button><button data-nav="books" data-i18n="navBooks">Kitab</button><button data-nav="search" data-i18n="navSearch">Cari</button><button data-nav="saved" data-i18n="navSaved">Koleksi</button></nav>
 <div class="top-actions">
 <button class="icon-btn" data-action="theme" data-i18n-aria="theme" data-i18n-title="theme" aria-label="Ganti tema" title="Ganti tema">◐</button>
 <button class="icon-btn" data-action="settings" data-i18n-aria="settings" data-i18n-title="settings" aria-label="Pengaturan bacaan" title="Pengaturan bacaan">Aa</button>
@@ -44,6 +45,7 @@
 <label class="settings-language"><span data-i18n="uiLanguageHint">Bahasa menu (bukan bahasa terjemahan kitab)</span><select id="ui-language" aria-label="Bahasa antarmuka"><option value="id">Bahasa Indonesia</option><option value="en">English</option></select></label></section>
 <section class="setting"><strong data-i18n="theme">Tema</strong><div id="theme-options" class="segment" role="group" aria-label="Tema"></div></section>
 <section class="setting"><strong data-i18n="readingLanguages">Bahasa dan aksara bacaan</strong><p class="setting-hint" data-i18n="readingHint">Pilih bagian yang tampil tanpa mengubah naskah sumber.</p><div id="reading-options"></div></section>
+<section class="setting"><label class="desktop-orientation"><span data-i18n="verticalHanzi">Hanzi vertikal pada desktop</span><input type="checkbox" id="vertical-hanzi" checked aria-label="Hanzi vertikal pada desktop"></label></section>
 <section class="setting"><strong data-i18n="fontSizes">Ukuran teks</strong><p class="setting-hint" data-i18n="fontSizeHint">Atur Hanzi, Pinyin Ruby, dan teks Latin secara terpisah.</p>
 <div class="font-control"><label for="font-hanzi" data-i18n="hanziSize">Hanzi</label><div class="font-control-actions"><button type="button" data-size-key="hanziSize" data-size-step="-2" aria-label="Perkecil Hanzi">−</button><input type="range" id="font-hanzi" data-font-slider="hanziSize" min="22" max="50" step="2" value="32"><button type="button" data-size-key="hanziSize" data-size-step="2" aria-label="Perbesar Hanzi">+</button><output id="font-hanzi-label" for="font-hanzi">32 px</output></div></div>
 <div class="font-control"><label for="font-pinyin" data-i18n="pinyinSize">Pinyin Ruby</label><div class="font-control-actions"><button type="button" data-size-key="pinyinSize" data-size-step="-1" aria-label="Perkecil Pinyin">−</button><input type="range" id="font-pinyin" data-font-slider="pinyinSize" min="10" max="22" step="1" value="14"><button type="button" data-size-key="pinyinSize" data-size-step="1" aria-label="Perbesar Pinyin">+</button><output id="font-pinyin-label" for="font-pinyin">14 px</output></div></div>
