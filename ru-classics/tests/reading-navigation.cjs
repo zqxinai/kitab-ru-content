@@ -10,6 +10,7 @@ const overlay=require('../reference-overlay.js');
 const links=require('../reference-links.js');
 const layout=require('../reading-layout.js');
 const hanziLayout=require('../hanzi-layout.js');
+const characterDictionary=require('../character-dictionary.js');
 const verses=require('../subverses.js');
 const sameBook=require('../same-book-references.js');
 const namedBooks=require('../book-references.js');
@@ -132,8 +133,8 @@ test('Desktop layout activates at tablet viewport and does not rely on :has or s
  assert.doesNotMatch(css,/reader-page:has\(/);
  assert.match(app,/reader-two-column/);
  assert.match(app,/main\.classList\?\.toggle\?\.\('is-reading'/);
- assert.match(html,/styles\.css\?v=20261116-vertical-clreq-v4/);
- assert.match(html,/app\.js\?v=20261116-vertical-clreq-v4/);
+ assert.match(html,/styles\.css\?v=20261116-dictionary-v1/);
+ assert.match(html,/app\.js\?v=20261116-dictionary-v1/);
 });
 
 test('Hanzi clauses respect original punctuation and keep quote closures with the preceding question',()=>{
@@ -210,4 +211,67 @@ test('Vertical reader uses uniform character cells and horizontal Ruby while mob
  assert.match(css,/\.hanzi-mark-vertical\{display:none/);
  assert.match(css,/\.hanzi-clause\.keep-together\{[\s\S]*?display:contents/);
  assert.match(css,/\.hanzi-text\.no-pinyin \.hanzi-unit ruby rt\{[\s\S]*?display:none/);
+});
+
+test('Character inspector script is loaded before app and all Ruby Hanzi are keyboard-clickable',()=>{
+ const html=read('ru-classics/index.html'),app=read('ru-classics/app.js'),css=read('ru-classics/styles.css');
+ assert.ok(html.indexOf('src="./character-dictionary.js"')<html.indexOf('src="./app.js'),'dictionary must load before reader');
+ assert.match(html,/id="character-inspector"/);
+ assert.match(html,/id="character-inspector-backdrop"/);
+ assert.match(html,/data-inspector="gloss"/);
+ assert.match(html,/data-inspector="pinyin"/);
+ assert.match(html,/data-inspector="source-clause"/);
+ assert.match(html,/data-character-close/);
+ assert.match(html,/data-character-find/);
+ assert.match(app,/class="hanzi-lookup"/);
+ assert.match(app,/data-hanzi-char/);
+ assert.match(app,/aria-haspopup="dialog"/);
+ assert.match(app,/function openCharacterInspector\(trigger\)/);
+ assert.match(app,/function closeCharacterInspector\(restoreFocus=false\)/);
+ assert.match(app,/hasAttribute\('data-hanzi-char'\)/);
+ assert.match(app,/e\.key==='Escape'/);
+ assert.match(app,/data-source-clause/);
+ assert.match(css,/\.character-inspector\.as-sheet/);
+ assert.match(css,/\.hanzi-unit \.hanzi-lookup/);
+ assert.match(css,/\[aria-expanded="true"\]/);
+ assert.match(css,/\.character-inspector\[hidden\]/);
+});
+test('Dictionary exposes source-backed Pinyin separately from provisional editorial definitions',()=>{
+ const x=characterDictionary.lookup('樂','sishu.lunyu.01.01');
+ assert.ok(x.gloss.includes('gembira'));
+ assert.ok(x.context.includes('不亦樂乎'));
+ assert.match(x.source,/belum ditinjau/);
+ assert.equal(characterDictionary.lookup('學','sishu.lunyu.01.01').context.includes('學而時習之'),true);
+ assert.ok(characterDictionary.entryCount>=55);
+ assert.ok(characterDictionary.contextCount>=3);
+ const unknown=characterDictionary.lookup('龜','sishu.lunyu.01.01');
+ assert.equal(unknown.gloss,null);
+ assert.equal(unknown.context,null);
+ assert.equal(unknown.source,null);
+ assert.equal(characterDictionary.lookup('樂','sishu.lunyu.01.02').context,null,'do not claim contextual meaning in other passages');
+});
+test('Character lookup is safe and total across all Si Shu original tokens without changing them',()=>{
+ let count=0,unknown=0;
+ for(const name of ['daxue','zhongyong','lunyu','mengzi']){
+  const dir=path.join(root,'sishu/chapters',name);
+  for(const file of fs.readdirSync(dir).filter(f=>f.endsWith('.json'))){
+   const ch=JSON.parse(fs.readFileSync(path.join(dir,file),'utf8'));
+   for(const passage of ch.passages||[]){
+    count++;
+    for(const par of passage.ruby_paragraphs||[]){
+     const snapshot=JSON.stringify(par);
+     for(const token of par){
+      if(token.type!=='ruby')continue;
+      const data=characterDictionary.lookup(token.traditional,passage.id);
+      assert.equal(data.char,token.traditional);
+      assert.ok(data.gloss===null||typeof data.gloss==='string');
+      if(!data.gloss)unknown++;
+     }
+     assert.equal(JSON.stringify(par),snapshot,'character lookup mutated the MATAKIN script: '+passage.id);
+    }
+   }
+  }
+ }
+ assert.equal(count,965);
+ assert.ok(unknown>0,'missing definitions must remain visibly unavailable rather than fabricated');
 });
