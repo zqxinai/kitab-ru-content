@@ -99,7 +99,7 @@ setTimeout(()=>{
   assert.match(nodes.main.innerHTML,/data-setting="pinyin"/,'Ruby Pinyin toggle must be present');
 
   assert.doesNotMatch(nodes.main.innerHTML,/class="reader-jump"/,'Old four-column top navigation must be absent');
-  assert.ok(nodes.main.innerHTML.indexOf('id="jump-chapter"')<nodes.main.innerHTML.indexOf('class="paper-page reader-page"'),
+  assert.ok(nodes.main.innerHTML.indexOf('id="jump-chapter"')<nodes.main.innerHTML.indexOf('class="paper-page reader-page'),
     'Chapter navigation must appear before reading content');
   assert.ok(nodes.main.innerHTML.indexOf('id="jump-passage"')>nodes.main.innerHTML.indexOf('id="reader-translation-en"'),
     'Passage selector must appear below translations');
