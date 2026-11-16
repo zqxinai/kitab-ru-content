@@ -9,6 +9,7 @@ const read=p=>fs.readFileSync(path.join(root,p),'utf8');
 const overlay=require('../reference-overlay.js');
 const links=require('../reference-links.js');
 const layout=require('../reading-layout.js');
+const hanziLayout=require('../hanzi-layout.js');
 const verses=require('../subverses.js');
 const sameBook=require('../same-book-references.js');
 const namedBooks=require('../book-references.js');
@@ -77,7 +78,7 @@ test('Browser loads reference and typography modules before the reader',()=>{
  const html=read('ru-classics/index.html');
  const reader=read('ru-classics/app.js');
  const editor=read('ru-classics/editor.js');
- for(const file of ['reference-links.js','same-book-references.js','book-references.js','reading-layout.js','subverses.js']){
+ for(const file of ['reference-links.js','same-book-references.js','book-references.js','reading-layout.js','subverses.js','hanzi-layout.js']){
    assert.ok(html.includes('src="./'+file+'"'));
    assert.ok(html.indexOf('src="./'+file+'"')<html.indexOf('src="./app.js'));
  }
@@ -131,6 +132,50 @@ test('Desktop layout activates at tablet viewport and does not rely on :has or s
  assert.doesNotMatch(css,/reader-page:has\(/);
  assert.match(app,/reader-two-column/);
  assert.match(app,/main\.classList\?\.toggle\?\.\('is-reading'/);
- assert.match(html,/styles\.css\?v=20261116-reader-v2/);
- assert.match(html,/app\.js\?v=20261116-reader-v2/);
+ assert.match(html,/styles\.css\?v=20261116-clauses-v3/);
+ assert.match(html,/app\.js\?v=20261116-clauses-v3/);
+});
+
+test('Hanzi clauses respect original punctuation and keep quote closures with the preceding question',()=>{
+ const tokens=[
+  {type:'ruby',traditional:'子',pinyin:'zǐ'},
+  {type:'ruby',traditional:'曰',pinyin:'yuē'},
+  {type:'text',value:'：“'},
+  {type:'ruby',traditional:'學',modern:'学',pinyin:'xué'},
+  {type:'ruby',traditional:'而',pinyin:'ér'},
+  {type:'text',value:'，'},
+  {type:'ruby',traditional:'不',pinyin:'bù'},
+  {type:'ruby',traditional:'亦',pinyin:'yì'},
+  {type:'text',value:'？”'}
+ ];
+ const old=JSON.stringify(tokens);
+ const chunks=hanziLayout.segment(tokens);
+ assert.deepEqual(chunks.map(x=>x.pause),['soft','soft','strong']);
+ assert.equal(chunks.map(x=>x.tokens.map(hanziLayout.textOf).join('')).join(''),tokens.map(hanziLayout.textOf).join(''));
+ assert.equal(chunks.at(-1).tokens.at(-1).value,'”');
+ assert.equal(chunks[1].tokens.find(t=>t.type==='ruby'&&t.traditional==='學').modern,'学');
+ assert.equal(JSON.stringify(tokens),old,'source tokens must remain unchanged');
+});
+test('Display-only punctuation segmentation preserves Hanzi and Ruby across all Si Shu passages',()=>{
+ let count=0,multi=0;
+ for(const name of ['daxue','zhongyong','lunyu','mengzi']){
+  const directory=path.join(root,'sishu/chapters',name);
+  for(const file of fs.readdirSync(directory).filter(f=>f.endsWith('.json'))){
+   const chapter=JSON.parse(fs.readFileSync(path.join(directory,file),'utf8'));
+   for(const passage of chapter.passages||[]){
+    count++;
+    for(const par of passage.ruby_paragraphs||[]){
+     const before=JSON.stringify(par);
+     const chunks=hanziLayout.segment(par);
+     const source=par.map(hanziLayout.textOf).join('');
+     assert.equal(chunks.flatMap(x=>x.tokens).map(hanziLayout.textOf).join(''),source,passage.id);
+     assert.deepEqual(chunks.flatMap(x=>x.tokens).filter(x=>x.type==='ruby'),par.filter(x=>x.type==='ruby'),passage.id);
+     assert.equal(JSON.stringify(par),before,passage.id+' was mutated');
+     if(chunks.length>1)multi++;
+    }
+   }
+  }
+ }
+ assert.equal(count,965);
+ assert.ok(multi>300,'Punctuation grouping should affect a substantial part of the corpus');
 });
