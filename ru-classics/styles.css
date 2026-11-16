@@ -124,3 +124,77 @@
 @media(max-width:450px){.reader-jump{column-gap:8px;row-gap:12px}.reader-jump select{font-size:12px;padding:8px}.english-reading-section{padding-left:11px}}
 /* Highlight independently verified Hanzi ayat without changing source tokens. */
 .hanzi-text .hanzi-verse.ayat-active{border-inline-start:3px solid var(--accent);padding-inline-start:12px;background:var(--panel2);border-radius:0 8px 8px 0}
+
+/* Reading-room refinement: paper and ink, with the text as the visual focus. */
+body[data-theme=paper]{--bg:#f5f2eb;--panel:#fffdf8;--panel2:#eee9df;--hero:#eee9df;--hero2:#eee9df;--ink:#292720;--muted:#615b50;--line:#d9d2c5;--accent:#73513c;--contrast:#fff;--shadow:0 8px 24px #29272012}
+body[data-theme=light]{--bg:#f6f7f6;--panel:#fff;--panel2:#edf1ef;--hero:#edf1ef;--hero2:#edf1ef;--ink:#202927;--muted:#52625e;--line:#d3ddda;--accent:#24635a;--contrast:#fff;--shadow:0 8px 24px #20292712}
+body[data-theme=dark]{--bg:#151a19;--panel:#1d2422;--panel2:#29322f;--hero:#232c29;--hero2:#232c29;--ink:#edf1ec;--muted:#bdc9c1;--line:#43504a;--accent:#a9d4c1;--contrast:#14231d;--shadow:0 8px 24px #0004}
+.topbar{padding:24px clamp(20px,4vw,48px) 12px;gap:16px}
+main{padding:20px clamp(20px,4vw,48px) 144px}
+.brand-mark{border-radius:8px;font-weight:500}
+.top-actions{gap:8px}
+.icon-btn,.login-button{height:44px;border-radius:8px;color:var(--ink);font-weight:500}
+.icon-btn{width:44px}
+.login-button{padding:0 16px;font-size:13px}
+.hero,.book-hero{background:var(--hero);box-shadow:none;border-radius:16px}
+.hero{padding:clamp(24px,4vw,48px)}
+.hero::after{opacity:.045}
+.eyebrow{letter-spacing:0;font-weight:600}
+.hero p{color:var(--muted)}
+.actions{gap:8px;margin-top:24px}
+.primary,.secondary{min-height:44px;border-radius:8px;padding:10px 20px;font-weight:600}
+.book-grid{gap:16px}
+.book-card,.continue,.paper-page,.reader-aside,.editor-panel{border-radius:16px}
+.book-card{padding:20px;transition:border-color .16s,background-color .16s}
+.book-card::after{display:none}
+.book-card:hover,.chapter-card:hover,.result:hover{transform:none;box-shadow:none;background:var(--panel2)}
+.book-hanzi{font-weight:400;letter-spacing:0}
+.chapter-card,.result{transition:border-color .16s,background-color .16s}
+.reader-grid{gap:20px;grid-template-columns:minmax(0,1fr) 260px}
+.reader-heading{margin:24px 0;align-items:flex-start}
+.reader-heading h1{max-width:28ch}
+.chips{gap:8px}
+.chip{min-height:40px;border-radius:8px;padding:8px 12px}
+.chip.on{font-weight:600}
+.paper-page{padding:clamp(24px,4vw,40px)}
+.passage-top{letter-spacing:0;font-weight:600}
+.hanzi-text{line-height:2.65;overflow-wrap:anywhere}
+.hanzi-text rt{font-size:clamp(11px,.4em,14px);color:var(--muted)}
+.translation{padding-top:24px;margin-top:24px}
+.translation h3{letter-spacing:0;font-weight:600;font-size:12px}
+.translation-prose,.translation-verse{max-width:66ch}
+.translation .reading-paragraph{letter-spacing:0;hyphens:manual}
+.reader-aside{padding:20px}
+.reader-jump{gap:12px;padding:16px;border-radius:12px}
+.reader-jump label,.chapter-quick label,.chapter-ayat-label{font-size:12px;font-weight:600}
+.reader-jump select,.chapter-quick select,.chapter-ayat-label select{min-height:44px;font-size:14px;font-weight:400}
+.reader-nav{gap:12px;margin-top:20px}
+.reader-nav button{min-height:48px;border-radius:8px;font-weight:600}
+.bottom-nav{bottom:0;width:100%;max-width:none;border-radius:0;border-width:1px 0 0;box-shadow:none;backdrop-filter:none;padding:4px max(12px,calc((100vw - 620px)/2)) max(4px,env(safe-area-inset-bottom));gap:4px}
+.bottom-nav button{min-height:56px;border-radius:8px;gap:4px;font-size:12px;font-weight:500}
+.bottom-nav svg{width:20px;height:20px}
+dialog{border-radius:16px;padding:32px}
+.segment button,.size-row button,.close-btn{min-height:44px}
+.segment button.active{font-weight:600}
+@media(max-width:950px){.reader-grid{grid-template-columns:minmax(0,1fr)}}
+@media(max-width:590px){
+ .topbar{padding:16px;gap:8px;align-items:center}
+ .brand-mark{flex-basis:40px;width:40px;height:44px}
+ .brand b{font-size:17px}
+ .top-actions{gap:4px}
+ .icon-btn{width:44px;height:44px}
+ .login-button{height:44px;padding:0 8px;font-size:11px}
+ main{padding:12px 16px 112px}
+ .hero{padding:24px;min-height:0}
+ .hero h1{font-size:clamp(30px,9vw,40px)}
+ .book-grid{gap:12px}
+ .book-card{padding:16px;min-height:180px}
+ .book-card p{font-size:12px}
+ .book-hero{padding:20px;gap:16px}
+ .reader-heading{gap:16px}
+ .paper-page{padding:20px}
+ .hanzi-text{line-height:2.65}
+ .translation .reading-paragraph,.translation.english .reading-paragraph{font-size:16px;line-height:1.8}
+ .reader-nav button{font-size:13px}
+}
+@media(max-width:350px){.brand b{font-size:15px}.brand-mark{display:none}.login-button{font-size:10px}}
