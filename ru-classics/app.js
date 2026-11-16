@@ -7,7 +7,7 @@
     {id:'mengzi',name:'Mengzi',hanzi:'孟子',title:'Mengzi',desc:'Percakapan mengenai kebajikan, manusia, dan pemerintahan.'}
   ];
   const main=document.getElementById('main');
-  const state={tab:'home',book:null,chapter:null,id:null,ayat:0,data:null,chapters:[],passages:[],map:new Map(),overrides:[],saved:[],notes:{},last:null,search:'',filter:'all',theme:'paper',settings:{hanzi:true,pinyin:true,indo:true,english:true,font:32}};
+  const state={tab:'home',book:null,chapter:null,id:null,ayat:0,data:null,chapters:[],passages:[],map:new Map(),overrides:[],saved:[],notes:{},expandedChapters:{},last:null,search:'',filter:'all',theme:'paper',settings:{hanzi:true,pinyin:true,indo:true,english:true,font:32}};
   const STORE='ru_classics_web_v1';
   const H=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
   const book=id=>BOOKS.find(b=>b.id===id)||BOOKS[0];
@@ -37,9 +37,20 @@
     +sectionTitle('Ruang baca Anda')
     +'<section class="continue"><div><span class="eyebrow">'+(last?'Lanjutkan bacaan':'Awali perjalanan')+'</span><h3>'+(last?book(last._book).name+' · '+H(last._chapterTitle):'Da Xue · Bab Utama')+'</h3><p>'+(last?'Pasal '+last.number:'Mulai dari kitab pertama.')+'</p></div><button class="primary" '+(last?'data-passage="'+H(last.id)+'"':'data-action="start"')+'>Baca sekarang</button></section><footer class="home-footer">Dibuat oleh <strong>周强信</strong> · <button class="text-link" data-action="about">Tentang Ru Classics</button></footer>';
   }
-  function library(){if(!state.book){main.innerHTML='<div class="chapter-title"><span class="eyebrow">Perpustakaan</span><h1>Jelajahi kitab</h1><p class="muted">Pilih kitab, bab, lalu pasal.</p></div><div class="book-grid">'+BOOKS.map(card).join('')+'</div>';return;}
+  function library(){
+    if(!state.book){main.innerHTML='<div class="chapter-title"><span class="eyebrow">Perpustakaan</span><h1>Jelajahi kitab</h1><p class="muted">Pilih kitab, bab, lalu pasal.</p></div><div class="book-grid">'+BOOKS.map(card).join('')+'</div>';return;}
     const b=book(state.book),chapters=state.chapters.filter(c=>c.book===b.id);
-    main.innerHTML='<button class="back" data-action="all">← Semua kitab</button><section class="book-hero"><span class="big-hanzi" lang="zh-Hant">'+b.hanzi+'</span><div><span class="eyebrow">Si Shu · '+chapters.length+' bab</span><h1>'+b.name+'</h1><p>'+b.desc+'</p></div></section>'+sectionTitle('Daftar bab','<small class="muted">'+count(b.id)+' pasal</small>')+'<div class="chapter-grid">'+chapters.map(c=>'<button class="chapter-card" data-chapter="'+H(c.id)+'"><span><strong>'+H(c.title)+'</strong><small>'+c.passages.length+' pasal</small></span><span class="arrow">›</span></button>').join('')+'</div>';
+    const expanded=Object.prototype.hasOwnProperty.call(state.expandedChapters,b.id)?state.expandedChapters[b.id]:chapters[0]?.id;
+    const chapterCard=c=>{
+      const opened=expanded===c.id;
+      return '<section class="chapter-group'+(opened?' is-open':'')+'">'
+        +'<button type="button" class="chapter-card" data-expand-chapter="'+H(c.id)+'" aria-controls="chapter-passages-'+H(c.id)+'" aria-expanded="'+opened+'"><span><strong>'+H(c.title)+'</strong><small>'+c.passages.length+' pasal</small></span><span class="arrow" aria-hidden="true">'+(opened?'⌃':'⌄')+'</span></button>'
+        +'<div class="chapter-passages" id="chapter-passages-'+H(c.id)+'"'+(opened?'':' hidden')+'>'
+        +'<div class="passage-number-grid" role="group" aria-label="Pilih pasal '+H(c.title)+'">'
+        +c.passages.map(p=>'<button type="button" class="passage-number" data-passage="'+H(p.id)+'" aria-label="'+H(c.title)+' — Pasal '+p.number+'">'+p.number+'</button>').join('')
+        +'</div></div></section>';
+    };
+    main.innerHTML='<button class="back" data-action="all">← Semua kitab</button><section class="book-hero"><span class="big-hanzi" lang="zh-Hant">'+b.hanzi+'</span><div><span class="eyebrow">Si Shu · '+chapters.length+' bab · '+count(b.id)+' pasal</span><h1>'+b.name+'</h1><p>'+b.desc+'</p></div></section><div class="chapter-grid chapter-accordion">'+chapters.map(chapterCard).join('')+'</div>';
   }
   function chapter(){
     const c=state.chapters.find(ch=>ch.id===state.chapter);
@@ -186,6 +197,24 @@
     }
     if(t.dataset.nav){if(t.dataset.nav==='books')state.book=null;navigate(t.dataset.nav);return;}
     if(t.dataset.book){state.book=t.dataset.book;navigate('books',t.dataset.book);return;}
+    if(t.dataset.expandChapter){
+      const chapterId=t.dataset.expandChapter;
+      const expanded=state.expandedChapters[state.book];
+      const currentlyOpen=expanded===undefined?state.chapters.filter(c=>c.book===state.book)[0]?.id:expanded;
+      const next=currentlyOpen===chapterId?null:chapterId;
+      state.expandedChapters[state.book]=next;
+      main.querySelectorAll('.chapter-group').forEach(group=>{
+        const button=group.querySelector('[data-expand-chapter]');
+        const open=button?.dataset.expandChapter===next;
+        group.classList.toggle('is-open',open);
+        button?.setAttribute('aria-expanded',String(open));
+        const panel=group.querySelector('.chapter-passages');
+        if(panel)panel.hidden=!open;
+        const arrow=button?.querySelector('.arrow');
+        if(arrow)arrow.textContent=open?'⌃':'⌄';
+      });
+      return;
+    }
     if(t.dataset.chapter){navigate('chapter',t.dataset.chapter);return;}
     if(t.dataset.passage){navigate('reader',t.dataset.passage,Number(t.dataset.refAyat)||0);return;}
     if(t.dataset.toggle){state.settings[t.dataset.toggle]=!state.settings[t.dataset.toggle];save();render();return;}
