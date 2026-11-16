@@ -41,7 +41,7 @@
       searchPrompt:'Cari di seluruh koleksi Si Shu.',searchPlaceholder:'Ketik Hanzi, pinyin, atau terjemahan…',
       savedTitle:'Pasal tersimpan',savedPrompt:'Koleksi pribadi',noSaved:'Belum ada pasal tersimpan. Gunakan tombol Simpan di halaman bacaan.',
       notesLocal:'Catatan ini disimpan hanya di browser perangkat Anda.',notePlaceholder:'Tuliskan pemikiran Anda…',
-      noComment:'Belum ada komentar dari sumber yang tertaut pada pasal ini.',
+      noComment:'Belum ada komentar dari sumber yang tertaut pada pasal ini.',atLeastOneText:'Aktifkan sedikitnya Hanzi, Indonesia, atau Inggris.',
       noteSaved:'Catatan disimpan pada perangkat ini.',saveBookmark:'Pasal disimpan',removeBookmark:'Pasal dihapus dari koleksi',
       textSourceNote:'Nomor ayat mengikuti MATAKIN. Teks Inggris ditampilkan untuk seluruh pasal; pembagian ayat James Legge belum diselaraskan.',
       readerTools:'Alat baca'
@@ -78,7 +78,7 @@
       searchPrompt:'Search throughout the Four Books.',searchPlaceholder:'Search Hanzi, Pinyin, or translations…',
       savedTitle:'Saved passages',savedPrompt:'Personal collection',noSaved:'No saved passages yet. Use Save while reading.',
       notesLocal:'Notes are saved only in this browser.',notePlaceholder:'Write your thoughts…',
-      noComment:'No source commentary has been linked to this passage.',
+      noComment:'No source commentary has been linked to this passage.',atLeastOneText:'Keep at least one of Hanzi, Indonesian, or English enabled.',
       noteSaved:'Note saved on this device.',saveBookmark:'Passage bookmarked',removeBookmark:'Bookmark removed',
       textSourceNote:'Verse numbering follows MATAKIN. The English translation is shown for the entire passage; James Legge verse divisions have not been aligned.',
       readerTools:'Reading tools'
@@ -101,6 +101,7 @@
   function applyLanguage(){
     document.documentElement?.setAttribute?.('lang',state.uiLanguage);
     document.querySelectorAll?.('[data-i18n]')?.forEach(el=>{el.textContent=tr(el.dataset.i18n);});
+    document.querySelectorAll?.('[data-i18n-placeholder]')?.forEach(el=>{el.setAttribute('placeholder',tr(el.dataset.i18nPlaceholder));});
     document.querySelectorAll?.('[data-i18n-aria]')?.forEach(el=>{el.setAttribute('aria-label',tr(el.dataset.i18nAria));});
     document.querySelectorAll?.('[data-i18n-title]')?.forEach(el=>{el.setAttribute('title',tr(el.dataset.i18nTitle));});
   }
@@ -143,11 +144,11 @@
   function sectionTitle(title,right=''){return '<div class="section-title"><h2>'+title+'</h2>'+right+'</div>';}
   function card(b){return '<button class="book-card" data-book="'+b.id+'"><small>'+state.chapters.filter(c=>c.book===b.id).length+' BAB · '+count(b.id)+' PASAL</small><span class="book-hanzi" lang="zh-Hant">'+b.hanzi+'</span><h3>'+b.name+'</h3><p>'+b.title+'</p></button>';}
   function home(){const last=byId(state.last);
-    main.innerHTML='<section class="hero"><div class="hero-body"><span class="eyebrow">儒家經典 · Perpustakaan digital</span><h1 data-i18n="heroTitle">Menemukan kebijaksanaan dalam setiap pasal.</h1><p>Bacalah kitab-kitab klasik Ru dalam tampilan yang hening dan jernih. Lengkap dengan Hanzi, pinyin, dan terjemahan untuk mendampingi pemahaman.</p><div class="actions"><button class="primary" data-action="start" data-i18n="startReading">Mulai membaca</button><button class="secondary" data-action="all" data-i18n="explore">Jelajahi kitab</button></div></div></section>'
-    +sectionTitle('Kitab Yang Empat','<button class="text-link" data-action="all">Lihat semua →</button>')
+    main.innerHTML='<section class="hero"><div class="hero-body"><span class="eyebrow">儒家經典 · Perpustakaan digital</span><h1 data-i18n="heroTitle">Menemukan kebijaksanaan dalam setiap pasal.</h1><p data-i18n="heroDesc">Bacalah kitab-kitab klasik Ru dalam tampilan yang hening dan jernih. Lengkap dengan Hanzi, pinyin, dan terjemahan untuk mendampingi pemahaman.</p><div class="actions"><button class="primary" data-action="start" data-i18n="startReading">Mulai membaca</button><button class="secondary" data-action="all" data-i18n="explore">Jelajahi kitab</button></div></div></section>'
+    +sectionTitle(tr('featuredBooks'),'<button class="text-link" data-action="all" data-i18n="seeAll">Lihat semua →</button>')
     +'<div class="book-grid">'+BOOKS.map(card).join('')+'</div>'
-    +sectionTitle('Ruang baca Anda')
-    +'<section class="continue"><div><span class="eyebrow">'+(last?'Lanjutkan bacaan':'Awali perjalanan')+'</span><h3>'+(last?book(last._book).name+' · '+H(last._chapterTitle):'Da Xue · Bab Utama')+'</h3><p>'+(last?'Pasal '+last.number:'Mulai dari kitab pertama.')+'</p></div><button class="primary" '+(last?'data-passage="'+H(last.id)+'"':'data-action="start"')+'>Baca sekarang</button></section><footer class="home-footer">Dibuat oleh <strong>周强信</strong> · <button class="text-link" data-action="about">Tentang Ru Classics</button></footer>';
+    +sectionTitle(tr('readingSpace'))
+    +'<section class="continue"><div><span class="eyebrow">'+(last?tr('backToReading'):tr('startJourney'))+'</span><h3>'+(last?book(last._book).name+' · '+H(last._chapterTitle):'Da Xue · Bab Utama')+'</h3><p>'+(last?tr('passage')+' '+last.number:tr('beginFirst'))+'</p></div><button class="primary" '+(last?'data-passage="'+H(last.id)+'"':'data-action="start"')+'>Baca sekarang</button></section><footer class="home-footer"><span data-i18n="createdBy">Dibuat oleh</span> <strong>周强信</strong> · <button class="text-link" data-action="about" data-i18n="about">Tentang Ru Classics</button></footer>';
   }
   function library(){
     if(!state.book){main.innerHTML='<div class="chapter-title"><span class="eyebrow" data-i18n="readingLibrary">Perpustakaan</span><h1 data-i18n="exploreBooks">Jelajahi kitab</h1><p class="muted" data-i18n="chooseBookChapter">Pilih kitab, bab, lalu pasal.</p></div><div class="book-grid">'+BOOKS.map(card).join('')+'</div>';return;}
@@ -317,7 +318,7 @@
     const matches=candidates.filter(p=>{const x=byId(p.id);const hanzi=(x.ruby_paragraphs||[]).flat().map(t=>t.traditional||t.value||'').join('');const pinyin=(x.ruby_paragraphs||[]).flat().map(t=>t.pinyin||'').join(' ');return norm([hanzi,pinyin,x.translation_indonesian,displayIndo(p.id,x.translation_indonesian),x.translation_english].join(' ')).includes(term);});
     box.innerHTML='<p class="muted">'+matches.length+' pasal ditemukan'+(matches.length>60?' · menampilkan 60 pertama':'')+'</p><div class="results">'+matches.slice(0,60).map(p=>'<button class="result" data-passage="'+H(p.id)+'"><small>'+book(p._book).name+' · Pasal '+p.number+'</small><strong>'+H(p._chapterTitle)+'</strong><span class="excerpt">'+H(displayIndo(p.id,byId(p.id).translation_indonesian||''))+'</span></button>').join('')+'</div>';
   }
-  function search(){main.innerHTML='<div class="chapter-title"><span class="eyebrow" data-i18n="navSearch">Pencarian</span><h1 data-i18n="searchTitle">Temukan sebuah ayat</h1><p class="muted">Cari di seluruh '+state.passages.length+' pasal Si Shu.</p></div><label class="searchbox"><span aria-hidden="true">⌕</span><input id="search-input" type="search" autocomplete="off" placeholder="Ketik Hanzi, pinyin, atau terjemahan…" value="'+H(state.search)+'"></label><div class="search-filters"><select id="search-book" aria-label="Filter kitab"><option value="all">Semua kitab</option>'+BOOKS.map(b=>'<option value="'+b.id+'" '+(state.filter===b.id?'selected':'')+'>'+b.name+'</option>').join('')+'</select></div><div id="search-results"></div>';renderSearchResults();}
+  function search(){main.innerHTML='<div class="chapter-title"><span class="eyebrow" data-i18n="navSearch">Pencarian</span><h1 data-i18n="searchTitle">Temukan sebuah ayat</h1><p class="muted">Cari di seluruh '+state.passages.length+' pasal Si Shu.</p></div><label class="searchbox"><span aria-hidden="true">⌕</span><input id="search-input" type="search" autocomplete="off" data-i18n-placeholder="searchPlaceholder" placeholder="Ketik Hanzi, pinyin, atau terjemahan…" value="'+H(state.search)+'"></label><div class="search-filters"><select id="search-book" aria-label="Filter kitab"><option value="all">Semua kitab</option>'+BOOKS.map(b=>'<option value="'+b.id+'" '+(state.filter===b.id?'selected':'')+'>'+b.name+'</option>').join('')+'</select></div><div id="search-results"></div>';renderSearchResults();}
   function saved(){const bookmarked=state.saved.map(byId).filter(Boolean);const notes=Object.keys(state.notes).filter(k=>state.notes[k]).length;
     main.innerHTML='<div class="chapter-title"><span class="eyebrow" data-i18n="savedPrompt">Koleksi pribadi</span><h1 data-i18n="savedTitle">Pasal tersimpan</h1><p class="muted">'+bookmarked.length+' pasal disimpan · '+notes+' catatan pribadi</p></div>'+(bookmarked.length?'<div class="passage-list">'+bookmarked.map(p=>'<button class="result" data-passage="'+H(p.id)+'"><small>'+book(p._book).name+' · Pasal '+p.number+'</small><strong>'+H(p._chapterTitle)+'</strong><span class="excerpt">'+H(displayIndo(p.id,p.translation_indonesian))+'</span></button>').join('')+'</div>':'<div class="empty" data-i18n="noSaved">Belum ada pasal tersimpan. Gunakan tombol ♡ Simpan di halaman bacaan.</div>');
   }
@@ -428,7 +429,7 @@
     if(target.dataset?.setting){
       const key=target.dataset.setting;
       if(!['hanzi','pinyin','indo','english'].includes(key))return;
-      if(!target.checked&&['hanzi','indo','english'].includes(key)&&!['hanzi','indo','english'].some(k=>k!==key&&state.settings[k])){target.checked=true;toast(tr('chooseBookChapter'));return;}
+      if(!target.checked&&['hanzi','indo','english'].includes(key)&&!['hanzi','indo','english'].some(k=>k!==key&&state.settings[k])){target.checked=true;toast(tr('atLeastOneText'));return;}
       state.settings[key]=target.checked;save();if(state.tab==='reader')render();
     }
   });
