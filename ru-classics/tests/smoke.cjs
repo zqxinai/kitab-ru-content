@@ -113,7 +113,8 @@ setTimeout(()=>{
   assert.doesNotMatch(nodes.main.innerHTML,/<ruby>學<span class="modern">/,
     'Pinyin must align with traditional Hanzi, not traditional plus simplified');
   assert.match(nodes.main.innerHTML,/Catatan pribadi/);
-  assert.match(nodes.main.innerHTML,/Pasal berikutnya/);
+  assert.match(nodes.main.innerHTML,/Ayat atau pasal berikutnya/,'Reader arrows now navigate ayat before adjacent passages');
+  assert.match(nodes.main.innerHTML,/id="desktop-jump-ayat"/,'Desktop must offer a verse selector');
   click({book:'lunyu'});
   click({chapter:'sishu.lunyu.18'});
   click({passage:'sishu.lunyu.18.01'});
