@@ -350,9 +350,9 @@ test('Batch 08 single-book references have exact source text, validated targets 
   const same=overlay.records.filter(x=>x.passage_id===r.passage_id&&x.source===r.source);
   assert.equal(same.length,1,'exact display overlay missing/duplicate: '+r.passage_id);
   assert.equal(same[0].target_id,r.target_id);
-  assert.equal(same[0].display,r.display);
+  assert.equal(same[0].display,canonicalDisplay(r.display));
   const output=overlay.present(r.passage_id,p.translation_indonesian);
-  assert.ok(output.includes(r.display),'display not applied to exact source');
+  assert.ok(output.includes(canonicalDisplay(r.display)),'display not applied to exact source');
   assert.ok(!output.includes(r.source),'old reference should be hidden only in display');
   assert.equal(overlay.present(r.passage_id,output),output,'idempotency violated');
   assert.equal(p.translation_indonesian.includes(r.source),true,'original 2011 source rewritten');
