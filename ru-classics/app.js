@@ -239,7 +239,7 @@
     put('hanzi',ch);
     put('pinyin',trigger.dataset.hanziPinyin||'Pinyin belum tersedia pada sumber');
     put('simplified',simplified&&simplified!==ch?simplified:'Sama / tidak dicantumkan');
-    put('gloss',dictionary.gloss||'Arti bahasa Indonesia belum dikurasi untuk karakter ini.');
+    put('gloss',dictionary.gloss||'Arti Indonesia belum tersedia (belum dikurasi).');
     put('unihan',dictionary.englishGloss||'Definisi bahasa Inggris tidak tersedia dalam Unihan untuk karakter ini.');
     put('unihan-source',dictionary.englishSource||'Tidak ada entri Unihan yang terpasang untuk karakter ini.');
     put('note',dictionary.note||'Tidak ada catatan leksikal tambahan.');
