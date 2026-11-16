@@ -342,7 +342,7 @@
       ['"Kiu berpengetahuan', '"Qiu - Kiu berpengetahuan'], // matched verse Hanzi
     ],
     'sishu.lunyu.05.08': [
-      ['"Chik boleh', '"Chi - Chik boleh'], // 赤
+      ['Chik boleh', 'Chi - Chik boleh'], // 赤
       ['"Kiu boleh', '"Qiu - Kiu boleh'], // matched verse Hanzi
     ],
     'sishu.mengzi.14.26': [
