@@ -148,6 +148,8 @@ def build(bundle_path, output_path, source_path=None):
     print(f"CC-CIDICT source rows={parsed_rows}; corpus headwords={len(matches)}; "
           f"single-char Indonesian={covered_chars}/{len(unique_chars)}; "
           f"file={output.stat().st_size} bytes",flush=True)
+    if result["uncovered_characters"]:
+        print("CC-CIDICT unavailable characters: " + " ".join(result["uncovered_characters"]),flush=True)
     return result
 
 
