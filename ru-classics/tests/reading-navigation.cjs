@@ -215,7 +215,7 @@ test('Vertical reader uses uniform character cells and horizontal Ruby while mob
 
 test('Character inspector script is loaded before app and all Ruby Hanzi are keyboard-clickable',()=>{
  const html=read('ru-classics/index.html'),app=read('ru-classics/app.js'),css=read('ru-classics/styles.css');
- assert.ok(html.indexOf('src="./character-dictionary.js"')<html.indexOf('src="./app.js'),'dictionary must load before reader');
+ assert.ok(html.indexOf('src="./character-dictionary.js?v=20261117-cidict-v3"')<html.indexOf('src="./app.js'),'dictionary must load before reader');
  assert.match(html,/id="character-inspector"/);
  assert.match(html,/id="character-inspector-backdrop"/);
  assert.match(html,/data-inspector="gloss"/);
@@ -289,4 +289,10 @@ test('Reader navigation and dictionary close buttons use geometry-centered SVG i
  assert.match(html,/app\.js\?v=20261117-cidict-v2/);
  assert.match(css,/\.reader-pager-arrow,\s*\.reader-desktop-step,\s*\.character-inspector-close\s*\{[\s\S]*?place-items:center;[\s\S]*?padding:0;[\s\S]*?line-height:0;/);
  assert.match(css,/\.reader-step-icon,\s*\.character-close-icon\s*\{[\s\S]*?display:block;/);
+});
+
+test('Character dictionary module itself is versioned to avoid stale cached 62-character glossary',()=>{
+ const html=read('ru-classics/index.html');
+ assert.match(html,/character-dictionary\.js\?v=20261117-cidict-v3/);
+ assert.ok(html.indexOf('character-dictionary.js?v=20261117-cidict-v3')<html.indexOf('app.js?v=20261117-cidict-v2'));
 });
