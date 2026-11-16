@@ -61,7 +61,7 @@ test('homograph guardrails: real Indonesian words and already-paired names stay 
   assert.equal(reading.normalize('Siang hari di desa; Si memanah.', 'sample'),
     'Siang hari di desa; Si memanah.');
   assert.equal(reading.normalize('Raja Siang dari Negeri Liang, Dinasti Siang', 'sample'),
-    'Raja Xiang - Siang dari Negeri Liang, Dinasti Shang - Siang');
+    'Raja Xiang - Siang dari Negeri Liang (梁, Liáng), Dinasti Shang - Siang');
   assert.equal(reading.normalize('Pangeran Siap, Pangeran King, Pangeran Kian', 'sample'),
     'Pangeran She - Siap, Pangeran Jing - King, Pangeran Jian - Kian');
   assert.equal(reading.normalize('Negeri Tin dan Negeri Ting', 'sample'),
