@@ -192,7 +192,7 @@
     const tokenMarkup=tok=>tok.type==='ruby'
       ?'<span class="hanzi-unit"><ruby>'+H(tok.traditional||'')+'<rt>'+H(tok.pinyin||'')+'</rt></ruby>'
         +(tok.modern&&tok.modern!==tok.traditional?'<span class="modern" title="Aksara sederhana dari metadata, bukan bagian teks utama">（'+H(tok.modern)+'）</span>':'')+'</span>'
-      :Array.from(String(tok.value||'')).map(character=>/\\s/u.test(character)?H(character):displayCharacter(character)).join('');
+      :Array.from(String(tok.value||'')).map(character=>character.trim()===''?H(character):displayCharacter(character)).join('');
     return paragraphs.map(par=>{
       const tokens=Array.isArray(par)?par:[];
       const groups=globalThis.RuHanziLayout?.segment?.(tokens)||[{tokens,pause:'none',length:0}];
