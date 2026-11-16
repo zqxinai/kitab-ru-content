@@ -211,3 +211,45 @@
   .reader-toolbar button{gap:3px}
   .reader-page .translation{padding:17px}
 }
+
+/* Approved reader typography and settings: independently controlled sizes. */
+.hanzi-text,.reader-page .hanzi-text{font-size:var(--hanzi-size,32px);overflow:visible}
+.hanzi-text ruby{ruby-position:over;ruby-align:center}
+.hanzi-text rt,.reader-page .hanzi-text rt{font-size:var(--pinyin-size,14px);line-height:1.35;white-space:nowrap;overflow:visible;font-weight:500}
+.hanzi-text .modern{font:400 .44em/1.1 system-ui,sans-serif;vertical-align:middle;white-space:nowrap}
+.reader-page .hanzi-text{line-height:2.82;word-break:normal;overflow-wrap:anywhere}
+.reader-page .translation .reading-paragraph,.reader-page .translation.english .reading-paragraph{font-size:var(--latin-size,17px);line-height:1.95}
+.reader-page .translation p{font-size:var(--latin-size,17px)}
+.reader-page .translation .english-alignment-note{font-size:12px!important}
+.settings-language{display:flex;flex-direction:column;gap:8px;color:var(--muted);font-size:12px}
+.settings-language select{min-height:44px;width:100%;border:1px solid var(--line);border-radius:11px;padding:10px;background:var(--panel);color:var(--ink);font-size:14px}
+.setting-hint{font-size:12px!important;margin:0 0 12px!important;line-height:1.6}
+.font-control{border:1px solid var(--line);border-radius:14px;padding:12px 13px;margin-top:9px;background:var(--bg)}
+.font-control>label{display:block;font-size:13px;font-weight:600;margin-bottom:11px}
+.font-control-actions{display:grid;grid-template-columns:36px minmax(0,1fr) 36px 49px;align-items:center;gap:8px}
+.font-control-actions button{border:1px solid var(--line);border-radius:9px;background:var(--panel2);color:var(--ink);font-size:21px;line-height:1;height:35px}
+.font-control-actions input[type="range"]{width:100%;min-width:0;accent-color:var(--accent);cursor:pointer}
+.font-control-actions output{font-size:12px;color:var(--muted);font-variant-numeric:tabular-nums;text-align:right}
+.settings-reset{margin-top:12px;border:0;background:none;color:var(--accent);text-decoration:underline;text-underline-offset:3px;cursor:pointer;padding:6px 0;font-size:12px}
+.settings-information>button{display:flex;justify-content:space-between;align-items:center;border:0;border-bottom:1px solid var(--line);background:transparent;color:var(--ink);padding:12px 0;width:100%;text-align:left;font-size:14px;cursor:pointer}
+.settings-information>button>span:last-child{font-size:22px;color:var(--accent)}
+.settings-version{display:flex;justify-content:space-between;align-items:center;margin-top:12px;font-size:12px;color:var(--muted)}
+.settings-version strong{color:var(--ink);font-weight:600}
+#settings-dialog{max-height:min(89vh,900px)}
+#privacy-dialog h3{font:700 14px system-ui,sans-serif;margin:20px 0 8px}
+#privacy-dialog p{font-size:13px;line-height:1.7}
+#privacy-dialog .privacy-version{color:var(--muted);font-size:12px;border-top:1px solid var(--line);padding-top:13px}
+.reader-language-tools{display:block;flex:none;color:var(--accent)}
+.reader-language-tools summary{list-style:none;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:7px;min-height:38px;padding:7px 9px;border-radius:10px;font-size:17px}
+.reader-language-tools summary::-webkit-details-marker{display:none}
+.reader-language-tools summary>span{font-size:12px;font-weight:600}
+.reader-language-tools summary:hover,.reader-language-tools[open]>summary{background:var(--panel2)}
+.reader-language-popup{position:absolute;left:7px;bottom:calc(100% + 7px);width:min(278px,calc(100vw - 44px));background:var(--panel);border:1px solid var(--line);box-shadow:var(--shadow);border-radius:16px;padding:12px;display:grid;gap:1px;z-index:20;text-align:left}
+.reader-language-popup label{display:flex;justify-content:space-between;align-items:center;gap:12px;min-height:42px;padding:8px;border-radius:9px;color:var(--ink);font-size:14px;cursor:pointer}
+.reader-language-popup label:hover{background:var(--panel2)}
+.reader-language-popup input{width:18px;height:18px;accent-color:var(--accent)}
+@media(max-width:400px){
+  .font-control-actions{grid-template-columns:30px minmax(0,1fr) 30px 43px;gap:5px}
+  .font-control-actions button{height:32px}
+  .reader-language-tools summary>span{font-size:11px}
+}
