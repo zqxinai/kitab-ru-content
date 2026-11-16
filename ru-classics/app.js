@@ -129,16 +129,31 @@
       format(verse.indonesian||verse.text)+'</div>'
     ).join('');
   }
-  function jumpMenu(p,c,b){
+  function chapterPicker(p,c,b){
     const chapters=state.chapters.filter(ch=>ch.book===b.id);
+    const option=(value,label,active)=>'<option value="'+H(value)+'"'+(active?' selected':'')+'>'+H(label)+'</option>';
+    return '<div class="reader-topline"><button type="button" class="reader-back" data-book="'+b.id+'">← Semua bab</button></div>'
+      +'<section class="reader-chapter-card" aria-label="Kitab dan bab yang sedang dibaca">'
+      +'<div class="reader-chapter-meta">'+H(b.name)+' · <span lang="zh-Hant">'+H(b.hanzi)+'</span></div>'
+      +'<label class="reader-chapter-choice"><span class="visually-hidden">Pilih bab</span>'
+      +'<select id="jump-chapter" aria-label="Pilih bab">'+chapters.map(ch=>option(ch.id,ch.title,ch.id===c.id)).join('')+'</select>'
+      +'<span class="reader-choice-arrow" aria-hidden="true">⌄</span></label>'
+      +'<details class="reader-book-details"><summary>Ganti kitab</summary><label>Kitab<select id="jump-book" aria-label="Pilih kitab">'+BOOKS.map(x=>option(x.id,x.name,x.id===b.id)).join('')+'</select></label></details>'
+      +'</section>';
+  }
+  function jumpMenu(p,c,b,prev,next){
     const verses=globalThis.RuSubverses?.splitIndonesia(p.translation_indonesian)||[];
     const option=(value,label,active)=>'<option value="'+H(value)+'"'+(active?' selected':'')+'>'+H(label)+'</option>';
-    return '<nav class="reader-jump" aria-label="Navigasi Kitab Bab Pasal Ayat">'
-      +'<label>Kitab<select id="jump-book" aria-label="Pilih kitab">'+BOOKS.map(x=>option(x.id,x.name,x.id===b.id)).join('')+'</select></label>'
-      +'<label>Bab<select id="jump-chapter" aria-label="Pilih bab">'+chapters.map(x=>option(x.id,x.title,x.id===c.id)).join('')+'</select></label>'
-      +'<label>Pasal<select id="jump-passage" aria-label="Pilih pasal">'+c.passages.map(x=>option(x.id,'Pasal '+x.number,x.id===p.id)).join('')+'</select></label>'
-      +'<label>Ayat<select id="jump-ayat" aria-label="Pilih ayat"'+(verses.length>1?'':' disabled title="Ayat bernomor belum terverifikasi"')+'>'+option('0','Seluruh pasal',!state.ayat)+verses.map(x=>option(x.number,'Ayat '+x.number,state.ayat===x.number)).join('')+'</select></label>'
-      +'</nav>';
+    return '<nav class="reader-pager" aria-label="Navigasi pasal dan ayat">'
+      +'<button class="reader-pager-arrow" type="button" aria-label="Pasal sebelumnya" title="Pasal sebelumnya" '+(prev?'data-passage="'+H(prev.id)+'"':'disabled')+'>‹</button>'
+      +'<label class="reader-passage-selector"><span class="visually-hidden">Pilih pasal</span><select id="jump-passage" aria-label="Pilih pasal">'+c.passages.map(x=>option(x.id,'Pasal '+x.number,x.id===p.id)).join('')+'</select></label>'
+      +'<button class="reader-pager-arrow" type="button" aria-label="Pasal berikutnya" title="Pasal berikutnya" '+(next?'data-passage="'+H(next.id)+'"':'disabled')+'>›</button>'
+      +'</nav>'
+      +'<details class="reader-ayat-disclosure"'+(state.ayat?' open':'')+'>'
+      +'<summary>'+(state.ayat?'Ayat '+state.ayat+' dipilih':'Pilih ayat')+'</summary>'
+      +'<label><span class="visually-hidden">Pilih ayat</span><select id="jump-ayat" aria-label="Pilih ayat"'+(verses.length>1?'':' disabled title="Ayat bernomor belum terverifikasi"')+'>'
+      +option('0','Seluruh pasal',!state.ayat)+verses.map(x=>option(x.number,'Ayat '+x.number,state.ayat===x.number)).join('')+'</select></label>'
+      +'</details>';
   }
   // Legge supplies source paragraphs, NOT the MATAKIN numbered ayat.
   // Do not invent "Bagian 1/2" as if they were a different verse system.
@@ -152,17 +167,35 @@
       :'';
     return note+'<div class="translation-prose" lang="en">'+readingParagraphs(source,'en',H)+'</div>';
   }
-  function reader(){const p=byId(state.id);if(!p){navigate('books');return;}state.last=p.id;save();const c=state.chapters.find(c=>c.id===p._chapter);const b=book(p._book);const pos=state.passages.findIndex(x=>x.id===p.id);const prev=state.passages[pos-1],next=state.passages[pos+1];const s=state.settings;const aligned=globalThis.RuSubverses?.align(p)||null;
-    main.innerHTML='<div class="breadcrumb"><button data-action="all">Kitab</button> › <button data-book="'+b.id+'">'+b.name+'</button> › <button data-chapter="'+H(c.id)+'">'+H(c.title)+'</button></div>'
-    +jumpMenu(p,c,b)
-     +'<div class="reader-heading"><div><span class="eyebrow">Si Shu · '+b.hanzi+'</span><h1>'+H(c.title)+'</h1><p>Pasal '+p.number+(state.ayat?' · Ayat '+state.ayat+' dipilih':'')+'</p></div><div class="chips">'+[['hanzi','Hanzi'],['pinyin','Pinyin'],['indo','Indonesia'],['english','English']].map(([key,text])=>'<button class="chip '+(s[key]?'on':'')+'" data-toggle="'+key+'" aria-pressed="'+s[key]+'">'+text+'</button>').join('')+'</div></div>'
-    +'<div class="reader-grid"><article class="paper-page"><div class="passage-top"><span>PASAL '+p.number+'</span><button class="save-btn" data-action="bookmark" aria-pressed="'+state.saved.includes(p.id)+'">'+(state.saved.includes(p.id)?'♥ Tersimpan':'♡ Simpan')+'</button></div>'
-    +(s.hanzi?'<div class="hanzi-text '+(s.pinyin?'':'no-pinyin')+'" style="--hanzi-size:'+s.font+'px" lang="zh-Hant">'+hanziWithSubverses(p,aligned)+'</div>':'')
-    +(s.indo?'<section class="translation"><h3>Bahasa Indonesia · MATAKIN</h3>'+indonesiaWithSubverses(p,aligned)+'</section>':'')
-     +(s.english&&p.translation_english?'<section class="translation english"><h3>English · James Legge · tingkat pasal</h3>'+englishReading(p)+'</section>':'')
-    +'</article><aside class="reader-aside"><h3>Catatan pribadi</h3><p>Catatan ini disimpan hanya di browser perangkat Anda.</p><textarea id="personal-note" aria-label="Catatan pribadi" placeholder="Tuliskan pemikiran Anda…">'+H(state.notes[p.id]||'')+'</textarea><button class="primary" data-action="save-note">Simpan catatan</button>'
-    +annotation(p)+(window.RuEditorial?.canEdit?.()?'<div class="rule"></div><button class="secondary" data-action="propose" style="width:100%">'+(state.ayat?'Usulkan revisi Ayat '+state.ayat:'Usulkan revisi teks')+'</button>':'')
-    +'</aside></div><div class="reader-nav"><button '+(prev?'data-passage="'+H(prev.id)+'"':'disabled')+'>← Pasal sebelumnya</button><button '+(next?'data-passage="'+H(next.id)+'"':'disabled')+'>Pasal berikutnya →</button></div>';
+  function reader(){
+    const p=byId(state.id);if(!p){navigate('books');return;}
+    state.last=p.id;save();
+    const c=state.chapters.find(c=>c.id===p._chapter),b=book(p._book);
+    const pos=state.passages.findIndex(x=>x.id===p.id);
+    const prev=state.passages[pos-1],next=state.passages[pos+1];
+    const s=state.settings,aligned=globalThis.RuSubverses?.align(p)||null;
+    main.innerHTML=chapterPicker(p,c,b)
+      +'<div class="reader-grid"><article class="paper-page reader-page">'
+      +'<div class="reader-text-heading"><span>Pasal '+p.number+(state.ayat?' · Ayat '+state.ayat+' dipilih':'')+'</span></div>'
+      +(s.hanzi?'<section class="reader-script"><div class="hanzi-text '+(s.pinyin?'':'no-pinyin')+'" style="--hanzi-size:'+s.font+'px" lang="zh-Hant">'+hanziWithSubverses(p,aligned)+'</div></section>':'')
+      +'<div class="reader-translation-stack">'
+      +(s.indo?'<section id="reader-translation-indo" class="translation translation-indo"><h3>Terjemahan Indonesia (MATAKIN)</h3>'+indonesiaWithSubverses(p,aligned)+'</section>':'')
+      +(s.english&&p.translation_english?'<section id="reader-translation-en" class="translation english"><h3>English · James Legge</h3>'+englishReading(p)+'</section>':'')
+      +'</div></article></div>'
+      +'<details class="reader-notes" id="reader-notes"><summary>Catatan &amp; komentar</summary>'
+      +'<div class="reader-notes-body"><h3>Catatan pribadi</h3><p>Catatan ini disimpan hanya di browser perangkat Anda.</p>'
+      +'<textarea id="personal-note" aria-label="Catatan pribadi" placeholder="Tuliskan pemikiran Anda…">'+H(state.notes[p.id]||'')+'</textarea>'
+      +'<button class="primary" data-action="save-note">Simpan catatan</button>'
+      +annotation(p)
+      +(window.RuEditorial?.canEdit?.()?'<div class="rule"></div><button class="secondary" data-action="propose">'+(state.ayat?'Usulkan revisi Ayat '+state.ayat:'Usulkan revisi teks')+'</button>':'')
+      +'</div></details>'
+      +'<div class="reader-bottom-controls">'
+      +'<div class="reader-toolbar" role="toolbar" aria-label="Alat baca">'
+      +'<button type="button" data-action="translation" title="Lihat terjemahan">文A <span>Terjemahan</span></button>'
+      +'<button type="button" data-action="bookmark" aria-label="'+(state.saved.includes(p.id)?'Hapus dari koleksi':'Simpan pasal')+'" aria-pressed="'+state.saved.includes(p.id)+'">'+(state.saved.includes(p.id)?'♥':'♡')+'</button>'
+      +'<button type="button" data-action="notes" title="Catatan dan komentar">▤ <span>Catatan &amp; komentar</span></button>'
+      +'<button type="button" data-action="settings" aria-label="Pengaturan bacaan">☷</button>'
+      +'</div>'+jumpMenu(p,c,b,prev,next)+'</div>';
   }
   function renderSearchResults(){const box=document.getElementById('search-results');if(!box)return;const term=norm(state.search.trim());const candidates=state.passages.filter(p=>state.filter==='all'||p._book===state.filter);
     if(!term){box.innerHTML='<p class="muted">Ketik kata kunci untuk mencari dalam teks Hanzi, pinyin, atau terjemahan.</p>';return;}
@@ -222,6 +255,9 @@
       const a=t.dataset.action;
       if(a==='home')navigate('home');if(a==='all'){state.book=null;navigate('books');}
       if(a==='start')navigate('reader',state.last&&state.map.has(state.last)?state.last:state.passages[0]?.id);
+      if(a==='translation'){const target=document.getElementById('reader-translation-indo')||document.getElementById('reader-translation-en');target?.scrollIntoView?.({behavior:'smooth',block:'start'});}
+      if(a==='notes'){const notes=document.getElementById('reader-notes');if(notes){notes.open=true;notes.scrollIntoView?.({behavior:'smooth',block:'start'});}}
+
       if(a==='theme'){const arr=['paper','light','dark'];setTheme(arr[(arr.indexOf(state.theme)+1)%arr.length]);render();}
       if(a==='settings'){fillSettings();document.getElementById('settings-dialog').showModal();}
       if(a==='about')document.getElementById('about-dialog').showModal();
