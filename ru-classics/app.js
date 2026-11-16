@@ -185,7 +185,7 @@
     if(!Array.isArray(paragraphs))return '';
     const displayCharacter=character=>{
       const vertical=globalThis.RuHanziLayout?.verticalForm?.(character)||character;
-      return '<span class="hanzi-mark-cell"><span class="hanzi-mark-source">'+H(character)+'</span>'+
+      return '<span class="hanzi-mark-cell'+(vertical!==character?' has-vertical-form':'')+'"><span class="hanzi-mark-source">'+H(character)+'</span>'+
         (vertical!==character?'<span class="hanzi-mark-vertical" aria-hidden="true">'+H(vertical)+'</span>':'')+
         '</span>';
     };
