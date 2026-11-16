@@ -319,7 +319,7 @@
     const s=state.settings;
     const aligned=globalThis.RuSubverses?.align(p)||null;
     main.innerHTML=chapterPicker(p,c,b)+desktopNavigation(p,c,b,prev,next)
-      +'<div class="reader-grid'+(s.verticalHanzi===false?' horizontal-hanzi':'')+'"><article class="paper-page reader-page">'
+      +'<div class="reader-grid'+(s.verticalHanzi===false?' horizontal-hanzi':'')+'"><article class="paper-page reader-page'+(s.hanzi?' reader-two-column':'')+'">'
       +'<div class="reader-text-heading"><span>'+tr('passage')+' '+p.number+(state.ayat?' · '+tr('verse')+' '+state.ayat+' dipilih':'')+'</span></div>'
       +(s.hanzi?'<section class="reader-script"><div class="hanzi-text '+(s.pinyin?'':'no-pinyin')+'" lang="zh-Hant">'+hanziWithSubverses(p,aligned)+'</div></section>':'')
       +'<div class="reader-translation-stack">'
