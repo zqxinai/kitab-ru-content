@@ -131,8 +131,83 @@
     Object.freeze({"passage_id":"sishu.mengzi.05.03","source":"(S.S.XVII:1)","display":"(Sabda Suci — Lun Yu XVII:1)","target_id":"sishu.lunyu.17.01","decision":"presentation-only / MATAKIN source number mapped to existing passage; original remains unmodified; 2012 exact phrasing not attested"}),
     Object.freeze({"passage_id":"sishu.mengzi.02.07","source":"(SS XIII.24)","display":"(Sabda Suci — Lun Yu XIII:24)","target_id":"sishu.lunyu.13.24","decision":"presentation-only / MATAKIN source number mapped to existing passage; original remains unmodified; 2012 exact phrasing not attested"})
   ]);
+  // Owner-verified MATAKIN 2012 reference corrections. Never mutate the
+  // MATAKIN 2011 transcription: replace exact (passage_id, source) overlay
+  // records only, keeping notes for genuine numbering contradictions.
+  const curated=Object.freeze(  [
+    {
+      "passage_id": "sishu.lunyu.02.11",
+      "source": "(T.S. XXV1:6)",
+      "display": "(Tengah Sempurna — Zhong Yong XXVI:6)",
+      "target_id": "sishu.zhongyong.27.06",
+      "decision": "Pemilik cetakan MATAKIN 2012 menegaskan XXVI:6, bukan XXV1:6; pasangan pasal 27.06 benar"
+    },
+    {
+      "passage_id": "sishu.lunyu.05.08",
+      "source": "(T.S. VIII)",
+      "display": "(Tengah Sempurna — Zhong Yong Bab VIII)",
+      "target_id": "sishu.zhongyong.09.01",
+      "decision": "Pemilik mengonfirmasi hanya Bab VIII; isinya hanya satu pasal; tautan diarahkan ke satu-satunya pasal tanpa mengubah label menjadi VIII:1"
+    },
+    {
+      "passage_id": "sishu.lunyu.12.20",
+      "source": "(T.S. VIII)",
+      "display": "(Tengah Sempurna — Zhong Yong Bab VIII)",
+      "target_id": "sishu.zhongyong.09.01",
+      "decision": "Konsistensi rujukan Bab VIII ke satu-satunya pasal dalam bab"
+    },
+    {
+      "passage_id": "sishu.lunyu.06.26",
+      "source": "(Bc.VA: 3/4)",
+      "display": "(Mengzi — Bing Cu V A:3/4)",
+      "target_id": null,
+      "decision": "Pemilik memastikan rujukan tercetak V A:3/4 pada MATAKIN 2012. Kandidat paralel kuat Mengzi V A:2 ayat 4, tetapi bukan koreksi cetakan",
+      "note": "Rujukan MATAKIN 2012 berbunyi V A:3/4, tetapi ayat tersebut tidak ditemukan. Paralel isi ditemukan dalam Mengzi V A:2 ayat 4: 君子可欺以其方，難罔以非其道. Usulan alternatif, belum disahkan sebagai koreksi cetakan."
+    },
+    {
+      "passage_id": "sishu.lunyu.14.10",
+      "source": "(S.S. 1:15)",
+      "display": "(Sabda Suci — Lun Yu I:15)",
+      "target_id": "sishu.lunyu.01.15",
+      "decision": "Pemilik memastikan angka 1 pada hasil ekstraksi seharusnya angka Romawi I"
+    },
+    {
+      "passage_id": "sishu.lunyu.18.01",
+      "source": "(Mengzi - Bingcu IIA: 1/8)",
+      "display": "(Mengzi — Bing Cu II A:1/8)",
+      "target_id": "sishu.mengzi.03.01",
+      "decision": "Nama kitab dan pasal dipastikan; pemilik menyebut ayat 5 walaupun rujukan tercetak berbunyi /8. Link sementara hanya pada pasal, bukan ayat",
+      "note": "Rujukan sumber mencantumkan II A:1/8, sedangkan keterangan pemilik menyebut ayat 5. Nomor ayat masih perlu rekonsiliasi; tautan diarahkan ke pasal II A:1 tanpa memaksakan ayat 5 atau 8."
+    },
+    {
+      "passage_id": "sishu.mengzi.03.02",
+      "source": "(TS.XXIX- XXXI;SS 23-25)",
+      "display": "(Tengah Sempurna — Zhong Yong Bab XXIX–XXXI; Sabda Suci — Lun Yu XIX:23,24,25)",
+      "target_id": null,
+      "decision": "Pemilik memastikan konteks Mengzi II A:2 ayat 26; T.S. Bab XXIX–XXXI dan S.S. Bab XIX:23 s.d.25. Tiga pasal S.S. dapat diberi tautan terpisah; rentang bab T.S. tetap berupa label bab"
+    },
+    {
+      "passage_id": "sishu.mengzi.01.07",
+      "source": "(II.5.4.4)",
+      "display": "(Shi Jing — Si King II.5.4.4)",
+      "target_id": null,
+      "decision": "Pemilik mengonfirmasi sumber Shi Jing II.5.4.4, berada dalam Mengzi I A:7 ayat 9. Tidak membuat tautan kitab luar Si Shu"
+    },
+    {
+      "passage_id": "sishu.daxue.03.03",
+      "source": "(Si-kingIII.1.1.1)",
+      "display": "(Shi Jing — Si King III.1.1.4)",
+      "target_id": null,
+      "decision": "Pemilik memastikan rujukan Shi Jing III.1.1.4, bukan III.1.1.1. Arsip MATAKIN 2011 tidak ditimpa"
+    }
+  ].map(r=>Object.freeze(r)));
+  const correctedKeys=new Set(curated.map(r=>r.passage_id+'::'+r.source));
+  const canonicalRecords=Object.freeze([
+    ...records.filter(r=>!correctedKeys.has(r.passage_id+'::'+r.source)),
+    ...curated
+  ]);
   const byId=new Map();
-  for(const r of records){
+  for(const r of canonicalRecords){
     if(!byId.has(r.passage_id))byId.set(r.passage_id,[]);
     byId.get(r.passage_id).push(r);
   }
@@ -154,7 +229,7 @@
       if(!r.source)continue;
       let at=0;
       while((at=text.indexOf(r.source,at))!==-1){
-        matches.push({start:at,end:at+r.source.length,text:r.display,target_id:r.target_id??null});
+        matches.push({start:at,end:at+r.source.length,text:r.display,target_id:r.target_id??null,...(r.note?{note:r.note}:{})});
         at+=r.source.length;
       }
     }
@@ -164,13 +239,13 @@
     for(const r of matches){
       if(r.start<cursor)continue;
       if(r.start>cursor)parts.push({text:text.slice(cursor,r.start),target_id:null});
-      parts.push({text:r.text,target_id:r.target_id});
+      parts.push({text:r.text,target_id:r.target_id,...(r.note?{note:r.note}:{})});
       cursor=r.end;
     }
     if(cursor<text.length||!parts.length)parts.push({text:text.slice(cursor),target_id:null});
     return parts;
   }
-  const api=Object.freeze({records,present,segments});
+  const api=Object.freeze({records:canonicalRecords,present,segments});
   if(typeof module!=='undefined'&&module.exports)module.exports=api;
   scope.Matakin2012References=api;
 })(typeof globalThis!=='undefined'?globalThis:this);
