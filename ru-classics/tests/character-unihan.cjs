@@ -62,6 +62,6 @@ test('Glossary explicitly distinguishes absent English definitions and rejected 
  assert.match(app,/dictionary\.englishGloss/);
  assert.match(app,/installUnihan/);
  assert.match(app,/data\/character-unihan\.json/);
- assert.match(html,/styles\.css\?v=20261117-unihan-v1/);
- assert.match(html,/app\.js\?v=20261117-unihan-v1/);
+ assert.match(html,/styles\.css\?v=20261117-cidict-v2/);
+ assert.match(html,/app\.js\?v=20261117-cidict-v2/);
 });
