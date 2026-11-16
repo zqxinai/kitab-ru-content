@@ -246,8 +246,11 @@
     put('hanzi',ch);
     put('pinyin',trigger.dataset.hanziPinyin||'Pinyin belum tersedia pada sumber');
     put('simplified',simplified&&simplified!==ch?simplified:'Sama / tidak dicantumkan');
-    put('gloss',dictionary.gloss||'Arti Indonesia belum tersedia dari glosarium editorial.');
     const idReadings=dictionary.indonesianReadings||[];
+    const cidictPrimary=idReadings.flatMap(r=>r.definitions||[]).slice(0,3).join(' · ');
+    put('gloss',dictionary.gloss||cidictPrimary||'Arti Indonesia belum tersedia dari kamus.');
+    put('gloss-origin',dictionary.gloss?'Glosarium editorial awal Ru Classics':
+      cidictPrimary?'CC-CIDICT · kamus Indonesia umum, bukan tafsir ayat':'Belum ditemukan di sumber kamus Indonesia');
     put('cidict',idReadings.length?idReadings.flatMap(r=>r.definitions||[]).slice(0,9).join(' · '):
       'Kamus CC-CIDICT belum memiliki entri Indonesia untuk karakter ini.');
     put('cidict-source',dictionary.indonesianSource||
