@@ -56,7 +56,7 @@ test('public reader loads alignment module and actually renders numbered ruby an
   assert.match(html,/<script src="\.\/subverses\.js" defer><\/script>/);
   assert.ok(html.indexOf('src="./subverses.js"')<html.indexOf('src="./app.js"'),'Load module before reader');
   assert.match(app,/const aligned=globalThis\.RuSubverses\?\.align\(p\)\|\|null/);
-  assert.match(app,/\+hanziWithSubverses\(p,aligned\)\+'<\/div>'/);
+  assert.match(app,/\+hanziWithSubverses\(p,aligned\)\+'<\/div><\/section>'/);
   assert.match(app,/\+indonesiaWithSubverses\(p,aligned\)\+'<\/section>'/);
   assert.match(app,/if\(!aligned\)return ruby\(p\.ruby_paragraphs\)/);
   assert.match(app,/if\(!verses\)return '<div class="translation-prose">'\+format\(p\.translation_indonesian/);
