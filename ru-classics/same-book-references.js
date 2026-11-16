@@ -20,7 +20,7 @@
     const chapter=2*bookNumber-1+(section==='B'?1:0);
     const target_id='sishu.mengzi.'+String(chapter).padStart(2,'0')+'.'+String(number).padStart(2,'0');
     const ref=m[1].toUpperCase()+' '+section+':'+number+(ayat===null?'':'/'+ayat);
-    return {text:'(Mengzi — Bing Cu '+ref+')',target_id,ayat};
+    return {text:'(Mengzi - Bingcu '+ref+')',target_id,ayat};
   }
   function expand(passageId,parts,canNavigate){
     if(!Array.isArray(parts))return [];
