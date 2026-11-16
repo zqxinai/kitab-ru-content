@@ -173,7 +173,8 @@
     const c=state.chapters.find(c=>c.id===p._chapter),b=book(p._book);
     const pos=state.passages.findIndex(x=>x.id===p.id);
     const prev=state.passages[pos-1],next=state.passages[pos+1];
-    const s=state.settings,aligned=globalThis.RuSubverses?.align(p)||null;
+    const s=state.settings;
+    const aligned=globalThis.RuSubverses?.align(p)||null;
     main.innerHTML=chapterPicker(p,c,b)
       +'<div class="reader-grid"><article class="paper-page reader-page">'
       +'<div class="reader-text-heading"><span>Pasal '+p.number+(state.ayat?' · Ayat '+state.ayat+' dipilih':'')+'</span></div>'
