@@ -313,6 +313,53 @@
   // Kolasi khusus berdasarkan Hanzi. Satu ejaan Hokkian bisa mewakili
   // aksara berbeda: Chien => 晉 (Jin) atau 秦 (Qin); Swan => 僎 atau 宣.
   const CONTEXTUAL = Object.freeze({
+    'sishu.lunyu.07.14': [
+      ["lagu Siau", "lagu Shao - Siau"], // 韶
+    ],
+    'sishu.lunyu.05.25': [
+      ["Coo Khiubing", "Zuoqiu Ming - Coo Khiubing"], // 左丘明
+    ],
+    'sishu.lunyu.11.18': [
+      ["Koo Chai", "Gao Chai - Koo Chai"], // 柴, full surname 高 from Zhu Xi
+      ["Cing Cham", "Zeng Shen - Cing Cham"], // 參, 曾參 from Zhu Xi
+      ["Cwansun Su", "Zhuansun Shi - Cwansun Su"], // 師, known 顓孫師
+    ],
+    'sishu.lunyu.11.02': [
+      ["dan Chai itu", "dan Cai - Chai itu"], // 蔡, not disciple 柴 Chai
+    ],
+    'sishu.mengzi.14.29': [
+      ["Phunsing Kwat", "Pencheng Kuo - Phunsing Kwat"], // 盆成括
+    ],
+    'sishu.mengzi.11.09': [
+      ["Phok Chiu", "Yi Qiu - Phok Chiu"], // 弈秋
+    ],
+    'sishu.lunyu.05.21': [
+      ["Ling Bucu", "Ning Wuzi - Ling Bucu"], // 寧武子
+    ],
+    'sishu.lunyu.05.24': [
+      ["Bising Koo", "Weisheng Gao - Bising Koo"], // 微生高
+    ],
+    'sishu.lunyu.11.19': [
+      ["Gan Hwee", "Yan Hui - Gan Hwee"], // 回, Yan Hui
+    ],
+    'sishu.mengzi.11.06': [
+      ["Bicu Khee", "Weizi Qi - Bicu Khee"], // 微子啓
+    ],
+    'sishu.mengzi.02.16': [
+      ["Cong Chong", "Zang Cang - Cong Chong"], // 臧倉
+    ],
+    'sishu.lunyu.14.17': [
+      ["Raja muda Hwan", "Raja muda Huan - Hwan"], // 桓公
+      ["Rajamuda Hwan", "Rajamuda Huan - Hwan"], // 桓公
+    ],
+    'sishu.lunyu.14.16': [
+      ["Rajamuda Hwan", "Rajamuda Huan - Hwan"], // 桓公
+      ["Raja muda Hwan", "Raja muda Huan - Hwan"], // 桓公
+      ["Tiau Hut", "Shao Hu - Tiau Hut"], // 召忽
+    ],
+    'sishu.lunyu.11.03': [
+      ["Kwi Lo", "Ji Lu - Kwi Lo"], // 季路
+    ],
     'sishu.lunyu.05.15': [
       ['Khong Buncu', 'Kong Wenzi - Khong Buncu'], // 孔文子
     ],
@@ -332,6 +379,8 @@
       ['Tatkala Chik ke', 'Tatkala Chi - Chik ke'], // 赤
     ],
     'sishu.mengzi.08.29': [
+      ["Gan Hwee", "Yan Hui - Gan Hwee"], // 顏回
+      ["Gancu", "Yanzi - Gancu"], // 顏子
       ['dan Cik', 'dan Ji - Cik'], // 稷, not 蹠 Zhi in Mengzi III B:10
     ],
     'sishu.lunyu.14.05': [
@@ -406,6 +455,9 @@
       ['Siancai!', 'Shanzai - Siancai!'], // 善哉
     ],
     'sishu.mengzi.03.01': [
+      ["Bicu", "Weizi - Bicu"], // 微子
+      ["Bitiong", "Weizhong - Bitiong"], // 微仲
+      ["Kicu", "Jizi - Kicu"], // 箕子
       ['He, Ten dan Ciu', 'Xia - He, Yin - Ten dan Zhou - Ciu'], // 夏後 殷 周; keep printed 'Ten' as variant
     ],
     'sishu.zhongyong.18.02': [
@@ -613,6 +665,8 @@
       ['I selama 8 tahun', 'Yu - I selama 8 tahun'] // 禹
     ],
     'sishu.mengzi.06.09': [
+      ["Chun Chiu", "Chunqiu - Chun Chiu"], // 春秋
+      ["Ajaran Yang Cu", "Ajaran Yang Zhu - Yang Cu"], // 楊朱
       ['Yangcu', 'Yang Zhu - Yangcu'], // matched verse Hanzi
       ['Bik Tik', 'Mo Di - Bik Tik'], // matched verse Hanzi
       ['Sungai Kang', 'Sungai Jiang - Kang'], // nama lokasi, cocokkan Hanzi pada sishu.mengzi.06.09
@@ -640,6 +694,9 @@
       ['Piet-ting', 'Bi Ying - Piet-ting'] // 畢郢
     ],
     'sishu.mengzi.08.21': [
+      ["Chun Chiu", "Chunqiu - Chun Chiu"], // 春秋
+      ["Kitab Sing", "Kitab Sheng - Sing"], // 晉之乘, 乘 shèng
+      ["Kitab Too Gut", "Kitab Taowu - Too Gut"], // 楚之檮杌
       ['Negeri Cien', 'Negeri Jin - Cien'] // 晉
     ],
     'sishu.mengzi.10.03': [
@@ -685,6 +742,7 @@
       ['Kota Tiu', 'Kota Zhou - Tiu'] // toponim diverifikasi dengan Hanzi sumber
     ],
     'sishu.mengzi.05.02': [
+      ["Jian Yu", "Ran You - Jian Yu"], // 然友, not 冉有
       ['Kota Coo', 'Kota Zou - Coo'] // toponim diverifikasi dengan Hanzi sumber
     ],
     'sishu.mengzi.07.08': [
@@ -762,6 +820,7 @@
       ['daerah Pi', 'daerah Bi - Pi']
     ],
     'sishu.lunyu.16.01': [
+      ["Keluarga Kwi", "Keluarga Ji - Kwi"], // 季氏
       ['gunung Tong Bong', 'gunung Dongmeng - Tong Bong'], // Hanzi verified context
       ['daerah Pi', 'daerah Bi - Pi'],
       ['daerah Cwan-ji', 'daerah Zhuanyu - Cwan-ji'],
@@ -784,6 +843,7 @@
       ['Gunung Siu-yang', 'Gunung Shouyang - Siu-yang']
     ],
     'sishu.lunyu.17.07': [
+      ["Piet Hiet", "Bi Xi - Piet Hiet"], // 佛肸
       ['daerah Tiong-bo', 'daerah Zhongmou - Tiong-bo']
     ],
     'sishu.zhongyong.26.08': [

@@ -13,6 +13,7 @@ on:
       - "tools/audit_unseeded_hokkian.cjs"
       - "tools/audit_ru_singleword_names.cjs"
       - "docs/audits/ru-classics-singleword-romanization-2026-11-16.md"
+      - "docs/audits/ru-classics-singleword-romanization-batch02-2026-11-16.md"
       - ".github/workflows/ru-reading-regression.yml"
   pull_request:
     paths:
@@ -24,6 +25,7 @@ on:
       - "tools/audit_unseeded_hokkian.cjs"
       - "tools/audit_ru_singleword_names.cjs"
       - "docs/audits/ru-classics-singleword-romanization-2026-11-16.md"
+      - "docs/audits/ru-classics-singleword-romanization-batch02-2026-11-16.md"
       - ".github/workflows/ru-reading-regression.yml"
 jobs:
   reading-regression:
