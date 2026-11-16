@@ -79,7 +79,7 @@ test('Browser loads reference and typography modules before the reader',()=>{
  const editor=read('ru-classics/editor.js');
  for(const file of ['reference-links.js','same-book-references.js','book-references.js','reading-layout.js','subverses.js']){
    assert.ok(html.includes('src="./'+file+'"'));
-   assert.ok(html.indexOf('src="./'+file+'"')<html.indexOf('src="./app.js"'));
+   assert.ok(html.indexOf('src="./'+file+'"')<html.indexOf('src="./app.js'));
  }
  assert.match(reader,/RuReferenceLinks\?\.parts/);
  assert.match(reader,/RuSameBookReferences\?\.expand/);
@@ -118,4 +118,19 @@ test('Mobile passage and ayat selectors share one pager; desktop has independent
   // The number/meaning of source ayat remains supplied by the existing MATAKIN split module.
   assert.match(app,/RuSubverses\?\.splitIndonesia\(p\.translation_indonesian\)/);
   assert.match(app,/English units without changing either canonical text/);
+});
+
+test('Desktop layout activates at tablet viewport and does not rely on :has or stale CSS URLs',()=>{
+ const css=read('ru-classics/styles.css');
+ const app=read('ru-classics/app.js');
+ const html=read('ru-classics/index.html');
+ assert.match(css,/@media\(min-width:768px\)\{/);
+ assert.match(css,/\.reader-page\.reader-two-column\{display:grid;grid-template-columns:minmax\(0,2fr\) minmax\(0,3fr\)/);
+ assert.match(css,/\.reader-script \.hanzi-text\{[\s\S]*?writing-mode:vertical-rl/);
+ assert.match(css,/\.reader-script \.hanzi-text ruby rt\{[\s\S]*?writing-mode:horizontal-tb/);
+ assert.doesNotMatch(css,/reader-page:has\(/);
+ assert.match(app,/reader-two-column/);
+ assert.match(app,/main\.classList\.toggle\('is-reading'/);
+ assert.match(html,/styles\.css\?v=20261116-reader-v2/);
+ assert.match(html,/app\.js\?v=20261116-reader-v2/);
 });
