@@ -133,8 +133,8 @@ test('Desktop layout activates at tablet viewport and does not rely on :has or s
  assert.doesNotMatch(css,/reader-page:has\(/);
  assert.match(app,/reader-two-column/);
  assert.match(app,/main\.classList\?\.toggle\?\.\('is-reading'/);
- assert.match(html,/styles\.css\?v=20261116-[A-Za-z0-9-]+/,'CSS asset must be cache-busted for the current release');
- assert.match(html,/app\.js\?v=20261116-icon-align-v3/);
+ assert.match(html,/styles\.css\?v=20261117-unihan-v1/,'CSS asset must be cache-busted for the current release');
+ assert.match(html,/app\.js\?v=20261117-unihan-v1/);
 });
 
 test('Hanzi clauses respect original punctuation and keep quote closures with the preceding question',()=>{
@@ -285,8 +285,8 @@ test('Reader navigation and dictionary close buttons use geometry-centered SVG i
  assert.match(app,/aria-hidden="true" focusable="false"/);
  assert.match(html,/class="character-close-icon"/);
  assert.match(html,/data-character-close aria-label="Tutup kamus karakter"/);
- assert.match(html,/styles\.css\?v=20261116-icon-align-v3/);
- assert.match(html,/app\.js\?v=20261116-icon-align-v3/);
+ assert.match(html,/styles\.css\?v=20261117-unihan-v1/);
+ assert.match(html,/app\.js\?v=20261117-unihan-v1/);
  assert.match(css,/\.reader-pager-arrow,\s*\.reader-desktop-step,\s*\.character-inspector-close\s*\{[\s\S]*?place-items:center;[\s\S]*?padding:0;[\s\S]*?line-height:0;/);
  assert.match(css,/\.reader-step-icon,\s*\.character-close-icon\s*\{[\s\S]*?display:block;/);
 });

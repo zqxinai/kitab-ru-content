@@ -7,7 +7,7 @@
 <meta name="description" content="Ru Classics, ruang baca Si Shu dengan Hanzi, pinyin, bahasa Indonesia dan Inggris.">
 <title>Ru Classics · Kitab Klasik Ru</title>
 <link rel="icon" href="./favicon.svg" type="image/svg+xml">
-<link rel="stylesheet" href="./styles.css?v=20261116-icon-align-v3">
+<link rel="stylesheet" href="./styles.css?v=20261117-unihan-v1">
 <script src="./firebase-config.js"></script>
 <script src="./reading-normalization.js?v=20261115-people-places-v2" defer></script>
 <script src="./reference-overlay.js" defer></script>
@@ -18,7 +18,7 @@
 <script src="./subverses.js" defer></script>
 <script src="./hanzi-layout.js" defer></script>
 <script src="./character-dictionary.js" defer></script>
-<script src="./app.js?v=20261116-icon-align-v3" defer></script>
+<script src="./app.js?v=20261117-unihan-v1" defer></script>
 <script type="module" src="./editor.js"></script>
 </head>
 <body data-theme="paper">
@@ -58,6 +58,11 @@
     <p data-inspector="gloss"></p>
     <p class="character-inspector-detail" data-inspector="note"></p>
   </section>
+  <section class="character-inspector-section character-inspector-unihan" lang="en">
+    <h3>Definisi kamus umum · English (Unihan)</h3>
+    <p data-inspector="unihan"></p>
+    <p class="character-inspector-unihan-source" data-inspector="unihan-source"></p>
+  </section>
   <section class="character-inspector-section">
     <h3>Dalam bacaan ini</h3>
     <p class="character-inspector-passage" data-inspector="passage"></p>
@@ -93,6 +98,7 @@
 <div class="about-glyph">儒</div><h2 id="about-title" data-i18n="about">Tentang Ru Classics</h2>
 <p data-i18n="aboutDescription">Perpustakaan digital klasik Ru, dimulai dari Si Shu (四書) — Da Xue, Zhong Yong, Lun Yu, dan Mengzi. Pembaca dapat menjelajahi teks Hanzi, pinyin, terjemahan Indonesia, dan padanan Inggris.</p>
 <p data-i18n="aboutSources">Terjemahan Indonesia mengacu pada edisi Si Shu MATAKIN. Komentar sumber ditampilkan terpisah dari teks utama.</p>
+<p class="dictionary-source-credit">Kamus: arti Indonesia berasal dari glosarium editorial awal Ru Classics; definisi bahasa Inggris tambahan berasal dari <a href="https://www.unicode.org/reports/tr38/" rel="noopener noreferrer" target="_blank">Unicode Unihan</a> (© Unicode, Inc., <a href="./data/UNICODE-LICENSE.txt" target="_blank" rel="noopener noreferrer">Unicode License v3 (teks lengkap)</a>). Definisi kamus umum bukan tafsir final atau terjemahan MATAKIN.</p>
 <p class="credit"><span data-i18n="createdBy">Dibuat oleh</span> <strong>周强信</strong> · Zhōu Qiángxìn</p>
 <details><summary data-i18n="versionAndEditorial">Versi dan status editorial</summary><p><strong>Web Alpha 0.2.0.</strong> <span data-i18n="editorialStatus">Teks masih melalui pemeriksaan editorial. Perubahan editor harus disetujui sebelum diterbitkan. Hak atas terjemahan dan anotasi tetap milik pemegang hak masing-masing.</span></p></details>
 </dialog>

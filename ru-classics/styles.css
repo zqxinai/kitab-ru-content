@@ -669,3 +669,19 @@
 .reader-pager-arrow .reader-step-icon{width:21px;height:21px}
 .reader-desktop-step .reader-step-icon{width:19px;height:19px}
 .character-inspector-close .character-close-icon{width:20px;height:20px}
+
+
+/* Unicode Unihan meanings are English-only and explicitly distinct from
+   editorial Indonesian glosses and passage-specific interpretation. */
+.character-inspector-unihan{
+  background:var(--hero2);
+  border:1px solid var(--line);
+  border-radius:12px;
+  padding:12px 14px;
+  margin:0 0 8px;
+}
+.character-inspector-unihan h3{font-size:12px;letter-spacing:.01em}
+.character-inspector-section .character-inspector-unihan-source{
+  color:var(--muted);font:400 10px/1.5 system-ui,sans-serif;
+}
+.dictionary-source-credit{font-size:12px;line-height:1.65;color:var(--muted)}

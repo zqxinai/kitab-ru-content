@@ -239,12 +239,14 @@
     put('hanzi',ch);
     put('pinyin',trigger.dataset.hanziPinyin||'Pinyin belum tersedia pada sumber');
     put('simplified',simplified&&simplified!==ch?simplified:'Sama / tidak dicantumkan');
-    put('gloss',dictionary.gloss||'Arti belum tersedia dalam glosarium awal.');
+    put('gloss',dictionary.gloss||'Arti Indonesia belum tersedia (belum dikurasi).');
+    put('unihan',dictionary.englishGloss||'Definisi bahasa Inggris tidak tersedia dalam Unihan untuk karakter ini.');
+    put('unihan-source',dictionary.englishSource||'Tidak ada entri Unihan yang terpasang untuk karakter ini.');
     put('note',dictionary.note||'Tidak ada catatan leksikal tambahan.');
     put('context',dictionary.context||'Belum ada penjelasan makna yang ditinjau khusus untuk pasal ini.');
     put('passage',p?book(p._book).title+' · '+(c?.title||'')+' · Pasal '+p.number:'');
     put('source-clause',clause||'Penggalan teks sumber tidak tersedia.');
-    put('provenance',dictionary.source||'Hanzi dan Pinyin berasal dari token naskah. Belum ada sumber kamus untuk arti karakter ini.');
+    put('provenance',dictionary.source||'Hanzi dan Pinyin berasal dari naskah. Tidak ada arti Indonesia yang dikurasi untuk karakter ini.');
     const coarse=!!window.matchMedia?.('(max-width: 767px), (pointer: coarse)')?.matches;
     popup.classList?.toggle?.('as-sheet',coarse);
     popup.hidden=false;
@@ -450,7 +452,30 @@
     if(chap.length!==78||pass.length!==965)throw Error('Data Si Shu belum lengkap ('+chap.length+' bab, '+pass.length+' pasal).');
     state.data=data;state.chapters=chap;state.passages=pass;state.map=new Map(pass.map(p=>[p.id,p]));
   }
-  async function boot(){restore();try{let response=await fetch('./data/sishu.json');if(!response.ok)throw Error('Data belum tersedia pada hasil publikasi');parseBundle(await response.json());route();window.dispatchEvent(new Event('ru:ready'));}catch(e){main.innerHTML='<div class="empty"><h2>Perpustakaan belum bisa dibuka</h2><p>'+H(e.message)+'</p><p>Periksa hasil build GitHub Pages atau coba lagi setelah publikasi selesai.</p><button class="secondary" onclick="location.reload()">Coba lagi</button></div>';}}
+  async function boot(){
+    restore();
+    try{
+      const response=await fetch('./data/sishu.json');
+      if(!response.ok)throw Error('Data belum tersedia pada hasil publikasi');
+      parseBundle(await response.json());
+      // Unihan is supplemental: failure to fetch must never prevent reading.
+      // Loaded before the first reader render so first taps work immediately.
+      try{
+        const lexicon=await fetch('./data/character-unihan.json');
+        if(lexicon.ok){
+          const payload=await lexicon.json();
+          if(!globalThis.RuCharacterDictionary?.installUnihan?.(payload))
+            console.warn('Unexpected Unihan lexicon format; using curated glossary only.');
+        }
+      }catch(error){
+        console.warn('Unihan glossary could not be loaded; source texts remain available.',error);
+      }
+      route();
+      window.dispatchEvent(new Event('ru:ready'));
+    }catch(e){
+      main.innerHTML='<div class="empty"><h2>Perpustakaan belum bisa dibuka</h2><p>'+H(e.message)+'</p><p>Periksa hasil build GitHub Pages atau coba lagi setelah publikasi selesai.</p><button class="secondary" onclick="location.reload()">Coba lagi</button></div>';
+    }
+  }
   document.addEventListener('click',e=>{
     const t=e.target.closest('button');if(!t)return;
     if(t.hasAttribute('data-hanzi-char')){openCharacterInspector(t);return;}

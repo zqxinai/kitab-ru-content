@@ -1,4 +1,4 @@
-/* Ru Classics character dictionary alpha.
+/* Ru Classics character dictionary: curated Indonesian + Unicode Unihan English fallback.
  * Self-contained curated starter glossary; not an authoritative classical dictionary.
  * Do not infer character meanings from MATAKIN/Legge translations, and do not use
  * these notes to rewrite canonical Si Shu text or cited references.
@@ -270,12 +270,47 @@ const CONTEXT=Object.freeze({
   }
 });
 const PROVENANCE='Glosarium editorial awal Ru Classics (belum ditinjau akademik).';
+let extended=null;
+let metadata=null;
+function installUnihan(payload){
+ if(!payload||payload.schema!=='ru-classics.unihan-glossary.v1'||
+    payload.license!=='Unicode-3.0'||payload.language!=='en'||
+    !payload.definitions||typeof payload.definitions!=='object'||Array.isArray(payload.definitions)||
+    !Number.isInteger(payload.total_unique_characters)||!Number.isInteger(payload.covered_unique_characters)){
+   return false;
+ }
+ const entries=Object.entries(payload.definitions);
+ if(entries.length!==payload.covered_unique_characters||entries.some(([char,gloss])=>
+    [...char].length!==1||typeof gloss!=='string'||!gloss.trim()))return false;
+ const source=String(payload.source||'').slice(0,120);
+ const sourceUrl=String(payload.source_url||'');
+ if(!source.startsWith('Unicode Unihan')||
+    !['https://www.unicode.org/Public/17.0.0/ucd/Unihan.zip',
+      'https://raw.githubusercontent.com/unicode-org/unihan-database/main/kDefinition.txt'].includes(sourceUrl))return false;
+ extended=Object.assign(Object.create(null),payload.definitions);
+ metadata=Object.freeze({
+   total:payload.total_unique_characters,
+   covered:payload.covered_unique_characters,
+   source,sourceUrl,
+   license:'Unicode-3.0'
+ });
+ return true;
+}
 function lookup(char, passageId){
  const entry=Object.prototype.hasOwnProperty.call(ENTRIES,char)?ENTRIES[char]:null;
  const context=Object.prototype.hasOwnProperty.call(CONTEXT,passageId)?CONTEXT[passageId]?.[char]:null;
- return {char,gloss:entry?.gloss||null,note:entry?.note||null,context:context||null,source:entry||context?PROVENANCE:null};
+ const english=extended&&Object.prototype.hasOwnProperty.call(extended,char)?extended[char]:null;
+ return {
+   char,gloss:entry?.gloss||null,note:entry?.note||null,
+   context:context||null,source:entry||context?PROVENANCE:null,
+   englishGloss:english||null,
+   englishSource:english?(metadata?.source+' · Unicode-3.0'):null
+ };
 }
-const api=Object.freeze({lookup,entryCount:Object.keys(ENTRIES).length,contextCount:Object.values(CONTEXT).reduce((n,x)=>n+Object.keys(x).length,0)});
+function coverage(){return metadata;}
+const api=Object.freeze({lookup,installUnihan,coverage,
+  entryCount:Object.keys(ENTRIES).length,
+  contextCount:Object.values(CONTEXT).reduce((n,x)=>n+Object.keys(x).length,0)});
 if(typeof module!=='undefined'&&module.exports)module.exports=api;
 scope.RuCharacterDictionary=api;
 })(typeof globalThis!=='undefined'?globalThis:this);
