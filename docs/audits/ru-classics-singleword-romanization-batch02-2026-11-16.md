@@ -33,6 +33,53 @@ Pendidikan Taiwan secara khusus mencantumkan `晉乘楚杌` dengan
 Rujukan konteks historis juga tersedia dalam teks Mengzi IV B:21 beserta
 catatan Zhu Xi: <https://ruism.org/library/mencius/4B>.
 
+## Audit susulan yang berhasil dicocokkan dengan Hanzi (19 pasangan tambahan)
+
+Diperiksa setelah inventaris awal dipersempit. Semuanya hanya berlaku pada pasal asal,
+tidak dijadikan substitusi fonetik global.
+
+| Pasal asal | Hanzi sumber | Teks MATAKIN | Tampilan tambahan |
+|---|---|---|---|
+| Mengzi II A:1 | 微子 | Bicu | Weizi – Bicu |
+| Mengzi II A:1 | 微仲 | Bitiong | Weizhong – Bitiong |
+| Mengzi II A:1 | 箕子 | Kicu | Jizi – Kicu |
+| Mengzi VI A:6 | 微子啓 | Bicu Khee | Weizi Qi – Bicu Khee |
+| Mengzi IV B:29 | 顏回 | Gan Hwee | Yan Hui – Gan Hwee |
+| Mengzi IV B:29 | 顏子 | Gancu | Yanzi – Gancu |
+| Lun Yu XI:19 | 回 | Gan Hwee | Yan Hui – Gan Hwee |
+| Lun Yu V:24 | 微生高 | Bising Koo | Weisheng Gao – Bising Koo |
+| Lun Yu V:21 | 寧武子 | Ling Bucu | Ning Wuzi – Ling Bucu |
+| Mengzi III A:2 | 然友 | Jian Yu | Ran You – Jian Yu |
+| Mengzi VI A:9 | 弈秋 | Phok Chiu | Yi Qiu – Phok Chiu |
+| Mengzi VII B:29 | 盆成括 | Phunsing Kwat | Pencheng Kuo – Phunsing Kwat |
+| Lun Yu XI:2 | 蔡 | Chai (negara) | Cai – Chai |
+| Lun Yu XI:18 | 柴 / 高柴 | Koo Chai | Gao Chai – Koo Chai |
+| Lun Yu XI:18 | 參 / 曾參 | Cing Cham | Zeng Shen – Cing Cham |
+| Lun Yu XI:18 | 師 / 顓孫師 | Cwansun Su | Zhuansun Shi – Cwansun Su |
+| Lun Yu XVII:7 | 佛肸 | Piet Hiet | Bi Xi – Piet Hiet |
+| Lun Yu V:25 | 左丘明 | Coo Khiubing | Zuoqiu Ming – Coo Khiubing |
+| Lun Yu VII:14 | 韶 | lagu Siau | lagu Shao – Siau |
+
+**Sumber pendukung untuk bentuk nama yang disingkat dalam Hanzi pasal:**
+anotasi Zhu Xi pada Lun Yu XI menjelaskan bahwa `柴` adalah murid
+bermarga 高 (*Gao Chai*), `參` adalah Zengzi (*Zeng Shen*),
+dan `師` adalah murid Zhuansun Shi; lihat
+<https://zh.wikisource.org/zh-hant/%E5%9B%9B%E6%9B%B8%E7%AB%A0%E5%8F%A5%E9%9B%86%E8%A8%BB_%28%E5%9B%9B%E5%BA%AB%E5%85%A8%E6%9B%B8%E6%9C%AC%29/%E8%AB%96%E8%AA%9E%E5%8D%B706>.
+Untuk `佛肸`, kamus Kementerian Pendidikan Taiwan mencatat
+`bì xì` (ditampilkan tanpa nada sebagai **Bi Xi**), lihat
+<https://dict.revised.moe.edu.tw/dictView.jsp?ID=17837&q=1&word=%E4%BD%9B>.
+
+**Identitas yang sengaja dipisah:**
+- `Cai – Chai` (蔡, negara) **bukan** `Gao Chai – Koo Chai` (柴, murid).
+- `Ran You – Jian Yu` (然友) **bukan** `Ran You – Jiam Yu` (冉有).
+  Pinyin tanpa nada dapat identik meskipun Hanzi dan tokoh berbeda.
+- `Weizi – Bicu` (微子) dan `Weizi Qi – Bicu Khee` (微子啓) tidak
+  dijadikan satu alias global, supaya nama lengkap tidak rusak.
+
+Tes baru `tests/ru-classics-reading-singleword-batch02-extra.test.js`
+mencocokkan kesembilan belas pasangan dengan Hanzi pasal, menjaga
+idempotensi, dan mencegah penyamaan nama/negara.
+
 ## Perbaikan cara membaca inventaris
 
 Skrip `tools/audit_ru_singleword_names.cjs` sebelumnya memberi **896 kandidat**
