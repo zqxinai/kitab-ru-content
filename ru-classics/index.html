@@ -24,17 +24,17 @@
 <header class="topbar">
 <button class="brand bare" data-action="home" aria-label="Ru Classics — beranda"><span class="brand-mark" aria-hidden="true">儒</span><span><b>Ru Classics</b><small>儒家經典 · Kitab Klasik Ru</small></span></button>
 <div class="top-actions">
-<button class="icon-btn" data-action="theme" aria-label="Ganti tema" title="Ganti tema">◐</button>
-<button class="icon-btn" data-action="settings" aria-label="Pengaturan bacaan" title="Pengaturan bacaan">Aa</button>
-<button class="login-button" data-action="editor">Ruang Editor</button>
+<button class="icon-btn" data-action="theme" data-i18n-aria="theme" data-i18n-title="theme" aria-label="Ganti tema" title="Ganti tema">◐</button>
+<button class="icon-btn" data-action="settings" data-i18n-aria="settings" data-i18n-title="settings" aria-label="Pengaturan bacaan" title="Pengaturan bacaan">Aa</button>
+<button class="login-button" data-action="editor" data-i18n="navEditor">Ruang Editor</button>
 </div>
 </header>
 <main id="main" tabindex="-1" aria-live="polite"><div class="loading"><span class="loading-glyph">儒</span><h1>Membuka perpustakaan…</h1><p>Menyiapkan Kitab Yang Empat.</p></div></main>
 <nav class="bottom-nav" aria-label="Navigasi utama">
-<button data-nav="home" class="active"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m3 10 9-7 9 7v10h-6v-6H9v6H3z"/></svg><span>Beranda</span></button>
-<button data-nav="books"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5c4-2 6-1 8 1v14c-2-2-5-3-8-1zM20 5c-4-2-6-1-8 1v14c2-2 5-3 8-1z"/></svg><span>Kitab</span></button>
-<button data-nav="search"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 5 5"/></svg><span>Cari</span></button>
-<button data-nav="saved"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3h12v18l-6-4-6 4z"/></svg><span>Koleksi</span></button>
+<button data-nav="home" class="active"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m3 10 9-7 9 7v10h-6v-6H9v6H3z"/></svg><span data-i18n="navHome">Beranda</span></button>
+<button data-nav="books"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5c4-2 6-1 8 1v14c-2-2-5-3-8-1zM20 5c-4-2-6-1-8 1v14c2-2 5-3 8-1z"/></svg><span data-i18n="navBooks">Kitab</span></button>
+<button data-nav="search"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 5 5"/></svg><span data-i18n="navSearch">Cari</span></button>
+<button data-nav="saved"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3h12v18l-6-4-6 4z"/></svg><span data-i18n="navSaved">Koleksi</span></button>
 </nav>
 <div id="toast" role="status" aria-live="polite"></div>
 <dialog id="settings-dialog" aria-labelledby="settings-title">
