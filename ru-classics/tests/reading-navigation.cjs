@@ -130,7 +130,7 @@ test('Desktop layout activates at tablet viewport and does not rely on :has or s
  assert.match(css,/\.reader-script \.hanzi-text ruby rt\{[\s\S]*?writing-mode:horizontal-tb/);
  assert.doesNotMatch(css,/reader-page:has\(/);
  assert.match(app,/reader-two-column/);
- assert.match(app,/main\.classList\.toggle\('is-reading'/);
+ assert.match(app,/main\.classList\?\.toggle\?\.\('is-reading'/);
  assert.match(html,/styles\.css\?v=20261116-reader-v2/);
  assert.match(html,/app\.js\?v=20261116-reader-v2/);
 });
