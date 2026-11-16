@@ -6,6 +6,8 @@ on:
       - 'ru-classics/**'
       - 'tools/build_ru_classics_web.py'
       - 'tools/build_ru_unihan_glossary.py'
+      - 'tools/build_ru_cidict_glossary.py'
+      - 'tools/test_ru_cidict_glossary.py'
       - 'tools/test_ru_unihan_glossary.py'
       - '.github/workflows/ru-classics-reader-preflight.yml'
   workflow_dispatch:
@@ -40,7 +42,10 @@ jobs:
           python tools/build_ru_classics_web.py --source dist/sishu-content.json --alignment dist/sishu-english-alignment.json --splits dist/sishu-english-passage-splits.json --output ru-classics/data/sishu.json
           python -m unittest tools.test_ru_unihan_glossary
           python tools/build_ru_unihan_glossary.py --bundle ru-classics/data/sishu.json --output ru-classics/data/character-unihan.json
+          python -m unittest tools.test_ru_cidict_glossary
+          python tools/build_ru_cidict_glossary.py --bundle ru-classics/data/sishu.json --output ru-classics/data/character-cidict.json
           node --test ru-classics/tests/character-unihan.cjs
+          node --test ru-classics/tests/character-cidict.cjs
           node ru-classics/tests/smoke.cjs
           node --test ru-classics/tests/subverses.cjs
           node --test ru-classics/tests/reading-navigation.cjs
