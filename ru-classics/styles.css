@@ -138,3 +138,76 @@
 .passage-number{min-width:0;min-height:45px;border:1px solid var(--line);border-radius:11px;background:var(--bg);color:var(--ink);font-size:15px;transition:background .2s,border-color .2s}
 .passage-number:hover{border-color:var(--accent);background:var(--panel2)}
 @media(max-width:360px){.passage-number-grid{grid-template-columns:repeat(5,minmax(0,1fr));gap:8px}}
+
+/* Reader 2026-11-16: calm mobile chapter selector and grouped translation cards. */
+.visually-hidden{position:absolute!important;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+.reader-topline,.reader-chapter-card,.reader-grid,.reader-notes,.reader-bottom-controls{width:min(920px,100%);margin-inline:auto}
+.reader-topline{margin:0 auto 12px}
+.reader-back{border:0;background:transparent;color:var(--accent);font-size:14px;padding:8px 0;font-weight:650}
+.reader-chapter-card{position:relative;margin-bottom:17px;padding:20px clamp(18px,4vw,28px);border-radius:23px;border:1px solid var(--line);background:linear-gradient(115deg,var(--hero),var(--hero2))}
+.reader-chapter-meta{font-size:14px;color:var(--accent);margin-bottom:9px;font-weight:650}
+.reader-chapter-meta [lang="zh-Hant"]{font-family:"Songti SC","Noto Serif CJK SC",serif;font-weight:650}
+.reader-chapter-choice{position:relative;display:block;width:100%}
+.reader-chapter-choice select{appearance:none;display:block;width:100%;min-width:0;min-height:51px;padding:6px 34px 6px 0;border:0;background:transparent;color:var(--ink);font-family:Inter,system-ui,sans-serif;font-size:clamp(18px,2.7vw,25px);font-weight:500;line-height:1.4;cursor:pointer;white-space:normal;overflow-wrap:anywhere}
+.reader-choice-arrow{position:absolute;right:3px;top:50%;transform:translateY(-50%);pointer-events:none;color:var(--accent);font-size:25px}
+.reader-book-details{margin-top:7px;font-size:12px;color:var(--muted)}
+.reader-book-details summary{cursor:pointer;width:max-content;max-width:100%;padding:5px 1px;font-weight:600}
+.reader-book-details label{display:flex;gap:12px;align-items:center;margin:8px 0 0}
+.reader-book-details select{min-width:150px;max-width:100%;padding:8px 11px;border-radius:10px;border:1px solid var(--line);background:var(--panel);color:var(--ink)}
+.reader-grid{display:block}
+.reader-page{width:100%;padding:clamp(18px,4vw,30px)!important;background:var(--panel);box-shadow:none}
+.reader-text-heading{margin:0 0 5px;color:var(--muted);font-size:12px;letter-spacing:.04em}
+.reader-script{padding:clamp(18px,4vw,32px) clamp(4px,3vw,22px) clamp(25px,6vw,45px)}
+.reader-page .hanzi-text{line-height:2.7;overflow-wrap:anywhere;word-break:normal;margin:0}
+.reader-page .hanzi-text rt{line-height:1.45}
+.reader-page .hanzi-text p{margin:0 0 20px}
+.reader-page .hanzi-verse{margin:0 0 18px}
+.reader-translation-stack{display:grid;gap:17px;margin-top:3px}
+.reader-page .translation{margin:0;border:1px solid var(--line);border-radius:19px;padding:clamp(19px,4vw,28px);min-width:0}
+.reader-page .translation-indo{background:var(--hero2)}
+.reader-page .translation.english{background:var(--panel2)}
+.reader-page .translation h3{font:600 13px/1.45 system-ui,sans-serif;letter-spacing:0;text-transform:none;color:var(--accent);margin:0 0 24px}
+.reader-page .translation .reading-paragraph{font-size:clamp(16px,2.0vw,19px);line-height:1.92;color:var(--ink)}
+.reader-page .translation.english .reading-paragraph{font-size:clamp(15.5px,1.8vw,17.5px);line-height:1.88}
+.reader-page .translation-verse{max-width:100%}
+.reader-notes{margin-top:14px;margin-bottom:16px;border:1px solid var(--line);border-radius:18px;background:var(--panel);overflow:hidden}
+.reader-notes>summary{cursor:pointer;list-style-position:inside;padding:17px 21px;color:var(--accent);font-weight:650;font-size:14px}
+.reader-notes[open]>summary{border-bottom:1px solid var(--line)}
+.reader-notes-body{padding:18px 22px 24px}
+.reader-notes-body h3{font:700 15px system-ui,sans-serif;margin:5px 0}
+.reader-notes-body p{color:var(--muted);font-size:13px}
+.reader-notes-body textarea{width:100%;min-height:105px;max-width:100%;border:1px solid var(--line);border-radius:11px;background:var(--bg);color:var(--ink);padding:12px;resize:vertical;font-size:14px;line-height:1.6}
+.reader-notes-body .primary{display:block;margin-top:9px}
+.reader-bottom-controls{position:sticky;z-index:9;bottom:calc(93px + env(safe-area-inset-bottom));padding:7px;border:1px solid var(--line);border-radius:21px;background:var(--panel);box-shadow:0 12px 32px #22140a23;backdrop-filter:blur(18px)}
+.reader-toolbar{display:flex;gap:4px;align-items:center;justify-content:space-around;margin:0 0 5px}
+.reader-toolbar button{flex:0 1 auto;display:flex;align-items:center;gap:7px;justify-content:center;border:0;border-radius:10px;background:transparent;color:var(--accent);min-height:38px;padding:7px 9px;font-size:16px}
+.reader-toolbar button span{font-size:12px;font-weight:600}
+.reader-toolbar button:hover,.reader-toolbar button:focus-visible{background:var(--panel2)}
+.reader-pager{display:grid;grid-template-columns:54px minmax(0,1fr) 54px;align-items:center;gap:8px;border-top:1px solid var(--line);padding-top:8px}
+.reader-pager-arrow{display:grid;place-items:center;height:48px;border:1px solid var(--line);border-radius:50%;background:var(--hero);color:var(--ink);font-size:30px;line-height:1}
+.reader-pager-arrow:disabled{opacity:.35}
+.reader-passage-selector{display:block;min-width:0}
+.reader-passage-selector select{display:block;width:100%;max-width:100%;border:0;background:transparent;color:var(--ink);font-size:17px;font-weight:500;text-align:center;text-align-last:center;min-height:45px;padding:4px 8px;cursor:pointer}
+.reader-ayat-disclosure{margin:5px auto 0;text-align:center;font-size:12px;color:var(--muted)}
+.reader-ayat-disclosure>summary{cursor:pointer;list-style-position:inside;padding:5px 10px;width:max-content;max-width:100%;margin:0 auto;color:var(--accent)}
+.reader-ayat-disclosure label{display:block;max-width:225px;margin:5px auto}
+.reader-ayat-disclosure select{width:100%;min-height:37px;border:1px solid var(--line);border-radius:10px;color:var(--ink);background:var(--bg);padding:7px 11px}
+.reader-ayat-disclosure select:disabled{opacity:.55}
+@media(max-width:590px){
+  .reader-page{border-radius:22px}
+  .reader-script{padding:18px 3px 34px}
+  .reader-page .hanzi-text{line-height:2.75}
+  .reader-page .translation .reading-paragraph{font-size:17px;line-height:1.95}
+  .reader-page .translation.english .reading-paragraph{font-size:16px}
+  .reader-toolbar button{padding:6px 5px}
+  .reader-toolbar button span{font-size:11px}
+  .reader-pager{grid-template-columns:48px minmax(0,1fr) 48px;gap:5px}
+  .reader-pager-arrow{height:45px}
+  .reader-bottom-controls{bottom:calc(92px + env(safe-area-inset-bottom))}
+  #main:has(.reader-page){padding-bottom:160px}
+}
+@media(max-width:375px){
+  .reader-toolbar button span{font-size:10px}
+  .reader-toolbar button{gap:3px}
+  .reader-page .translation{padding:17px}
+}
