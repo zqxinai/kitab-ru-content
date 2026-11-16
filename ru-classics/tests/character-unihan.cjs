@@ -54,10 +54,10 @@ test('Glossary explicitly distinguishes absent English definitions and rejected 
  assert.match(html,/data-inspector="unihan"/);
  assert.match(html,/Unicode Unihan/);
  assert.match(html,/Unicode License v3/);
- assert.match(html,/data\\/UNICODE-LICENSE\\.txt/);
+ assert.ok(html.includes('data/UNICODE-LICENSE.txt'));
  const license=read('ru-classics/data/UNICODE-LICENSE.txt');
  assert.match(license,/UNICODE LICENSE V3/);
- assert.match(license,/SPDX-License-Identifier: Unicode-3\\.0/);
+ assert.ok(license.includes('SPDX-License-Identifier: Unicode-3.0'));
  assert.match(license,/COPYRIGHT AND PERMISSION NOTICE/);
  assert.match(app,/dictionary\.englishGloss/);
  assert.match(app,/installUnihan/);
