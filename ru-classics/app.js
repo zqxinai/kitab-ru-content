@@ -351,16 +351,21 @@
     const nextVerses=globalThis.RuSubverses?.splitIndonesia(neighbor.translation_indonesian)||[];
     navigate('reader',neighbor.id,nextVerses.length>1?(direction>0?nextVerses[0].number:nextVerses[nextVerses.length-1].number):0);
   }
+  // SVG arrows use an explicit geometric center instead of font-dependent glyph baselines.
+  function readerChevron(direction){
+    const path=direction<0?'M14.5 18 8.5 12l6-6':'M9.5 18l6-6-6-6';
+    return '<svg class="reader-step-icon" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="'+path+'"></path></svg>';
+  }
   function jumpMenu(p,c,b,prev,next){
     const verses=globalThis.RuSubverses?.splitIndonesia(p.translation_indonesian)||[];
     const option=(value,label,active)=>'<option value="'+H(value)+'"'+(active?' selected':'')+'>'+H(label)+'</option>';
     const ayatDisabled=verses.length>1?'':' disabled title="Ayat bernomor belum terverifikasi"';
     return '<nav class="reader-pager" aria-label="Navigasi pasal dan ayat">'
-      +'<button class="reader-pager-arrow" type="button" data-reader-step="-1" aria-label="Ayat atau pasal sebelumnya" '+(readerStepAvailable(p,prev,next,-1)?'':'disabled')+'>‹</button>'
+      +'<button class="reader-pager-arrow" type="button" data-reader-step="-1" aria-label="Ayat atau pasal sebelumnya" '+(readerStepAvailable(p,prev,next,-1)?'':'disabled')+'>'+readerChevron(-1)+'</button>'
       +'<label class="reader-passage-selector"><span class="visually-hidden">'+H(tr('passage'))+'</span><select id="jump-passage" aria-label="'+H(tr('passage'))+'">'+c.passages.map(x=>option(x.id,tr('passage')+' '+x.number,x.id===p.id)).join('')+'</select></label>'
       +'<label class="reader-ayat-selector"><span class="visually-hidden">'+H(tr('verse'))+'</span><select id="jump-ayat" aria-label="'+H(tr('chooseVerse'))+'"'+ayatDisabled+'>'
       +option('0',tr('wholePassage'),!state.ayat)+verses.map(x=>option(x.number,tr('verse')+' '+x.number,state.ayat===x.number)).join('')+'</select></label>'
-      +'<button class="reader-pager-arrow" type="button" data-reader-step="1" aria-label="Ayat atau pasal berikutnya" '+(readerStepAvailable(p,prev,next,1)?'':'disabled')+'>›</button>'
+      +'<button class="reader-pager-arrow" type="button" data-reader-step="1" aria-label="Ayat atau pasal berikutnya" '+(readerStepAvailable(p,prev,next,1)?'':'disabled')+'>'+readerChevron(1)+'</button>'
       +'</nav>';
   }
   function desktopNavigation(p,c,b,prev,next){
@@ -373,8 +378,8 @@
       +field('desktop-jump-chapter',tr('chapter'),chapters.map(x=>option(x.id,x.title,x.id===c.id)).join(''))
       +field('desktop-jump-passage',tr('passage'),c.passages.map(x=>option(x.id,tr('passage')+' '+x.number,x.id===p.id)).join(''))
       +field('desktop-jump-ayat',tr('verse'),option('0',tr('wholePassage'),!state.ayat)+verses.map(x=>option(x.number,tr('verse')+' '+x.number,state.ayat===x.number)).join(''),verses.length>1?'':' disabled title="Ayat bernomor belum terverifikasi"')
-      +'<button type="button" class="reader-desktop-step" data-reader-step="-1" aria-label="Sebelumnya" '+(readerStepAvailable(p,prev,next,-1)?'':'disabled')+'>‹</button>'
-      +'<button type="button" class="reader-desktop-step" data-reader-step="1" aria-label="Berikutnya" '+(readerStepAvailable(p,prev,next,1)?'':'disabled')+'>›</button>'
+      +'<button type="button" class="reader-desktop-step" data-reader-step="-1" aria-label="Sebelumnya" '+(readerStepAvailable(p,prev,next,-1)?'':'disabled')+'>'+readerChevron(-1)+'</button>'
+      +'<button type="button" class="reader-desktop-step" data-reader-step="1" aria-label="Berikutnya" '+(readerStepAvailable(p,prev,next,1)?'':'disabled')+'>'+readerChevron(1)+'</button>'
       +'</nav>';
   }
   // Legge supplies source paragraphs, NOT the MATAKIN numbered ayat.

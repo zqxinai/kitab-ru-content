@@ -641,3 +641,31 @@
     padding-bottom:calc(140px + env(safe-area-inset-bottom));
   }
 }
+
+
+/* Reader control icon alignment: do not rely on ‹ › × font baselines.
+ * SVG geometry is centered in a fixed button box on both themes and sizes. */
+.reader-pager-arrow,
+.reader-desktop-step,
+.character-inspector-close{
+  display:grid;
+  place-items:center;
+  justify-content:center;
+  align-content:center;
+  padding:0;
+  line-height:0;
+  text-align:center;
+  text-indent:0;
+}
+.reader-step-icon,
+.character-close-icon{
+  display:block;
+  flex:none;
+  width:20px;
+  height:20px;
+  pointer-events:none;
+  overflow:visible;
+}
+.reader-pager-arrow .reader-step-icon{width:21px;height:21px}
+.reader-desktop-step .reader-step-icon{width:19px;height:19px}
+.character-inspector-close .character-close-icon{width:20px;height:20px}
