@@ -629,7 +629,7 @@
     ],
     'sishu.mengzi.06.09': [
       ["Chun Chiu", "Chunqiu - Chun Chiu"], // 春秋
-      ["ajaran Yang Cu", "ajaran Yang Zhu - Yang Cu"], // 楊朱
+      ["Ajaran Yang Cu", "Ajaran Yang Zhu - Yang Cu"], // 楊朱
       ['Yangcu', 'Yang Zhu - Yangcu'], // matched verse Hanzi
       ['Bik Tik', 'Mo Di - Bik Tik'], // matched verse Hanzi
       ['Sungai Kang', 'Sungai Jiang - Kang'], // nama lokasi, cocokkan Hanzi pada sishu.mengzi.06.09
