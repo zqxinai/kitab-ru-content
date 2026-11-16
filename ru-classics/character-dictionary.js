@@ -254,6 +254,22 @@ const ENTRIES=Object.freeze({
   "死": {
     "gloss": "mati; kematian",
     "note": ""
+  },
+  "儛": {
+    "gloss": "menari; bentuk lain dari 舞",
+    "note": "Karakter varian 舞 menurut Kementerian Pendidikan Taiwan. Tergantung konteks, dapat menjadi bagian nama atau istilah."
+  },
+  "覸": {
+    "gloss": "melihat; memperhatikan",
+    "note": "Dalam 成覸 (Mengzi), 覸 merupakan bagian nama orang. Jangan mengartikan nama itu sebagai kata 'melihat'."
+  },
+  "鞟": {
+    "gloss": "kulit hewan yang sudah dibuang bulunya; kulit untuk penyamakan",
+    "note": "Dapat berarti kulit, proses pengolahan kulit, atau bagian perlengkapan kulit; pada kutipan Lunyu 虎豹之鞟 merupakan kulit hewan."
+  },
+  "鼁": {
+    "gloss": "unsur istilah untuk katak puru/kodok (蟾蜍)",
+    "note": "Hanzi langka: dalam istilah 鼁𪓰, yang dirujuk adalah sejenis kodok. Jangan memperlakukan karakter ini sebagai kata lepas tanpa konteks."
   }
 });
 const CONTEXT=Object.freeze({
@@ -268,6 +284,12 @@ const CONTEXT=Object.freeze({
   "sishu.mengzi.01.01": {
     "義": "Mengzi mempertentangkan mengejar keuntungan dengan 仁義 dalam pembahasan ini."
   }
+});
+const RARE_SOURCES=Object.freeze({
+  '儛':'Kementerian Pendidikan Taiwan, Kamus Varian Hanzi · https://dict.variants.moe.edu.tw/dictView.jsp?ID=37132',
+  '覸':'HanDian, 覸 (dasar: melihat; juga nama 成覸 dalam Mengzi) · https://zdic.net/hant/%E8%A6%B8',
+  '鞟':'HanDian, 鞟 (kulit tanpa bulu) · https://zdic.net/hans/%E9%9E%9F',
+  '鼁':'HanDian, 鼁 (dalam istilah kodok) · https://zdic.net/hans/%E9%BC%81'
 });
 const PROVENANCE='Glosarium editorial awal Ru Classics (belum ditinjau akademik).';
 let extended=null;
@@ -346,7 +368,7 @@ function lookup(char, passageId){
  const indonesian=cidict&&Object.prototype.hasOwnProperty.call(cidict,char)?cidict[char]:null;
  return {
    char,gloss:entry?.gloss||null,note:entry?.note||null,
-   context:context||null,source:entry||context?PROVENANCE:null,
+   context:context||null,source:RARE_SOURCES[char]||(entry||context?PROVENANCE:null),
    englishGloss:english||null,
    englishSource:english?(metadata?.source+' · Unicode-3.0'):null,
    indonesianReadings:indonesian||null,
