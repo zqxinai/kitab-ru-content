@@ -45,6 +45,7 @@ jobs:
           python -m unittest tools.test_ru_cidict_glossary
           python tools/build_ru_cidict_glossary.py --bundle ru-classics/data/sishu.json --output ru-classics/data/character-cidict.json
           node --test ru-classics/tests/character-unihan.cjs
+          node --test ru-classics/tests/character-cidict.cjs
           node ru-classics/tests/smoke.cjs
           node --test ru-classics/tests/subverses.cjs
           node --test ru-classics/tests/reading-navigation.cjs
