@@ -34,7 +34,7 @@ test('Owner 2012 decisions cover nine distinct exact citations in 965 unchanged 
 test('Lun Yu XVIII:1 links to Mengzi II A:1/8 precisely, never ayat 5 or a note',()=>{
  const id='sishu.lunyu.18.01',raw='(Mengzi - Bingcu IIA: 1/8)';
  const result=view(id,raw);
- assert.deepEqual(result,[{text:'(Mengzi — Bing Cu II A:1/8)',target_id:'sishu.mengzi.03.01',ayat:8}]);
+ assert.deepEqual(result,[{text:'(Mengzi - Bingcu II A:1/8)',target_id:'sishu.mengzi.03.01',ayat:8}]);
  assert.ok(canNavigate(result[0]),'Mengzi II A:1 must contain ayat 8');
  const target=byId.get('sishu.mengzi.03.01');
  const v=verses.splitIndonesia(target.translation_indonesian);
@@ -46,9 +46,9 @@ test('Zhong Yong VIII is one-passage chapter: display chapter, link to sole pass
  assert.ok(zy);assert.equal(zy.passages.length,1);
  for(const id of ['sishu.lunyu.05.08','sishu.lunyu.12.20']){
   const result=view(id,'(T.S. VIII)');
-  assert.deepEqual(result,[{text:'(Tengah Sempurna — Zhong Yong Bab VIII)',target_id:'sishu.zhongyong.09.01',ayat:null}]);
+  assert.deepEqual(result,[{text:'(Zhongyong - Tengah Sempurna Bab VIII)',target_id:'sishu.zhongyong.09.01',ayat:null}]);
  }
- assert.deepEqual(view('sishu.lunyu.09.08','(T.S. V)'),[{text:'(Tengah Sempurna — Zhong Yong V)',target_id:null}]);
+ assert.deepEqual(view('sishu.lunyu.09.08','(T.S. V)'),[{text:'(Zhongyong - Tengah Sempurna V)',target_id:null}]);
 });
 test('Lun Yu II:11 corrected XXVI:6; Lun Yu XIV:10 corrected I:15',()=>{
  const a=view('sishu.lunyu.02.11','(T.S. XXV1:6)');
@@ -74,7 +74,7 @@ test('Mengzi II A:2 ayat 26: Zhong Yong chapter range plus three separate clicka
  const id='sishu.mengzi.03.02',p=byId.get(id);
  assert.match(verses.splitIndonesia(p.translation_indonesian)?.find(v=>v.number===26)?.text||'',/TS\.XXIX- XXXI;SS 23-25/);
  const result=view(id,'(TS.XXIX- XXXI;SS 23-25)');
- assert.equal(result.map(v=>v.text).join(''),'(Tengah Sempurna — Zhong Yong Bab XXIX–XXXI; Sabda Suci — Lun Yu XIX:23,24,25)');
+ assert.equal(result.map(v=>v.text).join(''),'(Zhongyong - Tengah Sempurna Bab XXIX–XXXI; Lunyu - Sabda Suci XIX:23,24,25)');
  assert.deepEqual(result.filter(v=>v.target_id).map(v=>v.target_id),['sishu.lunyu.19.23','sishu.lunyu.19.24','sishu.lunyu.19.25']);
  assert.ok(result.some(v=>v.text.includes('Bab XXIX–XXXI')&&!v.target_id));
 });
