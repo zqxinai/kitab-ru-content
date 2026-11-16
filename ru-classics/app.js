@@ -189,23 +189,30 @@
         (vertical!==character?'<span class="hanzi-mark-vertical" aria-hidden="true">'+H(vertical)+'</span>':'')+
         '</span>';
     };
-    const lookupButton=(character,pinyin,modern,content)=>
+    const lookupButton=(character,pinyin,modern,content,sourceIndex)=>
       '<button type="button" class="hanzi-lookup" data-hanzi-char="'+H(character)+'" data-hanzi-pinyin="'+H(pinyin||'')+'" data-hanzi-modern="'+H(modern||'')+
-      '" aria-haspopup="dialog" aria-label="Lihat arti Hanzi '+H(character)+(pinyin?' ('+H(pinyin)+')':'')+'">'+content+'</button>';
-    const tokenMarkup=tok=>tok.type==='ruby'
+      '" data-hanzi-index="'+sourceIndex+'" aria-haspopup="dialog" aria-label="Lihat arti Hanzi '+H(character)+(pinyin?' ('+H(pinyin)+')':'')+'">'+content+'</button>';
+    const tokenMarkup=(tok,sourceIndex)=>tok.type==='ruby'
       ?'<span class="hanzi-unit">'+lookupButton(tok.traditional||'',tok.pinyin||'',tok.modern||'',
         '<ruby>'+H(tok.traditional||'')+'<rt>'+H(tok.pinyin||'')+'</rt></ruby>'+
-        (tok.modern&&tok.modern!==tok.traditional?'<span class="modern" title="Aksara sederhana dari metadata, bukan bagian teks utama">（'+H(tok.modern)+'）</span>':''))+'</span>'
-      :Array.from(String(tok.value||'')).map(character=>character.trim()===''?H(character):
+        (tok.modern&&tok.modern!==tok.traditional?'<span class="modern" title="Aksara sederhana dari metadata, bukan bagian teks utama">（'+H(tok.modern)+'）</span>':''),sourceIndex)+'</span>'
+      :Array.from(String(tok.value||'')).map((character,offset)=>character.trim()===''?H(character):
         /[\u3400-\u9FFF\uF900-\uFAFF]/u.test(character)
-          ?'<span class="hanzi-unit">'+lookupButton(character,'','',H(character))+'</span>'
+          ?'<span class="hanzi-unit">'+lookupButton(character,'','',H(character),sourceIndex+offset)+'</span>'
           :displayCharacter(character)).join('');
     return paragraphs.map(par=>{
       const tokens=Array.isArray(par)?par:[];
       const groups=globalThis.RuHanziLayout?.segment?.(tokens)||[{tokens,pause:'none',length:0}];
       return '<p>'+groups.map(group=>
         '<span class="hanzi-clause'+(group.pause==='strong'?' pause-strong':group.pause==='soft'?' pause-soft':'')+
-        (group.length<=4?' keep-together':'')+'" data-source-clause="'+H(group.tokens.map(tok=>tok.type==='ruby'?(tok.traditional||''):(tok.value||'')).join(''))+'">'+group.tokens.map(tokenMarkup).join('')+'</span>'
+        (group.length<=4?' keep-together':'')+'" data-source-clause="'+H(group.tokens.map(tok=>tok.type==='ruby'?(tok.traditional||''):(tok.value||'')).join(''))+'">'+(function(){
+          let offset=0;
+          return group.tokens.map(tok=>{
+            const html=tokenMarkup(tok,offset);
+            offset+=Array.from(tok.type==='ruby'?(tok.traditional||''):(tok.value||'')).length;
+            return html;
+          }).join('');
+        })()+'</span>'
       ).join('')+'</p>';
     }).join('');
   }
@@ -239,7 +246,23 @@
     put('hanzi',ch);
     put('pinyin',trigger.dataset.hanziPinyin||'Pinyin belum tersedia pada sumber');
     put('simplified',simplified&&simplified!==ch?simplified:'Sama / tidak dicantumkan');
-    put('gloss',dictionary.gloss||'Arti Indonesia belum tersedia (belum dikurasi).');
+    put('gloss',dictionary.gloss||'Belum ada arti editorial Indonesia untuk karakter ini.');
+    const idReadings=dictionary.indonesianReadings||[];
+    put('cidict',idReadings.length?idReadings.flatMap(r=>r.definitions||[]).slice(0,9).join(' · '):
+      'Kamus CC-CIDICT belum memiliki entri Indonesia untuk karakter ini.');
+    put('cidict-source',dictionary.indonesianSource||
+      'Tidak ada entri karakter tunggal yang cocok pada kamus CC-CIDICT.');
+    const sourceIndex=Number(trigger.dataset.hanziIndex);
+    const matchedTerms=globalThis.RuCharacterDictionary?.phrasesAt?.(clause,sourceIndex)||[];
+    const termBox=popup.querySelector?.('[data-inspector-terms]');
+    if(termBox){
+      // All external dictionary strings must be escaped before HTML rendering.
+      termBox.innerHTML=matchedTerms.length?matchedTerms.map(hit=>
+        '<div class="character-term"><strong lang="zh-Hant">'+H(hit.word)+'</strong><span>'+
+        H(hit.readings.map(r=>r.definitions?.slice(0,3).join('; ')).filter(Boolean).join(' · '))+
+        '</span></div>').join(''):
+        '<p class="character-inspector-empty">Tidak ada frasa kamus yang cocok di sekitar karakter ini.</p>';
+    }
     put('unihan',dictionary.englishGloss||'Definisi bahasa Inggris tidak tersedia dalam Unihan untuk karakter ini.');
     put('unihan-source',dictionary.englishSource||'Tidak ada entri Unihan yang terpasang untuk karakter ini.');
     put('note',dictionary.note||'Tidak ada catatan leksikal tambahan.');
@@ -469,6 +492,16 @@
         }
       }catch(error){
         console.warn('Unihan glossary could not be loaded; source texts remain available.',error);
+      }
+      // Offline, corpus-filtered Indonesian headwords. Optional by design.
+      try{
+        const indonesian=await fetch('./data/character-cidict.json');
+        if(indonesian.ok){
+          if(!globalThis.RuCharacterDictionary?.installCIDict?.(await indonesian.json()))
+            console.warn('CC-CIDICT glossary format is invalid; using curated/Unihan fallback.');
+        }
+      }catch(error){
+        console.warn('CC-CIDICT glossary unavailable; core reader remains usable.',error);
       }
       route();
       window.dispatchEvent(new Event('ru:ready'));
