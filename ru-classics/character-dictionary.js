@@ -92,8 +92,8 @@ const ENTRIES=Object.freeze({
     "note": ""
   },
   "君": {
-    "gloss": "pemimpin; jun",
-    "note": ""
+    "gloss": "pemimpin; penguasa; sosok terhormat",
+    "note": "Dalam 君子, bagian dari istilah yang tidak dapat diterjemahkan huruf demi huruf."
   },
   "仁": {
     "gloss": "cinta kasih; kebajikan kemanusiaan",
