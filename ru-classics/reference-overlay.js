@@ -199,7 +199,7 @@
     "display": "(Mengzi - Bingcu VII.B:4/2)",
     "target_id": "sishu.mengzi.14.04",
     "ayat": 2,
-    "decision": "Confirmed implicit self-reference in Mengzi I A:5; VII B:4 ayat 2 exists. Display title per owner convention, preserve archived source."
+    "decision": "Confirmed implicit self-reference in Mengzi I A:5; VII B:4 ayat 2 exists. Display title per owner convention, preserve archived source; printed 2012 wording not attested."
   },
   {
     "passage_id": "sishu.daxue.03.03",
