@@ -246,7 +246,7 @@
     put('hanzi',ch);
     put('pinyin',trigger.dataset.hanziPinyin||'Pinyin belum tersedia pada sumber');
     put('simplified',simplified&&simplified!==ch?simplified:'Sama / tidak dicantumkan');
-    put('gloss',dictionary.gloss||'Belum ada arti editorial Indonesia untuk karakter ini.');
+    put('gloss',dictionary.gloss||'Arti Indonesia belum tersedia dari glosarium editorial.');
     const idReadings=dictionary.indonesianReadings||[];
     put('cidict',idReadings.length?idReadings.flatMap(r=>r.definitions||[]).slice(0,9).join(' · '):
       'Kamus CC-CIDICT belum memiliki entri Indonesia untuk karakter ini.');
