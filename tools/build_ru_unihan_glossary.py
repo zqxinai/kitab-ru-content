@@ -26,7 +26,7 @@ UNIHAN_URL = "https://www.unicode.org/Public/17.0.0/ucd/Unihan.zip"
 FALLBACK_URL = "https://raw.githubusercontent.com/unicode-org/unihan-database/main/kDefinition.txt"
 SCHEMA = "ru-classics.unihan-glossary.v1"
 MIN_COVERAGE = 0.85
-CODEPOINT = re.compile(r"^U\\+([0-9A-F]{4,6})$")
+CODEPOINT = re.compile(r"^U\+([0-9A-F]{4,6})$")
 LICENSE = "Unicode-3.0"
 
 
@@ -79,7 +79,7 @@ def parse_definitions(lines, relevant):
         line = raw.decode("utf-8") if isinstance(raw, bytes) else raw
         if not line.startswith("U+"):
             continue
-        parts = line.rstrip("\\r\\n").split("\\t")
+        parts = line.rstrip("\r\n").split("\t")
         if len(parts) != 3 or parts[1] != "kDefinition":
             continue
         # Some Unicode sources place a literal glyph after U+XXXX; only
@@ -136,7 +136,7 @@ def build(bundle_path, output_path, unihan_archive=None):
     }
     destination = Path(output_path)
     destination.parent.mkdir(parents=True, exist_ok=True)
-    destination.write_text(json.dumps(result, ensure_ascii=False, separators=(",", ":"), sort_keys=True) + "\\n", encoding="utf-8")
+    destination.write_text(json.dumps(result, ensure_ascii=False, separators=(",", ":"), sort_keys=True) + "\n", encoding="utf-8")
     print(f"Unihan glossary: {len(found)}/{len(occurrences)} unique characters ({coverage:.1%}), {destination.stat().st_size} bytes, source={source_label}")
     return result
 
