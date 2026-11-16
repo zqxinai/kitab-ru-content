@@ -54,7 +54,7 @@ test('public reader loads alignment module and actually renders numbered ruby an
   const html=fs.readFileSync(path.join(root,'ru-classics/index.html'),'utf8');
   const app=fs.readFileSync(path.join(root,'ru-classics/app.js'),'utf8');
   assert.match(html,/<script src="\.\/subverses\.js" defer><\/script>/);
-  assert.ok(html.indexOf('src="./subverses.js"')<html.indexOf('src="./app.js"'),'Load module before reader');
+  assert.ok(html.indexOf('src="./subverses.js"')<html.indexOf('src="./app.js'),'Load module before reader');
   assert.match(app,/const aligned=globalThis\.RuSubverses\?\.align\(p\)\|\|null/);
   assert.match(app,/\+hanziWithSubverses\(p,aligned\)\+'<\/div><\/section>'/);
   assert.match(app,/\+indonesiaWithSubverses\(p,aligned\)\+'<\/section>'/);

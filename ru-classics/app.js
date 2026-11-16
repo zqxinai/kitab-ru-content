@@ -319,7 +319,7 @@
     const s=state.settings;
     const aligned=globalThis.RuSubverses?.align(p)||null;
     main.innerHTML=chapterPicker(p,c,b)+desktopNavigation(p,c,b,prev,next)
-      +'<div class="reader-grid'+(s.verticalHanzi===false?' horizontal-hanzi':'')+'"><article class="paper-page reader-page">'
+      +'<div class="reader-grid'+(s.verticalHanzi===false?' horizontal-hanzi':'')+'"><article class="paper-page reader-page'+(s.hanzi?' reader-two-column':'')+'">'
       +'<div class="reader-text-heading"><span>'+tr('passage')+' '+p.number+(state.ayat?' · '+tr('verse')+' '+state.ayat+' dipilih':'')+'</span></div>'
       +(s.hanzi?'<section class="reader-script"><div class="hanzi-text '+(s.pinyin?'':'no-pinyin')+'" lang="zh-Hant">'+hanziWithSubverses(p,aligned)+'</div></section>':'')
       +'<div class="reader-translation-stack">'
@@ -353,7 +353,7 @@
     main.innerHTML='<div class="chapter-title"><span class="eyebrow" data-i18n="savedPrompt">Koleksi pribadi</span><h1 data-i18n="savedTitle">Pasal tersimpan</h1><p class="muted">'+bookmarked.length+' pasal disimpan · '+notes+' catatan pribadi</p></div>'+(bookmarked.length?'<div class="passage-list">'+bookmarked.map(p=>'<button class="result" data-passage="'+H(p.id)+'"><small>'+book(p._book).name+' · Pasal '+p.number+'</small><strong>'+H(p._chapterTitle)+'</strong><span class="excerpt">'+H(displayIndo(p.id,p.translation_indonesian))+'</span></button>').join('')+'</div>':'<div class="empty" data-i18n="noSaved">Belum ada pasal tersimpan. Gunakan tombol ♡ Simpan di halaman bacaan.</div>');
   }
   function navHighlight(){document.querySelectorAll('[data-nav]').forEach(btn=>{const active=btn.dataset.nav===(state.tab==='reader'||state.tab==='chapter'?'books':state.tab);btn.classList.toggle('active',active);if(active)btn.setAttribute('aria-current','page');else btn.removeAttribute('aria-current');});}
-  function render(){navHighlight();if(!state.data)return;if(state.tab==='home')home();else if(state.tab==='books')library();else if(state.tab==='chapter')chapter();else if(state.tab==='reader')reader();else if(state.tab==='search')search();else if(state.tab==='saved')saved();else if(state.tab==='editor')window.RuEditorial?.render?.(main);applyLanguage();
+  function render(){navHighlight();if(!state.data)return;main.classList?.toggle?.('is-reading',state.tab==='reader');if(state.tab==='home')home();else if(state.tab==='books')library();else if(state.tab==='chapter')chapter();else if(state.tab==='reader')reader();else if(state.tab==='search')search();else if(state.tab==='saved')saved();else if(state.tab==='editor')window.RuEditorial?.render?.(main);applyLanguage();
     if(state.tab==='reader'&&state.ayat){
       window.requestAnimationFrame?.(()=>{
         const selected=document.querySelector('.translation-verse[data-ayat="'+state.ayat+'"]')||document.querySelector('.hanzi-verse[data-ayat="'+state.ayat+'"]');
