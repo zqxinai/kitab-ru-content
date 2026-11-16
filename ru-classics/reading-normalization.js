@@ -8,7 +8,6 @@
     ['Hicu', 'Xu Zi'], // 許子
     ['Kiat', 'Jie'], // 桀
     ['Tiu', 'Zhou'], // 紂
-    ['Cik', 'Ji'], // 稷
     ['Khong-cu', 'Kongzi'], // 孔子
     ['Hi-cu', 'Xu Zi'], // 許子 (Xu Xing)
     ['Ong-pa', 'Wang Bao'], // 王豹
@@ -314,6 +313,12 @@
   // Kolasi khusus berdasarkan Hanzi. Satu ejaan Hokkian bisa mewakili
   // aksara berbeda: Chien => 晉 (Jin) atau 秦 (Qin); Swan => 僎 atau 宣.
   const CONTEXTUAL = Object.freeze({
+    'sishu.mengzi.08.29': [
+      ['dan Cik', 'dan Ji - Cik'], // 稷, not 蹠 Zhi in Mengzi III B:10
+    ],
+    'sishu.lunyu.14.05': [
+      ['Cik ialah', 'Ji - Cik ialah'], // 稷, not 蹠 Zhi in Mengzi III B:10
+    ],
     'sishu.lunyu.06.08': [
       ['Dapatkah Kiu diserahi', 'Dapatkah Qiu - Kiu diserahi'], // matched verse Hanzi
       ['"Kiu berpengetahuan', '"Qiu - Kiu berpengetahuan'], // matched verse Hanzi
