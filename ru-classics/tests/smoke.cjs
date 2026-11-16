@@ -71,7 +71,7 @@ setTimeout(()=>{
   click({book:'lunyu'});
   click({chapter:'sishu.lunyu.05'});
   click({passage:'sishu.lunyu.05.08'});
-  assert.match(nodes.main.innerHTML,/Tengah Sempurna — Zhong Yong VIII/,
+  assert.match(nodes.main.innerHTML,/Tengah Sempurna — Zhong Yong Bab VIII/,
     'Owner-confirmed TS is displayed as book name without inventing a verse');
   assert.match(nodes.main.innerHTML,/Sabda Suci — Lun Yu II:6/,
     'Batch 02 SS normalized while TS remains separate');
