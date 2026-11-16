@@ -43,7 +43,13 @@ setTimeout(()=>{
   assert.match(nodes.main.innerHTML,/Da Xue/);
   assert.match(nodes.main.innerHTML,/Mengzi/);
   click({book:'daxue'});
-  assert.match(nodes.main.innerHTML,/Daftar bab/);
+  assert.doesNotMatch(nodes.main.innerHTML,/Daftar bab/,'Redundant chapter list heading must be removed');
+  assert.match(nodes.main.innerHTML,/data-expand-chapter="sishu\.daxue\.01"[^>]*aria-expanded="true"/,
+    'First chapter accordion should open by default');
+  assert.match(nodes.main.innerHTML,/data-passage="sishu\.daxue\.01\.07"/,
+    'Chapter accordion should expose directly navigable numbered passages');
+  assert.match(nodes.main.innerHTML,/id="chapter-passages-sishu\.daxue\.02" hidden/,
+    'Other chapters should remain collapsed');
   click({chapter:'sishu.daxue.01'});
   assert.match(nodes.main.innerHTML,/Bab Utama/);
   click({passage:'sishu.daxue.01.01'});
