@@ -181,7 +181,21 @@
       +'<div class="chapter-quick"><label>Langsung ke pasal<select id="chapter-passage" aria-label="'+H(tr('passage'))+'"><option value="">Pilih pasal…</option>'+c.passages.map(p=>'<option value="'+H(p.id)+'">Pasal '+p.number+'</option>').join('')+'</select></label></div>'
       +'<div class="passage-list">'+c.passages.map(entry).join('')+'</div>';
   }
-  function ruby(paragraphs){if(!Array.isArray(paragraphs))return '';return paragraphs.map(par=>'<p>'+((Array.isArray(par)?par:[]).map(tok=>tok.type==='ruby'?'<ruby>'+H(tok.traditional||'')+'<rt>'+H(tok.pinyin||'')+'</rt></ruby>'+(tok.modern&&tok.modern!==tok.traditional?'<span class="modern" title="Aksara sederhana dari metadata, bukan bagian teks utama">（'+H(tok.modern)+'）</span>':''):H(tok.value||'')).join(''))+'</p>').join('');}
+  function ruby(paragraphs){
+    if(!Array.isArray(paragraphs))return '';
+    const tokenMarkup=tok=>tok.type==='ruby'
+      ?'<ruby>'+H(tok.traditional||'')+'<rt>'+H(tok.pinyin||'')+'</rt></ruby>'
+        +(tok.modern&&tok.modern!==tok.traditional?'<span class="modern" title="Aksara sederhana dari metadata, bukan bagian teks utama">（'+H(tok.modern)+'）</span>':'')
+      :H(tok.value||'');
+    return paragraphs.map(par=>{
+      const tokens=Array.isArray(par)?par:[];
+      const groups=globalThis.RuHanziLayout?.segment?.(tokens)||[{tokens,pause:'none',length:0}];
+      return '<p>'+groups.map(group=>
+        '<span class="hanzi-clause'+(group.pause==='strong'?' pause-strong':group.pause==='soft'?' pause-soft':'')+
+        (group.length<=4?' keep-together':'')+'">'+group.tokens.map(tokenMarkup).join('')+'</span>'
+      ).join('')+'</p>';
+    }).join('');
+  }
   function annotation(p){const a=Array.isArray(p.editorial_annotations)?p.editorial_annotations:[];if(!a.length)return '<div class="rule"></div><h3>Komentar Ru</h3><p>Belum ada komentar dari sumber yang tertaut pada pasal ini.</p>';
     return '<div class="rule"></div><h3>Catatan & komentar sumber</h3>'+a.map(x=>'<div class="comment"><h4>'+H(x.title_indonesian||'Catatan teks')+'</h4>'+(x.hanzi?'<p lang="zh-Hant">'+H(x.hanzi)+'</p>':'')+(x.description_indonesian?'<p>'+H(x.description_indonesian)+'</p>':'')+(x.attribution?'<small>'+H(x.attribution)+'</small>':'')+'</div>').join('');
   }
