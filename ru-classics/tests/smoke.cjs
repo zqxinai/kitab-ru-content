@@ -67,7 +67,7 @@ setTimeout(()=>{
     'Passage selector must appear below translations');
 
   
-  assert.match(nodes.main.innerHTML,/Bahasa Indonesia/);
+  assert.match(nodes.main.innerHTML,/Terjemahan Indonesia \(MATAKIN\)/);
   assert.match(nodes.main.innerHTML,/James Legge/);
   assert.match(nodes.main.innerHTML,/<ruby>/);
   assert.match(nodes.main.innerHTML,/<ruby>學<rt>xué<\/rt><\/ruby><span class="modern"[^>]*>（学）<\/span>/,
