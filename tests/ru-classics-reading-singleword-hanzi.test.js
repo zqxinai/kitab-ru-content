@@ -21,6 +21,15 @@ const cases=[
  ['sishu.mengzi.06.09','墨翟','Mo Di - Bik Tik'],
  ['sishu.mengzi.13.26','楊子','Yangzi - Yangcu'],
  ['sishu.mengzi.14.26','楊','Yang Zhu - Yangcu'],
+ ['sishu.lunyu.05.08','赤','Chi - Chik'],
+ ['sishu.lunyu.06.04','赤','Chi - Chik'],
+ ['sishu.mengzi.13.25','跖','Zhi - Cik'],
+ ['sishu.lunyu.09.21','顏淵','Yan Yuan - Gan Hwee'],
+ ['sishu.lunyu.11.08','顏路','Yan Lu - Gan Lo'],
+ ['sishu.lunyu.11.26','曾皙','Zeng Xi - Cing Sik'],
+ ['sishu.mengzi.12.05','季子','Jizi - Kwicu'],
+ ['sishu.mengzi.04.10','時子','Shizi - Sicu'],
+ ['sishu.lunyu.05.15','孔文子','Kong Wenzi - Khong Buncu'],
  ['sishu.lunyu.06.08','求','Qiu - Kiu']
 ];
 test('Single-word names receive Chinese-character-grounded Pinyin without replacing Hokkian',()=>{
