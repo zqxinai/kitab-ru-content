@@ -346,3 +346,22 @@
  .reader-page>.reader-script{padding-right:12px}
  .reader-page .translation{padding:16px}
 }
+
+/* Semantic clause grouping is visual-only and preserves all original Hanzi/Ruby.
+ * Mobile and horizontal desktop keep the normal inline book typography. */
+.hanzi-text .hanzi-clause{display:contents}
+@media(min-width:768px){
+ .reader-grid:not(.horizontal-hanzi) .reader-script .hanzi-text .hanzi-clause{
+   display:inline-block;vertical-align:top;max-inline-size:100%;
+   white-space:normal;break-inside:avoid;line-height:inherit;
+ }
+ .reader-grid:not(.horizontal-hanzi) .reader-script .hanzi-text .hanzi-clause.keep-together{
+   white-space:nowrap;
+ }
+ .reader-grid:not(.horizontal-hanzi) .reader-script .hanzi-text .hanzi-clause.pause-soft{
+   margin-inline-end:.16em;
+ }
+ .reader-grid:not(.horizontal-hanzi) .reader-script .hanzi-text .hanzi-clause.pause-strong{
+   margin-inline-end:.48em;
+ }
+}
