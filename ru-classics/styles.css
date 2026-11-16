@@ -365,3 +365,83 @@
    margin-inline-end:.48em;
  }
 }
+
+/* CLREQ vertical reading: one consistent square-cell rhythm per Hanzi
+ * or punctuation mark. Pinyin is laid out horizontally above each Hanzi.
+ * The canonical source characters remain available in horizontal mode. */
+.hanzi-text .hanzi-unit,.hanzi-text .hanzi-mark-cell{display:contents}
+.hanzi-text .hanzi-mark-source{display:inline}
+.hanzi-text .hanzi-mark-vertical{display:none}
+@media(min-width:768px){
+ .reader-grid:not(.horizontal-hanzi) .reader-script .hanzi-text{
+   --vertical-step:calc(var(--hanzi-size,32px) + var(--pinyin-size,14px) * 1.35 + 14px);
+   --vertical-column-width:max(56px,calc(var(--hanzi-size,32px) + var(--pinyin-size,14px) * 1.5));
+   writing-mode:vertical-rl;text-orientation:mixed;
+   line-height:var(--vertical-column-width);letter-spacing:0;
+   overflow-wrap:normal;word-break:normal;text-align:start;
+ }
+ .reader-grid:not(.horizontal-hanzi) .reader-script .hanzi-text.no-pinyin{
+   --vertical-step:calc(var(--hanzi-size,32px) + 18px);
+ }
+ .reader-grid:not(.horizontal-hanzi) .reader-script .hanzi-text p{
+   margin:0;margin-block-end:8px;
+ }
+ /* Let columns fill naturally; long unbreakable clause wrappers caused
+    irregular column starts and widely varying spacing. */
+ .reader-grid:not(.horizontal-hanzi) .reader-script .hanzi-text .hanzi-clause,
+ .reader-grid:not(.horizontal-hanzi) .reader-script .hanzi-text .hanzi-clause.keep-together{
+   display:contents;white-space:normal;break-inside:auto;
+   margin:0;line-height:inherit;
+ }
+ .reader-grid:not(.horizontal-hanzi) .reader-script .hanzi-text .hanzi-clause.pause-soft,
+ .reader-grid:not(.horizontal-hanzi) .reader-script .hanzi-text .hanzi-clause.pause-strong{
+   margin:0;
+ }
+ .reader-grid:not(.horizontal-hanzi) .reader-script .hanzi-text .hanzi-verse{
+   break-inside:auto;
+ }
+ .reader-grid:not(.horizontal-hanzi) .reader-script .hanzi-text .hanzi-unit{
+   box-sizing:border-box;display:inline-flex;position:relative;
+   flex-direction:column;justify-content:flex-start;align-items:center;
+   writing-mode:horizontal-tb;text-orientation:mixed;
+   width:var(--vertical-column-width);height:var(--vertical-step);
+   padding:0 0 11px;margin:0;border:0;
+   vertical-align:middle;white-space:nowrap;line-height:1;
+ }
+ .reader-grid:not(.horizontal-hanzi) .reader-script .hanzi-text .hanzi-unit ruby{
+   display:ruby;writing-mode:horizontal-tb;text-orientation:mixed;
+   margin:0;font-size:var(--hanzi-size,32px);line-height:1.1;
+   ruby-position:over;ruby-align:center;ruby-overhang:none;
+ }
+ .reader-grid:not(.horizontal-hanzi) .reader-script .hanzi-text .hanzi-unit ruby rt{
+   display:ruby-text;order:initial;writing-mode:horizontal-tb;
+   color:var(--accent);font:500 var(--pinyin-size,14px)/1.2 system-ui,sans-serif;
+   min-height:0;white-space:nowrap;
+ }
+ .reader-grid:not(.horizontal-hanzi) .reader-script .hanzi-text.no-pinyin .hanzi-unit ruby rt{
+   display:none;
+ }
+ .reader-grid:not(.horizontal-hanzi) .reader-script .hanzi-text .hanzi-unit .modern{
+   position:absolute;bottom:0;left:0;right:0;
+   display:block;margin:0;text-align:center;
+   writing-mode:horizontal-tb;text-orientation:mixed;
+   font:400 clamp(11px,calc(var(--pinyin-size,14px) * .78),15px)/1 system-ui,sans-serif;
+   white-space:nowrap;color:var(--muted);
+ }
+ .reader-grid:not(.horizontal-hanzi) .reader-script .hanzi-text .hanzi-mark-cell{
+   box-sizing:border-box;display:inline-flex;
+   writing-mode:vertical-rl;text-orientation:mixed;
+   align-items:center;justify-content:center;
+   width:var(--vertical-column-width);height:var(--vertical-step);
+   padding:0;margin:0;vertical-align:middle;
+   font:400 var(--hanzi-size,32px)/1 "Noto Serif CJK TC","Noto Serif CJK SC","Songti SC",serif;
+   font-feature-settings:"vert" 1;
+ }
+ .reader-grid:not(.horizontal-hanzi) .reader-script .hanzi-text .hanzi-mark-cell.has-vertical-form .hanzi-mark-source{
+   display:none;
+ }
+ .reader-grid:not(.horizontal-hanzi) .reader-script .hanzi-text .hanzi-mark-cell .hanzi-mark-vertical{
+   display:inline;writing-mode:vertical-rl;text-orientation:mixed;
+   font-feature-settings:"vert" 1;
+ }
+}

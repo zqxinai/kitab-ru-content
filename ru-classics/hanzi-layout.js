@@ -10,6 +10,15 @@ const PAUSES=Object.freeze({
 });
 const CLOSING=new Set(['”','’','」','』','）',')','】','》','〉','〕','〗','"',"'",'»']);
 const textOf=t=>t?.type==='ruby'?String(t.traditional||''):String(t?.value||'');
+/* CLREQ: in vertical Traditional Chinese, punctuation is composed with
+ * vertical font metrics; quotation marks use corner brackets. Only the
+ * display layer uses these glyphs. Never persist them to source tokens. */
+const VERTICAL_FORMS=Object.freeze({
+  ':':'：',';':'；','?':'？','!':'！',',':'，','.':'。',
+  '“':'「','”':'」','‘':'『','’':'』'
+});
+const verticalForm=character=>VERTICAL_FORMS[character]||character;
+
 function explode(tokens){
   const units=[];
   for(const token of tokens){
@@ -47,7 +56,7 @@ function segment(tokens){
   flush('none');
   return groups;
 }
-const api=Object.freeze({segment,textOf});
+const api=Object.freeze({segment,textOf,verticalForm});
 if(typeof module!=='undefined'&&module.exports)module.exports=api;
 scope.RuHanziLayout=api;
 })(typeof globalThis!=='undefined'?globalThis:this);
