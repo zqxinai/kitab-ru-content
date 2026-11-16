@@ -275,3 +275,18 @@ test('Character lookup is safe and total across all Si Shu original tokens witho
  assert.equal(count,965);
  assert.ok(unknown>0,'missing definitions must remain visibly unavailable rather than fabricated');
 });
+
+test('Reader navigation and dictionary close buttons use geometry-centered SVG icons',()=>{
+ const app=read('ru-classics/app.js'),html=read('ru-classics/index.html'),css=read('ru-classics/styles.css');
+ assert.match(app,/function readerChevron\(direction\)/);
+ assert.equal((app.match(/readerChevron\(-1\)/g)||[]).length,2,'backward arrow in phone and desktop');
+ assert.equal((app.match(/readerChevron\(1\)/g)||[]).length,2,'forward arrow in phone and desktop');
+ assert.match(app,/class="reader-step-icon"/);
+ assert.match(app,/aria-hidden="true" focusable="false"/);
+ assert.match(html,/class="character-close-icon"/);
+ assert.match(html,/data-character-close aria-label="Tutup kamus karakter"/);
+ assert.match(html,/styles\.css\?v=20261116-icon-align-v3/);
+ assert.match(html,/app\.js\?v=20261116-icon-align-v3/);
+ assert.match(css,/\.reader-pager-arrow,\s*\.reader-desktop-step,\s*\.character-inspector-close\s*\{[\s\S]*?place-items:center;[\s\S]*?padding:0;[\s\S]*?line-height:0;/);
+ assert.match(css,/\.reader-step-icon,\s*\.character-close-icon\s*\{[\s\S]*?display:block;/);
+});
