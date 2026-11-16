@@ -10,6 +10,8 @@ on:
       - 'ru-classics/**'
       - 'tests/ru-classics-reading*.test.js'
       - 'tools/build_ru_classics_web.py'
+      - 'tools/build_ru_unihan_glossary.py'
+      - 'tools/test_ru_unihan_glossary.py'
       - 'audit/**'
       - 'index.html'
       - 'catalog.json'
