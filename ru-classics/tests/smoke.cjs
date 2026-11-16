@@ -8,16 +8,21 @@ const bundle=JSON.parse(fs.readFileSync(path.join(__dirname,'../../ru-classics/d
 const nodes={
  main:{innerHTML:''},
  toast:{textContent:'',classList:{add(){},remove(){}}},
- 'settings-dialog':{showModal(){}},
- 'about-dialog':{showModal(){}},
+ 'settings-dialog':{showModal(){this.open=true;},close(){this.open=false;}},
+ 'about-dialog':{showModal(){this.open=true;}},
+ 'privacy-dialog':{showModal(){this.open=true;}},
  'theme-options':{innerHTML:''},
  'reading-options':{innerHTML:''},
- 'font-label':{textContent:''},
+ 'ui-language':{value:'id'},
+ 'font-hanzi':{value:'32'},'font-hanzi-label':{textContent:''},
+ 'font-pinyin':{value:'14'},'font-pinyin-label':{textContent:''},
+ 'font-latin':{value:'17'},'font-latin-label':{textContent:''},
  'search-results':{innerHTML:''}
 };
 const handlers={};
 const doc={
- body:{dataset:{}},
+ body:{dataset:{},style:{values:{},setProperty(key,value){this.values[key]=value;}}},
+ documentElement:{lang:'id',setAttribute(key,value){if(key==='lang')this.lang=value;}},
  getElementById(id){return nodes[id]||null;},
  querySelector(){return {content:''};},
  querySelectorAll(){return [];},
@@ -26,7 +31,8 @@ const doc={
 let hash='#home';
 const location={get hash(){return hash;},set hash(v){hash=v;}};
 const page={addEventListener(){},dispatchEvent(){},scrollTo(){}};
-const localStorage={getItem(){return null;},setItem(){}};
+const store={};
+const localStorage={getItem(k){return store[k]||null;},setItem(k,value){store[k]=value;}};
 const context={document:doc,window:page,location,localStorage,console,Event,clearTimeout,setTimeout,
  fetch:async()=>({ok:true,json:async()=>bundle})};
 vm.runInNewContext(fs.readFileSync(path.join(__dirname,'../reading-normalization.js'),'utf8'),context,{filename:'reading-normalization.js'});
@@ -39,6 +45,35 @@ function visibleText(html){return html.replace(/<[^>]+>/g,'');}
 setTimeout(()=>{
  try{
   assert.equal(doc.body.dataset.theme,'paper','Theme default should be Paper');
+  click({action:'settings'});
+  assert.equal(nodes['settings-dialog'].open,true);
+  for(const key of ['hanzi','pinyin','indo','english'])
+    assert.ok(nodes['reading-options'].innerHTML.includes('data-setting="'+key+'"'),'Reading toggle missing '+key);
+  assert.equal(nodes['ui-language'].value,'id');
+  assert.equal(nodes['font-hanzi-label'].textContent,'32 px');
+  assert.equal(nodes['font-pinyin-label'].textContent,'14 px');
+  assert.equal(nodes['font-latin-label'].textContent,'17 px');
+  click({sizeKey:'hanziSize',sizeStep:'2'});
+  click({sizeKey:'pinyinSize',sizeStep:'1'});
+  click({sizeKey:'latinSize',sizeStep:'1'});
+  assert.equal(doc.body.style.values['--hanzi-size'],'34px');
+  assert.equal(doc.body.style.values['--pinyin-size'],'15px');
+  assert.equal(doc.body.style.values['--latin-size'],'18px');
+  assert.equal(JSON.parse(store.ru_classics_web_v1).settings.pinyinSize,15,'Pinyin size should persist');
+  click({action:'reset-fonts'});
+  assert.equal(nodes['font-hanzi-label'].textContent,'32 px');
+  assert.equal(nodes['font-pinyin-label'].textContent,'14 px');
+  assert.equal(nodes['font-latin-label'].textContent,'17 px');
+  change('ui-language','en');
+  assert.equal(doc.documentElement.lang,'en','UI language should update independently');
+  assert.ok(nodes['reading-options'].innerHTML.includes('ID · Indonesian'),'Reader labels should localize');
+  assert.equal(JSON.parse(store.ru_classics_web_v1).uiLanguage,'en');
+  change('ui-language','id');
+  assert.equal(doc.documentElement.lang,'id');
+  click({action:'privacy'});
+  assert.equal(nodes['privacy-dialog'].open,true);
+  assert.equal(nodes['settings-dialog'].open,false);
+
   assert.match(nodes.main.innerHTML,/Kitab Yang Empat/);
   assert.match(nodes.main.innerHTML,/Da Xue/);
   assert.match(nodes.main.innerHTML,/Mengzi/);
@@ -60,6 +95,9 @@ setTimeout(()=>{
   assert.match(nodes.main.innerHTML,/id="reader-translation-indo"/,'Indonesian MATAKIN panel must be distinct');
   assert.match(nodes.main.innerHTML,/id="reader-translation-en"/,'English Legge panel must be distinct');
   assert.match(nodes.main.innerHTML,/class="reader-pager"/,'Passage navigation belongs in the bottom reader area');
+  assert.match(nodes.main.innerHTML,/class="reader-language-tools"/,'Quick reading-language controls must be available');
+  assert.match(nodes.main.innerHTML,/data-setting="pinyin"/,'Ruby Pinyin toggle must be present');
+
   assert.doesNotMatch(nodes.main.innerHTML,/class="reader-jump"/,'Old four-column top navigation must be absent');
   assert.ok(nodes.main.innerHTML.indexOf('id="jump-chapter"')<nodes.main.innerHTML.indexOf('class="paper-page reader-page"'),
     'Chapter navigation must appear before reading content');
