@@ -272,6 +272,49 @@ const CONTEXT=Object.freeze({
 const PROVENANCE='Glosarium editorial awal Ru Classics (belum ditinjau akademik).';
 let extended=null;
 let metadata=null;
+let cidict=null;
+let cidictMetadata=null;
+function installCIDict(payload){
+ if(!payload||payload.schema!=='ru-classics.cidict-glossary.v1'||
+   payload.language!=='id'||payload.license!=='CC-BY-SA-4.0'||
+   payload.source_url!=='https://cidict.org/download/'||
+   !payload.headwords||typeof payload.headwords!=='object'||Array.isArray(payload.headwords)||
+   !Number.isInteger(payload.single_character_covered)||
+   !Number.isInteger(payload.corpus_unique_characters))return false;
+ const records=Object.entries(payload.headwords);
+ if(records.length<1||records.some(([term,readings])=>
+   !term||Array.from(term).length>8||!Array.isArray(readings)||readings.length===0||
+   readings.some(r=>!r||typeof r.pinyin!=='string'||
+     !Array.isArray(r.definitions)||r.definitions.some(d=>typeof d!=='string'||!d.trim()))))return false;
+ cidict=Object.assign(Object.create(null),payload.headwords);
+ cidictMetadata=Object.freeze({
+   source:'CC-CIDICT (Harmony Mandarin dan kontributor)',
+   sourceUrl:'https://cidict.org/download/',
+   license:'CC-BY-SA-4.0',
+   covered:payload.single_character_covered,
+   total:payload.corpus_unique_characters,
+   terms:records.length
+ });
+ return true;
+}
+function phrasesAt(sourceText,sourceIndex){
+ if(!cidict||typeof sourceText!=='string'||!Number.isInteger(sourceIndex)||sourceIndex<0)return [];
+ const text=Array.from(sourceText);
+ if(sourceIndex>=text.length)return [];
+ const hits=[];
+ // Never select headwords which cross punctuation/quotation boundaries.
+ for(let start=Math.max(0,sourceIndex-7);start<=sourceIndex;start++){
+   for(let n=2;n<=8&&start+n<=text.length;n++){
+     if(start+n<=sourceIndex)continue;
+     const word=text.slice(start,start+n).join('');
+     if(!cidict[word])continue;
+     hits.push({word,readings:cidict[word],start,length:n});
+   }
+ }
+ hits.sort((a,b)=>b.length-a.length||Math.abs(a.start-sourceIndex)-Math.abs(b.start-sourceIndex));
+ return hits.slice(0,5);
+}
+
 function installUnihan(payload){
  if(!payload||payload.schema!=='ru-classics.unihan-glossary.v1'||
     payload.license!=='Unicode-3.0'||payload.language!=='en'||
@@ -300,15 +343,18 @@ function lookup(char, passageId){
  const entry=Object.prototype.hasOwnProperty.call(ENTRIES,char)?ENTRIES[char]:null;
  const context=Object.prototype.hasOwnProperty.call(CONTEXT,passageId)?CONTEXT[passageId]?.[char]:null;
  const english=extended&&Object.prototype.hasOwnProperty.call(extended,char)?extended[char]:null;
+ const indonesian=cidict&&Object.prototype.hasOwnProperty.call(cidict,char)?cidict[char]:null;
  return {
    char,gloss:entry?.gloss||null,note:entry?.note||null,
    context:context||null,source:entry||context?PROVENANCE:null,
    englishGloss:english||null,
-   englishSource:english?(metadata?.source+' · Unicode-3.0'):null
+   englishSource:english?(metadata?.source+' · Unicode-3.0'):null,
+   indonesianReadings:indonesian||null,
+   indonesianSource:indonesian?'CC-CIDICT · CC BY-SA 4.0':null
  };
 }
 function coverage(){return metadata;}
-const api=Object.freeze({lookup,installUnihan,coverage,
+const api=Object.freeze({lookup,installUnihan,installCIDict,phrasesAt,coverage,cidictCoverage:()=>cidictMetadata,
   entryCount:Object.keys(ENTRIES).length,
   contextCount:Object.values(CONTEXT).reduce((n,x)=>n+Object.keys(x).length,0)});
 if(typeof module!=='undefined'&&module.exports)module.exports=api;
