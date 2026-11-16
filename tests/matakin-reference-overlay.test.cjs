@@ -1,6 +1,7 @@
 'use strict';
 const test=require('node:test'),assert=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path');
 const overlay=require('../ru-classics/reference-overlay.js');
+const canonicalDisplay=s=>s.replaceAll('Sabda Suci — Lun Yu','Lunyu - Sabda Suci').replaceAll('Ajaran Besar — Da Xue','Daxue - Ajaran Besar').replaceAll('Tengah Sempurna — Zhong Yong','Zhongyong - Tengah Sempurna').replaceAll('Mengzi — Bing Cu','Mengzi - Bingcu');
 const root=path.resolve(__dirname,'..');
 const read=p=>JSON.parse(fs.readFileSync(path.join(root,p),'utf8'));
 const chapters=read('sishu/manifest.json').chapters.map(x=>read(x.path));
@@ -34,16 +35,16 @@ test('Linked reference segments preserve all 965 Indonesian texts and never inve
  assert.ok(linked>60,'expected many exactly verified single-passage references');
  assert.deepEqual(overlay.segments('sishu.lunyu.18.06','Tidak ada rujukan'),[{text:'Tidak ada rujukan',target_id:null}]);
  const multi=overlay.segments('sishu.lunyu.02.05',byId.get('sishu.lunyu.02.05').translation_indonesian);
- assert.ok(multi.some(x=>x.text.includes('Lun Yu I:9; Lun Yu III:1,2')&&x.target_id===null),
+ assert.ok(multi.some(x=>x.text.includes('Lunyu - Sabda Suci I:9; Lun Yu III:1,2')&&x.target_id===null),
    'compound cross-reference must remain plain text pending per-segment navigation');
  const chapter=overlay.segments('sishu.lunyu.09.08',byId.get('sishu.lunyu.09.08').translation_indonesian);
  assert.ok(chapter.some(x=>x.text.includes('Zhongyong - Tengah Sempurna V')&&x.target_id===null),
    'chapter-only reference must not link to a fabricated verse');
 });
-test('One hundred twenty six exact references preserve original sources and resolve only evidenced targets',()=>{
+test('One hundred twenty seven exact references preserve original sources and resolve only evidenced targets',()=>{
  assert.equal(chapters.length,78);
  assert.equal(byId.size,965);
- assert.equal(overlay.records.length,126);
+ assert.equal(overlay.records.length,127);
  // Historical batch 01 is immutable; batch 02 allows multiple references in one passage.
  for(const [sourceId,targetId] of Object.entries(expectedTargets))
   assert.ok(overlay.records.some(r=>r.passage_id===sourceId&&r.target_id===targetId),'legacy mapping changed: '+sourceId);
@@ -169,9 +170,9 @@ test('Seven compound citations are individually segmented and display-ready',()=
   if(entry.display_status==='display-ready'){
    const rendered=overlay.records.filter(r=>r.passage_id===entry.passage_id&&r.source===entry.source);
    assert.equal(rendered.length,1,'ready compound has no unique overlay: '+entry.passage_id);
-   assert.equal(rendered[0].display,entry.display);
+   assert.equal(rendered[0].display,canonicalDisplay(entry.display));
    assert.equal(rendered[0].target_id,null,'composite citation may not claim single target');
-   assert.ok(overlay.present(entry.passage_id,byId.get(entry.passage_id).translation_indonesian).includes(entry.display));
+   assert.ok(overlay.present(entry.passage_id,byId.get(entry.passage_id).translation_indonesian).includes(canonicalDisplay(entry.display)));
   }else{
    assert.equal(entry.display_status,'review-only');
    assert.equal(entry.display,null);
@@ -215,7 +216,7 @@ test('Batch 06 has eight display-ready compounds, including photo-witnessed IX:5
    assert.equal(found.length,1,'missing display overlay for '+entry.passage_id);
    assert.equal(found[0].display,entry.display);
    assert.equal(found[0].target_id,null,'compound entry cannot have one synthetic link');
-   assert.ok(overlay.present(entry.passage_id,source.translation_indonesian).includes(entry.display));
+   assert.ok(overlay.present(entry.passage_id,source.translation_indonesian).includes(canonicalDisplay(entry.display)));
   }else{
    assert.equal(entry.display_status,'review-only');
    assert.equal(entry.display,null);
