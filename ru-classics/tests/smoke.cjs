@@ -26,9 +26,10 @@ const inspector={
   setAttribute(name,value){this[name]=value;},
   querySelector(selector){
     if(selector==='[data-character-close]')return {focus(){}};
-    const match=selector.match(/^\\[data-inspector="([^"]+)"\\]$/);
-    if(!match)return null;
-    return inspectorFields[match[1]]??={textContent:''};
+    const prefix='[data-inspector="';
+    if(!selector.startsWith(prefix)||!selector.endsWith('"]'))return null;
+    const key=selector.slice(prefix.length,-2);
+    return inspectorFields[key]??={textContent:''};
   }
 };
 nodes['character-inspector']=inspector;
