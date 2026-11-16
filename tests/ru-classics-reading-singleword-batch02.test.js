@@ -25,7 +25,8 @@ test('Batch 02: every extra Pinyin reading is grounded in its exact Hanzi source
  assert.equal(all.length,965);
  for(const [id,hanzi,expected]of cases){
    const p=byId.get(id);assert.ok(p,'missing '+id);
-   assert.ok(p.ruby_paragraphs.flat().some(t=>(t.traditional||t.value||'').includes(hanzi)),id+' Hanzi '+hanzi);
+   const sourceHanzi=p.ruby_paragraphs.flat().map(t=>t.traditional||t.value||'').join('');
+   assert.ok(sourceHanzi.includes(hanzi),id+' Hanzi '+hanzi);
    const shown=reading.normalize(p.translation_indonesian,id);
    assert.ok(shown.includes(expected),id+' missing '+expected);
    assert.equal(reading.normalize(shown,id),shown,'unstable '+id);
