@@ -37,7 +37,7 @@ test('Linked reference segments preserve all 965 Indonesian texts and never inve
  assert.ok(multi.some(x=>x.text.includes('Lun Yu I:9; Lun Yu III:1,2')&&x.target_id===null),
    'compound cross-reference must remain plain text pending per-segment navigation');
  const chapter=overlay.segments('sishu.lunyu.09.08',byId.get('sishu.lunyu.09.08').translation_indonesian);
- assert.ok(chapter.some(x=>x.text.includes('Tengah Sempurna — Zhong Yong V')&&x.target_id===null),
+ assert.ok(chapter.some(x=>x.text.includes('Zhongyong - Tengah Sempurna V')&&x.target_id===null),
    'chapter-only reference must not link to a fabricated verse');
 });
 test('One hundred twenty six exact references preserve original sources and resolve only evidenced targets',()=>{
@@ -137,8 +137,8 @@ test('Batch 04 checks 29 new SS AB BC TS sources, number mapping and single-book
  }
  const compound=byId.get('sishu.lunyu.02.05').translation_indonesian;
  const displayed=overlay.present('sishu.lunyu.02.05',compound);
- assert.ok(displayed.includes('(Sabda Suci — Lun Yu VI:22)'));
- assert.ok(displayed.includes('(Sabda Suci — Lun Yu I:9; Lun Yu III:1,2; Lun Yu XIX:5; Mengzi — Bing Cu III A:2)'),
+ assert.ok(displayed.includes('(Lunyu - Sabda Suci VI:22)'));
+ assert.ok(displayed.includes('(Lunyu - Sabda Suci I:9; Lun Yu III:1,2; Lun Yu XIX:5; Mengzi - Bingcu III A:2)'),
    'multi-book citation should preserve all inherited books and passage numbers');
  const chapterOnly=overlay.records.find(r=>r.passage_id==='sishu.lunyu.09.08'&&r.source==='(T.S. V)');
  assert.equal(chapterOnly.target_id,null,'chapter-only reference must not point to a fabricated verse');
@@ -358,7 +358,7 @@ test('Batch 08 single-book references have exact source text, validated targets 
  }
  const shared=byId.get('sishu.mengzi.03.02');
  const result=overlay.present(shared.id,shared.translation_indonesian);
- for(const fragment of ['Sabda Suci — Lun Yu XI:3','Sabda Suci — Lun Yu VII:2','Sabda Suci — Lun Yu VII:26','Sabda Suci — Lun Yu XII:22','Sabda Suci — Lun Yu IX:9'])
+ for(const fragment of ['Lunyu - Sabda Suci XI:3','Lunyu - Sabda Suci VII:2','Lunyu - Sabda Suci VII:26','Lunyu - Sabda Suci XII:22','Lunyu - Sabda Suci IX:9'])
   assert.ok(result.includes(fragment),'one of five independent references missing: '+fragment);
 });
 test('The exact legacy references remain intact in every source and the overlay changes only display',()=>{
@@ -380,14 +380,14 @@ test('Multiple citations in one passage expand independently without changing su
  const p=byId.get('sishu.lunyu.05.08');
  const before=p.translation_indonesian;
  const shown=overlay.present(p.id,before);
- assert.ok(shown.includes('(Sabda Suci — Lun Yu II:6)'));
- assert.ok(shown.includes('(Sabda Suci — Lun Yu VI:4)'));
+ assert.ok(shown.includes('(Lunyu - Sabda Suci II:6)'));
+ assert.ok(shown.includes('(Lunyu - Sabda Suci VI:4)'));
  assert.ok(!shown.includes('(S.S. II: 6)'));
  assert.ok(!shown.includes('(S.S. VI: 4)'));
  assert.equal(p.translation_indonesian,before);
  assert.ok(shown.includes('(2)'), 'subayat marker (2) disappeared');
  assert.equal(overlay.present(p.id,shown),shown);
- assert.ok(shown.includes('(Tengah Sempurna — Zhong Yong Bab VIII)'),'TS book name missing');
+ assert.ok(shown.includes('(Zhongyong - Tengah Sempurna Bab VIII)'),'TS book name missing');
  assert.ok(!shown.includes('(T.S. VIII)'),'unexpanded TS remains');
  const chapterOnly=overlay.records.find(r=>r.passage_id===p.id&&r.source==='(T.S. VIII)');
  assert.equal(chapterOnly?.target_id,'sishu.zhongyong.09.01','single-passage chapter VIII now links to sole passage');
@@ -395,20 +395,20 @@ test('Multiple citations in one passage expand independently without changing su
 test('Batch 03 preserves cross-references without fabricating chapter-only passage links',()=>{
  const quote=byId.get('sishu.lunyu.12.16');
  const shown=overlay.present(quote.id,quote.translation_indonesian);
- assert.ok(shown.includes('(Tengah Sempurna — Zhong Yong IX:3)'));
+ assert.ok(shown.includes('(Zhongyong - Tengah Sempurna IX:3)'));
  const cross=byId.get('sishu.zhongyong.10.03');
- assert.ok(overlay.present(cross.id,cross.translation_indonesian).includes('(Sabda Suci — Lun Yu XII:16)'));
+ assert.ok(overlay.present(cross.id,cross.translation_indonesian).includes('(Lunyu - Sabda Suci XII:16)'));
  const chapterOnly=byId.get('sishu.lunyu.12.13');
- assert.ok(overlay.present(chapterOnly.id,chapterOnly.translation_indonesian).includes('(Ajaran Besar — Da Xue IV)'));
+ assert.ok(overlay.present(chapterOnly.id,chapterOnly.translation_indonesian).includes('(Daxue - Ajaran Besar IV)'));
  const tsChapter=byId.get('sishu.lunyu.12.20');
- assert.ok(overlay.present(tsChapter.id,tsChapter.translation_indonesian).includes('(Tengah Sempurna — Zhong Yong Bab VIII)'));
+ assert.ok(overlay.present(tsChapter.id,tsChapter.translation_indonesian).includes('(Zhongyong - Tengah Sempurna Bab VIII)'));
  assert.ok(overlay.records.filter(r=>r.source==='(A.B. IV )').every(r=>r.target_id===null));
  assert.ok(overlay.records.filter(r=>r.source==='(T.S. VIII)').every(r=>r.target_id==='sishu.zhongyong.09.01'));
 });
 test('Verse numbers, unrelated scripture references and original Hanzi are unaffected',()=>{
  const m=byId.get('sishu.mengzi.01.01');
  const result=overlay.present(m.id,m.translation_indonesian);
- assert.ok(result.includes('(Ajaran Besar — Da Xue X:23) (4)'));
+ assert.ok(result.includes('(Daxue - Ajaran Besar X:23) (4)'));
  assert.ok(result.includes('(3)'));
  assert.ok(result.includes('(6)'));
  assert.match(result,/Cinta Kasih dan Kebenaran/);
