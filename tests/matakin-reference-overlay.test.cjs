@@ -214,7 +214,7 @@ test('Batch 06 has eight display-ready compounds, including photo-witnessed IX:5
   const found=overlay.records.filter(r=>r.passage_id===entry.passage_id&&r.source===entry.source);
   if(entry.display_status==='display-ready'){
    assert.equal(found.length,1,'missing display overlay for '+entry.passage_id);
-   assert.equal(found[0].display,entry.display);
+   assert.equal(found[0].display,canonicalDisplay(entry.display));
    assert.equal(found[0].target_id,null,'compound entry cannot have one synthetic link');
    assert.ok(overlay.present(entry.passage_id,source.translation_indonesian).includes(canonicalDisplay(entry.display)));
   }else{
