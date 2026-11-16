@@ -134,7 +134,7 @@ test('Desktop layout activates at tablet viewport and does not rely on :has or s
  assert.match(app,/reader-two-column/);
  assert.match(app,/main\.classList\?\.toggle\?\.\('is-reading'/);
  assert.match(html,/styles\.css\?v=20261116-[A-Za-z0-9-]+/,'CSS asset must be cache-busted for the current release');
- assert.match(html,/app\.js\?v=20261116-dictionary-v1/);
+ assert.match(html,/app\.js\?v=20261116-icon-align-v3/);
 });
 
 test('Hanzi clauses respect original punctuation and keep quote closures with the preceding question',()=>{
