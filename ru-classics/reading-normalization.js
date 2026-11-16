@@ -313,6 +313,21 @@
   // Kolasi khusus berdasarkan Hanzi. Satu ejaan Hokkian bisa mewakili
   // aksara berbeda: Chien => 晉 (Jin) atau 秦 (Qin); Swan => 僎 atau 宣.
   const CONTEXTUAL = Object.freeze({
+    'sishu.mengzi.02.16': [
+      ["Cong Chong", "Zang Cang - Cong Chong"], // 臧倉
+    ],
+    'sishu.lunyu.14.17': [
+      ["Raja muda Hwan", "Raja muda Huan - Hwan"], // 桓公
+      ["Rajamuda Hwan", "Rajamuda Huan - Hwan"], // 桓公
+    ],
+    'sishu.lunyu.14.16': [
+      ["Rajamuda Hwan", "Rajamuda Huan - Hwan"], // 桓公
+      ["Raja muda Hwan", "Raja muda Huan - Hwan"], // 桓公
+      ["Tiau Hut", "Shao Hu - Tiau Hut"], // 召忽
+    ],
+    'sishu.lunyu.11.03': [
+      ["Kwi Lo", "Ji Lu - Kwi Lo"], // 季路
+    ],
     'sishu.lunyu.05.15': [
       ['Khong Buncu', 'Kong Wenzi - Khong Buncu'], // 孔文子
     ],
@@ -613,6 +628,8 @@
       ['I selama 8 tahun', 'Yu - I selama 8 tahun'] // 禹
     ],
     'sishu.mengzi.06.09': [
+      ["Chun Chiu", "Chunqiu - Chun Chiu"], // 春秋
+      ["ajaran Yang Cu", "ajaran Yang Zhu - Yang Cu"], // 楊朱
       ['Yangcu', 'Yang Zhu - Yangcu'], // matched verse Hanzi
       ['Bik Tik', 'Mo Di - Bik Tik'], // matched verse Hanzi
       ['Sungai Kang', 'Sungai Jiang - Kang'], // nama lokasi, cocokkan Hanzi pada sishu.mengzi.06.09
@@ -640,6 +657,9 @@
       ['Piet-ting', 'Bi Ying - Piet-ting'] // 畢郢
     ],
     'sishu.mengzi.08.21': [
+      ["Chun Chiu", "Chunqiu - Chun Chiu"], // 春秋
+      ["Kitab Sing", "Kitab Sheng - Sing"], // 晉之乘, 乘 shèng
+      ["Kitab Too Gut", "Kitab Taowu - Too Gut"], // 楚之檮杌
       ['Negeri Cien', 'Negeri Jin - Cien'] // 晉
     ],
     'sishu.mengzi.10.03': [
@@ -762,6 +782,7 @@
       ['daerah Pi', 'daerah Bi - Pi']
     ],
     'sishu.lunyu.16.01': [
+      ["Keluarga Kwi", "Keluarga Ji - Kwi"], // 季氏
       ['gunung Tong Bong', 'gunung Dongmeng - Tong Bong'], // Hanzi verified context
       ['daerah Pi', 'daerah Bi - Pi'],
       ['daerah Cwan-ji', 'daerah Zhuanyu - Cwan-ji'],
